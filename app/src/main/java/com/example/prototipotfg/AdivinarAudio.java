@@ -5,15 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class MenuJugar extends Activity {
+public class AdivinarAudio extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_jugar);
+        setContentView(R.layout.adivinar_audio);
     }
 
-    public void modo_adivinar(View view){
+    public void adivinarNota(View view) {
         Intent i = new Intent(this, NivelesAdivinar.class);
         startActivity(i);
     }

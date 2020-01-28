@@ -5,16 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class MenuJugar extends Activity {
+public class NivelesAdivinar extends Activity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_jugar);
+        setContentView(R.layout.niveles_adivinar);
     }
 
-    public void modo_adivinar(View view){
-        Intent i = new Intent(this, NivelesAdivinar.class);
+    public void nivel_seleccionado(View view){
+        Intent i = new Intent(this, ReproducirAdivinar.class);
         startActivity(i);
     }
 }

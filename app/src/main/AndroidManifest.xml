@@ -16,6 +16,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".MenuJugar">
+        </activity>
+
+        <activity android:name=".ReproducirAdivinar">
+        </activity>
+
+
+        <activity android:name=".SeleccionarAdivinar">
+        </activity>
+
+
+        <activity android:name=".AdivinarAudio">
+        </activity>
+
+
+        <activity android:name=".NivelesAdivinar">
+        </activity>
+
+
     </application>
 
 </manifest>
