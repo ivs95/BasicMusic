@@ -3,9 +3,20 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Color de la barra principal-->
+        <item name="colorPrimary">@color/md_orange_500</item>
+
+        <!-- Color de la barra de notificaciones-->
+        <item name="colorPrimaryDark">@color/md_orange_300</item>
+
+        <!--Color de fondo de la aplicacion-->
+        <item name="android:colorBackground">@color/md_yellow_A100</item>
+
+
+        <!--Color de fondo de los botones-->
+        <item name="android:colorButtonNormal">@color/md_orange_400</item>
+
     </style>
 
 </resources>
