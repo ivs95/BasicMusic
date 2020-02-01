@@ -9,25 +9,20 @@
         android:layout_height="72dp"
         android:gravity="center"
         android:text="Niveles"
-        android:textSize="30sp" />
+        android:textSize="30sp"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/BotoneraAdivinar"
+            android:id="@+id/Botonera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="72dp">
 
-            <Button
-                android:id="@+id/retroceder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="volverAtras"
-                android:text="Volver a reproducir" />
         </LinearLayout>
     </ScrollView>
 

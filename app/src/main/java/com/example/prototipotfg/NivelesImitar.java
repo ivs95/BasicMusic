@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-public class NivelesAdivinar extends Activity {
+public class NivelesImitar extends Activity {
 
 
     @Override
@@ -44,18 +44,20 @@ public class NivelesAdivinar extends Activity {
     }
 
     public void nivel_seleccionado(View view){
-        Intent i = new Intent(this, ReproducirAdivinar.class);
+        Intent i = new Intent(this, ReproducirImitar.class);
         int nivel = view.getId();
 
 
         /*
-        * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
-        * Crear clase para seleccionar notas aleatorias
-        * Claves: respuesta, fallo1,...,falloN
-        * */
+         * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
+         * Crear clase para seleccionar notas aleatorias
+         * Claves: respuesta, fallo1,...,falloN
+         * */
 
 
         i.putExtra("nivel", nivel);
         startActivity(i);
     }
+
+
 }

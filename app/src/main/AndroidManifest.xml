@@ -35,6 +35,9 @@
         <activity android:name=".NivelesAdivinar">
         </activity>
 
+        <activity android:name=".NivelesImitar"></activity>
+
+        <activity android:name=".ReproducirImitar"></activity>
 
     </application>
 

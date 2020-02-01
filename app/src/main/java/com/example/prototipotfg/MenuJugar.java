@@ -17,4 +17,9 @@ public class MenuJugar extends Activity {
         Intent i = new Intent(this, NivelesAdivinar.class);
         startActivity(i);
     }
+
+    public void modo_imitar(View view){
+        Intent i = new Intent(this, NivelesImitar.class);
+        startActivity(i);
+    }
 }
