@@ -2,7 +2,7 @@ package com.example.prototipotfg;
 
 public enum Notas {
     DO("Do", 31.7, 33.7, "do.wav"),
-    DOS("Do#",33.65, 35.65, "dos.wav"),
+    DOS("Do#",33.71, 35.65, "dos.wav"),
     RE("Re", 35.71, 37.71, "re.wav"),
     RES("Re#", 37.89, 39.89, "res.wav"),
     MI("Mi", 40.2, 42.2, "mi.wav"),
@@ -57,5 +57,9 @@ public enum Notas {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public boolean esNota(Notas n, double frecuencia){
+        return (n.minimaFrecuencia <= frecuencia && n.maximaFrecuencia >= frecuencia);
     }
 }

@@ -7,6 +7,16 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/timer_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintStart_toEndOf="@+id/textoFrecuencia"
+        app:layout_constraintTop_toBottomOf="@+id/botonGrabar" />
+
+    <TextView
         android:id="@+id/tituloImitar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,11 +33,11 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="40dp"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/botonGrabar" />
 
     <Button
         android:id="@+id/button4"
@@ -38,16 +48,27 @@
         android:onClick="comparar"
         android:text="Comparar audio"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/botonGrabar" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/botonGrabar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
         android:layout_marginTop="140dp"
-        android:onClick="grabar"
+        android:onClick="Grabar"
         android:text="Grabar muestra"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/botonRepite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="140dp"
+        android:onClick="repetirNivel"
+        android:text="Repetir nivel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
@@ -72,4 +93,15 @@
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <TextView
+        android:id="@+id/textoFrecuencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:text="Pitch"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintStart_toEndOf="@+id/progressGrabar"
+        app:layout_constraintTop_toBottomOf="@+id/botonGrabar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
