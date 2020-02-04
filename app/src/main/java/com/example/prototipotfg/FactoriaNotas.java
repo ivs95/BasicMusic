@@ -53,14 +53,4 @@ class FactoriaNotas {
     private Octavas devuelveOctavaAleatoria(Octavas[] octavas) {
         return octavas[random.nextInt(octavas.length)];
     }
-
-    public Notas getNotaAleatoria(){
-        /*
-        * Funcion que devuelve una nota aleatoria
-        * */
-
-
-
-        return null;
-    }
 }
