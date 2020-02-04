@@ -4,12 +4,11 @@ public enum Octavas {
 
     Primera("Primera","uno/", 1),
     Segunda("Segunda","dos/", 2),
-    Tercera("Tercera","tres/", 3);
-    /*Primera("Primera","uno/", 1),
-    Primera("Primera","uno/", 1),
-    Primera("Primera","uno/", 1),
-    Primera("Primera","uno/", 1),
-    Primera("Primera","uno/", 1),*/
+    Tercera("Tercera","tres/", 3),
+    Cuarta("Cuarta","cuatro/", 4),
+    Quinta("Quinta","cinco/", 5),
+    Sexta("Sexta","seis/", 6),
+    Septima("Septima","siete/", 7);
 
 
     private String nombre;

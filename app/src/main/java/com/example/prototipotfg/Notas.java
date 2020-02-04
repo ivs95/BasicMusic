@@ -6,13 +6,13 @@ public enum Notas {
     RE1("Re", 35.71, 37.71, "D.wav"),
     RES1("Re#", 37.89, 39.89, "D#.wav"),
     MI1("Mi", 40.2, 42.2, "E.wav"),
-    FA1("Fa", 42.65, 44.65, "piano/F#1.wav" ),
-    FAS1("Fa#", 45.25, 47.25, "piano/F#1.wav"),
-    SOL1("Sol", 48, 50, "piano/G1.wav" ),
-    SOLS1("Sol#", 50.91, 52.91, "piano/G#1.wav" ),
-    LA1("La", 54, 56, "piano/A1.wav"),
-    LAS1("La#", 57.27, 59.27, "piano/A#1.wav"),
-    SI1("Si", 60.74, 62.74, "piano/B1.wav");
+    FA1("Fa", 42.65, 44.65, "F.wav" ),
+    FAS1("Fa#", 45.25, 47.25, "F#.wav"),
+    SOL1("Sol", 48, 50, "G.wav" ),
+    SOLS1("Sol#", 50.91, 52.91, "G#.wav" ),
+    LA1("La", 54, 56, "A.wav"),
+    LAS1("La#", 57.27, 59.27, "A#.wav"),
+    SI1("Si", 60.74, 62.74, "B.wav");
 
 
     private String nombre;
