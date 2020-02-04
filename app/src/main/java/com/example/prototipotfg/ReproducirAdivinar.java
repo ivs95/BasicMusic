@@ -12,11 +12,14 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 public class ReproducirAdivinar extends Activity {
 
+    private ArrayList<String> nombres;
+    private ArrayList<String> rutas;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -26,21 +29,26 @@ public class ReproducirAdivinar extends Activity {
         TextView titulo = (TextView)findViewById(R.id.tituloAdivinar);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
         TextView nota = (TextView)findViewById(R.id.nota);
+        nombres = getIntent().getExtras().getStringArrayList("nombres");
+        rutas = getIntent().getExtras().getStringArrayList("rutas");
     }
 
 
     public void reproducir(View view) throws IOException {
         MediaPlayer mediaPlayer =  new MediaPlayer();
-        Octavas[] octavas = {Octavas.Primera};
-        HashMap<String, String> ruta = FactoriaNotas.getInstance().getNumNotasAleatorias(1,Instrumentos.Piano,octavas);
-        AssetFileDescriptor afd = getAssets().openFd(ruta.keySet().toArray()[0]);
+        AssetFileDescriptor afd = getAssets().openFd(rutas.get(0));
         mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
         mediaPlayer.prepare();
         mediaPlayer.start();
+
     }
 
     public void adivina(View view){
         Intent i = new Intent(this, SeleccionarAdivinar.class);
+        i.putStringArrayListExtra("nombres", nombres);
+        i.putStringArrayListExtra("rutas", rutas);
         startActivity(i);
     }
+
+
 }

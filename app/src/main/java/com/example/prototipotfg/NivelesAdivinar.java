@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class NivelesAdivinar extends Activity {
 
 
@@ -45,17 +49,43 @@ public class NivelesAdivinar extends Activity {
 
     public void nivel_seleccionado(View view){
         Intent i = new Intent(this, ReproducirAdivinar.class);
-        int nivel = view.getId();
 
+        //Nivel que se ha seleccionado
+        int nivel = view.getId();
+        //Octavas[] octavas = getOctavasParaNivel(nivel);
+        //int numNotas = getNotasParaNivel(nivel);
+        Octavas[] octavas = {Octavas.Segunda};
+        HashMap<String, String> notas = null;
+        try {
+            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(1, Instrumentos.Piano,octavas);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         /*
         * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
         * Crear clase para seleccionar notas aleatorias
         * Claves: respuesta, fallo1,...,falloN
         * */
-
+        ArrayList<String> nombres = new ArrayList<>(notas.keySet());
+        ArrayList<String> rutas = new ArrayList<>(notas.values());
 
         i.putExtra("nivel", nivel);
+        i.putStringArrayListExtra("nombres", nombres);
+        i.putStringArrayListExtra("rutas", rutas);
         startActivity(i);
+    }
+
+    private int getNotasParaNivel(int nivel) {
+        return 0;
+
+
+    }
+
+    private Octavas[] getOctavasParaNivel(int nivel) {
+        if (nivel < 5){
+
+        }
+        return null;
     }
 }

@@ -23,19 +23,19 @@ class FactoriaNotas {
     private FactoriaNotas() {}
 
     public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, Octavas[] octavas) throws IOException {
-
         /*
         * Funcion que devuelve num notas aleatorias en un array
         * La primera posicion del array se utilizara como la nota a adivinar
         * */
-
         String rutaInstrumento = instrumento.getPath();
 
         //HashMap con clave nombre de nota y su octava y valor el path a su fichero
         HashMap<String,String> rutasFicherosAudio = new HashMap<String,String>();
         Octavas octava = devuelveOctavaAleatoria(octavas);
         Notas nota = devuelveNotaAleatoria(Notas.values());
-        rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), rutaInstrumento+octava.getPath()+nota.getPath());
+        String ruta = rutaInstrumento+octava.getPath()+nota.getPath();
+        rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), ruta);
+        System.out.println(ruta);
         for (int i = 1 ; i < numeroNotas; i++){
             while (rutasFicherosAudio.containsKey(nota.getNombre()+octava.getOctava())){
                 octava = devuelveOctavaAleatoria(octavas);
