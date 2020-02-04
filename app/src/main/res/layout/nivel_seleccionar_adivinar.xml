@@ -5,89 +5,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-z
-    <Button
-        android:id="@+id/opcion2"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Opcion 2"
-        android:onClick="seleccionarRespuesta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opcion1" />
-
-    <Button
-        android:id="@+id/opcion3"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Opcion 3"
-        android:onClick="seleccionarRespuesta"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opcion2" />
+    z
 
     <TextView
         android:id="@+id/tituloSeleccionar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="28dp"
         android:text="Elige la opción correcta"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/opcion1"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:onClick="seleccionarRespuesta"
-        android:text="Opcion 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloSeleccionar" />
-
-    <Button
-        android:id="@+id/opcion4"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:onClick="seleccionarRespuesta"
-        android:text="Opcion 4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opcion3" />
 
     <Button
         android:id="@+id/retroceder"
         android:layout_width="251dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginBottom="16dp"
         android:onClick="volverAtras"
         android:text="Volver a reproducir"
+        app:layout_constraintBottom_toTopOf="@+id/respuesta_correcta_id"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opcion4" />
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/comprobar"
         android:layout_width="251dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
+        android:layout_marginBottom="24dp"
         android:onClick="comprobarResultado"
         android:text="Comprobar resultado"
+        app:layout_constraintBottom_toTopOf="@+id/retroceder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="385dp"
+        android:layout_height="366dp"
+        app:layout_constraintBottom_toTopOf="@+id/comprobar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opcion4" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloSeleccionar"
+        app:layout_constraintVertical_bias="0.153">
+
+        <LinearLayout
+            android:id="@+id/opciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/respuesta_correcta_id"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="60dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,7 +57,7 @@ public class NivelesAdivinar extends Activity {
         Octavas[] octavas = {Octavas.Segunda};
         HashMap<String, String> notas = null;
         try {
-            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(1, Instrumentos.Piano,octavas);
+            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(4, Instrumentos.Piano,octavas);
         } catch (IOException e) {
             e.printStackTrace();
         }
