@@ -1,11 +1,11 @@
 package com.example.prototipotfg;
 
 public enum Notas {
-    DO1("Do1", 31.7, 33.7, "piano/C1.wav", 1),
-    DOS1("Do#1",33.71, 35.65, "piano/C#1.wav", 1),
-    RE1("Re1", 35.71, 37.71, "piano/D1.wav", 1),
-    RES1("Re#1", 37.89, 39.89, "piano/D#1.wav", 1),
-    MI1("Mi1", 40.2, 42.2, "piano/E1.wav",1),
+    DO1("Do1", 31.7, 33.7, "C.wav", 1),
+    DOS1("Do#1",33.71, 35.65, "C#.wav", 1),
+    RE1("Re1", 35.71, 37.71, "D.wav", 1),
+    RES1("Re#1", 37.89, 39.89, "D#.wav", 1),
+    MI1("Mi1", 40.2, 42.2, "E.wav",1),
     FA1("Fa1", 42.65, 44.65, "piano/F#1.wav", 1),
     FAS1("Fa#1", 45.25, 47.25, "piano/F#1.wav",1),
     SOL1("Sol1", 48, 50, "piano/G1.wav", 1),
