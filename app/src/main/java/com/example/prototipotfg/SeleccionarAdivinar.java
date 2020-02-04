@@ -1,10 +1,12 @@
 package com.example.prototipotfg;
 
+
 import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
 
 import static android.view.View.INVISIBLE;
 
@@ -27,8 +29,8 @@ public class SeleccionarAdivinar extends Activity {
     }
 
     public void seleccionarRespuesta(View view){
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.d3);
-        mediaPlayer.start();
+
+
 
         ponerComprobarVisible(View.VISIBLE);
         if (botonSeleccionado!=null) {
