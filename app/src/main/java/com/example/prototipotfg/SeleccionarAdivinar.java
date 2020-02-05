@@ -46,7 +46,7 @@ public class SeleccionarAdivinar extends Activity {
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
-
+        lp.setMargins(0,0,0,50);
         Random rand = new Random();
 
         int num_respuestas = 4;
@@ -83,6 +83,8 @@ public class SeleccionarAdivinar extends Activity {
                 }
             });
             //Añadimos el botón a la botonera
+            button.setPadding(0,0,0,0);
+
             opciones.addView(button);
         }
 

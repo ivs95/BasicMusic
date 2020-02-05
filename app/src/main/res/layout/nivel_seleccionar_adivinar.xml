@@ -57,6 +57,7 @@
             android:id="@+id/opciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="40dp"
             android:orientation="vertical" />
     </ScrollView>
 

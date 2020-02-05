@@ -54,8 +54,8 @@ public class NivelesImitar extends Activity {
          * Claves: respuesta, fallo1,...,falloN
          * */
 
-
         i.putExtra("nivel", nivel);
+        //i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
         startActivity(i);
     }
 
