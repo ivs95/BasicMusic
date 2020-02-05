@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import org.jfugue.Player;
+
 public class AdivinarAudio extends Activity {
 
     @Override

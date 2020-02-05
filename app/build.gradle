@@ -19,7 +19,15 @@ android {
     }
 }
 
+repositories {
+    maven { url 'https://github.com/kshoji/JFugue-for-Android/raw/master/jfugue-android/snapshot' }
+    maven { url 'https://github.com/kshoji/USB-MIDI-Driver/raw/master/MIDIDriver/snapshots' }
+}
+
+
 dependencies {
+    implementation 'jp.kshoji:jfugue-android:4.0.3:@aar'
+    implementation 'jp.kshoji:midi-driver:0.1.1:@aar'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

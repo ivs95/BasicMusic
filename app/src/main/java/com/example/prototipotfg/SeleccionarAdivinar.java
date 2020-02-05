@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import androidx.core.content.ContextCompat;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -90,6 +92,12 @@ public class SeleccionarAdivinar extends Activity {
 
     public void respuesta_seleccionada(View view){
         Button b = (Button)view;
+        if (botonSeleccionado != null){
+            botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_orange_400));
+        }
+        botonSeleccionado = b;
+        botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_deep_orange_900));
+
         respuesta = b.getText().toString();
         ponerComprobarVisible(1);
     }
