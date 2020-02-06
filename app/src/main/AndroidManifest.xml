@@ -36,12 +36,15 @@
         </activity>
 
 
-        <activity android:name=".NivelesAdivinar">
+        <activity android:name=".NivelesAdivinarNotas">
         </activity>
 
         <activity android:name=".NivelesImitar"></activity>
 
         <activity android:name=".ReproducirImitar"></activity>
+
+        <activity android:name=".SeleccionModoAdivinar"></activity>
+        <activity android:name=".SeleccionarDificultadAdivinar"></activity>
 
     </application>
 

@@ -11,14 +11,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class NivelesAdivinar extends Activity {
+public class NivelesAdivinarNotas extends Activity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
-
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
 
@@ -54,10 +53,10 @@ public class NivelesAdivinar extends Activity {
         int nivel = view.getId();
         //Octavas[] octavas = getOctavasParaNivel(nivel);
         //int numNotas = getNotasParaNivel(nivel);
-        Octavas[] octavas = {Octavas.Segunda};
+        ArrayList<Octavas>  octavas = getOctavasParaNivel(nivel);
         HashMap<String, String> notas = null;
         try {
-            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(4, Instrumentos.Piano,octavas);
+            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(getNotasParaNivel(nivel), Instrumentos.Piano,octavas);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,21 +70,44 @@ public class NivelesAdivinar extends Activity {
         ArrayList<String> rutas = new ArrayList<>(notas.values());
 
         i.putExtra("nivel", nivel);
+        i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
         startActivity(i);
     }
 
     private int getNotasParaNivel(int nivel) {
-        return 0;
+        int numeroNotas = 0;
+        numeroNotas = (nivel%5)+1;
+        if (numeroNotas == 1){
+            numeroNotas+=5;
+        }
+        return numeroNotas;
 
 
     }
 
-    private Octavas[] getOctavasParaNivel(int nivel) {
-        if (nivel < 5){
-
+    private ArrayList<Octavas>  getOctavasParaNivel(int nivel) {
+        ArrayList<Octavas> octavas = new ArrayList<Octavas>() ;
+        octavas.add(Octavas.Primera);
+        if (nivel > 5){
+            octavas.add(Octavas.Segunda);
+            if (nivel > 10){
+                octavas.add(Octavas.Tercera);
+                if (nivel > 15){
+                    octavas.add(Octavas.Cuarta);
+                    if (nivel > 20){
+                        octavas.add(Octavas.Quinta);
+                        if (nivel > 25){
+                            octavas.add(Octavas.Sexta);
+                            if (nivel > 30){
+                                octavas.add(Octavas.Septima);
+                            }
+                        }
+                    }
+                }
+            }
         }
-        return null;
+        return octavas;
     }
 }

@@ -14,7 +14,7 @@ public class MenuJugar extends Activity {
     }
 
     public void modo_adivinar(View view){
-        Intent i = new Intent(this, NivelesAdivinar.class);
+        Intent i = new Intent(this, SeleccionModoAdivinar.class);
         startActivity(i);
     }
 

@@ -7,6 +7,7 @@ import android.util.Pair;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -22,7 +23,7 @@ class FactoriaNotas {
 
     private FactoriaNotas() {}
 
-    public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, Octavas[] octavas) throws IOException {
+    public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, ArrayList<Octavas> octavas) throws IOException {
         /*
         * Funcion que devuelve num notas aleatorias en un array
         * La primera posicion del array se utilizara como la nota a adivinar
@@ -50,7 +51,7 @@ class FactoriaNotas {
         return notas[random.nextInt(notas.length)];
     }
 
-    private Octavas devuelveOctavaAleatoria(Octavas[] octavas) {
-        return octavas[random.nextInt(octavas.length)];
+    private Octavas devuelveOctavaAleatoria(ArrayList<Octavas> octavas) {
+        return octavas.get(random.nextInt(octavas.size()));
     }
 }

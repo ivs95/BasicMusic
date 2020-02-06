@@ -16,7 +16,7 @@ public class AdivinarAudio extends Activity {
     }
 
     public void adivinarNota(View view) {
-        Intent i = new Intent(this, NivelesAdivinar.class);
+        Intent i = new Intent(this, NivelesAdivinarNotas.class);
         startActivity(i);
     }
 }

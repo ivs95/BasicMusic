@@ -49,7 +49,7 @@ public class SeleccionarAdivinar extends Activity {
         lp.setMargins(0,0,0,50);
         Random rand = new Random();
 
-        int num_respuestas = 4;
+        int num_respuestas = nombres.size();
 
         int random1 = rand.nextInt(num_respuestas);
         ArrayList <Integer> aux = new ArrayList<Integer>();

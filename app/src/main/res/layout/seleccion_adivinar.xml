@@ -7,11 +7,11 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tituloImitar"
+        android:id="@+id/tituloModosImitar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
-        android:text="Dificultad"
+        android:text="Modos de juego"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -19,35 +19,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonDificil"
+        android:id="@+id/buttonAcordes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="140dp"
-        android:onClick="mostrarNiveles"
-        android:text="Difícil"
+        android:onClick="modo"
+        android:text="acordes"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMedio" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonIntervalos" />
 
     <Button
-        android:id="@+id/buttonMedio"
+        android:id="@+id/buttonIntervalos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
+        android:layout_marginStart="150dp"
         android:layout_marginTop="140dp"
-        android:onClick="mostrarNiveles"
-        android:text="Normal"
+        android:onClick="modo"
+        android:text="intervalos"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFacil" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonNotas" />
 
     <Button
-        android:id="@+id/buttonFacil"
+        android:id="@+id/buttonNotas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="160dp"
-        android:onClick="mostrarNiveles"
-        android:text="Fácil"
+        android:onClick="modo"
+        android:text="notas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
