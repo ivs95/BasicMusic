@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AutomaticGainControl;
 import android.media.audiofx.NoiseSuppressor;
@@ -26,6 +27,7 @@ import be.tarsos.dsp.pitch.PitchDetectionHandler;
 import be.tarsos.dsp.pitch.PitchDetectionResult;
 import be.tarsos.dsp.pitch.PitchProcessor;
 
+
 public class ReproducirImitar extends Activity {
 
     @Override
@@ -47,7 +49,6 @@ public class ReproducirImitar extends Activity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 1000);
         }
 
-        is_running = false;
         AudioDispatcherFactory1 factory = new AudioDispatcherFactory1();
         dispatcher = factory.fromDefaultMicrophone(22050,1024,0);
 
@@ -74,23 +75,18 @@ public class ReproducirImitar extends Activity {
             @Override
             public void handlePitch(PitchDetectionResult result, AudioEvent e) {
                 final float pitchInHz = result.getPitch();
-                ReproducirImitar.Notas nota = ReproducirImitar.Notas.Z;
-                int octava = 0;
-                final String resul = hallaNota(pitchInHz, nota,octava);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        hallaMax(pitchInHz, octava, contador);
+                    }
+                }).start();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
                         TextView text = (TextView) findViewById(R.id.textoFrecuencia);
-                        text.setText("" + pitchInHz + "    " + resul);
+                        text.setText("Escuchando...");
 
-                        int i = 5;
-                        if(System.currentTimeMillis() - start_time/ 1000 == 0) {
-
-                            TextView text1 = (TextView) findViewById(R.id.timer_id);
-                            text1.setText("" + (System.currentTimeMillis() - start_time));
-
-                        }
                     }
                 });
             }
@@ -129,57 +125,90 @@ public class ReproducirImitar extends Activity {
 
 
     private AudioDispatcher dispatcher;
+    private int [] contador = {0,0,0,0,0,0,0,0,0,0,0,0};
+    private int octava = 4;
+    private Notas resultado;
 
-    enum Notas{Z,DO,DOS,RE,RES,MI,FA,FAS,SOL,SOLS,LA,LAS,SI}
-    private boolean is_running;
-    private long start_time;
+    void hallaMax(float hz, int octava, int contador[]){
+        if(hz < Notas.DO.getMinimaFrecuencia()){
+            while(hz < Notas.DO.getMinimaFrecuencia()){
+                hz = hz*2;
+                octava=octava-1;
+            }
+        }
+        else if(hz > Notas.SI.getMaximaFrecuencia()){
+            while(hz > Notas.SI.getMaximaFrecuencia()){
+                hz = hz/2;
+                octava=octava+1;
+            }
+        }
+        if(hz >= Notas.DO.getMinimaFrecuencia() && hz <= Notas.DO.getMaximaFrecuencia()){
+            contador[Notas.DO.getPosicion()]=contador[Notas.DO.getPosicion()]+1;
+        }
+        if(hz >= Notas.DOS.getMinimaFrecuencia() && hz <= Notas.DOS.getMaximaFrecuencia()){
+            contador[Notas.DOS.getPosicion()]=contador[Notas.DOS.getPosicion()]+1;
+        }
+        if(hz >= Notas.RE.getMinimaFrecuencia() && hz <= Notas.RE.getMaximaFrecuencia()){
+            contador[Notas.RE.getPosicion()]=contador[Notas.RE.getPosicion()]+1;
+        }
+        if(hz >= Notas.RES.getMinimaFrecuencia() && hz <= Notas.RES.getMaximaFrecuencia()){
+            contador[Notas.RES.getPosicion()]=contador[Notas.RES.getPosicion()]+1;
+        }
+        if(hz >= Notas.MI.getMinimaFrecuencia() && hz <= Notas.MI.getMaximaFrecuencia()){
+            contador[Notas.MI.getPosicion()]=contador[Notas.MI.getPosicion()]+1;
+        }
+        if(hz >= Notas.FA.getMinimaFrecuencia() && hz <= Notas.FA.getMaximaFrecuencia()){
+            contador[Notas.FA.getPosicion()]=contador[Notas.FA.getPosicion()]+1;
+        }
+        if(hz >= Notas.FAS.getMinimaFrecuencia() && hz <= Notas.FAS.getMaximaFrecuencia()){
+            contador[Notas.FAS.getPosicion()]=contador[Notas.FAS.getPosicion()]+1;
+        }
+        if(hz >= Notas.SOL.getMinimaFrecuencia() && hz <= Notas.SOL.getMaximaFrecuencia()){
+            contador[Notas.SOL.getPosicion()]=contador[Notas.SOL.getPosicion()]+1;
+        }
+        if(hz >= Notas.SOLS.getMinimaFrecuencia() && hz <= Notas.SOLS.getMaximaFrecuencia()){
+            contador[Notas.SOLS.getPosicion()]=contador[Notas.SOLS.getPosicion()]+1;
+        }
+        if(hz >= Notas.LA.getMinimaFrecuencia() && hz <= Notas.LA.getMaximaFrecuencia()){
+            contador[Notas.LA.getPosicion()]=contador[Notas.LA.getPosicion()]+1;
+        }
+        if(hz >= Notas.LAS.getMinimaFrecuencia() && hz <= Notas.LAS.getMaximaFrecuencia()){
+            contador[Notas.LAS.getPosicion()]=contador[Notas.LAS.getPosicion()]+1;
+        }
+        if(hz >= Notas.SI.getMinimaFrecuencia() && hz <= Notas.SI.getMaximaFrecuencia()){
+            contador[Notas.SI.getPosicion()]=contador[Notas.SI.getPosicion()]+1;
+        }
 
-    String hallaNota(float hz, Notas nota, int octava){
-        String resul = "";
+    }
 
-        while(hz > 62.74){
-            hz /= 2;
-            octava++;
-        }
-        if(hz >= 60.74 && hz <= 62.74){
-            nota = Notas.SI;
-        }
-        if(hz >= 57.27 && hz <= 59.27){
-            nota = ReproducirImitar.Notas.LAS;
-        }
-        if(hz >= 54 && hz <= 56){
-            nota = ReproducirImitar.Notas.LA;
-        }
-        if(hz >= 50.91 && hz <= 52.91){
-            nota = ReproducirImitar.Notas.SOLS;
-        }
-        if(hz >= 48 && hz <= 50){
-            nota = ReproducirImitar.Notas.SOL;
-        }
-        if(hz >= 45.25 && hz <= 47.25){
-            nota = ReproducirImitar.Notas.FAS;
-        }
-        if(hz >= 42.65 && hz <= 44.65){
-            nota = ReproducirImitar.Notas.FA;
-        }
-        if(hz >= 40.2 && hz <= 42.2){
-            nota = ReproducirImitar.Notas.MI;
-        }
-        if(hz >= 37.89 && hz <= 39.89){
-            nota = ReproducirImitar.Notas.RES;
-        }
-        if(hz >= 35.71 && hz <= 37.71){
-            nota = ReproducirImitar.Notas.RE;
-        }
-        if(hz >= 33.71 && hz <= 35.65){
-            nota = ReproducirImitar.Notas.DOS;
-        }
-        if(hz >= 31.7 && hz <= 33.7){
-            nota = ReproducirImitar.Notas.DO;
-        }
-        resul = nota.toString()+octava;
+    void hallaNota(int max){
 
-        return resul;
+        switch (max){
+            case 0: resultado = Notas.DO;
+                break;
+            case 1: resultado = Notas.DOS;
+                break;
+            case 2: resultado = Notas.RE;
+                break;
+            case 3: resultado = Notas.RES;
+                break;
+            case 4: resultado = Notas.MI;
+                break;
+            case 5: resultado = Notas.FA;
+                break;
+            case 6: resultado = Notas.FAS;
+                break;
+            case 7: resultado = Notas.SOL;
+                break;
+            case 8: resultado = Notas.SOLS;
+                break;
+            case 9: resultado = Notas.LA;
+                break;
+            case 10: resultado = Notas.LAS;
+                break;
+            case 11: resultado = Notas.SI;
+                break;
+        }
     }
 
     public void Grabar(View view) throws InterruptedException {
@@ -200,7 +229,6 @@ public class ReproducirImitar extends Activity {
 
                 final Thread dispatch_Thread = new Thread(dispatcher,"Audio Dispatcher");
                 Toast.makeText(getApplicationContext(), "La grabación comenzó", Toast.LENGTH_LONG).show();
-                is_running = true;
                 dispatch_Thread.start();
 
                 new Thread(new Runnable() {
@@ -215,12 +243,19 @@ public class ReproducirImitar extends Activity {
                         }
                         dispatcher.stop();
                         dispatch_Thread.interrupt();
-
+                        int max = 0;
+                        for (int i = 0; i<12; i++){
+                            if(contador[i] > contador[max])
+                                max = i;
+                        }
+                        hallaNota(max);
+                        System.out.println(resultado.getNombre());
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+
                                 TextView text2 = (TextView) findViewById(R.id.textoFrecuencia);
-                                text2.setText("Pitch");
+                                text2.setText("Resultado: " + resultado.getNombre() + octava);
 
                                 TextView text1 = (TextView) findViewById(R.id.timer_id);
                                 text1.setText("Fin");

@@ -1,30 +1,32 @@
 package com.example.prototipotfg;
 
 public enum Notas {
-    DO1("Do", 31.7, 33.7, "C.wav"),
-    DOS1("Do#",33.71, 35.65, "C#.wav"),
-    RE1("Re", 35.71, 37.71, "D.wav"),
-    RES1("Re#", 37.89, 39.89, "D#.wav"),
-    MI1("Mi", 40.2, 42.2, "E.wav"),
-    FA1("Fa", 42.65, 44.65, "F.wav" ),
-    FAS1("Fa#", 45.25, 47.25, "F#.wav"),
-    SOL1("Sol", 48, 50, "G.wav" ),
-    SOLS1("Sol#", 50.91, 52.91, "G#.wav" ),
-    LA1("La", 54, 56, "A.wav"),
-    LAS1("La#", 57.27, 59.27, "A#.wav"),
-    SI1("Si", 60.74, 62.74, "B.wav");
+    DO("Do", 254.281, 269.404, "C.wav", 0),
+    DOS("Do#",269.405, 285.41, "C#.wav", 1),
+    RE("Re", 285.42, 302.394, "D.wav", 2),
+    RES("Re#", 302.395, 320.37, "D#.wav", 3),
+    MI("Mi", 320.38, 339.42, "E.wav", 4),
+    FA("Fa", 339.43, 359.60, "F.wav", 5 ),
+    FAS("Fa#", 359.61, 380.994, "F#.wav", 6),
+    SOL("Sol", 380.995, 403.64, "G.wav", 7 ),
+    SOLS("Sol#", 403.65, 427.64, "G#.wav", 8 ),
+    LA("La", 427.65, 452.99, "A.wav", 9),
+    LAS("La#", 453, 479.93, "A#.wav", 10),
+    SI("Si", 479.94, 508.564, "B.wav", 11);
 
 
     private String nombre;
     private double minimaFrecuencia;
     private double maximaFrecuencia;
     private String path;
+    private int posicion;
 
-    private Notas(String nombre, double minimaFrecuencia, double maximaFrecuencia, String path){
+    private Notas(String nombre, double minimaFrecuencia, double maximaFrecuencia, String path, int posicion){
         this.nombre=nombre;
         this.minimaFrecuencia=minimaFrecuencia;
         this.maximaFrecuencia=maximaFrecuencia;
         this.path=path;
+        this.posicion = posicion;
     }
 
     public String getNombre() {
@@ -62,4 +64,6 @@ public enum Notas {
     public boolean esNota(Notas n, double frecuencia){
         return (n.minimaFrecuencia <= frecuencia && n.maximaFrecuencia >= frecuencia);
     }
+
+    public int getPosicion(){ return posicion;}
 }
