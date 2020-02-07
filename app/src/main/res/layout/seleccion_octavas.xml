@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tituloOctavas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="Seleccionar octavas"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/buttonPrimeraOctava"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="seleccionaOctava"
+        android:text="Primera"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSegundaOctava"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="seleccionaOctava"
+        android:text="Segunda"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:id="@+id/buttonTerceraOctava"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="seleccionaOctava"
+        android:text="Tercera"
+        android:layout_marginBottom="10dp" />
+    <Button
+        android:id="@+id/buttonCuartaOctava"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="seleccionaOctava"
+        android:text="Cuarta"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:id="@+id/buttonQuintaOctava"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="seleccionaOctava"
+        android:text="Quinta"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/buttonSextaOctava"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="seleccionaOctava"
+        android:text="Sexta"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:id="@+id/buttonSeptimaOctava"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="seleccionaOctava"
+        android:text="Séptima"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:id="@+id/buttonSeleccionarNiveles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="confirmarOctavas"
+        android:text="Seleccionar niveles"
+        android:layout_marginBottom="10dp" />
+
+</LinearLayout>

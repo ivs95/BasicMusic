@@ -1,5 +1,7 @@
 package com.example.prototipotfg;
 
+import java.util.ArrayList;
+
 public enum Octavas {
 
     Primera("Primera","uno/", 1),
@@ -19,6 +21,14 @@ public enum Octavas {
         this.nombre=nombre;
         this.path=path;
         this.octava=octava;
+    }
+
+    public static ArrayList<Octavas> devuelveOctavas(ArrayList<String> octavas) {
+        ArrayList<Octavas> retorno = new ArrayList<Octavas>();
+        for (String nombre: octavas) {
+            retorno.add(Octavas.devuelveOctavaPorNombre(nombre));
+        }
+        return retorno;
     }
 
     public String getNombre() {
@@ -43,5 +53,13 @@ public enum Octavas {
 
     public void setOctava(int octava) {
         this.octava = octava;
+    }
+
+    public static Octavas devuelveOctavaPorNombre(String nombre){
+        for (Octavas o: Octavas.values()
+             ) {
+            if (o.getNombre().equals(nombre)) return o;
+        }
+        return null;
     }
 }

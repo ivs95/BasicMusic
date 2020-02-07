@@ -46,6 +46,8 @@
         <activity android:name=".SeleccionModoAdivinar"></activity>
         <activity android:name=".SeleccionarDificultadAdivinar"></activity>
 
+        <activity android:name=".SeleccionOctavas"></activity>
+
     </application>
 
 </manifest>

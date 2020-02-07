@@ -53,7 +53,7 @@ public class NivelesAdivinarNotas extends Activity {
         int nivel = view.getId();
         //Octavas[] octavas = getOctavasParaNivel(nivel);
         //int numNotas = getNotasParaNivel(nivel);
-        ArrayList<Octavas>  octavas = getOctavasParaNivel(nivel);
+        ArrayList<Octavas>  octavas = Octavas.devuelveOctavas(getIntent().getExtras().getStringArrayList("octavas"));
         HashMap<String, String> notas = null;
         try {
             notas = FactoriaNotas.getInstance().getNumNotasAleatorias(getNotasParaNivel(nivel), Instrumentos.Piano,octavas);
@@ -70,6 +70,7 @@ public class NivelesAdivinarNotas extends Activity {
         ArrayList<String> rutas = new ArrayList<>(notas.values());
 
         i.putExtra("nivel", nivel);
+        i.putExtra("modo", getIntent().getExtras().getString("modo"));
         i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
@@ -85,29 +86,5 @@ public class NivelesAdivinarNotas extends Activity {
         return numeroNotas;
 
 
-    }
-
-    private ArrayList<Octavas>  getOctavasParaNivel(int nivel) {
-        ArrayList<Octavas> octavas = new ArrayList<Octavas>() ;
-        octavas.add(Octavas.Primera);
-        if (nivel > 5){
-            octavas.add(Octavas.Segunda);
-            if (nivel > 10){
-                octavas.add(Octavas.Tercera);
-                if (nivel > 15){
-                    octavas.add(Octavas.Cuarta);
-                    if (nivel > 20){
-                        octavas.add(Octavas.Quinta);
-                        if (nivel > 25){
-                            octavas.add(Octavas.Sexta);
-                            if (nivel > 30){
-                                octavas.add(Octavas.Septima);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return octavas;
     }
 }
