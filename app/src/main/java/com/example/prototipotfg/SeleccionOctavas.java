@@ -40,6 +40,7 @@ public class SeleccionOctavas extends Activity {
     }
 
     public void confirmarOctavas(View view){
+
         Intent i = new Intent(this, NivelesAdivinarNotas.class);
         i.putExtra("modo", modo);
         i.putExtra("dificultad", dificultad);

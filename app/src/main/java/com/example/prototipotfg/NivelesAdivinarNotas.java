@@ -13,11 +13,13 @@ import java.util.HashMap;
 
 public class NivelesAdivinarNotas extends Activity {
 
-
+    private String modo;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
+        modo = getIntent().getExtras().getString("modo");
+
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
 
@@ -47,7 +49,12 @@ public class NivelesAdivinarNotas extends Activity {
     }
 
     public void nivel_seleccionado(View view){
-        Intent i = new Intent(this, ReproducirAdivinar.class);
+        Intent i = null;
+        if(this.modo.equals("intervalos")) {
+            i = new Intent(this, ReproducirAdivinarIntervalo.class);
+        }
+        else
+            i = new Intent(this, ReproducirAdivinar.class);
 
         //Nivel que se ha seleccionado
         int nivel = view.getId();
@@ -70,7 +77,7 @@ public class NivelesAdivinarNotas extends Activity {
         ArrayList<String> rutas = new ArrayList<>(notas.values());
 
         i.putExtra("nivel", nivel);
-        i.putExtra("modo", getIntent().getExtras().getString("modo"));
+        i.putExtra("modo", modo);
         i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);

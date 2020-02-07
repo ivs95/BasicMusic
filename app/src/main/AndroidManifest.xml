@@ -27,8 +27,13 @@
         <activity android:name=".ReproducirAdivinar">
         </activity>
 
+        <activity android:name=".ReproducirAdivinarIntervalo"></activity>
+
 
         <activity android:name=".SeleccionarAdivinar">
+        </activity>
+
+        <activity android:name=".SeleccionarAdivinarIntervalo">
         </activity>
 
 
@@ -45,6 +50,7 @@
 
         <activity android:name=".SeleccionModoAdivinar"></activity>
         <activity android:name=".SeleccionarDificultadAdivinar"></activity>
+        <activity android:name=".SeleccionarModoIntervalos"></activity>
 
         <activity android:name=".SeleccionOctavas"></activity>
 
