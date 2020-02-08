@@ -20,6 +20,9 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import be.tarsos.dsp.AudioDispatcher;
 import be.tarsos.dsp.AudioEvent;
 import be.tarsos.dsp.AudioProcessor;
@@ -78,7 +81,7 @@ public class ReproducirImitar extends Activity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        hallaMax(pitchInHz, octava, contador);
+                        hallaMax(pitchInHz);
                     }
                 }).start();
                 runOnUiThread(new Runnable() {
@@ -125,90 +128,165 @@ public class ReproducirImitar extends Activity {
 
 
     private AudioDispatcher dispatcher;
-    private int [] contador = {0,0,0,0,0,0,0,0,0,0,0,0};
-    private int octava = 4;
-    private Notas resultado;
+    private ArrayList<NotasImitar> lista = new ArrayList<NotasImitar>();
+    private NotasImitar resNota;
 
-    void hallaMax(float hz, int octava, int contador[]){
-        if(hz < Notas.DO.getMinimaFrecuencia()){
-            while(hz < Notas.DO.getMinimaFrecuencia()){
-                hz = hz*2;
-                octava=octava-1;
+
+
+    void hallaMax(float hz){
+        if(hz != -1) {
+            Integer octava = 4;
+            if (hz < Notas.DO.getMinimaFrecuencia()) {
+                while (hz < Notas.DO.getMinimaFrecuencia()) {
+                    hz = hz * 2;
+                    octava = octava - 1;
+                }
+            } else if (hz > Notas.SI.getMaximaFrecuencia()) {
+                while (hz > Notas.SI.getMaximaFrecuencia()) {
+                    hz = hz / 2;
+                    octava = octava + 1;
+                }
+            }
+            if (hz >= Notas.DO.getMinimaFrecuencia() && hz <= Notas.DO.getMaximaFrecuencia()) {
+                if(lista.size() > 0) {
+                    if (lista.contains(new NotasImitar(Notas.DO, octava))) {
+                        lista.set(lista.indexOf(new NotasImitar(Notas.DO, octava)), new NotasImitar(Notas.DO, octava, lista.indexOf(new NotasImitar(Notas.DO, octava).contador + 1)));
+                    } else {
+                        lista.add(new NotasImitar(Notas.DO, octava, 1));
+                    }
+                }
+                else {
+                    lista.add(new NotasImitar(Notas.DO, octava, 1));
+                }
+            }
+            if (hz >= Notas.DOS.getMinimaFrecuencia() && hz <= Notas.DOS.getMaximaFrecuencia()) {
+                if(lista.size() > 0) {
+                    if (lista.contains(new NotasImitar(Notas.DOS, octava))) {
+                        lista.set(lista.indexOf(new NotasImitar(Notas.DOS, octava)), new NotasImitar(Notas.DOS, octava, lista.indexOf(new NotasImitar(Notas.DOS, octava).contador + 1)));
+                    } else {
+                        lista.add(new NotasImitar(Notas.DOS, octava, 1));
+                    }
+                }
+                else {
+                    lista.add(new NotasImitar(Notas.DOS, octava, 1));
+                }
+            }
+            if (hz >= Notas.RE.getMinimaFrecuencia() && hz <= Notas.RE.getMaximaFrecuencia()) {
+                if(lista.size() > 0) {
+                    if (lista.contains(new NotasImitar(Notas.RE, octava))) {
+                        lista.set(lista.indexOf(new NotasImitar(Notas.RE, octava)), new NotasImitar(Notas.RE, octava, lista.indexOf(new NotasImitar(Notas.RE, octava).contador + 1)));
+                    } else {
+                        lista.add(new NotasImitar(Notas.RE, octava, 1));
+                    }
+                }
+                else {
+                    lista.add(new NotasImitar(Notas.RE, octava, 1));
+                }
+            }
+            if (hz >= Notas.RES.getMinimaFrecuencia() && hz <= Notas.RES.getMaximaFrecuencia()) {
+                if(lista.size() > 0) {
+                    if (lista.contains(new NotasImitar(Notas.RES, octava))) {
+                        lista.set(lista.indexOf(new NotasImitar(Notas.RES, octava)), new NotasImitar(Notas.RES, octava, lista.indexOf(new NotasImitar(Notas.RES, octava).contador + 1)));
+                    } else {
+                        lista.add(new NotasImitar(Notas.RES, octava, 1));
+                    }
+                }
+            }
+            if (hz >= Notas.MI.getMinimaFrecuencia() && hz <= Notas.MI.getMaximaFrecuencia()) {
+                if(lista.size() > 0) {
+                    if (lista.contains(new NotasImitar(Notas.MI, octava))) {
+                        lista.set(lista.indexOf(new NotasImitar(Notas.MI, octava)), new NotasImitar(Notas.DO, octava, lista.indexOf(new NotasImitar(Notas.MI, octava).contador + 1)));
+                    } else {
+                        lista.add(new NotasImitar(Notas.MI, octava, 1));
+                    }
+                }
+                else {
+                    lista.add(new NotasImitar(Notas.MI, octava, 1));
+                }
+            }
+            if (hz >= Notas.FA.getMinimaFrecuencia() && hz <= Notas.FA.getMaximaFrecuencia()) {
+                if(lista.size() > 0) {
+                    if (lista.contains(new NotasImitar(Notas.FA, octava))) {
+                        lista.set(lista.indexOf(new NotasImitar(Notas.FA, octava)), new NotasImitar(Notas.FA, octava, lista.indexOf(new NotasImitar(Notas.FA, octava).contador + 1)));
+                    } else {
+                        lista.add(new NotasImitar(Notas.FA, octava, 1));
+                    }
+                }
+                else {
+                    lista.add(new NotasImitar(Notas.FA, octava, 1));
+                }
+            }
+            if (hz >= Notas.FAS.getMinimaFrecuencia() && hz <= Notas.FAS.getMaximaFrecuencia()) {
+                if(lista.size() > 0) {
+                    if (lista.contains(new NotasImitar(Notas.FAS, octava))) {
+                        lista.set(lista.indexOf(new NotasImitar(Notas.FAS, octava)), new NotasImitar(Notas.FAS, octava, lista.indexOf(new NotasImitar(Notas.FAS, octava).contador + 1)));
+                    } else {
+                        lista.add(new NotasImitar(Notas.FAS, octava, 1));
+                    }
+                }
+                else {
+                    lista.add(new NotasImitar(Notas.FAS, octava, 1));
+                }
+            }
+            if (hz >= Notas.SOL.getMinimaFrecuencia() && hz <= Notas.SOL.getMaximaFrecuencia()) {
+                if(lista.size() > 0) {
+                    if (lista.contains(new NotasImitar(Notas.SOL, octava))) {
+                        lista.set(lista.indexOf(new NotasImitar(Notas.SOL, octava)), new NotasImitar(Notas.SOL, octava, lista.indexOf(new NotasImitar(Notas.SOL, octava).contador + 1)));
+                    } else {
+                        lista.add(new NotasImitar(Notas.SOL, octava, 1));
+                    }
+                }
+            }
+            if (hz >= Notas.SOLS.getMinimaFrecuencia() && hz <= Notas.SOLS.getMaximaFrecuencia()) {
+                if(lista.size() > 0) {
+                    if (lista.contains(new NotasImitar(Notas.SOLS, octava))) {
+                        lista.set(lista.indexOf(new NotasImitar(Notas.SOLS, octava)), new NotasImitar(Notas.SOLS, octava, lista.indexOf(new NotasImitar(Notas.SOLS, octava).contador + 1)));
+                    } else {
+                        lista.add(new NotasImitar(Notas.SOLS, octava, 1));
+                    }
+                }
+                else {
+                    lista.add(new NotasImitar(Notas.SOLS, octava, 1));
+                }
+            }
+            if (hz >= Notas.LA.getMinimaFrecuencia() && hz <= Notas.LA.getMaximaFrecuencia()) {
+                if(lista.size() > 0) {
+                    if (lista.contains(new NotasImitar(Notas.LA, octava))) {
+                        lista.set(lista.indexOf(new NotasImitar(Notas.LA, octava)), new NotasImitar(Notas.LA, octava, lista.indexOf(new NotasImitar(Notas.LA, octava).contador + 1)));
+                    } else {
+                        lista.add(new NotasImitar(Notas.LA, octava, 1));
+                    }
+                }
+                else {
+                    lista.add(new NotasImitar(Notas.LA, octava, 1));
+                }
+            }
+            if (hz >= Notas.LAS.getMinimaFrecuencia() && hz <= Notas.LAS.getMaximaFrecuencia()) {
+                if(lista.size() > 0) {
+                    if (lista.contains(new NotasImitar(Notas.LAS, octava))) {
+                        lista.set(lista.indexOf(new NotasImitar(Notas.LAS, octava)), new NotasImitar(Notas.LAS, octava, lista.indexOf(new NotasImitar(Notas.LAS, octava).contador + 1)));
+                    } else {
+                        lista.add(new NotasImitar(Notas.LAS, octava, 1));
+                    }
+                }
+                else {
+                    lista.add(new NotasImitar(Notas.LAS, octava, 1));
+                }
+            }
+            if (hz >= Notas.SI.getMinimaFrecuencia() && hz <= Notas.SI.getMaximaFrecuencia()) {
+                if(lista.size() > 0) {
+                    if (lista.contains(new NotasImitar(Notas.SI, octava))) {
+                        lista.set(lista.indexOf(new NotasImitar(Notas.SI, octava)), new NotasImitar(Notas.SI, octava, lista.indexOf(new NotasImitar(Notas.SI, octava).contador + 1)));
+                    } else {
+                        lista.add(new NotasImitar(Notas.SI, octava, 1));
+                    }
+                }
+                else {
+                    lista.add(new NotasImitar(Notas.SI, octava, 1));
+                }
             }
         }
-        else if(hz > Notas.SI.getMaximaFrecuencia()){
-            while(hz > Notas.SI.getMaximaFrecuencia()){
-                hz = hz/2;
-                octava=octava+1;
-            }
-        }
-        if(hz >= Notas.DO.getMinimaFrecuencia() && hz <= Notas.DO.getMaximaFrecuencia()){
-            contador[Notas.DO.getPosicion()]=contador[Notas.DO.getPosicion()]+1;
-        }
-        if(hz >= Notas.DOS.getMinimaFrecuencia() && hz <= Notas.DOS.getMaximaFrecuencia()){
-            contador[Notas.DOS.getPosicion()]=contador[Notas.DOS.getPosicion()]+1;
-        }
-        if(hz >= Notas.RE.getMinimaFrecuencia() && hz <= Notas.RE.getMaximaFrecuencia()){
-            contador[Notas.RE.getPosicion()]=contador[Notas.RE.getPosicion()]+1;
-        }
-        if(hz >= Notas.RES.getMinimaFrecuencia() && hz <= Notas.RES.getMaximaFrecuencia()){
-            contador[Notas.RES.getPosicion()]=contador[Notas.RES.getPosicion()]+1;
-        }
-        if(hz >= Notas.MI.getMinimaFrecuencia() && hz <= Notas.MI.getMaximaFrecuencia()){
-            contador[Notas.MI.getPosicion()]=contador[Notas.MI.getPosicion()]+1;
-        }
-        if(hz >= Notas.FA.getMinimaFrecuencia() && hz <= Notas.FA.getMaximaFrecuencia()){
-            contador[Notas.FA.getPosicion()]=contador[Notas.FA.getPosicion()]+1;
-        }
-        if(hz >= Notas.FAS.getMinimaFrecuencia() && hz <= Notas.FAS.getMaximaFrecuencia()){
-            contador[Notas.FAS.getPosicion()]=contador[Notas.FAS.getPosicion()]+1;
-        }
-        if(hz >= Notas.SOL.getMinimaFrecuencia() && hz <= Notas.SOL.getMaximaFrecuencia()){
-            contador[Notas.SOL.getPosicion()]=contador[Notas.SOL.getPosicion()]+1;
-        }
-        if(hz >= Notas.SOLS.getMinimaFrecuencia() && hz <= Notas.SOLS.getMaximaFrecuencia()){
-            contador[Notas.SOLS.getPosicion()]=contador[Notas.SOLS.getPosicion()]+1;
-        }
-        if(hz >= Notas.LA.getMinimaFrecuencia() && hz <= Notas.LA.getMaximaFrecuencia()){
-            contador[Notas.LA.getPosicion()]=contador[Notas.LA.getPosicion()]+1;
-        }
-        if(hz >= Notas.LAS.getMinimaFrecuencia() && hz <= Notas.LAS.getMaximaFrecuencia()){
-            contador[Notas.LAS.getPosicion()]=contador[Notas.LAS.getPosicion()]+1;
-        }
-        if(hz >= Notas.SI.getMinimaFrecuencia() && hz <= Notas.SI.getMaximaFrecuencia()){
-            contador[Notas.SI.getPosicion()]=contador[Notas.SI.getPosicion()]+1;
-        }
 
-    }
-
-    void hallaNota(int max){
-
-        switch (max){
-            case 0: resultado = Notas.DO;
-                break;
-            case 1: resultado = Notas.DOS;
-                break;
-            case 2: resultado = Notas.RE;
-                break;
-            case 3: resultado = Notas.RES;
-                break;
-            case 4: resultado = Notas.MI;
-                break;
-            case 5: resultado = Notas.FA;
-                break;
-            case 6: resultado = Notas.FAS;
-                break;
-            case 7: resultado = Notas.SOL;
-                break;
-            case 8: resultado = Notas.SOLS;
-                break;
-            case 9: resultado = Notas.LA;
-                break;
-            case 10: resultado = Notas.LAS;
-                break;
-            case 11: resultado = Notas.SI;
-                break;
-        }
     }
 
     public void Grabar(View view) throws InterruptedException {
@@ -243,19 +321,20 @@ public class ReproducirImitar extends Activity {
                         }
                         dispatcher.stop();
                         dispatch_Thread.interrupt();
-                        int max = 0;
-                        for (int i = 0; i<12; i++){
-                            if(contador[i] > contador[max])
-                                max = i;
+
+
+                        resNota = lista.get(0);
+                        for (int i = 1; i<lista.size(); i++) {
+                            if(lista.get(i).contador > resNota.contador){
+                                resNota = lista.get(i);
+                            }
                         }
-                        hallaNota(max);
-                        System.out.println(resultado.getNombre());
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
 
                                 TextView text2 = (TextView) findViewById(R.id.textoFrecuencia);
-                                text2.setText("Resultado: " + resultado.getNombre() + octava);
+                                text2.setText("Resultado: " + resNota.nota + (resNota.octava-1));
 
                                 TextView text1 = (TextView) findViewById(R.id.timer_id);
                                 text1.setText("Fin");
