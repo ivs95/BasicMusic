@@ -132,10 +132,11 @@ public class ReproducirImitar extends Activity {
     private NotasImitar resNota;
 
 
-
+    //Va añadiendo notas junto con su octava a "lista" para asi hallar la nota que mas se repite en la secuencia que el dispatcher esta ON
     void hallaMax(float hz){
         if(hz != -1) {
             Integer octava = 4;
+            //Situa a la nota en la octava que le corresponde
             if (hz < Notas.DO.getMinimaFrecuencia()) {
                 while (hz < Notas.DO.getMinimaFrecuencia()) {
                     hz = hz * 2;
@@ -322,7 +323,7 @@ public class ReproducirImitar extends Activity {
                         dispatcher.stop();
                         dispatch_Thread.interrupt();
 
-
+                        //Recorre el ArrayList "lista" para guardar en resNota la nota que mas se repite
                         resNota = lista.get(0);
                         for (int i = 1; i<lista.size(); i++) {
                             if(lista.get(i).contador > resNota.contador){

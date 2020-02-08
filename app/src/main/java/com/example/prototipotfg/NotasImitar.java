@@ -1,5 +1,7 @@
 package com.example.prototipotfg;
 
+
+//Clase creada especialmente para las notas que atrapa el dispatcher en el modo imitar para así juntar la nota con su octava y un contador del numero de veces que ha sonado
 public class NotasImitar {
     Notas nota;
     Integer octava;
