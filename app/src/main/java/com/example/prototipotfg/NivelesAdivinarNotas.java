@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class NivelesAdivinarNotas extends Activity {
 
@@ -62,8 +63,16 @@ public class NivelesAdivinarNotas extends Activity {
         //int numNotas = getNotasParaNivel(nivel);
         ArrayList<Octavas>  octavas = Octavas.devuelveOctavas(getIntent().getExtras().getStringArrayList("octavas"));
         HashMap<String, String> notas = null;
+
         try {
-            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(getNotasParaNivel(nivel), Instrumentos.Piano,octavas);
+            if (this.modo.equals("intervalos")){
+                Random random = new Random();
+                ArrayList<Octavas>  octavas_intervalos  = new ArrayList<Octavas>();
+                octavas_intervalos.add(octavas.get(random.nextInt(octavas.size())));
+                notas = FactoriaNotas.getInstance().getNumNotasAleatorias(getNotasParaNivel(nivel), Instrumentos.Piano,octavas_intervalos);
+            }
+            else
+                notas = FactoriaNotas.getInstance().getNumNotasAleatorias(getNotasParaNivel(nivel), Instrumentos.Piano,octavas);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,12 +84,15 @@ public class NivelesAdivinarNotas extends Activity {
         * */
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
         ArrayList<String> rutas = new ArrayList<>(notas.values());
+        ArrayList<String> intervalos = new ArrayList<String>(FactoriaNotas.getInstance().getIntevalos());
 
         i.putExtra("nivel", nivel);
         i.putExtra("modo", modo);
         i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
+        i.putStringArrayListExtra("intervalos", intervalos);
+
         startActivity(i);
     }
 

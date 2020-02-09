@@ -20,6 +20,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
+    private ArrayList<String> intervalos;
 
     private String respuesta;
     @Override
@@ -29,6 +30,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         ponerComprobarVisible(INVISIBLE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
+        intervalos = getIntent().getExtras().getStringArrayList("intervalos");
 
         //inicializacion de botones
 
@@ -67,7 +69,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            button.setText(nombres.get(aux.get(i)));
+            button.setText(intervalos.get(aux.get(i)));
 
             //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {
