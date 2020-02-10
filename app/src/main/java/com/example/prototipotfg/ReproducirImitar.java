@@ -33,6 +33,11 @@ import be.tarsos.dsp.pitch.PitchProcessor;
 
 public class ReproducirImitar extends Activity {
 
+
+    private AudioDispatcher dispatcher;
+    private ArrayList<NotasImitar> lista = new ArrayList<NotasImitar>();
+    private NotasImitar resNota;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -127,10 +132,6 @@ public class ReproducirImitar extends Activity {
 
 
 
-    private AudioDispatcher dispatcher;
-    private ArrayList<NotasImitar> lista = new ArrayList<NotasImitar>();
-    private NotasImitar resNota;
-
 
     //Va añadiendo notas junto con su octava a "lista" para asi hallar la nota que mas se repite en la secuencia que el dispatcher esta ON
     void hallaMax(float hz){
@@ -148,14 +149,7 @@ public class ReproducirImitar extends Activity {
                     octava = octava + 1;
                 }
             }
-            boolean esNota = false;
-            for(Notas n: Notas.values()){
-                while (!esNota) {
-                    esNota = compruebaSiEsNota(hz, n, lista, octava);
-                }
-            }
 
-            /*
             if (hz >= Notas.DO.getMinimaFrecuencia() && hz <= Notas.DO.getMaximaFrecuencia()) {
                 if(lista.size() > 0) {
                     if (lista.contains(new NotasImitar(Notas.DO, octava))) {
@@ -293,10 +287,20 @@ public class ReproducirImitar extends Activity {
                 else {
                     lista.add(new NotasImitar(Notas.SI, octava, 1));
                 }
-            }*/
+            }
 
 
     }
+
+
+    /*
+
+    boolean esNota = false;
+            for(Notas n: Notas.values()){
+                while (!esNota) {
+                    esNota = compruebaSiEsNota(hz, n, lista, octava);
+                }
+            }
 
     private boolean compruebaSiEsNota(float hz, Notas n, ArrayList<NotasImitar> lista, int octava) {
         if (hz >= n.getMinimaFrecuencia() && hz <= n.getMaximaFrecuencia()) {
@@ -308,7 +312,7 @@ public class ReproducirImitar extends Activity {
             return true;
         }
         return false;
-    }
+    } */
 
     public void Grabar(View view) throws InterruptedException {
         Button botonGrabar = (Button)findViewById(R.id.botonGrabar);
