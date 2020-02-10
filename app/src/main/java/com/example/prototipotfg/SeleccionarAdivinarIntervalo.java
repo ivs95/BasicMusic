@@ -20,9 +20,9 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
-    private ArrayList<String> intervalos;
 
     private String respuesta;
+    private String intervalo_correcto;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -30,8 +30,12 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         ponerComprobarVisible(INVISIBLE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
-        intervalos = getIntent().getExtras().getStringArrayList("intervalos");
 
+        int tono1 = getTonoNota(nombres.get(0));
+        int tono2 = getTonoNota(nombres.get(1));
+        Intervalos intervalo = getIntervaloConDif(Math.abs(tono1-tono2));
+        this.intervalo_correcto = intervalo.getNombre();
+        int posicion_intervalo = intervalo.getNumero();
         //inicializacion de botones
 
 
@@ -49,7 +53,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
         int random1 = rand.nextInt(num_respuestas);
         ArrayList <Integer> aux = new ArrayList<Integer>();
-        aux.add(random1);
+        aux.add(posicion_intervalo);
 
 
         for(int i = 0; i< num_respuestas-1; i++) {
@@ -61,7 +65,8 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
 
 
-
+        Intervalos[] intervalos_lista = new Intervalos[12];
+        intervalos_lista = Intervalos.values();
         //Creamos los botones en bucle
         for (int i=0; i<num_respuestas; i++){
             Button button = new Button(this);
@@ -69,7 +74,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            button.setText(intervalos.get(aux.get(i)));
+            button.setText(intervalos_lista[aux.get(i)].getNombre());
 
             //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {
@@ -114,11 +119,39 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
     public void comprobarResultado(View view){
         TextView text = (TextView)findViewById(R.id.respuesta_correcta_id);
-        if(respuesta == nombres.get(0)){
+        if(respuesta == this.intervalo_correcto){
             text.setText("RESPUESTA CORRECTA");
 
         }
         else
             text.setText("RESPUESTA INCORRECTA");
     }
+
+    public Intervalos getIntervaloConDif(int dif){
+        boolean OK = false;
+        int i = 0;
+        Intervalos[] intervalos_lista = new Intervalos[12];
+        intervalos_lista = Intervalos.values();
+        while(i < 12 && !OK){
+            if(intervalos_lista[i].getDiferencia() == dif) OK = true;
+            i++;
+
+        }
+        return intervalos_lista[i-1];
+    }
+
+    private int getTonoNota(String name){
+        name = name.substring(0,name.length()-1);
+        boolean OK = false;
+        int i = 0;
+        Notas[] lista_notas = new Notas[11];
+        lista_notas = Notas.values();
+        while(i < 11 && !OK){
+            if(lista_notas[i].getNombre().equals(name)) OK = true;
+            i++;
+
+        }
+        return lista_notas[i-1].getTono();
+    }
+
 }

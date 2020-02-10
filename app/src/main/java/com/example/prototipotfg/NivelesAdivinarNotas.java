@@ -59,8 +59,6 @@ public class NivelesAdivinarNotas extends Activity {
 
         //Nivel que se ha seleccionado
         int nivel = view.getId();
-        //Octavas[] octavas = getOctavasParaNivel(nivel);
-        //int numNotas = getNotasParaNivel(nivel);
         ArrayList<Octavas>  octavas = Octavas.devuelveOctavas(getIntent().getExtras().getStringArrayList("octavas"));
         HashMap<String, String> notas = null;
 
@@ -84,14 +82,13 @@ public class NivelesAdivinarNotas extends Activity {
         * */
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
         ArrayList<String> rutas = new ArrayList<>(notas.values());
-        ArrayList<String> intervalos = new ArrayList<String>(FactoriaNotas.getInstance().getIntevalos());
+
 
         i.putExtra("nivel", nivel);
         i.putExtra("modo", modo);
         i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
-        i.putStringArrayListExtra("intervalos", intervalos);
 
         startActivity(i);
     }
@@ -106,4 +103,7 @@ public class NivelesAdivinarNotas extends Activity {
 
 
     }
+
+
+
 }
