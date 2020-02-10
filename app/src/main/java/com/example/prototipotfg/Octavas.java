@@ -57,8 +57,16 @@ public enum Octavas {
 
     public static Octavas devuelveOctavaPorNombre(String nombre){
         for (Octavas o: Octavas.values()
-             ) {
+        ) {
             if (o.getNombre().equals(nombre)) return o;
+        }
+        return null;
+    }
+
+    public static Octavas devuelveOctavaPorNumero(int numero){
+        for (Octavas o: Octavas.values()
+        ) {
+            if (o.getOctava()== numero) return o;
         }
         return null;
     }

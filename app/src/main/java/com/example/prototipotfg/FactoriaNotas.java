@@ -17,9 +17,28 @@ class FactoriaNotas {
     private static final FactoriaNotas ourInstance = new FactoriaNotas();
     private Random random = new Random();
 
+    public Instrumentos getInstrumento() {
+        return instrumento;
+    }
+
+    public void setInstrumento(Instrumentos instrumento) {
+        this.instrumento = instrumento;
+    }
+
+    private Instrumentos instrumento;
+    private String rutaReferencia;
+
 
     static FactoriaNotas getInstance() {
         return ourInstance;
+    }
+
+    public String getReferencia(){
+        return rutaReferencia;
+    }
+
+    private void setReferencia(String ruta){
+        this.rutaReferencia=ruta;
     }
 
     private FactoriaNotas() {}
@@ -30,6 +49,8 @@ class FactoriaNotas {
         * La primera posicion del array se utilizara como la nota a adivinar
         * */
         String rutaInstrumento = instrumento.getPath();
+        setReferencia(instrumento.getPath()+"cuatro/A.wav");
+        setInstrumento(instrumento);
 
         //HashMap con clave nombre de nota y su octava y valor el path a su fichero
         HashMap<String,String> rutasFicherosAudio = new HashMap<String,String>();
