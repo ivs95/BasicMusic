@@ -134,7 +134,7 @@ public class ReproducirImitar extends Activity {
 
     //Va añadiendo notas junto con su octava a "lista" para asi hallar la nota que mas se repite en la secuencia que el dispatcher esta ON
     void hallaMax(float hz){
-        if(hz != -1) {
+
             Integer octava = 4;
             //Situa a la nota en la octava que le corresponde
             if (hz < Notas.DO.getMinimaFrecuencia()) {
@@ -148,6 +148,14 @@ public class ReproducirImitar extends Activity {
                     octava = octava + 1;
                 }
             }
+            boolean esNota = false;
+            for(Notas n: Notas.values()){
+                while (!esNota) {
+                    esNota = compruebaSiEsNota(hz, n, lista, octava);
+                }
+            }
+
+            /*
             if (hz >= Notas.DO.getMinimaFrecuencia() && hz <= Notas.DO.getMaximaFrecuencia()) {
                 if(lista.size() > 0) {
                     if (lista.contains(new NotasImitar(Notas.DO, octava))) {
@@ -285,9 +293,21 @@ public class ReproducirImitar extends Activity {
                 else {
                     lista.add(new NotasImitar(Notas.SI, octava, 1));
                 }
-            }
-        }
+            }*/
 
+
+    }
+
+    private boolean compruebaSiEsNota(float hz, Notas n, ArrayList<NotasImitar> lista, int octava) {
+        if (hz >= n.getMinimaFrecuencia() && hz <= n.getMaximaFrecuencia()) {
+            if (lista.contains(new NotasImitar(n, octava))) {
+                    lista.set(lista.indexOf(new NotasImitar(n, octava)), new NotasImitar(n, octava, lista.indexOf(new NotasImitar(n, octava).contador + 1)));
+            } else {
+                    lista.add(new NotasImitar(n, octava, 1));
+            }
+            return true;
+        }
+        return false;
     }
 
     public void Grabar(View view) throws InterruptedException {
