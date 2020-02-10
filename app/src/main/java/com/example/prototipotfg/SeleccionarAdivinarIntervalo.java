@@ -11,7 +11,6 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Random;
 
 import static android.view.View.INVISIBLE;
@@ -64,8 +63,8 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
             aux.add(random1);
         }
-        Collections.shuffle(aux);
 
+        Collections.shuffle(aux);
 
         Intervalos[] intervalos_lista = new Intervalos[12];
         intervalos_lista = Intervalos.values();
@@ -139,7 +138,6 @@ public class SeleccionarAdivinarIntervalo extends Activity {
             i++;
 
         }
-
         return intervalos_lista[i-1];
     }
 
