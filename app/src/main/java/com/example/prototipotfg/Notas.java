@@ -19,7 +19,7 @@ public enum Notas {
     private double minimaFrecuencia;
     private double maximaFrecuencia;
     private String path;
-    private  int tono;
+    private int tono;
 
     private Notas(String nombre, double minimaFrecuencia, double maximaFrecuencia, String path, int tono){
         this.nombre=nombre;
@@ -28,6 +28,14 @@ public enum Notas {
         this.path=path;
         this.tono = tono;
 
+    }
+
+    public static Notas devuelveNotaPorNombre(String nombre) {
+        for (Notas n: Notas.values()
+        ) {
+            if (n.getNombre().equals(nombre)) return n;
+        }
+        return null;
     }
 
     public String getNombre() {
