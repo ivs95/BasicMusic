@@ -301,10 +301,16 @@ public class ReproducirImitar extends Activity {
 
     private boolean compruebaSiEsNota(float hz, Notas n, ArrayList<NotasImitar> lista, int octava) {
         if (hz >= n.getMinimaFrecuencia() && hz <= n.getMaximaFrecuencia()) {
-            if (lista.contains(new NotasImitar(n, octava))) {
+            if(lista.size() > 0) {
+
+                if (lista.contains(new NotasImitar(n, octava))) {
                     lista.set(lista.indexOf(new NotasImitar(n, octava)), new NotasImitar(n, octava, lista.indexOf(new NotasImitar(n, octava).contador + 1)));
             } else {
                     lista.add(new NotasImitar(n, octava, 1));
+            }
+            }
+            else {
+                lista.add(new NotasImitar(Notas.SI, octava, 1));
             }
             return true;
         }
