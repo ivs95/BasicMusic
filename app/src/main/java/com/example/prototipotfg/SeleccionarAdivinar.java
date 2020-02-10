@@ -2,6 +2,7 @@ package com.example.prototipotfg;
 
 
 import android.app.Activity;
+import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -101,7 +103,27 @@ public class SeleccionarAdivinar extends Activity {
         botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_deep_orange_900));
 
         respuesta = b.getText().toString();
+        String ruta = devuelveRutaBoton(respuesta);
+
+        MediaPlayer mediaPlayer =  new MediaPlayer();
+        AssetFileDescriptor afd = null;
+        try {
+            afd = getAssets().openFd(ruta);
+            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            mediaPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mediaPlayer.start();
+
+
         ponerComprobarVisible(1);
+    }
+
+    private String devuelveRutaBoton(String text) {
+        Notas n = Notas.devuelveNotaPorNombre(text.substring(0, text.length()-1));
+        Octavas o = Octavas.devuelveOctavaPorNumero(Integer.parseInt(text.substring(text.length()-1)));
+        return FactoriaNotas.getInstance().getInstrumento().getPath()+o.getPath()+n.getPath();
     }
 
 
@@ -109,6 +131,13 @@ public class SeleccionarAdivinar extends Activity {
         finish();
     }
 
+    public void reproducirReferencia(View view) throws IOException {
+        MediaPlayer mediaPlayer =  new MediaPlayer();
+        AssetFileDescriptor afd = getAssets().openFd(FactoriaNotas.getInstance().getReferencia());
+        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        mediaPlayer.prepare();
+        mediaPlayer.start();
+    }
 
 
     private void ponerComprobarVisible(int visible) {
