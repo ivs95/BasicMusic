@@ -28,6 +28,7 @@ public class SeleccionarAdivinar extends Activity {
 
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
+    private String dificultad;
 
     private String respuesta;
     @Override
@@ -37,6 +38,7 @@ public class SeleccionarAdivinar extends Activity {
         ponerComprobarVisible(INVISIBLE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
+        dificultad = getIntent().getExtras().getString("dificultad");
 
         //inicializacion de botones
 
@@ -103,19 +105,21 @@ public class SeleccionarAdivinar extends Activity {
         botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_deep_orange_900));
 
         respuesta = b.getText().toString();
-        String ruta = devuelveRutaBoton(respuesta);
 
-        MediaPlayer mediaPlayer =  new MediaPlayer();
-        AssetFileDescriptor afd = null;
-        try {
-            afd = getAssets().openFd(ruta);
-            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            mediaPlayer.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(dificultad.equals("facil")) {
+            String ruta = devuelveRutaBoton(respuesta);
+
+            MediaPlayer mediaPlayer = new MediaPlayer();
+            AssetFileDescriptor afd = null;
+            try {
+                afd = getAssets().openFd(ruta);
+                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                mediaPlayer.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            mediaPlayer.start();
         }
-        mediaPlayer.start();
-
 
         ponerComprobarVisible(1);
     }

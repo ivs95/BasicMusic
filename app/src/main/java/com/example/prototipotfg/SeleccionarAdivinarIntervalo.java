@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 
 import static android.view.View.INVISIBLE;
@@ -30,7 +31,6 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         setContentView(R.layout.nivel_seleccionar_adivinar);
         ponerComprobarVisible(INVISIBLE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
-        rutas = getIntent().getExtras().getStringArrayList("rutas");
 
         int tono1 = getTonoNota(nombres.get(0));
         int tono2 = getTonoNota(nombres.get(1));
@@ -138,6 +138,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
             i++;
 
         }
+
         return intervalos_lista[i-1];
     }
 

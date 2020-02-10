@@ -15,11 +15,13 @@ import java.util.Random;
 public class NivelesAdivinarNotas extends Activity {
 
     private String modo;
+    private String dificultad;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         modo = getIntent().getExtras().getString("modo");
+        dificultad = getIntent().getExtras().getString("dificultad");
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
@@ -86,7 +88,7 @@ public class NivelesAdivinarNotas extends Activity {
 
         i.putExtra("nivel", nivel);
         i.putExtra("modo", modo);
-        i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
+        i.putExtra("dificultad", dificultad);
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
 

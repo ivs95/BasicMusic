@@ -20,6 +20,7 @@ public class ReproducirAdivinar extends Activity {
 
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
+    private String dificultad;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -31,6 +32,7 @@ public class ReproducirAdivinar extends Activity {
         TextView nota = (TextView)findViewById(R.id.nota);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
+        dificultad = getIntent().getExtras().getString("dificultad");
     }
 
 
@@ -47,6 +49,7 @@ public class ReproducirAdivinar extends Activity {
         Intent i = new Intent(this, SeleccionarAdivinar.class);
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
+        i.putExtra("dificultad", dificultad);
         startActivity(i);
     }
 
