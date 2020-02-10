@@ -1,0 +1,20 @@
+/*
+
+    boolean esNota = false;
+            for(Notas n: Notas.values()){
+                while (!esNota) {
+                    esNota = compruebaSiEsNota(hz, n, lista, octava);
+                }
+            }
+
+    private boolean compruebaSiEsNota(float hz, Notas n, ArrayList<NotasImitar> lista, int octava) {
+        if (hz >= n.getMinimaFrecuencia() && hz <= n.getMaximaFrecuencia()) {
+            if (lista.contains(new NotasImitar(n, octava))) {
+                    lista.set(lista.indexOf(new NotasImitar(n, octava)), new NotasImitar(n, octava, lista.indexOf(new NotasImitar(n, octava).contador + 1)));
+            } else {
+                    lista.add(new NotasImitar(n, octava, 1));
+            }
+            return true;
+        }
+        return false;
+    } */
