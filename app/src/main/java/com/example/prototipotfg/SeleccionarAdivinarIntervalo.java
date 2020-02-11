@@ -25,6 +25,8 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
     private String respuesta;
     private String intervalo_correcto;
+    private boolean comprobada = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -86,7 +88,9 @@ public class SeleccionarAdivinarIntervalo extends Activity {
             });
             //Añadimos el botón a la botonera
             button.setPadding(0,0,0,0);
-
+            if (button.getText().equals(this.intervalo_correcto)){
+                respuestaCorrecta = button;
+            }
             opciones.addView(button);
         }
 
@@ -95,15 +99,17 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
 
     public void respuesta_seleccionada(View view){
-        Button b = (Button)view;
-        if (botonSeleccionado != null){
-            botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_orange_400));
-        }
-        botonSeleccionado = b;
-        botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_deep_orange_900));
+        if (!comprobada) {
+            Button b = (Button) view;
+            if (botonSeleccionado != null) {
+                botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_orange_400));
+            }
+            botonSeleccionado = b;
+            botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_deep_orange_900));
 
-        respuesta = b.getText().toString();
-        ponerComprobarVisible(1);
+            respuesta = b.getText().toString();
+            ponerComprobarVisible(1);
+        }
     }
 
 
@@ -119,13 +125,14 @@ public class SeleccionarAdivinarIntervalo extends Activity {
     }
 
     public void comprobarResultado(View view){
-        TextView text = (TextView)findViewById(R.id.respuesta_correcta_id);
-        if(respuesta == this.intervalo_correcto){
-            text.setText("RESPUESTA CORRECTA");
-
+        if (!comprobada) {
+            this.comprobada = true;
+            if (respuesta != this.intervalo_correcto) {
+                botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_red_500));
+            }
+            respuestaCorrecta.setBackgroundColor(ContextCompat.getColor(this, R.color.md_green_500));
         }
-        else
-            text.setText("RESPUESTA INCORRECTA");
+        findViewById(R.id.comprobar).setVisibility(View.GONE);
     }
 
     public Intervalos getIntervaloConDif(int dif){

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    z
+
 
     <TextView
         android:id="@+id/tituloSeleccionar"
@@ -23,10 +23,10 @@
         android:id="@+id/retroceder"
         android:layout_width="251dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="20dp"
         android:onClick="volverAtras"
         android:text="Volver a reproducir"
-        app:layout_constraintBottom_toTopOf="@+id/respuesta_correcta_id"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
@@ -35,7 +35,7 @@
         android:id="@+id/comprobar"
         android:layout_width="251dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="14dp"
         android:onClick="comprobarResultado"
         android:text="Comprobar resultado"
         app:layout_constraintBottom_toTopOf="@+id/retroceder"
@@ -46,7 +46,7 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="385dp"
-        android:layout_height="366dp"
+        android:layout_height="430dp"
         app:layout_constraintBottom_toTopOf="@+id/comprobar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
@@ -61,16 +61,6 @@
             android:paddingTop="40dp"
             android:orientation="vertical" />
     </ScrollView>
-
-    <TextView
-        android:id="@+id/respuesta_correcta_id"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="60dp"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/botonReferencia"

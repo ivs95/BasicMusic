@@ -3,6 +3,7 @@ package com.example.prototipotfg;
 
 import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,6 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +25,7 @@ public class SeleccionarAdivinar extends Activity {
 
     private View botonSeleccionado;
     private View respuestaCorrecta;
+    private boolean comprobada = false;
 
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
@@ -39,9 +40,14 @@ public class SeleccionarAdivinar extends Activity {
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
         dificultad = getIntent().getExtras().getString("dificultad");
+        if (dificultad.equals("dificil")){
+            Button referencia = findViewById(R.id.botonReferencia);
+            referencia.setVisibility(View.GONE);
+            Button retroceder = findViewById(R.id.retroceder);
+            retroceder.setVisibility(View.GONE);
+        }
 
         //inicializacion de botones
-
 
 
         //Obtenemos el linear layout donde colocar los botones
@@ -90,6 +96,9 @@ public class SeleccionarAdivinar extends Activity {
             button.setPadding(0,0,0,0);
 
             opciones.addView(button);
+            if (button.getText().toString() == nombres.get(0)){
+                this.respuestaCorrecta=button;
+            }
         }
 
 
@@ -97,31 +106,33 @@ public class SeleccionarAdivinar extends Activity {
 
 
     public void respuesta_seleccionada(View view){
-        Button b = (Button)view;
-        if (botonSeleccionado != null){
-            botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_orange_400));
-        }
-        botonSeleccionado = b;
-        botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_deep_orange_900));
-
-        respuesta = b.getText().toString();
-
-        if(dificultad.equals("facil")) {
-            String ruta = devuelveRutaBoton(respuesta);
-
-            MediaPlayer mediaPlayer = new MediaPlayer();
-            AssetFileDescriptor afd = null;
-            try {
-                afd = getAssets().openFd(ruta);
-                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                mediaPlayer.prepare();
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (!comprobada) {
+            Button b = (Button) view;
+            if (botonSeleccionado != null) {
+                botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_orange_400));
             }
-            mediaPlayer.start();
-        }
+            botonSeleccionado = b;
+            botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_deep_orange_900));
 
-        ponerComprobarVisible(1);
+            respuesta = b.getText().toString();
+
+            if (dificultad.equals("facil")) {
+                String ruta = devuelveRutaBoton(respuesta);
+
+                MediaPlayer mediaPlayer = new MediaPlayer();
+                AssetFileDescriptor afd = null;
+                try {
+                    afd = getAssets().openFd(ruta);
+                    mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                    mediaPlayer.prepare();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                mediaPlayer.start();
+            }
+
+            ponerComprobarVisible(1);
+        }
     }
 
     private String devuelveRutaBoton(String text) {
@@ -149,14 +160,16 @@ public class SeleccionarAdivinar extends Activity {
         comprobar.setVisibility(visible);
     }
 
-    public void comprobarResultado(View view){
-        TextView text = (TextView)findViewById(R.id.respuesta_correcta_id);
-        if(respuesta == nombres.get(0)){
-            text.setText("RESPUESTA CORRECTA");
-
+    public void comprobarResultado(View view) {
+        if (!comprobada) {
+            this.comprobada = true;
+            if (respuesta != nombres.get(0)) {
+                botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_red_500));
+            }
+            respuestaCorrecta.setBackgroundColor(ContextCompat.getColor(this, R.color.md_green_500));
         }
-        else
-            text.setText("RESPUESTA INCORRECTA");
+        findViewById(R.id.comprobar).setVisibility(View.GONE);
+
     }
 
 

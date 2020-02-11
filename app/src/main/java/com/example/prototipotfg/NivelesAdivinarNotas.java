@@ -19,7 +19,7 @@ public class NivelesAdivinarNotas extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.niveles);
+        setContentView(R.layout.opciones_adivinar);
         modo = getIntent().getExtras().getString("modo");
         dificultad = getIntent().getExtras().getString("dificultad");
 
@@ -31,13 +31,13 @@ public class NivelesAdivinarNotas extends Activity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
 
         //Creamos los botones en bucle
-        for (int i=0; i<15; i++){
+        for (int i=1; i<6; i++){
             Button button = new Button(this);
             button.setId(i+1);
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            button.setText("Nivel "+String.format("%02d", i+1 ));
+            button.setText(i+1 + " opciones");
 
             //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {
@@ -51,37 +51,35 @@ public class NivelesAdivinarNotas extends Activity {
         }
     }
 
-    public void nivel_seleccionado(View view){
+    public void nivel_seleccionado(View view) {
         Intent i = null;
-        if(this.modo.equals("intervalos")) {
+        if (this.modo.equals("intervalos")) {
             i = new Intent(this, ReproducirAdivinarIntervalo.class);
-        }
-        else
+        } else
             i = new Intent(this, ReproducirAdivinar.class);
 
         //Nivel que se ha seleccionado
         int nivel = view.getId();
-        ArrayList<Octavas>  octavas = Octavas.devuelveOctavas(getIntent().getExtras().getStringArrayList("octavas"));
+        ArrayList<Octavas> octavas = Octavas.devuelveOctavas(getIntent().getExtras().getStringArrayList("octavas"));
         HashMap<String, String> notas = null;
 
         try {
-            if (this.modo.equals("intervalos")){
+            if (this.modo.equals("intervalos")) {
                 Random random = new Random();
-                ArrayList<Octavas>  octavas_intervalos  = new ArrayList<Octavas>();
+                ArrayList<Octavas> octavas_intervalos = new ArrayList<Octavas>();
                 octavas_intervalos.add(octavas.get(random.nextInt(octavas.size())));
-                notas = FactoriaNotas.getInstance().getNumNotasAleatorias(getNotasParaNivel(nivel), Instrumentos.Piano,octavas_intervalos);
-            }
-            else
-                notas = FactoriaNotas.getInstance().getNumNotasAleatorias(getNotasParaNivel(nivel), Instrumentos.Piano,octavas);
+                notas = FactoriaNotas.getInstance().getNumNotasAleatorias(view.getId(), Instrumentos.Piano, octavas_intervalos);
+            } else
+                notas = FactoriaNotas.getInstance().getNumNotasAleatorias(view.getId(), Instrumentos.Piano, octavas);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         /*
-        * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
-        * Crear clase para seleccionar notas aleatorias
-        * Claves: respuesta, fallo1,...,falloN
-        * */
+         * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
+         * Crear clase para seleccionar notas aleatorias
+         * Claves: respuesta, fallo1,...,falloN
+         * */
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
         ArrayList<String> rutas = new ArrayList<>(notas.values());
 
@@ -93,17 +91,6 @@ public class NivelesAdivinarNotas extends Activity {
         i.putStringArrayListExtra("rutas", rutas);
 
         startActivity(i);
-    }
-
-    private int getNotasParaNivel(int nivel) {
-        int numeroNotas = 0;
-        numeroNotas = (nivel%5)+1;
-        if (numeroNotas == 1){
-            numeroNotas+=5;
-        }
-        return numeroNotas;
-
-
     }
 
 
