@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AutomaticGainControl;
 import android.media.audiofx.NoiseSuppressor;
@@ -20,8 +22,8 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import be.tarsos.dsp.AudioDispatcher;
 import be.tarsos.dsp.AudioEvent;
@@ -37,19 +39,31 @@ public class ReproducirImitar extends Activity {
     private AudioDispatcher dispatcher;
     private ArrayList<NotasImitar> lista = new ArrayList<NotasImitar>();
     private NotasImitar resNota;
+    private ArrayList<String> nombres;
+    private ArrayList<String> rutas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_reproducir_imitar);
 
+        nombres = getIntent().getExtras().getStringArrayList("nombres");
+        rutas = getIntent().getExtras().getStringArrayList("rutas");
+
         int nivel = getIntent().getExtras().getInt("nivel");
         TextView titulo = (TextView)findViewById(R.id.tituloImitar);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
 
+        TextView nota = findViewById(R.id.notaImitar);
+        nota.setText(nombres.get(0));
+
         Button repetirNivel = (Button)findViewById(R.id.botonRepite);
         repetirNivel.setEnabled(false);
         repetirNivel.setVisibility(View.INVISIBLE);
+
+        Button comparar = (Button)findViewById(R.id.button4);
+        comparar.setEnabled(false);
+        comparar.setVisibility(View.INVISIBLE);
 
 
 
@@ -105,28 +119,25 @@ public class ReproducirImitar extends Activity {
 
     }
 
-    public void reproducir(View view){
-        ProgressBar progresoReproducir = (ProgressBar)findViewById(R.id.progressReproducir);
-        ProgressBar progresoGrabar = (ProgressBar)findViewById(R.id.progressGrabar);
-        progresoReproducir.setVisibility(View.VISIBLE);
-        progresoGrabar.setVisibility(View.INVISIBLE);
-
-
-    }
-
-    public void grabar(View view){
-        ProgressBar progresoReproducir = (ProgressBar)findViewById(R.id.progressReproducir);
-        ProgressBar progresoGrabar = (ProgressBar)findViewById(R.id.progressGrabar);
-        progresoReproducir.setVisibility(View.INVISIBLE);
-        progresoGrabar.setVisibility(View.VISIBLE);
+    public void reproducir(View view) throws IOException{
+        MediaPlayer mediaPlayer =  new MediaPlayer();
+        AssetFileDescriptor afd = getAssets().openFd(rutas.get(0));
+        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        mediaPlayer.prepare();
+        mediaPlayer.start();
 
     }
 
     public void comparar(View view){
-        ProgressBar progresoReproducir = (ProgressBar)findViewById(R.id.progressReproducir);
-        ProgressBar progresoGrabar = (ProgressBar)findViewById(R.id.progressGrabar);
-        progresoReproducir.setVisibility(View.INVISIBLE);
-        progresoGrabar.setVisibility(View.INVISIBLE);
+        TextView respuesta = (TextView)findViewById(R.id.respuesta);
+        System.out.println(resNota.nota.getNombre()+(resNota.octava-1));
+        System.out.println(nombres.get(0));
+        if((resNota.nota.getNombre() + (resNota.octava - 1)).equals(nombres.get(0))){
+            respuesta.setText("Respuesta Correcta");
+        }
+        else{
+            respuesta.setText("Respuesta Incorrecta");
+        }
     }
 
 
@@ -173,13 +184,12 @@ public class ReproducirImitar extends Activity {
         return false;
     }
 
-    public void Grabar(View view) throws InterruptedException {
-        Button botonGrabar = (Button)findViewById(R.id.botonGrabar);
+    public void Grabar(View view) {
+        Button botonGrabar = findViewById(R.id.botonGrabar);
         botonGrabar.setVisibility(View.INVISIBLE);
         botonGrabar.setEnabled(false);
-        Button repetirNivel = (Button)findViewById(R.id.botonRepite);
-        repetirNivel.setVisibility(View.VISIBLE);
-        repetirNivel.setEnabled(true);
+
+
         class MiContador extends CountDownTimer {
 
             public MiContador(long millisInFuture, long countDownInterval) {
@@ -217,37 +227,52 @@ public class ReproducirImitar extends Activity {
                             @Override
                             public void run() {
 
-                                TextView text2 = (TextView) findViewById(R.id.textoFrecuencia);
+                                TextView text2 = findViewById(R.id.textoFrecuencia);
                                 text2.setText("Resultado: " + resNota.nota.getNombre() + (resNota.octava-1));
 
-                                TextView text1 = (TextView) findViewById(R.id.timer_id);
+                                TextView text1 = findViewById(R.id.timer_id);
                                 text1.setText("Fin");
+
+                                Button repetirNivel = (Button)findViewById(R.id.botonRepite);
+                                repetirNivel.setVisibility(View.VISIBLE);
+                                repetirNivel.setEnabled(true);
+
+                                Button comparar = (Button)findViewById(R.id.button4);
+                                comparar.setEnabled(true);
+                                comparar.setVisibility(View.VISIBLE);
 
                             }
 
                         });
+
 
                         return;
 
                     }
                 }).start();
 
+
+
+
             }
 
             @Override
             public void onTick(long millisUntilFinished) {
                 //texto a mostrar en cuenta regresiva en un textview
-                TextView countdownText = (TextView) findViewById(R.id.textoFrecuencia);
+                TextView countdownText = findViewById(R.id.textoFrecuencia);
                 countdownText.setText((((millisUntilFinished+1000)/1000)+""));
             }
+
         }
         final MiContador timer = new MiContador(3000,1000);
         timer.start();
+
 
     }
 
     public void repetirNivel(View view){
         startActivity(getIntent());
+        this.finish();
     }
 
 }

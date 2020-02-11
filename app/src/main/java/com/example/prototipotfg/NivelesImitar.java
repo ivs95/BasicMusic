@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class NivelesImitar extends Activity {
 
 
@@ -35,7 +39,11 @@ public class NivelesImitar extends Activity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    nivel_seleccionado(v);
+                    try {
+                        nivel_seleccionado(v);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
             //Añadimos el botón a la botonera
@@ -43,19 +51,23 @@ public class NivelesImitar extends Activity {
         }
     }
 
-    public void nivel_seleccionado(View view){
+    public void nivel_seleccionado(View view) throws IOException {
         Intent i = new Intent(this, ReproducirImitar.class);
         int nivel = view.getId();
-
+        HashMap<String, String> notas = FactoriaNotas.getInstance().getNumNotasAleatorias(1, Instrumentos.Piano,Octavas.devuelveOctavas(getIntent().getStringArrayListExtra("octavas")));
+        ArrayList<String> nombres = new ArrayList<>(notas.keySet());
+        ArrayList<String> rutas = new ArrayList<>(notas.values());
 
         /*
          * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
          * Crear clase para seleccionar notas aleatorias
          * Claves: respuesta, fallo1,...,falloN
          * */
-
         i.putExtra("nivel", nivel);
+        i.putStringArrayListExtra("nombres", nombres);
+        i.putStringArrayListExtra("rutas", rutas);
         //i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
+
         startActivity(i);
     }
 

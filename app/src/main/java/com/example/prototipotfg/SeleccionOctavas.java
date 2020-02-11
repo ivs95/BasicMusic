@@ -40,12 +40,18 @@ public class SeleccionOctavas extends Activity {
     }
 
     public void confirmarOctavas(View view){
-
-        Intent i = new Intent(this, NivelesAdivinarNotas.class);
-        i.putExtra("modo", modo);
-        i.putExtra("dificultad", dificultad);
-        i.putStringArrayListExtra("octavas", octavas);
-        startActivity(i);
+        if(this.modo.equals("imitar")){
+            Intent i = new Intent(this, NivelesImitar.class);
+            i.putStringArrayListExtra("octavas", octavas);
+            startActivity(i);
+        }
+        else {
+            Intent i = new Intent(this, NivelesAdivinarNotas.class);
+            i.putExtra("modo", modo);
+            i.putExtra("dificultad", dificultad);
+            i.putStringArrayListExtra("octavas", octavas);
+            startActivity(i);
+        }
     }
 
     private void octavaPulsada(Octavas octava, Button boton) {

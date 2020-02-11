@@ -19,7 +19,8 @@ public class MenuJugar extends Activity {
     }
 
     public void modo_imitar(View view){
-        Intent i = new Intent(this, NivelesImitar.class);
+        Intent i = new Intent(this, SeleccionOctavas.class);
+        i.putExtra("modo", "imitar");
         startActivity(i);
     }
 }
