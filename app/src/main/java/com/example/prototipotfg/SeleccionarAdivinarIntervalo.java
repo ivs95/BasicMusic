@@ -1,6 +1,8 @@
 package com.example.prototipotfg;
 
 import android.app.Activity;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -161,6 +164,14 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
         }
         return lista_notas[i-1].getTono();
+    }
+
+    public void reproducirReferencia(View view) throws IOException {
+        MediaPlayer mediaPlayer =  new MediaPlayer();
+        AssetFileDescriptor afd = getAssets().openFd(FactoriaNotas.getInstance().getReferencia());
+        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        mediaPlayer.prepare();
+        mediaPlayer.start();
     }
 
 }
