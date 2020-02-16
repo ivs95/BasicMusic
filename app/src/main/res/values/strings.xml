@@ -9,4 +9,5 @@
     <string name="txtBotonExamen">Examen por nivel</string>
     <string name="txtBotonRepetir">Imitar el audio</string>
     <string name="txtBotonAdivinar">Adivinar el audio</string>
+    <string name="txtBotonRitmos">Ritmos</string>
 </resources>

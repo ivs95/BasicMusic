@@ -23,4 +23,9 @@ public class MenuJugar extends Activity {
         i.putExtra("modo", "imitar");
         startActivity(i);
     }
+
+    public void modo_ritmos(View view) {
+        Intent i = new Intent(this, SeleccionModoRitmos.class);
+        startActivity(i);
+    }
 }

@@ -26,12 +26,19 @@
 
     <Button
         android:id="@+id/botonRepetir"
-        android:layout_width="wrap_content"
+        android:layout_width="151dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:onClick="modo_imitar"
         android:text="@string/txtBotonRepetir" />
+
+    <Button
+        android:id="@+id/botonRitmos"
+        android:layout_width="152dp"
+        android:layout_height="wrap_content"
+        android:onClick="modo_ritmos"
+        android:text="@string/txtBotonRitmos" />
 
     <Button
         android:id="@+id/botonExamen"
@@ -40,8 +47,6 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:text="@string/txtBotonExamen" />
-
-
 
 
 </LinearLayout>

@@ -5,31 +5,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class SeleccionModoAdivinar extends Activity {
+public class SeleccionModoRitmos extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.seleccion_adivinar);
+        setContentView(R.layout.seleccion_ritmos);
     }
 
     public void modo(View view){
-        Intent i = new Intent(this, SeleccionarDificultadAdivinar.class);
+        Intent i = new Intent(this, NivelesRitmos.class);
         switch (view.getId()){
             case R.id.buttonHalla:
-                i.putExtra("modo", "notas");
-                startActivity(i);
-                ;break;
-
-            case R.id.buttonAcordes:
-                i.putExtra("modo", "acordes");
+                i.putExtra("modoRitmo", "hallar");
                 startActivity(i);
                 break;
 
             case R.id.buttonRealizar:
-                Intent e = new Intent(this, SeleccionarModoIntervalos.class);
-                e.putExtra("modo", "intervalos");
-                startActivity(e);
+                i.putExtra("modoRitmo", "realizar");
+                startActivity(i);
                 break;
 
             default: break;
