@@ -132,7 +132,7 @@ public class ReproducirImitar extends Activity {
         TextView respuesta = (TextView)findViewById(R.id.respuesta);
         System.out.println(resNota.nota.getNombre()+(resNota.octava-1));
         System.out.println(nombres.get(0));
-        if((resNota.nota.getNombre() + (resNota.octava - 1)).equals(nombres.get(0))){
+        if((resNota.nota.getNombre() + (resNota.octava)).equals(nombres.get(0))){
             respuesta.setText("Respuesta Correcta");
         }
         else{
@@ -147,7 +147,7 @@ public class ReproducirImitar extends Activity {
     //Va añadiendo notas junto con su octava a "lista" para asi hallar la nota que mas se repite en la secuencia que el dispatcher esta ON
     void hallaMax(float hz){
         if (hz != -1) {
-            Integer octava = 4;
+            Integer octava = 3;
             //Situa a la nota en la octava que le corresponde
             if (hz < Notas.DO.getMinimaFrecuencia()) {
                 while (hz < Notas.DO.getMinimaFrecuencia()) {
@@ -228,7 +228,7 @@ public class ReproducirImitar extends Activity {
                             public void run() {
 
                                 TextView text2 = findViewById(R.id.textoFrecuencia);
-                                text2.setText("Resultado: " + resNota.nota.getNombre() + (resNota.octava-1));
+                                text2.setText("Resultado: " + resNota.nota.getNombre() + (resNota.octava));
 
                                 TextView text1 = findViewById(R.id.timer_id);
                                 text1.setText("Fin");
