@@ -12,15 +12,18 @@ import java.util.ArrayList;
 
 public class SeleccionOctavas extends Activity {
 
-    String modo;
-    String dificultad;
-    ArrayList<String> octavas = new ArrayList<String>();
+    private String modo;
+    private String dificultad;
+    private String modo_intervalo;
+    private ArrayList<String> octavas = new ArrayList<String>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seleccion_octavas);
         modo = getIntent().getExtras().getString("modo");
         dificultad = getIntent().getExtras().getString("dificultad");
+        modo_intervalo = getIntent().getExtras().getString("modo_intervalo");
+
         octavaPulsada(Octavas.Segunda, (Button)findViewById(R.id.buttonSegundaOctava));
     }
 
@@ -49,6 +52,7 @@ public class SeleccionOctavas extends Activity {
             Intent i = new Intent(this, NivelesAdivinarNotas.class);
             i.putExtra("modo", modo);
             i.putExtra("dificultad", dificultad);
+            i.putExtra("modo_intervalo", modo_intervalo);
             i.putStringArrayListExtra("octavas", octavas);
             startActivity(i);
         }

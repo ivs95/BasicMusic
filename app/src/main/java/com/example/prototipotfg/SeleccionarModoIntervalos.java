@@ -20,14 +20,14 @@ public class SeleccionarModoIntervalos extends Activity {
         switch (view.getId()){
             case R.id.buttonIntervalosModo2:
                 Intent i = new Intent(this, SeleccionOctavas.class);
-                i.putExtra("modo_intervalo", "Adivina_intervalo");
+                i.putExtra("modo_intervalo", "adivina_intervalo");
                 i.putExtra("modo", modo);
                 startActivity(i);
                 break;
 
             case R.id.buttonIntervalosModo1:
                 i = new Intent(this, SeleccionOctavas.class);
-                i.putExtra("modo_intervalo", "Crea_intervalo");
+                i.putExtra("modo_intervalo", "crea_intervalo");
                 i.putExtra("modo", modo);
                 startActivity(i);
                 break;

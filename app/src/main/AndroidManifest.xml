@@ -26,13 +26,15 @@
 
         <activity android:name=".ReproducirAdivinar">
         </activity>
-
+        <activity android:name=".ReproducirAdivinarCrearIntervalo">
+        </activity>
         <activity android:name=".ReproducirAdivinarIntervalo"></activity>
 
 
         <activity android:name=".SeleccionarAdivinar">
         </activity>
-
+        <activity android:name=".SeleccionarAdivinarCrearIntervalo">
+        </activity>
         <activity android:name=".SeleccionarAdivinarIntervalo">
         </activity>
 

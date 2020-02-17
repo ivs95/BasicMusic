@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tituloAdivinar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Nivel "
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/opcion1"
+        android:layout_width="251dp"
+        android:layout_height="wrap_content"
+        android:onClick="reproducir"
+        android:text="Pulsa para reproducir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/peticion_intervalo_id3"
+        app:layout_constraintVertical_bias="0.345" />
+
+    <Button
+        android:id="@+id/adivina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:onClick="adivina"
+        android:text="Adivina"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/opcion1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/peticion_intervalo_id1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Intrevalo de "
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloAdivinar" />
+
+    <TextView
+        android:id="@+id/peticion_intervalo_id2"
+        android:layout_width="168dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="24dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/peticion_intervalo_id1" />
+
+    <TextView
+        android:id="@+id/peticion_intervalo_id3"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="16dp"
+        android:text="Sobre"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/peticion_intervalo_id2" />
+
+    <TextView
+        android:id="@+id/peticion_intervalo_id4"
+        android:layout_width="97dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toEndOf="@+id/peticion_intervalo_id3"
+        app:layout_constraintTop_toBottomOf="@+id/peticion_intervalo_id2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

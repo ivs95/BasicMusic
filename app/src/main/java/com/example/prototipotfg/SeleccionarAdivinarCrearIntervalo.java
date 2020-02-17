@@ -17,11 +17,12 @@ import androidx.core.content.ContextCompat;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import static android.view.View.INVISIBLE;
 
-public class SeleccionarAdivinar extends Activity {
+public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
     private View botonSeleccionado;
     private View respuestaCorrecta;
@@ -31,7 +32,11 @@ public class SeleccionarAdivinar extends Activity {
     private ArrayList<String> rutas;
     private String dificultad;
 
+    private String intervalo_nombre;
+    private int intervalo_dif;
+
     private String respuesta;
+    private String respuesta_correcta;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -40,6 +45,10 @@ public class SeleccionarAdivinar extends Activity {
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
         dificultad = getIntent().getExtras().getString("dificultad");
+
+        intervalo_nombre = getIntent().getExtras().getString("peticion_nombre");
+        intervalo_dif = getIntent().getExtras().getInt("peticion_nombre");
+
         if (dificultad.equals("dificil")){
             Button referencia = findViewById(R.id.botonReferencia);
             referencia.setVisibility(View.GONE);
@@ -49,6 +58,8 @@ public class SeleccionarAdivinar extends Activity {
 
         //inicializacion de botones
 
+        int tono = getTonoNota(nombres.get(0));
+        respuesta_correcta = getNotaTono(tono+intervalo_dif);
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout opciones = (LinearLayout) findViewById(R.id.opciones);
@@ -63,16 +74,17 @@ public class SeleccionarAdivinar extends Activity {
 
         int random1 = rand.nextInt(num_respuestas);
         ArrayList <Integer> aux = new ArrayList<Integer>();
-        aux.add(random1);
+        aux.add(tono+intervalo_dif);
 
 
-        for(int i = 0; i< num_respuestas-1; i++) {
+        for(int i = 1; i< num_respuestas; i++) {
             while (aux.contains(random1))
                 random1 = rand.nextInt(num_respuestas);
 
             aux.add(random1);
         }
 
+        Collections.shuffle(aux);
 
 
 
@@ -171,7 +183,31 @@ public class SeleccionarAdivinar extends Activity {
         findViewById(R.id.comprobar).setVisibility(View.GONE);
 
     }
+    private int getTonoNota(String name){
+        name = name.substring(0,name.length()-1);
+        boolean OK = false;
+        int i = 0;
+        Notas[] lista_notas = new Notas[11];
+        lista_notas = Notas.values();
+        while(i < 11 && !OK){
+            if(lista_notas[i].getNombre().equals(name)) OK = true;
+            i++;
 
+        }
+        return lista_notas[i-1].getTono();
+    }
 
+    private String getNotaTono(int tono) {
+        boolean OK = false;
+        int i = 0;
+        Notas[] lista_notas = new Notas[11];
+        lista_notas = Notas.values();
+        while (i < 11 && !OK) {
+            if (lista_notas[i].getTono() == tono) OK = true;
+            i++;
 
+        }
+        return lista_notas[i - 1].getNombre();
+
+    }
 }
