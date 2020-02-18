@@ -57,6 +57,9 @@
 
         <activity android:name=".SeleccionOctavas"></activity>
 
+        <activity android:name=".HallaRitmos"></activity>
+        <activity android:name=".RealizaRitmos"></activity>
+
     </application>
 
 </manifest>

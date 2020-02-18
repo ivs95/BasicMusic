@@ -30,7 +30,7 @@ import be.tarsos.dsp.pitch.PitchDetectionResult;
 import be.tarsos.dsp.pitch.PitchProcessor;
 
 
-public class realizaRitmos extends Activity {
+public class RealizaRitmos extends Activity {
 
 
     private AudioDispatcher dispatcher;

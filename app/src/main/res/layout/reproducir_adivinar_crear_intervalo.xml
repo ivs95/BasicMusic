@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/opcion1"
+        android:id="@+id/play"
         android:layout_width="251dp"
         android:layout_height="wrap_content"
         android:onClick="reproducir"
@@ -32,7 +32,7 @@
         app:layout_constraintVertical_bias="0.345" />
 
     <Button
-        android:id="@+id/adivina"
+        android:id="@+id/stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
@@ -41,7 +41,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/opcion1"
+        app:layout_constraintTop_toBottomOf="@+id/play"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
