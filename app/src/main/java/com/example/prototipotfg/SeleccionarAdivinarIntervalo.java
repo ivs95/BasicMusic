@@ -56,16 +56,21 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         Random rand = new Random();
 
         int num_respuestas = nombres.size();
-
-        int random1 = rand.nextInt(num_respuestas);
+        int random1 = rand.nextInt(12);
+        if (posicion_intervalo < 0){
+            random1 = -random1;
+        }
         ArrayList <Integer> aux = new ArrayList<Integer>();
         aux.add(posicion_intervalo);
 
 
         for(int i = 0; i< num_respuestas-1; i++) {
-            while (aux.contains(random1))
-                random1 = rand.nextInt(num_respuestas);
-
+            while (aux.contains(random1)){
+                random1 = rand.nextInt(12);
+                if (posicion_intervalo < 0) {
+                    random1 = -random1;
+                }
+            }
             aux.add(random1);
         }
 

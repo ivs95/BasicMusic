@@ -62,11 +62,6 @@ public class NivelesAdivinarNotas extends Activity {
         }
         else if(this.modo.equals("intervalos") && this.modo_intervalo.equals("crea_intervalo")) {
             i = new Intent(this, ReproducirAdivinarCrearIntervalo.class);
-            Intervalos[] intervalos_lista = new Intervalos[12];
-            intervalos_lista = Intervalos.values();
-            Intervalos intervalo = intervalos_lista[random.nextInt(12)];
-            i.putExtra("peticion_nombre", intervalo.getNombre());
-            i.putExtra("peticion_dif", intervalo.getDiferencia());
         }
         else
             i = new Intent(this, ReproducirAdivinar.class);
