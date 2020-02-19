@@ -37,7 +37,8 @@ public class ReproducirAdivinarCrearIntervalo extends Activity {
         rutas = getIntent().getExtras().getStringArrayList("rutas");
         dificultad = getIntent().getExtras().getString("dificultad");
 
-        Notas n = Notas.devuelveNotaPorNombre(nombres.get(0));
+        String nombre = nombres.get(0).substring(0,nombres.get(0).length()-1);
+        Notas n = Notas.devuelveNotaPorNombre(nombre);
         ArrayList<Intervalos> intervalos_posibles = Intervalos.devuelveIntervalosPosibles(n);
         Intervalos intervalo = intervalos_posibles.get(new Random().nextInt(intervalos_posibles.size()));
         intervalo_nombre = intervalo.getNombre();

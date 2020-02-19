@@ -18,6 +18,7 @@ import java.util.Comparator;
 import java.util.Random;
 
 import static android.view.View.INVISIBLE;
+import static java.lang.Math.abs;
 
 public class SeleccionarAdivinarIntervalo extends Activity {
     private View botonSeleccionado;
@@ -39,7 +40,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
         int tono1 = getTonoNota(nombres.get(0));
         int tono2 = getTonoNota(nombres.get(1));
-        Intervalos intervalo = getIntervaloConDif(Math.abs(tono1-tono2));
+        Intervalos intervalo = getIntervaloConDif((tono2-tono1));
         this.intervalo_correcto = intervalo.getNombre();
         int posicion_intervalo = intervalo.getNumero();
         //inicializacion de botones
@@ -76,7 +77,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
         Collections.shuffle(aux);
 
-        Intervalos[] intervalos_lista = new Intervalos[12];
+        Intervalos[] intervalos_lista = new Intervalos[24];
         intervalos_lista = Intervalos.values();
         //Creamos los botones en bucle
         for (int i=0; i<num_respuestas; i++){
@@ -85,6 +86,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
+            if(aux.get(i) < 0) aux.set(i, abs(aux.get(i)*2));
             button.setText(intervalos_lista[aux.get(i)].getNombre());
 
             //Asignamose el Listener
@@ -139,16 +141,16 @@ public class SeleccionarAdivinarIntervalo extends Activity {
                 botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_red_500));
             }
             respuestaCorrecta.setBackgroundColor(ContextCompat.getColor(this, R.color.md_green_500));
-        }
+    }
         findViewById(R.id.comprobar).setVisibility(View.GONE);
     }
 
     public Intervalos getIntervaloConDif(int dif){
         boolean OK = false;
         int i = 0;
-        Intervalos[] intervalos_lista = new Intervalos[12];
+        Intervalos[] intervalos_lista = new Intervalos[24];
         intervalos_lista = Intervalos.values();
-        while(i < 12 && !OK){
+        while(i < 24 && !OK){
             if(intervalos_lista[i].getDiferencia() == dif) OK = true;
             i++;
 

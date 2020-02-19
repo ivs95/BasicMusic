@@ -44,17 +44,10 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         ponerComprobarVisible(INVISIBLE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
-        dificultad = getIntent().getExtras().getString("dificultad");
 
         intervalo_nombre = getIntent().getExtras().getString("peticion_nombre");
         intervalo_dif = getIntent().getExtras().getInt("peticion_nombre");
 
-        if (dificultad.equals("dificil")){
-            Button referencia = findViewById(R.id.botonReferencia);
-            referencia.setVisibility(View.GONE);
-            Button retroceder = findViewById(R.id.retroceder);
-            retroceder.setVisibility(View.GONE);
-        }
 
         //inicializacion de botones
 

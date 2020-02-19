@@ -31,6 +31,7 @@ public enum Notas {
     }
 
     public static Notas devuelveNotaPorNombre(String nombre) {
+
         for (Notas n: Notas.values()
         ) {
             if (n.getNombre().equals(nombre)) return n;
