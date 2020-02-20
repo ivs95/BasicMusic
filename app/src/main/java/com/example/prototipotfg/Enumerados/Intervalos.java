@@ -1,8 +1,6 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Enumerados;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public enum Intervalos {
 

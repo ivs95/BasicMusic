@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.prototipotfg.Enumerados.TipoModo;
+import com.example.prototipotfg.Singletons.Controlador;
+
 public class SeleccionModoAdivinar extends Activity {
 
     @Override
@@ -14,25 +17,34 @@ public class SeleccionModoAdivinar extends Activity {
     }
 
     public void modo(View view){
-        Intent i = new Intent(this, SeleccionarDificultadAdivinar.class);
+        Intent i;
         switch (view.getId()){
-            case R.id.buttonHalla:
-                i.putExtra("modo", "notas");
-                startActivity(i);
-                ;break;
-
-            case R.id.buttonAcordes:
-                i.putExtra("modo", "acordes");
-                startActivity(i);
+            case R.id.buttonNotas:
+                Controlador.getInstance().setTipo_modo(TipoModo.Notas);
+                seleccionarDificultadNotas();
                 break;
 
+            /*case R.id.buttonAcordes:
+                i.putExtra("modo", "acordes");
+                startActivity(i);
+                break;*/
+
             case R.id.buttonRealizar:
-                Intent e = new Intent(this, SeleccionarModoIntervalos.class);
-                e.putExtra("modo", "intervalos");
-                startActivity(e);
+                Controlador.getInstance().setTipo_modo(TipoModo.Intervalos);
+                seleccionarModoIntervalos();
                 break;
 
             default: break;
         }
+    }
+
+    private void seleccionarModoIntervalos() {
+        Intent i = new Intent(this, SeleccionarModoIntervalos.class);
+        startActivity(i);
+    }
+
+    private void seleccionarDificultadNotas() {
+        Intent i = new Intent(this, SeleccionarDificultadAdivinar.class);
+        startActivity(i);
     }
 }

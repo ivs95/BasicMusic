@@ -1,4 +1,4 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Enumerados;
 
 import java.util.ArrayList;
 

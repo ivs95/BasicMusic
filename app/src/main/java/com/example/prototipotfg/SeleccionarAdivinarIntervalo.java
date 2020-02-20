@@ -7,14 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+
+import com.example.prototipotfg.Enumerados.Intervalos;
+import com.example.prototipotfg.Enumerados.Notas;
+import com.example.prototipotfg.Singletons.FactoriaNotas;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Random;
 
 import static android.view.View.INVISIBLE;

@@ -19,6 +19,9 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.prototipotfg.Enumerados.Notas;
+import com.example.prototipotfg.ImitarAudio.NotasImitar;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -127,9 +130,9 @@ public class RealizaRitmos extends Activity {
 
     public void comparar(View view){
         TextView respuesta = (TextView)findViewById(R.id.respuesta);
-        System.out.println(resNota.nota.getNombre()+(resNota.octava-1));
+        System.out.println(resNota.getNota().getNombre()+(resNota.getOctava()-1));
         System.out.println(nombres.get(0));
-        if((resNota.nota.getNombre() + (resNota.octava)).equals(nombres.get(0))){
+        if((resNota.getNota().getNombre() + (resNota.getOctava())).equals(nombres.get(0))){
             respuesta.setText("Respuesta Correcta");
         }
         else{
@@ -172,7 +175,7 @@ public class RealizaRitmos extends Activity {
         if (hz >= n.getMinimaFrecuencia() && hz <= n.getMaximaFrecuencia()) {
 
             if (lista.contains(new NotasImitar(n, octava))) {
-                    lista.set(lista.indexOf(new NotasImitar(n, octava)), new NotasImitar(n, octava, lista.indexOf(new NotasImitar(n, octava).contador + 1)));
+                    lista.set(lista.indexOf(new NotasImitar(n, octava)), new NotasImitar(n, octava, lista.indexOf(new NotasImitar(n, octava).getContador() + 1)));
             } else {
                     lista.add(new NotasImitar(n, octava, 1));
             }
@@ -216,7 +219,7 @@ public class RealizaRitmos extends Activity {
                         //Recorre el ArrayList "lista" para guardar en resNota la nota que mas se repite
                         resNota = lista.get(0);
                         for (int i = 1; i<lista.size(); i++) {
-                            if(lista.get(i).contador > resNota.contador){
+                            if(lista.get(i).getContador() > resNota.getContador()){
                                 resNota = lista.get(i);
                             }
                         }
@@ -225,7 +228,7 @@ public class RealizaRitmos extends Activity {
                             public void run() {
 
                                 TextView text2 = findViewById(R.id.textoFrecuencia);
-                                text2.setText("Resultado: " + resNota.nota.getNombre() + (resNota.octava));
+                                text2.setText("Resultado: " + resNota.getNota().getNombre() + (resNota.getOctava()));
 
                                 TextView text1 = findViewById(R.id.timer_id);
                                 text1.setText("Fin");

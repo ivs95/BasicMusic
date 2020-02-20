@@ -38,10 +38,10 @@
         android:onClick="modo"
         android:text="intervalos"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonHalla" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonNotas" />
 
     <Button
-        android:id="@+id/buttonHalla"
+        android:id="@+id/buttonNotas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"

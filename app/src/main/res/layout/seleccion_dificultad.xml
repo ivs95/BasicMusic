@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="140dp"
-        android:onClick="mostrarNiveles"
+        android:onClick="setDificultadDificil"
         android:text="Difícil"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonMedio" />
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="140dp"
-        android:onClick="mostrarNiveles"
+        android:onClick="setDificultadMedio"
         android:text="Normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonFacil" />
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="160dp"
-        android:onClick="mostrarNiveles"
+        android:onClick="setDificultadFacil"
         android:text="Fácil"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -1,4 +1,4 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Notas;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,21 +8,19 @@ import android.widget.Button;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.prototipotfg.Notas.NivelesAdivinarNotas;
+import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.R;
+
 import java.util.ArrayList;
 
-public class SeleccionOctavas extends Activity {
+public class SeleccionOctavasNotas extends Activity {
 
-    private String modo;
-    private String dificultad;
-    private String modo_intervalo;
     private ArrayList<String> octavas = new ArrayList<String>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seleccion_octavas);
-        modo = getIntent().getExtras().getString("modo");
-        dificultad = getIntent().getExtras().getString("dificultad");
-        modo_intervalo = getIntent().getExtras().getString("modo_intervalo");
 
         octavaPulsada(Octavas.Segunda, (Button)findViewById(R.id.buttonSegundaOctava));
     }
@@ -43,19 +41,9 @@ public class SeleccionOctavas extends Activity {
     }
 
     public void confirmarOctavas(View view){
-        if(this.modo.equals("imitar")){
-            Intent i = new Intent(this, NivelesImitar.class);
-            i.putStringArrayListExtra("octavas", octavas);
-            startActivity(i);
-        }
-        else {
             Intent i = new Intent(this, NivelesAdivinarNotas.class);
-            i.putExtra("modo", modo);
-            i.putExtra("dificultad", dificultad);
-            i.putExtra("modo_intervalo", modo_intervalo);
             i.putStringArrayListExtra("octavas", octavas);
             startActivity(i);
-        }
     }
 
     private void octavaPulsada(Octavas octava, Button boton) {

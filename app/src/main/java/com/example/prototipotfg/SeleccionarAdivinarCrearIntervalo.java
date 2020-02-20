@@ -3,17 +3,19 @@ package com.example.prototipotfg;
 
 import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 
 import androidx.core.content.ContextCompat;
 
+
+import com.example.prototipotfg.Enumerados.Notas;
+import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.Singletons.FactoriaNotas;
 
 import java.io.IOException;
 import java.util.ArrayList;

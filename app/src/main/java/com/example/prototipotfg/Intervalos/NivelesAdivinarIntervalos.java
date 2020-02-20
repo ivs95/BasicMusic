@@ -1,4 +1,4 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Intervalos;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,23 +7,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.example.prototipotfg.Enumerados.Instrumentos;
+import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.R;
+import com.example.prototipotfg.ReproducirAdivinar;
+import com.example.prototipotfg.ReproducirAdivinarCrearIntervalo;
+import com.example.prototipotfg.ReproducirAdivinarIntervalo;
+import com.example.prototipotfg.Singletons.Controlador;
+import com.example.prototipotfg.Singletons.FactoriaNotas;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class NivelesAdivinarNotas extends Activity {
-
-    private String modo;
-    private String dificultad;
+public class NivelesAdivinarIntervalos extends Activity {
     private String modo_intervalo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opciones_adivinar);
-        modo = getIntent().getExtras().getString("modo");
-        dificultad = getIntent().getExtras().getString("dificultad");
         modo_intervalo = getIntent().getExtras().getString("modo_intervalo");
 
         //Obtenemos el linear layout donde colocar los botones
@@ -57,10 +61,10 @@ public class NivelesAdivinarNotas extends Activity {
     public void nivel_seleccionado(View view) {
         Intent i = null;
         Random random = new Random();
-        if (this.modo.equals("intervalos") && this.modo_intervalo.equals("adivina_intervalo")) {
+        if (Controlador.getInstance().getModo_juego().equals("intervalos") && this.modo_intervalo.equals("adivina_intervalo")) {
             i = new Intent(this, ReproducirAdivinarIntervalo.class);
         }
-        else if(this.modo.equals("intervalos") && this.modo_intervalo.equals("crea_intervalo")) {
+        else if(Controlador.getInstance().getModo_juego().equals("intervalos") && this.modo_intervalo.equals("crea_intervalo")) {
             i = new Intent(this, ReproducirAdivinarCrearIntervalo.class);
         }
         else
@@ -72,7 +76,7 @@ public class NivelesAdivinarNotas extends Activity {
         HashMap<String, String> notas = null;
 
         try {
-            if (this.modo.equals("intervalos")) {
+            if (Controlador.getInstance().getModo_juego().equals("intervalos")) {
 
                 ArrayList<Octavas> octavas_intervalos = new ArrayList<Octavas>();
                 octavas_intervalos.add(octavas.get(random.nextInt(octavas.size())));
@@ -93,8 +97,6 @@ public class NivelesAdivinarNotas extends Activity {
 
 
         i.putExtra("nivel", nivel);
-        i.putExtra("modo", modo);
-        i.putExtra("dificultad", dificultad);
         i.putExtra("modo_intervalo", modo_intervalo);
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);

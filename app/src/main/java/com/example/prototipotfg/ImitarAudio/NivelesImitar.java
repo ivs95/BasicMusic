@@ -1,4 +1,4 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.ImitarAudio;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,14 +9,14 @@ import android.widget.LinearLayout;
 
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Octavas;
-import com.example.prototipotfg.ImitarAudio.ReproducirImitar;
+import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class NivelesRitmos extends Activity {
+public class NivelesImitar extends Activity {
 
 
     @Override

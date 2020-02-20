@@ -8,12 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.prototipotfg.Enumerados.Intervalos;
+import com.example.prototipotfg.Enumerados.Notas;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
 public class ReproducirAdivinarCrearIntervalo extends Activity {

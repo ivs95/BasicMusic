@@ -43,22 +43,24 @@
         </activity>
 
 
-        <activity android:name=".NivelesAdivinarNotas">
+        <activity android:name=".Notas.NivelesAdivinarNotas">
         </activity>
 
-        <activity android:name=".NivelesImitar"></activity>
+        <activity android:name=".ImitarAudio.NivelesImitar"></activity>
         <activity android:name=".NivelesRitmos"></activity>
-        <activity android:name=".ReproducirImitar"></activity>
+        <activity android:name=".ImitarAudio.ReproducirImitar"></activity>
 
         <activity android:name=".SeleccionModoAdivinar"></activity>
         <activity android:name=".SeleccionModoRitmos"></activity>
         <activity android:name=".SeleccionarDificultadAdivinar"></activity>
         <activity android:name=".SeleccionarModoIntervalos"></activity>
 
-        <activity android:name=".SeleccionOctavas"></activity>
 
         <activity android:name=".HallaRitmos"></activity>
         <activity android:name=".RealizaRitmos"></activity>
+        <activity android:name=".Notas.SeleccionOctavasNotas" />
+        <activity android:name=".Notas.ReproducirAdivinarNotas" />
+        <activity android:name=".ImitarAudio.SeleccionOctavasImitar" />
 
     </application>
 

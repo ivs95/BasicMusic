@@ -1,21 +1,22 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Singletons;
 
-import android.content.res.AssetManager;
-import android.content.res.AssetFileDescriptor;
-import android.util.ArrayMap;
-import android.util.Pair;
 
+import com.example.prototipotfg.Enumerados.Instrumentos;
+import com.example.prototipotfg.Enumerados.Notas;
+import com.example.prototipotfg.Enumerados.Octavas;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
-class FactoriaNotas {
+public class FactoriaNotas {
+
     private static final FactoriaNotas ourInstance = new FactoriaNotas();
     private Random random = new Random();
+    private Instrumentos instrumento;
+    private String rutaReferencia;
+
 
     public Instrumentos getInstrumento() {
         return instrumento;
@@ -25,11 +26,7 @@ class FactoriaNotas {
         this.instrumento = instrumento;
     }
 
-    private Instrumentos instrumento;
-    private String rutaReferencia;
-
-
-    static FactoriaNotas getInstance() {
+    public static FactoriaNotas getInstance() {
         return ourInstance;
     }
 

@@ -1,4 +1,4 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Enumerados;
 
 public enum Notas {
     DO("Do", 254.281, 269.404, "C.wav", 1),

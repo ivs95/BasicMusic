@@ -3,17 +3,20 @@ package com.example.prototipotfg;
 
 import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 
 import androidx.core.content.ContextCompat;
 
+
+import com.example.prototipotfg.Enumerados.Notas;
+import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.Singletons.Controlador;
+import com.example.prototipotfg.Singletons.FactoriaNotas;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,7 +32,6 @@ public class SeleccionarAdivinar extends Activity {
 
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
-    private String dificultad;
 
     private String respuesta;
     @Override
@@ -39,12 +41,8 @@ public class SeleccionarAdivinar extends Activity {
         ponerComprobarVisible(INVISIBLE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
-        dificultad = getIntent().getExtras().getString("dificultad");
-        if (dificultad.equals("dificil")){
-            Button referencia = findViewById(R.id.botonReferencia);
-            referencia.setVisibility(View.GONE);
-            Button retroceder = findViewById(R.id.retroceder);
-            retroceder.setVisibility(View.GONE);
+        if (Controlador.getInstance().getDificultad().equals("dificil")){
+            adaptaVistaDificil();
         }
 
         //inicializacion de botones
@@ -104,6 +102,13 @@ public class SeleccionarAdivinar extends Activity {
 
     }
 
+    private void adaptaVistaDificil() {
+        Button referencia = findViewById(R.id.botonReferencia);
+        referencia.setVisibility(View.GONE);
+        Button retroceder = findViewById(R.id.retroceder);
+        retroceder.setVisibility(View.GONE);
+    }
+
 
     public void respuesta_seleccionada(View view){
         if (!comprobada) {
@@ -116,7 +121,7 @@ public class SeleccionarAdivinar extends Activity {
 
             respuesta = b.getText().toString();
 
-            if (dificultad.equals("facil")) {
+            if (Controlador.getInstance().getDificultad().equals("facil")) {
                 String ruta = devuelveRutaBoton(respuesta);
 
                 MediaPlayer mediaPlayer = new MediaPlayer();
