@@ -61,6 +61,8 @@
         <activity android:name=".Notas.SeleccionOctavasNotas" />
         <activity android:name=".Notas.ReproducirAdivinarNotas" />
         <activity android:name=".ImitarAudio.SeleccionOctavasImitar" />
+        <activity android:name=".Intervalos.SeleccionOctavasIntervalos" />
+        <activity android:name=".Intervalos.NivelesAdivinarIntervalos" />
 
     </application>
 

@@ -78,12 +78,4 @@ public enum Intervalos {
         return retorno;
     }
 
-/*
-    Intervalo maximo 12
-    Nota valor (Do 1, Si 12)
-    Coges 1º nota --> RE
-    Para abajo (negativos) == -(RE - 1) (Valor nota - 1) [intervalos_bajo]
-    Para arriba == 12 - RE (Intervalo maximo - valor nota) [intervalos_alto]
-    invervalos_posibles = mezcla(int_bajo, int_alto)
-*/
 }

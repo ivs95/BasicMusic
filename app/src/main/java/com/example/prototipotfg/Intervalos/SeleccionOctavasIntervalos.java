@@ -19,14 +19,11 @@ import java.util.ArrayList;
 
 public class SeleccionOctavasIntervalos extends Activity {
 
-    private String modo_intervalo;
     private ArrayList<String> octavas = new ArrayList<String>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seleccion_octavas);
-        modo_intervalo = getIntent().getExtras().getString("modo_intervalo");
-
         octavaPulsada(Octavas.Segunda, (Button)findViewById(R.id.buttonSegundaOctava));
     }
 
@@ -46,17 +43,10 @@ public class SeleccionOctavasIntervalos extends Activity {
     }
 
     public void confirmarOctavas(View view){
-        if(Controlador.getInstance().getModo_juego().equals(ModoJuego.Imitar)){
-            Intent i = new Intent(this, NivelesImitar.class);
-            i.putStringArrayListExtra("octavas", octavas);
-            startActivity(i);
-        }
-        else {
-            Intent i = new Intent(this, NivelesAdivinarNotas.class);
-            i.putExtra("modo_intervalo", modo_intervalo);
-            i.putStringArrayListExtra("octavas", octavas);
-            startActivity(i);
-        }
+        Intent i = new Intent(this, NivelesAdivinarIntervalos.class);
+        i.putExtra("modo_intervalo", getIntent().getExtras().getString("modo_intervalo"));
+        i.putStringArrayListExtra("octavas", octavas);
+        startActivity(i);
     }
 
     private void octavaPulsada(Octavas octava, Button boton) {

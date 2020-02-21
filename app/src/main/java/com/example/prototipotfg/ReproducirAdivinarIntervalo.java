@@ -15,22 +15,17 @@ public class ReproducirAdivinarIntervalo extends Activity {
 
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
-    private ArrayList<String> intervalos;
-    private String modo;
+    private int numOpciones;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reproducir_adivinar_intervalo);
-        modo = getIntent().getExtras().getString("modo");
-
-
-        int nivel = getIntent().getExtras().getInt("nivel");
+        numOpciones = getIntent().getExtras().getInt("nivel");
         TextView titulo = (TextView)findViewById(R.id.tituloAdivinar_intervalo);
-        titulo.setText(titulo.getText() + String.valueOf(nivel));
+        titulo.setText(titulo.getText() + String.valueOf(numOpciones));
         TextView nota = (TextView)findViewById(R.id.nota);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
-        intervalos = getIntent().getExtras().getStringArrayList("intervalos");
 
 
     }
@@ -59,7 +54,7 @@ public class ReproducirAdivinarIntervalo extends Activity {
         Intent i = new Intent(this, SeleccionarAdivinarIntervalo.class);
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
-        i.putStringArrayListExtra("intervalos", intervalos);
+        i.putExtra("opciones",numOpciones);
         startActivity(i);
     }
 }

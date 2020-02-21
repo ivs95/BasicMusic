@@ -10,10 +10,8 @@ import android.widget.LinearLayout;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
-import com.example.prototipotfg.ReproducirAdivinar;
 import com.example.prototipotfg.ReproducirAdivinarCrearIntervalo;
 import com.example.prototipotfg.ReproducirAdivinarIntervalo;
-import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
 import java.io.IOException;
@@ -22,6 +20,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class NivelesAdivinarIntervalos extends Activity {
+
     private String modo_intervalo;
 
     @Override
@@ -61,14 +60,12 @@ public class NivelesAdivinarIntervalos extends Activity {
     public void nivel_seleccionado(View view) {
         Intent i = null;
         Random random = new Random();
-        if (Controlador.getInstance().getModo_juego().equals("intervalos") && this.modo_intervalo.equals("adivina_intervalo")) {
+        if (this.modo_intervalo.equals("adivina_intervalo")) {
             i = new Intent(this, ReproducirAdivinarIntervalo.class);
         }
-        else if(Controlador.getInstance().getModo_juego().equals("intervalos") && this.modo_intervalo.equals("crea_intervalo")) {
+        else if(this.modo_intervalo.equals("crea_intervalo")) {
             i = new Intent(this, ReproducirAdivinarCrearIntervalo.class);
         }
-        else
-            i = new Intent(this, ReproducirAdivinar.class);
 
         //Nivel que se ha seleccionado
         int nivel = view.getId();
@@ -76,13 +73,10 @@ public class NivelesAdivinarIntervalos extends Activity {
         HashMap<String, String> notas = null;
 
         try {
-            if (Controlador.getInstance().getModo_juego().equals("intervalos")) {
+            ArrayList<Octavas> octavas_intervalos = new ArrayList<Octavas>();
+            octavas_intervalos.add(octavas.get(random.nextInt(octavas.size())));
+            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(view.getId(), Instrumentos.Piano, octavas_intervalos);
 
-                ArrayList<Octavas> octavas_intervalos = new ArrayList<Octavas>();
-                octavas_intervalos.add(octavas.get(random.nextInt(octavas.size())));
-                notas = FactoriaNotas.getInstance().getNumNotasAleatorias(view.getId(), Instrumentos.Piano, octavas_intervalos);
-            } else
-                notas = FactoriaNotas.getInstance().getNumNotasAleatorias(view.getId(), Instrumentos.Piano, octavas);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,7 +88,6 @@ public class NivelesAdivinarIntervalos extends Activity {
          * */
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
         ArrayList<String> rutas = new ArrayList<>(notas.values());
-
 
         i.putExtra("nivel", nivel);
         i.putExtra("modo_intervalo", modo_intervalo);

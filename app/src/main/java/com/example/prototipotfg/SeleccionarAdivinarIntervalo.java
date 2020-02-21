@@ -20,14 +20,12 @@ import java.util.Collections;
 import java.util.Random;
 
 import static android.view.View.INVISIBLE;
-import static java.lang.Math.abs;
 
 public class SeleccionarAdivinarIntervalo extends Activity {
     private View botonSeleccionado;
     private View respuestaCorrecta;
-
     private ArrayList<String> nombres;
-    private ArrayList<String> rutas;
+
 
     private String respuesta;
     private String intervalo_correcto;
@@ -58,7 +56,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         lp.setMargins(0,0,0,50);
         Random rand = new Random();
 
-        int num_respuestas = nombres.size();
+        int num_respuestas = getIntent().getExtras().getInt("opciones");
         int random1 = rand.nextInt(12);
         if (posicion_intervalo < 0){
             random1 = -random1;
@@ -67,7 +65,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         aux.add(posicion_intervalo);
 
 
-        for(int i = 0; i< num_respuestas-1; i++) {
+        for(int i = 0; i < num_respuestas-1; i++) {
             while (aux.contains(random1)){
                 random1 = rand.nextInt(12);
                 if (posicion_intervalo < 0) {
@@ -88,8 +86,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            if(aux.get(i) < 0) aux.set(i, abs(aux.get(i)*2));
-            button.setText(intervalos_lista[aux.get(i)].getNombre());
+            button.setText(Intervalos.getIntervaloPorDiferencia(aux.get(i)).getNombre());
 
             //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {
