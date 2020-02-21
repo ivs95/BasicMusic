@@ -1,4 +1,4 @@
-package com.example.prototipotfg.Intervalos;
+package com.example.prototipotfg.Intervalos.Crear;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,8 +10,6 @@ import android.widget.LinearLayout;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
-import com.example.prototipotfg.ReproducirAdivinarCrearIntervalo;
-import com.example.prototipotfg.ReproducirAdivinarIntervalo;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
 import java.io.IOException;
@@ -19,15 +17,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class NivelesAdivinarIntervalos extends Activity {
+public class NivelesAdivinarCrearIntervalos extends Activity {
 
-    private String modo_intervalo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.opciones_adivinar);
-        modo_intervalo = getIntent().getExtras().getString("modo_intervalo");
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
@@ -58,39 +54,25 @@ public class NivelesAdivinarIntervalos extends Activity {
     }
 
     public void nivel_seleccionado(View view) {
-        Intent i = null;
+        Intent i = new Intent(this, ReproducirAdivinarCrearIntervalo.class);
         Random random = new Random();
-        if (this.modo_intervalo.equals("adivina_intervalo")) {
-            i = new Intent(this, ReproducirAdivinarIntervalo.class);
-        }
-        else if(this.modo_intervalo.equals("crea_intervalo")) {
-            i = new Intent(this, ReproducirAdivinarCrearIntervalo.class);
-        }
 
         //Nivel que se ha seleccionado
-        int nivel = view.getId();
         ArrayList<Octavas> octavas = Octavas.devuelveOctavas(getIntent().getExtras().getStringArrayList("octavas"));
         HashMap<String, String> notas = null;
 
         try {
-            ArrayList<Octavas> octavas_intervalos = new ArrayList<Octavas>();
-            octavas_intervalos.add(octavas.get(random.nextInt(octavas.size())));
-            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(view.getId(), Instrumentos.Piano, octavas_intervalos);
+            Octavas octava_intervalos = octavas.get(random.nextInt(octavas.size()));
+            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Integer.valueOf(view.getId())+1, Instrumentos.Piano, octava_intervalos);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        /*
-         * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
-         * Crear clase para seleccionar notas aleatorias
-         * Claves: respuesta, fallo1,...,falloN
-         * */
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
         ArrayList<String> rutas = new ArrayList<>(notas.values());
 
-        i.putExtra("nivel", nivel);
-        i.putExtra("modo_intervalo", modo_intervalo);
+        i.putExtra("nivel", Integer.valueOf(view.getId()));
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
 

@@ -69,6 +69,31 @@ public class FactoriaNotas {
         return rutasFicherosAudio;
     }
 
+    public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, Octavas octava) throws IOException {
+        /*
+         * Funcion que devuelve num notas aleatorias en un array
+         * La primera posicion del array se utilizara como la nota a adivinar
+         * */
+        String rutaInstrumento = instrumento.getPath();
+        setReferencia(instrumento.getPath()+"cuatro/A.wav");
+        setInstrumento(instrumento);
+
+        //HashMap con clave nombre de nota y su octava y valor el path a su fichero
+        HashMap<String,String> rutasFicherosAudio = new HashMap<String,String>();
+        Notas nota = devuelveNotaAleatoria(Notas.values());
+
+        String ruta = rutaInstrumento+octava.getPath()+nota.getPath();
+        rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), ruta);
+        System.out.println(ruta);
+        for (int i = 1 ; i < numeroNotas; i++){
+            while (rutasFicherosAudio.containsKey(nota.getNombre()+octava.getOctava())){
+                nota = devuelveNotaAleatoria(Notas.values());
+            }
+            rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), rutaInstrumento+octava.getPath()+nota.getPath());
+        }
+        return rutasFicherosAudio;
+    }
+
     private Notas devuelveNotaAleatoria(Notas[] notas) {
          return notas[random.nextInt(notas.length)];
     }

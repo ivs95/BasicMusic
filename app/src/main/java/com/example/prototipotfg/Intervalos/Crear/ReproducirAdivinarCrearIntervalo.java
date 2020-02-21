@@ -1,4 +1,4 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Intervalos.Crear;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.Notas;
+import com.example.prototipotfg.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +23,16 @@ public class   ReproducirAdivinarCrearIntervalo extends Activity {
     private String dificultad;
     private String intervalo_nombre;
     private int intervalo_dif;
+
+    /*
+    * En rutas[0] se tiene la nota de inicio del intervalo
+    * En rutas[1] se tiene la nota de final del intervalo
+    * El intervalo es la diferencia de tono entre notas[0] y notas[1]
+    * En notas[1..size] se tienen las distintas opciones para elegir
+    * */
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -29,30 +40,24 @@ public class   ReproducirAdivinarCrearIntervalo extends Activity {
 
         int nivel = getIntent().getExtras().getInt("nivel");
 
-        TextView titulo = (TextView)findViewById(R.id.tituloAdivinar);
+        TextView titulo = (TextView)findViewById(R.id.tituloCreaIntervalo);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
 
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
         dificultad = getIntent().getExtras().getString("dificultad");
 
-        String nombre = nombres.get(0).substring(0,nombres.get(0).length()-1);
-        Notas n = Notas.devuelveNotaPorNombre(nombre);
-        ArrayList<Intervalos> intervalos_posibles = Intervalos.devuelveIntervalosPosibles(n);
-        Intervalos intervalo = intervalos_posibles.get(new Random().nextInt(intervalos_posibles.size()));
+        Notas notaInicio = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1));
+        Notas notaFinal = Notas.devuelveNotaPorNombre(nombres.get(1).substring(0,nombres.get(1).length()-1));
+        ArrayList<Intervalos> intervalos_posibles = Intervalos.devuelveIntervalosPosibles(notaInicio);
+        Intervalos intervalo = Intervalos.getIntervaloPorDiferencia(notaFinal.getTono()-notaInicio.getTono());
         intervalo_nombre = intervalo.getNombre();
         intervalo_dif = intervalo.getDiferencia();
 
-
-        TextView nota = (TextView)findViewById(R.id.peticion_intervalo_id4);
-        nota.setText(n.getNombre());
-
-        TextView peticion = (TextView)findViewById(R.id.peticion_intervalo_id2);
-        peticion.setText(intervalo_nombre);
-
-
-
-
+        TextView nota = (TextView)findViewById(R.id.lblNotaInicioIntervalo);
+        nota.setText(nota.getText() + nombres.get(0));
+        TextView peticion = (TextView)findViewById(R.id.lblNombreIntervalo);
+        peticion.setText(peticion.getText() + intervalo_nombre);
     }
 
 
@@ -72,7 +77,6 @@ public class   ReproducirAdivinarCrearIntervalo extends Activity {
         i.putExtra("dificultad", dificultad);
         i.putExtra("peticion_nombre", intervalo_nombre);
         i.putExtra("peticion_dif", intervalo_dif);
-
         startActivity(i);
     }
 

@@ -1,4 +1,4 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Notas;
 
 
 import android.app.Activity;
@@ -13,8 +13,10 @@ import android.widget.LinearLayout;
 import androidx.core.content.ContextCompat;
 
 
+import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
@@ -24,7 +26,7 @@ import java.util.Random;
 
 import static android.view.View.INVISIBLE;
 
-public class SeleccionarAdivinar extends Activity {
+public class SeleccionarAdivinarNotas extends Activity {
 
     private View botonSeleccionado;
     private View respuestaCorrecta;
@@ -41,7 +43,7 @@ public class SeleccionarAdivinar extends Activity {
         ponerComprobarVisible(INVISIBLE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
-        if (Controlador.getInstance().getDificultad().equals("dificil")){
+        if (Controlador.getInstance().getDificultad().equals(Dificultad.Dificil)){
             adaptaVistaDificil();
         }
 
@@ -121,9 +123,8 @@ public class SeleccionarAdivinar extends Activity {
 
             respuesta = b.getText().toString();
 
-            if (Controlador.getInstance().getDificultad().equals("facil")) {
+            if (Controlador.getInstance().getDificultad().equals(Dificultad.Facil)) {
                 String ruta = devuelveRutaBoton(respuesta);
-
                 MediaPlayer mediaPlayer = new MediaPlayer();
                 AssetFileDescriptor afd = null;
                 try {

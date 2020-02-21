@@ -8,12 +8,10 @@ import android.widget.Button;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Octavas;
-import com.example.prototipotfg.Notas.NivelesAdivinarNotas;
-import com.example.prototipotfg.ImitarAudio.NivelesImitar;
+import com.example.prototipotfg.Intervalos.Adivinar.NivelesAdivinarIntervalos;
+import com.example.prototipotfg.Intervalos.Crear.NivelesAdivinarCrearIntervalos;
 import com.example.prototipotfg.R;
-import com.example.prototipotfg.Singletons.Controlador;
 
 import java.util.ArrayList;
 
@@ -43,8 +41,13 @@ public class SeleccionOctavasIntervalos extends Activity {
     }
 
     public void confirmarOctavas(View view){
-        Intent i = new Intent(this, NivelesAdivinarIntervalos.class);
-        i.putExtra("modo_intervalo", getIntent().getExtras().getString("modo_intervalo"));
+        Intent i = null;
+        if (getIntent().getExtras().getString("modo_intervalo").equals("adivina_intervalo")){
+            i = new Intent(this, NivelesAdivinarIntervalos.class);
+        }
+        else{
+            i = new Intent(this, NivelesAdivinarCrearIntervalos.class);
+        }
         i.putStringArrayListExtra("octavas", octavas);
         startActivity(i);
     }

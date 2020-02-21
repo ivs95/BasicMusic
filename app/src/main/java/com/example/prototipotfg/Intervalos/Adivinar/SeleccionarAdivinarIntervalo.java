@@ -1,4 +1,4 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Intervalos.Adivinar;
 
 import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.Notas;
+import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
 import java.io.IOException;
@@ -77,8 +78,6 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
         Collections.shuffle(aux);
 
-        Intervalos[] intervalos_lista = new Intervalos[24];
-        intervalos_lista = Intervalos.values();
         //Creamos los botones en bucle
         for (int i=0; i<num_respuestas; i++){
             Button button = new Button(this);

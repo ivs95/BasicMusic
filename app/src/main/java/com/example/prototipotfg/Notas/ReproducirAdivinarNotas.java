@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.prototipotfg.R;
-import com.example.prototipotfg.SeleccionarAdivinar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class ReproducirAdivinarNotas extends Activity {
     }
 
     public void adivina(View view){
-        Intent i = new Intent(this, SeleccionarAdivinar.class);
+        Intent i = new Intent(this, SeleccionarAdivinarNotas.class);
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
         startActivity(i);

@@ -7,10 +7,10 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tituloHallaRitmo"
+        android:id="@+id/tituloCreaIntervalo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="52dp"
         android:text="Nivel "
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,74 +19,52 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/playRitmo"
+        android:id="@+id/btnPlayInicioIntervalo"
         android:layout_width="251dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="368dp"
         android:onClick="reproducir"
         android:text="Pulsa para reproducir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/peticion_intervalo_id3"
-        app:layout_constraintVertical_bias="0.345" />
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/stopRitmo"
+        android:id="@+id/btnCrearIntervalo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
+        android:layout_marginBottom="80dp"
         android:onClick="adivina"
         android:text="Adivina"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/play"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlayInicioIntervalo"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/peticion_intervalo_id1"
+        android:id="@+id/lblNombreIntervalo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Intrevalo de "
-        android:textSize="24sp"
+        android:layout_marginTop="40dp"
+        android:text="Intervalo de "
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloAdivinar" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloCreaIntervalo" />
 
     <TextView
-        android:id="@+id/peticion_intervalo_id2"
-        android:layout_width="168dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="24dp"
-        android:textSize="24sp"
+        android:id="@+id/lblNotaInicioIntervalo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sobre la nota "
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayInicioIntervalo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/peticion_intervalo_id1" />
-
-    <TextView
-        android:id="@+id/peticion_intervalo_id3"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="16dp"
-        android:text="Sobre"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/peticion_intervalo_id2" />
-
-    <TextView
-        android:id="@+id/peticion_intervalo_id4"
-        android:layout_width="97dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toEndOf="@+id/peticion_intervalo_id3"
-        app:layout_constraintTop_toBottomOf="@+id/peticion_intervalo_id2" />
+        app:layout_constraintTop_toBottomOf="@+id/lblNombreIntervalo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

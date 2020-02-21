@@ -1,7 +1,6 @@
 package com.example.prototipotfg;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
@@ -9,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+
+import com.example.prototipotfg.Notas.SeleccionarAdivinarNotas;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class ReproducirAdivinar extends Activity {
     }
 
     public void adivina(View view){
-        Intent i = new Intent(this, SeleccionarAdivinar.class);
+        Intent i = new Intent(this, SeleccionarAdivinarNotas.class);
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
         startActivity(i);

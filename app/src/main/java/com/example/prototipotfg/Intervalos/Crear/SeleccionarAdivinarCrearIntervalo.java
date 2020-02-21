@@ -1,4 +1,4 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Intervalos.Crear;
 
 
 import android.app.Activity;
@@ -13,8 +13,11 @@ import android.widget.LinearLayout;
 import androidx.core.content.ContextCompat;
 
 
+import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
 import java.io.IOException;
@@ -32,7 +35,6 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
-    private String dificultad;
 
     private String intervalo_nombre;
     private int intervalo_dif;
@@ -48,13 +50,12 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         rutas = getIntent().getExtras().getStringArrayList("rutas");
 
         intervalo_nombre = getIntent().getExtras().getString("peticion_nombre");
-        intervalo_dif = getIntent().getExtras().getInt("peticion_nombre");
+        intervalo_dif = getIntent().getExtras().getInt("peticion_dif");
 
 
         //inicializacion de botones
 
-        int tono = getTonoNota(nombres.get(0));
-        respuesta_correcta = getNotaTono(tono+intervalo_dif);
+        respuesta_correcta = nombres.get(1);
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout opciones = (LinearLayout) findViewById(R.id.opciones);
@@ -65,26 +66,16 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         lp.setMargins(0,0,0,50);
         Random rand = new Random();
 
-        int num_respuestas = nombres.size();
 
-        int random1 = rand.nextInt(num_respuestas);
         ArrayList <Integer> aux = new ArrayList<Integer>();
-        aux.add(tono+intervalo_dif);
-
-
-        for(int i = 1; i< num_respuestas; i++) {
-            while (aux.contains(random1))
-                random1 = rand.nextInt(num_respuestas);
-
-            aux.add(random1);
+        for(int i = 1; i < nombres.size(); i++) {
+            aux.add(i);
         }
-
         Collections.shuffle(aux);
 
 
-
         //Creamos los botones en bucle
-        for (int i=0; i<num_respuestas; i++){
+        for (int i=0; i<aux.size(); i++){
             Button button = new Button(this);
             button.setId(i+1);
             //Asignamos propiedades de layout al boton
@@ -103,7 +94,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
             button.setPadding(0,0,0,0);
 
             opciones.addView(button);
-            if (button.getText().toString() == nombres.get(0)){
+            if (button.getText().toString() == nombres.get(1)){
                 this.respuestaCorrecta=button;
             }
         }
@@ -123,7 +114,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
             respuesta = b.getText().toString();
 
-            if (dificultad.equals("facil")) {
+            /*if (Controlador.getInstance().getDificultad().equals(Dificultad.Facil)) {
                 String ruta = devuelveRutaBoton(respuesta);
 
                 MediaPlayer mediaPlayer = new MediaPlayer();
@@ -136,7 +127,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
                     e.printStackTrace();
                 }
                 mediaPlayer.start();
-            }
+            }*/
 
             ponerComprobarVisible(1);
         }
@@ -170,7 +161,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
     public void comprobarResultado(View view) {
         if (!comprobada) {
             this.comprobada = true;
-            if (respuesta != nombres.get(0)) {
+            if (respuesta != respuesta_correcta) {
                 botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_red_500));
             }
             respuestaCorrecta.setBackgroundColor(ContextCompat.getColor(this, R.color.md_green_500));
@@ -178,31 +169,5 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         findViewById(R.id.comprobar).setVisibility(View.GONE);
 
     }
-    private int getTonoNota(String name){
-        name = name.substring(0,name.length()-1);
-        boolean OK = false;
-        int i = 0;
-        Notas[] lista_notas = new Notas[11];
-        lista_notas = Notas.values();
-        while(i < 11 && !OK){
-            if(lista_notas[i].getNombre().equals(name)) OK = true;
-            i++;
 
-        }
-        return lista_notas[i-1].getTono();
-    }
-
-    private String getNotaTono(int tono) {
-        boolean OK = false;
-        int i = 0;
-        Notas[] lista_notas = new Notas[11];
-        lista_notas = Notas.values();
-        while (i < 11 && !OK) {
-            if (lista_notas[i].getTono() == tono) OK = true;
-            i++;
-
-        }
-        return lista_notas[i - 1].getNombre();
-
-    }
 }

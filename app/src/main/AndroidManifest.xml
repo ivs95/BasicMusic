@@ -26,16 +26,16 @@
 
         <activity android:name=".ReproducirAdivinar">
         </activity>
-        <activity android:name=".ReproducirAdivinarCrearIntervalo">
+        <activity android:name=".Intervalos.Crear.ReproducirAdivinarCrearIntervalo">
         </activity>
-        <activity android:name=".ReproducirAdivinarIntervalo"></activity>
+        <activity android:name=".Intervalos.Adivinar.ReproducirAdivinarIntervalo"></activity>
 
 
-        <activity android:name=".SeleccionarAdivinar">
+        <activity android:name=".Notas.SeleccionarAdivinarNotas">
         </activity>
-        <activity android:name=".SeleccionarAdivinarCrearIntervalo">
+        <activity android:name=".Intervalos.Crear.SeleccionarAdivinarCrearIntervalo">
         </activity>
-        <activity android:name=".SeleccionarAdivinarIntervalo">
+        <activity android:name=".Intervalos.Adivinar.SeleccionarAdivinarIntervalo">
         </activity>
 
 
@@ -62,7 +62,8 @@
         <activity android:name=".Notas.ReproducirAdivinarNotas" />
         <activity android:name=".ImitarAudio.SeleccionOctavasImitar" />
         <activity android:name=".Intervalos.SeleccionOctavasIntervalos" />
-        <activity android:name=".Intervalos.NivelesAdivinarIntervalos" />
+        <activity android:name=".Intervalos.Adivinar.NivelesAdivinarIntervalos" />
+        <activity android:name=".Intervalos.Crear.NivelesAdivinarCrearIntervalos" />
 
     </application>
 
