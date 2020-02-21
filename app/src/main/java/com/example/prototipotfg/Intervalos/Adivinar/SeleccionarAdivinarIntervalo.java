@@ -73,7 +73,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
                     random1 = -random1;
                 }
             }
-            aux.add(random1);
+            if(random1 != 0) aux.add(random1);
         }
 
         Collections.shuffle(aux);

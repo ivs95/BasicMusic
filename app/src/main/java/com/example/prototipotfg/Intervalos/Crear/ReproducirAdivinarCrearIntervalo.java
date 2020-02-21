@@ -6,11 +6,16 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,10 +59,15 @@ public class   ReproducirAdivinarCrearIntervalo extends Activity {
         intervalo_nombre = intervalo.getNombre();
         intervalo_dif = intervalo.getDiferencia();
 
+
         TextView nota = (TextView)findViewById(R.id.lblNotaInicioIntervalo);
         nota.setText(nota.getText() + nombres.get(0));
+
         TextView peticion = (TextView)findViewById(R.id.lblNombreIntervalo);
         peticion.setText(peticion.getText() + intervalo_nombre);
+
+        if(Controlador.getInstance().getDificultad().equals(Dificultad.Dificil))
+            this.adaptaVistaDificil();
     }
 
 
@@ -68,6 +78,11 @@ public class   ReproducirAdivinarCrearIntervalo extends Activity {
         mediaPlayer.prepare();
         mediaPlayer.start();
 
+    }
+
+    private void adaptaVistaDificil() {
+        TextView nota = findViewById(R.id.lblNotaInicioIntervalo);
+        nota.setVisibility(View.GONE);
     }
 
     public void adivina(View view){

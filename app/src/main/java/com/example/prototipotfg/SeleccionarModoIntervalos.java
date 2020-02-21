@@ -25,7 +25,7 @@ public class SeleccionarModoIntervalos extends Activity {
                 break;
 
             case R.id.buttonIntervalosModo1:
-                i = new Intent(this, SeleccionOctavasIntervalos.class);
+                i = new Intent(this, SeleccionarDificultadAdivinar.class);
                 i.putExtra("modo_intervalo", "crea_intervalo");
                 startActivity(i);
                 break;
