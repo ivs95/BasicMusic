@@ -1,7 +1,6 @@
 package com.example.prototipotfg;
 
 import android.app.Activity;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -9,6 +8,8 @@ import android.widget.TextView;
 import java.io.IOException;
 
 public class HallaRitmos extends Activity {
+
+    private Metronomo m = new Metronomo(60, 4);
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -23,15 +24,12 @@ public class HallaRitmos extends Activity {
 
 
     public void play(View view) throws IOException {
-        MediaPlayer mediaPlayer =  new MediaPlayer();
-
-        mediaPlayer.prepare();
-        mediaPlayer.start();
+        m.start(this);
 
     }
 
     public void stop(View view){
-
+        m.stop();
     }
 
 
