@@ -57,20 +57,14 @@ public class NivelesRitmos extends Activity {
     }
 
     public void nivel_seleccionado(View view) throws IOException {
-        Intent i = new Intent(this, ReproducirImitar.class);
+        Intent i = new Intent(this, HallaRitmos.class);
         int nivel = view.getId();
-        HashMap<String, String> notas = FactoriaNotas.getInstance().getNumNotasAleatorias(1, Instrumentos.Piano, Octavas.devuelveOctavas(getIntent().getStringArrayListExtra("octavas")));
-        ArrayList<String> nombres = new ArrayList<>(notas.keySet());
-        ArrayList<String> rutas = new ArrayList<>(notas.values());
-
         /*
          * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
          * Crear clase para seleccionar notas aleatorias
          * Claves: respuesta, fallo1,...,falloN
          * */
         i.putExtra("nivel", nivel);
-        i.putStringArrayListExtra("nombres", nombres);
-        i.putStringArrayListExtra("rutas", rutas);
         //i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
 
         startActivity(i);

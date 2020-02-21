@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tituloAdivinar"
+        android:id="@+id/tituloHallaRitmo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/play"
+        android:id="@+id/playRitmo"
         android:layout_width="251dp"
         android:layout_height="wrap_content"
         android:onClick="reproducir"
@@ -32,7 +32,7 @@
         app:layout_constraintVertical_bias="0.345" />
 
     <Button
-        android:id="@+id/stop"
+        android:id="@+id/stopRitmo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"

@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ReproducirAdivinarCrearIntervalo extends Activity {
+public class   ReproducirAdivinarCrearIntervalo extends Activity {
 
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;

@@ -13,12 +13,11 @@ public class HallaRitmos extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nivel_reproducir_adivinar);
+        setContentView(R.layout.hallaritmos);
 
         int nivel = getIntent().getExtras().getInt("nivel");
-        TextView titulo = (TextView)findViewById(R.id.tituloAdivinar);
+        TextView titulo = (TextView)findViewById(R.id.tituloHallaRitmo);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
-        TextView nota = (TextView)findViewById(R.id.nota);
 
     }
 
