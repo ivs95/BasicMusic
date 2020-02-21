@@ -4,6 +4,8 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 
 
+import com.example.prototipotfg.Singletons.Controlador;
+
 import java.io.IOException;
 
 
@@ -12,47 +14,49 @@ class Metronomo{
     private static int measure;
     private static MediaPlayer mediaPlayer1 =  new MediaPlayer();
     private static MediaPlayer mediaPlayer2 =  new MediaPlayer();
-    private static Runnable aux = new Runnable() {
+    private boolean running = false;
+    private Runnable aux = new Runnable() {
         @Override
         public void run() {
             int counter=0;
-            while(!hiloMetronomo.isInterrupted()){
+            while (running) {
                 try {
-                    Thread.sleep((long)(1000*(60.0/bpm)));
-                }catch(InterruptedException e) {
+                    Thread.sleep((long) (1000 * (60.0 / bpm)));
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 counter++;
-                if (counter%measure==0){
+                if (counter % measure == 0) {
                     mediaPlayer1.start();
-                }else{
+                } else {
                     mediaPlayer2.start();
                 }
             }
         }
     };
-    private static Thread hiloMetronomo;
+    private Thread hiloMetronomo;
 
     public Metronomo(double bpm, int measure){
         this.bpm = bpm;
         this.measure = measure;
     }
-    public static void start(Context myContext) throws IOException {
 
+    public void init(Context myContext) throws IOException {
         AssetFileDescriptor afd1 = myContext.getAssets().openFd("metronomo/tick.wav");
         AssetFileDescriptor afd2 = myContext.getAssets().openFd("metronomo/tock.wav");
         mediaPlayer1.setDataSource(afd1.getFileDescriptor(), afd1.getStartOffset(), afd1.getLength());
         mediaPlayer2.setDataSource(afd2.getFileDescriptor(), afd2.getStartOffset(), afd2.getLength());
         mediaPlayer1.prepare();
         mediaPlayer2.prepare();
-        hiloMetronomo= new Thread(aux);
+    }
+    public void start(){
+        hiloMetronomo = new Thread(aux);
+        running = true;
         hiloMetronomo.start();
-
     }
 
     public void stop(){
-        mediaPlayer1.stop();
-        mediaPlayer2.stop();
+        running = false;
         hiloMetronomo.interrupt();
     }
 

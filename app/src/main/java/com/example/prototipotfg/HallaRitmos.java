@@ -15,6 +15,11 @@ public class HallaRitmos extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hallaritmos);
+        try {
+            m.init(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         int nivel = getIntent().getExtras().getInt("nivel");
         TextView titulo = (TextView)findViewById(R.id.tituloHallaRitmo);
@@ -24,7 +29,7 @@ public class HallaRitmos extends Activity {
 
 
     public void play(View view) throws IOException {
-        m.start(this);
+        m.start();
 
     }
 
