@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.prototipotfg.Acordes.SeleccionarModoAcordes;
 import com.example.prototipotfg.Enumerados.TipoModo;
 import com.example.prototipotfg.Singletons.Controlador;
 
@@ -24,10 +25,10 @@ public class SeleccionModoAdivinar extends Activity {
                 seleccionarDificultadNotas();
                 break;
 
-            /*case R.id.buttonAcordes:
-                i.putExtra("modo", "acordes");
-                startActivity(i);
-                break;*/
+            case R.id.buttonAcordes:
+                Controlador.getInstance().setTipo_modo(TipoModo.Acordes);
+                seleccionarModoAcordes();
+                break;
 
             case R.id.buttonRealizar:
                 Controlador.getInstance().setTipo_modo(TipoModo.Intervalos);
@@ -36,6 +37,11 @@ public class SeleccionModoAdivinar extends Activity {
 
             default: break;
         }
+    }
+
+    private void seleccionarModoAcordes() {
+        Intent i = new Intent(this, SeleccionarModoAcordes.class);
+        startActivity(i);
     }
 
     private void seleccionarModoIntervalos() {

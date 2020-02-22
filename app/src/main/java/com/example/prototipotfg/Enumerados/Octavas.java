@@ -1,6 +1,9 @@
 package com.example.prototipotfg.Enumerados;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public enum Octavas {
 
@@ -21,6 +24,10 @@ public enum Octavas {
         this.nombre=nombre;
         this.path=path;
         this.octava=octava;
+    }
+
+    public int devuelveIndiceOctava(Octavas o){
+        return Arrays.asList(Octavas.values()).indexOf(o);
     }
 
     public static ArrayList<Octavas> devuelveOctavas(ArrayList<String> octavas) {
@@ -70,4 +77,5 @@ public enum Octavas {
         }
         return null;
     }
+
 }

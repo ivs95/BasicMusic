@@ -64,6 +64,11 @@
         <activity android:name=".Intervalos.SeleccionOctavasIntervalos" />
         <activity android:name=".Intervalos.Adivinar.NivelesAdivinarIntervalos" />
         <activity android:name=".Intervalos.Crear.NivelesAdivinarCrearIntervalos" />
+        <activity android:name=".Acordes.SeleccionOctavasAcordes" />
+        <activity android:name=".Acordes.NivelesAdivinarCrearAcordes" />
+        <activity android:name=".Acordes.SeleccionarModoAcordes" />
+        <activity android:name=".Acordes.NivelesAdivinarAcordes" />
+
 
     </application>
 
