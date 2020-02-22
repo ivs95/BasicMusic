@@ -66,7 +66,7 @@ public class NivelesRitmos extends Activity {
          * Claves: respuesta, fallo1,...,falloN
          * */
 
-        int longitud = 40;
+        int longitud = 12;
         ArrayList<Integer> ritmos = new ArrayList<>(longitud);
         ritmos.add(1);
         //Llenar aleatorios

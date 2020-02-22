@@ -82,7 +82,7 @@ public class HallaRitmos extends Activity {
                         mediaPlayer.start();
                     }
                     try {
-                        sleep(550);
+                        sleep(250);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
