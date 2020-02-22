@@ -114,7 +114,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
             respuesta = b.getText().toString();
 
-            if (Controlador.getInstance().getDificultad().equals(Dificultad.Facil)) {
+
                 String ruta = devuelveRutaBoton(respuesta);
 
                 MediaPlayer mediaPlayer = new MediaPlayer();
@@ -127,7 +127,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
                     e.printStackTrace();
                 }
                 mediaPlayer.start();
-            }
+
 
             ponerComprobarVisible(1);
         }

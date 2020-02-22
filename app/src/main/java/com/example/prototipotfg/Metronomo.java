@@ -8,6 +8,8 @@ import com.example.prototipotfg.Singletons.Controlador;
 
 import java.io.IOException;
 
+import static java.lang.Thread.sleep;
+
 
 class Metronomo{
     private static double bpm;
@@ -21,7 +23,7 @@ class Metronomo{
             int counter=0;
             while (running) {
                 try {
-                    Thread.sleep((long) (1000 * (60.0 / bpm)));
+                    sleep((long) (1000 * (60.0 / bpm)));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -55,9 +57,10 @@ class Metronomo{
         hiloMetronomo.start();
     }
 
-    public void stop(){
+    public void stop() {
         running = false;
-        hiloMetronomo.interrupt();
+        mediaPlayer1.reset();
+        mediaPlayer2.reset();
     }
 
 }

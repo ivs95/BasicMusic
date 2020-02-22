@@ -15,6 +15,7 @@ import com.example.prototipotfg.Singletons.FactoriaNotas;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class NivelesRitmos extends Activity {
 
@@ -64,7 +65,19 @@ public class NivelesRitmos extends Activity {
          * Crear clase para seleccionar notas aleatorias
          * Claves: respuesta, fallo1,...,falloN
          * */
+
+        int longitud = 40;
+        ArrayList<Integer> ritmos = new ArrayList<>(longitud);
+        ritmos.add(1);
+        //Llenar aleatorios
+
+        Random random = new Random();
+        for(int j=0;j<longitud-1;j++){
+            ritmos.add(random.nextInt(2));
+        }
+
         i.putExtra("nivel", nivel);
+        i.putIntegerArrayListExtra("ritmos", ritmos);
         //i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
 
         startActivity(i);
