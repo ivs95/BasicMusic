@@ -29,11 +29,7 @@ public class HallaRitmos extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hallaritmos);
-        try {
-            m.init(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
         int nivel = getIntent().getExtras().getInt("nivel");
         ritmos = getIntent().getExtras().getIntegerArrayList("ritmos");
@@ -45,9 +41,10 @@ public class HallaRitmos extends Activity {
     }
 
 
-    public void play(View view) throws IOException, InterruptedException {
+    public void play(final View view) throws IOException, InterruptedException {
 
-
+        view.setEnabled(false);
+        m.init(this);
         hilo_ritmos = new Thread(new Runnable(){
             @Override
             public void run(){
@@ -91,11 +88,12 @@ public class HallaRitmos extends Activity {
                         mediaPlayer.release();
                     }
                     i++;
-                    if(!running) m.stop();
+                    if(!running) {
+                        m.stop();
+                    }
 
                 }
                 m.stop();
-
             }
 
         });
@@ -105,7 +103,6 @@ public class HallaRitmos extends Activity {
     }
 
     public void stop(View view){
-        m.stop();
     }
 
     @Override
