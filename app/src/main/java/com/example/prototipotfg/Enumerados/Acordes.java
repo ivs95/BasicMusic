@@ -14,7 +14,7 @@ public enum Acordes {
     Acorde_menor_7_menor(new int[]{0,3,7,10}, 4, "Acorde menor con 7º menor"),
     Acorde_menor_7_mayor(new int[]{0,3,7,11}, 4, "Acorde menor con 7º mayor"),
     Acorde_disminuido_7_menor(new int[]{0,3,6,10}, 4, "Acorde disminuido y 7º menor"),
-    Acorde_7_disminuida(new int[]{0,3,6,9}, 4, "Acorde de 7º disminuidoa");
+    Acorde_7_disminuida(new int[]{0,3,6,9}, 4, "Acorde de 7º disminuida");
 
     private int[] notas;
     private int numNotas;

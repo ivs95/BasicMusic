@@ -58,7 +58,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         Random rand = new Random();
 
         int num_respuestas = getIntent().getExtras().getInt("opciones");
-        int random1 = rand.nextInt(12);
+        int random1 = rand.nextInt(12) + 1;
         if (posicion_intervalo < 0){
             random1 = -random1;
         }
@@ -68,12 +68,12 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
         for(int i = 0; i < num_respuestas-1; i++) {
             while (aux.contains(random1)){
-                random1 = rand.nextInt(12);
+                random1 = rand.nextInt(12) + 1;
                 if (posicion_intervalo < 0) {
                     random1 = -random1;
                 }
             }
-            if(random1 != 0) aux.add(random1);
+            aux.add(random1);
         }
 
         Collections.shuffle(aux);
