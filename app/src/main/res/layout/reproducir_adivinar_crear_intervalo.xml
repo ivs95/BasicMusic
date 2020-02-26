@@ -13,6 +13,8 @@
         android:layout_marginTop="52dp"
         android:text="Nivel "
         android:textSize="30sp"
+        android:textColor="@color/md_blue_900"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="Intervalo de "
+        android:textColor="@color/md_blue_900"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="sobre la nota "
+        android:textColor="@color/md_blue_900"
         app:layout_constraintBottom_toTopOf="@+id/btnPlayInicioIntervalo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

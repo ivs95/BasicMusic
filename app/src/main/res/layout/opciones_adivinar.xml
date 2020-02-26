@@ -9,6 +9,8 @@
         android:layout_height="72dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
+        android:textColor="@color/md_blue_900"
+
         android:text="Nº de opciones"
         android:textSize="30sp" />
 

@@ -1,21 +1,23 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
 
         <!-- Color de la barra principal-->
-        <item name="colorPrimary">@color/md_orange_500</item>
+        <item name="colorPrimary">@color/md_blue_200</item>
 
         <!-- Color de la barra de notificaciones-->
-        <item name="colorPrimaryDark">@color/md_orange_300</item>
+        <item name="colorPrimaryDark">@color/md_blue_200</item>
 
         <!--Color de fondo de la aplicacion-->
-        <item name="android:colorBackground">@color/md_yellow_A100</item>
+        <item name="android:colorBackground">@color/md_blue_50</item>
 
+        <item name="android:textColor">@color/md_text_white</item>
 
         <!--Color de fondo de los botones-->
-        <item name="android:colorButtonNormal">@color/md_orange_400</item>
+        <item name="android:colorButtonNormal">@color/md_blue_300</item>
+
 
     </style>
 

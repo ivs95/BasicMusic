@@ -47,12 +47,12 @@ public class SeleccionOctavasImitar extends Activity {
 
     private void octavaPulsada(Octavas octava, Button boton) {
         if (octavas.contains(octava.getNombre())){
-            boton.setBackgroundColor(ContextCompat.getColor(this, R.color.md_orange_400));
+            boton.setBackgroundColor(ContextCompat.getColor(this, R.color.md_blue_300));
             octavas.remove(octava.getNombre());
         }
         else {
             octavas.add(octava.getNombre());
-            boton.setBackgroundColor(ContextCompat.getColor(this, R.color.md_deep_orange_900));
+            boton.setBackgroundColor(ContextCompat.getColor(this, R.color.md_blue_700));
         }
     }
 }

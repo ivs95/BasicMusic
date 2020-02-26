@@ -9,6 +9,8 @@
         android:layout_height="72dp"
         android:gravity="center"
         android:text="Niveles"
+        android:textColor="@color/md_blue_900"
+
         android:textSize="30sp"/>
 
     <ScrollView

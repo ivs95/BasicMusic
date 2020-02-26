@@ -14,6 +14,8 @@
         android:layout_marginTop="16dp"
         android:text="Elige la opción correcta"
         android:textSize="24sp"
+        android:textColor="@color/md_blue_900"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
