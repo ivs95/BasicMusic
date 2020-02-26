@@ -20,7 +20,6 @@
         android:id="@+id/botonAdivinar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
         android:onClick="modo_adivinar"
         android:text="@string/txtBotonAdivinar" />
 
@@ -45,7 +44,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
         android:text="@string/txtBotonExamen" />
 
 
