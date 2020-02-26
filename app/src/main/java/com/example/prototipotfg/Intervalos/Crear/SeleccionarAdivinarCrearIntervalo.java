@@ -107,10 +107,10 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         if (!comprobada) {
             Button b = (Button) view;
             if (botonSeleccionado != null) {
-                botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_orange_400));
+                botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_blue_300));
             }
             botonSeleccionado = b;
-            botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_deep_orange_900));
+            botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_blue_700));
 
             respuesta = b.getText().toString();
 

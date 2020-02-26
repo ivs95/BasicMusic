@@ -26,7 +26,6 @@ public class ReproducirAdivinar extends Activity {
         int nivel = getIntent().getExtras().getInt("nivel");
         TextView titulo = (TextView)findViewById(R.id.tituloAdivinar);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
-        TextView nota = (TextView)findViewById(R.id.nota);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
     }

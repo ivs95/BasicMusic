@@ -230,8 +230,6 @@ public class RealizaRitmos extends Activity {
                                 TextView text2 = findViewById(R.id.textoFrecuencia);
                                 text2.setText("Resultado: " + resNota.getNota().getNombre() + (resNota.getOctava()));
 
-                                TextView text1 = findViewById(R.id.timer_id);
-                                text1.setText("Fin");
 
                                 Button repetirNivel = (Button)findViewById(R.id.botonRepite);
                                 repetirNivel.setVisibility(View.VISIBLE);

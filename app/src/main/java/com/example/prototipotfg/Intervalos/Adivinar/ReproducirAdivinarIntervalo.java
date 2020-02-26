@@ -25,7 +25,6 @@ public class ReproducirAdivinarIntervalo extends Activity {
         numOpciones = getIntent().getExtras().getInt("nivel");
         TextView titulo = (TextView)findViewById(R.id.tituloAdivinar_intervalo);
         titulo.setText(titulo.getText() + String.valueOf(numOpciones));
-        TextView nota = (TextView)findViewById(R.id.nota);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
 
