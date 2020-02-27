@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
+import com.example.prototipotfg.Enumerados.DuracionSonido;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class HallaRitmos extends Activity {
     private ArrayList<Integer> ritmos;
     private Thread hilo_ritmos;
     private boolean running;
+    private boolean parar = false;
 
     private int bpm = 60;
     private Metronomo m = new Metronomo(bpm, 4);
@@ -64,12 +66,16 @@ public class HallaRitmos extends Activity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    int notaActual = ritmos.get(i);
+                    DuracionSonido d = DuracionSonido.Silencio;
+                    d = d.getSonidoPorSimbolo(notaActual);
                     try {
                         mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    if(ritmos.get(i) == 1) {
+
+                    if(!d.equals(DuracionSonido.Silencio)) {
 
                         try {
                             mediaPlayer.prepare();
@@ -79,7 +85,7 @@ public class HallaRitmos extends Activity {
                         mediaPlayer.start();
                     }
                     try {
-                        sleep(250);
+                        sleep(d.getSilencio());
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -88,6 +94,8 @@ public class HallaRitmos extends Activity {
                         mediaPlayer.release();
                     }
                     i++;
+                    //if (i == ritmos.size() && !parar)
+                    //    i = 0;
                     if(!running) {
                         m.stop();
                     }

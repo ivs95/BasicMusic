@@ -28,7 +28,7 @@ class Metronomo{
                     e.printStackTrace();
                 }
                 counter++;
-                if (counter % measure == 0) {
+                if (counter % measure == 1) {
                     mediaPlayer1.start();
                 } else {
                     mediaPlayer2.start();

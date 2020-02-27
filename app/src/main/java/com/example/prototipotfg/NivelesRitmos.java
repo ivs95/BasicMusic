@@ -19,6 +19,8 @@ import java.util.Random;
 
 public class NivelesRitmos extends Activity {
 
+    private int longitud = 24;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -66,14 +68,13 @@ public class NivelesRitmos extends Activity {
          * Claves: respuesta, fallo1,...,falloN
          * */
 
-        int longitud = 12;
         ArrayList<Integer> ritmos = new ArrayList<>(longitud);
         ritmos.add(1);
         //Llenar aleatorios
 
         Random random = new Random();
         for(int j=0;j<longitud-1;j++){
-            ritmos.add(random.nextInt(2));
+            ritmos.add(random.nextInt(4));
         }
 
         i.putExtra("nivel", nivel);
