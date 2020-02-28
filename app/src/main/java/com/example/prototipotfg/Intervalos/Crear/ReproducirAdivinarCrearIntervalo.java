@@ -25,7 +25,7 @@ public class   ReproducirAdivinarCrearIntervalo extends Activity {
 
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
-    private String dificultad;
+    private Dificultad dificultad;
     private String intervalo_nombre;
     private int intervalo_dif;
 
@@ -43,14 +43,14 @@ public class   ReproducirAdivinarCrearIntervalo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reproducir_adivinar_crear_intervalo);
 
-        int nivel = getIntent().getExtras().getInt("nivel");
+        int nivel = Controlador.getInstance().getNivel();
 
         TextView titulo = (TextView)findViewById(R.id.tituloCreaIntervalo);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
 
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
-        dificultad = getIntent().getExtras().getString("dificultad");
+        dificultad = Controlador.getInstance().getDificultad();
 
         Notas notaInicio = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1));
         Notas notaFinal = Notas.devuelveNotaPorNombre(nombres.get(1).substring(0,nombres.get(1).length()-1));

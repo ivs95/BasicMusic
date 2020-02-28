@@ -40,6 +40,15 @@ public enum Intervalos {
         this.numero=numero;
     }
 
+    public static ArrayList<Intervalos> getIntervalosDeRango(int rango) {
+        ArrayList<Intervalos> retorno = new ArrayList<>();
+        for (Intervalos i : Intervalos.values()) {
+            if (Math.abs(i.getDiferencia()) <= rango)
+                retorno.add(i);
+        }
+        return retorno;
+    }
+
     public String getNombre() {
         return nombre;
     }

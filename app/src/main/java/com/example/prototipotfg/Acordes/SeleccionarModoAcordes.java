@@ -5,8 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.R;
-import com.example.prototipotfg.SeleccionarDificultadAdivinar;
+import com.example.prototipotfg.Singletons.Controlador;
 
 public class SeleccionarModoAcordes extends Activity {
 
@@ -20,14 +21,14 @@ public class SeleccionarModoAcordes extends Activity {
         //Intent i = new Intent(this, SeleccionarDificultadAdivinar.class);
         switch (view.getId()){
             case R.id.buttonAcordesModo1:
-                Intent i = new Intent(this, SeleccionOctavasAcordes.class);
-                i.putExtra("modo_acordes", "adivina_acorde");
+                Intent i = new Intent(this, SeleccionarNivelAdivinarAcordes.class);
+                Controlador.getInstance().setModo_juego(ModoJuego.Adivinar_Acordes);
                 startActivity(i);
                 break;
 
             case R.id.buttonAcordesModo2:
-                i = new Intent(this, SeleccionarDificultadAdivinar.class);
-                i.putExtra("modo_acordes", "adivina_intervalo");
+                i = new Intent(this, SeleccionarNivelCrearAcordes.class);
+                Controlador.getInstance().setModo_juego(ModoJuego.Crear_Acordes);
                 startActivity(i);
                 break;
 

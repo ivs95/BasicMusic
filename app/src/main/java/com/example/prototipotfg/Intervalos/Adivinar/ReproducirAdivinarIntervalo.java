@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,14 +18,12 @@ public class ReproducirAdivinarIntervalo extends Activity {
 
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
-    private int numOpciones;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reproducir_adivinar_intervalo);
-        numOpciones = getIntent().getExtras().getInt("nivel");
         TextView titulo = (TextView)findViewById(R.id.tituloAdivinar_intervalo);
-        titulo.setText(titulo.getText() + String.valueOf(numOpciones));
+        titulo.setText(titulo.getText() + Integer.toString(Controlador.getInstance().getNivel()));
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
 
@@ -55,7 +54,6 @@ public class ReproducirAdivinarIntervalo extends Activity {
         Intent i = new Intent(this, SeleccionarAdivinarIntervalo.class);
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
-        i.putExtra("opciones",numOpciones);
         startActivity(i);
     }
 }

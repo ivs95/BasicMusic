@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
 import java.io.IOException;
@@ -57,7 +58,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         lp.setMargins(0,0,0,50);
         Random rand = new Random();
 
-        int num_respuestas = getIntent().getExtras().getInt("opciones");
+        int num_respuestas = Controlador.getInstance().getNum_opciones();
         int random1 = rand.nextInt(12) + 1;
         if (posicion_intervalo < 0){
             random1 = -random1;

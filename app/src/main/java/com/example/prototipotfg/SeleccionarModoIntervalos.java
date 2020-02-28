@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Intervalos.SeleccionOctavasIntervalos;
+import com.example.prototipotfg.Singletons.Controlador;
 
 public class SeleccionarModoIntervalos extends Activity {
 
@@ -19,14 +21,15 @@ public class SeleccionarModoIntervalos extends Activity {
         //Intent i = new Intent(this, SeleccionarDificultadAdivinar.class);
         switch (view.getId()){
             case R.id.buttonIntervalosModo2:
-                Intent i = new Intent(this, SeleccionOctavasIntervalos.class);
-                i.putExtra("modo_intervalo", "adivina_intervalo");
+                //Intent i = new Intent(this, SeleccionOctavasIntervalos.class);
+                Intent i = new Intent(this, SeleccionNivelAdivinarIntervalo.class);
+                Controlador.getInstance().setModo_juego(ModoJuego.Adivinar_Intervalo);
                 startActivity(i);
                 break;
 
             case R.id.buttonIntervalosModo1:
-                i = new Intent(this, SeleccionarDificultadAdivinar.class);
-                i.putExtra("modo_intervalo", "crea_intervalo");
+                i = new Intent(this, SeleccionNivelCrearIntervalo.class);
+                Controlador.getInstance().setModo_juego(ModoJuego.Crear_Intervalo);
                 startActivity(i);
                 break;
 

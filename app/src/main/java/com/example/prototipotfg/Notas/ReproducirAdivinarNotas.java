@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,9 +23,8 @@ public class ReproducirAdivinarNotas extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_reproducir_adivinar);
 
-        int nivel = getIntent().getExtras().getInt("nivel");
         TextView titulo = (TextView)findViewById(R.id.tituloAdivinar);
-        titulo.setText(titulo.getText() + String.valueOf(nivel));
+        titulo.setText(titulo.getText() + Integer.toString(Controlador.getInstance().getNivel()));
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
     }

@@ -19,19 +19,17 @@ public class MenuJugar extends Activity {
     }
 
     public void modo_adivinar(View view){
-        Controlador.getInstance().setModo_juego(ModoJuego.Adivinar);
         Intent i = new Intent(this, SeleccionModoAdivinar.class);
         startActivity(i);
     }
 
     public void modo_imitar(View view){
-        Controlador.getInstance().setModo_juego(ModoJuego.Imitar);
+        Controlador.getInstance().setModo_juego(ModoJuego.Imitar_Audio);
         Intent i = new Intent(this, SeleccionOctavasImitar.class);
         startActivity(i);
     }
 
     public void modo_ritmos(View view) {
-        Controlador.getInstance().setModo_juego(ModoJuego.Ritmos);
         Intent i = new Intent(this, SeleccionModoRitmos.class);
         startActivity(i);
     }
