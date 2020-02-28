@@ -17,10 +17,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSimbolo;
+
 public class NivelesRitmos extends Activity {
 
-    private int longitud = 24;
 
+    private int compas = 4;
+    private int num = 4;
+    private int longitud = compas*num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -67,14 +71,20 @@ public class NivelesRitmos extends Activity {
          * Crear clase para seleccionar notas aleatorias
          * Claves: respuesta, fallo1,...,falloN
          * */
-
+        Random random = new Random();
         ArrayList<Integer> ritmos = new ArrayList<>(longitud);
-        ritmos.add(1);
+        int nota = random.nextInt(3)+1;
         //Llenar aleatorios
 
-        Random random = new Random();
-        for(int j=0;j<longitud-1;j++){
-            ritmos.add(random.nextInt(4));
+
+        for(int j=getSonidoPorSimbolo(nota).getSilencio(); j<=longitud; j+=getSonidoPorSimbolo(nota).getSilencio()){
+            agregaFigura(nota, ritmos, compas);
+            if(longitud-j >= 4)
+                nota= random.nextInt(4);
+            else if(longitud-j == 3 || longitud-j == 2)
+                nota= random.nextInt(2)+2;
+            else if (longitud-j==1)
+                nota= 3;
         }
 
         i.putExtra("nivel", nivel);
@@ -82,6 +92,34 @@ public class NivelesRitmos extends Activity {
         //i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
 
         startActivity(i);
+    }
+
+    public void agregaFigura(int figura, ArrayList<Integer> ritmos, int compas){
+        if(figura == 1){
+            ritmos.add(1);
+            for(int i = 0; i<(getSonidoPorSimbolo(figura).getSilencio()-1); i++){
+                ritmos.add(0);
+            }
+        }
+        if(figura == 2){
+            ritmos.add(1);
+            for(int i = 0; i<(getSonidoPorSimbolo(figura).getSilencio()-1); i++){
+                ritmos.add(0);
+            }
+        }
+
+        if (figura == 3){
+            ritmos.add(1);
+            for(int i = 0; i<(getSonidoPorSimbolo(figura).getSilencio()-1); i++){
+                ritmos.add(0);
+            }
+        }
+        if(figura==0){
+            for(int i = 0; i<(getSonidoPorSimbolo(figura).getSilencio()); i++){
+                ritmos.add(0);
+            }
+        }
+
     }
 
 
