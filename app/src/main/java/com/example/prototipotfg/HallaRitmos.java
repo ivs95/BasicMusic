@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.DuracionSonido;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -43,9 +45,9 @@ public class HallaRitmos extends Activity {
     }
 
 
-    public void play(final View view) throws IOException, InterruptedException {
+    public void play(@NotNull final View view) throws IOException, InterruptedException {
 
-        view.setEnabled(false);
+        //view.setEnabled(false);
         m.init(this);
         hilo_ritmos = new Thread(new Runnable(){
             @Override
@@ -58,7 +60,9 @@ public class HallaRitmos extends Activity {
                     e.printStackTrace();
                 }
                 int i = 0;
-                while(i < ritmos.size() && running){
+                int indice = 0;
+                while(i < 32 && running){
+                    //Lanzar todo lo del media player en un nuevo hilo y a dormir
                     MediaPlayer mediaPlayer =  new MediaPlayer();
                     AssetFileDescriptor afd = null;
                     try {
@@ -66,17 +70,13 @@ public class HallaRitmos extends Activity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    int notaActual = ritmos.get(i);
-                    DuracionSonido d = DuracionSonido.Silencio;
-                    d = d.getSonidoPorSimbolo(notaActual);
+                    int notaActual = ritmos.get(indice);
                     try {
                         mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
-                    if(!d.equals(DuracionSonido.Silencio)) {
-
+                    if(notaActual==1) {
                         try {
                             mediaPlayer.prepare();
                         } catch (IOException e) {
@@ -85,17 +85,18 @@ public class HallaRitmos extends Activity {
                         mediaPlayer.start();
                     }
                     try {
-                        sleep(d.getSilencio());
+                        Thread.sleep(215);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    if(mediaPlayer.isPlaying()){
+                    if (mediaPlayer.isPlaying()) {
                         mediaPlayer.stop();
                         mediaPlayer.release();
                     }
                     i++;
-                    //if (i == ritmos.size() && !parar)
-                    //    i = 0;
+                    indice++;
+                    if (indice >= 16)
+                        indice = indice-16;
                     if(!running) {
                         m.stop();
                     }
@@ -117,8 +118,6 @@ public class HallaRitmos extends Activity {
     public void onDestroy() {
         super.onDestroy();
         running = false;
-
-
     }
 
 

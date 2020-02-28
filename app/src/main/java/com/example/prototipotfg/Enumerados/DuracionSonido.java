@@ -2,10 +2,10 @@ package com.example.prototipotfg.Enumerados;
 
 public enum DuracionSonido {
    // Blanca(500)
-    Negra(500,  1),
-    Corchea(250,  2),
-    Semicorchea(125,  3),
-    Silencio(500, 0);
+    Negra(4,  1),
+    Corchea(2,  2),
+    Semicorchea(1,  3),
+    Silencio(4, 0);
 
     private int silencio;
     private int simbolo;
