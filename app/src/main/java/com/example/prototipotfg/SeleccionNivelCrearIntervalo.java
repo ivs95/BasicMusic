@@ -34,7 +34,7 @@ public class SeleccionNivelCrearIntervalo extends Activity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         //Creamos los botones en bucle
-        for (int i = 1; i < 8; i++) {
+        for (int i = 0; i < 8; i++) {
             Button button = new Button(this);
             button.setId(i + 1);
             //Asignamos propiedades de layout al boton
