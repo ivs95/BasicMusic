@@ -23,11 +23,27 @@ public class HallaRitmos extends Activity {
     private ArrayList<Integer> ritmos;
     private Thread hilo_ritmos;
     private boolean running;
-    private boolean parar = false;
-
+    private boolean go = false;
     private int bpm = 60;
     private Metronomo m = new Metronomo(bpm, 4);
 
+    private MediaPlayerRitmos mediaPlayer =  new MediaPlayerRitmos();
+    private Thread hiloPlayer = new Thread(new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                while(running) {
+                    if (go) {
+                        mediaPlayer.play();
+                        go = false;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -40,15 +56,21 @@ public class HallaRitmos extends Activity {
         TextView titulo = (TextView)findViewById(R.id.tituloHallaRitmo);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
         running = true;
+        hiloPlayer.start();
+        mediaPlayer.init(this);
 
 
     }
 
 
-    public void play(@NotNull final View view) throws IOException, InterruptedException {
+    public void play(@NotNull final View view){
 
         //view.setEnabled(false);
-        m.init(this);
+        try {
+            m.init(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         hilo_ritmos = new Thread(new Runnable(){
             @Override
             public void run(){
@@ -61,37 +83,18 @@ public class HallaRitmos extends Activity {
                 }
                 int i = 0;
                 int indice = 0;
+                ;
                 while(i < 32 && running){
                     //Lanzar todo lo del media player en un nuevo hilo y a dormir
-                    MediaPlayer mediaPlayer =  new MediaPlayer();
-                    AssetFileDescriptor afd = null;
-                    try {
-                        afd = getAssets().openFd("metronomo/Clap.wav");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                     int notaActual = ritmos.get(indice);
-                    try {
-                        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
                     if(notaActual==1) {
-                        try {
-                            mediaPlayer.prepare();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        mediaPlayer.start();
+                        go=true;
                     }
                     try {
-                        Thread.sleep(215);
+                        Thread.sleep(250);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                    }
-                    if (mediaPlayer.isPlaying()) {
-                        mediaPlayer.stop();
-                        mediaPlayer.release();
                     }
                     i++;
                     indice++;

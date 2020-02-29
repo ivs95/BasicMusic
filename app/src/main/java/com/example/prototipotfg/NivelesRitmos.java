@@ -87,6 +87,8 @@ public class NivelesRitmos extends Activity {
                 nota= 3;
         }
 
+
+
         i.putExtra("nivel", nivel);
         i.putIntegerArrayListExtra("ritmos", ritmos);
         //i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
