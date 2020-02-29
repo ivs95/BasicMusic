@@ -56,7 +56,7 @@ public class FactoriaNotas {
         //HashMap con clave nombre de nota y su octava y valor el path a su fichero
         HashMap<String,String> rutasFicherosAudio = new HashMap<String,String>();
         Octavas octava = devuelveOctavaAleatoria(octavas);
-        Notas nota = devuelveNotaAleatoria(Notas.values() ,0, 0);
+        Notas nota = devuelveNotaAleatoria(Notas.values() ,0, 0, false);
 
         int tonoNotaAnt = getTonoNota(nota.getNombre());
 
@@ -66,7 +66,8 @@ public class FactoriaNotas {
         for (int i = 1 ; i < numeroNotas; i++){
             while (rutasFicherosAudio.containsKey(nota.getNombre()+octava.getOctava())){
                 octava = devuelveOctavaAleatoria(octavas);
-                nota = devuelveNotaAleatoria(Notas.values(), i, tonoNotaAnt);
+                if(nota == Notas.SI) nota = devuelveNotaAleatoria(Notas.values(), i, tonoNotaAnt, true);
+                else nota = devuelveNotaAleatoria(Notas.values(), i, tonoNotaAnt, false);
                 tonoNotaAnt = getTonoNota(nota.getNombre());
 
 
@@ -87,7 +88,7 @@ public class FactoriaNotas {
 
         //HashMap con clave nombre de nota y su octava y valor el path a su fichero
         HashMap<String,String> rutasFicherosAudio = new HashMap<String,String>();
-        Notas nota = devuelveNotaAleatoria(Notas.values(), 0, 0);
+        Notas nota = devuelveNotaAleatoria(Notas.values(), 0, 0, false);
 
         int tonoNotaAnt = getTonoNota(nota.getNombre());
 
@@ -96,16 +97,17 @@ public class FactoriaNotas {
         System.out.println(ruta);
         for (int i = 1 ; i < numeroNotas; i++){
             while (rutasFicherosAudio.containsKey(nota.getNombre()+octava.getOctava())){
-                nota = devuelveNotaAleatoria(Notas.values(), i, tonoNotaAnt);
+                nota = devuelveNotaAleatoria(Notas.values(), i, tonoNotaAnt, false);
             }
             rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), rutaInstrumento+octava.getPath()+nota.getPath());
         }
         return rutasFicherosAudio;
     }
+    //0, 1, , 2 --> 8, 9, 10
 
-    private Notas devuelveNotaAleatoria(Notas[] notas, int i, int tonoNotaAnt) {
-        if(Controlador.getInstance().getModo_juego() == ModoJuego.Adivinar_Intervalo && i > 0){
-            return notas[random.nextInt((min((notas.length-tonoNotaAnt), (Controlador.getInstance().getRango()))) + tonoNotaAnt)];
+    private Notas devuelveNotaAleatoria(Notas[] notas, int i, int tonoNotaAnt, boolean ultNota) {
+        if(Controlador.getInstance().getModo_juego() == ModoJuego.Adivinar_Intervalo && i == 1 && !ultNota){
+            return notas[random.nextInt((min((notas.length-tonoNotaAnt), (Controlador.getInstance().getRango()))))+ tonoNotaAnt];
         }
 
          else return notas[random.nextInt(notas.length)];
