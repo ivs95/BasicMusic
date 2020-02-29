@@ -105,7 +105,7 @@ public class FactoriaNotas {
 
     private Notas devuelveNotaAleatoria(Notas[] notas, int i, int tonoNotaAnt) {
         if(Controlador.getInstance().getModo_juego() == ModoJuego.Adivinar_Intervalo && i > 0){
-            return notas[random.nextInt((min((notas.length-tonoNotaAnt)+1, (Controlador.getInstance().getRango()+1))) + tonoNotaAnt)];
+            return notas[random.nextInt((min((notas.length-tonoNotaAnt), (Controlador.getInstance().getRango()))) + tonoNotaAnt)];
         }
 
          else return notas[random.nextInt(notas.length)];
