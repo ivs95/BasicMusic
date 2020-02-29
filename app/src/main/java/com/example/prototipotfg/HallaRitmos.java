@@ -5,6 +5,8 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -27,6 +29,7 @@ public class HallaRitmos extends Activity {
     private int bpm = 60;
     private Metronomo m = new Metronomo(bpm, 4);
 
+    private ArrayList<Integer> resultado = new ArrayList<>();
     private MediaPlayerRitmos mediaPlayer =  new MediaPlayerRitmos();
     private Thread hiloPlayer = new Thread(new Runnable() {
 
@@ -58,6 +61,37 @@ public class HallaRitmos extends Activity {
         running = true;
         hiloPlayer.start();
         mediaPlayer.init(this);
+
+
+        //Obtenemos el linear layout donde colocar los botones
+        LinearLayout llBotonera = (LinearLayout) findViewById(R.id.botoneraRitmos);
+
+        //Creamos las propiedades de layout que tendrán los botones.
+        //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
+        //LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
+
+        //Creamos los botones en bucle
+        for (int i=0; i<15; i++){
+            Button button = new Button(this);
+            button.setId(i+1);
+            //Asignamos propiedades de layout al boton
+            //button.setLayoutParams(lp);
+            //Asignamos Texto al botón
+
+            //Asignamose el Listener
+            final int finalI = i;
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    resultado.set(finalI,1);
+                }
+            });
+            //Añadimos el botón a la botonera
+            llBotonera.addView(button);
+
+            //Aprovecho el bucle para rellenar el array
+            resultado.add(0);
+        }
 
 
     }
@@ -115,6 +149,13 @@ public class HallaRitmos extends Activity {
     }
 
     public void stop(View view){
+
+        if(resultado.equals(ritmos)){
+            //CORRECTO
+        }
+        else{
+            //INCORRECTO
+        }
     }
 
     @Override

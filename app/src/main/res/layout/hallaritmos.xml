@@ -35,12 +35,22 @@
         android:id="@+id/stopRitmo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="188dp"
+        android:layout_marginBottom="72dp"
         android:onClick="stop"
-        android:text="Adivina"
+        android:text="Comprueba"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/botoneraRitmos"
+        android:layout_width="412dp"
+        android:layout_height="124dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/stopRitmo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playRitmo"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
