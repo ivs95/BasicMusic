@@ -1,14 +1,20 @@
 package com.example.prototipotfg;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.ButtonBarLayout;
+import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.Enumerados.DuracionSonido;
 
@@ -28,6 +34,9 @@ public class HallaRitmos extends Activity {
     private boolean go = false;
     private int bpm = 60;
     private Metronomo m = new Metronomo(bpm, 4);
+
+    private ImageView cross;
+    private ImageView tick;
 
     private ArrayList<Integer> resultado = new ArrayList<>();
     private MediaPlayerRitmos mediaPlayer =  new MediaPlayerRitmos();
@@ -62,35 +71,50 @@ public class HallaRitmos extends Activity {
         hiloPlayer.start();
         mediaPlayer.init(this);
 
+        final Context contexto = this;
+        cross = (ImageView)findViewById(R.id.cross);
+        tick = (ImageView)findViewById(R.id.tick);
+        cross.setVisibility(View.GONE);
+        tick.setVisibility(View.GONE);
+
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.botoneraRitmos);
 
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
-        //LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(69, 300);
 
         //Creamos los botones en bucle
-        for (int i=0; i<15; i++){
-            Button button = new Button(this);
+        for (int i=0; i<16; i++){
+            final Button button = new Button(this);
             button.setId(i+1);
             //Asignamos propiedades de layout al boton
-            //button.setLayoutParams(lp);
-            //Asignamos Texto al botón
+            button.setLayoutParams(lp);
+
+
 
             //Asignamose el Listener
             final int finalI = i;
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    resultado.set(finalI,1);
+                    if (resultado.get((int)button.getId()-1) == 1){
+                        button.setBackgroundColor(ContextCompat.getColor(contexto, R.color.md_blue_300));
+                        resultado.set(((int)button.getId()-1),0);
+                    }
+                    else {
+                        button.setBackgroundColor(ContextCompat.getColor(contexto, R.color.md_blue_700));
+                        resultado.set(((int)button.getId()-1),1);
+                    }
+
                 }
             });
             //Añadimos el botón a la botonera
             llBotonera.addView(button);
 
             //Aprovecho el bucle para rellenar el array
-            resultado.add(0);
+                resultado.add(0);
         }
 
 
@@ -151,10 +175,24 @@ public class HallaRitmos extends Activity {
     public void stop(View view){
 
         if(resultado.equals(ritmos)){
-            //CORRECTO
+            //Correct
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    tick.setVisibility(View.VISIBLE);
+                }
+            });
+
         }
         else{
-            //INCORRECTO
+            //Incorrect
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    cross.setVisibility(View.VISIBLE);
+                }
+            });
+
         }
     }
 

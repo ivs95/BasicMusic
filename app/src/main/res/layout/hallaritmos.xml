@@ -45,12 +45,35 @@
 
     <LinearLayout
         android:id="@+id/botoneraRitmos"
-        android:layout_width="412dp"
-        android:layout_height="124dp"
+        android:layout_width="371dp"
+        android:layout_height="123dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/stopRitmo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playRitmo"></LinearLayout>
+
+    <ImageView
+        android:id="@+id/cross"
+        android:layout_width="97dp"
+        android:layout_height="127dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/playRitmo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloHallaRitmo"
+        app:layout_constraintVertical_bias="0.542"
+        app:srcCompat="@mipmap/cross"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/tick"
+        android:layout_width="97dp"
+        android:layout_height="94dp"
+        app:layout_constraintBottom_toTopOf="@+id/playRitmo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloHallaRitmo"
+        app:srcCompat="@mipmap/tick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
