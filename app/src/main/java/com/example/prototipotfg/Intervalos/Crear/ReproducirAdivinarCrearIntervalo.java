@@ -20,6 +20,7 @@ import org.w3c.dom.Text;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.ResourceBundle;
 
 public class   ReproducirAdivinarCrearIntervalo extends Activity {
 
@@ -53,9 +54,12 @@ public class   ReproducirAdivinarCrearIntervalo extends Activity {
         dificultad = Controlador.getInstance().getDificultad();
 
         Notas notaInicio = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1));
-        Notas notaFinal = Notas.devuelveNotaPorNombre(nombres.get(1).substring(0,nombres.get(1).length()-1));
+        //Notas notaFinal = Notas.devuelveNotaPorNombre(nombres.get(1).substring(0,nombres.get(1).length()-1));
         ArrayList<Intervalos> intervalos_posibles = Intervalos.devuelveIntervalosPosibles(notaInicio);
-        Intervalos intervalo = Intervalos.getIntervaloPorDiferencia(notaFinal.getTono()-notaInicio.getTono());
+
+        Random r = new Random();
+
+        Intervalos intervalo = intervalos_posibles.get(r.nextInt(Controlador.getInstance().getRango()));
         intervalo_nombre = intervalo.getNombre();
         intervalo_dif = intervalo.getDiferencia();
 

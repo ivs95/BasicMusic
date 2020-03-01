@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.prototipotfg.Enumerados.Instrumentos;
+import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Intervalos.Crear.ReproducirAdivinarCrearIntervalo;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -60,8 +61,10 @@ public class SeleccionNivelCrearIntervalo extends Activity {
         Controlador.getInstance().setNivel(view.getId());
         Controlador.getInstance().estableceDificultad();
 
+
         //Nivel que se ha seleccionado
         ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
+        ArrayList<Intervalos> intervalos = Controlador.getInstance().getIntervalos();
         HashMap<String, String> notas = null;
 
         try {

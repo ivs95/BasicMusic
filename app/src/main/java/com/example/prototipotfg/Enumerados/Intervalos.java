@@ -1,5 +1,7 @@
 package com.example.prototipotfg.Enumerados;
 
+import com.example.prototipotfg.Singletons.Controlador;
+
 import java.util.ArrayList;
 
 public enum Intervalos {
@@ -78,13 +80,15 @@ public enum Intervalos {
         int positivos = 12 - nota.getTono();
 
         for (int i = -1; i >= negativos; i--){
-            retorno.add(getIntervaloPorDiferencia(i));
+                retorno.add(getIntervaloPorDiferencia(i));
         }
         for (int i = 1; i <= positivos; i++){
-            retorno.add(getIntervaloPorDiferencia(tono + i));
+                retorno.add(getIntervaloPorDiferencia(tono + i));
         }
 
         return retorno;
     }
+
+
 
 }
