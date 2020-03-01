@@ -73,6 +73,7 @@
         <activity android:name=".SeleccionarNivelAdivinarNotas" />
         <activity android:name=".Acordes.SeleccionarNivelAdivinarAcordes" />
         <activity android:name=".Acordes.SeleccionarNivelCrearAcordes" />
+        <activity android:name=".Acordes.ReproducirAdivinarAcordes" />
 
 
     </application>

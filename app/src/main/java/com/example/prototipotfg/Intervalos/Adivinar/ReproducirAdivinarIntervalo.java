@@ -26,8 +26,6 @@ public class ReproducirAdivinarIntervalo extends Activity {
         titulo.setText(titulo.getText() + Integer.toString(Controlador.getInstance().getNivel()));
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
-
-
     }
 
 

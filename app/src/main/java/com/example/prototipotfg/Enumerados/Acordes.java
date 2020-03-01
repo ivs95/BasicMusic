@@ -20,10 +20,16 @@ public enum Acordes {
     private int numNotas;
     private String nombre;
 
-    private Acordes (int[] notas, int numNotas, String nombre){
+    Acordes (int[] notas, int numNotas, String nombre){
         this.notas = notas;
         this.numNotas=numNotas;
         this.nombre=nombre;
+    }
+
+    public static void reproducirAcorde(Acordes acordeCorrecto, Notas notaInicio) {
+        /*
+        * Funcion que reproduce un acorde dado a partir de una nota
+        * */
     }
 
     public int[] getNotas() {
@@ -49,6 +55,8 @@ public enum Acordes {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+
 
     public static ArrayList<Acordes> devuelveAcordesConNumnotas(int numNotas){
         ArrayList<Acordes> retorno = new ArrayList<>();

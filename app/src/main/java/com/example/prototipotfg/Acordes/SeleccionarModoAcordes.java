@@ -18,7 +18,6 @@ public class SeleccionarModoAcordes extends Activity {
     }
 
     public void modo_acordes(View view){
-        //Intent i = new Intent(this, SeleccionarDificultadAdivinar.class);
         switch (view.getId()){
             case R.id.buttonAcordesModo1:
                 Intent i = new Intent(this, SeleccionarNivelAdivinarAcordes.class);

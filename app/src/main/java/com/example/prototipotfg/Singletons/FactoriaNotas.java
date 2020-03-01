@@ -81,7 +81,7 @@ public class FactoriaNotas {
         /*
          * Funcion que devuelve num notas aleatorias en un array
          * La primera posicion del array se utilizara como la nota a adivinar
-         * */
+         */
         String rutaInstrumento = instrumento.getPath();
         setReferencia(instrumento.getPath()+"cuatro/A.wav");
         setInstrumento(instrumento);
@@ -131,4 +131,7 @@ public class FactoriaNotas {
         return lista_notas[i-1].getTono();
     }
 
+    public Notas getNotaInicioIntervalo(Instrumentos piano, Octavas octavaInicio) {
+        return Notas.values()[new Random().nextInt(Notas.values().length)];
+    }
 }
