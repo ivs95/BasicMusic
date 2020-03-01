@@ -66,16 +66,16 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         lp.setMargins(0,0,0,50);
         Random rand = new Random();
 
-
+        int num_respuestas = Controlador.getInstance().getNum_opciones();
         ArrayList <Integer> aux = new ArrayList<Integer>();
-        for(int i = 1; i < nombres.size(); i++) {
+        for(int i = 0; i < num_respuestas; i++) {
             aux.add(i);
         }
         Collections.shuffle(aux);
 
 
         //Creamos los botones en bucle
-        for (int i=0; i<aux.size(); i++){
+        for (int i=0; i<num_respuestas; i++){
             Button button = new Button(this);
             button.setId(i+1);
             //Asignamos propiedades de layout al boton
