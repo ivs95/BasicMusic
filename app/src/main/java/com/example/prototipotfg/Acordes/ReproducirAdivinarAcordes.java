@@ -8,6 +8,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
@@ -18,6 +19,8 @@ import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +46,6 @@ public class ReproducirAdivinarAcordes extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_adivinar_acorde);
-        Random random = new Random();
         ponerComprobarVisible(View.GONE);
 
         this.numOpciones = Controlador.getInstance().getNum_opciones();
@@ -52,6 +54,10 @@ public class ReproducirAdivinarAcordes extends Activity {
         this.notaInicio = FactoriaNotas.getInstance().getNotaInicioIntervalo(Instrumentos.Piano, octavaInicio);
         this.acordeCorrecto = acordesPosibles.get(0);
         this.acordeCorrectoReproducir = Acordes.devuelveNotasAcorde(acordeCorrecto,octavaInicio,notaInicio);
+        TextView lblNotaInicio = (TextView)findViewById(R.id.lblNotaInicioAcorde);
+        lblNotaInicio.setText(lblNotaInicio.getText() + notaInicio.getNombre());
+        TextView lblOctavaInicio = (TextView)findViewById(R.id.lblOctavaInicioAcorde);
+        lblOctavaInicio.setText(lblOctavaInicio.getText() + octavaInicio.getNombre());
         Collections.shuffle(acordesPosibles);
         for (Acordes a : acordesPosibles) {
             acordesReproducir.add(Acordes.devuelveNotasAcorde(a, this.octavaInicio, this.notaInicio));
@@ -86,13 +92,6 @@ public class ReproducirAdivinarAcordes extends Activity {
     }
 
     private void respuesta_seleccionada(View view) {
-
-        /*
-        *
-        * */
-
-
-
 
         if (!comprobada) {
             Button b = (Button) view;

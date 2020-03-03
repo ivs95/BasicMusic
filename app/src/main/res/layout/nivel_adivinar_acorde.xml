@@ -8,14 +8,25 @@
 
 
     <TextView
+        android:id="@+id/lblOctavaInicioAcorde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Octava de inicio: "
+        android:textColor="@color/md_blue_900"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonReproduceAdivinarAcorde" />
+
+    <TextView
         android:id="@+id/tituloAdivinarAcorde"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Elige la opción correcta"
-        android:textSize="24sp"
         android:textColor="@color/md_blue_900"
-
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,26 +53,26 @@
         android:text="Comprobar resultado"
         app:layout_constraintBottom_toTopOf="@+id/retroceder_niveles_adivinar_acordes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewAcordes" />
 
     <ScrollView
         android:id="@+id/scrollViewAcordes"
         android:layout_width="385dp"
-        android:layout_height="430dp"
-        app:layout_constraintBottom_toTopOf="@+id/comprobarAcordes"
+        android:layout_height="400dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloAdivinarAcorde"
-        app:layout_constraintVertical_bias="0.153">
+        app:layout_constraintTop_toBottomOf="@+id/lblOctavaInicioAcorde">
 
         <LinearLayout
             android:id="@+id/opcionesAcordes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="40dp"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:paddingTop="40dp" />
     </ScrollView>
 
     <Button
@@ -74,5 +85,17 @@
         android:text="Acorde"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblNotaInicioAcorde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Nota de inicio: "
+        android:textColor="@color/md_blue_900"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloAdivinarAcorde" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
