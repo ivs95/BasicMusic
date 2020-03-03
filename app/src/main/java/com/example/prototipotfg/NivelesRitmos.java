@@ -76,7 +76,6 @@ public class NivelesRitmos extends Activity {
         int nota = random.nextInt(3)+1;
         //Llenar aleatorios
 
-
         for(int j=getSonidoPorSimbolo(nota).getSilencio(); j<=longitud; j+=getSonidoPorSimbolo(nota).getSilencio()){
             agregaFigura(nota, ritmos, compas);
             if(longitud-j >= 4)
@@ -86,7 +85,6 @@ public class NivelesRitmos extends Activity {
             else if (longitud-j==1)
                 nota= 3;
         }
-
 
 
         i.putExtra("nivel", nivel);

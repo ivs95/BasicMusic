@@ -2,7 +2,9 @@ package com.example.prototipotfg.Intervalos.Adivinar;
 
 import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
+import android.content.res.ColorStateList;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -112,10 +114,14 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         if (!comprobada) {
             Button b = (Button) view;
             if (botonSeleccionado != null) {
-                botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_blue_300));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_blue_300)));
+                }
             }
             botonSeleccionado = b;
-            botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_blue_700));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_blue_700)));
+            }
 
             respuesta = b.getText().toString();
             ponerComprobarVisible(1);
@@ -138,9 +144,13 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         if (!comprobada) {
             this.comprobada = true;
             if (respuesta != this.intervalo_correcto) {
-                botonSeleccionado.setBackgroundColor(ContextCompat.getColor(this, R.color.md_red_500));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                }
             }
-            respuestaCorrecta.setBackgroundColor(ContextCompat.getColor(this, R.color.md_green_500));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+            }
     }
         findViewById(R.id.comprobar).setVisibility(View.GONE);
     }

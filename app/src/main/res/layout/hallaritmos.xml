@@ -63,7 +63,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloHallaRitmo"
         app:layout_constraintVertical_bias="0.542"
-        app:srcCompat="@mipmap/cross"
+        app:srcCompat="@drawable/cross"
         tools:visibility="visible" />
 
     <ImageView
@@ -74,6 +74,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloHallaRitmo"
-        app:srcCompat="@mipmap/tick" />
+        app:srcCompat="@drawable/tick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
