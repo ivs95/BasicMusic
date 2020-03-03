@@ -2,9 +2,7 @@ package com.example.prototipotfg.Enumerados;
 
 import android.util.Pair;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public enum Acordes {
     Acorde_mayor(new int[]{0,4,7}, 3, "Acorde mayor"),

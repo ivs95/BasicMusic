@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 
 public class ReproducirAdivinarAcordes extends Activity {
@@ -147,7 +148,7 @@ public class ReproducirAdivinarAcordes extends Activity {
             }
             respuestaCorrecta.setBackgroundColor(ContextCompat.getColor(this, R.color.md_green_500));
         }
-        findViewById(R.id.comprobar).setVisibility(View.GONE);
+        ponerComprobarVisible(GONE);
     }
 
     public void reproducirAcorde(View view){
