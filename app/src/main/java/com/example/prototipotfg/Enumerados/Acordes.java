@@ -1,6 +1,10 @@
 package com.example.prototipotfg.Enumerados;
 
+import android.util.Pair;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public enum Acordes {
     Acorde_mayor(new int[]{0,4,7}, 3, "Acorde mayor"),
@@ -82,6 +86,24 @@ public enum Acordes {
 
         }
 
+        return retorno;
+    }
+
+    public static ArrayList<Pair<Notas, Octavas>> devuelveNotasAcorde(Acordes acorde, Octavas octavaInicio, Notas notaInicio){
+        ArrayList<Pair<Notas,Octavas>> retorno = new ArrayList<>();
+        retorno.add(Pair.create(notaInicio, octavaInicio));
+        Notas notaActual = notaInicio;
+        Octavas octavaActual = octavaInicio;
+        for (int i = 1; i < acorde.numNotas; i++){
+            if (notaActual.getTono() + acorde.getNotas()[i] > 12){
+                octavaActual = Octavas.devuelveSiguienteOctava(octavaActual);
+                notaActual = Notas.devuelveNotaPorTono(notaActual.getTono()+acorde.getNotas()[i]-12);
+            }
+            else{
+                notaActual = Notas.devuelveNotaPorTono(notaActual.getTono()+acorde.getNotas()[i]);
+            }
+            retorno.add(Pair.create(notaActual, octavaActual));
+        }
         return retorno;
     }
 }

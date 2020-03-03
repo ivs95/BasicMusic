@@ -1,5 +1,7 @@
 package com.example.prototipotfg.Enumerados;
 
+import java.util.Arrays;
+
 public enum Notas {
     DO("Do", 254.281, 269.404, "C.wav", 1),
     DOS("Do#",269.405, 285.41, "C#.wav", 2),
@@ -37,6 +39,25 @@ public enum Notas {
             if (n.getNombre().equals(nombre)) return n;
         }
         return null;
+    }
+
+    public static Notas devuelveNotaPorTono(int tono) {
+
+        for (Notas n: Notas.values()
+        ) {
+            if (n.getTono() == tono) return n;
+        }
+        return null;
+    }
+
+    public static Notas devuelveSiguienteNota(Notas n){
+        int indice = Arrays.asList(Notas.values()).indexOf(n)+1;
+        if (indice < Notas.values().length){
+            return Notas.values()[indice];
+        }
+        else{
+            return Notas.values()[0];
+        }
     }
 
     public String getNombre() {

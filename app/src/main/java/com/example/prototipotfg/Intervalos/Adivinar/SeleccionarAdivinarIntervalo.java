@@ -21,12 +21,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 
 public class SeleccionarAdivinarIntervalo extends Activity {
     private View botonSeleccionado;
     private View respuestaCorrecta;
-    private ArrayList<String> nombres;
+    private ArrayList<String> nombres = new ArrayList<>();
 
 
     private String respuesta;
@@ -37,7 +38,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_seleccionar_adivinar);
-        ponerComprobarVisible(INVISIBLE);
+        ponerComprobarVisible(GONE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
 
         int tono1 = getTonoNota(nombres.get(0));

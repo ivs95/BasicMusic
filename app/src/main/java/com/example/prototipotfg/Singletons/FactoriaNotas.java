@@ -44,6 +44,7 @@ public class FactoriaNotas {
 
     private FactoriaNotas() {}
 
+
     public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, ArrayList<Octavas> octavas) throws IOException {
         /*
         * Funcion que devuelve num notas aleatorias en un array

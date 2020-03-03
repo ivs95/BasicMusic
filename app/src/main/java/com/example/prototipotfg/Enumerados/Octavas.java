@@ -26,6 +26,11 @@ public enum Octavas {
         this.octava=octava;
     }
 
+    public static Octavas devuelveSiguienteOctava(Octavas octava) {
+        int indice = Arrays.asList(Octavas.values()).indexOf(octava)+1;
+        return Octavas.values()[indice];
+    }
+
     public int devuelveIndiceOctava(Octavas o){
         return Arrays.asList(Octavas.values()).indexOf(o);
     }
