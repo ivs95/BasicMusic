@@ -95,7 +95,7 @@ public enum Acordes {
         for (int i = 1; i < acorde.numNotas; i++){
             if (notaActual.getTono() + acorde.getNotas()[i] > 12){
                 octavaActual = Octavas.devuelveSiguienteOctava(octavaActual);
-                notaActual = Notas.devuelveNotaPorTono(notaActual.getTono()+acorde.getNotas()[i]-11);
+                notaActual = Notas.devuelveNotaPorTono(notaActual.getTono()+acorde.getNotas()[i]-12);
             }
             else{
                 notaActual = Notas.devuelveNotaPorTono(notaActual.getTono()+acorde.getNotas()[i]);
