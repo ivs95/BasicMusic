@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.Enumerados.Acordes;
+import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
@@ -22,15 +23,13 @@ import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 import static android.view.View.GONE;
-import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class ReproducirAdivinarAcordes extends Activity {
 
@@ -56,16 +55,24 @@ public class ReproducirAdivinarAcordes extends Activity {
         this.notaInicio = FactoriaNotas.getInstance().getNotaInicioIntervalo(Instrumentos.Piano, octavaInicio);
         this.acordeCorrecto = acordesPosibles.get(0);
         this.acordeCorrectoReproducir = Acordes.devuelveNotasAcorde(acordeCorrecto,octavaInicio,notaInicio);
-        TextView lblNotaInicio = (TextView)findViewById(R.id.lblNotaInicioAcorde);
-        lblNotaInicio.setText(lblNotaInicio.getText() + notaInicio.getNombre());
-        TextView lblOctavaInicio = (TextView)findViewById(R.id.lblOctavaInicioAcorde);
-        lblOctavaInicio.setText(lblOctavaInicio.getText() + octavaInicio.getNombre());
+        TextView lblNotaInicio = findViewById(R.id.lblNotaInicioAcorde);
+        TextView lblOctavaInicio = findViewById(R.id.lblOctavaInicioAcorde);
+        if (Controlador.getInstance().getDificultad().equals(Dificultad.Dificil)){
+            lblNotaInicio.setVisibility(GONE);
+            lblOctavaInicio.setVisibility(GONE);
+            Button botonReferencia = findViewById(R.id.btnAcordeReferencia);
+            botonReferencia.setVisibility(VISIBLE);
+        }
+        else {
+            lblNotaInicio.setText(lblNotaInicio.getText() + notaInicio.getNombre());
+            lblOctavaInicio.setText(lblOctavaInicio.getText() + octavaInicio.getNombre());
+        }
         Collections.shuffle(acordesPosibles);
         for (Acordes a : acordesPosibles) {
             acordesReproducir.add(Acordes.devuelveNotasAcorde(a, this.octavaInicio, this.notaInicio));
         }
 
-        LinearLayout opciones = (LinearLayout) findViewById(R.id.opcionesAcordes);
+        LinearLayout opciones = findViewById(R.id.opcionesAcordes);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         for (int i = 0; i < numOpciones; i++) {
             Button button = new Button(this);
@@ -107,26 +114,20 @@ public class ReproducirAdivinarAcordes extends Activity {
                 botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_blue_700)));
             }
             int indiceSeleccionado = view.getId();
-            ArrayList<Pair<Notas, Octavas>> acordeSeleccionado = acordesReproducir.get(indiceSeleccionado - 1);
-            for (Pair<Notas, Octavas> nota : acordeSeleccionado) {
-                String ruta = Instrumentos.Piano.getPath() + nota.second.getPath() + nota.first.getPath();
-                MediaPlayer mediaPlayer = new MediaPlayer();
-                AssetFileDescriptor afd = null;
-                try {
-                    afd = getAssets().openFd(ruta);
-                    mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                    mediaPlayer.prepare();
-                } catch (IOException e) {
-                    e.printStackTrace();
+            if (Controlador.getInstance().getDificultad().equals(Dificultad.Facil)) {
+                ArrayList<Pair<Notas, Octavas>> acordeSeleccionado = acordesReproducir.get(indiceSeleccionado - 1);
+                ArrayList<MediaPlayer> mediaPlayers = inicializaMediaPlayers(acordeSeleccionado);
+                for (MediaPlayer m : mediaPlayers){
+                    m.start();
                 }
-                mediaPlayer.start();
+                }
             }
             ponerComprobarVisible(1);
         }
-    }
+
 
     private void ponerComprobarVisible(int visible) {
-        Button comprobar = (Button) findViewById(R.id.comprobarAcordes);
+        Button comprobar = findViewById(R.id.comprobarAcordes);
         comprobar.setVisibility(visible);
 
     }
@@ -161,10 +162,19 @@ public class ReproducirAdivinarAcordes extends Activity {
     }
 
     public void reproducirAcorde(View view){
+        ArrayList<MediaPlayer> mediaPlayers = inicializaMediaPlayers(acordeCorrectoReproducir);
+        for (MediaPlayer m: mediaPlayers){
+            m.start();
+        }
+
+    }
+
+    private ArrayList<MediaPlayer> inicializaMediaPlayers(ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir) {
+        ArrayList<MediaPlayer> retorno = new ArrayList<>();
         for (Pair<Notas, Octavas> nota : acordeCorrectoReproducir) {
             String ruta = Instrumentos.Piano.getPath() + nota.second.getPath() + nota.first.getPath();
             MediaPlayer mediaPlayer = new MediaPlayer();
-            AssetFileDescriptor afd = null;
+            AssetFileDescriptor afd;
             try {
                 afd = getAssets().openFd(ruta);
                 mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
@@ -172,8 +182,24 @@ public class ReproducirAdivinarAcordes extends Activity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            mediaPlayer.start();
+            retorno.add(mediaPlayer);
         }
+        return retorno;
+    }
+
+    public void reproduceReferencia(View view){
+        String ruta = Instrumentos.Piano.getPath() + this.octavaInicio.getPath() + Notas.LA.getPath();
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        AssetFileDescriptor afd;
+        try {
+            afd = getAssets().openFd(ruta);
+            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            mediaPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mediaPlayer.start();
+
     }
 
     public void volverAtrasAcordes(View view) {

@@ -109,7 +109,7 @@ public class Controlador {
                 setAcordes(new ArrayList<Acordes>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
                         Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida, Acordes.Acorde_disminuido, Acordes.Acorde_aumentado)));
                 setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
-                this.dificultad = Dificultad.Facil;
+                this.dificultad = Dificultad.Medio;
                 break;
             case 3:
                 this.num_opciones = 3;
@@ -118,7 +118,7 @@ public class Controlador {
                         Acordes.Acorde_mayor_7_menor, Acordes.Acorde_mayor_7_mayor)));
 
                 setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda,Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
-                this.dificultad = Dificultad.Facil;
+                this.dificultad = Dificultad.Medio;
                 break;
             case 4:
                 this.num_opciones = 4;
@@ -145,7 +145,7 @@ public class Controlador {
                         Acordes.Acorde_mayor_7_menor, Acordes.Acorde_mayor_7_mayor, Acordes.Acorde_menor_7_menor,
                         Acordes.Acorde_menor_7_mayor, Acordes.Acorde_disminuido_7_menor, Acordes.Acorde_7_disminuida)));
                 setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Primera,Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
-                this.dificultad = Dificultad.Medio;
+                this.dificultad = Dificultad.Dificil;
                 break;
             default:
                 break;
