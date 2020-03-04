@@ -50,7 +50,7 @@ public class ReproducirAdivinarAcordes extends Activity {
         ponerComprobarVisible(View.GONE);
 
         this.numOpciones = Controlador.getInstance().getNum_opciones();
-        this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()));
+        this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()-1));
         this.acordesPosibles = seleccionaAcordesAleatorios(numOpciones, Controlador.getInstance().getAcordes());
         this.notaInicio = FactoriaNotas.getInstance().getNotaInicioIntervalo(Instrumentos.Piano, octavaInicio);
         this.acordeCorrecto = acordesPosibles.get(0);
