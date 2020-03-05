@@ -10,10 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+
 import androidx.core.content.ContextCompat;
 
+import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.Notas;
+import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -24,14 +27,11 @@ import java.util.Collections;
 import java.util.Random;
 
 import static android.view.View.GONE;
-import static android.view.View.INVISIBLE;
 
 public class SeleccionarAdivinarIntervalo extends Activity {
     private View botonSeleccionado;
     private View respuestaCorrecta;
     private ArrayList<String> nombres = new ArrayList<>();
-
-
     private String respuesta;
     private String intervalo_correcto;
     private boolean comprobada = false;
@@ -39,7 +39,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nivel_seleccionar_adivinar);
+        setContentView(R.layout.nivel_adivinar_intervalo);
         ponerComprobarVisible(GONE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
 
@@ -49,9 +49,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         this.intervalo_correcto = intervalo.getNombre();
         int posicion_intervalo = intervalo.getNumero();
         //inicializacion de botones
-
-
-
+        FactoriaNotas.getInstance().setReferencia(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout opciones = (LinearLayout) findViewById(R.id.opciones);
 
@@ -62,19 +60,30 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         Random rand = new Random();
 
         int num_respuestas = Controlador.getInstance().getNum_opciones();
-        int random1 = rand.nextInt(12) + 1;
-        if (posicion_intervalo < 0){
-            random1 = -random1;
+        int random1 = 0;
+        if (Controlador.getInstance().getDificultad().equals(Dificultad.Facil)){
+            random1 = rand.nextInt(12+12) -12;
+        }
+        else {
+            random1 = rand.nextInt(12) + 1;
+            if (posicion_intervalo < 0) {
+                random1 = -random1;
+            }
         }
         ArrayList <Integer> aux = new ArrayList<Integer>();
         aux.add(posicion_intervalo);
 
 
         for(int i = 0; i < num_respuestas-1; i++) {
-            while (aux.contains(random1)){
-                random1 = rand.nextInt(12) + 1;
-                if (posicion_intervalo < 0) {
-                    random1 = -random1;
+            while (aux.contains(random1) || random1 == 0){
+                if (Controlador.getInstance().getDificultad().equals(Dificultad.Facil)){
+                    random1 = rand.nextInt(12+12) -12;
+                }
+                else {
+                    random1 = rand.nextInt(12) + 1;
+                    if (posicion_intervalo < 0) {
+                        random1 = -random1;
+                    }
                 }
             }
             aux.add(random1);
@@ -107,6 +116,26 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         }
 
 
+    }
+
+    public void reproduceIntervaloRespuesta(View view) throws IOException {
+        reproduceNota(nombres.get(0));
+        reproduceNota(nombres.get(1));
+
+    }
+
+    private String devuelveRutaNota(String nombreNota) {
+        Notas n = Notas.devuelveNotaPorNombre(nombreNota.substring(0, nombreNota.length()-1));
+        Octavas o = Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombreNota.substring(nombreNota.length()-1)));
+        return FactoriaNotas.getInstance().getInstrumento().getPath()+o.getPath()+n.getPath();
+    }
+
+    public void reproduceNota(String ruta) throws IOException {
+        MediaPlayer mediaPlayer =  new MediaPlayer();
+        AssetFileDescriptor afd = getAssets().openFd(devuelveRutaNota(ruta));
+        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        mediaPlayer.prepare();
+        mediaPlayer.start();
     }
 
 

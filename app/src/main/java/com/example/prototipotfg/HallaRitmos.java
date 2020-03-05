@@ -2,9 +2,7 @@ package com.example.prototipotfg;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
 import android.content.res.ColorStateList;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -13,18 +11,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.ButtonBarLayout;
 import androidx.core.content.ContextCompat;
-
-import com.example.prototipotfg.Enumerados.DuracionSonido;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 import static java.lang.Thread.sleep;
 

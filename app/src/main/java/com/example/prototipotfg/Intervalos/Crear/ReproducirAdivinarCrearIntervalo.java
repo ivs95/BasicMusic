@@ -6,7 +6,6 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.Dificultad;
@@ -15,12 +14,9 @@ import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.ResourceBundle;
 
 public class   ReproducirAdivinarCrearIntervalo extends Activity {
 

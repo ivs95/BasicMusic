@@ -98,52 +98,52 @@ public class Controlador {
         switch (this.nivel) {
             case 1:
                 this.num_opciones = 2;
-                setAcordes(new ArrayList<Acordes>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
+                setAcordes(new ArrayList<>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
                         Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida)));
-                this.octavas = new ArrayList<Octavas>(Arrays.asList(Octavas.Cuarta, Octavas.Quinta));
+                this.octavas = new ArrayList<>(Arrays.asList(Octavas.Cuarta, Octavas.Quinta));
                 this.dificultad = Dificultad.Facil;
                 break;
             case 2:
                 this.num_opciones = 3;
-                setAcordes(new ArrayList<Acordes>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
+                setAcordes(new ArrayList<>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
                         Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida, Acordes.Acorde_disminuido, Acordes.Acorde_aumentado)));
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
                 this.dificultad = Dificultad.Medio;
                 break;
             case 3:
                 this.num_opciones = 3;
-                setAcordes(new ArrayList<Acordes>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
+                setAcordes(new ArrayList<>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
                         Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida, Acordes.Acorde_disminuido, Acordes.Acorde_aumentado,
                         Acordes.Acorde_mayor_7_menor, Acordes.Acorde_mayor_7_mayor)));
 
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda,Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
                 this.dificultad = Dificultad.Medio;
                 break;
             case 4:
                 this.num_opciones = 4;
-                setAcordes(new ArrayList<Acordes>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
+                setAcordes(new ArrayList<>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
                         Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida, Acordes.Acorde_disminuido, Acordes.Acorde_aumentado,
                         Acordes.Acorde_mayor_7_menor, Acordes.Acorde_mayor_7_mayor, Acordes.Acorde_menor_7_menor,
                         Acordes.Acorde_menor_7_mayor)));
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Medio;
                 break;
             case 5:
                 this.num_opciones = 4;
-                setAcordes(new ArrayList<Acordes>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
+                setAcordes(new ArrayList<>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
                         Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida, Acordes.Acorde_disminuido, Acordes.Acorde_aumentado,
                         Acordes.Acorde_mayor_7_menor, Acordes.Acorde_mayor_7_mayor, Acordes.Acorde_menor_7_menor,
                         Acordes.Acorde_menor_7_mayor, Acordes.Acorde_disminuido_7_menor, Acordes.Acorde_7_disminuida)));
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Medio;
                 break;
             case 6:
                 this.num_opciones = 5;
-                setAcordes(new ArrayList<Acordes>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
+                setAcordes(new ArrayList<>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
                         Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida, Acordes.Acorde_disminuido, Acordes.Acorde_aumentado,
                         Acordes.Acorde_mayor_7_menor, Acordes.Acorde_mayor_7_mayor, Acordes.Acorde_menor_7_menor,
                         Acordes.Acorde_menor_7_mayor, Acordes.Acorde_disminuido_7_menor, Acordes.Acorde_7_disminuida)));
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Primera,Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Dificil;
                 break;
             default:
@@ -156,49 +156,49 @@ public class Controlador {
         switch (this.nivel) {
             case 1:
                 this.num_opciones = 2;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Cuarta, Octavas.Quinta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Cuarta, Octavas.Quinta)));
                 this.dificultad = Dificultad.Facil;
                 this.rango = 3;
                 this.intervalos = Intervalos.getIntervalosDeRango(3);
                 break;
             case 2:
                 this.num_opciones = 3;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Facil;
                 this.rango = 5;
                 this.intervalos = Intervalos.getIntervalosDeRango(5);
                 break;
             case 3:
                 this.num_opciones = 4;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Facil;
                 this.rango = 7;
                 this.intervalos = Intervalos.getIntervalosDeRango(7);
                 break;
             case 4:
                 this.num_opciones = 4;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Medio;
                 this.rango = 7;
                 this.intervalos = Intervalos.getIntervalosDeRango(7);
                 break;
             case 5:
                 this.num_opciones = 4;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Medio;
                 this.rango = 8;
                 this.intervalos = Intervalos.getIntervalosDeRango(9);
                 break;
             case 6:
                 this.num_opciones = 5;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
                 this.dificultad = Dificultad.Medio;
                 this.rango = 11;
                 this.intervalos = Intervalos.getIntervalosDeRango(11);
                 break;
             case 7:
                 this.num_opciones = 5;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
                 this.dificultad = Dificultad.Medio;
                 this.rango = 12;
                 this.intervalos = Intervalos.getIntervalosDeRango(12);
@@ -212,52 +212,52 @@ public class Controlador {
         switch (this.nivel) {
             case 1:
                 this.num_opciones = 2;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Cuarta, Octavas.Quinta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Cuarta, Octavas.Quinta)));
                 this.dificultad = Dificultad.Facil;
                 break;
             case 2:
                 this.num_opciones = 2;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
                 this.dificultad = Dificultad.Medio;
                 break;
             case 3:
                 this.num_opciones = 3;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
                 this.dificultad = Dificultad.Medio;
                 break;
             case 4:
                 this.num_opciones = 3;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Medio;
                 break;
             case 5:
                 this.num_opciones = 4;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Medio;
                 break;
             case 6:
                 this.num_opciones = 4;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Medio;
                 break;
             case 7:
                 this.num_opciones = 5;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Medio;
                 break;
             case 8:
                 this.num_opciones = 5;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
                 this.dificultad = Dificultad.Dificil;
                 break;
             case 9:
                 this.num_opciones = 6;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
                 this.dificultad = Dificultad.Dificil;
                 break;
             case 10:
                 this.num_opciones = 6;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
                 this.dificultad = Dificultad.Dificil;
                 break;
             default:
@@ -270,49 +270,49 @@ public class Controlador {
         switch (this.nivel) {
             case 1:
                 this.num_opciones = 2;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Cuarta, Octavas.Quinta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Cuarta, Octavas.Quinta)));
                 this.dificultad = Dificultad.Facil;
                 this.rango = 3;
                 break;
             case 2:
                 this.num_opciones = 3;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
                 this.dificultad = Dificultad.Facil;
                 this.rango = 5;
                 break;
             case 3:
                 this.num_opciones = 3;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Facil;
                 this.rango = 7;
                 break;
             case 4:
                 this.num_opciones = 3;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Facil;
                 this.rango = 9;
                 break;
             case 5:
                 this.num_opciones = 4;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Dificil;
                 this.rango = 9;
                 break;
             case 6:
                 this.num_opciones = 4;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
                 this.dificultad = Dificultad.Dificil;
                 this.rango = 11;
                 break;
             case 7:
                 this.num_opciones = 5;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
                 this.dificultad = Dificultad.Dificil;
                 this.rango = 11;
                 break;
             case 8:
                 this.num_opciones = 6;
-                setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
                 this.dificultad = Dificultad.Dificil;
                 this.rango = 12;
                 break;

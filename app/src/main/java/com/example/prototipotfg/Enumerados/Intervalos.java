@@ -1,7 +1,5 @@
 package com.example.prototipotfg.Enumerados;
 
-import com.example.prototipotfg.Singletons.Controlador;
-
 import java.util.ArrayList;
 
 public enum Intervalos {

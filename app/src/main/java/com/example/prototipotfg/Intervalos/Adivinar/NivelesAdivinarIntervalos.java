@@ -12,7 +12,6 @@ import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -55,7 +54,7 @@ public class NivelesAdivinarIntervalos extends Activity {
     }
 
     public void nivel_seleccionado(View view) {
-        Intent i = new Intent(this, ReproducirAdivinarIntervalo.class);
+        Intent i = new Intent(this, SeleccionarAdivinarIntervalo.class);
         Random random = new Random();
 
         //Nivel que se ha seleccionado
@@ -63,14 +62,11 @@ public class NivelesAdivinarIntervalos extends Activity {
         ArrayList<Octavas> octavas = Octavas.devuelveOctavas(getIntent().getExtras().getStringArrayList("octavas"));
         HashMap<String, String> notas = null;
 
-        try {
             ArrayList<Octavas> octavas_intervalos = new ArrayList<Octavas>();
             octavas_intervalos.add(octavas.get(random.nextInt(octavas.size())));
             notas = FactoriaNotas.getInstance().getNumNotasAleatorias(view.getId(), Instrumentos.Piano, octavas_intervalos);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
         /*
          * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle

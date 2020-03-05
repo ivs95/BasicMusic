@@ -1,10 +1,8 @@
 package com.example.prototipotfg;
+
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
-
-
-import com.example.prototipotfg.Singletons.Controlador;
 
 import java.io.IOException;
 

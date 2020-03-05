@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Octavas;
-import com.example.prototipotfg.Intervalos.Adivinar.ReproducirAdivinarIntervalo;
+import com.example.prototipotfg.Intervalos.Adivinar.SeleccionarAdivinarIntervalo;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
@@ -57,21 +57,16 @@ public class SeleccionNivelAdivinarIntervalo extends Activity {
         }
     }
     public void nivel_seleccionado(View view) throws IOException {
-        Intent i = new Intent(this, ReproducirAdivinarIntervalo.class);
+        Intent i = new Intent(this, SeleccionarAdivinarIntervalo.class);
         Random random = new Random();
         Controlador.getInstance().setNivel(view.getId());
         Controlador.getInstance().estableceDificultad();
         ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
-        HashMap<String, String> notas = null;
+        HashMap<String, String> notas;
+        ArrayList<Octavas> octavas_intervalos = new ArrayList<Octavas>();
+        octavas_intervalos.add(octavas.get(random.nextInt(octavas.size())));
+        notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones(), Instrumentos.Piano, octavas_intervalos);
 
-        try {
-            ArrayList<Octavas> octavas_intervalos = new ArrayList<Octavas>();
-            octavas_intervalos.add(octavas.get(random.nextInt(octavas.size())));
-            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones(), Instrumentos.Piano, octavas_intervalos);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         /*
          * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
@@ -80,7 +75,6 @@ public class SeleccionNivelAdivinarIntervalo extends Activity {
          * */
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
         ArrayList<String> rutas = new ArrayList<>(notas.values());
-
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
 

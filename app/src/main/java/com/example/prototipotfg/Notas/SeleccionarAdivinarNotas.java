@@ -11,9 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-
 import androidx.core.content.ContextCompat;
-
 
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Notas;
@@ -41,7 +39,7 @@ public class SeleccionarAdivinarNotas extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nivel_seleccionar_adivinar);
+        setContentView(R.layout.nivel_seleccionar_adivinar_notas);
         ponerComprobarVisible(INVISIBLE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");

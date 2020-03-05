@@ -12,7 +12,6 @@ import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -62,13 +61,9 @@ public class NivelesAdivinarCrearIntervalos extends Activity {
         ArrayList<Octavas> octavas = Octavas.devuelveOctavas(getIntent().getExtras().getStringArrayList("octavas"));
         HashMap<String, String> notas = null;
 
-        try {
             Octavas octava_intervalos = octavas.get(random.nextInt(octavas.size()));
             notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Integer.valueOf(view.getId())+1, Instrumentos.Piano, octava_intervalos);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
         ArrayList<String> rutas = new ArrayList<>(notas.values());

@@ -6,12 +6,10 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class FactoriaNotas {
@@ -50,7 +48,7 @@ public class FactoriaNotas {
     private FactoriaNotas() {}
 
 
-    public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, ArrayList<Octavas> octavas) throws IOException {
+    public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, ArrayList<Octavas> octavas) {
         /*
         * Funcion que devuelve num notas aleatorias en un array
         * La primera posicion del array se utilizara como la nota a adivinar
@@ -60,7 +58,7 @@ public class FactoriaNotas {
         setInstrumento(instrumento);
 
         //HashMap con clave nombre de nota y su octava y valor el path a su fichero
-        HashMap<String,String> rutasFicherosAudio = new HashMap<String,String>();
+        HashMap<String,String> rutasFicherosAudio = new HashMap<>();
         Octavas octava = devuelveOctavaAleatoria(octavas);
         Notas nota = devuelveNotaAleatoria(Notas.values() ,0, 0, false);
 
@@ -83,7 +81,7 @@ public class FactoriaNotas {
         return rutasFicherosAudio;
     }
 
-    public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, Octavas octava) throws IOException {
+    public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, Octavas octava) {
         /*
          * Funcion que devuelve num notas aleatorias en un array
          * La primera posicion del array se utilizara como la nota a adivinar
@@ -93,7 +91,7 @@ public class FactoriaNotas {
         setInstrumento(instrumento);
 
         //HashMap con clave nombre de nota y su octava y valor el path a su fichero
-        HashMap<String,String> rutasFicherosAudio = new HashMap<String,String>();
+        HashMap<String,String> rutasFicherosAudio = new HashMap<>();
         Notas nota = devuelveNotaAleatoria(Notas.values(), 0, 0, false);
 
         int tonoNotaAnt = getTonoNota(nota.getNombre());
@@ -127,7 +125,7 @@ public class FactoriaNotas {
     private int getTonoNota(String name){
         boolean OK = false;
         int i = 0;
-        Notas[] lista_notas = new Notas[11];
+        Notas[] lista_notas;
         lista_notas = Notas.values();
         while(i < 11 && !OK){
             if(lista_notas[i].getNombre().equals(name)) OK = true;

@@ -14,7 +14,6 @@ import com.example.prototipotfg.Intervalos.Crear.ReproducirAdivinarCrearInterval
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -68,13 +67,9 @@ public class SeleccionNivelCrearIntervalo extends Activity {
         ArrayList<Intervalos> intervalos = Controlador.getInstance().getIntervalos();
         HashMap<String, String> notas = null;
 
-        try {
             Octavas octava_intervalos = octavas.get(random.nextInt(octavas.size()));
             notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones(), Instrumentos.Piano, octava_intervalos);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
         ArrayList<String> rutas = new ArrayList<>(notas.values());
