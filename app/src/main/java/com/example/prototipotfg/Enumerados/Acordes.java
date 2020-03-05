@@ -30,8 +30,8 @@ public enum Acordes {
 
     public static void reproducirAcorde(Acordes acordeCorrecto, Notas notaInicio) {
         /*
-        * Funcion que reproduce un acorde dado a partir de una nota
-        * */
+         * Funcion que reproduce un acorde dado a partir de una nota
+         * */
     }
 
     public int[] getNotas() {
