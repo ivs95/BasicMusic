@@ -27,6 +27,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import static android.view.View.GONE;
+import static java.lang.Thread.sleep;
 
 public class SeleccionarAdivinarIntervalo extends Activity {
     private View botonSeleccionado;
@@ -118,8 +119,9 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
     }
 
-    public void reproduceIntervaloRespuesta(View view) throws IOException {
+    public void reproduceIntervaloRespuesta(View view) throws IOException, InterruptedException {
         reproduceNota(nombres.get(0));
+        sleep(700);
         reproduceNota(nombres.get(1));
 
     }
