@@ -218,12 +218,12 @@ public class Controlador {
             case 2:
                 this.num_opciones = 2;
                 setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
-                this.dificultad = Dificultad.Facil;
+                this.dificultad = Dificultad.Medio;
                 break;
             case 3:
                 this.num_opciones = 3;
                 setOctavas(new ArrayList<Octavas>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
-                this.dificultad = Dificultad.Facil;
+                this.dificultad = Dificultad.Medio;
                 break;
             case 4:
                 this.num_opciones = 3;

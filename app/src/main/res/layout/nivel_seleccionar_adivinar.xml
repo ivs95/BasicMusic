@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Elige la opción correcta"
-        android:textSize="24sp"
         android:textColor="@color/md_blue_900"
+        android:textSize="24sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:onClick="volverAtras"
-        android:text="Volver a reproducir"
+        android:text="Volver a seleccionar nivel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -48,7 +48,8 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="385dp"
-        android:layout_height="430dp"
+        android:layout_height="460dp"
+        android:layout_marginTop="70dp"
         app:layout_constraintBottom_toTopOf="@+id/comprobar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
@@ -60,19 +61,32 @@
             android:id="@+id/opciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="40dp"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:paddingTop="40dp" />
     </ScrollView>
+
+    <Button
+        android:id="@+id/botonNota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:onClick="reproduceNotaRespuesta"
+        android:text="Nota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/botonReferencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginTop="60dp"
         android:onClick="reproducirReferencia"
-        android:text="Referencia(la4)"
+        android:text="Referencia(LA)"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,8 +9,6 @@ import android.widget.LinearLayout;
 
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Octavas;
-import com.example.prototipotfg.Intervalos.Adivinar.ReproducirAdivinarIntervalo;
-import com.example.prototipotfg.Notas.ReproducirAdivinarNotas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -59,7 +57,7 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
     }
 
     public void nivel_seleccionado(View view) throws IOException {
-        Intent i = new Intent(this, ReproducirAdivinarNotas.class);
+        Intent i = new Intent(this, SeleccionarAdivinarNotas.class);
         Random random = new Random();
         //Nivel que se ha seleccionado
         Controlador.getInstance().setNivel(view.getId());

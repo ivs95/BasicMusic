@@ -42,6 +42,11 @@ public class FactoriaNotas {
         this.rutaReferencia=ruta;
     }
 
+    public void setReferencia(Octavas o){
+        this.rutaReferencia=instrumento.getPath()+o.getPath()+Notas.LA.getPath();
+    }
+
+
     private FactoriaNotas() {}
 
 

@@ -45,38 +45,26 @@ public class SeleccionarAdivinarNotas extends Activity {
         ponerComprobarVisible(INVISIBLE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
-        if (Controlador.getInstance().getDificultad().equals(Dificultad.Dificil)){
-            adaptaVistaDificil();
-        }
-
-        //inicializacion de botones
-
-
+        FactoriaNotas.getInstance().setReferencia(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
+        adaptaVista(Controlador.getInstance().getDificultad());
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout opciones = (LinearLayout) findViewById(R.id.opciones);
 
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
-        lp.setMargins(0,0,0,50);
+        lp.setMargins(150, 0, 150, 0);
         Random rand = new Random();
-
         int num_respuestas = nombres.size();
-
         int random1 = rand.nextInt(num_respuestas);
         ArrayList <Integer> aux = new ArrayList<Integer>();
         aux.add(random1);
-
-
         for(int i = 0; i< num_respuestas-1; i++) {
             while (aux.contains(random1))
                 random1 = rand.nextInt(num_respuestas);
 
             aux.add(random1);
         }
-
-
-
 
         //Creamos los botones en bucle
         for (int i=0; i<num_respuestas; i++){
@@ -96,22 +84,24 @@ public class SeleccionarAdivinarNotas extends Activity {
             });
             //Añadimos el botón a la botonera
             button.setPadding(0,0,0,0);
-
             opciones.addView(button);
             if (button.getText().toString() == nombres.get(0)){
                 this.respuestaCorrecta=button;
             }
         }
-
-
     }
 
-    private void adaptaVistaDificil() {
-        Button referencia = findViewById(R.id.botonReferencia);
-        referencia.setVisibility(View.GONE);
-        Button retroceder = findViewById(R.id.retroceder);
-        retroceder.setVisibility(View.GONE);
+    private void adaptaVista(Dificultad dificultad) {
+        if (dificultad.equals(Dificultad.Facil)){
+            Button referencia = findViewById(R.id.botonReferencia);
+            referencia.setVisibility(View.GONE);
+        }
+        else if (dificultad.equals(Dificultad.Dificil)){
+            Button referencia = findViewById(R.id.botonReferencia);
+            referencia.setVisibility(View.GONE);
+        }
     }
+
 
 
     public void respuesta_seleccionada(View view){
@@ -132,9 +122,8 @@ public class SeleccionarAdivinarNotas extends Activity {
             if (Controlador.getInstance().getDificultad().equals(Dificultad.Facil)) {
                 String ruta = devuelveRutaBoton(respuesta);
                 MediaPlayer mediaPlayer = new MediaPlayer();
-                AssetFileDescriptor afd = null;
                 try {
-                    afd = getAssets().openFd(ruta);
+                    AssetFileDescriptor afd = getAssets().openFd(ruta);
                     mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                     mediaPlayer.prepare();
                 } catch (IOException e) {
@@ -153,6 +142,13 @@ public class SeleccionarAdivinarNotas extends Activity {
         return FactoriaNotas.getInstance().getInstrumento().getPath()+o.getPath()+n.getPath();
     }
 
+    public void reproduceNotaRespuesta(View view) throws IOException{
+        MediaPlayer mediaPlayer =  new MediaPlayer();
+        AssetFileDescriptor afd = getAssets().openFd(devuelveRutaBoton(((Button)respuestaCorrecta).getText().toString()));
+        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        mediaPlayer.prepare();
+        mediaPlayer.start();
+    }
 
     public void volverAtras(View view){
         finish();
