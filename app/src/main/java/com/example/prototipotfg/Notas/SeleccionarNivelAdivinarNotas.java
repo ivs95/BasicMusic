@@ -9,8 +9,9 @@ import android.widget.LinearLayout;
 
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.Intervalos.Adivinar.ReproducirAdivinarIntervalo;
+import com.example.prototipotfg.Notas.ReproducirAdivinarNotas;
 import com.example.prototipotfg.R;
-import com.example.prototipotfg.ReproducirAdivinar;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
@@ -19,34 +20,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class NivelesAdivinarNotas extends Activity {
+public class SeleccionarNivelAdivinarNotas extends Activity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
+
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.opciones_adivinar);
+        setContentView(R.layout.niveles);
 
-        //Obtenemos el linear layout donde colocar los botones
+
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
-
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
-
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(150, 0, 150, 0);
         //Creamos los botones en bucle
-        for (int i=1; i<6; i++){
+        for (int i = 0; i < 10; i++) {
             Button button = new Button(this);
-            button.setId(i+1);
+            button.setId(i + 1);
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            button.setText(i+1 + " opciones");
+            button.setText("Nivel " + String.format("%02d", i + 1));
 
             //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    nivel_seleccionado(v);
+                    try {
+                        nivel_seleccionado(v);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
             //Añadimos el botón a la botonera
@@ -54,23 +58,17 @@ public class NivelesAdivinarNotas extends Activity {
         }
     }
 
-    public void nivel_seleccionado(View view) {
-        Intent i = null;
+    public void nivel_seleccionado(View view) throws IOException {
+        Intent i = new Intent(this, ReproducirAdivinarNotas.class);
         Random random = new Random();
-        i = new Intent(this, ReproducirAdivinarNotas.class);
         //Nivel que se ha seleccionado
-        int nivel = view.getId();
-        ArrayList<Octavas> octavas = Octavas.devuelveOctavas(getIntent().getExtras().getStringArrayList("octavas"));
+        Controlador.getInstance().setNivel(view.getId());
+        Controlador.getInstance().estableceDificultad();
+        ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
         HashMap<String, String> notas = null;
 
         try {
-            if (Controlador.getInstance().getModo_juego().equals("intervalos")) {
-
-                ArrayList<Octavas> octavas_intervalos = new ArrayList<Octavas>();
-                octavas_intervalos.add(octavas.get(random.nextInt(octavas.size())));
-                notas = FactoriaNotas.getInstance().getNumNotasAleatorias(view.getId(), Instrumentos.Piano, octavas_intervalos);
-            } else
-                notas = FactoriaNotas.getInstance().getNumNotasAleatorias(view.getId(), Instrumentos.Piano, octavas);
+                notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones(), Instrumentos.Piano, octavas);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -83,13 +81,8 @@ public class NivelesAdivinarNotas extends Activity {
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
         ArrayList<String> rutas = new ArrayList<>(notas.values());
 
-        i.putExtra("nivel", nivel);
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
-
         startActivity(i);
     }
-
-
-
 }

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
-import com.example.prototipotfg.Intervalos.SeleccionOctavasIntervalos;
 import com.example.prototipotfg.Singletons.Controlador;
 
 public class SeleccionarModoIntervalos extends Activity {

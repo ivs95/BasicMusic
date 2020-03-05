@@ -11,20 +11,21 @@
         android:id="@+id/tituloModosIntervalos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="140dp"
         android:text="Modos de intervalos"
-        android:textSize="30sp"
         android:textColor="@color/md_blue_900"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.642"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonIntervalosModo1"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="308dp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="80dp"
+        android:layout_marginBottom="300dp"
         android:onClick="modo_intervalo"
         android:text="Crea el intervalo"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,11 +35,13 @@
 
     <Button
         android:id="@+id/buttonIntervalosModo2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="216dp"
+        android:layout_marginHorizontal="80dp"
+        android:layout_marginTop="250dp"
         android:onClick="modo_intervalo"
         android:text="Adivina el intervalo"
+
         app:layout_constraintBottom_toTopOf="@+id/buttonAcordes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

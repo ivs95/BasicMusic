@@ -8,12 +8,14 @@
 
     <TextView
         android:id="@+id/tituloModosImitar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
-        android:text="Modos de juego"
-        android:textSize="30sp"
+        android:layout_marginTop="150dp"
+        android:text="Tipos de juego"
+        android:gravity="center"
+        android:textAlignment="center"
         android:textColor="@color/md_blue_900"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,35 +23,38 @@
 
     <Button
         android:id="@+id/buttonAcordes"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="50dp"
         android:onClick="modo"
         android:text="acordes"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="80dp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonRealizar" />
 
     <Button
         android:id="@+id/buttonRealizar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="50dp"
         android:onClick="modo"
         android:text="intervalos"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="80dp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonNotas" />
 
     <Button
         android:id="@+id/buttonNotas"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="260dp"
         android:onClick="modo"
         android:text="notas"
+        android:layout_marginHorizontal="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

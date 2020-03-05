@@ -1,6 +1,5 @@
 package com.example.prototipotfg.Singletons;
 
-import com.example.prototipotfg.AdivinarAudio;
 import com.example.prototipotfg.Enumerados.Acordes;
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Intervalos;

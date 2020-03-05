@@ -6,7 +6,8 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:gravity="center"
         android:text="Niveles"
         android:textColor="@color/md_blue_900"
@@ -22,7 +23,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="72dp"
             android:orientation="vertical">
 
         </LinearLayout>
