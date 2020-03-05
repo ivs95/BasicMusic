@@ -92,13 +92,13 @@ public enum Acordes {
         retorno.add(Pair.create(notaInicio, octavaInicio));
         Notas notaActual = notaInicio;
         Octavas octavaActual = octavaInicio;
-        for (int i = 1; i < acorde.numNotas; i++){
-            if (notaActual.getTono() + acorde.getNotas()[i] > 12){
+        for (int i = 0; i < acorde.numNotas; i++){
+            if (notaInicio.getTono() + acorde.getNotas()[i] > 12){
                 octavaActual = Octavas.devuelveSiguienteOctava(octavaActual);
-                notaActual = Notas.devuelveNotaPorTono(notaActual.getTono()+acorde.getNotas()[i]-12);
+                notaActual = Notas.devuelveNotaPorTono(notaInicio.getTono()+acorde.getNotas()[i]-12);
             }
             else{
-                notaActual = Notas.devuelveNotaPorTono(notaActual.getTono()+acorde.getNotas()[i]);
+                notaActual = Notas.devuelveNotaPorTono(notaInicio.getTono()+acorde.getNotas()[i]);
             }
             retorno.add(Pair.create(notaActual, octavaActual));
         }
