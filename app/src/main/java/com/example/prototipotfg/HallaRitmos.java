@@ -67,10 +67,6 @@ public class HallaRitmos extends Activity {
         mediaPlayer.init(this);
 
         final Context contexto = this;
-        cross = (ImageView)findViewById(R.id.cross);
-        tick = (ImageView)findViewById(R.id.tick);
-        cross.setVisibility(View.INVISIBLE);
-        tick.setVisibility(View.INVISIBLE);
 
 
         //Obtenemos el linear layout donde colocar los botones

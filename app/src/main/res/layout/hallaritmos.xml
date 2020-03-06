@@ -27,9 +27,10 @@
         android:text="Pulsa para reproducir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.519" />
+        app:layout_constraintVertical_bias="0.39" />
 
     <Button
         android:id="@+id/stopRitmo"
@@ -46,42 +47,21 @@
         android:id="@+id/botoneraRitmos1"
         android:layout_width="306dp"
         android:layout_height="52dp"
+        android:layout_marginTop="12dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.847"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playRitmo"></LinearLayout>
-
-    <ImageView
-        android:id="@+id/cross"
-        android:layout_width="97dp"
-        android:layout_height="127dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/playRitmo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloHallaRitmo"
-        app:layout_constraintVertical_bias="0.542"
-        app:srcCompat="@drawable/cross"
-        tools:visibility="visible" />
-
-    <ImageView
-        android:id="@+id/tick"
-        android:layout_width="97dp"
-        android:layout_height="94dp"
-        app:layout_constraintBottom_toTopOf="@+id/playRitmo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloHallaRitmo"
-        app:srcCompat="@drawable/tick" />
 
     <LinearLayout
         android:id="@+id/botoneraRitmos2"
         android:layout_width="306dp"
         android:layout_height="52dp"
+        android:layout_marginTop="12dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.847"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botoneraRitmos1"></LinearLayout>
 
@@ -89,20 +69,21 @@
         android:id="@+id/botoneraRitmos3"
         android:layout_width="306dp"
         android:layout_height="52dp"
+        android:layout_marginTop="12dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botoneraRitmos2"></LinearLayout>
 
     <LinearLayout
         android:id="@+id/botoneraRitmos4"
-        android:layout_width="311dp"
+        android:layout_width="306dp"
         android:layout_height="52dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginLeft="46dp"
+        android:layout_marginTop="12dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/stopRitmo"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botoneraRitmos3"
         app:layout_constraintVertical_bias="0.0"></LinearLayout>
