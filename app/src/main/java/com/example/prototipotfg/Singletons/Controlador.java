@@ -164,14 +164,14 @@ public class Controlador {
             case 2:
                 this.num_opciones = 3;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
-                this.dificultad = Dificultad.Facil;
+                this.dificultad = Dificultad.Medio;
                 this.rango = 5;
                 this.intervalos = Intervalos.getIntervalosDeRango(getRango());
                 break;
             case 3:
                 this.num_opciones = 4;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
-                this.dificultad = Dificultad.Facil;
+                this.dificultad = Dificultad.Medio;
                 this.rango = 7;
                 this.intervalos = Intervalos.getIntervalosDeRango(getRango());
                 break;
