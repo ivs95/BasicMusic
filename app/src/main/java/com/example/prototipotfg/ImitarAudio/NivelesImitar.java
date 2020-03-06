@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.Enumerados.RangosVocales;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
@@ -59,7 +60,7 @@ public class NivelesImitar extends Activity {
     public void nivel_seleccionado(View view) throws IOException {
         Intent i = new Intent(this, ReproducirImitar.class);
         int nivel = view.getId();
-        HashMap<String, String> notas = FactoriaNotas.getInstance().getNumNotasAleatorias(1, Instrumentos.Piano, Octavas.devuelveOctavas(getIntent().getStringArrayListExtra("octavas")));
+        HashMap<String, String> notas = FactoriaNotas.getInstance().getNotasRV(RangosVocales.devuelveRVPorNombre(getIntent().getExtras().getString("rangoVocal")),1, Instrumentos.Piano);
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
         ArrayList<String> rutas = new ArrayList<>(notas.values());
 

@@ -74,11 +74,13 @@ public class HallaRitmos extends Activity {
 
 
         //Obtenemos el linear layout donde colocar los botones
-        LinearLayout llBotonera = (LinearLayout) findViewById(R.id.botoneraRitmos);
-
+        LinearLayout llBotonera1 = (LinearLayout) findViewById(R.id.botoneraRitmos1);
+        LinearLayout llBotonera2 = (LinearLayout) findViewById(R.id.botoneraRitmos2);
+        LinearLayout llBotonera3 = (LinearLayout) findViewById(R.id.botoneraRitmos3);
+        LinearLayout llBotonera4 = (LinearLayout) findViewById(R.id.botoneraRitmos4);
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(69, 300);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(200, 200);
 
         //Creamos los botones en bucle
         for (int i=0; i<16; i++){
@@ -86,36 +88,106 @@ public class HallaRitmos extends Activity {
             button.setId(i+1);
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
-
-
-
-            //Asignamose el Listener
+            //Asignamos el Listener
             final int finalI = i;
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (resultado.get((int)button.getId()-1) == 1){
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
-                        }
-                        resultado.set(((int)button.getId()-1),0);
-                        botonesSeleccionados[(int)button.getId()-1] = null;
-                    }
-                    else {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
-                        }
-                        resultado.set(((int)button.getId()-1),1);
-                        botonesSeleccionados[(int)button.getId()-1] = button;
-                    }
-
-                }
-            });
             //Añadimos el botón a la botonera
-            llBotonera.addView(button);
+            if(i < 4) {
 
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (resultado.get((int) button.getId() - 1) == 1) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+                            }
+                            resultado.set(((int) button.getId() - 1), 0);
+                            botonesSeleccionados[(int) button.getId() - 1] = null;
+                        } else {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+                            }
+                            resultado.set(((int) button.getId() - 1), 1);
+                            botonesSeleccionados[(int) button.getId() - 1] = button;
+                        }
+
+                    }
+                });
+                llBotonera1.addView(button);
+            }
+            else if(i>=4 && i<8) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_300)));
+                }
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (resultado.get((int) button.getId() - 1) == 1) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_300)));
+                            }
+                            resultado.set(((int) button.getId() - 1), 0);
+                            botonesSeleccionados[(int) button.getId() - 1] = null;
+                        } else {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_700)));
+                            }
+                            resultado.set(((int) button.getId() - 1), 1);
+                            botonesSeleccionados[(int) button.getId() - 1] = button;
+                        }
+
+                    }
+                });
+                llBotonera2.addView(button);
+            }
+            else if(i>=8 && i<12) {
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (resultado.get((int) button.getId() - 1) == 1) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+                            }
+                            resultado.set(((int) button.getId() - 1), 0);
+                            botonesSeleccionados[(int) button.getId() - 1] = null;
+                        } else {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+                            }
+                            resultado.set(((int) button.getId() - 1), 1);
+                            botonesSeleccionados[(int) button.getId() - 1] = button;
+                        }
+
+                    }
+                });
+                llBotonera3.addView(button);
+            }
+            else if(i>=12 && i<16) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_300)));
+                }
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (resultado.get((int) button.getId() - 1) == 1) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_300)));
+                            }
+                            resultado.set(((int) button.getId() - 1), 0);
+                            botonesSeleccionados[(int) button.getId() - 1] = null;
+                        } else {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_700)));
+                            }
+                            resultado.set(((int) button.getId() - 1), 1);
+                            botonesSeleccionados[(int) button.getId() - 1] = button;
+                        }
+
+                    }
+                });
+                llBotonera4.addView(button);
+            }
             //Aprovecho el bucle para rellenar el array
-                resultado.add(0);
+            resultado.add(0);
         }
 
 

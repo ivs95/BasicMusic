@@ -5,6 +5,7 @@ import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.Enumerados.RangosVocales;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -145,5 +146,26 @@ public class FactoriaNotas {
         retorno.add(nota);
         return retorno;
 
+    }
+
+    public HashMap<String,String> getNotasRV(RangosVocales rv, int n, Instrumentos instrumento){
+        HashMap<String,String> resul = new HashMap<String,String>();
+        Random r = new Random();
+        int añadidas = 0;
+        while(añadidas < n) {
+            Octavas octava = Octavas.devuelveOctavaPorNumero(r.nextInt(rv.getOctavaFin() - rv.getOctavaIni() + 1) + rv.getOctavaIni());
+            if (octava.getOctava() == rv.getOctavaFin()) {
+                Notas nota = Notas.devuelveNotaPorTono(r.nextInt(rv.getTonoFin()-1+1)+1);
+                resul.put(nota.getNombre()+octava.getOctava(),instrumento.getPath()+octava.getPath()+nota.getPath());
+            } else if (octava.getOctava() == rv.getOctavaIni()) {
+                Notas nota = Notas.devuelveNotaPorTono(r.nextInt(12-rv.getTonoIni()+1)+rv.getTonoIni());
+                resul.put(nota.getNombre()+octava.getOctava(),instrumento.getPath()+octava.getPath()+nota.getPath());
+            } else {
+                Notas nota = Notas.devuelveNotaPorTono(r.nextInt(12-1+1)+1);
+                resul.put(nota.getNombre()+octava.getOctava(),instrumento.getPath()+octava.getPath()+nota.getPath());
+            }
+            añadidas++;
+        }
+        return resul;
     }
 }
