@@ -42,10 +42,14 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_adivinar_intervalo);
         ponerComprobarVisible(GONE);
+
+
+        ArrayList<Notas> notas = FactoriaNotas.getInstance().getNotasIntervalo(Controlador.getInstance().getOctavas(), Controlador.getInstance().getRango());
+
         nombres = getIntent().getExtras().getStringArrayList("nombres");
 
-        int tono1 = getTonoNota(nombres.get(0));
-        int tono2 = getTonoNota(nombres.get(1));
+        int tono1 = notas.get(0).getTono();
+        int tono2 = notas.get(1).getTono();
         Intervalos intervalo = getIntervaloConDif((tono2-tono1));
         this.intervalo_correcto = intervalo.getNombre();
         int posicion_intervalo = intervalo.getNumero();
@@ -59,29 +63,28 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
         lp.setMargins(0,0,0,50);
         Random rand = new Random();
-
         int num_respuestas = Controlador.getInstance().getNum_opciones();
         int random1 = 0;
         if (Controlador.getInstance().getDificultad().equals(Dificultad.Facil)){
-            random1 = rand.nextInt(12+12) -12;
+            random1 = rand.nextInt(Controlador.getInstance().getRango()+Controlador.getInstance().getRango()) - Controlador.getInstance().getRango();
         }
         else {
-            random1 = rand.nextInt(12) + 1;
+            random1 = rand.nextInt(Controlador.getInstance().getRango()) + 1;
             if (posicion_intervalo < 0) {
                 random1 = -random1;
             }
         }
-        ArrayList <Integer> aux = new ArrayList<Integer>();
+        ArrayList <Integer> aux = new ArrayList<>();
         aux.add(posicion_intervalo);
 
 
         for(int i = 0; i < num_respuestas-1; i++) {
             while (aux.contains(random1) || random1 == 0){
                 if (Controlador.getInstance().getDificultad().equals(Dificultad.Facil)){
-                    random1 = rand.nextInt(12+12) -12;
+                    random1 = rand.nextInt(Controlador.getInstance().getRango()+Controlador.getInstance().getRango()) - Controlador.getInstance().getRango();
                 }
                 else {
-                    random1 = rand.nextInt(12) + 1;
+                    random1 = rand.nextInt(Controlador.getInstance().getRango()) + 1;
                     if (posicion_intervalo < 0) {
                         random1 = -random1;
                     }

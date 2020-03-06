@@ -6,6 +6,7 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -61,15 +62,11 @@ public class FactoriaNotas {
         HashMap<String,String> rutasFicherosAudio = new HashMap<>();
         Octavas octava = devuelveOctavaAleatoria(octavas);
         Notas nota = devuelveNotaAleatoria(Notas.values() ,0, 0, false);
-
         int tonoNotaAnt = getTonoNota(nota.getNombre());
-
-        String ruta = rutaInstrumento+octava.getPath()+nota.getPath();
+        String ruta = rutaInstrumento + octava.getPath() + nota.getPath();
         rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), ruta);
-        System.out.println(ruta);
         for (int i = 1 ; i < numeroNotas; i++){
             while (rutasFicherosAudio.containsKey(nota.getNombre()+octava.getOctava())){
-                octava = devuelveOctavaAleatoria(octavas);
                 if(nota == Notas.SI) nota = devuelveNotaAleatoria(Notas.values(), i, tonoNotaAnt, true);
                 else nota = devuelveNotaAleatoria(Notas.values(), i, tonoNotaAnt, false);
                 tonoNotaAnt = getTonoNota(nota.getNombre());
@@ -98,7 +95,6 @@ public class FactoriaNotas {
 
         String ruta = rutaInstrumento+octava.getPath()+nota.getPath();
         rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), ruta);
-        System.out.println(ruta);
         for (int i = 1 ; i < numeroNotas; i++){
             while (rutasFicherosAudio.containsKey(nota.getNombre()+octava.getOctava())){
                 nota = devuelveNotaAleatoria(Notas.values(), i, tonoNotaAnt, false);
@@ -121,7 +117,6 @@ public class FactoriaNotas {
         return octavas.get(random.nextInt(octavas.size()));
     }
 
-
     private int getTonoNota(String name){
         boolean OK = false;
         int i = 0;
@@ -137,5 +132,18 @@ public class FactoriaNotas {
 
     public Notas getNotaInicioIntervalo(Instrumentos piano, Octavas octavaInicio) {
         return Notas.values()[new Random().nextInt(Notas.values().length)];
+    }
+
+    public ArrayList<Notas> getNotasIntervalo(ArrayList<Octavas> octavas, int rango) {
+        ArrayList<Notas> retorno = new ArrayList<>();
+        Octavas o = devuelveOctavaAleatoria(octavas);
+        Notas nota = getNotaInicioIntervalo(getInstrumento(), o);
+        retorno.add(nota);
+        while (retorno.contains(nota) || Math.abs(nota.getTono()-retorno.get(0).getTono())>rango){
+            nota = getNotaInicioIntervalo(getInstrumento(),o);
+        }
+        retorno.add(nota);
+        return retorno;
+
     }
 }

@@ -54,15 +54,11 @@ public class SeleccionarNivelAdivinarAcordes extends Activity {
         Intent i = new Intent(this, ReproducirAdivinarAcordes.class);
         Controlador.getInstance().setNivel(view.getId());
         Controlador.getInstance().estableceDificultad();
-        ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
-
-
         /*
          * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
          * Crear clase para seleccionar notas aleatorias
          * Claves: respuesta, fallo1,...,falloN
          * */
-
         startActivity(i);
     }
 }

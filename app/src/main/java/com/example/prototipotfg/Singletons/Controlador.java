@@ -159,49 +159,49 @@ public class Controlador {
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Cuarta, Octavas.Quinta)));
                 this.dificultad = Dificultad.Facil;
                 this.rango = 3;
-                this.intervalos = Intervalos.getIntervalosDeRango(3);
+                this.intervalos = Intervalos.getIntervalosDeRango(getRango());
                 break;
             case 2:
                 this.num_opciones = 3;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Facil;
                 this.rango = 5;
-                this.intervalos = Intervalos.getIntervalosDeRango(5);
+                this.intervalos = Intervalos.getIntervalosDeRango(getRango());
                 break;
             case 3:
                 this.num_opciones = 4;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Facil;
                 this.rango = 7;
-                this.intervalos = Intervalos.getIntervalosDeRango(7);
+                this.intervalos = Intervalos.getIntervalosDeRango(getRango());
                 break;
             case 4:
                 this.num_opciones = 4;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Medio;
                 this.rango = 7;
-                this.intervalos = Intervalos.getIntervalosDeRango(7);
+                this.intervalos = Intervalos.getIntervalosDeRango(getRango());
                 break;
             case 5:
                 this.num_opciones = 4;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Medio;
                 this.rango = 8;
-                this.intervalos = Intervalos.getIntervalosDeRango(9);
+                this.intervalos = Intervalos.getIntervalosDeRango(getRango());
                 break;
             case 6:
                 this.num_opciones = 5;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
                 this.dificultad = Dificultad.Medio;
                 this.rango = 11;
-                this.intervalos = Intervalos.getIntervalosDeRango(11);
+                this.intervalos = Intervalos.getIntervalosDeRango(getRango());
                 break;
             case 7:
                 this.num_opciones = 5;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
                 this.dificultad = Dificultad.Medio;
                 this.rango = 12;
-                this.intervalos = Intervalos.getIntervalosDeRango(12);
+                this.intervalos = Intervalos.getIntervalosDeRango(getRango());
                 break;
             default:
                 break;

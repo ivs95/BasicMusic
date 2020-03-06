@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
 import java.util.ArrayList;
@@ -55,31 +56,9 @@ public class NivelesAdivinarIntervalos extends Activity {
 
     public void nivel_seleccionado(View view) {
         Intent i = new Intent(this, SeleccionarAdivinarIntervalo.class);
-        Random random = new Random();
-
         //Nivel que se ha seleccionado
-        int nivel = view.getId();
-        ArrayList<Octavas> octavas = Octavas.devuelveOctavas(getIntent().getExtras().getStringArrayList("octavas"));
-        HashMap<String, String> notas = null;
-
-            ArrayList<Octavas> octavas_intervalos = new ArrayList<Octavas>();
-            octavas_intervalos.add(octavas.get(random.nextInt(octavas.size())));
-            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(view.getId(), Instrumentos.Piano, octavas_intervalos);
-
-
-
-        /*
-         * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
-         * Crear clase para seleccionar notas aleatorias
-         * Claves: respuesta, fallo1,...,falloN
-         * */
-        ArrayList<String> nombres = new ArrayList<>(notas.keySet());
-        ArrayList<String> rutas = new ArrayList<>(notas.values());
-
-        i.putExtra("nivel", nivel);
-        i.putStringArrayListExtra("nombres", nombres);
-        i.putStringArrayListExtra("rutas", rutas);
-
+        Controlador.getInstance().setNivel(view.getId());
+        Controlador.getInstance().estableceDificultad();
         startActivity(i);
     }
 
