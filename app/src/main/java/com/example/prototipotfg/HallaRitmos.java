@@ -92,15 +92,15 @@ public class HallaRitmos extends Activity {
                     @Override
                     public void onClick(View v) {
                         if (resultado.get((int) button.getId() - 1) == 1) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
-                            }
+
+                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+
                             resultado.set(((int) button.getId() - 1), 0);
                             botonesSeleccionados[(int) button.getId() - 1] = null;
                         } else {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
-                            }
+
+                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+
                             resultado.set(((int) button.getId() - 1), 1);
                             botonesSeleccionados[(int) button.getId() - 1] = button;
                         }
@@ -110,22 +110,22 @@ public class HallaRitmos extends Activity {
                 llBotonera1.addView(button);
             }
             else if(i>=4 && i<8) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
                     button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_300)));
-                }
+
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (resultado.get((int) button.getId() - 1) == 1) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_300)));
-                            }
+
+                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_300)));
+
                             resultado.set(((int) button.getId() - 1), 0);
                             botonesSeleccionados[(int) button.getId() - 1] = null;
                         } else {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_700)));
-                            }
+
+                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_700)));
+
                             resultado.set(((int) button.getId() - 1), 1);
                             botonesSeleccionados[(int) button.getId() - 1] = button;
                         }
@@ -139,15 +139,11 @@ public class HallaRitmos extends Activity {
                     @Override
                     public void onClick(View v) {
                         if (resultado.get((int) button.getId() - 1) == 1) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
-                            }
+                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
                             resultado.set(((int) button.getId() - 1), 0);
                             botonesSeleccionados[(int) button.getId() - 1] = null;
                         } else {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
-                            }
+                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
                             resultado.set(((int) button.getId() - 1), 1);
                             botonesSeleccionados[(int) button.getId() - 1] = button;
                         }
@@ -157,22 +153,16 @@ public class HallaRitmos extends Activity {
                 llBotonera3.addView(button);
             }
             else if(i>=12 && i<16) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_300)));
-                }
+                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_300)));
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (resultado.get((int) button.getId() - 1) == 1) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_300)));
-                            }
+                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_300)));
                             resultado.set(((int) button.getId() - 1), 0);
                             botonesSeleccionados[(int) button.getId() - 1] = null;
                         } else {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_700)));
-                            }
+                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_purple_700)));
                             resultado.set(((int) button.getId() - 1), 1);
                             botonesSeleccionados[(int) button.getId() - 1] = button;
                         }
@@ -246,9 +236,7 @@ public class HallaRitmos extends Activity {
             //Correct
             for(int i = 0; i<16; i++){
                 if(botonesSeleccionados[i]!=null){
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        botonesSeleccionados[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
-                    }
+                    botonesSeleccionados[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
             }
 
@@ -257,9 +245,7 @@ public class HallaRitmos extends Activity {
             //Incorrect
             for(int i = 0; i<16; i++){
                 if(botonesSeleccionados[i]!=null){
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        botonesSeleccionados[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-                    }
+                    botonesSeleccionados[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
             }
 
