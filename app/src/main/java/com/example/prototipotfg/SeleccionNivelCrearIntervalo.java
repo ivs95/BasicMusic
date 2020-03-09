@@ -11,6 +11,7 @@ import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Intervalos.Crear.ReproducirAdivinarCrearIntervalo;
+import com.example.prototipotfg.Intervalos.Crear.SeleccionarAdivinarCrearIntervalo;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
@@ -56,7 +57,7 @@ public class SeleccionNivelCrearIntervalo extends Activity {
     }
 
     public void nivel_seleccionado(View view) {
-        Intent i = new Intent(this, ReproducirAdivinarCrearIntervalo.class);
+        Intent i = new Intent(this, SeleccionarAdivinarCrearIntervalo.class);
         Random random = new Random();
         Controlador.getInstance().setNivel(view.getId());
         Controlador.getInstance().estableceDificultad();
