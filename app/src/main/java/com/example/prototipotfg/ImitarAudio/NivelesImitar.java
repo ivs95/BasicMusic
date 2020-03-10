@@ -33,13 +33,18 @@ public class NivelesImitar extends Activity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
 
         //Creamos los botones en bucle
-        for (int i=0; i<15; i++){
+        for (int i=0; i<3; i++){
             Button button = new Button(this);
             button.setId(i+1);
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            button.setText("Nivel "+String.format("%02d", i+1 ));
+            if(i==0)
+                button.setText("Facil");
+            if(i==1)
+                button.setText("Medio");
+            if(i==2)
+                button.setText("Dificil");
 
             //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {

@@ -54,9 +54,6 @@ public class RealizaRitmos extends Activity {
         TextView titulo = (TextView)findViewById(R.id.tituloImitar);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
 
-        TextView nota = findViewById(R.id.notaImitar);
-        nota.setText(nombres.get(0));
-
         Button repetirNivel = (Button)findViewById(R.id.botonRepite);
         repetirNivel.setEnabled(false);
         repetirNivel.setVisibility(View.INVISIBLE);
@@ -129,14 +126,11 @@ public class RealizaRitmos extends Activity {
     }
 
     public void comparar(View view){
-        TextView respuesta = (TextView)findViewById(R.id.respuesta);
         System.out.println(resNota.getNota().getNombre()+(resNota.getOctava()-1));
         System.out.println(nombres.get(0));
         if((resNota.getNota().getNombre() + (resNota.getOctava())).equals(nombres.get(0))){
-            respuesta.setText("Respuesta Correcta");
         }
         else{
-            respuesta.setText("Respuesta Incorrecta");
         }
     }
 

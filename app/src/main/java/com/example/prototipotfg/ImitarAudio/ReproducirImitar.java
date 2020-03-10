@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
+import android.content.res.ColorStateList;
 import android.media.MediaPlayer;
 import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AutomaticGainControl;
@@ -25,6 +26,7 @@ import com.example.prototipotfg.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import be.tarsos.dsp.AudioDispatcher;
 import be.tarsos.dsp.AudioEvent;
@@ -39,24 +41,23 @@ public class ReproducirImitar extends Activity {
 
     private AudioDispatcher dispatcher;
     private ArrayList<NotasImitar> lista = new ArrayList<NotasImitar>();
+    private ArrayList<Float> porcentajes = new ArrayList<>();
     private NotasImitar resNota;
+    private Float resPorcentaje;
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
+    private int nivel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_reproducir_imitar);
-
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
 
-        int nivel = getIntent().getExtras().getInt("nivel");
+        nivel = getIntent().getExtras().getInt("nivel");
         TextView titulo = (TextView)findViewById(R.id.tituloImitar);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
-
-        TextView nota = findViewById(R.id.notaImitar);
-        nota.setText(nombres.get(0));
 
         Button repetirNivel = (Button)findViewById(R.id.botonRepite);
         repetirNivel.setEnabled(false);
@@ -130,14 +131,13 @@ public class ReproducirImitar extends Activity {
     }
 
     public void comparar(View view){
-        TextView respuesta = (TextView)findViewById(R.id.respuesta);
-        System.out.println(resNota.getNota().getNombre()+(resNota.getOctava()-1));
-        System.out.println(nombres.get(0));
         if((resNota.getNota().getNombre() + (resNota.getOctava())).equals(nombres.get(0))){
-            respuesta.setText("Respuesta Correcta");
+            view = this.getWindow().getDecorView();
+            view.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
         }
         else{
-            respuesta.setText("Respuesta Incorrecta");
+            view = this.getWindow().getDecorView();
+            view.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
         }
     }
 
@@ -174,15 +174,34 @@ public class ReproducirImitar extends Activity {
 
     private boolean compruebaSiEsNota(float hz, Notas n, ArrayList<NotasImitar> lista, int octava) {
         if (hz >= n.getMinimaFrecuencia() && hz <= n.getMaximaFrecuencia()) {
-
-            if (lista.contains(new NotasImitar(n, octava))) {
-                    lista.set(lista.indexOf(new NotasImitar(n, octava)), new NotasImitar(n, octava, lista.indexOf(new NotasImitar(n, octava).getContador() + 1)));
-            } else {
-                    lista.add(new NotasImitar(n, octava, 1));
+            NotasImitar nota = new NotasImitar(n, octava);
+            Boolean contiene = false;
+            Comparator<NotasImitar> comparador = new Comparator<NotasImitar>() {
+                @Override
+                public int compare(NotasImitar o1, NotasImitar o2) {
+                    int resul = 0;
+                    if (o1.getNota() == o2.getNota() && o1.getOctava() == o2.getOctava()) {
+                        resul = 1;
+                    }
+                    return resul;
+                }
+            };
+            for (int i = 0; i < lista.size(); i++) {
+                if (comparador.compare(nota, lista.get(i)) == 1) {
+                    nota=lista.get(i);
+                    lista.set(i, new NotasImitar(n, octava, nota.getContador() + 1));
+                    porcentajes.set(i, porcentajes.get(i) + hz);
+                    contiene = true;
+                }
+            }
+            if (!contiene) {
+                lista.add(new NotasImitar(n, octava, 1));
+                porcentajes.add(hz);
             }
             return true;
         }
-        return false;
+        else
+            return false;
     }
 
     public void Grabar(View view) {
@@ -216,30 +235,61 @@ public class ReproducirImitar extends Activity {
                         dispatch_Thread.interrupt();
 
                         //Recorre el ArrayList "lista" para guardar en resNota la nota que mas se repite
-                        resNota = lista.get(0);
-                        for (int i = 1; i<lista.size(); i++) {
-                            if(lista.get(i).getContador() > resNota.getContador()){
-                                resNota = lista.get(i);
+
+                        if(lista.size()>0) {
+                            resNota = lista.get(0);
+                            resPorcentaje = porcentajes.get(0)/resNota.getContador();
+                            resPorcentaje = resPorcentaje*100/(float)resNota.getNota().getFrecuencia();
+                            if(resPorcentaje > 100) {
+                                resPorcentaje = 100 - (resPorcentaje - 100);
                             }
+                            for (int i = 1; i < lista.size(); i++) {
+                                if (lista.get(i).getContador() > resNota.getContador()) {
+                                    resNota = lista.get(i);
+                                    resPorcentaje = porcentajes.get(i)/resNota.getContador();
+                                    resPorcentaje = resPorcentaje*100/(float)resNota.getNota().getFrecuencia();
+                                    if(resPorcentaje > 100) {
+                                        resPorcentaje = 100 - (resPorcentaje - 100);
+                                    }
+                                }
+                            }
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    TextView text2 = findViewById(R.id.textoFrecuencia);
+                                    text2.setText("Resultado: " + resNota.getNota().getNombre() + (resNota.getOctava()) + "   " + resPorcentaje+"%");
+
+                                    Button repetirNivel = (Button) findViewById(R.id.botonRepite);
+                                    repetirNivel.setVisibility(View.VISIBLE);
+                                    repetirNivel.setEnabled(true);
+
+                                    Button comparar = (Button) findViewById(R.id.button4);
+                                    comparar.setEnabled(true);
+                                    comparar.setVisibility(View.VISIBLE);
+
+                                }
+
+                            });
                         }
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                        else{
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
 
-                                TextView text2 = findViewById(R.id.textoFrecuencia);
-                                text2.setText("Resultado: " + resNota.getNota().getNombre() + (resNota.getOctava()));
+                                    TextView text2 = findViewById(R.id.textoFrecuencia);
+                                    text2.setText("No se ha detectado ningún audio.   Por favor repita el nivel");
 
-                                Button repetirNivel = (Button)findViewById(R.id.botonRepite);
-                                repetirNivel.setVisibility(View.VISIBLE);
-                                repetirNivel.setEnabled(true);
+                                    Button repetirNivel = (Button) findViewById(R.id.botonRepite);
+                                    repetirNivel.setVisibility(View.VISIBLE);
+                                    repetirNivel.setEnabled(true);
 
-                                Button comparar = (Button)findViewById(R.id.button4);
-                                comparar.setEnabled(true);
-                                comparar.setVisibility(View.VISIBLE);
 
-                            }
+                                }
 
-                        });
+                            });
+                        }
 
 
                         return;
