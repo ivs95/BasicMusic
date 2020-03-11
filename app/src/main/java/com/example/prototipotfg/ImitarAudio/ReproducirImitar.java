@@ -279,7 +279,7 @@ public class ReproducirImitar extends Activity {
                                 public void run() {
 
                                     TextView text2 = findViewById(R.id.textoFrecuencia);
-                                    text2.setText("No se ha detectado ningún audio.   Por favor repita el nivel");
+                                    text2.setText("No se ha detectado ningún audio. \n Por favor repita el nivel");
 
                                     Button repetirNivel = (Button) findViewById(R.id.botonRepite);
                                     repetirNivel.setVisibility(View.VISIBLE);
