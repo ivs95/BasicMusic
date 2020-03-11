@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Octavas;
@@ -24,14 +25,14 @@ public class NivelesImitar extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
-
+        TextView titulo = findViewById(R.id.textView);
+        titulo.setPadding(0,200,0,0);
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
-
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
-
+        lp.setMargins(150, 0, 150, 40);
         //Creamos los botones en bucle
         for (int i=0; i<3; i++){
             Button button = new Button(this);
@@ -41,11 +42,10 @@ public class NivelesImitar extends Activity {
             //Asignamos Texto al botón
             if(i==0)
                 button.setText("Facil");
-            if(i==1)
+            else if(i==1)
                 button.setText("Medio");
-            if(i==2)
+            else
                 button.setText("Dificil");
-
             //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
