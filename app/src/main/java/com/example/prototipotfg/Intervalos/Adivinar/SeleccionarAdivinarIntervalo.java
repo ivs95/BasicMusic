@@ -6,6 +6,7 @@ import android.content.res.ColorStateList;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -34,6 +35,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
     private View respuestaCorrecta;
     private ArrayList<String> nombres = new ArrayList<>();
     private String respuesta;
+    private ArrayList<Pair<Notas,Octavas>> notasIntervalo = new ArrayList<>();
     private String intervalo_correcto;
     private boolean comprobada = false;
 
@@ -44,17 +46,14 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         ponerComprobarVisible(GONE);
 
 
-        ArrayList<Notas> notas = FactoriaNotas.getInstance().getNotasIntervalo(Controlador.getInstance().getOctavas(), Controlador.getInstance().getRango());
-
-        nombres = getIntent().getExtras().getStringArrayList("nombres");
-
-        int tono1 = notas.get(0).getTono();
-        int tono2 = notas.get(1).getTono();
+        notasIntervalo = FactoriaNotas.getInstance().getNotasIntervalo(Controlador.getInstance().getOctavas(), Controlador.getInstance().getRango());
+        int tono1 = notasIntervalo.get(0).first.getTono();
+        int tono2 = notasIntervalo.get(1).first.getTono();
         Intervalos intervalo = getIntervaloConDif((tono2-tono1));
         this.intervalo_correcto = intervalo.getNombre();
         int posicion_intervalo = intervalo.getNumero();
         //inicializacion de botones
-        FactoriaNotas.getInstance().setReferencia(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
+        FactoriaNotas.getInstance().setReferencia(notasIntervalo.get(0).second);
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout opciones = (LinearLayout) findViewById(R.id.opciones);
 
@@ -123,21 +122,16 @@ public class SeleccionarAdivinarIntervalo extends Activity {
     }
 
     public void reproduceIntervaloRespuesta(View view) throws IOException, InterruptedException {
-        reproduceNota(nombres.get(0));
+        reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(0).second.getPath()+notasIntervalo.get(0).first.getPath());
         sleep(700);
-        reproduceNota(nombres.get(1));
+        reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(1).second.getPath()+notasIntervalo.get(1).first.getPath());
 
     }
 
-    private String devuelveRutaNota(String nombreNota) {
-        Notas n = Notas.devuelveNotaPorNombre(nombreNota.substring(0, nombreNota.length()-1));
-        Octavas o = Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombreNota.substring(nombreNota.length()-1)));
-        return FactoriaNotas.getInstance().getInstrumento().getPath()+o.getPath()+n.getPath();
-    }
 
     public void reproduceNota(String ruta) throws IOException {
         MediaPlayer mediaPlayer =  new MediaPlayer();
-        AssetFileDescriptor afd = getAssets().openFd(devuelveRutaNota(ruta));
+        AssetFileDescriptor afd = getAssets().openFd(ruta);
         mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
         mediaPlayer.prepare();
         mediaPlayer.start();
@@ -192,12 +186,11 @@ public class SeleccionarAdivinarIntervalo extends Activity {
     public Intervalos getIntervaloConDif(int dif){
         boolean OK = false;
         int i = 0;
-        Intervalos[] intervalos_lista = new Intervalos[24];
-        intervalos_lista = Intervalos.values();
+        Intervalos[] intervalos_lista = Intervalos.values();
         while(i < 24 && !OK){
-            if(intervalos_lista[i].getDiferencia() == dif) OK = true;
+            if(intervalos_lista[i].getDiferencia() == dif)
+                OK = true;
             i++;
-
         }
 
         return intervalos_lista[i-1];

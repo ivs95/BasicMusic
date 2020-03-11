@@ -1,6 +1,8 @@
 package com.example.prototipotfg.Singletons;
 
 
+import android.util.Pair;
+
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
@@ -18,7 +20,7 @@ public class FactoriaNotas {
 
     private static final FactoriaNotas ourInstance = new FactoriaNotas();
     private Random random = new Random();
-    private Instrumentos instrumento;
+    private Instrumentos instrumento = Instrumentos.Piano;
     private String rutaReferencia;
 
 
@@ -135,15 +137,15 @@ public class FactoriaNotas {
         return Notas.values()[new Random().nextInt(Notas.values().length)];
     }
 
-    public ArrayList<Notas> getNotasIntervalo(ArrayList<Octavas> octavas, int rango) {
-        ArrayList<Notas> retorno = new ArrayList<>();
+    public ArrayList<Pair<Notas,Octavas>> getNotasIntervalo(ArrayList<Octavas> octavas, int rango) {
+        ArrayList<Pair<Notas,Octavas>> retorno = new ArrayList<>();
         Octavas o = devuelveOctavaAleatoria(octavas);
-        Notas nota = getNotaInicioIntervalo(getInstrumento(), o);
-        retorno.add(nota);
-        while (retorno.contains(nota) || Math.abs(nota.getTono()-retorno.get(0).getTono())>rango){
-            nota = getNotaInicioIntervalo(getInstrumento(),o);
+        Pair<Notas,Octavas> par = new Pair(getNotaInicioIntervalo(getInstrumento(), o),o);
+        retorno.add(par);
+        while (retorno.contains(par) || Math.abs(par.first.getTono()-retorno.get(0).first.getTono())>rango){
+            par = new Pair(getNotaInicioIntervalo(getInstrumento(), o),o);
         }
-        retorno.add(nota);
+        retorno.add(par);
         return retorno;
 
     }

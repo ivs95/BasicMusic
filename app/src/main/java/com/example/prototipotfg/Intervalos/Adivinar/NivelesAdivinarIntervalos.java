@@ -36,7 +36,7 @@ public class NivelesAdivinarIntervalos extends Activity {
         //Creamos los botones en bucle
         for (int i=1; i<6; i++){
             Button button = new Button(this);
-            button.setId(i+1);
+            button.setId(i);
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
