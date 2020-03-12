@@ -91,9 +91,18 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
         int num_respuestas = Controlador.getInstance().getNum_opciones();
         ArrayList <Integer> aux = new ArrayList<Integer>();
-        for(int i = 0; i < num_respuestas; i++) {
+        for(int i = 1; i <= num_respuestas; i++) {
             aux.add(i);
         }
+
+        /*
+        int random1 = rand.nextInt(num_respuestas);
+        while (aux.contains(random1))
+            random1 = rand.nextInt(num_respuestas);
+
+        aux.add(random1);
+        */
+
         Collections.shuffle(aux);
 
 

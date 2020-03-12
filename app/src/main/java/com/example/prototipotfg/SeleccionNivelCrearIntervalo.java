@@ -69,7 +69,7 @@ public class SeleccionNivelCrearIntervalo extends Activity {
         HashMap<String, String> notas = null;
 
             Octavas octava_intervalos = octavas.get(random.nextInt(octavas.size()));
-            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones(), Instrumentos.Piano, octava_intervalos);
+            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones()+1, Instrumentos.Piano, octava_intervalos);
 
 
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
