@@ -62,7 +62,7 @@ public class ReproducirAdivinarAcordes extends Activity {
             lblNotaInicio.setVisibility(GONE);
             lblOctavaInicio.setVisibility(GONE);
 
-            Button botonTutorial = findViewById(R.id.botonInfo);
+            Button botonTutorial = findViewById(R.id.button_info_adivinarAcorde);
             botonTutorial.setVisibility(GONE);
 
             Button botonReferencia = findViewById(R.id.btnAcordeReferencia);

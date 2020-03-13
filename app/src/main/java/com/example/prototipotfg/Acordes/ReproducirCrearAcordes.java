@@ -43,8 +43,12 @@ public class ReproducirCrearAcordes extends Activity {
     private View botonSeleccionado;
     private View respuestaCorrecta;
     private int numOpciones;
+    private int num_notas;
     private boolean comprobada = false;
+    private int num_marcadas = 0;
+    private ArrayList<String> respuestas = new ArrayList<String>();
     private Octavas octavaInicio;
+    private View botonesSeleccionados[];
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +56,14 @@ public class ReproducirCrearAcordes extends Activity {
         ponerComprobarVisible(View.GONE);
 
         this.numOpciones = Controlador.getInstance().getNum_opciones();
+        this.num_notas = numOpciones + 3;
         this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()-1));
-        this.acordesPosibles = seleccionaAcordesAleatorios(numOpciones, Controlador.getInstance().getAcordes());
+        this.acordesPosibles = seleccionaAcordesAleatorios(Controlador.getInstance().getAcordes());
         this.notaInicio = FactoriaNotas.getInstance().getNotaInicioIntervalo(Instrumentos.Piano, octavaInicio);
         this.acordeCorrecto = acordesPosibles.get(0);
         this.acordeCorrectoReproducir = Acordes.devuelveNotasAcorde(acordeCorrecto,octavaInicio,notaInicio);
-        this.notasPosibles = seleccionaNotasAleatorios(numOpciones, acordeCorrectoReproducir);
+        this.notasPosibles = seleccionaNotasAleatorios(acordeCorrectoReproducir);
+        this.botonesSeleccionados = new View[num_notas];
 
         TextView lblNotaInicio = findViewById(R.id.notaInicioCrearAcorde);
         TextView peticionAcorde = findViewById(R.id.lblPeticionCrearAcorde);
@@ -67,18 +73,18 @@ public class ReproducirCrearAcordes extends Activity {
         lblNotaInicio.setText(lblNotaInicio.getText() + acordeCorrectoReproducir.get(0).first.getNombre() + acordeCorrectoReproducir.get(0).second.getOctava());
         peticionAcorde.setText(peticionAcorde.getText() + acordeCorrecto.getNombre());
 
-        Collections.shuffle(acordesPosibles);
+        Collections.shuffle(notasPosibles);
 
         Random rand = new Random();
         ArrayList <Integer> aux = new ArrayList<Integer>();
-        for(int i = 0; i < numOpciones; i++) {
+        for(int i = 0; i < num_notas; i++) {
             aux.add(i);
         }
 
 
         LinearLayout opciones = findViewById(R.id.opcionesCrearAcordes);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        for (int i = 0; i < numOpciones; i++) {
+        for (int i = 0; i < num_notas; i++) {
             Button button = new Button(this);
             button.setId(i + 1);
             //Asignamos propiedades de layout al boton
@@ -108,18 +114,26 @@ public class ReproducirCrearAcordes extends Activity {
 
         if (!comprobada) {
             Button b = (Button) view;
-            if (botonSeleccionado != null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_blue_300)));
-                }
+            if (botonesSeleccionados[(int) b.getId() - 1] != null) {
+
+                b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_blue_300)));
+
+                botonesSeleccionados[(int) b.getId() - 1] = null;
+                num_marcadas--;
+                ponerComprobarVisible(GONE);
+                respuestas.remove(b.getText().toString());
+            } else if(num_marcadas < 3){
+
+                b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_blue_700)));
+                botonesSeleccionados[(int) b.getId() - 1] = b;
+                respuestas.add(b.getText().toString());
+                num_marcadas++;
             }
+
             botonSeleccionado = b;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_blue_700)));
-            }
-            String respuesta = b.getText().toString();
+
             if (!Controlador.getInstance().getDificultad().equals(Dificultad.Dificil)) {
-                String ruta = devuelveRutaBoton(respuesta);
+                String ruta = devuelveRutaBoton(b.getText().toString());
                 MediaPlayer mediaPlayer = new MediaPlayer();
                 try {
                     AssetFileDescriptor afd = getAssets().openFd(ruta);
@@ -132,7 +146,8 @@ public class ReproducirCrearAcordes extends Activity {
             }
 
         }
-        ponerComprobarVisible(1);
+        if(num_marcadas == 3)
+            ponerComprobarVisible(1);
     }
 
     private String devuelveRutaBoton(String text) {
@@ -146,11 +161,11 @@ public class ReproducirCrearAcordes extends Activity {
 
     }
 
-    private ArrayList<Acordes> seleccionaAcordesAleatorios(int numOpciones, ArrayList<Acordes> acordes) {
+    private ArrayList<Acordes> seleccionaAcordesAleatorios(ArrayList<Acordes> acordes) {
         ArrayList<Acordes> retorno = new ArrayList<>();
         Random random = new Random();
         Acordes acorde;
-        for (int i = 0; i < numOpciones; i++) {
+        for (int i = 0; i < this.numOpciones; i++) {
             acorde = acordes.get(random.nextInt(acordes.size()));
             while (retorno.contains(acorde)) {
                 acorde = acordes.get(random.nextInt(acordes.size()));
@@ -160,7 +175,7 @@ public class ReproducirCrearAcordes extends Activity {
         return retorno;
     }
 
-    private ArrayList<String> seleccionaNotasAleatorios(int numOpciones, ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir) {
+    private ArrayList<String> seleccionaNotasAleatorios(ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir) {
         Notas[] notas = new Notas[12];
         notas = Notas.values();
         ArrayList<String> retorno = new ArrayList<>();
@@ -179,7 +194,7 @@ public class ReproducirCrearAcordes extends Activity {
 
         retorno.remove(0);
         i--;
-        for (i = i; i < numOpciones; i++) {
+        for (i = i; i < num_notas; i++) {
             nota = notas[random.nextInt(12)].getNombre();
             while (retorno.contains(nota)) {
                 nota = notas[random.nextInt(12)].getNombre();
@@ -192,14 +207,25 @@ public class ReproducirCrearAcordes extends Activity {
     public void comprobarCrearAcordes(View view) {
         if (!comprobada) {
             this.comprobada = true;
-            if (this.botonSeleccionado != this.respuestaCorrecta) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+            if(1 == 1){
+                //Correct
+                for(int i = 0; i<numOpciones; i++){
+                    if(botonesSeleccionados[i]!=null){
+                        botonesSeleccionados[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                    }
                 }
+
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+            else{
+                //Incorrect
+                for(int i = 0; i<numOpciones; i++){
+                    if(botonesSeleccionados[i]!=null){
+                        botonesSeleccionados[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                    }
+                }
+
             }
+
         }
         ponerComprobarVisible(GONE);
     }
