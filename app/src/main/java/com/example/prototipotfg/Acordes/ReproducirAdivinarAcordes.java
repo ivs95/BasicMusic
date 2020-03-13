@@ -1,6 +1,7 @@
 package com.example.prototipotfg.Acordes;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.ColorStateList;
 import android.media.MediaPlayer;
@@ -199,6 +200,13 @@ public class ReproducirAdivinarAcordes extends Activity {
             e.printStackTrace();
         }
         mediaPlayer.start();
+
+    }
+
+    public void muestraPosibles(View view){
+        Intent i = new Intent(this, TutorialAdivinarAcordes.class);
+        i.putExtra("octava", this.octavaInicio.getNombre());
+        startActivity(i);
 
     }
 
