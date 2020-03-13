@@ -24,14 +24,6 @@ public class FactoriaNotas {
     private String rutaReferencia;
 
 
-    public Instrumentos getInstrumento() {
-        return instrumento;
-    }
-
-    public void setInstrumento(Instrumentos instrumento) {
-        this.instrumento = instrumento;
-    }
-
     public static FactoriaNotas getInstance() {
         return ourInstance;
     }
@@ -39,6 +31,9 @@ public class FactoriaNotas {
     public String getReferencia(){
         return rutaReferencia;
     }
+
+    private FactoriaNotas() {}
+
 
     private void setReferencia(String ruta){
         this.rutaReferencia=ruta;
@@ -49,8 +44,13 @@ public class FactoriaNotas {
     }
 
 
-    private FactoriaNotas() {}
+    public Instrumentos getInstrumento() {
+        return instrumento;
+    }
 
+    public void setInstrumento(Instrumentos instrumento) {
+        this.instrumento = instrumento;
+    }
 
     public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, ArrayList<Octavas> octavas) {
         /*
