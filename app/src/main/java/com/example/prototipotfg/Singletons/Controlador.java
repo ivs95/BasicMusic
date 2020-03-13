@@ -88,6 +88,10 @@ public class Controlador {
                 break;
             case Adivinar_Acordes:
                 estableceDificultadAdivinarAcorde();
+                break;
+            case Crear_Acordes:
+                estableceDificultadCrearAcorde();
+                break;
             default:
                 break;
         }
@@ -95,6 +99,64 @@ public class Controlador {
     }
 
     private void estableceDificultadAdivinarAcorde() {
+        switch (this.nivel) {
+            case 1:
+                this.num_opciones = 2;
+                setAcordes(new ArrayList<>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
+                        Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida)));
+                this.octavas = new ArrayList<>(Arrays.asList(Octavas.Cuarta, Octavas.Quinta));
+                this.dificultad = Dificultad.Facil;
+                break;
+            case 2:
+                this.num_opciones = 3;
+                setAcordes(new ArrayList<>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
+                        Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida, Acordes.Acorde_disminuido, Acordes.Acorde_aumentado)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
+                this.dificultad = Dificultad.Medio;
+                break;
+            case 3:
+                this.num_opciones = 3;
+                setAcordes(new ArrayList<>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
+                        Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida, Acordes.Acorde_disminuido, Acordes.Acorde_aumentado,
+                        Acordes.Acorde_mayor_7_menor, Acordes.Acorde_mayor_7_mayor)));
+
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta)));
+                this.dificultad = Dificultad.Medio;
+                break;
+            case 4:
+                this.num_opciones = 4;
+                setAcordes(new ArrayList<>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
+                        Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida, Acordes.Acorde_disminuido, Acordes.Acorde_aumentado,
+                        Acordes.Acorde_mayor_7_menor, Acordes.Acorde_mayor_7_mayor, Acordes.Acorde_menor_7_menor,
+                        Acordes.Acorde_menor_7_mayor)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                this.dificultad = Dificultad.Medio;
+                break;
+            case 5:
+                this.num_opciones = 4;
+                setAcordes(new ArrayList<>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
+                        Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida, Acordes.Acorde_disminuido, Acordes.Acorde_aumentado,
+                        Acordes.Acorde_mayor_7_menor, Acordes.Acorde_mayor_7_mayor, Acordes.Acorde_menor_7_menor,
+                        Acordes.Acorde_menor_7_mayor, Acordes.Acorde_disminuido_7_menor, Acordes.Acorde_7_disminuida)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                this.dificultad = Dificultad.Medio;
+                break;
+            case 6:
+                this.num_opciones = 5;
+                setAcordes(new ArrayList<>(Arrays.asList(Acordes.Acorde_mayor, Acordes.Acorde_menor,
+                        Acordes.Acorde_2º_suspendida, Acordes.Acorde_4º_suspendida, Acordes.Acorde_disminuido, Acordes.Acorde_aumentado,
+                        Acordes.Acorde_mayor_7_menor, Acordes.Acorde_mayor_7_mayor, Acordes.Acorde_menor_7_menor,
+                        Acordes.Acorde_menor_7_mayor, Acordes.Acorde_disminuido_7_menor, Acordes.Acorde_7_disminuida)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                this.dificultad = Dificultad.Dificil;
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    private void estableceDificultadCrearAcorde() {
         switch (this.nivel) {
             case 1:
                 this.num_opciones = 2;

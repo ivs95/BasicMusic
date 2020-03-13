@@ -31,6 +31,8 @@
         <activity android:name=".Intervalos.Adivinar.ReproducirAdivinarIntervalo"></activity>
 
 
+
+
         <activity android:name=".Notas.SeleccionarAdivinarNotas">
         </activity>
         <activity android:name=".Intervalos.Crear.SeleccionarAdivinarCrearIntervalo">
@@ -62,6 +64,7 @@
         <activity android:name=".Acordes.SeleccionarNivelAdivinarAcordes" />
         <activity android:name=".Acordes.SeleccionarNivelCrearAcordes" />
         <activity android:name=".Acordes.ReproducirAdivinarAcordes" />
+        <activity android:name=".Acordes.ReproducirCrearAcordes"></activity>
         <activity android:name=".Acordes.TutorialAdivinarAcordes" />
 
 
