@@ -40,8 +40,6 @@ public class ReproducirCrearAcordes extends Activity {
     private ArrayList<ArrayList<Pair<Notas, Octavas>>> acordesReproducir = new ArrayList<>();
     private ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir = new ArrayList<>();
     private Notas notaInicio;
-    private View botonSeleccionado;
-    private View respuestaCorrecta;
     private int numOpciones;
     private int num_notas;
     private boolean comprobada = false;
@@ -49,6 +47,8 @@ public class ReproducirCrearAcordes extends Activity {
     private ArrayList<String> respuestas = new ArrayList<String>();
     private Octavas octavaInicio;
     private View botonesSeleccionados[];
+    private View respuestaCorrecta[];
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +64,7 @@ public class ReproducirCrearAcordes extends Activity {
         this.acordeCorrectoReproducir = Acordes.devuelveNotasAcorde(acordeCorrecto,octavaInicio,notaInicio);
         this.notasPosibles = seleccionaNotasAleatorios(acordeCorrectoReproducir);
         this.botonesSeleccionados = new View[num_notas];
+        this.respuestaCorrecta = new View[num_notas];
 
         TextView lblNotaInicio = findViewById(R.id.notaInicioCrearAcorde);
         TextView peticionAcorde = findViewById(R.id.lblPeticionCrearAcorde);
@@ -101,9 +102,12 @@ public class ReproducirCrearAcordes extends Activity {
             });
             //Añadimos el botón a la botonera
             button.setPadding(0, 0, 0, 0);
-            if (button.getText().equals(this.acordeCorrecto.getNombre())) {
-                respuestaCorrecta = button;
+            String text = button.getText().toString();
+            Pair<Notas, Octavas> par = new Pair<>(Notas.devuelveNotaPorNombre(text.substring(0, text.length()-1)), Octavas.devuelveOctavaPorNumero(Integer.parseInt(text.substring(text.length()-1))));
+            if (acordeCorrectoReproducir.contains(par)) {
+                respuestaCorrecta[(int) button.getId() - 1] = button;
             }
+            else respuestaCorrecta[(int) button.getId() - 1] = null;
             opciones.addView(button);
         }
 
@@ -130,7 +134,6 @@ public class ReproducirCrearAcordes extends Activity {
                 num_marcadas++;
             }
 
-            botonSeleccionado = b;
 
             if (!Controlador.getInstance().getDificultad().equals(Dificultad.Dificil)) {
                 String ruta = devuelveRutaBoton(b.getText().toString());
@@ -146,7 +149,7 @@ public class ReproducirCrearAcordes extends Activity {
             }
 
         }
-        if(num_marcadas == 3)
+        if(num_marcadas == 2 && !comprobada)
             ponerComprobarVisible(1);
     }
 
@@ -192,18 +195,32 @@ public class ReproducirCrearAcordes extends Activity {
             j++;
         }
 
-        retorno.remove(0);
-        i--;
-        for (i = i; i < num_notas; i++) {
+        for (i = i; i <= num_notas; i++) {
             nota = notas[random.nextInt(12)].getNombre();
-            while (retorno.contains(nota)) {
+            while (retorno.contains(nota+this.octavaInicio.getOctava()) || nota == retorno.get(0).substring(0, retorno.get(0).length()-1)) {
                 nota = notas[random.nextInt(12)].getNombre();
             }
             retorno.add(nota+this.octavaInicio.getOctava());
         }
+        retorno.remove(0);
         return retorno;
     }
+    public void comprobarCrearAcordes(View view) {
+        if (!comprobada) {
+            this.comprobada = true;
 
+            for(int i = 0; i<num_notas; i++){
+                if(respuestaCorrecta[i] != null)
+                    respuestaCorrecta[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+
+                if(botonesSeleccionados[i]!=null && respuestaCorrecta[i] == null){
+                    botonesSeleccionados[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                }
+            }
+        }
+        ponerComprobarVisible(GONE);
+    }
+    /*
     public void comprobarCrearAcordes(View view) {
         if (!comprobada) {
             this.comprobada = true;
@@ -211,6 +228,7 @@ public class ReproducirCrearAcordes extends Activity {
                 //Correct
                 for(int i = 0; i<numOpciones; i++){
                     if(botonesSeleccionados[i]!=null){
+
                         botonesSeleccionados[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                     }
                 }
@@ -229,6 +247,9 @@ public class ReproducirCrearAcordes extends Activity {
         }
         ponerComprobarVisible(GONE);
     }
+
+    */
+
 
     public void reproducirNotaInicioAcorde(View view) throws IOException {
         String ruta = Instrumentos.Piano.getPath() + this.octavaInicio.getPath() + this.notaInicio.getPath();
@@ -285,7 +306,7 @@ public class ReproducirCrearAcordes extends Activity {
 
     }
 
-    public void volverAtrasAcordes(View view) {
+    public void volverAtrasCrearAcordes(View view) {
         finish();
     }
 }

@@ -113,8 +113,8 @@
 
     <TextView
         android:id="@+id/notaInicioCrearAcorde"
-        android:layout_width="76dp"
-        android:layout_height="21dp"
+        android:layout_width="94dp"
+        android:layout_height="25dp"
         android:text="Sobre "
         android:textColor="@color/md_blue_900"
         app:layout_constraintBottom_toTopOf="@+id/scrollViewCrearAcordes"
