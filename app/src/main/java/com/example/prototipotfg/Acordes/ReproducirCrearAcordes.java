@@ -220,36 +220,6 @@ public class ReproducirCrearAcordes extends Activity {
         }
         ponerComprobarVisible(GONE);
     }
-    /*
-    public void comprobarCrearAcordes(View view) {
-        if (!comprobada) {
-            this.comprobada = true;
-            if(1 == 1){
-                //Correct
-                for(int i = 0; i<numOpciones; i++){
-                    if(botonesSeleccionados[i]!=null){
-
-                        botonesSeleccionados[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
-                    }
-                }
-
-            }
-            else{
-                //Incorrect
-                for(int i = 0; i<numOpciones; i++){
-                    if(botonesSeleccionados[i]!=null){
-                        botonesSeleccionados[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-                    }
-                }
-
-            }
-
-        }
-        ponerComprobarVisible(GONE);
-    }
-
-    */
-
 
     public void reproducirNotaInicioAcorde(View view) throws IOException {
         String ruta = Instrumentos.Piano.getPath() + this.octavaInicio.getPath() + this.notaInicio.getPath();
