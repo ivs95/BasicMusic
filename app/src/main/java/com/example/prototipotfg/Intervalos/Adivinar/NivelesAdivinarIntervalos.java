@@ -34,13 +34,13 @@ public class NivelesAdivinarIntervalos extends Activity {
         lp.setMargins(150, 0, 150, 0);
 
         //Creamos los botones en bucle
-        for (int i=1; i<6; i++){
+        for (int i=1; i<7; i++){
             Button button = new Button(this);
             button.setId(i);
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            button.setText(i+1 + " opciones");
+            button.setText("Nivel " + (i));
 
             //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {

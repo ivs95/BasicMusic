@@ -56,10 +56,9 @@
         <activity android:name=".RealizaRitmos"></activity>
         <activity android:name=".ImitarAudio.SeleccionOctavasImitar" />
         <activity android:name=".Intervalos.Adivinar.NivelesAdivinarIntervalos" />
-        <activity android:name=".Intervalos.Crear.NivelesAdivinarCrearIntervalos" />
         <activity android:name=".Acordes.SeleccionarModoAcordes" />
         <activity android:name=".SeleccionNivelAdivinarIntervalo" />
-        <activity android:name=".SeleccionNivelCrearIntervalo" />
+        <activity android:name=".Intervalos.Crear.SeleccionNivelCrearIntervalo" />
         <activity android:name=".Notas.SeleccionarNivelAdivinarNotas" />
         <activity android:name=".Acordes.SeleccionarNivelAdivinarAcordes" />
         <activity android:name=".Acordes.SeleccionarNivelCrearAcordes" />

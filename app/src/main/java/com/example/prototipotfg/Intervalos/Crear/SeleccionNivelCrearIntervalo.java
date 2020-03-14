@@ -8,38 +8,42 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.prototipotfg.Enumerados.Instrumentos;
+import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.Intervalos.Crear.ReproducirAdivinarCrearIntervalo;
+import com.example.prototipotfg.Intervalos.Crear.SeleccionarAdivinarCrearIntervalo;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class NivelesAdivinarCrearIntervalos extends Activity {
+public class SeleccionNivelCrearIntervalo extends Activity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.opciones_adivinar);
+        setContentView(R.layout.niveles);
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
 
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
-        lp.setMargins(150, 0, 150, 0);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(50, 0, 50, 0);
 
         //Creamos los botones en bucle
-        for (int i=1; i<6; i++){
+        for (int i = 0; i < 8; i++) {
             Button button = new Button(this);
-            button.setId(i+1);
+            button.setId(i + 1);
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            button.setText(i+1 + " opciones");
+            button.setText("Nivel " + (i + 1));
 
             //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {
@@ -54,27 +58,27 @@ public class NivelesAdivinarCrearIntervalos extends Activity {
     }
 
     public void nivel_seleccionado(View view) {
-        Intent i = new Intent(this, ReproducirAdivinarCrearIntervalo.class);
+        Intent i = new Intent(this, SeleccionarAdivinarCrearIntervalo.class);
         Random random = new Random();
+        Controlador.getInstance().setNivel(view.getId());
+        Controlador.getInstance().estableceDificultad();
+
 
         //Nivel que se ha seleccionado
-        ArrayList<Octavas> octavas = Octavas.devuelveOctavas(getIntent().getExtras().getStringArrayList("octavas"));
+        ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
+        ArrayList<Intervalos> intervalos = Controlador.getInstance().getIntervalos();
         HashMap<String, String> notas = null;
 
             Octavas octava_intervalos = octavas.get(random.nextInt(octavas.size()));
-            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Integer.valueOf(view.getId())+1, Instrumentos.Piano, octava_intervalos);
+            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones()+1, Instrumentos.Piano, octava_intervalos);
 
 
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
         ArrayList<String> rutas = new ArrayList<>(notas.values());
 
-        i.putExtra("nivel", Integer.valueOf(view.getId()));
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
 
         startActivity(i);
     }
-
-
-
 }

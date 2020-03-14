@@ -255,13 +255,6 @@ public class Controlador {
                 this.num_opciones = 5;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
                 this.dificultad = Dificultad.Medio;
-                this.rango = 11;
-                this.intervalos = Intervalos.getIntervalosDeRango(getRango());
-                break;
-            case 7:
-                this.num_opciones = 5;
-                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
-                this.dificultad = Dificultad.Medio;
                 this.rango = 12;
                 this.intervalos = Intervalos.getIntervalosDeRango(getRango());
                 break;

@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Intervalos.Adivinar.NivelesAdivinarIntervalos;
+import com.example.prototipotfg.Intervalos.Crear.SeleccionNivelCrearIntervalo;
 import com.example.prototipotfg.Singletons.Controlador;
 
 public class SeleccionarModoIntervalos extends Activity {

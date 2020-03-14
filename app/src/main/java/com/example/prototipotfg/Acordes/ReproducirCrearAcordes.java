@@ -218,6 +218,11 @@ public class ReproducirCrearAcordes extends Activity {
                 }
             }
         }
+        ArrayList<MediaPlayer> mediaPlayers = inicializaMediaPlayers(acordeCorrectoReproducir);
+        for (MediaPlayer m: mediaPlayers){
+            m.start();
+        }
+
         ponerComprobarVisible(GONE);
     }
 
@@ -269,7 +274,7 @@ public class ReproducirCrearAcordes extends Activity {
 
     }
 
-    public void muestraPosibles(View view){
+    public void muestraPosiblesCrearAcordes(View view){
         Intent i = new Intent(this, TutorialAdivinarAcordes.class);
         i.putExtra("octava", this.octavaInicio.getNombre());
         startActivity(i);

@@ -15,8 +15,8 @@
         android:textSize="30sp" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="456dp"
+        android:layout_width="401dp"
+        android:layout_height="518dp"
         android:layout_gravity="center">
 
         <LinearLayout
