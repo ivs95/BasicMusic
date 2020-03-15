@@ -40,4 +40,12 @@ dependencies {
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation files('libs/TarsosDSP-Android-2.0-bin.jar')
 
+
+}
+
+dependencies {
+    def room_version = "2.2.3"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 }
