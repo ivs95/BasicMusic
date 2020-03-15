@@ -52,6 +52,7 @@ public class ReproducirAdivinarAcordes extends Activity {
 
         this.numOpciones = Controlador.getInstance().getNum_opciones();
         this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()-1));
+        this.octavaInicio=Octavas.Sexta;
         this.acordesPosibles = seleccionaAcordesAleatorios(numOpciones, Controlador.getInstance().getAcordes());
         this.notaInicio = FactoriaNotas.getInstance().getNotaInicioIntervalo(Instrumentos.Piano, octavaInicio);
         this.acordeCorrecto = acordesPosibles.get(0);
@@ -61,10 +62,8 @@ public class ReproducirAdivinarAcordes extends Activity {
         if (Controlador.getInstance().getDificultad().equals(Dificultad.Dificil)){
             lblNotaInicio.setVisibility(GONE);
             lblOctavaInicio.setVisibility(GONE);
-
             Button botonTutorial = findViewById(R.id.button_info_adivinarAcorde);
             botonTutorial.setVisibility(GONE);
-
             Button botonReferencia = findViewById(R.id.btnAcordeReferencia);
             botonReferencia.setVisibility(VISIBLE);
         }
@@ -210,6 +209,12 @@ public class ReproducirAdivinarAcordes extends Activity {
     public void muestraPosibles(View view){
         Intent i = new Intent(this, TutorialAdivinarAcordes.class);
         i.putExtra("octava", this.octavaInicio.getNombre());
+        if (Controlador.getInstance().getNivel() == 1 || Controlador.getInstance().getNivel() == 2){
+            i.putExtra("nota", this.notaInicio.getNombre());
+        }
+        else
+            i.putExtra("nota", Notas.LA.getNombre());
+        i.putExtra("nivel", Controlador.getInstance().getNivel());
         startActivity(i);
 
     }

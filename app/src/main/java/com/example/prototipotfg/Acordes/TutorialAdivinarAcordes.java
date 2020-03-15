@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class TutorialAdivinarAcordes extends Activity {
 
     private Octavas octavaAcordes;
+    private Notas notaAcordes;
     private ArrayList<ArrayList<Pair<Notas, Octavas>>> acordesReproducir = new ArrayList<>();
     private ArrayList<Acordes> acordes = new ArrayList<>();
 
@@ -32,9 +33,9 @@ public class TutorialAdivinarAcordes extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         TextView titulo = findViewById(R.id.tituloNiveles);
-        titulo.setText("Acordes sobre LA");
         octavaAcordes = Octavas.devuelveOctavaPorNombre(getIntent().getExtras().getString("octava"));
-
+        notaAcordes = Notas.devuelveNotaPorNombre(getIntent().getExtras().getString("nota"));
+        titulo.setText("Acordes sobre " + notaAcordes.getNombre());
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
@@ -44,7 +45,7 @@ public class TutorialAdivinarAcordes extends Activity {
         //Creamos los botones en bucle
 
         for (Acordes a : acordes) {
-            acordesReproducir.add(Acordes.devuelveNotasAcorde(a, this.octavaAcordes, Notas.LA));
+            acordesReproducir.add(Acordes.devuelveNotasAcorde(a, this.octavaAcordes, notaAcordes));
         }
         for (int i = 0; i < acordes.size(); i++) {
             Button button = new Button(this);
