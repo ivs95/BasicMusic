@@ -11,7 +11,7 @@
         android:gravity="center"
         android:textColor="@color/md_blue_900"
 
-        android:text="Nº de opciones"
+        android:text="Niveles"
         android:textSize="30sp" />
 
     <ScrollView

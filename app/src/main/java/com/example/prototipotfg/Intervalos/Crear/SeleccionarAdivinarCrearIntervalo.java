@@ -158,7 +158,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         for (i = i; i < num_opciones; i++) {
             //if(intervalo.getDiferencia() > 0)
             nota = notas[random.nextInt(12)].getNombre();
-            while (retorno.contains(nota+this.octavaInicio.getOctava()) || nota == notasIntervalo.get(1).first.getNombre()) {
+            while (retorno.contains(nota+this.octavaInicio.getOctava()) || nota == notasIntervalo.get(1).first.getNombre() || nota == notasIntervalo.get(0).first.getNombre()) {
                 nota = notas[random.nextInt(12)].getNombre();
             }
             retorno.add(nota+this.octavaInicio.getOctava());

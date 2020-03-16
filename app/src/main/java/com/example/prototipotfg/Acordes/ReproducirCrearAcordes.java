@@ -277,6 +277,12 @@ public class ReproducirCrearAcordes extends Activity {
     public void muestraPosiblesCrearAcordes(View view){
         Intent i = new Intent(this, TutorialAdivinarAcordes.class);
         i.putExtra("octava", this.octavaInicio.getNombre());
+        if (Controlador.getInstance().getNivel() == 1 || Controlador.getInstance().getNivel() == 2){
+            i.putExtra("nota", this.notaInicio.getNombre());
+        }
+        else
+            i.putExtra("nota", Notas.LA.getNombre());
+        i.putExtra("nivel", Controlador.getInstance().getNivel());
         startActivity(i);
 
     }
