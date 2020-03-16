@@ -5,20 +5,21 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Usuario {
+
     @PrimaryKey
-    private int id;
+    private String correo;
     private String nombre;
     private String password;
 
 
     public Usuario(){}
 
-    public int getUid() {
-        return id;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setUid(int id) {
-        this.id = id;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getNombre() {
