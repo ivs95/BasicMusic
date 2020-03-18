@@ -10,8 +10,6 @@ import android.widget.LinearLayout;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.Octavas;
-import com.example.prototipotfg.Intervalos.Crear.ReproducirAdivinarCrearIntervalo;
-import com.example.prototipotfg.Intervalos.Crear.SeleccionarAdivinarCrearIntervalo;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;

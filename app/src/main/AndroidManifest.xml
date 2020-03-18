@@ -25,11 +25,7 @@
         </activity>
 
         <activity android:name=".ReproducirAdivinar">
-        </activity>9
-        <activity android:name=".Intervalos.Crear.ReproducirAdivinarCrearIntervalo">
         </activity>
-
-
 
 
         <activity android:name=".Notas.SeleccionarAdivinarNotas">

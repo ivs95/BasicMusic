@@ -147,6 +147,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
     }
     private ArrayList<String> seleccionaNotasAleatorios(Intervalos intervalo) {
         Notas[] notas = new Notas[12];
+        ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
         notas = Notas.values();
         ArrayList<String> retorno = new ArrayList<>();
         Random random = new Random();
@@ -157,6 +158,8 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
         for (i = i; i < num_opciones; i++) {
             //if(intervalo.getDiferencia() > 0)
+            //Octavas octava_intervalos = octavas.get(random.nextInt(octavas.size()));
+
             nota = notas[random.nextInt(12)].getNombre();
             while (retorno.contains(nota+this.octavaInicio.getOctava()) || nota == notasIntervalo.get(1).first.getNombre() || nota == notasIntervalo.get(0).first.getNombre()) {
                 nota = notas[random.nextInt(12)].getNombre();
@@ -217,6 +220,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
     }
 
     public void reproducirReferencia(View view) throws IOException {
+        FactoriaNotas.getInstance().setReferencia(this.octavaInicio);
         MediaPlayer mediaPlayer =  new MediaPlayer();
         AssetFileDescriptor afd = getAssets().openFd(FactoriaNotas.getInstance().getReferencia());
         mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());

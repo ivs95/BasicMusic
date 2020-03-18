@@ -126,7 +126,7 @@ public class ReproducirCrearAcordes extends Activity {
                 num_marcadas--;
                 ponerComprobarVisible(GONE);
                 respuestas.remove(b.getText().toString());
-            } else if(num_marcadas < 3){
+            } else{
 
                 b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_blue_700)));
                 botonesSeleccionados[(int) b.getId() - 1] = b;
@@ -149,7 +149,7 @@ public class ReproducirCrearAcordes extends Activity {
             }
 
         }
-        if(num_marcadas == 2 && !comprobada)
+        if(num_marcadas > 2 && !comprobada)
             ponerComprobarVisible(1);
     }
 
