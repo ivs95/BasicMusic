@@ -355,19 +355,19 @@ public class Controlador {
                 break;
             case 6:
                 this.num_opciones = 4;
-                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Dificil;
                 this.rango = 11;
                 break;
             case 7:
                 this.num_opciones = 5;
-                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Dificil;
                 this.rango = 11;
                 break;
             case 8:
                 this.num_opciones = 6;
-                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Dificil;
                 this.rango = 12;
                 break;

@@ -34,6 +34,8 @@ import static android.view.View.INVISIBLE;
 public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
     private View botonSeleccionado;
+
+
     private View respuestaCorrecta;
     private boolean comprobada = false;
 
@@ -41,6 +43,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
     private ArrayList<String> notasPosibles = new ArrayList<>();
     private Notas notaInicio;
     private Octavas octavaInicio;
+    private Octavas octavaReproducir;
     private int num_opciones;
 
     private String intervalo_nombre;
@@ -65,6 +68,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         notasIntervalo = FactoriaNotas.getInstance().getNotasIntervalo(Controlador.getInstance().getOctavas(), Controlador.getInstance().getRango());
         this.notaInicio =  notasIntervalo.get(0).first;
         this.octavaInicio = notasIntervalo.get(0).second;
+        this.octavaReproducir = octavaInicio;
         int tono1 = notasIntervalo.get(0).first.getTono();
         int tono2 = notasIntervalo.get(1).first.getTono();
         Intervalos intervalo = getIntervaloConDif((tono2-tono1));
@@ -76,7 +80,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
 
         TextView nota = (TextView)findViewById(R.id.Id_nota_intervalo);
-        nota.setText(nota.getText() + notasIntervalo.get(0).first.getNombre() + notasIntervalo.get(0).second.getOctava() + "   " + notasIntervalo.get(1).first.getNombre());
+        nota.setText(nota.getText() + notasIntervalo.get(0).first.getNombre() + notasIntervalo.get(0).second.getOctava());
 
         TextView peticion = (TextView)findViewById(R.id.Id_intervalo);
         peticion.setText(peticion.getText() + intervalo_nombre);
@@ -152,19 +156,41 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         ArrayList<String> retorno = new ArrayList<>();
         Random random = new Random();
         int i = 1;
+        int contador = 0;
         String nota;
         nota = notasIntervalo.get(1).first.getNombre()+notasIntervalo.get(1).second.getOctava();
         retorno.add(nota);
 
         for (i = i; i < num_opciones; i++) {
-            //if(intervalo.getDiferencia() > 0)
-            //Octavas octava_intervalos = octavas.get(random.nextInt(octavas.size()));
 
-            nota = notas[random.nextInt(12)].getNombre();
-            while (retorno.contains(nota+this.octavaInicio.getOctava()) || nota == notasIntervalo.get(1).first.getNombre() || nota == notasIntervalo.get(0).first.getNombre()) {
-                nota = notas[random.nextInt(12)].getNombre();
+            if(intervalo.getDiferencia() < 0 && retorno.size() > this.notaInicio.getTono()){
+                this.octavaInicio = this.octavaInicio.devuelveAnteriorOctava(this.octavaInicio);
+
             }
-            retorno.add(nota+this.octavaInicio.getOctava());
+            else if(intervalo.getDiferencia() > 0 && retorno.size() > (12-this.notaInicio.getTono())){
+                this.octavaInicio = this.octavaInicio.devuelveSiguienteOctava(this.octavaInicio);
+
+            }
+            if(intervalo.getDiferencia() > 0 && contador < (12 - this.notaInicio.getTono()))
+                nota = notas[random.nextInt((notas.length - notaInicio.getTono())) + notaInicio.getTono()].getNombre();
+            else if(intervalo.getDiferencia() < 0 && contador < (12 - this.notaInicio.getTono()))
+                nota = notas[random.nextInt(notaInicio.getTono()+1)].getNombre();
+            else if(contador >= (12 - this.notaInicio.getTono()))
+                nota = notas[random.nextInt(12)].getNombre();
+
+
+            while (retorno.contains(nota+this.octavaInicio.getOctava())
+                    || nota == notasIntervalo.get(1).first.getNombre() || nota == notasIntervalo.get(0).first.getNombre()) {
+
+                if(intervalo.getDiferencia() > 0 && contador < (12 - this.notaInicio.getTono()))
+                    nota = notas[random.nextInt((notas.length - notaInicio.getTono())) + notaInicio.getTono()].getNombre();
+                else if(intervalo.getDiferencia() < 0 && contador < (12 - this.notaInicio.getTono()))
+                    nota = notas[random.nextInt(notaInicio.getTono()+1)].getNombre();
+                else if(contador >= (12 - this.notaInicio.getTono()))
+                    nota = notas[random.nextInt(12)].getNombre();
+            }
+                retorno.add(nota+this.octavaInicio.getOctava());
+            contador++;
         }
         return retorno;
     }
@@ -220,7 +246,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
     }
 
     public void reproducirReferencia(View view) throws IOException {
-        FactoriaNotas.getInstance().setReferencia(this.octavaInicio);
+        FactoriaNotas.getInstance().setReferencia(this.octavaReproducir);
         MediaPlayer mediaPlayer =  new MediaPlayer();
         AssetFileDescriptor afd = getAssets().openFd(FactoriaNotas.getInstance().getReferencia());
         mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
@@ -235,7 +261,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
     }
 
     public void reproducir(View view) throws IOException {
-        String ruta = Instrumentos.Piano.getPath() + this.octavaInicio.getPath() + this.notaInicio.getPath();
+        String ruta = Instrumentos.Piano.getPath() + this.octavaReproducir.getPath() + this.notaInicio.getPath();
         MediaPlayer mediaPlayer =  new MediaPlayer();
         AssetFileDescriptor afd = getAssets().openFd(ruta);
         mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());

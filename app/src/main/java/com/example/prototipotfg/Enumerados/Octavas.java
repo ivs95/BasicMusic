@@ -25,8 +25,20 @@ public enum Octavas {
     }
 
     public static Octavas devuelveSiguienteOctava(Octavas octava) {
-        int indice = Arrays.asList(Octavas.values()).indexOf(octava)+1;
-        return Octavas.values()[indice];
+        int ss = octava.devuelveIndiceOctava(octava);
+        if(octava.devuelveIndiceOctava(octava) < 6){
+            int indice = Arrays.asList(Octavas.values()).indexOf(octava)+1;
+            return Octavas.values()[indice];
+        }
+        else return null;
+    }
+
+    public static Octavas devuelveAnteriorOctava(Octavas octava) {
+        if(octava.devuelveIndiceOctava(octava) > 0) {
+            int indice = Arrays.asList(Octavas.values()).indexOf(octava) - 1;
+            return Octavas.values()[indice];
+        }
+        else return null;
     }
 
     public int devuelveIndiceOctava(Octavas o){
