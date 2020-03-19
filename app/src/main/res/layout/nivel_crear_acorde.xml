@@ -11,10 +11,10 @@
         android:id="@+id/lblPeticionCrearAcorde"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="44dp"
         android:textColor="@color/md_blue_900"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintHorizontal_bias="0.147"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botonReproduceCrearAcorde" />
 
@@ -35,24 +35,22 @@
         android:id="@+id/retroceder_niveles_crear_acordes"
         android:layout_width="251dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:onClick="volverAtrasCrearAcordes"
         android:text="Volver a seleccionar nivel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.164"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/comprobarCrearAcordes"
         android:layout_width="251dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
         android:onClick="comprobarCrearAcordes"
         android:text="Comprobar resultado"
         app:layout_constraintBottom_toTopOf="@+id/retroceder_niveles_crear_acordes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollViewAcordes" />
 
@@ -60,9 +58,8 @@
         android:id="@+id/scrollViewCrearAcordes"
         android:layout_width="385dp"
         android:layout_height="400dp"
-        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblPeticionCrearAcorde">
 
@@ -76,12 +73,12 @@
 
     <Button
         android:id="@+id/botonReproduceCrearAcorde"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
+        android:layout_width="97dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
         android:onClick="reproducirNotaInicioAcorde"
-        android:text="Primera Nota"
+        android:text="Nota"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -103,13 +100,12 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:onClick="muestraPosiblesCrearAcordes"
         android:text="Info"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.94"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/retroceder_niveles_crear_acordes" />
 
     <TextView
         android:id="@+id/notaInicioCrearAcorde"
@@ -119,8 +115,9 @@
         android:textColor="@color/md_blue_900"
         app:layout_constraintBottom_toTopOf="@+id/scrollViewCrearAcordes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.752"
+        app:layout_constraintHorizontal_bias="0.788"
         app:layout_constraintStart_toEndOf="@+id/lblPeticionCrearAcorde"
-        app:layout_constraintTop_toBottomOf="@+id/tituloCrearAcorde" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloCrearAcorde"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

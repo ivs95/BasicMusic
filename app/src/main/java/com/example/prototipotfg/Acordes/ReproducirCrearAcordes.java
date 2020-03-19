@@ -149,7 +149,7 @@ public class ReproducirCrearAcordes extends Activity {
             }
 
         }
-        if(num_marcadas > 2 && !comprobada)
+        if(num_marcadas >= 2 && !comprobada)
             ponerComprobarVisible(1);
     }
 

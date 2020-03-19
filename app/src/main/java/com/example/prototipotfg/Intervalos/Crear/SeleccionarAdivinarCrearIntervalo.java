@@ -151,46 +151,47 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
     }
     private ArrayList<String> seleccionaNotasAleatorios(Intervalos intervalo) {
         Notas[] notas = new Notas[12];
+        boolean siguiente_octava = false;
         ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
         notas = Notas.values();
         ArrayList<String> retorno = new ArrayList<>();
         Random random = new Random();
         int i = 1;
-        int contador = 0;
         String nota;
         nota = notasIntervalo.get(1).first.getNombre()+notasIntervalo.get(1).second.getOctava();
         retorno.add(nota);
 
         for (i = i; i < num_opciones; i++) {
 
-            if(intervalo.getDiferencia() < 0 && retorno.size() > this.notaInicio.getTono()){
+            if(intervalo.getDiferencia() < 0 && retorno.size() > (this.notaInicio.getTono()-2) && !siguiente_octava){
                 this.octavaInicio = this.octavaInicio.devuelveAnteriorOctava(this.octavaInicio);
+                siguiente_octava = true;
 
             }
-            else if(intervalo.getDiferencia() > 0 && retorno.size() > (12-this.notaInicio.getTono())){
+            else if(intervalo.getDiferencia() > 0 && retorno.size() > (12 - this.notaInicio.getTono()-2) && !siguiente_octava){
                 this.octavaInicio = this.octavaInicio.devuelveSiguienteOctava(this.octavaInicio);
+                siguiente_octava = true;
 
             }
-            if(intervalo.getDiferencia() > 0 && contador < (12 - this.notaInicio.getTono()))
+            if(intervalo.getDiferencia() > 0 && !siguiente_octava)
                 nota = notas[random.nextInt((notas.length - notaInicio.getTono())) + notaInicio.getTono()].getNombre();
-            else if(intervalo.getDiferencia() < 0 && contador < (12 - this.notaInicio.getTono()))
-                nota = notas[random.nextInt(notaInicio.getTono()+1)].getNombre();
-            else if(contador >= (12 - this.notaInicio.getTono()))
+            else if(intervalo.getDiferencia() < 0 && !siguiente_octava)
+                nota = notas[random.nextInt(notaInicio.getTono())].getNombre();
+            else if(siguiente_octava)
                 nota = notas[random.nextInt(12)].getNombre();
 
 
             while (retorno.contains(nota+this.octavaInicio.getOctava())
                     || nota == notasIntervalo.get(1).first.getNombre() || nota == notasIntervalo.get(0).first.getNombre()) {
 
-                if(intervalo.getDiferencia() > 0 && contador < (12 - this.notaInicio.getTono()))
+                if(intervalo.getDiferencia() > 0 && !siguiente_octava)
                     nota = notas[random.nextInt((notas.length - notaInicio.getTono())) + notaInicio.getTono()].getNombre();
-                else if(intervalo.getDiferencia() < 0 && contador < (12 - this.notaInicio.getTono()))
-                    nota = notas[random.nextInt(notaInicio.getTono()+1)].getNombre();
-                else if(contador >= (12 - this.notaInicio.getTono()))
+                else if(intervalo.getDiferencia() < 0 && !siguiente_octava)
+                    nota = notas[random.nextInt(notaInicio.getTono())].getNombre();
+                else if(siguiente_octava)
                     nota = notas[random.nextInt(12)].getNombre();
             }
-                retorno.add(nota+this.octavaInicio.getOctava());
-            contador++;
+            retorno.add(nota+this.octavaInicio.getOctava());
         }
         return retorno;
     }
