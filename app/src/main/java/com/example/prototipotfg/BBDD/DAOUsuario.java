@@ -1,18 +1,25 @@
 package com.example.prototipotfg.BBDD;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 @Dao
 public interface DAOUsuario {
 
     @Query("SELECT * FROM usuario WHERE correo LIKE :correo")
-    Usuario existeUsuario(String correo);
+    Usuario findUsuario(String correo);
 
     @Insert
-    public void insertaUsuario(Usuario usuario);
+    public void insertUsuario(Usuario usuario);
 
+    @Update
+    public void updateUsuario(Usuario usuario);
+
+    @Delete
+    public void deleteUsuario(Usuario usuario);
 
 
 
