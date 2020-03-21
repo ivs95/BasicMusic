@@ -1,12 +1,13 @@
 package com.example.prototipotfg.BBDD;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Usuario {
 
-    @PrimaryKey
+    @PrimaryKey @NonNull
     private String correo;
     private String nombre;
     private String password;

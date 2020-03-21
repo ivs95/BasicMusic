@@ -1,6 +1,7 @@
 package com.example.prototipotfg.BBDD;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 @Entity(primaryKeys={"correo_usuario","nivel"},
         foreignKeys = @ForeignKey(entity = Usuario.class, parentColumns = "correo", childColumns = "correo_usuario"))
 public class NivelImitar {
-
+    @NonNull
     private String correo_usuario;
     private boolean superado;
     private float porcentajeAfinacion;

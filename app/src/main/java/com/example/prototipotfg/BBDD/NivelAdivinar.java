@@ -1,16 +1,18 @@
 package com.example.prototipotfg.BBDD;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
 @Entity(primaryKeys={"correo_usuario","modo_juego","nivel"},
         foreignKeys = @ForeignKey(entity = Usuario.class, parentColumns = "correo", childColumns = "correo_usuario"))
 public class NivelAdivinar {
-
+    @NonNull
     private String modo_juego;
     private int nivel;
     private boolean superado;
+    @NonNull
     private String correo_usuario;
     private int numAciertos;
     private int numFallos;
