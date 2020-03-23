@@ -5,28 +5,35 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
-import com.example.prototipotfg.Enumerados.RangosVocales;
 
-import java.util.ArrayList;
-
-@Entity(primaryKeys={"correo_usuario","nivel"},
-        foreignKeys = @ForeignKey(entity = Usuario.class, parentColumns = "correo", childColumns = "correo_usuario"))
+@Entity(primaryKeys={"correoUsuario","nivel", "rangoVocal"},
+        foreignKeys = @ForeignKey(entity = Usuario.class, parentColumns = "correo", childColumns = "correoUsuario"))
 public class NivelImitar {
     @NonNull
-    private String correo_usuario;
+    private String correoUsuario;
     private boolean superado;
     private float porcentajeAfinacion;
     private int numeroIntentos;
-    private String rangosVocales;
+    @NonNull
+    private String rangoVocal;
+    @NonNull
     private int nivel;
 
-
-    public String getCorreo_usuario() {
-        return correo_usuario;
+    public NivelImitar(@NonNull String correoUsuario, boolean superado, float porcentajeAfinacion, int numeroIntentos, @NonNull String rangoVocal, @NonNull int nivel){
+        this.correoUsuario=correoUsuario;
+        this.superado=superado;
+        this.porcentajeAfinacion=porcentajeAfinacion;
+        this.numeroIntentos=numeroIntentos;
+        this.rangoVocal=rangoVocal;
+        this.nivel=nivel;
     }
 
-    public void setCorreo_usuario(String correo_usuario) {
-        this.correo_usuario = correo_usuario;
+    public String getCorreoUsuario() {
+        return correoUsuario;
+    }
+
+    public void setCorreoUsuario(String correoUsuario) {
+        this.correoUsuario = correoUsuario;
     }
 
     public boolean isSuperado() {
@@ -53,37 +60,13 @@ public class NivelImitar {
         this.numeroIntentos = numeroIntentos;
     }
 
-    public String getRangosVocales(){
-        return rangosVocales;
+    public String getRangoVocal(){
+        return rangoVocal;
     }
 
-    public ArrayList<RangosVocales> getRangosVocalesNivel() {
-        String[] rangos = rangosVocales.split(",");
-        ArrayList<RangosVocales> retorno = new ArrayList<>();
-        for (int i = 0; i < rangos.length; i++){
-            retorno.add(RangosVocales.devuelveRVPorNombre(rangos[i]));
-        }
-        return retorno;
-    }
 
-    public void setRangosVocales(String rangosVocales) {
-        this.rangosVocales = rangosVocales;
-    }
-
-    public void setRangosVocalesNivel(ArrayList<RangosVocales> rangosVocales) {
-        this.rangosVocales = "";
-        for (RangosVocales r : rangosVocales){
-            this.rangosVocales.concat(r.getNombre() + ",");
-        }
-        this.rangosVocales = this.rangosVocales.substring(0, this.rangosVocales.length()-1);
-    }
-
-    //Funcion para añadir un rangoVocal al nivel
-    public void addRangoVocal(RangosVocales rango){
-        if (this.rangosVocales.isEmpty())
-            this.rangosVocales = rango.getNombre();
-        else
-            this.rangosVocales.concat("," + rango.getNombre());
+    public void setRangoVocal(String rangoVocal) {
+        this.rangoVocal = rangoVocal;
     }
 
     public int getNivel() {

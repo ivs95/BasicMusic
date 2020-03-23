@@ -5,18 +5,27 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
-@Entity(primaryKeys={"correo_usuario","modo_juego","nivel"},
-        foreignKeys = @ForeignKey(entity = Usuario.class, parentColumns = "correo", childColumns = "correo_usuario"))
+@Entity(primaryKeys={"correoUsuario","modoJuego","nivel"},
+        foreignKeys = @ForeignKey(entity = Usuario.class, parentColumns = "correo", childColumns = "correoUsuario"))
 public class NivelAdivinar {
     @NonNull
-    private String modo_juego;
+    private String modoJuego;
+    @NonNull
     private int nivel;
     private boolean superado;
     @NonNull
-    private String correo_usuario;
+    private String correoUsuario;
     private int numAciertos;
     private int numFallos;
 
+    public NivelAdivinar(@NonNull String modoJuego, @NonNull int nivel, boolean superado, @NonNull String correoUsuario, int numAciertos, int numFallos) {
+        this.modoJuego = modoJuego;
+        this.nivel = nivel;
+        this.superado = superado;
+        this.correoUsuario = correoUsuario;
+        this.numAciertos = numAciertos;
+        this.numFallos = numFallos;
+    }
 
     public int getNumAciertos() {
         return numAciertos;
@@ -33,12 +42,13 @@ public class NivelAdivinar {
     public void setNumFallos(int numFallos) {
         this.numFallos = numFallos;
     }
-    public String getModo_juego() {
-        return modo_juego;
+
+    public String getModoJuego() {
+        return modoJuego;
     }
 
-    public void setModo_juego(String modo_juego) {
-        this.modo_juego = modo_juego;
+    public void setModoJuego(String modoJuego) {
+        this.modoJuego = modoJuego;
     }
 
     public Integer getNivel() {
@@ -57,12 +67,12 @@ public class NivelAdivinar {
         this.superado = superado;
     }
 
-    public String getCorreo_usuario() {
-        return correo_usuario;
+    public String getCorreoUsuario() {
+        return correoUsuario;
     }
 
-    public void setCorreo_usuario(String correo_usuario) {
-        this.correo_usuario = correo_usuario;
+    public void setCorreoUsuario(String correoUsuario) {
+        this.correoUsuario = correoUsuario;
     }
 
 }
