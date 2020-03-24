@@ -9,23 +9,22 @@ import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosVocales;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 import static java.lang.Math.min;
 
-public class FactoriaNotas {
+public final class FactoriaNotas {
 
-    private static final FactoriaNotas ourInstance = new FactoriaNotas();
+    private static final FactoriaNotas INSTANCE = new FactoriaNotas();
     private Random random = new Random();
     private Instrumentos instrumento = Instrumentos.Piano;
     private String rutaReferencia;
 
 
     public static FactoriaNotas getInstance() {
-        return ourInstance;
+        return INSTANCE;
     }
 
     public String getReferencia(){

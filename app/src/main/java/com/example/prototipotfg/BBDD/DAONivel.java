@@ -16,7 +16,7 @@ public interface DAONivel {
     NivelAdivinar findNivelAdivinar(String correo, String modo,int nivel);
 
     @Query("SELECT * FROM nivelimitar WHERE correoUsuario = :correo AND nivel = :nivel")
-    NivelImitar findNivelImitar(String correo, int nivel);
+    NivelImitar findNivelImitar(String correo, String nivel, String rango);
 
     @Query("SELECT * FROM niveladivinar WHERE correoUsuario = :correo")
     List<NivelAdivinar> findNivelesAdivinarByCorreo(String correo);

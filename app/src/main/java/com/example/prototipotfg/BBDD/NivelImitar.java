@@ -17,9 +17,9 @@ public class NivelImitar {
     @NonNull
     private String rangoVocal;
     @NonNull
-    private int nivel;
+    private String nivel;
 
-    public NivelImitar(@NonNull String correoUsuario, boolean superado, float porcentajeAfinacion, int numeroIntentos, @NonNull String rangoVocal, @NonNull int nivel){
+    public NivelImitar(@NonNull String correoUsuario, boolean superado, float porcentajeAfinacion, int numeroIntentos, @NonNull String rangoVocal, @NonNull String nivel){
         this.correoUsuario=correoUsuario;
         this.superado=superado;
         this.porcentajeAfinacion=porcentajeAfinacion;
@@ -69,11 +69,11 @@ public class NivelImitar {
         this.rangoVocal = rangoVocal;
     }
 
-    public int getNivel() {
+    public String getNivel() {
         return nivel;
     }
 
-    public void setNivel(int nivel) {
+    public void setNivel(String nivel) {
         this.nivel = nivel;
     }
 

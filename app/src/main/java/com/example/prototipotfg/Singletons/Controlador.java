@@ -9,9 +9,9 @@ import com.example.prototipotfg.Enumerados.Octavas;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Controlador {
+public final class Controlador {
 
-    private static final Controlador ourInstance = new Controlador();
+    private static final Controlador INSTANCE = new Controlador();
     private ModoJuego modo_juego;
     private int nivel;
     private Dificultad dificultad;
@@ -24,7 +24,7 @@ public class Controlador {
     private int num_opciones;
 
     public static Controlador getInstance() {
-        return ourInstance;
+        return INSTANCE;
     }
 
     private Controlador() {

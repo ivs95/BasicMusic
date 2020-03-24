@@ -75,4 +75,13 @@ public class NivelAdivinar {
         this.correoUsuario = correoUsuario;
     }
 
+    public void actualizaEstadisticas(boolean superado) {
+        if (superado){
+            this.numAciertos++;
+            this.superado=superado;
+        }
+        else{
+            this.numFallos++;
+        }
+    }
 }

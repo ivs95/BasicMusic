@@ -10,11 +10,11 @@ import com.example.prototipotfg.Enumerados.Octavas;
 
 import java.util.ArrayList;
 
-public class Reproductor {
-    private static final Reproductor ourInstance = new Reproductor();
+public final class Reproductor {
+    private static final Reproductor INSTANCE = new Reproductor();
 
     public static Reproductor getInstance() {
-        return ourInstance;
+        return INSTANCE;
     }
 
     private Reproductor(){}
