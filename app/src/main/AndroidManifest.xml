@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.prototipotfg">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-feature android:name="android.hardware.usb.host" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature android:name="android.hardware.usb.host" />
 
     <application
         android:allowBackup="true"
@@ -13,42 +14,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Registro"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".MenuJugar">
-        </activity>
-
-        <activity android:name=".ReproducirAdivinar">
-        </activity>
-
-
-        <activity android:name=".Notas.SeleccionarAdivinarNotas">
-        </activity>
-        <activity android:name=".Intervalos.Crear.SeleccionarAdivinarCrearIntervalo">
-        </activity>
-        <activity android:name=".Intervalos.Adivinar.SeleccionarAdivinarIntervalo">
-        </activity>
-
-
-
-
-        <activity android:name=".ImitarAudio.NivelesImitar"></activity>
-        <activity android:name=".NivelesRitmos"></activity>
-        <activity android:name=".ImitarAudio.ReproducirImitar"></activity>
-
-        <activity android:name=".SeleccionModoAdivinar"></activity>
-        <activity android:name=".SeleccionModoRitmos"></activity>
-        <activity android:name=".SeleccionarModoIntervalos"></activity>
-
-
-        <activity android:name=".HallaRitmos"></activity>
-        <activity android:name=".RealizaRitmos"></activity>
+        <activity android:name=".MenuJugar" />
+        <activity android:name=".ReproducirAdivinar" />
+        <activity android:name=".Notas.SeleccionarAdivinarNotas" />
+        <activity android:name=".Intervalos.Crear.SeleccionarAdivinarCrearIntervalo" />
+        <activity android:name=".Intervalos.Adivinar.SeleccionarAdivinarIntervalo" />
+        <activity android:name=".ImitarAudio.NivelesImitar" />
+        <activity android:name=".NivelesRitmos" />
+        <activity android:name=".ImitarAudio.ReproducirImitar" />
+        <activity android:name=".SeleccionModoAdivinar" />
+        <activity android:name=".SeleccionModoRitmos" />
+        <activity android:name=".SeleccionarModoIntervalos" />
+        <activity android:name=".HallaRitmos" />
+        <activity android:name=".RealizaRitmos" />
         <activity android:name=".ImitarAudio.SeleccionOctavasImitar" />
         <activity android:name=".Intervalos.Adivinar.NivelesAdivinarIntervalos" />
         <activity android:name=".Acordes.SeleccionarModoAcordes" />
@@ -57,10 +43,8 @@
         <activity android:name=".Acordes.SeleccionarNivelAdivinarAcordes" />
         <activity android:name=".Acordes.SeleccionarNivelCrearAcordes" />
         <activity android:name=".Acordes.ReproducirAdivinarAcordes" />
-        <activity android:name=".Acordes.ReproducirCrearAcordes"></activity>
+        <activity android:name=".Acordes.ReproducirCrearAcordes" />
         <activity android:name=".Acordes.TutorialAdivinarAcordes" />
-
-
     </application>
 
 </manifest>

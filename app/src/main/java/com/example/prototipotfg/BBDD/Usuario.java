@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Usuario {
 
+
+
     @PrimaryKey @NonNull
     private String correo;
     private String nombre;
@@ -14,6 +16,12 @@ public class Usuario {
 
 
     public Usuario(){}
+
+    public Usuario(@NonNull String correo, String nombre, String password) {
+        this.correo = correo;
+        this.nombre = nombre;
+        this.password = password;
+    }
 
     public String getCorreo() {
         return correo;

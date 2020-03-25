@@ -1,0 +1,49 @@
+package com.example.prototipotfg;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.prototipotfg.Singletons.Controlador;
+import com.example.prototipotfg.Singletons.GestorBBDD;
+
+public class Login extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        GestorBBDD.getInstance().setContexto(getApplicationContext());
+        setContentView(R.layout.activity_login);
+    }
+
+    public void log(View view){
+        String correo = ((EditText)findViewById(R.id.txtEmail)).getText().toString();
+        String password = ((EditText)findViewById(R.id.txtPassword)).getText().toString();
+        if (!correo.isEmpty() && !password.isEmpty()){
+            if (GestorBBDD.getInstance().validaUsuario(correo,password)){
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
+            }
+            else{
+                ((TextView)findViewById(R.id.textErrorLog)).setVisibility(View.VISIBLE);
+                ((EditText)findViewById(R.id.txtEmail)).setText("");
+                ((EditText)findViewById(R.id.txtPassword)).setText("");
+
+            }
+        }
+        else{
+            ((TextView)findViewById(R.id.textErrorLog)).setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void registro(View view){
+        Intent i = new Intent(this, Registro.class);
+        startActivity(i);
+    }
+}

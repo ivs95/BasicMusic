@@ -89,4 +89,22 @@ public class GestorBBDD {
         return null;
     }
 
+    public boolean validaUsuario(String correo, String password) {
+        Usuario usuario = appDatabase.daoUsuario().findUsuario(correo);
+        if (usuario != null) {
+            if (usuario.getPassword().equals(password)){
+                setUsuarioLoggeado(usuario);
+            return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean registraUsuario(Usuario usuario) {
+        if(appDatabase.daoUsuario().findUsuario(usuario.getCorreo())==null){
+            appDatabase.daoUsuario().insertUsuario(usuario);
+            return true;
+        }
+        return false;
+    }
 }
