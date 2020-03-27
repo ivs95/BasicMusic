@@ -21,10 +21,10 @@
 
     <Button
         android:id="@+id/botonAdivinar"
-        android:layout_width="match_parent"
+        android:layout_width="249dp"
         android:layout_height="wrap_content"
-        android:onClick="modo_adivinar"
         android:layout_marginHorizontal="80dp"
+        android:onClick="modo_adivinar"
         android:text="@string/txtBotonAdivinar" />
 
     <Button

@@ -1,61 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
     <TextView
         android:id="@+id/titulo"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginTop="176dp"
         android:text="@string/titulo"
+        android:textAlignment="center"
         android:textColor="@color/md_blue_900"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/botonJuego"
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="80dp"
-        android:layout_height="wrap_content"
+        android:layout_width="251dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="308dp"
         android:onClick="ejecutar_jugar"
-        android:text="@string/txtBotonJuego" />
+        android:text="@string/txtBotonJuego"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/botonTeoria"
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="80dp"
-        android:layout_height="wrap_content"
+        android:layout_width="251dp"
+        android:layout_height="46dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:text="@string/txtBotonTeoria" />
+        android:text="@string/txtBotonTeoria"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonJuego" />
 
     <Button
         android:id="@+id/botonInfo"
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="@string/txtBotonInfo" />
+        android:layout_width="251dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/txtBotonInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonTeoria" />
 
 
     <Button
         android:id="@+id/botonSalir"
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="80dp"
-        android:layout_height="wrap_content"
+        android:layout_width="251dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="15dp"
         android:onClick="salir"
-        android:text="@string/txtBtnSalir" />
+        android:text="@string/txtBtnSalir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonInfo" />
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/profile_button"
+        android:layout_width="81dp"
+        android:layout_height="79dp"
+        android:background="@drawable/picture"
+        android:onClick="ejecutar_Perfil"
+        app:layout_constraintBottom_toTopOf="@+id/titulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.041"
+        app:srcCompat="@drawable/picture" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

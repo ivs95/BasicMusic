@@ -23,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void ejecutar_Perfil(View view) {
+
+        Intent i = new Intent(this, Perfil.class);
+        startActivity(i);
+    }
+
     public void salir(View view){
         finish();
     }
