@@ -16,6 +16,8 @@ public abstract class AppDatabase extends RoomDatabase {
         if (instance == null){
             instance = create(context);
         }
+
+        //context.deleteDatabase("database-name");
         return instance;
     }
 
