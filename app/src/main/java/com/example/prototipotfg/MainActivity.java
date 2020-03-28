@@ -29,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void mostrarEstadisticas(View view){
+
+        Intent i = new Intent(this, Estadisticas.class);
+        startActivity(i);
+    }
+
     public void salir(View view){
         finish();
     }

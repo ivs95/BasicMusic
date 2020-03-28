@@ -31,6 +31,7 @@
         android:onClick="ejecutar_jugar"
         android:text="@string/txtBotonJuego"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,6 +42,7 @@
         android:layout_marginTop="15dp"
         android:text="@string/txtBotonTeoria"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botonJuego" />
 
@@ -51,6 +53,7 @@
         android:layout_marginTop="15dp"
         android:text="@string/txtBotonInfo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botonTeoria" />
 
@@ -63,6 +66,19 @@
         android:onClick="salir"
         android:text="@string/txtBtnSalir"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonEstadisticas" />
+
+    <Button
+        android:id="@+id/botonEstadisticas"
+        android:layout_width="251dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="15dp"
+        android:onClick="mostrarEstadisticas"
+        android:text="Estadísticas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botonInfo" />
 
