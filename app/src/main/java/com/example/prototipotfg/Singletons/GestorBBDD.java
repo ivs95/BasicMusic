@@ -119,6 +119,10 @@ public class GestorBBDD {
 
     public boolean usuarioRecordado() {
         Usuario usuario = appDatabase.daoUsuario().findUsuarioRecordado();
+        if (usuario != null){
+            setUsuarioLoggeado(usuario);
+            return true;
+        }
         return false;
 
 

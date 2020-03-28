@@ -21,6 +21,6 @@ public interface DAOUsuario {
     @Delete
     public void deleteUsuario(Usuario usuario);
 
-    @Query("SELECT * FROM usuario WHERE recordado = 'true'")
+    @Query("SELECT * FROM usuario WHERE recordado = 1")
     Usuario findUsuarioRecordado();
 }
