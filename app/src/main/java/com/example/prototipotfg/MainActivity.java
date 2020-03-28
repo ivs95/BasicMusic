@@ -35,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    protected void onStop(){
+        super.onStop();
+        finishAffinity();
+    }
     public void salir(View view){
-        finish();
+        finishAffinity();
     }
 }

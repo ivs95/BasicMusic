@@ -15,7 +15,9 @@ public class Perfil extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
+        setContentView(R.layout.perfil);
+
+
     }
 
     public void registrarUsuario(View view){

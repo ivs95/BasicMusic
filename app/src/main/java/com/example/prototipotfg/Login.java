@@ -52,8 +52,15 @@ public class Login extends AppCompatActivity {
         startActivity(i);
     }
 
+    protected void onStop(){
+        super.onStop();
+        finishAffinity();
+    }
+
     public void registro(View view){
         Intent i = new Intent(this, Registro.class);
         startActivity(i);
     }
+
+
 }
