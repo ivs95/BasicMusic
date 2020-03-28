@@ -89,15 +89,24 @@ public class GestorBBDD {
         return null;
     }
 
-    public boolean validaUsuario(String correo, String password) {
+    public boolean validaUsuario(String correo, String password, boolean recordado) {
         Usuario usuario = appDatabase.daoUsuario().findUsuario(correo);
         if (usuario != null) {
             if (usuario.getPassword().equals(password)){
+                if (recordado) {
+                    usuario.setRecordado(recordado);
+                    appDatabase.daoUsuario().updateUsuario(usuario);
+                }
                 setUsuarioLoggeado(usuario);
-            return true;
+                return true;
             }
         }
         return false;
+    }
+
+    public void cerrarSesion(){
+        usuarioLoggeado.setRecordado(false);
+        appDatabase.daoUsuario().updateUsuario(usuarioLoggeado);
     }
 
     public boolean registraUsuario(Usuario usuario) {
@@ -106,5 +115,14 @@ public class GestorBBDD {
             return true;
         }
         return false;
+    }
+
+    public boolean usuarioRecordado() {
+        Usuario usuario = appDatabase.daoUsuario().findUsuarioRecordado();
+        return false;
+
+
+
+
     }
 }

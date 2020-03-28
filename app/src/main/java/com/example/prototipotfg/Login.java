@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,16 +20,20 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GestorBBDD.getInstance().setContexto(getApplicationContext());
+        if (GestorBBDD.getInstance().usuarioRecordado()){
+            confirmaLogin();
+        }
         setContentView(R.layout.activity_login);
     }
 
     public void log(View view){
         String correo = ((EditText)findViewById(R.id.txtEmail)).getText().toString();
         String password = ((EditText)findViewById(R.id.txtPassword)).getText().toString();
+        boolean recordado= ((CheckBox)findViewById(R.id.checkRecordado)).isChecked();
         if (!correo.isEmpty() && !password.isEmpty()){
-            if (GestorBBDD.getInstance().validaUsuario(correo,password)){
-                Intent i = new Intent(this, MainActivity.class);
-                startActivity(i);
+            if (GestorBBDD.getInstance().validaUsuario(correo,password,recordado)){
+                confirmaLogin();
+
             }
             else{
                 ((TextView)findViewById(R.id.textErrorLog)).setVisibility(View.VISIBLE);
@@ -40,6 +45,11 @@ public class Login extends AppCompatActivity {
         else{
             ((TextView)findViewById(R.id.textErrorLog)).setVisibility(View.VISIBLE);
         }
+    }
+
+    private void confirmaLogin() {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 
     public void registro(View view){

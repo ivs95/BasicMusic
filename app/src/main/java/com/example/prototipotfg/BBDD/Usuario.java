@@ -13,14 +13,15 @@ public class Usuario {
     private String correo;
     private String nombre;
     private String password;
-
+    private boolean recordado;
 
     public Usuario(){}
 
-    public Usuario(@NonNull String correo, String nombre, String password) {
+    public Usuario(@NonNull String correo, String nombre, String password, boolean recordado) {
         this.correo = correo;
         this.nombre = nombre;
         this.password = password;
+        this.recordado = recordado;
     }
 
     public String getCorreo() {
@@ -47,4 +48,11 @@ public class Usuario {
         this.password = password;
     }
 
+    public boolean isRecordado() {
+        return recordado;
+    }
+
+    public void setRecordado(boolean recordado) {
+        this.recordado = recordado;
+    }
 }

@@ -39,7 +39,7 @@ public class Registro extends AppCompatActivity {
 
         }
         else{
-            Usuario usuario = new Usuario(correo,nombre,password);
+            Usuario usuario = new Usuario(correo,nombre,password,false);
             if (GestorBBDD.getInstance().registraUsuario(usuario))
                 this.finish();
             else
