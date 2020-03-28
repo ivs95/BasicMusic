@@ -8,11 +8,71 @@ import java.io.IOException;
 
 public class MediaPlayerRitmos {
     private MediaPlayer player = new MediaPlayer();
-    public void init(Context myContext){
+    public void init1(Context myContext){
 
         AssetFileDescriptor afd = null;
         try {
             afd = myContext.getAssets().openFd("metronomo/Clap.wav");
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            player.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void init2(Context myContext){
+
+        AssetFileDescriptor afd = null;
+        try {
+            afd = myContext.getAssets().openFd("metronomo/Caja.wav");
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            player.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void init3(Context myContext){
+
+        AssetFileDescriptor afd = null;
+        try {
+            afd = myContext.getAssets().openFd("metronomo/Tambor.wav");
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            player.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void init4(Context myContext){
+
+        AssetFileDescriptor afd = null;
+        try {
+            afd = myContext.getAssets().openFd("metronomo/Platillo.wav");
         } catch (
                 IOException e) {
             e.printStackTrace();

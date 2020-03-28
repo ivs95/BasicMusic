@@ -33,7 +33,7 @@ public class NivelesRitmos extends Activity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
 
         //Creamos los botones en bucle
-        for (int i=0; i<15; i++){
+        for (int i=0; i<8; i++){
             Button button = new Button(this);
             button.setId(i+1);
             //Asignamos propiedades de layout al boton
@@ -66,23 +66,37 @@ public class NivelesRitmos extends Activity {
          * Claves: respuesta, fallo1,...,falloN
          * */
         Random random = new Random();
-        ArrayList<Integer> ritmos = new ArrayList<>(longitud);
-        int nota = random.nextInt(3)+1;
-        //Llenar aleatorios
+        ArrayList<Integer> ritmos1 = new ArrayList<>(longitud);
+        ArrayList<Integer> ritmos2 = new ArrayList<>(longitud);
+        ArrayList<Integer> ritmos3 = new ArrayList<>(longitud);
+        ArrayList<Integer> ritmos4 = new ArrayList<>(longitud);
+        for(int x = 0; x<4; x++) {
+            int nota = random.nextInt(3) + 1;
+            //Llenar aleatorios
 
-        for(int j=getSonidoPorSimbolo(nota).getSilencio(); j<=longitud; j+=getSonidoPorSimbolo(nota).getSilencio()){
-            agregaFigura(nota, ritmos, compas);
-            if(longitud-j >= 4)
-                nota= random.nextInt(4);
-            else if(longitud-j == 3 || longitud-j == 2)
-                nota= random.nextInt(2)+2;
-            else if (longitud-j==1)
-                nota= 3;
+            for (int j = getSonidoPorSimbolo(nota).getSilencio(); j <= longitud; j += getSonidoPorSimbolo(nota).getSilencio()) {
+                if(x == 0)
+                    agregaFigura(nota, ritmos1, compas);
+                else if (x==1)
+                    agregaFigura(nota, ritmos2, compas);
+                else if (x==2)
+                    agregaFigura(nota, ritmos3, compas);
+                else if (x==3)
+                    agregaFigura(nota, ritmos4, compas);
+                if (longitud - j >= 4)
+                    nota = random.nextInt(4);
+                else if (longitud - j == 3 || longitud - j == 2)
+                    nota = random.nextInt(2) + 2;
+                else if (longitud - j == 1)
+                    nota = 3;
+            }
+
         }
-
-
         i.putExtra("nivel", nivel);
-        i.putIntegerArrayListExtra("ritmos", ritmos);
+        i.putIntegerArrayListExtra("ritmos1", ritmos1);
+        i.putIntegerArrayListExtra("ritmos2", ritmos2);
+        i.putIntegerArrayListExtra("ritmos3", ritmos3);
+        i.putIntegerArrayListExtra("ritmos4", ritmos4);
         //i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
 
         startActivity(i);
@@ -113,6 +127,7 @@ public class NivelesRitmos extends Activity {
                 ritmos.add(0);
             }
         }
+
 
     }
 
