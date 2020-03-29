@@ -32,4 +32,10 @@ public class MenuJugar extends Activity {
         Intent i = new Intent(this, SeleccionModoRitmos.class);
         startActivity(i);
     }
+
+    public void onStop(){
+        super.onStop();
+        finish();
+
+    }
 }

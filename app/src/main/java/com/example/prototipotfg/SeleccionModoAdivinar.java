@@ -53,4 +53,11 @@ public class SeleccionModoAdivinar extends Activity {
         Intent i = new Intent(this, SeleccionarNivelAdivinarNotas.class);
         startActivity(i);
     }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        finish();
+
+    }
 }
