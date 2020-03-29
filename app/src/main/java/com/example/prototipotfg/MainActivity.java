@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
     public void salir(View view){
-        finishAffinity();
+        GestorBBDD.getInstance().cerrarSesion();
+        Intent i = new Intent(this, Login.class);
+        startActivity(i);
     }
 }

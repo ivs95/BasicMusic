@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">prototipoTFG</string>
-    <string name="titulo">Prototipo Musical</string>
+    <string name="titulo">BasicMusic</string>
     <string name="txtBotonJuego">Jugar</string>
     <string name="txtBotonInfo">Información</string>
     <string name="txtBotonTeoria">Teoría</string>
-    <string name="txtBtnSalir">Salir</string>
+    <string name="txtBtnSalir">Cerrar Sesión</string>
     <string name="tituloJugar">Modos de juego</string>
     <string name="txtBotonExamen">Examen por nivel</string>
     <string name="txtBotonRepetir">Imitar el audio</string>

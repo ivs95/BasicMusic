@@ -54,10 +54,4 @@ public class SeleccionModoAdivinar extends Activity {
         startActivity(i);
     }
 
-    @Override
-    public void onDestroy(){
-        super.onDestroy();
-        finish();
-
-    }
 }

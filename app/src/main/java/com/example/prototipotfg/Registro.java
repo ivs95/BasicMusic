@@ -30,7 +30,7 @@ public class Registro extends AppCompatActivity {
             ((EditText)findViewById(R.id.txtNombreRegistro)).setError("El nombre no puede estar vacío");
         }
         else if (password.isEmpty()){
-            ((EditText)findViewById(R.id.txtPass1)).setError("La contraseña no puede ser vacía");
+            ((EditText)findViewById(R.id.txtPass1)).setError("La contraseña no puede estar vacía");
 
         }
         else if (!password.equals(((EditText)findViewById(R.id.txtPass2)).getText().toString())){
@@ -46,5 +46,10 @@ public class Registro extends AppCompatActivity {
                 ((TextView)findViewById(R.id.textErrorRegistro)).setVisibility(View.VISIBLE);
         }
 
+    }
+
+    public void onStop(){
+        super.onStop();
+        finish();
     }
 }

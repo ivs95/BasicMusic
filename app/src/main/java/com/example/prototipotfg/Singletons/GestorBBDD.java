@@ -89,6 +89,8 @@ public class GestorBBDD {
         return null;
     }
 
+    public Usuario getUsuarioLoggeado(){return usuarioLoggeado;}
+
     public boolean validaUsuario(String correo, String password, boolean recordado) {
         Usuario usuario = appDatabase.daoUsuario().findUsuario(correo);
         if (usuario != null) {
@@ -115,6 +117,12 @@ public class GestorBBDD {
             return true;
         }
         return false;
+    }
+
+    public boolean UpdateUsuario(Usuario usuario) {
+            appDatabase.daoUsuario().updateUsuario(usuario);
+            return true;
+
     }
 
     public boolean usuarioRecordado() {

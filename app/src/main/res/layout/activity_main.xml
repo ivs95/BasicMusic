@@ -11,13 +11,13 @@
 
     <TextView
         android:id="@+id/titulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="325dp"
+        android:layout_height="53dp"
         android:layout_marginTop="176dp"
         android:text="@string/titulo"
         android:textAlignment="center"
         android:textColor="@color/md_blue_900"
-        android:textSize="30sp"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
     <Button
         android:id="@+id/botonJuego"
         android:layout_width="251dp"
-        android:layout_height="46dp"
+        android:layout_height="47dp"
         android:layout_marginTop="308dp"
         android:onClick="ejecutar_jugar"
         android:text="@string/txtBotonJuego"
@@ -38,7 +38,7 @@
     <Button
         android:id="@+id/botonTeoria"
         android:layout_width="251dp"
-        android:layout_height="46dp"
+        android:layout_height="47dp"
         android:layout_marginTop="15dp"
         android:text="@string/txtBotonTeoria"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
     <Button
         android:id="@+id/botonInfo"
         android:layout_width="251dp"
-        android:layout_height="46dp"
+        android:layout_height="47dp"
         android:layout_marginTop="15dp"
         android:text="@string/txtBotonInfo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
     <Button
         android:id="@+id/botonSalir"
         android:layout_width="251dp"
-        android:layout_height="46dp"
+        android:layout_height="47dp"
         android:layout_marginTop="15dp"
         android:onClick="salir"
         android:text="@string/txtBtnSalir"
@@ -73,7 +73,7 @@
     <Button
         android:id="@+id/botonEstadisticas"
         android:layout_width="251dp"
-        android:layout_height="46dp"
+        android:layout_height="47dp"
         android:layout_marginTop="15dp"
         android:onClick="mostrarEstadisticas"
         android:text="Estadísticas"

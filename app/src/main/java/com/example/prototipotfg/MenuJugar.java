@@ -33,9 +33,5 @@ public class MenuJugar extends Activity {
         startActivity(i);
     }
 
-    public void onStop(){
-        super.onStop();
-        finish();
 
-    }
 }

@@ -10,8 +10,8 @@
 
     <EditText
         android:id="@+id/txtEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="287dp"
+        android:layout_height="52dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -24,8 +24,8 @@
 
     <EditText
         android:id="@+id/txtPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="287dp"
+        android:layout_height="52dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -37,49 +37,46 @@
 
     <Button
         android:id="@+id/botonLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="251dp"
+        android:layout_height="47dp"
         android:ems="10"
         android:onClick="log"
         android:text="Login"
 
         app:layout_constraintBottom_toTopOf="@+id/botonRegistro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textErrorLog" />
 
     <Button
         android:id="@+id/botonRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="251dp"
+        android:layout_height="47dp"
         android:layout_marginBottom="60dp"
         android:ems="10"
         android:onClick="registro"
         android:text="Registro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botonLogin" />
 
     <TextView
         android:id="@+id/textErrorLog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="255dp"
+        android:layout_height="25dp"
         android:text="Email y/o password no válidos"
         android:textColor="@color/md_red_500"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="142dp"
+        android:layout_height="112dp"
         app:layout_constraintBottom_toTopOf="@+id/txtEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -89,13 +86,13 @@
 
     <CheckBox
         android:id="@+id/checkRecordado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="252dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="4dp"
         android:text="Recordar sesión"
         android:textColor="@color/md_blue_500"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textErrorLog" />
 
