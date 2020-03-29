@@ -6,7 +6,12 @@ import com.example.prototipotfg.BBDD.AppDatabase;
 import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.BBDD.NivelImitar;
 import com.example.prototipotfg.BBDD.Usuario;
+import com.example.prototipotfg.Enumerados.ModoJuego;
+import com.example.prototipotfg.Enumerados.RangosVocales;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class GestorBBDD {
@@ -14,6 +19,15 @@ public class GestorBBDD {
     private Context contexto;
     private Usuario usuarioLoggeado;
     private AppDatabase appDatabase;
+    private final int NIVELES_ADIVINAR_NOTAS=10;
+    private final int NIVELES_ADIVINAR_INTERVALOS=6;
+    private final int NIVELES_CREAR_INTERVALOS=8;
+    private final int NIVELES_ADIVINAR_ACORDES=6;
+    private final int NIVELES_CREAR_ACORDES=6;
+    private final String[] NIVELES_IMITAR_AUDIO = new String[]{"FACIL", "MEDIO", "DIFICIL"};
+    private final int NIVELES_HALLAR_RITMO=8;
+    private final int NIVELES_CREAR_RITMO=1;
+
 
     public static GestorBBDD getInstance(){
         return ourInstance;
@@ -109,6 +123,7 @@ public class GestorBBDD {
     public void cerrarSesion(){
         usuarioLoggeado.setRecordado(false);
         appDatabase.daoUsuario().updateUsuario(usuarioLoggeado);
+        setUsuarioLoggeado(null);
     }
 
     public boolean registraUsuario(Usuario usuario) {
@@ -132,9 +147,174 @@ public class GestorBBDD {
             return true;
         }
         return false;
-
-
-
-
     }
+
+    public LinkedHashMap<String,String> devuelveEstadistica(String modo_juego){
+        LinkedHashMap<String,String> retorno = null;
+        switch(modo_juego) {
+            case "Adivinar nota":
+                retorno = estadisticaAdivinarNota();
+                break;
+            case "Adivinar intervalo":
+                retorno = estadisticaAdivinarIntervalo();
+                break;
+            case "Crear intervalo":
+                retorno = estadisticaCrearIntervalo();
+                break;
+            case "Adivinar acorde":
+                retorno = estadisticaAdivinarAcorde();
+                break;
+            case "Crear acorde":
+                retorno = estadisticaCrearAcorde();
+                break;
+            case "Imitar audio - Soprano":
+                retorno = estadisticaImitarAudio(RangosVocales.Soprano.getNombre());
+                break;
+            case "Imitar audio - Mezzosoprano":
+                retorno = estadisticaImitarAudio(RangosVocales.Mezzo.getNombre());
+                break;
+            case "Imitar audio - Contralto":
+                retorno = estadisticaImitarAudio(RangosVocales.Contralto.getNombre());
+                break;
+            case "Imitar audio - Tenor":
+                retorno = estadisticaImitarAudio(RangosVocales.Tenor.getNombre());
+                break;
+            case "Imitar audio - Barítono":
+                retorno = estadisticaImitarAudio(RangosVocales.Baritono.getNombre());
+                break;
+            case "Imitar audio - Bajo":
+                retorno = estadisticaImitarAudio(RangosVocales.Bajo.getNombre());
+                break;
+            case "Hallar ritmo":
+                retorno = estadisticaHallarRitmo();
+                break;
+            case "Realizar ritmo":
+                retorno = estadisticaRealizarRitmo();
+                break;
+            default:break;
+        }
+        return retorno;
+    }
+
+    private LinkedHashMap<String, String> estadisticaRealizarRitmo() {
+        List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Realiza_Ritmo.toString());
+        LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
+        String infoNivel = "";
+
+        for (int i = 1; i <= NIVELES_CREAR_RITMO; i++){
+            retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
+        }
+        for (NivelAdivinar n : listaNiveles){
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
+        }
+        return retorno;
+    }
+
+    private LinkedHashMap<String, String> estadisticaHallarRitmo() {
+        List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Halla_Ritmo.toString());
+        LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
+        String infoNivel = "";
+        for (int i = 1; i <= NIVELES_HALLAR_RITMO; i++){
+                retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
+        }
+        for (NivelAdivinar n : listaNiveles){
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
+        }
+
+        return retorno;
+    }
+
+    private LinkedHashMap<String, String> estadisticaImitarAudio(String rangoVocal) {
+    List<NivelImitar> listaNiveles = appDatabase.daoNivel().findNivelesImitarByCorreo(usuarioLoggeado.getCorreo(), rangoVocal);
+        LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
+        String infoNivel = "";
+        for (int i = 0; i < NIVELES_IMITAR_AUDIO.length; i++){
+            retorno.put("Dificultad " + NIVELES_IMITAR_AUDIO[i].toLowerCase(), "0 intentos;0% afinacion");
+        }
+        for (NivelImitar n : listaNiveles){
+            infoNivel = n.getNumeroIntentos() + " intentos;" + n.getPorcentajeAfinacion() + "% afinacion";
+            retorno.put("Dificultad " + n.getNivel(), infoNivel);
+        }
+
+        return retorno;
+    }
+
+    private LinkedHashMap<String, String> estadisticaCrearAcorde() {
+        List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Crear_Acordes.toString());
+        LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
+        String infoNivel = "";
+        for (int i = 1; i <= NIVELES_CREAR_ACORDES; i++){
+                retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
+        }
+        for (NivelAdivinar n : listaNiveles){
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
+        }
+
+        return retorno;
+    }
+
+    private LinkedHashMap<String, String> estadisticaAdivinarAcorde() {
+        List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Acordes.toString());
+        LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
+        String infoNivel = "";
+        for (int i = 1; i <= NIVELES_ADIVINAR_ACORDES; i++){
+                retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
+        }
+        for (NivelAdivinar n : listaNiveles){
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
+        }
+
+        return retorno;
+    }
+
+    private LinkedHashMap<String, String> estadisticaCrearIntervalo() {
+        List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Crear_Intervalo.toString());
+        LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
+        String infoNivel = "";
+        for (int i = 1; i <= NIVELES_CREAR_INTERVALOS; i++){
+            retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
+
+        }
+        for (NivelAdivinar n : listaNiveles){
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
+        }
+
+        return retorno;
+    }
+
+    private LinkedHashMap<String, String> estadisticaAdivinarIntervalo() {
+        List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Intervalo.toString());
+        LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
+        String infoNivel = "";
+        for (int i = 1; i <= NIVELES_ADIVINAR_INTERVALOS; i++){
+            retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
+        }
+        for (NivelAdivinar n : listaNiveles){
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
+        }
+
+        return retorno;
+    }
+
+    private LinkedHashMap<String, String> estadisticaAdivinarNota() {
+        List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Notas.toString());
+        LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
+        String infoNivel = "";
+        for (int i = 1; i <= NIVELES_ADIVINAR_NOTAS; i++){
+            retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
+        }
+        for (NivelAdivinar n : listaNiveles){
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
+        }
+
+        return retorno;
+    }
+
 }

@@ -13,16 +13,16 @@ public interface DAONivel {
 
 
     @Query("SELECT * FROM niveladivinar WHERE correoUsuario = :correo AND modoJuego = :modo AND nivel = :nivel")
-    NivelAdivinar findNivelAdivinar(String correo, String modo,int nivel);
+    NivelAdivinar findNivelAdivinar(String correo, String modo, int nivel);
 
     @Query("SELECT * FROM nivelimitar WHERE correoUsuario = :correo AND nivel = :nivel AND rangoVocal = :rango")
     NivelImitar findNivelImitar(String correo, String nivel, String rango);
 
-    @Query("SELECT * FROM niveladivinar WHERE correoUsuario = :correo")
-    List<NivelAdivinar> findNivelesAdivinarByCorreo(String correo);
+    @Query("SELECT * FROM niveladivinar WHERE correoUsuario = :correo AND modoJuego = :modoJuego")
+    List<NivelAdivinar> findNivelesAdivinarByCorreo(String correo, String modoJuego);
 
-    @Query("SELECT * FROM nivelimitar WHERE correoUsuario LIKE :correo")
-    List<NivelImitar> findNivelesImitarByCorreo(String correo);
+    @Query("SELECT * FROM nivelimitar WHERE correoUsuario LIKE :correo AND rangoVocal = :rango")
+    List<NivelImitar> findNivelesImitarByCorreo(String correo, String rango);
 
     @Insert
     void insertAdivinar(NivelAdivinar nivelAdivinar);

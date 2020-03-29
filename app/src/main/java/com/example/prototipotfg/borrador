@@ -26,3 +26,28 @@
     Para abajo (negativos) == -(RE - 1) (Valor nota - 1) [intervalos_bajo]
     Para arriba == 12 - RE (Intervalo maximo - valor nota) [intervalos_alto]
     invervalos_posibles = mezcla(int_bajo, int_alto)
+
+
+
+   @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String opcion = (String)parent.getItemAtPosition(position);
+        LinkedHashMap<String,String> datos = GestorBBDD.getInstance().devuelveEstadistica(opcion);
+        TableLayout tabla = findViewById(R.id.tablaEstadisticas);
+        tabla.removeAllViews();
+        for (String nivel : datos.keySet()) {
+            String texto = nivel + ": \t\t";
+            TableRow row = new TableRow(this);
+            row.setLayoutParams(tabla.getLayoutParams());
+            TextView prueba = new TextView(this);
+            for (String s : datos.get(nivel).split(";")){
+                texto += s + "\t\t";
+            }
+            prueba.setText(texto);
+            prueba.setTextSize(15);
+            prueba.setTextColor(Color.BLUE);
+            row.addView(prueba);
+            row.setPadding(0,30,0,0);
+            tabla.addView(row);
+        }
+    }

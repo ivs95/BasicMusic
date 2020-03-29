@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
