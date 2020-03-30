@@ -15,14 +15,17 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Acordes;
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
+import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
+import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,7 +55,6 @@ public class ReproducirAdivinarAcordes extends Activity {
 
         this.numOpciones = Controlador.getInstance().getNum_opciones();
         this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()-1));
-        this.octavaInicio=Octavas.Sexta;
         this.acordesPosibles = seleccionaAcordesAleatorios(numOpciones, Controlador.getInstance().getAcordes());
         this.notaInicio = FactoriaNotas.getInstance().getNotaInicioIntervalo(Instrumentos.Piano, octavaInicio);
         this.acordeCorrecto = acordesPosibles.get(0);
@@ -152,15 +154,20 @@ public class ReproducirAdivinarAcordes extends Activity {
 
     public void comprobarAcordes(View view) {
         if (!comprobada) {
+            NivelAdivinar nivel = null;
             this.comprobada = true;
             if (this.botonSeleccionado != this.respuestaCorrecta) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                    nivel = new NivelAdivinar(ModoJuego.Adivinar_Acordes.toString(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0 , 1);
                 }
             }
+            else
+                nivel = new NivelAdivinar(ModoJuego.Adivinar_Acordes.toString(), Controlador.getInstance().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1,0);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
+            GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
         }
         ponerComprobarVisible(GONE);
     }
