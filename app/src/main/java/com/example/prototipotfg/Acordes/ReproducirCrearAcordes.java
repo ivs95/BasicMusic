@@ -15,14 +15,17 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Acordes;
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
+import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
+import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -217,6 +220,26 @@ public class ReproducirCrearAcordes extends Activity {
                     botonesSeleccionados[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
             }
+
+            boolean correcta = true;
+            for(int i = 0; i < respuestas.size();i++){
+                String text = respuestas.get(i);
+                Pair<Notas, Octavas> par = new Pair<>(Notas.devuelveNotaPorNombre(text.substring(0, text.length()-1)), Octavas.devuelveOctavaPorNumero(Integer.parseInt(text.substring(text.length()-1))));
+                if (!acordeCorrectoReproducir.contains(par)) {
+                    correcta = false;
+                }
+            }
+            if(respuestas.size() != acordeCorrectoReproducir.size()-1) correcta = false;
+
+            NivelAdivinar nivel = null;
+            if(correcta){
+                nivel = new NivelAdivinar(ModoJuego.Crear_Acordes.toString(), Controlador.getInstance().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
+            }
+            else {
+                nivel = new NivelAdivinar(ModoJuego.Crear_Acordes.toString(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
+            }
+            GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
+
         }
         ArrayList<MediaPlayer> mediaPlayers = inicializaMediaPlayers(acordeCorrectoReproducir);
         for (MediaPlayer m: mediaPlayers){
