@@ -15,14 +15,17 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Intervalos;
+import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
+import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -275,18 +278,22 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
     public void comprobarResultado(View view) {
         if (!comprobada) {
+            NivelAdivinar nivel;
             this.comprobada = true;
             if (respuesta != respuesta_correcta) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                    nivel = new NivelAdivinar(ModoJuego.Crear_Intervalo.toString(), nivel, true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                    nivel = new NivelAdivinar(ModoJuego.Crear_Intervalo.toString(), nivel, false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
                 }
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
-            }
-        }
-        findViewById(R.id.comprobar_crear_intervalo).setVisibility(View.GONE);
+            GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
+            findViewById(R.id.comprobar_crear_intervalo).setVisibility(View.GONE);
 
+        }
     }
 
     private void adaptaVistaDificil() {
