@@ -17,6 +17,7 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class Login extends AppCompatActivity {
 
+    private boolean registro = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ public class Login extends AppCompatActivity {
             confirmaLogin();
         }
         setContentView(R.layout.activity_login);
+
     }
 
     public void log(View view){
@@ -49,16 +51,21 @@ public class Login extends AppCompatActivity {
     }
 
     private void confirmaLogin() {
+        registro = false;
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
 
     protected void onStop(){
         super.onStop();
-        finishAffinity();
+        if(!registro)
+            finishAffinity();
     }
 
+
+
     public void registro(View view){
+        registro = true;
         Intent i = new Intent(this, Registro.class);
         startActivity(i);
     }

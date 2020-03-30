@@ -2,6 +2,7 @@ package com.example.prototipotfg;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -48,8 +49,10 @@ public class Registro extends AppCompatActivity {
 
     }
 
-    public void onStop(){
-        super.onStop();
+    @Override
+    public void onStop() {
         finish();
+        super.onStop();
+
     }
 }
