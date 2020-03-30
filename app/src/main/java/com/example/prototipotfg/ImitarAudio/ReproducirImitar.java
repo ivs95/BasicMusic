@@ -139,12 +139,12 @@ public class ReproducirImitar extends Activity {
             view = this.getWindow().getDecorView();
             view.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             //PONER RANGO VOCAL
-            nivel  = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), true, resPorcentaje, 1, RangosVocales.Tenor.getNombre(), this.nivel);
+            nivel  = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), true, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
         }
         else{
             view = this.getWindow().getDecorView();
             view.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-            nivel  = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), false, resPorcentaje, 1, RangosVocales.Tenor.getNombre(), this.nivel);
+            nivel  = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), false, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
         }
         GestorBBDD.getInstance().insertaNivelImitar(nivel);
     }
