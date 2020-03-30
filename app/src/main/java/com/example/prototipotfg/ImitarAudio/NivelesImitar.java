@@ -73,7 +73,7 @@ public class NivelesImitar extends Activity {
          * Crear clase para seleccionar notas aleatorias
          * Claves: respuesta, fallo1,...,falloN
          * */
-        i.putExtra("nivel", nivel);
+        i.putExtra("nivel", ((Button)view).getText().toString().toLowerCase());
         i.putStringArrayListExtra("nombres", nombres);
         i.putStringArrayListExtra("rutas", rutas);
         //i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));

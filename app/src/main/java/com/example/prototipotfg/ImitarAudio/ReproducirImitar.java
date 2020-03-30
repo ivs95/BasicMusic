@@ -21,8 +21,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.AudioDispatcherFactory1;
+import com.example.prototipotfg.BBDD.NivelImitar;
 import com.example.prototipotfg.Enumerados.Notas;
+import com.example.prototipotfg.Enumerados.RangosVocales;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +49,7 @@ public class ReproducirImitar extends Activity {
     private Float resPorcentaje;
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
-    private int nivel;
+    private String nivel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -55,7 +58,7 @@ public class ReproducirImitar extends Activity {
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
 
-        nivel = getIntent().getExtras().getInt("nivel");
+        nivel = getIntent().getExtras().getString("nivel");
         TextView titulo = (TextView)findViewById(R.id.tituloImitar);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
 
@@ -131,15 +134,21 @@ public class ReproducirImitar extends Activity {
     }
 
     public void comparar(View view){
+        NivelImitar nivel;
         if((resNota.getNota().getNombre() + (resNota.getOctava())).equals(nombres.get(0))){
             view = this.getWindow().getDecorView();
             view.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+            //PONER RANGO VOCAL
+            nivel  = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), true, resPorcentaje, 1, RangosVocales.Tenor.getNombre(), this.nivel);
         }
         else{
             view = this.getWindow().getDecorView();
             view.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+            nivel  = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), false, resPorcentaje, 1, RangosVocales.Tenor.getNombre(), this.nivel);
         }
+        GestorBBDD.getInstance().insertaNivelImitar(nivel);
     }
+
 
 
 
