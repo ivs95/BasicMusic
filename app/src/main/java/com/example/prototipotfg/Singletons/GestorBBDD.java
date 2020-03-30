@@ -205,7 +205,7 @@ public class GestorBBDD {
             retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
         for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + ((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100 + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
         return retorno;
@@ -219,7 +219,7 @@ public class GestorBBDD {
                 retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
         for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + ((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100 + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
 
@@ -249,7 +249,7 @@ public class GestorBBDD {
                 retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
         for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + ((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100 + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
 
@@ -264,7 +264,7 @@ public class GestorBBDD {
                 retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
         for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + ((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100 + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
 
@@ -280,7 +280,7 @@ public class GestorBBDD {
 
         }
         for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + ((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100 + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
 
@@ -295,7 +295,7 @@ public class GestorBBDD {
             retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
         for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + ((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100 + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
 
@@ -310,7 +310,7 @@ public class GestorBBDD {
             retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
         for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()) + "% acierto");
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + ((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100 + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
 
