@@ -50,6 +50,9 @@ public class ReproducirImitar extends Activity {
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
     private String nivel;
+    private AcousticEchoCanceler echo;
+    private NoiseSuppressor noise;
+    private AutomaticGainControl gain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -80,20 +83,18 @@ public class ReproducirImitar extends Activity {
         dispatcher = factory.fromDefaultMicrophone(22050,1024,0);
 
         int id = factory.getAudioRecord().getAudioSessionId();
-
         if(AcousticEchoCanceler.isAvailable()) {
-            AcousticEchoCanceler echo = AcousticEchoCanceler.create(id);
+            echo = AcousticEchoCanceler.create(id);
             echo.setEnabled(true);
             Log.d("Echo", "Off");
         }
-
         if(NoiseSuppressor.isAvailable()) {
-            NoiseSuppressor noise = NoiseSuppressor.create(id);
+            noise = NoiseSuppressor.create(id);
             noise.setEnabled(true);
             Log.d("Noise", "Off");
         }
         if(AutomaticGainControl.isAvailable()) {
-            AutomaticGainControl gain = AutomaticGainControl.create(id);
+            gain = AutomaticGainControl.create(id);
             gain.setEnabled(false);
             Log.d("Gain", "Off");
         }
@@ -229,7 +230,7 @@ public class ReproducirImitar extends Activity {
                 final Thread dispatch_Thread = new Thread(dispatcher,"Audio Dispatcher");
                 Toast.makeText(getApplicationContext(), "La grabación comenzó", Toast.LENGTH_LONG).show();
                 dispatch_Thread.start();
-
+                //HOLAAAAAAAAAAAAAAAAAAAAAAA
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -328,6 +329,11 @@ public class ReproducirImitar extends Activity {
         this.finish();
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        echo.release();
+        noise.release();
+    }
 
 }
