@@ -1,272 +1,734 @@
 package com.example.prototipotfg.Ritmos;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.pm.PackageManager;
-import android.content.res.AssetFileDescriptor;
-import android.media.MediaPlayer;
-import android.media.audiofx.AcousticEchoCanceler;
-import android.media.audiofx.AutomaticGainControl;
-import android.media.audiofx.NoiseSuppressor;
+import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.prototipotfg.AudioDispatcherFactory1;
-import com.example.prototipotfg.Enumerados.Notas;
-import com.example.prototipotfg.ImitarAudio.NotasImitar;
+import com.example.prototipotfg.BBDD.NivelAdivinar;
+import com.example.prototipotfg.Enumerados.ModoJuego;
+import com.example.prototipotfg.Ritmos.Metronomo;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.GestorBBDD;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import be.tarsos.dsp.AudioDispatcher;
-import be.tarsos.dsp.AudioEvent;
-import be.tarsos.dsp.AudioProcessor;
-import be.tarsos.dsp.pitch.PitchDetectionHandler;
-import be.tarsos.dsp.pitch.PitchDetectionResult;
-import be.tarsos.dsp.pitch.PitchProcessor;
-
+import static java.lang.Thread.sleep;
 
 public class RealizaRitmos extends Activity {
 
+    private ArrayList<Integer> ritmos1;
+    private ArrayList<Integer> ritmos2;
+    private ArrayList<Integer> ritmos3;
+    private ArrayList<Integer> ritmos4;
+    private Thread hilo_ritmos;
+    private View botonesSeleccionados1[]= new View[16];
+    private View botonesSeleccionados2[]= new View[16];
+    private View botonesSeleccionados3[]= new View[16];
+    private View botonesSeleccionados4[]= new View[16];
+    private View botonesResultado1[]= new View[16];
+    private View botonesResultado2[]= new View[16];
+    private View botonesResultado3[]= new View[16];
+    private View botonesResultado4[]= new View[16];
+    private boolean running;
+    private boolean go1 = false;
+    private boolean go2 = false;
+    private boolean go3 = false;
+    private boolean go4 = false;
+    private int nivel;
 
-    private AudioDispatcher dispatcher;
-    private ArrayList<NotasImitar> lista = new ArrayList<NotasImitar>();
-    private NotasImitar resNota;
-    private ArrayList<String> nombres;
-    private ArrayList<String> rutas;
+    private int bpm = 60;
+    private Metronomo m = new Metronomo(bpm, 4);
+
+    private ImageView cross;
+    private ImageView tick;
+
+    private ArrayList<Integer> resultado1 = new ArrayList<>();
+    private ArrayList<Integer> resultado2 = new ArrayList<>();
+    private ArrayList<Integer> resultado3 = new ArrayList<>();
+    private ArrayList<Integer> resultado4 = new ArrayList<>();
+    private MediaPlayerRitmos mediaPlayer1 =  new MediaPlayerRitmos();
+    private MediaPlayerRitmos mediaPlayer2 =  new MediaPlayerRitmos();
+    private MediaPlayerRitmos mediaPlayer3 =  new MediaPlayerRitmos();
+    private MediaPlayerRitmos mediaPlayer4 =  new MediaPlayerRitmos();
+
+    private Thread hiloPlayer1 = new Thread(new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                while(running) {
+                    if (go1) {
+                        mediaPlayer1.play();
+                        go1 = false;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    });
+    private Thread hiloPlayer2 = new Thread(new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                while(running) {
+                    if (go2) {
+                        mediaPlayer2.play();
+                        go2 = false;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    });
+    private Thread hiloPlayer3 = new Thread(new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                while(running) {
+                    if (go3) {
+                        mediaPlayer3.play();
+                        go3 = false;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    });
+    private Thread hiloPlayer4 = new Thread(new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                while(running) {
+                    if (go4) {
+                        mediaPlayer4.play();
+                        go4 = false;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nivel_reproducir_imitar);
+        setContentView(R.layout.hallaritmos);
 
-        nombres = getIntent().getExtras().getStringArrayList("nombres");
-        rutas = getIntent().getExtras().getStringArrayList("rutas");
 
-        int nivel = getIntent().getExtras().getInt("nivel");
-        TextView titulo = (TextView)findViewById(R.id.tituloImitar);
+        nivel = getIntent().getExtras().getInt("nivel");
+        ritmos1 = getIntent().getExtras().getIntegerArrayList("ritmos1");
+        ritmos2 = getIntent().getExtras().getIntegerArrayList("ritmos2");
+        ritmos3 = getIntent().getExtras().getIntegerArrayList("ritmos3");
+        ritmos4 = getIntent().getExtras().getIntegerArrayList("ritmos4");
+        TextView titulo = (TextView)findViewById(R.id.tituloHallaRitmo);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
+        running = true;
 
-        Button repetirNivel = (Button)findViewById(R.id.botonRepite);
-        repetirNivel.setEnabled(false);
-        repetirNivel.setVisibility(View.INVISIBLE);
-
-        Button comparar = (Button)findViewById(R.id.button4);
-        comparar.setEnabled(false);
-        comparar.setVisibility(View.INVISIBLE);
-
-
-
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 1000);
-        }
-
-        AudioDispatcherFactory1 factory = new AudioDispatcherFactory1();
-        dispatcher = factory.fromDefaultMicrophone(22050,1024,0);
-
-        int id = factory.getAudioRecord().getAudioSessionId();
-
-        if(AcousticEchoCanceler.isAvailable()) {
-            AcousticEchoCanceler echo = AcousticEchoCanceler.create(id);
-            echo.setEnabled(true);
-            Log.d("Echo", "Off");
-        }
-
-        if(NoiseSuppressor.isAvailable()) {
-            NoiseSuppressor noise = NoiseSuppressor.create(id);
-            noise.setEnabled(true);
-            Log.d("Noise", "Off");
-        }
-        if(AutomaticGainControl.isAvailable()) {
-            AutomaticGainControl gain = AutomaticGainControl.create(id);
-            gain.setEnabled(false);
-            Log.d("Gain", "Off");
-        }
-
-        PitchDetectionHandler pdh = new PitchDetectionHandler() {
-            @Override
-            public void handlePitch(PitchDetectionResult result, AudioEvent e) {
-                final float pitchInHz = result.getPitch();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        hallaMax(pitchInHz);
-                    }
-                }).start();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        TextView text = (TextView) findViewById(R.id.textoFrecuencia);
-                        text.setText("Escuchando...");
-
-                    }
-                });
+        hiloPlayer1.start();
+        mediaPlayer1.init1(this);
+        findViewById(R.id.textRitmos1).setVisibility(View.VISIBLE);
+        if(nivel>2) {
+            hiloPlayer2.start();
+            mediaPlayer2.init2(this);
+            findViewById(R.id.textRitmos2).setVisibility(View.VISIBLE);
+            if(nivel>4) {
+                hiloPlayer3.start();
+                mediaPlayer3.init3(this);
+                findViewById(R.id.textRitmos3).setVisibility(View.VISIBLE);
+                if(nivel > 6) {
+                    hiloPlayer4.start();
+                    mediaPlayer4.init4(this);
+                    findViewById(R.id.textRitmos4).setVisibility(View.VISIBLE);
+                }
             }
-        };
-        AudioProcessor p = new PitchProcessor(PitchProcessor.PitchEstimationAlgorithm.FFT_YIN, 22050, 1024, pdh);
-        dispatcher.addAudioProcessor(p);
+        }
+
+        final Context contexto = this;
+
+
+        //Obtenemos el linear layout donde colocar los botones
+        LinearLayout llBotonera1 = (LinearLayout) findViewById(R.id.botoneraRitmos1);
+        LinearLayout llBotonera2 = (LinearLayout) findViewById(R.id.botoneraRitmos2);
+        LinearLayout llBotonera3 = (LinearLayout) findViewById(R.id.botoneraRitmos3);
+        LinearLayout llBotonera4 = (LinearLayout) findViewById(R.id.botoneraRitmos4);
+        //Creamos las propiedades de layout que tendrán los botones.
+        //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(65, 150);
+        for(int j=0; j<(nivel+1)/2; j++) {
+            //Creamos los botones en bucle
+            final int finalJ = j;
+            for (int i = 0; i < 16; i++) {
+                final Button button = new Button(this);
+                button.setId(i + 1);
+                //Asignamos propiedades de layout al boton
+                button.setLayoutParams(lp);
+                //Asignamos el Listener
+                final int finalI = i;
+                //Añadimos el botón a la botonera
+                if (i < 4) {
+
+
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (finalJ == 0) {
+                                if (resultado1.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+
+                                    resultado1.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados1[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+
+                                    resultado1.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados1[(int) button.getId() - 1] = button;
+                                }
+                            }
+                            if (finalJ == 1) {
+                                if (resultado2.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+
+                                    resultado2.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados2[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+
+                                    resultado2.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados2[(int) button.getId() - 1] = button;
+                                }
+                            }
+                            if (finalJ == 2) {
+                                if (resultado3.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+
+                                    resultado3.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados3[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+
+                                    resultado3.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados3[(int) button.getId() - 1] = button;
+                                }
+                            }
+                            if (finalJ == 3) {
+                                if (resultado4.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+
+                                    resultado4.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados4[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+
+                                    resultado4.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados4[(int) button.getId() - 1] = button;
+                                }
+                            }
+                        }
+                    });
+                    if(j==0) {
+                        llBotonera1.addView(button);
+                        if(ritmos1.get(i)==1){
+                            botonesResultado1[(int) button.getId() - 1]=button;
+                        }
+                    }
+                    else if(j==1) {
+                        llBotonera4.addView(button);
+                        if(ritmos2.get(i)==1){
+                            botonesResultado2[(int) button.getId() - 1]=button;
+                        }
+                    }
+                    else if(j==2) {
+                        llBotonera3.addView(button);
+                        if(ritmos3.get(i)==1){
+                            botonesResultado3[(int) button.getId() - 1]=button;
+                        }
+                    }
+                    else if(j==3) {
+                        llBotonera2.addView(button);
+                        if(ritmos4.get(i)==1){
+                            botonesResultado4[(int) button.getId() - 1]=button;
+                        }
+                    }
+                } else if (i >= 4 && i < 8) {
+
+                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_300)));
+
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (finalJ == 0) {
+                                if (resultado1.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_300)));
+
+                                    resultado1.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados1[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_700)));
+
+                                    resultado1.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados1[(int) button.getId() - 1] = button;
+                                }
+                            }
+                            if (finalJ == 1) {
+                                if (resultado2.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_300)));
+
+                                    resultado2.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados2[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_700)));
+
+                                    resultado2.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados2[(int) button.getId() - 1] = button;
+                                }
+                            }
+                            if (finalJ == 2) {
+                                if (resultado3.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_300)));
+
+                                    resultado3.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados3[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_700)));
+
+                                    resultado3.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados3[(int) button.getId() - 1] = button;
+                                }
+                            }
+                            if (finalJ == 3) {
+                                if (resultado4.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_300)));
+
+                                    resultado4.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados4[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_700)));
+
+                                    resultado4.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados4[(int) button.getId() - 1] = button;
+                                }
+                            }
+
+                        }
+                    });
+                    if(j==0) {
+                        llBotonera1.addView(button);
+                        if(ritmos1.get(i)==1){
+                            botonesResultado1[(int) button.getId() - 1]=button;
+                        }
+                    }
+                    else if(j==1) {
+                        llBotonera4.addView(button);
+                        if(ritmos2.get(i)==1){
+                            botonesResultado2[(int) button.getId() - 1]=button;
+                        }
+                    }
+                    else if(j==2) {
+                        llBotonera3.addView(button);
+                        if(ritmos3.get(i)==1){
+                            botonesResultado3[(int) button.getId() - 1]=button;
+                        }
+                    }
+                    else if(j==3) {
+                        llBotonera2.addView(button);
+                        if(ritmos4.get(i)==1){
+                            botonesResultado4[(int) button.getId() - 1]=button;
+                        }
+                    }
+                } else if (i >= 8 && i < 12) {
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (finalJ == 0) {
+                                if (resultado1.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+
+                                    resultado1.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados1[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+
+                                    resultado1.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados1[(int) button.getId() - 1] = button;
+                                }
+                            }
+                            if (finalJ == 1) {
+                                if (resultado2.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+
+                                    resultado2.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados2[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+
+                                    resultado2.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados2[(int) button.getId() - 1] = button;
+                                }
+                            }
+                            if (finalJ == 2) {
+                                if (resultado3.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+
+                                    resultado3.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados3[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+
+                                    resultado3.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados3[(int) button.getId() - 1] = button;
+                                }
+                            }
+                            if (finalJ == 3) {
+                                if (resultado4.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+
+                                    resultado4.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados4[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+
+                                    resultado4.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados4[(int) button.getId() - 1] = button;
+                                }
+                            }
+
+                        }
+                    });
+                    if(j==0) {
+                        llBotonera1.addView(button);
+                        if(ritmos1.get(i)==1){
+                            botonesResultado1[(int) button.getId() - 1]=button;
+                        }
+                    }
+                    else if(j==1) {
+                        llBotonera4.addView(button);
+                        if(ritmos2.get(i)==1){
+                            botonesResultado2[(int) button.getId() - 1]=button;
+                        }
+                    }
+                    else if(j==2) {
+                        llBotonera3.addView(button);
+                        if(ritmos3.get(i)==1){
+                            botonesResultado3[(int) button.getId() - 1]=button;
+                        }
+                    }
+                    else if(j==3) {
+                        llBotonera2.addView(button);
+                        if(ritmos4.get(i)==1){
+                            botonesResultado4[(int) button.getId() - 1]=button;
+                        }
+                    }
+                } else if (i >= 12 && i < 16) {
+                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_300)));
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (finalJ == 0) {
+                                if (resultado1.get((int)button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_300)));
+
+                                    resultado1.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados1[(int)button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_700)));
+
+                                    resultado1.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados1[(int) button.getId() - 1] = button;
+                                }
+                            }
+                            if (finalJ == 1) {
+                                if (resultado2.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_300)));
+
+                                    resultado2.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados2[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_700)));
+
+                                    resultado2.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados2[(int) button.getId() - 1] = button;
+                                }
+                            }
+                            if (finalJ == 2) {
+                                if (resultado3.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_300)));
+
+                                    resultado3.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados3[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_700)));
+
+                                    resultado3.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados3[(int) button.getId() - 1] = button;
+                                }
+                            }
+                            if (finalJ == 3) {
+                                if (resultado4.get((int) button.getId() - 1) == 1) {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_300)));
+
+                                    resultado4.set(((int) button.getId() - 1), 0);
+                                    botonesSeleccionados4[(int) button.getId() - 1] = null;
+                                } else {
+
+                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_700)));
+
+                                    resultado4.set(((int) button.getId() - 1), 1);
+                                    botonesSeleccionados4[(int) button.getId() - 1] = button;
+                                }
+                            }
+
+                        }
+                    });
+                    if(j==0) {
+                        llBotonera1.addView(button);
+                        if(ritmos1.get(i)==1){
+                            botonesResultado1[(int) button.getId() - 1]=button;
+                        }
+                    }
+                    else if(j==1) {
+                        llBotonera4.addView(button);
+                        if(ritmos2.get(i)==1){
+                            botonesResultado2[(int) button.getId() - 1]=button;
+                        }
+                    }
+                    else if(j==2) {
+                        llBotonera3.addView(button);
+                        if(ritmos3.get(i)==1){
+                            botonesResultado3[(int) button.getId() - 1]=button;
+                        }
+                    }
+                    else if(j==3) {
+                        llBotonera2.addView(button);
+                        if(ritmos4.get(i)==1){
+                            botonesResultado4[(int) button.getId() - 1]=button;
+                        }
+                    }
+                }
+
+                //Aprovecho el bucle para rellenar el array
+                resultado1.add(0);
+                resultado2.add(0);
+                resultado3.add(0);
+                resultado4.add(0);
+            }
+        }
 
 
     }
 
-    public void reproducir(View view) throws IOException{
-        MediaPlayer mediaPlayer =  new MediaPlayer();
-        AssetFileDescriptor afd = getAssets().openFd(rutas.get(0));
-        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-        mediaPlayer.prepare();
-        mediaPlayer.start();
+
+    public void play(@NotNull final View view){
+
+        //view.setEnabled(false);
+        try {
+            m.init(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        hilo_ritmos = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                Metronomo m = new Metronomo(bpm, 4);
+                m.start();
+                try {
+                    sleep((long) (1000 * (60.0 / bpm)));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                int i = 0;
+                int indice = 0;
+                ;
+                while(i < 16 && running){
+
+                    int notaActual1 = ritmos1.get(indice);
+                    if(notaActual1==1) {
+                        go1=true;
+                    }
+                    if(nivel > 2){
+                        int notaActual2 = ritmos2.get(indice);
+                        if(notaActual2==1) {
+                            go2=true;
+                        }
+                        if(nivel > 4){
+                            int notaActual3 = ritmos3.get(indice);
+                            if(notaActual3==1) {
+                                go3=true;
+                            }
+                            if(nivel > 6){
+                                int notaActual4 = ritmos4.get(indice);
+                                if(notaActual4==1) {
+                                    go4=true;
+                                }
+                            }
+                        }
+                    }
+                    try {
+                        Thread.sleep(250);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    i++;
+                    indice++;
+                    if (indice >= 16)
+                        indice = indice-16;
+                    if(!running) {
+                        m.stop();
+                    }
+
+                }
+                m.stop();
+            }
+
+        });
+        hilo_ritmos.start();
+
 
     }
 
-    public void comparar(View view){
-        System.out.println(resNota.getNota().getNombre()+(resNota.getOctava()-1));
-        System.out.println(nombres.get(0));
-        if((resNota.getNota().getNombre() + (resNota.getOctava())).equals(nombres.get(0))){
+    public void stop(View view){
+        NivelAdivinar nivel;
+        int aciertos=0;
+        if(resultado1.equals(ritmos1)){
+            //Correct
+            for(int i = 0; i<16; i++){
+                if(botonesSeleccionados1[i]!=null){
+                    botonesSeleccionados1[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                }
+            }
+            aciertos++;
         }
         else{
-        }
-    }
-
-
-
-
-
-    //Va añadiendo notas junto con su octava a "lista" para asi hallar la nota que mas se repite en la secuencia que el dispatcher esta ON
-    void hallaMax(float hz){
-        if (hz != -1) {
-            Integer octava = 3;
-            //Situa a la nota en la octava que le corresponde
-            if (hz < Notas.DO.getMinimaFrecuencia()) {
-                while (hz < Notas.DO.getMinimaFrecuencia()) {
-                    hz = hz * 2;
-                    octava = octava - 1;
+            //Incorrect
+            for(int i = 0; i<16; i++){
+                if(botonesSeleccionados1[i]!=null){
+                    botonesSeleccionados1[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
-            } else if (hz > Notas.SI.getMaximaFrecuencia()) {
-                while (hz > Notas.SI.getMaximaFrecuencia()) {
-                    hz = hz / 2;
-                    octava = octava + 1;
+                if(botonesResultado1[i]!=null)
+                    botonesResultado1[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+            }
+
+        }
+        if(resultado2.equals(ritmos2)){
+            //Correct
+            for(int i = 0; i<16; i++){
+                if(botonesSeleccionados2[i]!=null){
+                    botonesSeleccionados2[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
             }
-            boolean esNota = false;
-            for (Notas n : Notas.values()) {
-                if (!esNota) {
-                    esNota = compruebaSiEsNota(hz, n, lista, octava);
+            aciertos++;
+        }
+        else{
+            //Incorrect
+            for(int i = 0; i<16; i++){
+                if(botonesSeleccionados2[i]!=null){
+                    botonesSeleccionados2[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                }
+                if(botonesResultado2[i]!=null)
+                    botonesResultado2[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+            }
+
+        }
+        if(resultado3.equals(ritmos3)){
+            //Correct
+            for(int i = 0; i<16; i++){
+                if(botonesSeleccionados3[i]!=null){
+                    botonesSeleccionados3[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
             }
+            aciertos++;
         }
-
-
-    }
-
-    private boolean compruebaSiEsNota(float hz, Notas n, ArrayList<NotasImitar> lista, int octava) {
-        if (hz >= n.getMinimaFrecuencia() && hz <= n.getMaximaFrecuencia()) {
-
-            if (lista.contains(new NotasImitar(n, octava))) {
-                    lista.set(lista.indexOf(new NotasImitar(n, octava)), new NotasImitar(n, octava, lista.indexOf(new NotasImitar(n, octava).getContador() + 1)));
-            } else {
-                    lista.add(new NotasImitar(n, octava, 1));
+        else{
+            //Incorrect
+            for(int i = 0; i<16; i++){
+                if(botonesSeleccionados3[i]!=null){
+                    botonesSeleccionados3[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                }
+                if(botonesResultado3[i]!=null)
+                    botonesResultado3[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
-            return true;
         }
-        return false;
-    }
-
-    public void Grabar(View view) {
-        Button botonGrabar = findViewById(R.id.botonGrabar);
-        botonGrabar.setVisibility(View.INVISIBLE);
-        botonGrabar.setEnabled(false);
-
-
-        class MiContador extends CountDownTimer {
-
-            public MiContador(long millisInFuture, long countDownInterval) {
-                super(millisInFuture, countDownInterval);
-            }
-
-            @Override
-            public void onFinish() {
-
-                final Thread dispatch_Thread = new Thread(dispatcher,"Audio Dispatcher");
-                Toast.makeText(getApplicationContext(), "La grabación comenzó", Toast.LENGTH_LONG).show();
-                dispatch_Thread.start();
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-
-
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        dispatcher.stop();
-                        dispatch_Thread.interrupt();
-
-                        //Recorre el ArrayList "lista" para guardar en resNota la nota que mas se repite
-                        resNota = lista.get(0);
-                        for (int i = 1; i<lista.size(); i++) {
-                            if(lista.get(i).getContador() > resNota.getContador()){
-                                resNota = lista.get(i);
-                            }
-                        }
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                TextView text2 = findViewById(R.id.textoFrecuencia);
-                                text2.setText("Resultado: " + resNota.getNota().getNombre() + (resNota.getOctava()));
-
-
-                                Button repetirNivel = (Button)findViewById(R.id.botonRepite);
-                                repetirNivel.setVisibility(View.VISIBLE);
-                                repetirNivel.setEnabled(true);
-
-                                Button comparar = (Button)findViewById(R.id.button4);
-                                comparar.setEnabled(true);
-                                comparar.setVisibility(View.VISIBLE);
-
-                            }
-
-                        });
-
-
-                        return;
-
-                    }
-                }).start();
-
-
-
+        if(resultado4.equals(ritmos4)){
+            //Correct
+            for(int i = 0; i<16; i++){
+                if(botonesSeleccionados4[i]!=null){
+                    botonesSeleccionados4[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                }
 
             }
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                //texto a mostrar en cuenta regresiva en un textview
-                TextView countdownText = findViewById(R.id.textoFrecuencia);
-                countdownText.setText((((millisUntilFinished+1000)/1000)+""));
+            aciertos++;
+        }
+        else{
+            //Incorrect
+            for(int i = 0; i<16; i++){
+                if(botonesSeleccionados4[i]!=null){
+                    botonesSeleccionados4[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                }
+                if(botonesResultado4[i]!=null)
+                    botonesResultado4[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
 
         }
-        final MiContador timer = new MiContador(3000,1000);
-        timer.start();
-
-
+        if(aciertos == 4){
+            nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.toString(), this.nivel,true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0 );
+        }
+        else{
+            nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.toString(), this.nivel,false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1 );
+        }
+        GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
     }
 
-    public void repetirNivel(View view){
-        startActivity(getIntent());
-        this.finish();
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        running = false;
     }
-
 }
