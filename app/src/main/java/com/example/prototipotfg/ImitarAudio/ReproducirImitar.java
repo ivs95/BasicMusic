@@ -37,7 +37,7 @@ import be.tarsos.dsp.pitch.PitchProcessor;
 public class ReproducirImitar extends Activity {
     private AudioDispatcherFactory1 factory = new AudioDispatcherFactory1();
     private AudioDispatcher dispatcher = factory.fromDefaultMicrophone(22050,1024,0);
-    private ArrayList<NotasImitar> lista = new ArrayList<NotasImitar>();
+    private ArrayList<NotasImitar> lista = new ArrayList<>();
     private ArrayList<Float> porcentajes = new ArrayList<>();
     private Float resPorcentaje;
     private NotasImitar resNota;
@@ -48,7 +48,7 @@ public class ReproducirImitar extends Activity {
     private NoiseSuppressor noise;
     private AutomaticGainControl gain;
     private AudioProcessor p;
-    Thread dispatch_Thread = new Thread(dispatcher,"Audio Dispatcher");
+    private Thread dispatch_Thread = new Thread(dispatcher,"Audio Dispatcher");
 
 
 
@@ -109,6 +109,7 @@ public class ReproducirImitar extends Activity {
     }
 
     public void contador(View view){
+        inicializaArrays();
         view.setVisibility(View.GONE);
         class MiContador extends CountDownTimer {
 
@@ -137,6 +138,11 @@ public class ReproducirImitar extends Activity {
 
 
 
+    }
+
+    private void inicializaArrays() {
+        lista = new ArrayList<>();
+        porcentajes = new ArrayList<>();
     }
 
     private void inicializaPitch() {
