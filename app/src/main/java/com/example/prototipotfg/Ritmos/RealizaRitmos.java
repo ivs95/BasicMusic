@@ -1,4 +1,4 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Ritmos;
 
 import android.Manifest;
 import android.app.Activity;
@@ -19,8 +19,10 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.prototipotfg.AudioDispatcherFactory1;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.ImitarAudio.NotasImitar;
+import com.example.prototipotfg.R;
 
 import java.io.IOException;
 import java.util.ArrayList;

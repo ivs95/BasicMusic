@@ -1,9 +1,11 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Ritmos;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.prototipotfg.R;
 
 public class SeleccionModoRitmos extends Activity {
 

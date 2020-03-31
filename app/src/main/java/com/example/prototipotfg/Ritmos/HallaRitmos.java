@@ -1,9 +1,8 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Ritmos;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +13,9 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.BBDD.NivelAdivinar;
-import com.example.prototipotfg.BBDD.NivelImitar;
+import com.example.prototipotfg.Enumerados.ModoJuego;
+import com.example.prototipotfg.Ritmos.Metronomo;
+import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import org.jetbrains.annotations.NotNull;
@@ -465,12 +466,12 @@ public class HallaRitmos extends Activity {
                         @Override
                         public void onClick(View v) {
                             if (finalJ == 0) {
-                                if (resultado1.get((int) button.getId() - 1) == 1) {
+                                if (resultado1.get((int)button.getId() - 1) == 1) {
 
                                     button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_300)));
 
                                     resultado1.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados1[(int) button.getId() - 1] = null;
+                                    botonesSeleccionados1[(int)button.getId() - 1] = null;
                                 } else {
 
                                     button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_grey_700)));
@@ -717,10 +718,10 @@ public class HallaRitmos extends Activity {
 
         }
         if(aciertos == 4){
-            nivel  = new NivelAdivinar("Hallar ritmo", this.nivel,true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0 );
+            nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.toString(), this.nivel,true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0 );
         }
         else{
-            nivel  = new NivelAdivinar("Hallar ritmo", this.nivel,false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1 );
+            nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.toString(), this.nivel,false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1 );
         }
         GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
     }

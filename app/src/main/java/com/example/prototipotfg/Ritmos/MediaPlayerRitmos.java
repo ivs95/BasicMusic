@@ -1,4 +1,4 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.Ritmos;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;

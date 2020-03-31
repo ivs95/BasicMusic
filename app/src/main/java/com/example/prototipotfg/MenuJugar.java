@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.ImitarAudio.SeleccionOctavasImitar;
+import com.example.prototipotfg.Ritmos.SeleccionModoRitmos;
 import com.example.prototipotfg.Singletons.Controlador;
 
 public class MenuJugar extends Activity {
