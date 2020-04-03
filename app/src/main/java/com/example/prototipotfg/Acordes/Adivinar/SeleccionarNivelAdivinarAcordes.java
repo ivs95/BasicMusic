@@ -1,4 +1,4 @@
-package com.example.prototipotfg.Acordes;
+package com.example.prototipotfg.Acordes.Adivinar;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,13 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 
-import java.util.ArrayList;
-
-public class SeleccionarNivelCrearAcordes extends Activity {
+public class SeleccionarNivelAdivinarAcordes extends Activity {
 
 
     @Override
@@ -25,7 +22,7 @@ public class SeleccionarNivelCrearAcordes extends Activity {
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         //Creamos los botones en bucle
         for (int i = 0; i < 6; i++) {
             Button button = new Button(this);
@@ -39,7 +36,7 @@ public class SeleccionarNivelCrearAcordes extends Activity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    nivel_seleccionado(v);
+                        nivel_seleccionado(v);
                 }
             });
             //Añadimos el botón a la botonera
@@ -50,7 +47,7 @@ public class SeleccionarNivelCrearAcordes extends Activity {
 
 
     public void nivel_seleccionado(View view) {
-        Intent i = new Intent(this, ReproducirCrearAcordes.class);
+        Intent i = new Intent(this, ReproducirAdivinarAcordes.class);
         Controlador.getInstance().setNivel(view.getId());
         Controlador.getInstance().estableceDificultad();
         /*

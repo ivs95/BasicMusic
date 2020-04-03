@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,62 +8,82 @@
 
     <TextView
         android:id="@+id/tituloRango"
-        android:layout_width="251dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="50dp"
         android:text="Selecciona rango"
         android:textColor="@color/md_blue_900"
-        android:textSize="30sp" />
-
-    <Button
-        android:id="@+id/buttonPrimeraOctava"
-        android:layout_width="251dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:onClick="seleccionaOctava"
-        android:text="Soprano"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.20" />
 
-    <Button
-        android:id="@+id/buttonSegundaOctava"
-        android:layout_width="251dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:onClick="seleccionaOctava"
-        android:text="Mezzosoprano" />
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:divider="@drawable/divisor_botones_menu"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65">
 
-    <Button
-        android:id="@+id/buttonTerceraOctava"
-        android:layout_width="251dp"
+        <Button
+            android:id="@+id/buttonPrimeraOctava"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="seleccionaOctava"
+            android:text="Soprano" />
+
+        <Button
+            android:id="@+id/buttonSegundaOctava"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="seleccionaOctava"
+            android:text="Mezzosoprano" />
+
+        <Button
+            android:id="@+id/buttonTerceraOctava"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="seleccionaOctava"
+            android:text="Contralto" />
+
+        <Button
+            android:id="@+id/buttonCuartaOctava"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="seleccionaOctava"
+            android:text="Tenor" />
+
+        <Button
+            android:id="@+id/buttonQuintaOctava"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="seleccionaOctava"
+            android:text="Baritono" />
+
+        <Button
+            android:id="@+id/buttonSextaOctava"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="seleccionaOctava"
+            android:text="Bajo" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:onClick="seleccionaOctava"
-        android:text="Contralto" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="138dp" />
 
-    <Button
-        android:id="@+id/buttonCuartaOctava"
-        android:layout_width="251dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:onClick="seleccionaOctava"
-        android:text="Tenor" />
-
-    <Button
-        android:id="@+id/buttonQuintaOctava"
-        android:layout_width="251dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:onClick="seleccionaOctava"
-        android:text="Baritono" />
-
-    <Button
-        android:id="@+id/buttonSextaOctava"
-        android:layout_width="251dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:onClick="seleccionaOctava"
-        android:text="Bajo" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

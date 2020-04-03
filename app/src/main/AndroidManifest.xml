@@ -41,10 +41,10 @@
         <activity android:name=".Acordes.SeleccionarModoAcordes" />
         <activity android:name=".Intervalos.Crear.SeleccionNivelCrearIntervalo" />
         <activity android:name=".Notas.SeleccionarNivelAdivinarNotas" />
-        <activity android:name=".Acordes.SeleccionarNivelAdivinarAcordes" />
-        <activity android:name=".Acordes.SeleccionarNivelCrearAcordes" />
-        <activity android:name=".Acordes.ReproducirAdivinarAcordes" />
-        <activity android:name=".Acordes.ReproducirCrearAcordes" />
+        <activity android:name=".Acordes.Adivinar.SeleccionarNivelAdivinarAcordes" />
+        <activity android:name=".Acordes.Crear.SeleccionarNivelCrearAcordes" />
+        <activity android:name=".Acordes.Adivinar.ReproducirAdivinarAcordes" />
+        <activity android:name=".Acordes.Crear.ReproducirCrearAcordes" />
         <activity android:name=".Acordes.TutorialAdivinarAcordes" />
         <activity android:name=".Estadisticas" />
     </application>

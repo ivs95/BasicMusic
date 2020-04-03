@@ -1,48 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
 
 
     <TextView
         android:id="@+id/tituloModosAcordes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:text="Modos de acordes"
-        android:textSize="30sp"
-        android:textColor="@color/md_blue_900"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/buttonAcordesModo2"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="300dp"
-        android:onClick="modo_acordes"
-        android:text="Crea el acorde"
+        android:gravity="center"
+        android:text="Modos de acordes"
+        android:textColor="@color/md_blue_900"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.20" />
 
-    <Button
-        android:id="@+id/buttonAcordesModo1"
+    <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:onClick="modo_acordes"
-        android:text="Adivina el acorde"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:divider="@drawable/divisor_botones_menu"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/buttonAcordesModo1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="modo_acordes"
+            android:text="Adivina el acorde" />
+
+        <Button
+            android:id="@+id/buttonAcordesModo2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="modo_acordes"
+            android:text="Crea el acorde" />
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

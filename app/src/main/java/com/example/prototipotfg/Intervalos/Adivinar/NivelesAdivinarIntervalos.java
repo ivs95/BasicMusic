@@ -23,24 +23,24 @@ public class NivelesAdivinarIntervalos extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.opciones_adivinar);
+        setContentView(R.layout.niveles);
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
 
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
 
         //Creamos los botones en bucle
-        for (int i=1; i<7; i++){
+        for (int i=0; i<6; i++){
             Button button = new Button(this);
-            button.setId(i);
+            button.setId(i+1);
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            button.setText("Nivel " + (i));
+            button.setText("Nivel " + (i+1));
 
             //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {

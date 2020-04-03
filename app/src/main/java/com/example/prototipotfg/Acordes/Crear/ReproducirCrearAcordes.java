@@ -1,4 +1,4 @@
-package com.example.prototipotfg.Acordes;
+package com.example.prototipotfg.Acordes.Crear;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.prototipotfg.Acordes.TutorialAdivinarAcordes;
 import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Acordes;
 import com.example.prototipotfg.Enumerados.Dificultad;

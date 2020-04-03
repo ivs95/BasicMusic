@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.prototipotfg.Acordes.Adivinar.SeleccionarNivelAdivinarAcordes;
+import com.example.prototipotfg.Acordes.Crear.SeleccionarNivelCrearAcordes;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
