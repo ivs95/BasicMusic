@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tituloModosImitar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:text="Tipos de juego"
         android:gravity="center"
+        android:text="Tipos de juego"
         android:textAlignment="center"
         android:textColor="@color/md_blue_900"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonAcordes"
+    <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:onClick="modo"
-        android:text="acordes"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:divider="@drawable/divisor_botones_menu"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="80dp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRealizar" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/buttonRealizar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:onClick="modo"
-        android:text="intervalos"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="80dp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonNotas" />
+        <Button
+            android:id="@+id/buttonNotas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="modo"
+            android:text="notas" />
 
-    <Button
-        android:id="@+id/buttonNotas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        android:onClick="modo"
-        android:text="notas"
-        android:layout_marginHorizontal="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/buttonAcordes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="modo"
+            android:text="acordes" />
+
+        <Button
+            android:id="@+id/buttonRealizar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="modo"
+            android:text="intervalos" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,11 +9,25 @@
     tools:context=".MainActivity">
 
 
+    <ImageButton
+        android:id="@+id/profile_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/picture"
+        android:onClick="ejecutar_Perfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/titulo"
-        android:layout_width="325dp"
-        android:layout_height="53dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="176dp"
+        android:layout_marginEnd="60dp"
         android:text="@string/titulo"
         android:textAlignment="center"
         android:textColor="@color/md_blue_900"
@@ -23,76 +37,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/botonJuego"
-        android:layout_width="251dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="308dp"
-        android:onClick="ejecutar_jugar"
-        android:text="@string/txtBotonJuego"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:divider="@drawable/divisor_botones_menu"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/botonTeoria"
-        android:layout_width="251dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/txtBotonTeoria"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonJuego" />
-
-    <Button
-        android:id="@+id/botonInfo"
-        android:layout_width="251dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/txtBotonInfo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonTeoria" />
-
-
-    <Button
-        android:id="@+id/botonSalir"
-        android:layout_width="251dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="15dp"
-        android:onClick="salir"
-        android:text="@string/txtBtnSalir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonEstadisticas" />
-
-    <Button
-        android:id="@+id/botonEstadisticas"
-        android:layout_width="251dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="15dp"
-        android:onClick="mostrarEstadisticas"
-        android:text="Estadísticas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonInfo" />
-
-    <ImageButton
-        android:id="@+id/profile_button"
-        android:layout_width="81dp"
-        android:layout_height="79dp"
-        android:background="@drawable/picture"
-        android:onClick="ejecutar_Perfil"
-        app:layout_constraintBottom_toTopOf="@+id/titulo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.951"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164" />
+        app:layout_constraintVertical_bias="0.7">
+
+        <Button
+            android:id="@+id/botonJuego"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="ejecutar_jugar"
+            android:text="@string/txtBotonJuego" />
+
+        <Button
+            android:id="@+id/botonInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/txtBotonInfo"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/botonEstadisticas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="mostrarEstadisticas"
+            android:text="Estadísticas" />
+
+        <Button
+            android:id="@+id/botonTeoria"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/txtBotonTeoria"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/botonSalir"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="salir"
+            android:text="@string/txtBtnSalir" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

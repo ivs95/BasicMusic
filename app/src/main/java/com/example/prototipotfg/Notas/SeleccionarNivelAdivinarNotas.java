@@ -29,8 +29,7 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(150, 0, 150, 0);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         //Creamos los botones en bucle
         for (int i = 0; i < 10; i++) {
             Button button = new Button(this);
