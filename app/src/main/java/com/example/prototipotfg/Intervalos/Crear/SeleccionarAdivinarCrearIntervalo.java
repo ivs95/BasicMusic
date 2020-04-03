@@ -98,7 +98,6 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
         //inicializacion de botones
 
-        respuesta_correcta = notasIntervalo.get(1).first.getNombre()+notasIntervalo.get(1).second.getOctava();
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout opciones = (LinearLayout) findViewById(R.id.opciones_crear_intervalo);
@@ -148,6 +147,8 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
             opciones.addView(button);
             if (button.getText().toString().equals(notasIntervalo.get(1).first.getNombre() + notasIntervalo.get(1).second.getOctava())){
                 this.respuestaCorrecta=button;
+                respuesta_correcta = button.getText().toString();
+
             }
         }
 
@@ -271,15 +272,21 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
             NivelAdivinar nivel = null;
             this.comprobada = true;
             if (respuesta != respuesta_correcta) {
+                nivel = new NivelAdivinar(ModoJuego.Crear_Intervalo.toString(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-                    nivel = new NivelAdivinar(ModoJuego.Crear_Intervalo.toString(), Controlador.getInstance().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
             }
-            else nivel = new NivelAdivinar(ModoJuego.Crear_Intervalo.toString(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
+            else {
+                nivel = new NivelAdivinar(ModoJuego.Crear_Intervalo.toString(), Controlador.getInstance().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                }
+            }
 
             GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
             findViewById(R.id.comprobar_crear_intervalo).setVisibility(View.GONE);
