@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.ColorStateList;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;

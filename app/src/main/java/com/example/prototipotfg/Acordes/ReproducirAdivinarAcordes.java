@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.ColorStateList;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Pair;
@@ -26,6 +25,7 @@ import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 import com.example.prototipotfg.Singletons.GestorBBDD;
+import com.example.prototipotfg.Singletons.Reproductor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -122,14 +122,15 @@ public class ReproducirAdivinarAcordes extends Activity {
             int indiceSeleccionado = view.getId();
             if (Controlador.getInstance().getDificultad().equals(Dificultad.Facil)) {
                 ArrayList<Pair<Notas, Octavas>> acordeSeleccionado = acordesReproducir.get(indiceSeleccionado - 1);
-                ArrayList<MediaPlayer> mediaPlayers = inicializaMediaPlayers(acordeSeleccionado);
-                for (MediaPlayer m : mediaPlayers){
-                    m.start();
-                }
+                ArrayList<AssetFileDescriptor> assetFileDescriptors = preparaAssets(acordeSeleccionado);
+                Reproductor.getInstance().reproducirAcorde(assetFileDescriptors);
+                cierraAssets(assetFileDescriptors);
+
                 }
             }
             ponerComprobarVisible(1);
         }
+
 
 
     private void ponerComprobarVisible(int visible) {
@@ -173,44 +174,45 @@ public class ReproducirAdivinarAcordes extends Activity {
     }
 
     public void reproducirAcorde(View view){
-        ArrayList<MediaPlayer> mediaPlayers = inicializaMediaPlayers(acordeCorrectoReproducir);
-        for (MediaPlayer m: mediaPlayers){
-            m.start();
-        }
+        ArrayList<AssetFileDescriptor> assetFileDescriptors = preparaAssets(acordeCorrectoReproducir);
+        Reproductor.getInstance().reproducirAcorde(assetFileDescriptors);
+        cierraAssets(assetFileDescriptors);
+
 
     }
 
-    private ArrayList<MediaPlayer> inicializaMediaPlayers(ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir) {
-        ArrayList<MediaPlayer> retorno = new ArrayList<>();
-        for (Pair<Notas, Octavas> nota : acordeCorrectoReproducir) {
-            String ruta = Instrumentos.Piano.getPath() + nota.second.getPath() + nota.first.getPath();
-            MediaPlayer mediaPlayer = new MediaPlayer();
-            AssetFileDescriptor afd;
+    private ArrayList<AssetFileDescriptor> preparaAssets(ArrayList<Pair<Notas, Octavas>> acorde){
+        ArrayList<AssetFileDescriptor> retorno = new ArrayList<>();
+        for (Pair<Notas, Octavas> nota : acorde){
             try {
-                afd = getAssets().openFd(ruta);
-                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                mediaPlayer.prepare();
+                retorno.add(getAssets().openFd(Instrumentos.Piano.getPath() + nota.second.getPath() + nota.first.getPath()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            retorno.add(mediaPlayer);
         }
         return retorno;
     }
 
+
+    private void cierraAssets(ArrayList<AssetFileDescriptor> assetFileDescriptors) {
+        for (AssetFileDescriptor afd : assetFileDescriptors) {
+            try {
+                afd.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
     public void reproduceReferencia(View view){
-        String ruta = Instrumentos.Piano.getPath() + this.octavaInicio.getPath() + Notas.LA.getPath();
-        MediaPlayer mediaPlayer = new MediaPlayer();
-        AssetFileDescriptor afd;
         try {
-            afd = getAssets().openFd(ruta);
-            mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-            mediaPlayer.prepare();
+            AssetFileDescriptor afd = getAssets().openFd(Instrumentos.Piano.getPath() + this.octavaInicio.getPath() + Notas.LA.getPath());
+            Reproductor.getInstance().reproducirNota(afd);
+            afd.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mediaPlayer.start();
-
     }
 
     public void muestraPosibles(View view){

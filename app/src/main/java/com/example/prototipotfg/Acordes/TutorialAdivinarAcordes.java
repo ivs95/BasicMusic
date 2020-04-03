@@ -2,7 +2,6 @@ package com.example.prototipotfg.Acordes;
 
 import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -16,6 +15,7 @@ import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
+import com.example.prototipotfg.Singletons.Reproductor;
 
 
 import java.io.IOException;
@@ -67,30 +67,37 @@ public class TutorialAdivinarAcordes extends Activity {
         }
     }
 
-    private void reproducirAcorde(View view){
-        ArrayList<MediaPlayer> mediaPlayers = inicializaMediaPlayers(acordesReproducir.get(view.getId()));
-        for (MediaPlayer m: mediaPlayers){
-            m.start();
-        }
+    public void reproducirAcorde(View view){
+        ArrayList<AssetFileDescriptor> assetFileDescriptors = preparaAssets(acordesReproducir.get(view.getId()));
+        Reproductor.getInstance().reproducirAcorde(assetFileDescriptors);
+        cierraAssets(assetFileDescriptors);
+
 
     }
 
-    private ArrayList<MediaPlayer> inicializaMediaPlayers(ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir) {
-        ArrayList<MediaPlayer> retorno = new ArrayList<>();
-        for (Pair<Notas, Octavas> nota : acordeCorrectoReproducir) {
-            String ruta = Instrumentos.Piano.getPath() + nota.second.getPath() + nota.first.getPath();
-            MediaPlayer mediaPlayer = new MediaPlayer();
-            AssetFileDescriptor afd;
+    private ArrayList<AssetFileDescriptor> preparaAssets(ArrayList<Pair<Notas, Octavas>> acorde){
+        ArrayList<AssetFileDescriptor> retorno = new ArrayList<>();
+        for (Pair<Notas, Octavas> nota : acorde){
             try {
-                afd = getAssets().openFd(ruta);
-                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                mediaPlayer.prepare();
+                retorno.add(getAssets().openFd(Instrumentos.Piano.getPath() + nota.second.getPath() + nota.first.getPath()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            retorno.add(mediaPlayer);
         }
         return retorno;
     }
+
+
+    private void cierraAssets(ArrayList<AssetFileDescriptor> assetFileDescriptors) {
+        for (AssetFileDescriptor afd : assetFileDescriptors) {
+            try {
+                afd.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 
 }

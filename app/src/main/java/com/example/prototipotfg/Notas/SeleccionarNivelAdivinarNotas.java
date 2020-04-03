@@ -65,18 +65,8 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
         ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
         HashMap<String, String> notas = null;
         notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones(), Instrumentos.Piano, octavas);
-
-
-        /*
-         * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
-         * Crear clase para seleccionar notas aleatorias
-         * Claves: respuesta, fallo1,...,falloN
-         * */
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
-        ArrayList<String> rutas = new ArrayList<>(notas.values());
-
         i.putStringArrayListExtra("nombres", nombres);
-        i.putStringArrayListExtra("rutas", rutas);
         startActivity(i);
     }
 }

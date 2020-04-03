@@ -4,8 +4,6 @@ package com.example.prototipotfg.Intervalos.Crear;
 import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.ColorStateList;
-import android.database.ContentObservable;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Pair;
@@ -27,6 +25,7 @@ import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 import com.example.prototipotfg.Singletons.GestorBBDD;
+import com.example.prototipotfg.Singletons.Reproductor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -220,20 +219,14 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
             }
 
             respuesta = b.getText().toString();
-
-
                 String ruta = devuelveRutaBoton(respuesta);
-
-                MediaPlayer mediaPlayer = new MediaPlayer();
-                AssetFileDescriptor afd = null;
                 try {
-                    afd = getAssets().openFd(ruta);
-                    mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                    mediaPlayer.prepare();
+                    AssetFileDescriptor afd = getAssets().openFd(ruta);
+                    Reproductor.getInstance().reproducirNota(afd);
+                    afd.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                mediaPlayer.start();
 
 
             ponerComprobarVisible(1);
@@ -253,11 +246,9 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
     public void reproducirReferencia(View view) throws IOException {
         FactoriaNotas.getInstance().setReferencia(this.octavaReproducir);
-        MediaPlayer mediaPlayer =  new MediaPlayer();
         AssetFileDescriptor afd = getAssets().openFd(FactoriaNotas.getInstance().getReferencia());
-        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-        mediaPlayer.prepare();
-        mediaPlayer.start();
+        Reproductor.getInstance().reproducirNota(afd);
+        afd.close();
     }
 
 
@@ -267,12 +258,9 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
     }
 
     public void reproducir(View view) throws IOException {
-        String ruta = Instrumentos.Piano.getPath() + this.octavaReproducir.getPath() + this.notaInicio.getPath();
-        MediaPlayer mediaPlayer =  new MediaPlayer();
-        AssetFileDescriptor afd = getAssets().openFd(ruta);
-        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-        mediaPlayer.prepare();
-        mediaPlayer.start();
+        AssetFileDescriptor afd = getAssets().openFd(Instrumentos.Piano.getPath() + this.octavaReproducir.getPath() + this.notaInicio.getPath());
+        Reproductor.getInstance().reproducirNota(afd);
+        afd.close();
 
     }
 

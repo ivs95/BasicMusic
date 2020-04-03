@@ -3,7 +3,6 @@ package com.example.prototipotfg.Intervalos.Adivinar;
 import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.ColorStateList;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Pair;
@@ -24,6 +23,7 @@ import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 import com.example.prototipotfg.Singletons.GestorBBDD;
+import com.example.prototipotfg.Singletons.Reproductor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,7 +36,6 @@ import static java.lang.Thread.sleep;
 public class SeleccionarAdivinarIntervalo extends Activity {
     private View botonSeleccionado;
     private View respuestaCorrecta;
-    private ArrayList<String> nombres = new ArrayList<>();
     private String respuesta;
     private ArrayList<Pair<Notas,Octavas>> notasIntervalo = new ArrayList<>();
     private String intervalo_correcto;
@@ -133,11 +132,9 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
 
     public void reproduceNota(String ruta) throws IOException {
-        MediaPlayer mediaPlayer =  new MediaPlayer();
         AssetFileDescriptor afd = getAssets().openFd(ruta);
-        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-        mediaPlayer.prepare();
-        mediaPlayer.start();
+        Reproductor.getInstance().reproducirNota(afd);
+        afd.close();
     }
 
 
@@ -219,11 +216,9 @@ public class SeleccionarAdivinarIntervalo extends Activity {
     }
 
     public void reproducirReferencia(View view) throws IOException {
-        MediaPlayer mediaPlayer =  new MediaPlayer();
         AssetFileDescriptor afd = getAssets().openFd(FactoriaNotas.getInstance().getReferencia());
-        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-        mediaPlayer.prepare();
-        mediaPlayer.start();
+        Reproductor.getInstance().reproducirNota(afd);
+        afd.close();
     }
 
 }

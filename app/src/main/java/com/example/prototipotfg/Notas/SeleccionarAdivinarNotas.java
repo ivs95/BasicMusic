@@ -22,6 +22,7 @@ import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 import com.example.prototipotfg.Singletons.GestorBBDD;
+import com.example.prototipotfg.Singletons.Reproductor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,9 +35,8 @@ public class SeleccionarAdivinarNotas extends Activity {
     private View botonSeleccionado;
     private View respuestaCorrecta;
     private boolean comprobada = false;
-
     private ArrayList<String> nombres;
-    private ArrayList<String> rutas;
+    private ArrayList<Button> botonesNotas = new ArrayList<>();
 
     private String respuesta;
     @Override
@@ -45,7 +45,6 @@ public class SeleccionarAdivinarNotas extends Activity {
         setContentView(R.layout.nivel_seleccionar_adivinar_notas);
         ponerComprobarVisible(INVISIBLE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
-        rutas = getIntent().getExtras().getStringArrayList("rutas");
         FactoriaNotas.getInstance().setReferencia(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
         adaptaVista(Controlador.getInstance().getDificultad());
         //Obtenemos el linear layout donde colocar los botones
@@ -89,6 +88,7 @@ public class SeleccionarAdivinarNotas extends Activity {
             if (button.getText().toString() == nombres.get(0)){
                 this.respuestaCorrecta=button;
             }
+            botonesNotas.add(button);
         }
     }
 
@@ -125,12 +125,14 @@ public class SeleccionarAdivinarNotas extends Activity {
                 MediaPlayer mediaPlayer = new MediaPlayer();
                 try {
                     AssetFileDescriptor afd = getAssets().openFd(ruta);
-                    mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                    mediaPlayer.prepare();
+                    Reproductor.getInstance().reproducirNota(afd);
+                    afd.close();
+                    /*mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                    mediaPlayer.prepare();*/
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                mediaPlayer.start();
+                //mediaPlayer.start();
             }
 
             ponerComprobarVisible(1);
@@ -144,11 +146,13 @@ public class SeleccionarAdivinarNotas extends Activity {
     }
 
     public void reproduceNotaRespuesta(View view) throws IOException{
-        MediaPlayer mediaPlayer =  new MediaPlayer();
+       // MediaPlayer mediaPlayer =  new MediaPlayer();
         AssetFileDescriptor afd = getAssets().openFd(devuelveRutaBoton(((Button)respuestaCorrecta).getText().toString()));
-        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        Reproductor.getInstance().reproducirNota(afd);
+        afd.close();
+        /*mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
         mediaPlayer.prepare();
-        mediaPlayer.start();
+        mediaPlayer.start();*/
     }
 
     public void volverAtras(View view){
@@ -156,11 +160,13 @@ public class SeleccionarAdivinarNotas extends Activity {
     }
 
     public void reproducirReferencia(View view) throws IOException {
-        MediaPlayer mediaPlayer =  new MediaPlayer();
+       // MediaPlayer mediaPlayer =  new MediaPlayer();
         AssetFileDescriptor afd = getAssets().openFd(FactoriaNotas.getInstance().getReferencia());
-        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+        Reproductor.getInstance().reproducirNota(afd);
+        afd.close();
+       /* mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
         mediaPlayer.prepare();
-        mediaPlayer.start();
+        mediaPlayer.start();*/
     }
 
 
@@ -185,11 +191,19 @@ public class SeleccionarAdivinarNotas extends Activity {
                 respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
             GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
+            deshabilitaBotones();
         }
         findViewById(R.id.comprobar).setVisibility(View.GONE);
 
     }
 
+    private void deshabilitaBotones() {
+        for (Button b : botonesNotas){
+            b.setEnabled(false);
+        }
+        findViewById(R.id.botonReferencia).setEnabled(false);
+        findViewById(R.id.botonNota).setEnabled(false);
+    }
 
 
 }
