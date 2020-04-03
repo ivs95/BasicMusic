@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.prototipotfg.Acordes.SeleccionarModoAcordes;
 import com.example.prototipotfg.Enumerados.ModoJuego;
+import com.example.prototipotfg.Intervalos.SeleccionarModoIntervalos;
 import com.example.prototipotfg.Notas.SeleccionarNivelAdivinarNotas;
 import com.example.prototipotfg.Singletons.Controlador;
 
