@@ -6,11 +6,12 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Usuario.class, NivelAdivinar.class, NivelImitar.class}, version=1)
+@Database(entities = {Usuario.class, NivelAdivinar.class, NivelImitar.class, Puntuacion.class}, version=1)
 public abstract class AppDatabase extends RoomDatabase {
     private static volatile AppDatabase instance;
     public abstract DAONivel daoNivel();
     public abstract DAOUsuario daoUsuario();
+    public abstract  DAOPuntuacion daoPuntuacion();
 
     public static synchronized AppDatabase getInstance(Context context){
         if (instance == null){

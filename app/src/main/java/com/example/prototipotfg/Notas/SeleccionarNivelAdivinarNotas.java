@@ -8,10 +8,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.prototipotfg.Enumerados.Instrumentos;
+import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
+import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,10 +22,12 @@ import java.util.Random;
 
 public class SeleccionarNivelAdivinarNotas extends Activity {
 
-
+    private int puntuacion;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
+
+
 
 
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
@@ -32,6 +36,7 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         //Creamos los botones en bucle
         for (int i = 0; i < 10; i++) {
+
             Button button = new Button(this);
             button.setId(i + 1);
             //Asignamos propiedades de layout al boton
@@ -52,6 +57,13 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
             });
             //Añadimos el botón a la botonera
             llBotonera.addView(button);
+
+            /*
+            if(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getPuntuacionTotal() < i * (10+i)) {
+                button.setEnabled(false);
+            }
+            */
+
         }
     }
 

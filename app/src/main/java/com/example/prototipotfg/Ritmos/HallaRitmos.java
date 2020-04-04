@@ -1,8 +1,10 @@
 package com.example.prototipotfg.Ritmos;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -200,6 +202,7 @@ public class HallaRitmos extends Activity {
 
 
                     button.setOnClickListener(new View.OnClickListener() {
+                        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                         @Override
                         public void onClick(View v) {
                             if (finalJ == 0) {

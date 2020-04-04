@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.prototipotfg.BBDD.AppDatabase;
 import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.BBDD.NivelImitar;
+import com.example.prototipotfg.BBDD.Puntuacion;
 import com.example.prototipotfg.BBDD.Usuario;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosVocales;
@@ -27,6 +28,7 @@ public class GestorBBDD {
     private final String[] NIVELES_IMITAR_AUDIO = new String[]{"FACIL", "MEDIO", "DIFICIL"};
     private final int NIVELES_HALLAR_RITMO=8;
     private final int NIVELES_CREAR_RITMO=1;
+
 
 
     public static GestorBBDD getInstance(){
@@ -315,6 +317,11 @@ public class GestorBBDD {
         }
 
         return retorno;
+    }
+
+    public Puntuacion devuelvePuntuacion(String modoJuego){
+        Puntuacion puntuacion = appDatabase.daoPuntuacion().findPuntuacion(usuarioLoggeado.getCorreo(), modoJuego);
+        return puntuacion;
     }
 
 }
