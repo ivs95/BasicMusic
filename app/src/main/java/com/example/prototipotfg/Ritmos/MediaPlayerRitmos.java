@@ -99,6 +99,7 @@ public class MediaPlayerRitmos {
 
     public void stop(){
         player.stop();
+        player.reset();
         player.release();
     }
 }

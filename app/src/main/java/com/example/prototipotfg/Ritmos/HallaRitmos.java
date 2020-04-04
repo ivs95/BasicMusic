@@ -72,12 +72,25 @@ public class HallaRitmos extends Activity {
                         mediaPlayer1.play();
                         go1 = false;
                     }
+                    if(go2){
+                        mediaPlayer2.play();
+                        go2 = false;
+                    }
+                    if(go3){
+                        mediaPlayer3.play();
+                        go3 = false;
+                    }
+                    if(go4){
+                        mediaPlayer4.play();
+                        go4 = false;
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     });
+    /*
     private Thread hiloPlayer2 = new Thread(new Runnable() {
 
         @Override
@@ -126,7 +139,7 @@ public class HallaRitmos extends Activity {
             }
         }
     });
-
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -146,15 +159,15 @@ public class HallaRitmos extends Activity {
         mediaPlayer1.init1(this);
         findViewById(R.id.textRitmos1).setVisibility(View.VISIBLE);
         if(nivel>2) {
-            hiloPlayer2.start();
+            //hiloPlayer2.start();
             mediaPlayer2.init2(this);
             findViewById(R.id.textRitmos2).setVisibility(View.VISIBLE);
             if(nivel>4) {
-                hiloPlayer3.start();
+                //hiloPlayer3.start();
                 mediaPlayer3.init3(this);
                 findViewById(R.id.textRitmos3).setVisibility(View.VISIBLE);
                 if(nivel > 6) {
-                    hiloPlayer4.start();
+                 //   hiloPlayer4.start();
                     mediaPlayer4.init4(this);
                     findViewById(R.id.textRitmos4).setVisibility(View.VISIBLE);
                 }
@@ -730,6 +743,11 @@ public class HallaRitmos extends Activity {
     public void onDestroy() {
         super.onDestroy();
         running = false;
+        hiloPlayer1.interrupt();
+        mediaPlayer1.stop();
+        mediaPlayer2.stop();
+        mediaPlayer3.stop();
+        mediaPlayer4.stop();
     }
 
 
