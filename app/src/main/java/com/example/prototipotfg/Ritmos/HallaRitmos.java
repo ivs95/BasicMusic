@@ -184,7 +184,7 @@ public class HallaRitmos extends Activity {
         LinearLayout llBotonera4 = (LinearLayout) findViewById(R.id.botoneraRitmos4);
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(65, 150);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(80, LinearLayout.LayoutParams.WRAP_CONTENT);
         for(int j=0; j<(nivel+1)/2; j++) {
             //Creamos los botones en bucle
             final int finalJ = j;

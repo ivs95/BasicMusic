@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.core.content.ContextCompat;
 
@@ -20,29 +21,43 @@ public class SeleccionOctavasImitar extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.seleccion_octavas);
-    }
+        setContentView(R.layout.niveles);
 
-    public void seleccionaOctava(View view){
-        Button boton = (Button) view;
-        switch (view.getId()){
-            case R.id.buttonPrimeraOctava: octavaPulsada(RangosVocales.Soprano);break;
-            case R.id.buttonSegundaOctava: octavaPulsada(RangosVocales.Mezzo);break;
-            case R.id.buttonTerceraOctava: octavaPulsada(RangosVocales.Contralto);break;
-            case R.id.buttonCuartaOctava: octavaPulsada(RangosVocales.Tenor);break;
-            case R.id.buttonQuintaOctava: octavaPulsada(RangosVocales.Baritono);break;
-            case R.id.buttonSextaOctava: octavaPulsada(RangosVocales.Bajo);break;
+          LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
+                 //Creamos las propiedades de layout que tendrán los botones.
+                 //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
+                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                //Creamos los botones en bucle
+                  for (int i=0; i<RangosVocales.values().length; i++){
+                      Button button = new Button(this);
+                      button.setId(i+1);
+                      //Asignamos propiedades de layout al boton
+                      button.setLayoutParams(lp);
+                      //Asignamos Texto al botón
+                      button.setText(RangosVocales.values()[i].getNombre());
 
-            default:break;
-        }
-    }
+                      //Asignamose el Listener
+                      button.setOnClickListener(new View.OnClickListener() {
+                          @Override
+                          public void onClick(View v) {
+                                  octavaPulsada(((Button)v).getText().toString());
 
-    private void octavaPulsada(RangosVocales rv) {
+                          }
+                      });
+                      //Añadimos el botón a la botonera
+                      llBotonera.addView(button);
+                  }
+              }
+
+
+
+    private void octavaPulsada(String nombre) {
         Intent i = new Intent(this, NivelesImitar.class);
+        RangosVocales rv = RangosVocales.devuelveRVPorNombre(nombre);
         for(int e = rv.getOctavaIni(); e<=rv.getOctavaFin(); e++)
             octavas.add(Octavas.devuelveOctavaPorNumero(e).getNombre());
         i.putStringArrayListExtra("octavas", octavas);
-        i.putExtra("rangoVocal",rv.getNombre());
+        i.putExtra("rangoVocal",nombre);
         startActivity(i);
     }
 }

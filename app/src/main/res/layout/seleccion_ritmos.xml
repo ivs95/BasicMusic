@@ -37,20 +37,20 @@
 
 
         <Button
+            android:id="@+id/buttonHalla"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="modo"
+            android:text="Halla ritmo" />
+
+        <Button
             android:id="@+id/buttonRealizar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="modo"
             android:text="Realiza ritmo" />
 
-        <Button
-            android:id="@+id/buttonHalla"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="modo"
-            android:text="Halla ritmo" />
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

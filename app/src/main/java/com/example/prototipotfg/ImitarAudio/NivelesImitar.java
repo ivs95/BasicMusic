@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.RangosVocales;
 import com.example.prototipotfg.R;
@@ -25,25 +26,20 @@ public class NivelesImitar extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         TextView titulo = findViewById(R.id.tituloNiveles);
-        titulo.setPadding(0,200,0,0);
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         //Creamos los botones en bucle
-        for (int i=0; i<3; i++){
+        for (int i = 0; i < Dificultad.values().length; i++){
             Button button = new Button(this);
             button.setId(i+1);
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            if(i==0)
-                button.setText("Facil");
-            else if(i==1)
-                button.setText("Medio");
-            else
-                button.setText("Dificil");
+            button.setText(Dificultad.values()[i].toString());
+
             //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
