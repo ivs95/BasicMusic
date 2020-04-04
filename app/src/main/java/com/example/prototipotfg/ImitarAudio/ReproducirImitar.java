@@ -66,18 +66,24 @@ public class ReproducirImitar extends Activity {
         int id = factory.getAudioRecord().getAudioSessionId();
         if(AcousticEchoCanceler.isAvailable()) {
             echo = AcousticEchoCanceler.create(id);
-            echo.setEnabled(true);
-            Log.d("Echo", "Off");
+            if(echo != null) {
+                echo.setEnabled(true);
+                Log.d("Echo", "Off");
+            }
         }
         if(NoiseSuppressor.isAvailable()) {
             noise = NoiseSuppressor.create(id);
-            noise.setEnabled(true);
-            Log.d("Noise", "Off");
+            if(noise != null) {
+                noise.setEnabled(true);
+                Log.d("Noise", "Off");
+            }
         }
         if(AutomaticGainControl.isAvailable()) {
             gain = AutomaticGainControl.create(id);
-            gain.setEnabled(false);
-            Log.d("Gain", "Off");
+            if(gain != null) {
+                gain.setEnabled(false);
+                Log.d("Gain", "Off");
+            }
         }
     }
 
@@ -249,6 +255,12 @@ public class ReproducirImitar extends Activity {
         super.onDestroy();
         dispatch_Thread.interrupt();
         dispatcher.stop();
+        if(echo != null)
+            echo.release();
+        if(noise != null)
+            noise.release();
+        if(gain != null)
+            gain.release();
     }
 
     public void poneNota(){
