@@ -41,5 +41,18 @@ public class Puntuacion {
     }
 
     private void actualizaNivel() {
+       switch (this.modoJuego){
+           case "Adivinar_Notas":
+               if(this.puntuacionTotal > 30) this.nivel = 2;
+               else if (puntuacionTotal >60) this.nivel = 3;
+               else if (puntuacionTotal >60) this.nivel = 3;
+               else if (puntuacionTotal >60) this.nivel = 3;
+               else if (puntuacionTotal >60) this.nivel = 3;
+               else if (puntuacionTotal >60) this.nivel = 3;
+               else if (puntuacionTotal >60) this.nivel = 3;
+               else break;
+           default:break;
+
+       }
     }
 }

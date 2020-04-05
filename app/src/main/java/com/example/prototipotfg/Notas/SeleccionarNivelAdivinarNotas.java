@@ -35,7 +35,7 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         //Creamos los botones en bucle
-        int nivelActual = GestorBBDD.getInstance().devuelveNivelUsuario(ModoJuego.Adivinar_Notas);
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.getNombre()).getNivel();
         for (int i = 0; i < 10; i++) {
 
             Button button = new Button(this);
@@ -59,11 +59,11 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
             //Añadimos el botón a la botonera
             llBotonera.addView(button);
 
-            /*
-            if(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getPuntuacionTotal() < i * (10+i)) {
+            if(nivelActual < i+1) {
                 button.setEnabled(false);
+                button.setAlpha(.5f);
             }
-            */
+
 
         }
     }

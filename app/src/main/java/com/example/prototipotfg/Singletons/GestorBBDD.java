@@ -46,22 +46,11 @@ public class GestorBBDD {
     public boolean insertaUsuario(Usuario user){
         if (appDatabase.daoUsuario().findUsuario(user.getCorreo())==null){
             appDatabase.daoUsuario().insertUsuario(user);
-            inicializaPuntuacionUsuario(user);
             return true;
         }
         return false;
     }
 
-    public int devuelveNivelUsuario(ModoJuego modo){
-        return 0;
-    }
-
-    private void inicializaPuntuacionUsuario(Usuario user) {
-        for (int i = 0; i < ModoJuego.values().length; i++){
-            Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), 1, user.getCorreo(),0);
-            appDatabase.daoPuntuacion().insertPuntuacion(p);
-        }
-    }
 
     public void insertaNivelImitar(NivelImitar nivel){
         if (appDatabase.daoNivel().findNivelImitar(usuarioLoggeado.getCorreo(), nivel.getNivel(), nivel.getRangoVocal())==null){
@@ -140,12 +129,21 @@ public class GestorBBDD {
         setUsuarioLoggeado(null);
     }
 
+    private void inicializaPuntuacionUsuario(Usuario user) {
+        for (int i = 0; i < ModoJuego.values().length; i++){
+            Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), 1, user.getCorreo(),0);
+            appDatabase.daoPuntuacion().insertPuntuacion(p);
+        }
+    }
+
     public boolean registraUsuario(Usuario usuario) {
         if(appDatabase.daoUsuario().findUsuario(usuario.getCorreo())==null){
             appDatabase.daoUsuario().insertUsuario(usuario);
-            return true;
-        }
-        return false;
+            inicializaPuntuacionUsuario(usuario);
+
+            }
+        return true;
+
     }
 
     public boolean UpdateUsuario(Usuario usuario) {
@@ -338,7 +336,7 @@ public class GestorBBDD {
 
     public void actualizarPuntuacion(int nivel, String modoJuego, boolean superado){
         switch(modoJuego) {
-            case "Adivinar nota":
+            case "Adivinar_Notas":
                 puntuacionAdivinarNota(nivel, superado);
                 break;
             case "Adivinar intervalo":
@@ -405,11 +403,11 @@ public class GestorBBDD {
             default: break;
         }
 
-        if(superado)
-            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Halla_Ritmo.toString()).actualizarPuntuacionTotal(3, true);
-        else
-            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Halla_Ritmo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false);
 
+        if(superado)
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Halla_Ritmo.toString()).actualizarPuntuacionTotal(3, true));
+        else
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Halla_Ritmo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
     }
 
     private void puntuacionImitarAudio(String rangoVocal, int nivel, boolean superado) {
@@ -429,10 +427,9 @@ public class GestorBBDD {
         }
 
         if(superado)
-            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Acordes.toString()).actualizarPuntuacionTotal(3, true);
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Acordes.toString()).actualizarPuntuacionTotal(3, true));
         else
-            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Acordes.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false);
-
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Acordes.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
     }
 
     private void puntuacionAdivinarAcorde(int nivel, boolean superado) {
@@ -448,10 +445,9 @@ public class GestorBBDD {
         }
 
         if(superado)
-            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Acordes.toString()).actualizarPuntuacionTotal(3, true);
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Acordes.toString()).actualizarPuntuacionTotal(3, true));
         else
-            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Acordes.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false);
-
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Acordes.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
     }
 
     private void puntuacionCrearIntervalo(int nivel, boolean superado) {
@@ -469,10 +465,9 @@ public class GestorBBDD {
         }
 
         if(superado)
-            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Intervalo.toString()).actualizarPuntuacionTotal(3, true);
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Intervalo.toString()).actualizarPuntuacionTotal(3, true));
         else
-            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Intervalo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false);
-
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Intervalo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
     }
 
     private void puntuacionAdivinarIntervalo(int nivel, boolean superado) {
@@ -489,10 +484,9 @@ public class GestorBBDD {
         }
 
         if(superado)
-            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Intervalo.toString()).actualizarPuntuacionTotal(3, true);
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Intervalo.toString()).actualizarPuntuacionTotal(3, true));
         else
-            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Intervalo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false);
-
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Intervalo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
     }
 
     private void puntuacionAdivinarNota(int nivel, boolean superado) {
@@ -514,10 +508,8 @@ public class GestorBBDD {
         if(superado)
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Notas.toString()).actualizarPuntuacionTotal(3, true));
         else
-            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Notas.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false);
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Notas.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
 
     }
-
-
 
 }
