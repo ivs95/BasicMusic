@@ -10,6 +10,8 @@ import com.example.prototipotfg.BBDD.Usuario;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosVocales;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -334,45 +336,45 @@ public class GestorBBDD {
         return puntuacion;
     }
 
-    public void actualizarPuntuacion(int nivel, String modoJuego, boolean superado){
+    public void actualizarPuntuacion(int nivel, @NotNull String modoJuego, boolean superado){
         switch(modoJuego) {
             case "Adivinar_Notas":
                 puntuacionAdivinarNota(nivel, superado);
                 break;
-            case "Adivinar intervalo":
+            case "Adivinar_Intervalo":
                 puntuacionAdivinarIntervalo(nivel, superado);
                 break;
             case "Crear intervalo":
                 puntuacionCrearIntervalo(nivel, superado);
                 break;
-            case "Adivinar acorde":
+            case "Adivinar_Acordes":
                 puntuacionAdivinarAcorde(nivel, superado);
                 break;
-            case "Crear acorde":
+            case "Crear_Acordes":
                 puntuacionCrearAcorde(nivel, superado);
                 break;
-            case "Imitar audio - Soprano":
+            case "Imitar_Audio - Soprano":
                 puntuacionImitarAudio(RangosVocales.Soprano.getNombre(), nivel, superado);
                 break;
-            case "Imitar audio - Mezzosoprano":
+            case "Imitar_Audio - Mezzosoprano":
                 puntuacionImitarAudio(RangosVocales.Mezzo.getNombre(), nivel, superado);
                 break;
-            case "Imitar audio - Contralto":
+            case "Imitar_Audio - Contralto":
                 puntuacionImitarAudio(RangosVocales.Contralto.getNombre(), nivel, superado);
                 break;
-            case "Imitar audio - Tenor":
+            case "Imitar_Audio - Tenor":
                 puntuacionImitarAudio(RangosVocales.Tenor.getNombre(), nivel, superado);
                 break;
-            case "Imitar audio - Barítono":
+            case "Imitar_Audio - Barítono":
                 puntuacionImitarAudio(RangosVocales.Baritono.getNombre(), nivel, superado);
                 break;
-            case "Imitar audio - Bajo":
+            case "Imitar_Audio - Bajo":
                 puntuacionImitarAudio(RangosVocales.Bajo.getNombre(), nivel, superado);
                 break;
-            case "Hallar ritmo":
+            case "Halla_Ritmo":
                 puntuacionHallarRitmo(nivel, superado);
                 break;
-            case "Realizar ritmo":
+            case "Realiza_Ritmo":
                 puntuacionRealizarRitmo(nivel, superado);
                 break;
             default:
@@ -392,14 +394,14 @@ public class GestorBBDD {
     private void puntuacionHallarRitmo(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
         switch (nivel){
-            case 1: puntuacion_fallo = 1;
-            case 2: puntuacion_fallo = 1;
-            case 3: puntuacion_fallo = 1;
-            case 4: puntuacion_fallo = 1;
-            case 5: puntuacion_fallo = 1;
-            case 6: puntuacion_fallo = 2;
-            case 7: puntuacion_fallo = 3;
-            case 8: puntuacion_fallo = 3;
+            case 1: puntuacion_fallo = 1; break;
+            case 2: puntuacion_fallo = 1; break;
+            case 3: puntuacion_fallo = 1; break;
+            case 4: puntuacion_fallo = 1; break;
+            case 5: puntuacion_fallo = 1; break;
+            case 6: puntuacion_fallo = 2; break;
+            case 7: puntuacion_fallo = 3; break;
+            case 8: puntuacion_fallo = 3; break;
             default: break;
         }
 
@@ -417,12 +419,12 @@ public class GestorBBDD {
     private void puntuacionCrearAcorde(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
         switch (nivel){
-            case 1: puntuacion_fallo = 1;
-            case 2: puntuacion_fallo = 1;
-            case 3: puntuacion_fallo = 2;
-            case 4: puntuacion_fallo = 2;
-            case 5: puntuacion_fallo = 3;
-            case 6: puntuacion_fallo = 3;
+            case 1: puntuacion_fallo = 1; break;
+            case 2: puntuacion_fallo = 1; break;
+            case 3: puntuacion_fallo = 2; break;
+            case 4: puntuacion_fallo = 2; break;
+            case 5: puntuacion_fallo = 3; break;
+            case 6: puntuacion_fallo = 3; break;
             default: break;
         }
 
@@ -435,12 +437,12 @@ public class GestorBBDD {
     private void puntuacionAdivinarAcorde(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
         switch (nivel){
-            case 1: puntuacion_fallo = 1;
-            case 2: puntuacion_fallo = 1;
-            case 3: puntuacion_fallo = 2;
-            case 4: puntuacion_fallo = 2;
-            case 5: puntuacion_fallo = 3;
-            case 6: puntuacion_fallo = 3;
+            case 1: puntuacion_fallo = 1; break;
+            case 2: puntuacion_fallo = 1; break;
+            case 3: puntuacion_fallo = 2; break;
+            case 4: puntuacion_fallo = 2; break;
+            case 5: puntuacion_fallo = 3; break;
+            case 6: puntuacion_fallo = 3; break;
             default: break;
         }
 
@@ -453,14 +455,14 @@ public class GestorBBDD {
     private void puntuacionCrearIntervalo(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
         switch (nivel){
-            case 1: puntuacion_fallo = 1;
-            case 2: puntuacion_fallo = 1;
-            case 3: puntuacion_fallo = 1;
-            case 4: puntuacion_fallo = 2;
-            case 5: puntuacion_fallo = 2;
-            case 6: puntuacion_fallo = 2;
-            case 7: puntuacion_fallo = 3;
-            case 8: puntuacion_fallo = 3;
+            case 1: puntuacion_fallo = 1; break;
+            case 2: puntuacion_fallo = 1; break;
+            case 3: puntuacion_fallo = 1; break;
+            case 4: puntuacion_fallo = 2; break;
+            case 5: puntuacion_fallo = 2; break;
+            case 6: puntuacion_fallo = 2; break;
+            case 7: puntuacion_fallo = 3; break;
+            case 8: puntuacion_fallo = 3; break;
             default: break;
         }
 
@@ -474,12 +476,12 @@ public class GestorBBDD {
 
         int puntuacion_fallo = 0;
         switch (nivel){
-            case 1: puntuacion_fallo = 1;
-            case 2: puntuacion_fallo = 1;
-            case 3: puntuacion_fallo = 2;
-            case 4: puntuacion_fallo = 2;
-            case 5: puntuacion_fallo = 3;
-            case 6: puntuacion_fallo = 3;
+            case 1: puntuacion_fallo = 1; break;
+            case 2: puntuacion_fallo = 1; break;
+            case 3: puntuacion_fallo = 2; break;
+            case 4: puntuacion_fallo = 2; break;
+            case 5: puntuacion_fallo = 3; break;
+            case 6: puntuacion_fallo = 3; break;
             default: break;
         }
 
@@ -492,16 +494,16 @@ public class GestorBBDD {
     private void puntuacionAdivinarNota(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
         switch (nivel){
-            case 1: puntuacion_fallo = 1;
-            case 2: puntuacion_fallo = 1;
-            case 3: puntuacion_fallo = 1;
-            case 4: puntuacion_fallo = 1;
-            case 5: puntuacion_fallo = 2;
-            case 6: puntuacion_fallo = 2;
-            case 7: puntuacion_fallo = 2;
-            case 8: puntuacion_fallo = 2;
-            case 9: puntuacion_fallo = 3;
-            case 10: puntuacion_fallo =3;
+            case 1: puntuacion_fallo = 1; break;
+            case 2: puntuacion_fallo = 1; break;
+            case 3: puntuacion_fallo = 1; break;
+            case 4: puntuacion_fallo = 1; break;
+            case 5: puntuacion_fallo = 2; break;
+            case 6: puntuacion_fallo = 2; break;
+            case 7: puntuacion_fallo = 2; break;
+            case 8: puntuacion_fallo = 2; break;
+            case 9: puntuacion_fallo = 3; break;
+            case 10: puntuacion_fallo =3; break;
             default: break;
         }
 

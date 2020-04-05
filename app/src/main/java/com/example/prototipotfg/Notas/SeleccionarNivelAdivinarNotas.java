@@ -23,9 +23,11 @@ import java.util.Random;
 public class SeleccionarNivelAdivinarNotas extends Activity {
 
     private int puntuacion;
+    Bundle savedInstanceState;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
+        this.savedInstanceState = savedInstanceState;
 
 
 
@@ -80,5 +82,10 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
         ArrayList<String> nombres = new ArrayList<>(notas.keySet());
         i.putStringArrayListExtra("nombres", nombres);
         startActivity(i);
+    }
+
+    public void onResume(){
+        super.onResume();
+        this.onCreate(this.savedInstanceState);
     }
 }
