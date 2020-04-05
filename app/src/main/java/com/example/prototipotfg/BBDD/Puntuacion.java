@@ -34,9 +34,13 @@ public class Puntuacion {
 
     public int getPuntuacionTotal(){return this.puntuacionTotal;}
 
-    public void actualizarPuntuacionTotal(int puntuacion){
-        this.puntuacionTotal += puntuacion;
-
+    public void actualizarPuntuacionTotal(int puntuacion, boolean superado){
+        if(superado)
+            this.puntuacionTotal += puntuacion;
+        else{
+            if(this.puntuacionTotal - puntuacion < 0) puntuacionTotal = 0;
+            else this.puntuacionTotal -= puntuacion;
+        }
 
     }
 }

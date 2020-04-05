@@ -324,4 +324,184 @@ public class GestorBBDD {
         return puntuacion;
     }
 
+    public void actualizarPuntuacion(int nivel, String modoJuego, boolean superado){
+        switch(modoJuego) {
+            case "Adivinar nota":
+                puntuacionAdivinarNota(nivel, superado);
+                break;
+            case "Adivinar intervalo":
+                puntuacionAdivinarIntervalo(nivel, superado);
+                break;
+            case "Crear intervalo":
+                puntuacionCrearIntervalo(nivel, superado);
+                break;
+            case "Adivinar acorde":
+                puntuacionAdivinarAcorde(nivel, superado);
+                break;
+            case "Crear acorde":
+                puntuacionCrearAcorde(nivel, superado);
+                break;
+            case "Imitar audio - Soprano":
+                puntuacionImitarAudio(RangosVocales.Soprano.getNombre(), nivel, superado);
+                break;
+            case "Imitar audio - Mezzosoprano":
+                puntuacionImitarAudio(RangosVocales.Mezzo.getNombre(), nivel, superado);
+                break;
+            case "Imitar audio - Contralto":
+                puntuacionImitarAudio(RangosVocales.Contralto.getNombre(), nivel, superado);
+                break;
+            case "Imitar audio - Tenor":
+                puntuacionImitarAudio(RangosVocales.Tenor.getNombre(), nivel, superado);
+                break;
+            case "Imitar audio - Barítono":
+                puntuacionImitarAudio(RangosVocales.Baritono.getNombre(), nivel, superado);
+                break;
+            case "Imitar audio - Bajo":
+                puntuacionImitarAudio(RangosVocales.Bajo.getNombre(), nivel, superado);
+                break;
+            case "Hallar ritmo":
+                puntuacionHallarRitmo(nivel, superado);
+                break;
+            case "Realizar ritmo":
+                puntuacionRealizarRitmo(nivel, superado);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private void puntuacionRealizarRitmo(int nivel, boolean superado) {
+
+    }
+
+    private void puntuacionHallarRitmo(int nivel, boolean superado) {
+        int puntuacion_fallo = 0;
+        switch (nivel){
+            case 1: puntuacion_fallo = 1;
+            case 2: puntuacion_fallo = 1;
+            case 3: puntuacion_fallo = 1;
+            case 4: puntuacion_fallo = 1;
+            case 5: puntuacion_fallo = 1;
+            case 6: puntuacion_fallo = 2;
+            case 7: puntuacion_fallo = 3;
+            case 8: puntuacion_fallo = 3;
+            default: break;
+        }
+
+        if(superado)
+            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Halla_Ritmo.toString()).actualizarPuntuacionTotal(3, true);
+        else
+            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Halla_Ritmo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false);
+
+    }
+
+    private void puntuacionImitarAudio(String rangoVocal, int nivel, boolean superado) {
+
+    }
+
+    private void puntuacionCrearAcorde(int nivel, boolean superado) {
+        int puntuacion_fallo = 0;
+        switch (nivel){
+            case 1: puntuacion_fallo = 1;
+            case 2: puntuacion_fallo = 1;
+            case 3: puntuacion_fallo = 2;
+            case 4: puntuacion_fallo = 2;
+            case 5: puntuacion_fallo = 3;
+            case 6: puntuacion_fallo = 3;
+            default: break;
+        }
+
+        if(superado)
+            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Acordes.toString()).actualizarPuntuacionTotal(3, true);
+        else
+            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Acordes.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false);
+
+    }
+
+    private void puntuacionAdivinarAcorde(int nivel, boolean superado) {
+        int puntuacion_fallo = 0;
+        switch (nivel){
+            case 1: puntuacion_fallo = 1;
+            case 2: puntuacion_fallo = 1;
+            case 3: puntuacion_fallo = 2;
+            case 4: puntuacion_fallo = 2;
+            case 5: puntuacion_fallo = 3;
+            case 6: puntuacion_fallo = 3;
+            default: break;
+        }
+
+        if(superado)
+            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Acordes.toString()).actualizarPuntuacionTotal(3, true);
+        else
+            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Acordes.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false);
+
+    }
+
+    private void puntuacionCrearIntervalo(int nivel, boolean superado) {
+        int puntuacion_fallo = 0;
+        switch (nivel){
+            case 1: puntuacion_fallo = 1;
+            case 2: puntuacion_fallo = 1;
+            case 3: puntuacion_fallo = 1;
+            case 4: puntuacion_fallo = 2;
+            case 5: puntuacion_fallo = 2;
+            case 6: puntuacion_fallo = 2;
+            case 7: puntuacion_fallo = 3;
+            case 8: puntuacion_fallo = 3;
+            default: break;
+        }
+
+        if(superado)
+            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Intervalo.toString()).actualizarPuntuacionTotal(3, true);
+        else
+            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Intervalo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false);
+
+    }
+
+    private void puntuacionAdivinarIntervalo(int nivel, boolean superado) {
+
+        int puntuacion_fallo = 0;
+        switch (nivel){
+            case 1: puntuacion_fallo = 1;
+            case 2: puntuacion_fallo = 1;
+            case 3: puntuacion_fallo = 2;
+            case 4: puntuacion_fallo = 2;
+            case 5: puntuacion_fallo = 3;
+            case 6: puntuacion_fallo = 3;
+            default: break;
+        }
+
+        if(superado)
+            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Intervalo.toString()).actualizarPuntuacionTotal(3, true);
+        else
+            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Intervalo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false);
+
+    }
+
+    private void puntuacionAdivinarNota(int nivel, boolean superado) {
+        int puntuacion_fallo = 0;
+        switch (nivel){
+            case 1: puntuacion_fallo = 1;
+            case 2: puntuacion_fallo = 1;
+            case 3: puntuacion_fallo = 1;
+            case 4: puntuacion_fallo = 1;
+            case 5: puntuacion_fallo = 2;
+            case 6: puntuacion_fallo = 2;
+            case 7: puntuacion_fallo = 2;
+            case 8: puntuacion_fallo = 2;
+            case 9: puntuacion_fallo = 3;
+            case 10: puntuacion_fallo =3;
+            default: break;
+        }
+
+        if(superado)
+            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Notas.toString()).actualizarPuntuacionTotal(3, true);
+        else
+            this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Notas.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false);
+
+    }
+
+
+
 }
