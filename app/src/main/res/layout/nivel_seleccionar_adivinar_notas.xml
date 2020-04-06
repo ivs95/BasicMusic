@@ -41,7 +41,8 @@
             android:layout_height="match_parent"
             android:divider="@drawable/divisor_botones_menu"
             android:orientation="vertical"
-            android:showDividers="middle" />
+            android:showDividers="middle"
+            android:gravity="center"/>
     </ScrollView>
 
 
