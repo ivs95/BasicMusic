@@ -1,4 +1,4 @@
-package com.example.prototipotfg.Ritmos;
+package com.example.prototipotfg.Ritmos.Hallar;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import java.util.Random;
 
 import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSimbolo;
 
-public class NivelesRitmos extends Activity {
+public class NivelesHallarRitmos extends Activity {
 
     private Bundle savedInstanceState;
     private int compas = 4;

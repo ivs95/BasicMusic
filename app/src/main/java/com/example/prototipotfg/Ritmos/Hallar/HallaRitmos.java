@@ -1,4 +1,4 @@
-package com.example.prototipotfg.Ritmos;
+package com.example.prototipotfg.Ritmos.Hallar;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.ModoJuego;
+import com.example.prototipotfg.Ritmos.MediaPlayerRitmos;
 import com.example.prototipotfg.Ritmos.Metronomo;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -34,14 +35,17 @@ public class HallaRitmos extends Activity {
     private ArrayList<Integer> ritmos2;
     private ArrayList<Integer> ritmos3;
     private ArrayList<Integer> ritmos4;
-    private View botonesSeleccionados1[]= new View[16];
-    private View botonesSeleccionados2[]= new View[16];
-    private View botonesSeleccionados3[]= new View[16];
-    private View botonesSeleccionados4[]= new View[16];
-    private View botonesResultado1[]= new View[16];
-    private View botonesResultado2[]= new View[16];
-    private View botonesResultado3[]= new View[16];
-    private View botonesResultado4[]= new View[16];
+    private final int COMPASES = 16;
+    private final int BPM = 60;
+
+    private View botonesSeleccionados1[]= new View[COMPASES];
+    private View botonesSeleccionados2[]= new View[COMPASES];
+    private View botonesSeleccionados3[]= new View[COMPASES];
+    private View botonesSeleccionados4[]= new View[COMPASES];
+    private View botonesResultado1[]= new View[COMPASES];
+    private View botonesResultado2[]= new View[COMPASES];
+    private View botonesResultado3[]= new View[COMPASES];
+    private View botonesResultado4[]= new View[COMPASES];
     private boolean running;
     private boolean go1 = false;
     private boolean go2 = false;
@@ -54,8 +58,6 @@ public class HallaRitmos extends Activity {
     private boolean pause = false;
     private int nivel;
     private int indice = 0;
-    private int bpm = 60;
-    private int compases = 64;
 
 
     private ArrayList<Integer> resultado1 = new ArrayList<>();
@@ -72,33 +74,30 @@ public class HallaRitmos extends Activity {
     private  Thread hilo_ritmos = new Thread(new Runnable(){
         @Override
         public void run() {
-            int i = 0;
             while(!end) {
-                while (indice < compases && running) {
+                while (running) {
                     play = false;
-                    if (indice == 0)
-                        i = 0;
-                    if (metronomo.get(i) == 1) {
-                        if (i == 0)
+                    if (metronomo.get(indice) == 1) {
+                        if (indice == 0)
                             tick = true;
                         goMetronomo = true;
                     }
-                    int notaActual1 = ritmos1.get(i);
+                    int notaActual1 = ritmos1.get(indice);
                     if (notaActual1 == 1) {
                         go1 = true;
                     }
                     if (nivel > 2) {
-                        int notaActual2 = ritmos2.get(i);
+                        int notaActual2 = ritmos2.get(indice);
                         if (notaActual2 == 1) {
                             go2 = true;
                         }
                         if (nivel > 4) {
-                            int notaActual3 = ritmos3.get(i);
+                            int notaActual3 = ritmos3.get(indice);
                             if (notaActual3 == 1) {
                                 go3 = true;
                             }
                             if (nivel > 6) {
-                                int notaActual4 = ritmos4.get(i);
+                                int notaActual4 = ritmos4.get(indice);
                                 if (notaActual4 == 1) {
                                     go4 = true;
                                 }
@@ -111,13 +110,10 @@ public class HallaRitmos extends Activity {
                         e.printStackTrace();
                     }
                     if (!play) {
-                        i++;
                         indice++;
                     }
-                    if (i >= 16)
-                        i = i - 16;
-                    if(indice >= compases)
-                        running = false;
+                    if (indice >= COMPASES)
+                        indice = 0;
                 }
             }
         }
@@ -159,56 +155,7 @@ public class HallaRitmos extends Activity {
             }
         }
     });
-    /*
-    private Thread hiloPlayer2 = new Thread(new Runnable() {
 
-        @Override
-        public void run() {
-            try {
-                while(running) {
-                    if (go2) {
-                        mediaPlayer2.play();
-                        go2 = false;
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    });
-    private Thread hiloPlayer3 = new Thread(new Runnable() {
-
-        @Override
-        public void run() {
-            try {
-                while(running) {
-                    if (go3) {
-                        mediaPlayer3.play();
-                        go3 = false;
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    });
-    private Thread hiloPlayer4 = new Thread(new Runnable() {
-
-        @Override
-        public void run() {
-            try {
-                while(running) {
-                    if (go4) {
-                        mediaPlayer4.play();
-                        go4 = false;
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    });
-    */
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

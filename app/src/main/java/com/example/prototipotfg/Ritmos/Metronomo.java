@@ -9,7 +9,7 @@ import java.io.IOException;
 import static java.lang.Thread.sleep;
 
 
-class Metronomo{
+public class Metronomo{
     private static double bpm;
     private static int measure;
     private static MediaPlayer mediaPlayer1 =  new MediaPlayer();

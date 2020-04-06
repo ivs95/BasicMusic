@@ -29,12 +29,12 @@
         <activity android:name=".Intervalos.Crear.SeleccionarAdivinarCrearIntervalo" />
         <activity android:name=".Intervalos.Adivinar.SeleccionarAdivinarIntervalo" />
         <activity android:name=".ImitarAudio.NivelesImitar" />
-        <activity android:name=".Ritmos.NivelesRitmos" />
+        <activity android:name=".Ritmos.Hallar.NivelesHallarRitmos" />
         <activity android:name=".ImitarAudio.ReproducirImitar" />
         <activity android:name=".SeleccionModoAdivinar" />
         <activity android:name=".Ritmos.SeleccionModoRitmos" />
         <activity android:name=".Intervalos.SeleccionarModoIntervalos" />
-        <activity android:name=".Ritmos.HallaRitmos" />
+        <activity android:name=".Ritmos.Hallar.HallaRitmos" />
         <activity android:name=".Ritmos.RealizaRitmos" />
         <activity android:name=".ImitarAudio.SeleccionOctavasImitar" />
         <activity android:name=".Intervalos.Adivinar.NivelesAdivinarIntervalos" />
@@ -47,6 +47,8 @@
         <activity android:name=".Acordes.Crear.ReproducirCrearAcordes" />
         <activity android:name=".Acordes.TutorialAdivinarAcordes" />
         <activity android:name=".Estadisticas" />
+        <activity android:name=".Ritmos.Crear.CrearRitmos" />
+        <activity android:name=".Ritmos.Crear.NivelesCrearRitmo" />
     </application>
 
 </manifest>
