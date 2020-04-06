@@ -57,8 +57,24 @@ class Metronomo{
 
     public void stop() {
         running = false;
+        mediaPlayer1.stop();
+        mediaPlayer2.stop();
         mediaPlayer1.reset();
         mediaPlayer2.reset();
+
+    }
+    public void reinicia() throws IOException {
+        this.start();
+    }
+    public void para(){
+        running = false;
+        mediaPlayer1.pause();
+        mediaPlayer2.pause();
+    }
+
+    public void release(){
+        mediaPlayer1.release();
+        mediaPlayer2.release();
     }
 
 }

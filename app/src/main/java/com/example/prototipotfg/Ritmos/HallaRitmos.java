@@ -33,7 +33,6 @@ public class HallaRitmos extends Activity {
     private ArrayList<Integer> ritmos2;
     private ArrayList<Integer> ritmos3;
     private ArrayList<Integer> ritmos4;
-    private Thread hilo_ritmos;
     private View botonesSeleccionados1[]= new View[16];
     private View botonesSeleccionados2[]= new View[16];
     private View botonesSeleccionados3[]= new View[16];
@@ -47,44 +46,111 @@ public class HallaRitmos extends Activity {
     private boolean go2 = false;
     private boolean go3 = false;
     private boolean go4 = false;
+    private boolean goMetronomo = false;
+    private boolean tick = false;
+    private boolean end = false;
+    private boolean play = false;
+    private boolean pause = false;
     private int nivel;
-
+    private int indice = 0;
     private int bpm = 60;
-    private Metronomo m = new Metronomo(bpm, 4);
+    private int compases = 64;
 
-    private ImageView cross;
-    private ImageView tick;
 
     private ArrayList<Integer> resultado1 = new ArrayList<>();
     private ArrayList<Integer> resultado2 = new ArrayList<>();
     private ArrayList<Integer> resultado3 = new ArrayList<>();
     private ArrayList<Integer> resultado4 = new ArrayList<>();
+    private ArrayList<Integer> metronomo = new ArrayList<>();
     private MediaPlayerRitmos mediaPlayer1 =  new MediaPlayerRitmos();
     private MediaPlayerRitmos mediaPlayer2 =  new MediaPlayerRitmos();
     private MediaPlayerRitmos mediaPlayer3 =  new MediaPlayerRitmos();
     private MediaPlayerRitmos mediaPlayer4 =  new MediaPlayerRitmos();
+    private MediaPlayerRitmos mediaPlayerMetronomo =  new MediaPlayerRitmos();
+
+    private  Thread hilo_ritmos = new Thread(new Runnable(){
+        @Override
+        public void run() {
+            int i = 0;
+            while(!end) {
+                while (indice < compases && running) {
+                    play = false;
+                    if (indice == 0)
+                        i = 0;
+                    if (metronomo.get(i) == 1) {
+                        if (i == 0)
+                            tick = true;
+                        goMetronomo = true;
+                    }
+                    int notaActual1 = ritmos1.get(i);
+                    if (notaActual1 == 1) {
+                        go1 = true;
+                    }
+                    if (nivel > 2) {
+                        int notaActual2 = ritmos2.get(i);
+                        if (notaActual2 == 1) {
+                            go2 = true;
+                        }
+                        if (nivel > 4) {
+                            int notaActual3 = ritmos3.get(i);
+                            if (notaActual3 == 1) {
+                                go3 = true;
+                            }
+                            if (nivel > 6) {
+                                int notaActual4 = ritmos4.get(i);
+                                if (notaActual4 == 1) {
+                                    go4 = true;
+                                }
+                            }
+                        }
+                    }
+                    try {
+                        Thread.sleep(250);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (!play) {
+                        i++;
+                        indice++;
+                    }
+                    if (i >= 16)
+                        i = i - 16;
+                    if(indice >= compases)
+                        running = false;
+                }
+            }
+        }
+
+    });
 
     private Thread hiloPlayer1 = new Thread(new Runnable() {
 
         @Override
         public void run() {
             try {
-                while(running) {
-                    if (go1) {
-                        mediaPlayer1.play();
-                        go1 = false;
-                    }
-                    if(go2){
-                        mediaPlayer2.play();
-                        go2 = false;
-                    }
-                    if(go3){
-                        mediaPlayer3.play();
-                        go3 = false;
-                    }
-                    if(go4){
-                        mediaPlayer4.play();
-                        go4 = false;
+                while(!end) {
+                    while (running) {
+                        if (go1) {
+                            mediaPlayer1.play();
+                            go1 = false;
+                        }
+                        if (go2) {
+                            mediaPlayer2.play();
+                            go2 = false;
+                        }
+                        if (go3) {
+                            mediaPlayer3.play();
+                            go3 = false;
+                        }
+                        if (go4) {
+                            mediaPlayer4.play();
+                            go4 = false;
+                        }
+                        if (goMetronomo) {
+                            mediaPlayerMetronomo.playMetronomo(tick);
+                            goMetronomo = false;
+                            tick = false;
+                        }
                     }
                 }
             } catch (IOException e) {
@@ -153,11 +219,15 @@ public class HallaRitmos extends Activity {
         ritmos2 = getIntent().getExtras().getIntegerArrayList("ritmos2");
         ritmos3 = getIntent().getExtras().getIntegerArrayList("ritmos3");
         ritmos4 = getIntent().getExtras().getIntegerArrayList("ritmos4");
+
         TextView titulo = (TextView)findViewById(R.id.tituloHallaRitmo);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
-        running = true;
 
+        running = false;
+        hilo_ritmos.start();
         hiloPlayer1.start();
+
+        mediaPlayerMetronomo.initMetronomo(this);
         mediaPlayer1.init1(this);
         findViewById(R.id.textRitmos1).setVisibility(View.VISIBLE);
         if(nivel>2) {
@@ -575,79 +645,38 @@ public class HallaRitmos extends Activity {
                 resultado2.add(0);
                 resultado3.add(0);
                 resultado4.add(0);
+                if(i%4==0){
+                    metronomo.add(i,1);
+                }
+                else{
+                    metronomo.add(i,0);
+                }
             }
         }
-
 
     }
 
 
     public void play(@NotNull final View view){
-
-        //view.setEnabled(false);
-        try {
-            m.init(this);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(running == true){
+            indice = 0;
+            play = true;
         }
-        hilo_ritmos = new Thread(new Runnable(){
-            @Override
-            public void run(){
-                Metronomo m = new Metronomo(bpm, 4);
-                m.start();
-                try {
-                    sleep((long) (1000 * (60.0 / bpm)));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                int i = 0;
-                int indice = 0;
-                ;
-                while(i < 16 && running){
+        else {
+            running = true;
+            if(pause == false)
+                indice = 0;
+            pause = false;
+        }
+    }
 
-                    int notaActual1 = ritmos1.get(indice);
-                    if(notaActual1==1) {
-                        go1=true;
-                    }
-                    if(nivel > 2){
-                        int notaActual2 = ritmos2.get(indice);
-                        if(notaActual2==1) {
-                            go2=true;
-                        }
-                        if(nivel > 4){
-                            int notaActual3 = ritmos3.get(indice);
-                            if(notaActual3==1) {
-                                go3=true;
-                            }
-                            if(nivel > 6){
-                                int notaActual4 = ritmos4.get(indice);
-                                if(notaActual4==1) {
-                                    go4=true;
-                                }
-                            }
-                        }
-                    }
-                    try {
-                        Thread.sleep(250);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    i++;
-                    indice++;
-                    if (indice >= 16)
-                        indice = indice-16;
-                    if(!running) {
-                        m.stop();
-                    }
+    public void pause(@NotNull final View view){
+        running = false;
+        pause = true;
+    }
 
-                }
-                m.stop();
-            }
-
-        });
-        hilo_ritmos.start();
-
-
+    public void para(@NotNull final View view){
+        running = false;
     }
 
     public void stop(View view){
@@ -746,11 +775,13 @@ public class HallaRitmos extends Activity {
     public void onDestroy() {
         super.onDestroy();
         running = false;
+        end = true;
         hiloPlayer1.interrupt();
         mediaPlayer1.stop();
         mediaPlayer2.stop();
         mediaPlayer3.stop();
         mediaPlayer4.stop();
+        mediaPlayerMetronomo.stopMetronomo();
     }
 
 
