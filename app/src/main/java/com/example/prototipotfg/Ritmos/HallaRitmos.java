@@ -18,6 +18,7 @@ import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Ritmos.Metronomo;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import org.jetbrains.annotations.NotNull;
@@ -763,9 +764,13 @@ public class HallaRitmos extends Activity {
 
         }
         if(aciertos == 4){
+            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.getNombre()).getNivel())
+                GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Halla_Ritmo.toString(), true);
             nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.toString(), this.nivel,true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0 );
         }
         else{
+            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.getNombre()).getNivel())
+                GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Halla_Ritmo.toString(), false);
             nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.toString(), this.nivel,false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1 );
         }
         GestorBBDD.getInstance().insertaNivelAdivinar(nivel);

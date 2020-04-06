@@ -233,9 +233,13 @@ public class ReproducirCrearAcordes extends Activity {
 
             NivelAdivinar nivel = null;
             if(correcta){
+                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.getNombre()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Crear_Acordes.toString(), true);
                 nivel = new NivelAdivinar(ModoJuego.Crear_Acordes.toString(), Controlador.getInstance().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
             }
             else {
+                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.getNombre()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Crear_Acordes.toString(), false);
                 nivel = new NivelAdivinar(ModoJuego.Crear_Acordes.toString(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
             }
             GestorBBDD.getInstance().insertaNivelAdivinar(nivel);

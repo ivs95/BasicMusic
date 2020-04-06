@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.prototipotfg.BBDD.Usuario;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
@@ -33,6 +34,9 @@ public class Login extends AppCompatActivity {
             confirmaLogin();
         }
         setContentView(R.layout.activity_login);
+
+        Usuario usuario = new Usuario("usuario@prueba.com","prueba","1234",false);
+        GestorBBDD.getInstance().registraUsuario(usuario);
 
     }
 

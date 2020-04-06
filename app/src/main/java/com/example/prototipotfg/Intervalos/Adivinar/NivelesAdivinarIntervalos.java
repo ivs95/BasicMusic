@@ -8,10 +8,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.prototipotfg.Enumerados.Instrumentos;
+import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
+import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,11 +21,12 @@ import java.util.Random;
 
 public class NivelesAdivinarIntervalos extends Activity {
 
-
+    private  Bundle savedInstanceState;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
+        this.savedInstanceState = savedInstanceState;
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
@@ -32,6 +35,7 @@ public class NivelesAdivinarIntervalos extends Activity {
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.getNombre()).getNivel();
 
         //Creamos los botones en bucle
         for (int i=0; i<6; i++){
@@ -51,6 +55,11 @@ public class NivelesAdivinarIntervalos extends Activity {
             });
             //Añadimos el botón a la botonera
             llBotonera.addView(button);
+
+            if(nivelActual < i+1) {
+                button.setEnabled(false);
+                button.setAlpha(.5f);
+            }
         }
     }
 
@@ -62,6 +71,9 @@ public class NivelesAdivinarIntervalos extends Activity {
         startActivity(i);
     }
 
-
+    public void onResume(){
+        super.onResume();
+        this.onCreate(this.savedInstanceState);
+    }
 
 }

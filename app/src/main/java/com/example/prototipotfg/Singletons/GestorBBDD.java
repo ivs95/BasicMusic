@@ -8,6 +8,7 @@ import com.example.prototipotfg.BBDD.NivelImitar;
 import com.example.prototipotfg.BBDD.Puntuacion;
 import com.example.prototipotfg.BBDD.Usuario;
 import com.example.prototipotfg.Enumerados.ModoJuego;
+import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.Enumerados.RangosVocales;
 
 import org.jetbrains.annotations.NotNull;
@@ -132,9 +133,17 @@ public class GestorBBDD {
     }
 
     private void inicializaPuntuacionUsuario(Usuario user) {
-        for (int i = 0; i < ModoJuego.values().length; i++){
-            Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), 1, user.getCorreo(),0);
-            appDatabase.daoPuntuacion().insertPuntuacion(p);
+        if(user.getCorreo().equals("usuario@prueba.com")){
+            for (int i = 0; i < ModoJuego.values().length; i++) {
+                Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), ModoJuego.values()[i].getMax_level(), user.getCorreo(), 400, RangosPuntuaciones.Leyenda.toString());
+                appDatabase.daoPuntuacion().insertPuntuacion(p);
+            }
+        }
+        else {
+            for (int i = 0; i < ModoJuego.values().length; i++) {
+                Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), 1, user.getCorreo(), 0, RangosPuntuaciones.Principiante.toString());
+                appDatabase.daoPuntuacion().insertPuntuacion(p);
+            }
         }
     }
 
@@ -344,7 +353,7 @@ public class GestorBBDD {
             case "Adivinar_Intervalo":
                 puntuacionAdivinarIntervalo(nivel, superado);
                 break;
-            case "Crear intervalo":
+            case "Crear_Intervalo":
                 puntuacionCrearIntervalo(nivel, superado);
                 break;
             case "Adivinar_Acordes":
