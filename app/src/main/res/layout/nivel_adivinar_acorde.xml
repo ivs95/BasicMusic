@@ -8,22 +8,11 @@
 
 
     <TextView
-        android:id="@+id/lblOctavaInicioAcorde"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Octava de inicio: "
-        android:textColor="@color/md_blue_900"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.74"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonReproduceAdivinarAcorde" />
-
-    <TextView
         android:id="@+id/tituloAdivinarAcorde"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textAlignment="center"
         android:text="Elige la opción correcta"
         android:textColor="@color/md_blue_900"
         android:textSize="24sp"
@@ -32,96 +21,120 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/retroceder_niveles_adivinar_acordes"
-        android:layout_width="251dp"
+    <LinearLayout
+        android:id="@+id/linearLayout16"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:onClick="volverAtrasAcordes"
-        android:text="Volver a seleccionar nivel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:divider="@drawable/divisor_botones_menu"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout15"
+        app:layout_constraintTop_toBottomOf="@+id/tituloAdivinarAcorde"
+        app:layout_constraintVertical_bias="0.01">
 
-    <Button
-        android:id="@+id/comprobarAcordes"
-        android:layout_width="251dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:onClick="comprobarAcordes"
-        android:text="Comprobar resultado"
-        app:layout_constraintBottom_toTopOf="@+id/retroceder_niveles_adivinar_acordes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollViewAcordes" />
+        <TextView
+            android:id="@+id/lblNotaInicioAcorde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:text="Nota de inicio: " />
+
+        <TextView
+            android:id="@+id/lblOctavaInicioAcorde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_blue_900"
+            android:text="Octava de inicio: " />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/divisor_botones_menu"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <Button
+                android:id="@+id/btnAcordeReferencia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="reproduceReferencia"
+                android:text="Referencia (LA)"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/botonReproduceAdivinarAcorde"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="reproducirAcorde"
+                android:text="Acorde" />
+        </LinearLayout>
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollViewAcordes"
-        android:layout_width="385dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="68dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="130dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblOctavaInicioAcorde">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout16">
 
         <LinearLayout
             android:id="@+id/opcionesAcordes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:divider="@drawable/divisor_botones_menu"
+            android:gravity="center"
             android:orientation="vertical"
-            android:paddingTop="40dp" />
+            android:showDividers="middle" />
     </ScrollView>
 
-    <Button
-        android:id="@+id/botonReproduceAdivinarAcorde"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout15"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:onClick="reproducirAcorde"
-        android:text="Acorde"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/lblNotaInicioAcorde"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Nota de inicio: "
-        android:textColor="@color/md_blue_900"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloAdivinarAcorde" />
-
-    <Button
-        android:id="@+id/btnAcordeReferencia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:onClick="reproduceReferencia"
-        android:text="Referencia (LA)"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloAdivinarAcorde" />
-
-    <Button
-        android:id="@+id/button_info_adivinarAcorde"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:onClick="muestraPosibles"
-        android:text="Info"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.94"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98">
+
+        <Button
+            android:id="@+id/comprobarAcordes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="comprobarAcordes"
+            android:text="Comprobar resultado" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/retroceder_niveles_adivinar_acordes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="volverAtrasAcordes"
+                android:text="Volver a seleccionar nivel" />
+
+            <Button
+                android:id="@+id/button_info_adivinarAcorde"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="muestraPosibles"
+                android:text="Info" />
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

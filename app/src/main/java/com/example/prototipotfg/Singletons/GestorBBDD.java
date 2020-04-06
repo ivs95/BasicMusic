@@ -46,18 +46,7 @@ public class GestorBBDD {
         this.usuarioLoggeado = usuario;
     }
 
-    public boolean existeUsuarioPrueba(){
-        if(appDatabase.daoUsuario().findUsuario("usuario@prueba.com") != null) return  true;
-        else return false;
-    }
 
-    public boolean insertaUsuario(Usuario user){
-        if (appDatabase.daoUsuario().findUsuario(user.getCorreo())==null){
-            appDatabase.daoUsuario().insertUsuario(user);
-            return true;
-        }
-        return false;
-    }
 
 
     public void insertaNivelImitar(NivelImitar nivel){
@@ -138,28 +127,19 @@ public class GestorBBDD {
     }
 
     private void inicializaPuntuacionUsuario(Usuario user) {
-        if(user.getCorreo().equals("usuario@prueba.com")){
-            for (int i = 0; i < ModoJuego.values().length; i++) {
-                Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), ModoJuego.values()[i].getMax_level(), user.getCorreo(), 400, RangosPuntuaciones.Leyenda.toString());
-                appDatabase.daoPuntuacion().insertPuntuacion(p);
-            }
-        }
-        else {
-            for (int i = 0; i < ModoJuego.values().length; i++) {
+        for (int i = 0; i < ModoJuego.values().length; i++) {
                 Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), 1, user.getCorreo(), 0, RangosPuntuaciones.Principiante.toString());
                 appDatabase.daoPuntuacion().insertPuntuacion(p);
-            }
         }
+
     }
 
     public boolean registraUsuario(Usuario usuario) {
         if(appDatabase.daoUsuario().findUsuario(usuario.getCorreo())==null){
             appDatabase.daoUsuario().insertUsuario(usuario);
             inicializaPuntuacionUsuario(usuario);
-
             }
         return true;
-
     }
 
     public boolean UpdateUsuario(Usuario usuario) {
@@ -528,4 +508,14 @@ public class GestorBBDD {
 
     }
 
+    public void compruebaUsuarioPrueba() {
+        if (appDatabase.daoUsuario().findUsuario("usuario@prueba.com") == null){
+            Usuario usuario = new Usuario("usuario@prueba.com", "prueba", "1234", false);
+            appDatabase.daoUsuario().insertUsuario(usuario);
+            for (int i = 0; i < ModoJuego.values().length; i++) {
+                Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), ModoJuego.values()[i].getMax_level(), usuario.getCorreo(), 400, RangosPuntuaciones.Leyenda.toString());
+                appDatabase.daoPuntuacion().insertPuntuacion(p);
+            }
+        }
+    }
 }
