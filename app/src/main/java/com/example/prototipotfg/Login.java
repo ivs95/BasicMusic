@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.prototipotfg.BBDD.AppDatabase;
 import com.example.prototipotfg.BBDD.Usuario;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -30,13 +31,17 @@ public class Login extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 1000);
         }
         GestorBBDD.getInstance().setContexto(getApplicationContext());
+
+        if(!GestorBBDD.getInstance().existeUsuarioPrueba()){
+            Usuario usuario = new Usuario("usuario@prueba.com", "prueba", "1234", false);
+            GestorBBDD.getInstance().registraUsuario(usuario);
+        }
+
         if (GestorBBDD.getInstance().usuarioRecordado()){
             confirmaLogin();
         }
         setContentView(R.layout.activity_login);
 
-        Usuario usuario = new Usuario("usuario@prueba.com","prueba","1234",false);
-        GestorBBDD.getInstance().registraUsuario(usuario);
 
     }
 

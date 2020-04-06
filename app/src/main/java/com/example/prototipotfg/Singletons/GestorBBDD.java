@@ -46,6 +46,11 @@ public class GestorBBDD {
         this.usuarioLoggeado = usuario;
     }
 
+    public boolean existeUsuarioPrueba(){
+        if(appDatabase.daoUsuario().findUsuario("usuario@prueba.com") != null) return  true;
+        else return false;
+    }
+
     public boolean insertaUsuario(Usuario user){
         if (appDatabase.daoUsuario().findUsuario(user.getCorreo())==null){
             appDatabase.daoUsuario().insertUsuario(user);
