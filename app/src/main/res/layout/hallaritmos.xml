@@ -19,22 +19,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
-
-    <Button
-        android:id="@+id/playRitmo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginTop="5dp"
-        android:onClick="play"
-        android:text="Pulsa para reproducir"
-        app:layout_constraintTop_toBottomOf="@+id/textRitmos4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <Button
         android:id="@+id/stopRitmo"
@@ -42,7 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="5dp"
         android:onClick="stop"
         android:text="Comprueba"
@@ -53,15 +37,98 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <LinearLayout
+        android:id="@+id/linearEtiquetas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tituloHallaRitmo">
+
+        <TextView
+            android:id="@+id/textRitmos1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1º fila: palmadas"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#091AAA"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/textRitmos2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2º fila: caja"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#091AAA"
+            android:visibility="invisible" />
+
+
+        <TextView
+            android:id="@+id/textRitmos3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3º fila: tambor"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#091AAA"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/textRitmos4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4º fila: platillo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#091AAA"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearControlRitmo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearEtiquetas">
+
+        <Button
+            android:id="@+id/playRitmo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="play"
+            android:text="Reproducir ritmo" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pausar ritmo"
+            android:onClick="pause"/>
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Reiniciar ritmo"
+            android:onClick="para"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playRitmo">
+        app:layout_constraintTop_toBottomOf="@+id/linearControlRitmo">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -128,68 +195,6 @@
         </HorizontalScrollView>
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textRitmos1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="1º fila: palmadas"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#091AAA"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloHallaRitmo" />
-
-    <TextView
-        android:id="@+id/textRitmos2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:text="2º fila: caja"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#091AAA"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textRitmos1" />
-
-    <TextView
-        android:id="@+id/textRitmos3"
-        android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="3º fila: tambor"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#091AAA"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textRitmos2" />
-
-
-    <TextView
-        android:id="@+id/textRitmos4"
-        android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="4º fila: platillo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#091AAA"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textRitmos3" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
