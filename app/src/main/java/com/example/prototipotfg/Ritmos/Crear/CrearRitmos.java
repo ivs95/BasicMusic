@@ -246,8 +246,8 @@ public class CrearRitmos extends Activity {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStop() {
+        super.onStop();
         running = false;
         end = true;
         hiloPlayer1.interrupt();
@@ -256,6 +256,15 @@ public class CrearRitmos extends Activity {
         mediaPlayer3.stop();
         mediaPlayer4.stop();
         mediaPlayerMetronomo.stopMetronomo();
+    }
+
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 
 

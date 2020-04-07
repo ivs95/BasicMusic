@@ -31,6 +31,7 @@ import static java.lang.Thread.sleep;
 
 public class HallaRitmos extends Activity {
 
+    private Bundle savedInstanceState;
     private ArrayList<Integer> ritmos1;
     private ArrayList<Integer> ritmos2;
     private ArrayList<Integer> ritmos3;
@@ -160,6 +161,7 @@ public class HallaRitmos extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hallaritmos);
+        this.savedInstanceState = savedInstanceState;
 
 
         nivel = getIntent().getExtras().getInt("nivel");
@@ -723,9 +725,10 @@ public class HallaRitmos extends Activity {
         GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
     }
 
+
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStop() {
+        super.onStop();
         running = false;
         end = true;
         hiloPlayer1.interrupt();
@@ -734,6 +737,15 @@ public class HallaRitmos extends Activity {
         mediaPlayer3.stop();
         mediaPlayer4.stop();
         mediaPlayerMetronomo.stopMetronomo();
+    }
+
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 
 
