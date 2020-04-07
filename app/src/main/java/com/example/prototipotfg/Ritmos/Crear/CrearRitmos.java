@@ -42,6 +42,7 @@ public class CrearRitmos extends Activity {
     private int indiceSonidoActual;
     private final int BPM = 60;
     private boolean running;
+    private boolean runningPropio;
     private boolean go1 = false;
     private boolean go2 = false;
     private boolean go3 = false;
@@ -118,13 +119,61 @@ public class CrearRitmos extends Activity {
 
     });
 
+    private  Thread hilo_ritmos_propio = new Thread(new Runnable(){
+        @Override
+        public void run() {
+            while(!end) {
+                while (runningPropio && indice < COMPASES) {
+                    play = false;
+                    if (metronomo.get(indice) == 1) {
+                        if (indice == 0)
+                            tick = true;
+                        goMetronomo = true;
+                    }
+                    int notaActual1 = resultado1.get(indice);
+                    if (notaActual1 == 1) {
+                        go1 = true;
+                    }
+                    if (nivel > 2) {
+                        int notaActual2 = resultado2.get(indice);
+                        if (notaActual2 == 1) {
+                            go2 = true;
+                        }
+                        if (nivel > 4) {
+                            int notaActual3 = resultado3.get(indice);
+                            if (notaActual3 == 1) {
+                                go3 = true;
+                            }
+                            if (nivel > 6) {
+                                int notaActual4 = resultado4.get(indice);
+                                if (notaActual4 == 1) {
+                                    go4 = true;
+                                }
+                            }
+                        }
+                    }
+                    try {
+                        Thread.sleep(250);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (!play && runningPropio) {
+                        indice++;
+                    }
+                }
+            }
+        }
+
+    });
+
     private Thread hiloPlayer1 = new Thread(new Runnable() {
 
         @Override
         public void run() {
             try {
                 while(!end) {
-                    while (running) {
+                    while (running || runningPropio) {
 
                         if (go1) {
                             mediaPlayer1.play();
@@ -177,6 +226,7 @@ public class CrearRitmos extends Activity {
         running = false;
         hilo_ritmos.start();
         hiloPlayer1.start();
+        hilo_ritmos_propio.start();
         mediaPlayerMetronomo.initMetronomo(this);
         mediaPlayer1.init1(this);
         if(nivel>2) {
@@ -228,7 +278,16 @@ public class CrearRitmos extends Activity {
 
 
     public void reproducirRitmoPropio(View view){
-
+        if(runningPropio == true){
+            indice = 0;
+            play = true;
+        }
+        else {
+            runningPropio = true;
+            if(pause == false)
+                indice = 0;
+            pause = false;
+        }
     }
 
     public void borrarRitmoPropio(View view){
@@ -299,6 +358,7 @@ public class CrearRitmos extends Activity {
     public void onDestroy() {
         super.onDestroy();
         running = false;
+        runningPropio = false;
         end = true;
         hiloPlayer1.interrupt();
         mediaPlayer1.stop();
