@@ -28,10 +28,10 @@ import java.util.ArrayList;
 
 public class CrearRitmos extends Activity {
 
-    private ArrayList<Integer> ritmos1;
-    private ArrayList<Integer> ritmos2;
-    private ArrayList<Integer> ritmos3;
-    private ArrayList<Integer> ritmos4;
+    private ArrayList<Integer> ritmos1  = new ArrayList<>();
+    private ArrayList<Integer> ritmos2 = new ArrayList<>();
+    private ArrayList<Integer> ritmos3 = new ArrayList<>();
+    private ArrayList<Integer> ritmos4 = new ArrayList<>();
     private ArrayList<Integer> resultado1 = new ArrayList<>();
     private ArrayList<Integer> resultado2 = new ArrayList<>();
     private ArrayList<Integer> resultado3 = new ArrayList<>();
@@ -39,6 +39,7 @@ public class CrearRitmos extends Activity {
     private ArrayList<Integer> metronomo = new ArrayList<>();
     private ArrayList<Button> botonesGuia = new ArrayList<>();
     private final int COMPASES = 16;
+    private int indiceSonidoActual;
     private final int BPM = 60;
     private boolean running;
     private boolean go1 = false;
@@ -100,6 +101,7 @@ public class CrearRitmos extends Activity {
                     }
                     if (!play && running) {
                         botonesGuia.get(indice).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_lime_A100)));
+                        indiceSonidoActual = indice;
                         if (indice == 0){
                             botonesGuia.get(botonesGuia.size()-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
                         }
@@ -168,7 +170,6 @@ public class CrearRitmos extends Activity {
         ritmos2 = getIntent().getExtras().getIntegerArrayList("ritmos2");
         ritmos3 = getIntent().getExtras().getIntegerArrayList("ritmos3");
         ritmos4 = getIntent().getExtras().getIntegerArrayList("ritmos4");
-
         TextView titulo = findViewById(R.id.tituloCrearRitmo);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
         LinearLayout guia = findViewById(R.id.linearRitmo);
@@ -226,36 +227,17 @@ public class CrearRitmos extends Activity {
     }
 
 
-    private void pintaBotonAmarillo(int indice){
+    public void reproducirRitmoPropio(View view){
 
     }
 
-    private void pintaBotonAzul(int indice){
-
-    }
-
-
-    public void para(@NotNull final View view){
-        running = false;
-        botonesGuia.get(indice-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
-
-    }
-
-    public void comprobar(View view){
-
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        running = false;
-        end = true;
-        hiloPlayer1.interrupt();
-        mediaPlayer1.stop();
-        mediaPlayer2.stop();
-        mediaPlayer3.stop();
-        mediaPlayer4.stop();
-        mediaPlayerMetronomo.stopMetronomo();
+    public void borrarRitmoPropio(View view){
+        for (int i = 0; i < COMPASES; i++){
+            resultado1.set(i,0);
+            resultado2.set(i,0);
+            resultado3.set(i,0);
+            resultado4.set(i,0);
+        }
     }
 
     @Override
@@ -269,16 +251,80 @@ public class CrearRitmos extends Activity {
 
 
 
-    public void registraCaja(View view){
 
+    public void para(@NotNull final View view){
+        running = false;
+        botonesGuia.get(indice-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
+        indice = 0;
     }
-    public void registraPlatillo(View view){
 
+    public void comprobar(View view){
+        if (compruebaArrays()){
+            for (Button b : this.botonesGuia){
+                b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+            }
+        }
+        else{
+            for (Button b : this.botonesGuia) {
+                b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+            }
+        }
+        view.setEnabled(false);
+        findViewById(R.id.botonPlayRitmo).setEnabled(false);
+        findViewById(R.id.botonStopRitmo).setEnabled(false);
+        findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);
+        findViewById(R.id.botonResetRitmo).setEnabled(false);
+        findViewById(R.id.botonPalmada).setEnabled(false);
+        findViewById(R.id.botonCaja).setEnabled(false);
+        findViewById(R.id.botonTambor).setEnabled(false);
+        findViewById(R.id.botonPlatillo).setEnabled(false);
     }
-    public void registraTambor(View view){
 
+    private boolean compruebaArrays() {
+        switch (nivel){
+            case 1:
+            case 2: return (ritmos1.equals(resultado1));
+            case 3:
+            case 4: return (ritmos1.equals(resultado1) && ritmos2.equals(resultado2));
+            case 5:
+            case 6: return (ritmos1.equals(resultado1) && ritmos2.equals(resultado2) && ritmos3.equals(resultado3));
+            case 7:
+            case 8: return (ritmos1.equals(resultado1) && ritmos2.equals(resultado2) && ritmos3.equals(resultado3) && ritmos4.equals(resultado4));
+        }
+        return false;
     }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        running = false;
+        end = true;
+        hiloPlayer1.interrupt();
+        mediaPlayer1.stop();
+        mediaPlayer2.stop();
+        mediaPlayer3.stop();
+        mediaPlayer4.stop();
+        mediaPlayerMetronomo.stopMetronomo();
+    }
+
     public void registraPalmada(View view){
-
+        resultado1.set(indiceSonidoActual,1);
     }
+
+    public void registraCaja(View view){
+        resultado2.set(indiceSonidoActual,1);
+    }
+
+    public void registraTambor(View view){
+        resultado3.set(indiceSonidoActual,1);
+    }
+
+
+    public void registraPlatillo(View view){
+        resultado4.set(indiceSonidoActual,1);
+    }
+
+
+
 }

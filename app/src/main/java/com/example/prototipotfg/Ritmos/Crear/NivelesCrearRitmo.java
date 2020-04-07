@@ -67,10 +67,10 @@ public class NivelesCrearRitmo extends Activity{
          * Claves: respuesta, fallo1,...,falloN
          * */
         Random random = new Random();
-        ArrayList<Integer> ritmos1 = new ArrayList<>(longitud);
-        ArrayList<Integer> ritmos2 = new ArrayList<>(longitud);
-        ArrayList<Integer> ritmos3 = new ArrayList<>(longitud);
-        ArrayList<Integer> ritmos4 = new ArrayList<>(longitud);
+        ArrayList<Integer> ritmos1 = new ArrayList<>();
+        ArrayList<Integer> ritmos2 = new ArrayList<>();
+        ArrayList<Integer> ritmos3 = new ArrayList<>();
+        ArrayList<Integer> ritmos4 = new ArrayList<>();
         for(int x = 0; x<4; x++) {
             int nota = random.nextInt(3) + 1;
             //Llenar aleatorios

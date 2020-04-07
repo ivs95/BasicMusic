@@ -47,7 +47,6 @@ public class Login extends AppCompatActivity {
         if (!correo.isEmpty() && !password.isEmpty()){
             if (GestorBBDD.getInstance().validaUsuario(correo,password,recordado)){
                 confirmaLogin();
-
             }
             else{
                 ((TextView)findViewById(R.id.textErrorLog)).setVisibility(View.VISIBLE);

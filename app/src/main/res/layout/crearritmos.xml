@@ -35,11 +35,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloCrearRitmo">
         <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="Reproducir ritmo a imitar"
-        android:onClick="play" />
+            android:id="@+id/botonPlayRitmo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Reproducir ritmo a imitar"
+            android:onClick="play" />
 
         <Button
             android:id="@+id/botonStopRitmo"
@@ -48,13 +49,7 @@
             android:layout_weight="1"
             android:text="Detener ritmo"
             android:onClick="para" />
-
-
     </LinearLayout>
-
-
-
-
 
     <LinearLayout
         android:id="@+id/linearRitmo"
@@ -154,7 +149,7 @@
             android:id="@+id/botonPlayRitmoPropio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:onClick="reproducirRitmoPropio"
             android:layout_weight="1"
             android:text="Reproducir ritmo"></Button>
 
@@ -162,7 +157,7 @@
             android:id="@+id/botonResetRitmo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:onClick="borrarRitmoPropio"
             android:layout_weight="1"
             android:text="Borrar ritmo"></Button>
 
