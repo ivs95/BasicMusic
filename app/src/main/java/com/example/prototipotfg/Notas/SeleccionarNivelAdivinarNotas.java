@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
@@ -29,10 +30,10 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
 
-
-
-
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
+
+        TextView rango = findViewById(R.id.rango_niveles);
+        rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango());
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
