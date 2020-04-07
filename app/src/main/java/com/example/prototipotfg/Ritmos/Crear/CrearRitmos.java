@@ -328,15 +328,15 @@ public class CrearRitmos extends Activity {
     }
 
     @Override
-    public void onRestart(){
-        super.onRestart();
-        finish();
-        overridePendingTransition(0, 0);
-        startActivity(getIntent());
-        overridePendingTransition(0, 0);
+    public void onStop(){
+        super.onStop();
+        running = false;
+        runningPropio = false;
+        if (indice == 0)
+            indice = botonesGuia.size();
+        botonesGuia.get(indice-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
+
     }
-
-
 
 
     public void para(@NotNull final View view){

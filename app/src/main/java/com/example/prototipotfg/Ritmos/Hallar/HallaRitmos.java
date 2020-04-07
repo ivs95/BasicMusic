@@ -629,6 +629,8 @@ public class HallaRitmos extends Activity {
         running = false;
     }
 
+
+
     public void stop(View view){
         NivelAdivinar nivel;
         int aciertos=0;
@@ -727,8 +729,8 @@ public class HallaRitmos extends Activity {
 
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
         running = false;
         end = true;
         hiloPlayer1.interrupt();
@@ -740,12 +742,9 @@ public class HallaRitmos extends Activity {
     }
 
     @Override
-    public void onRestart(){
-        super.onRestart();
-        finish();
-        overridePendingTransition(0, 0);
-        startActivity(getIntent());
-        overridePendingTransition(0, 0);
+    public void onStop(){
+        super.onStop();
+        running = false;
     }
 
 
