@@ -123,7 +123,7 @@ public class CrearRitmos extends Activity {
         @Override
         public void run() {
             while(!end) {
-                while (runningPropio && indice < COMPASES) {
+                while (runningPropio) {
                     play = false;
                     if (metronomo.get(indice) == 1) {
                         if (indice == 0)
@@ -161,7 +161,23 @@ public class CrearRitmos extends Activity {
                     if (!play && runningPropio) {
                         indice++;
                     }
+                    if (indice == COMPASES) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.botonPlayRitmo).setEnabled(true);
+                                findViewById(R.id.botonStopRitmo).setEnabled(true);
+                                findViewById(R.id.botonPalmada).setEnabled(true);
+                                findViewById(R.id.botonCaja).setEnabled(true);
+                                findViewById(R.id.botonTambor).setEnabled(true);
+                                findViewById(R.id.botonPlatillo).setEnabled(true);
+                            }
+                        });
+
+                        runningPropio = false;
+                    }
                 }
+
             }
         }
 
@@ -263,6 +279,12 @@ public class CrearRitmos extends Activity {
     }
 
     public void play(@NotNull final View view){
+        findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);
+        findViewById(R.id.botonPalmada).setEnabled(true);
+        findViewById(R.id.botonCaja).setEnabled(true);
+        findViewById(R.id.botonTambor).setEnabled(true);
+        findViewById(R.id.botonPlatillo).setEnabled(true);
+        indice = 0;
         if(running == true){
             botonesGuia.get(indice-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
             indice = 0;
@@ -278,6 +300,12 @@ public class CrearRitmos extends Activity {
 
 
     public void reproducirRitmoPropio(View view){
+        findViewById(R.id.botonPlayRitmo).setEnabled(false);
+        findViewById(R.id.botonPalmada).setEnabled(false);
+        findViewById(R.id.botonStopRitmo).setEnabled(false);
+        findViewById(R.id.botonCaja).setEnabled(false);
+        findViewById(R.id.botonTambor).setEnabled(false);
+        findViewById(R.id.botonPlatillo).setEnabled(false);
         if(runningPropio == true){
             indice = 0;
             play = true;
@@ -312,9 +340,15 @@ public class CrearRitmos extends Activity {
 
 
     public void para(@NotNull final View view){
+        findViewById(R.id.botonPlayRitmoPropio).setEnabled(true);
+        findViewById(R.id.botonPalmada).setEnabled(false);
+        findViewById(R.id.botonCaja).setEnabled(false);
+        findViewById(R.id.botonTambor).setEnabled(false);
+        findViewById(R.id.botonPlatillo).setEnabled(false);
         running = false;
+        if (indice == 0)
+            indice = botonesGuia.size();
         botonesGuia.get(indice-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
-        indice = 0;
     }
 
     public void comprobar(View view){
@@ -352,7 +386,6 @@ public class CrearRitmos extends Activity {
         }
         return false;
     }
-
 
     @Override
     public void onDestroy() {
