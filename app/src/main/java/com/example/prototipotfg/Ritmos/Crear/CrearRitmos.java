@@ -286,6 +286,8 @@ public class CrearRitmos extends Activity {
         findViewById(R.id.botonPlatillo).setEnabled(true);
         indice = 0;
         if(running == true){
+            if (indice == 0)
+                indice = botonesGuia.size();
             botonesGuia.get(indice-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
             indice = 0;
             play = true;
