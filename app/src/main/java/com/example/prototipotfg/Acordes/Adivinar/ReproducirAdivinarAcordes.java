@@ -39,6 +39,7 @@ import static android.view.View.VISIBLE;
 public class ReproducirAdivinarAcordes extends Activity {
 
     private Acordes acordeCorrecto;
+    private ArrayList<Button> botonesOpciones = new ArrayList<>();
     private ArrayList<Acordes> acordesPosibles = new ArrayList<>();
     private ArrayList<ArrayList<Pair<Notas, Octavas>>> acordesReproducir = new ArrayList<>();
     private ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir = new ArrayList<>();
@@ -101,6 +102,7 @@ public class ReproducirAdivinarAcordes extends Activity {
             if (button.getText().equals(this.acordeCorrecto.getNombre())) {
                 respuestaCorrecta = button;
             }
+            botonesOpciones.add(button);
             opciones.addView(button);
         }
 
@@ -178,6 +180,13 @@ public class ReproducirAdivinarAcordes extends Activity {
             GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
         }
         ponerComprobarVisible(GONE);
+        findViewById(R.id.btnAcordeReferencia).setEnabled(false);
+        findViewById(R.id.button_info_adivinarAcorde).setEnabled(false);
+        findViewById(R.id.botonReproduceAdivinarAcorde).setEnabled(false);
+        for (Button b : botonesOpciones)
+            b.setEnabled(false);
+
+
     }
 
     public void reproducirAcorde(View view){

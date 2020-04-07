@@ -42,6 +42,8 @@ public class ReproducirCrearAcordes extends Activity {
     private ArrayList<Acordes> acordesPosibles = new ArrayList<>();
     private ArrayList<ArrayList<Pair<Notas, Octavas>>> acordesReproducir = new ArrayList<>();
     private ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir = new ArrayList<>();
+    private ArrayList<Button> botonesOpciones = new ArrayList<>();
+
     private Notas notaInicio;
     private int numOpciones;
     private int num_notas;
@@ -111,6 +113,7 @@ public class ReproducirCrearAcordes extends Activity {
                 respuestaCorrecta[(int) button.getId() - 1] = button;
             }
             else respuestaCorrecta[(int) button.getId() - 1] = null;
+            botonesOpciones.add(button);
             opciones.addView(button);
         }
 
@@ -249,7 +252,11 @@ public class ReproducirCrearAcordes extends Activity {
         for (MediaPlayer m: mediaPlayers){
             m.start();
         }
-
+        findViewById(R.id.btnCrearAcordeReferencia).setEnabled(false);
+        findViewById(R.id.botonReproduceCrearAcorde).setEnabled(false);
+        findViewById(R.id.infoCrearAcordes).setEnabled(false);
+        for (Button b : botonesOpciones)
+            b.setEnabled(false);
         ponerComprobarVisible(GONE);
     }
 

@@ -38,20 +38,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/buttonIntervalosModo1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="modo_intervalo"
-            android:text="Crea el intervalo" />
-
-        <Button
             android:id="@+id/buttonIntervalosModo2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="modo_intervalo"
             android:text="Adivina el intervalo"
-
             />
+
+        <Button
+            android:id="@+id/buttonIntervalosModo1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="modo_intervalo"
+            android:text="Crea el intervalo" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

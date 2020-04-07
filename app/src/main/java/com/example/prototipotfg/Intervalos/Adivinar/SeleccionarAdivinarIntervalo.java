@@ -37,6 +37,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
     private View botonSeleccionado;
     private View respuestaCorrecta;
     private String respuesta;
+    private ArrayList<Button> botonesOpciones = new ArrayList<>();
     private ArrayList<Pair<Notas,Octavas>> notasIntervalo = new ArrayList<>();
     private String intervalo_correcto;
     private boolean comprobada = false;
@@ -117,24 +118,53 @@ public class SeleccionarAdivinarIntervalo extends Activity {
             if (button.getText().equals(this.intervalo_correcto)){
                 respuestaCorrecta = button;
             }
+            botonesOpciones.add(button);
             opciones.addView(button);
         }
 
 
     }
 
-    public void reproduceIntervaloRespuesta(View view) throws IOException, InterruptedException {
-        reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(0).second.getPath()+notasIntervalo.get(0).first.getPath());
-        sleep(700);
+    public void reproduceIntervaloRespuesta(final View view) throws IOException, InterruptedException {
+        view.setEnabled(false);
+        Thread hiloIntervalo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(0).second.getPath()+notasIntervalo.get(0).first.getPath());
+                    sleep(400);
+                    reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(1).second.getPath()+notasIntervalo.get(1).first.getPath());
+                    sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.setEnabled(true);
+                    }
+                });
+            }
+        });
+        hiloIntervalo.run();
+
+        /*reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(0).second.getPath()+notasIntervalo.get(0).first.getPath());
+        sleep(400);
         reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(1).second.getPath()+notasIntervalo.get(1).first.getPath());
+        sleep(100);*/
 
     }
 
 
-    public void reproduceNota(String ruta) throws IOException {
-        AssetFileDescriptor afd = getAssets().openFd(ruta);
-        Reproductor.getInstance().reproducirNota(afd);
-        afd.close();
+    public void reproduceNota(String ruta) {
+        AssetFileDescriptor afd = null;
+        try {
+            afd = getAssets().openFd(ruta);
+            Reproductor.getInstance().reproducirNota(afd);
+            afd.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -191,6 +221,12 @@ public class SeleccionarAdivinarIntervalo extends Activity {
             GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
         }
         findViewById(R.id.comprobar).setVisibility(View.GONE);
+        for (Button b : botonesOpciones){
+            b.setEnabled(false);
+        }
+        findViewById(R.id.botonIntervalo).setEnabled(false);
+        findViewById(R.id.botonReferencia).setEnabled(false);
+
     }
 
     public Intervalos getIntervaloConDif(int dif){
@@ -206,19 +242,6 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         return intervalos_lista[i-1];
     }
 
-    private int getTonoNota(String name){
-        name = name.substring(0,name.length()-1);
-        boolean OK = false;
-        int i = 0;
-        Notas[] lista_notas = new Notas[11];
-        lista_notas = Notas.values();
-        while(i < 11 && !OK){
-            if(lista_notas[i].getNombre().equals(name)) OK = true;
-            i++;
-
-        }
-        return lista_notas[i-1].getTono();
-    }
 
     public void reproducirReferencia(View view) throws IOException {
         AssetFileDescriptor afd = getAssets().openFd(FactoriaNotas.getInstance().getReferencia());

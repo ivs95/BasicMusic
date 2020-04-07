@@ -45,6 +45,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
     private ArrayList<Pair<Notas,Octavas>> notasIntervalo = new ArrayList<>();
     private ArrayList<String> notasPosibles = new ArrayList<>();
+    private ArrayList<Button> botonesOpciones = new ArrayList<>();
     private Notas notaInicio;
     private Octavas octavaInicio;
     private Octavas octavaReproducir;
@@ -60,12 +61,6 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_crear_intervalo);
         ponerComprobarVisible(INVISIBLE);
-
-        //nombres = getIntent().getExtras().getStringArrayList("nombres");
-
-
-        //Notas notaFinal = Notas.devuelveNotaPorNombre(nombres.get(1).substring(0,nombres.get(1).length()-1));
-        //ArrayList<Intervalos> intervalos_posibles = Intervalos.devuelveIntervalosPosibles(notaInicio);
 
         Random r = new Random();
         this.num_opciones = Controlador.getInstance().getNum_opciones();
@@ -95,10 +90,6 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         intervalo_nombre = getIntent().getExtras().getString("peticion_nombre");
         intervalo_dif = getIntent().getExtras().getInt("peticion_dif");
 
-
-        //inicializacion de botones
-
-
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout opciones = (LinearLayout) findViewById(R.id.opciones_crear_intervalo);
 
@@ -107,24 +98,13 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
         lp.setMargins(0,0,0,50);
         Random rand = new Random();
-
-
         ArrayList <Integer> aux = new ArrayList<Integer>();
+
         for(int i = 0; i < num_opciones; i++) {
             aux.add(i);
         }
 
-        /*
-        int random1 = rand.nextInt(num_respuestas);
-        while (aux.contains(random1))
-            random1 = rand.nextInt(num_respuestas);
-
-        aux.add(random1);
-        */
-
         Collections.shuffle(aux);
-
-
         //Creamos los botones en bucle
         for (int i=0; i<num_opciones; i++){
             Button button = new Button(this);
@@ -143,15 +123,13 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
             });
             //Añadimos el botón a la botonera
             button.setPadding(0,0,0,0);
-
+            botonesOpciones.add(button);
             opciones.addView(button);
             if (button.getText().toString().equals(notasIntervalo.get(1).first.getNombre() + notasIntervalo.get(1).second.getOctava())){
                 this.respuestaCorrecta=button;
                 respuesta_correcta = button.getText().toString();
-
             }
         }
-
 
     }
     private ArrayList<String> seleccionaNotasAleatorios(Intervalos intervalo) {
@@ -294,7 +272,11 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
             GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
             findViewById(R.id.comprobar_crear_intervalo).setVisibility(View.GONE);
-
+            findViewById(R.id.Id_boton_reproduce_nota_intervalo).setEnabled(false);
+            findViewById(R.id.botonReferencia).setEnabled(false);
+            for (Button b : botonesOpciones){
+                b.setEnabled(false);
+            }
         }
     }
 
