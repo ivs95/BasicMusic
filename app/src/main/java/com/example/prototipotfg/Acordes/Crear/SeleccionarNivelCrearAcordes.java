@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.R;
@@ -23,6 +24,8 @@ public class SeleccionarNivelCrearAcordes extends Activity {
         this.savedInstanceState = savedInstanceState;
 
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
+        TextView rango = findViewById(R.id.rango_niveles);
+        rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getRango());
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
 
