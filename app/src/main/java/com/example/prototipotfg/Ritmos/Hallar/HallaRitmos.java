@@ -47,6 +47,8 @@ public class HallaRitmos extends Activity {
     private View botonesResultado2[]= new View[COMPASES];
     private View botonesResultado3[]= new View[COMPASES];
     private View botonesResultado4[]= new View[COMPASES];
+
+    private boolean comprobado = false;
     private boolean running;
     private boolean go1 = false;
     private boolean go2 = false;
@@ -220,73 +222,76 @@ public class HallaRitmos extends Activity {
                 //Añadimos el botón a la botonera
                 if (i < 4) {
 
+                    if(!comprobado) {
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                            @Override
+                            public void onClick(View v) {
+                                if (!comprobado) {
+                                    if (finalJ == 0) {
+                                        if (resultado1.get((int) button.getId() - 1) == 1) {
 
-                    button.setOnClickListener(new View.OnClickListener() {
-                        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-                        @Override
-                        public void onClick(View v) {
-                            if (finalJ == 0) {
-                                if (resultado1.get((int) button.getId() - 1) == 1) {
+                                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+                                            resultado1.set(((int) button.getId() - 1), 0);
+                                            botonesSeleccionados1[(int) button.getId() - 1] = null;
+                                        } else {
 
-                                    resultado1.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados1[(int) button.getId() - 1] = null;
-                                } else {
+                                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+                                            resultado1.set(((int) button.getId() - 1), 1);
+                                            botonesSeleccionados1[(int) button.getId() - 1] = button;
+                                        }
+                                    }
+                                    if (finalJ == 1) {
+                                        if (resultado2.get((int) button.getId() - 1) == 1) {
 
-                                    resultado1.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados1[(int) button.getId() - 1] = button;
+                                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+
+                                            resultado2.set(((int) button.getId() - 1), 0);
+                                            botonesSeleccionados2[(int) button.getId() - 1] = null;
+                                        } else {
+
+                                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+
+                                            resultado2.set(((int) button.getId() - 1), 1);
+                                            botonesSeleccionados2[(int) button.getId() - 1] = button;
+                                        }
+                                    }
+                                    if (finalJ == 2) {
+                                        if (resultado3.get((int) button.getId() - 1) == 1) {
+
+                                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+
+                                            resultado3.set(((int) button.getId() - 1), 0);
+                                            botonesSeleccionados3[(int) button.getId() - 1] = null;
+                                        } else {
+
+                                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+
+                                            resultado3.set(((int) button.getId() - 1), 1);
+                                            botonesSeleccionados3[(int) button.getId() - 1] = button;
+                                        }
+                                    }
+                                    if (finalJ == 3) {
+                                        if (resultado4.get((int) button.getId() - 1) == 1) {
+
+                                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+
+                                            resultado4.set(((int) button.getId() - 1), 0);
+                                            botonesSeleccionados4[(int) button.getId() - 1] = null;
+                                        } else {
+
+                                            button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+
+                                            resultado4.set(((int) button.getId() - 1), 1);
+                                            botonesSeleccionados4[(int) button.getId() - 1] = button;
+                                        }
+                                    }
                                 }
                             }
-                            if (finalJ == 1) {
-                                if (resultado2.get((int) button.getId() - 1) == 1) {
-
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
-
-                                    resultado2.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados2[(int) button.getId() - 1] = null;
-                                } else {
-
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
-
-                                    resultado2.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados2[(int) button.getId() - 1] = button;
-                                }
-                            }
-                            if (finalJ == 2) {
-                                if (resultado3.get((int) button.getId() - 1) == 1) {
-
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
-
-                                    resultado3.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados3[(int) button.getId() - 1] = null;
-                                } else {
-
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
-
-                                    resultado3.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados3[(int) button.getId() - 1] = button;
-                                }
-                            }
-                            if (finalJ == 3) {
-                                if (resultado4.get((int) button.getId() - 1) == 1) {
-
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
-
-                                    resultado4.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados4[(int) button.getId() - 1] = null;
-                                } else {
-
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
-
-                                    resultado4.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados4[(int) button.getId() - 1] = button;
-                                }
-                            }
-                        }
-                    });
+                        });
+                    }
                     if(j==0) {
                         llBotonera1.addView(button);
                         if(ritmos1.get(i)==1){
@@ -318,67 +323,69 @@ public class HallaRitmos extends Activity {
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (finalJ == 0) {
-                                if (resultado1.get((int) button.getId() - 1) == 1) {
+                            if (!comprobado) {
+                                if (finalJ == 0) {
+                                    if (resultado1.get((int) button.getId() - 1) == 1) {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
 
-                                    resultado1.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados1[(int) button.getId() - 1] = null;
-                                } else {
+                                        resultado1.set(((int) button.getId() - 1), 0);
+                                        botonesSeleccionados1[(int) button.getId() - 1] = null;
+                                    } else {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
 
-                                    resultado1.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados1[(int) button.getId() - 1] = button;
+                                        resultado1.set(((int) button.getId() - 1), 1);
+                                        botonesSeleccionados1[(int) button.getId() - 1] = button;
+                                    }
                                 }
-                            }
-                            if (finalJ == 1) {
-                                if (resultado2.get((int) button.getId() - 1) == 1) {
+                                if (finalJ == 1) {
+                                    if (resultado2.get((int) button.getId() - 1) == 1) {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
 
-                                    resultado2.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados2[(int) button.getId() - 1] = null;
-                                } else {
+                                        resultado2.set(((int) button.getId() - 1), 0);
+                                        botonesSeleccionados2[(int) button.getId() - 1] = null;
+                                    } else {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
 
-                                    resultado2.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados2[(int) button.getId() - 1] = button;
+                                        resultado2.set(((int) button.getId() - 1), 1);
+                                        botonesSeleccionados2[(int) button.getId() - 1] = button;
+                                    }
                                 }
-                            }
-                            if (finalJ == 2) {
-                                if (resultado3.get((int) button.getId() - 1) == 1) {
+                                if (finalJ == 2) {
+                                    if (resultado3.get((int) button.getId() - 1) == 1) {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
 
-                                    resultado3.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados3[(int) button.getId() - 1] = null;
-                                } else {
+                                        resultado3.set(((int) button.getId() - 1), 0);
+                                        botonesSeleccionados3[(int) button.getId() - 1] = null;
+                                    } else {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
 
-                                    resultado3.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados3[(int) button.getId() - 1] = button;
+                                        resultado3.set(((int) button.getId() - 1), 1);
+                                        botonesSeleccionados3[(int) button.getId() - 1] = button;
+                                    }
                                 }
-                            }
-                            if (finalJ == 3) {
-                                if (resultado4.get((int) button.getId() - 1) == 1) {
+                                if (finalJ == 3) {
+                                    if (resultado4.get((int) button.getId() - 1) == 1) {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
 
-                                    resultado4.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados4[(int) button.getId() - 1] = null;
-                                } else {
+                                        resultado4.set(((int) button.getId() - 1), 0);
+                                        botonesSeleccionados4[(int) button.getId() - 1] = null;
+                                    } else {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
 
-                                    resultado4.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados4[(int) button.getId() - 1] = button;
+                                        resultado4.set(((int) button.getId() - 1), 1);
+                                        botonesSeleccionados4[(int) button.getId() - 1] = button;
+                                    }
                                 }
-                            }
 
+                            }
                         }
                     });
                     if(j==0) {
@@ -409,67 +416,69 @@ public class HallaRitmos extends Activity {
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (finalJ == 0) {
-                                if (resultado1.get((int) button.getId() - 1) == 1) {
+                            if (!comprobado) {
+                                if (finalJ == 0) {
+                                    if (resultado1.get((int) button.getId() - 1) == 1) {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
 
-                                    resultado1.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados1[(int) button.getId() - 1] = null;
-                                } else {
+                                        resultado1.set(((int) button.getId() - 1), 0);
+                                        botonesSeleccionados1[(int) button.getId() - 1] = null;
+                                    } else {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
 
-                                    resultado1.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados1[(int) button.getId() - 1] = button;
+                                        resultado1.set(((int) button.getId() - 1), 1);
+                                        botonesSeleccionados1[(int) button.getId() - 1] = button;
+                                    }
                                 }
-                            }
-                            if (finalJ == 1) {
-                                if (resultado2.get((int) button.getId() - 1) == 1) {
+                                if (finalJ == 1) {
+                                    if (resultado2.get((int) button.getId() - 1) == 1) {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
 
-                                    resultado2.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados2[(int) button.getId() - 1] = null;
-                                } else {
+                                        resultado2.set(((int) button.getId() - 1), 0);
+                                        botonesSeleccionados2[(int) button.getId() - 1] = null;
+                                    } else {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
 
-                                    resultado2.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados2[(int) button.getId() - 1] = button;
+                                        resultado2.set(((int) button.getId() - 1), 1);
+                                        botonesSeleccionados2[(int) button.getId() - 1] = button;
+                                    }
                                 }
-                            }
-                            if (finalJ == 2) {
-                                if (resultado3.get((int) button.getId() - 1) == 1) {
+                                if (finalJ == 2) {
+                                    if (resultado3.get((int) button.getId() - 1) == 1) {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
 
-                                    resultado3.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados3[(int) button.getId() - 1] = null;
-                                } else {
+                                        resultado3.set(((int) button.getId() - 1), 0);
+                                        botonesSeleccionados3[(int) button.getId() - 1] = null;
+                                    } else {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
 
-                                    resultado3.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados3[(int) button.getId() - 1] = button;
+                                        resultado3.set(((int) button.getId() - 1), 1);
+                                        botonesSeleccionados3[(int) button.getId() - 1] = button;
+                                    }
                                 }
-                            }
-                            if (finalJ == 3) {
-                                if (resultado4.get((int) button.getId() - 1) == 1) {
+                                if (finalJ == 3) {
+                                    if (resultado4.get((int) button.getId() - 1) == 1) {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
 
-                                    resultado4.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados4[(int) button.getId() - 1] = null;
-                                } else {
+                                        resultado4.set(((int) button.getId() - 1), 0);
+                                        botonesSeleccionados4[(int) button.getId() - 1] = null;
+                                    } else {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_700)));
 
-                                    resultado4.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados4[(int) button.getId() - 1] = button;
+                                        resultado4.set(((int) button.getId() - 1), 1);
+                                        botonesSeleccionados4[(int) button.getId() - 1] = button;
+                                    }
                                 }
-                            }
 
+                            }
                         }
                     });
                     if(j==0) {
@@ -501,67 +510,69 @@ public class HallaRitmos extends Activity {
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (finalJ == 0) {
-                                if (resultado1.get((int)button.getId() - 1) == 1) {
+                            if (!comprobado) {
+                                if (finalJ == 0) {
+                                    if (resultado1.get((int) button.getId() - 1) == 1) {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
 
-                                    resultado1.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados1[(int)button.getId() - 1] = null;
-                                } else {
+                                        resultado1.set(((int) button.getId() - 1), 0);
+                                        botonesSeleccionados1[(int) button.getId() - 1] = null;
+                                    } else {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
 
-                                    resultado1.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados1[(int) button.getId() - 1] = button;
+                                        resultado1.set(((int) button.getId() - 1), 1);
+                                        botonesSeleccionados1[(int) button.getId() - 1] = button;
+                                    }
                                 }
-                            }
-                            if (finalJ == 1) {
-                                if (resultado2.get((int) button.getId() - 1) == 1) {
+                                if (finalJ == 1) {
+                                    if (resultado2.get((int) button.getId() - 1) == 1) {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
 
-                                    resultado2.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados2[(int) button.getId() - 1] = null;
-                                } else {
+                                        resultado2.set(((int) button.getId() - 1), 0);
+                                        botonesSeleccionados2[(int) button.getId() - 1] = null;
+                                    } else {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
 
-                                    resultado2.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados2[(int) button.getId() - 1] = button;
+                                        resultado2.set(((int) button.getId() - 1), 1);
+                                        botonesSeleccionados2[(int) button.getId() - 1] = button;
+                                    }
                                 }
-                            }
-                            if (finalJ == 2) {
-                                if (resultado3.get((int) button.getId() - 1) == 1) {
+                                if (finalJ == 2) {
+                                    if (resultado3.get((int) button.getId() - 1) == 1) {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
 
-                                    resultado3.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados3[(int) button.getId() - 1] = null;
-                                } else {
+                                        resultado3.set(((int) button.getId() - 1), 0);
+                                        botonesSeleccionados3[(int) button.getId() - 1] = null;
+                                    } else {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
 
-                                    resultado3.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados3[(int) button.getId() - 1] = button;
+                                        resultado3.set(((int) button.getId() - 1), 1);
+                                        botonesSeleccionados3[(int) button.getId() - 1] = button;
+                                    }
                                 }
-                            }
-                            if (finalJ == 3) {
-                                if (resultado4.get((int) button.getId() - 1) == 1) {
+                                if (finalJ == 3) {
+                                    if (resultado4.get((int) button.getId() - 1) == 1) {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_300)));
 
-                                    resultado4.set(((int) button.getId() - 1), 0);
-                                    botonesSeleccionados4[(int) button.getId() - 1] = null;
-                                } else {
+                                        resultado4.set(((int) button.getId() - 1), 0);
+                                        botonesSeleccionados4[(int) button.getId() - 1] = null;
+                                    } else {
 
-                                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
+                                        button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_cyan_800)));
 
-                                    resultado4.set(((int) button.getId() - 1), 1);
-                                    botonesSeleccionados4[(int) button.getId() - 1] = button;
+                                        resultado4.set(((int) button.getId() - 1), 1);
+                                        botonesSeleccionados4[(int) button.getId() - 1] = button;
+                                    }
                                 }
-                            }
 
+                            }
                         }
                     });
                     if(j==0) {
@@ -632,6 +643,7 @@ public class HallaRitmos extends Activity {
 
 
     public void stop(View view){
+        this.comprobado = true;
         NivelAdivinar nivel;
         int aciertos=0;
         if(resultado1.equals(ritmos1)){

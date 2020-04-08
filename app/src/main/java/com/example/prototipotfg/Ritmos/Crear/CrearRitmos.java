@@ -38,6 +38,8 @@ public class CrearRitmos extends Activity {
     private ArrayList<Integer> resultado4 = new ArrayList<>();
     private ArrayList<Integer> metronomo = new ArrayList<>();
     private ArrayList<Button> botonesGuia = new ArrayList<>();
+
+    private boolean comprobado = false;
     private final int COMPASES = 16;
     private int indiceSonidoActual;
     private final int BPM = 60;
@@ -100,17 +102,18 @@ public class CrearRitmos extends Activity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    if (!play && running) {
-                        botonesGuia.get(indice).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_lime_A100)));
-                        indiceSonidoActual = indice;
-                        if (indice == 0){
-                            botonesGuia.get(botonesGuia.size()-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
+                    if ((!play && running)) {
+
+                            if(!comprobado)   botonesGuia.get(indice).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_purple_600)));
+                            indiceSonidoActual = indice;
+                            if (indice == 0) {
+                                if(!comprobado) botonesGuia.get(botonesGuia.size() - 1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
+                            } else {
+                                if(!comprobado) botonesGuia.get(indice - 1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
+                            }
+                            indice++;
                         }
-                        else{
-                            botonesGuia.get(indice-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
-                        }
-                        indice++;
-                    }
+
                     if (indice >= COMPASES)
                         indice = 0;
                 }
@@ -165,12 +168,12 @@ public class CrearRitmos extends Activity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                findViewById(R.id.botonPlayRitmo).setEnabled(true);
-                                findViewById(R.id.botonStopRitmo).setEnabled(true);
-                                findViewById(R.id.botonPalmada).setEnabled(true);
-                                findViewById(R.id.botonCaja).setEnabled(true);
-                                findViewById(R.id.botonTambor).setEnabled(true);
-                                findViewById(R.id.botonPlatillo).setEnabled(true);
+                                findViewById(R.id.botonPlayRitmo).setEnabled(true);     findViewById(R.id.botonPlayRitmo).setAlpha(1);
+                                findViewById(R.id.botonStopRitmo).setEnabled(false);     findViewById(R.id.botonStopRitmo).setAlpha(.5f);
+                                findViewById(R.id.botonPalmada).setEnabled(false);       findViewById(R.id.botonPalmada).setAlpha(.5f);
+                                findViewById(R.id.botonCaja).setEnabled(false);          findViewById(R.id.botonCaja).setAlpha(.5f);
+                                findViewById(R.id.botonTambor).setEnabled(false);        findViewById(R.id.botonTambor).setAlpha(.5f);
+                                findViewById(R.id.botonPlatillo).setEnabled(false);      findViewById(R.id.botonPlatillo).setAlpha(.5f);
                             }
                         });
                         indice = 0;
@@ -229,7 +232,6 @@ public class CrearRitmos extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crearritmos);
 
-
         nivel = getIntent().getExtras().getInt("nivel");
         ritmos1 = getIntent().getExtras().getIntegerArrayList("ritmos1");
         ritmos2 = getIntent().getExtras().getIntegerArrayList("ritmos2");
@@ -276,14 +278,21 @@ public class CrearRitmos extends Activity {
             guia.addView(button);
             botonesGuia.add(button);
         }
+        findViewById(R.id.botonStopRitmo).setEnabled(false);   findViewById(R.id.botonStopRitmo).setAlpha(.5f);
+        findViewById(R.id.botonPalmada).setEnabled(false);   findViewById(R.id.botonPalmada).setAlpha(.5f);
+        findViewById(R.id.botonCaja).setEnabled(false);   findViewById(R.id.botonCaja).setAlpha(.5f);
+        findViewById(R.id.botonTambor).setEnabled(false);   findViewById(R.id.botonTambor).setAlpha(.5f);
+        findViewById(R.id.botonPlatillo).setEnabled(false);   findViewById(R.id.botonPlatillo).setAlpha(.5f);
+
     }
 
     public void play(@NotNull final View view){
-        findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);
-        findViewById(R.id.botonPalmada).setEnabled(true);
-        findViewById(R.id.botonCaja).setEnabled(true);
-        findViewById(R.id.botonTambor).setEnabled(true);
-        findViewById(R.id.botonPlatillo).setEnabled(true);
+        findViewById(R.id.botonStopRitmo).setEnabled(true);            findViewById(R.id.botonStopRitmo).setAlpha(1);
+        findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);     findViewById(R.id.botonPlayRitmoPropio).setAlpha(.5f);
+        findViewById(R.id.botonPalmada).setEnabled(true);              findViewById(R.id.botonPalmada).setAlpha(1);
+        findViewById(R.id.botonCaja).setEnabled(true);                 findViewById(R.id.botonCaja).setAlpha(1);
+        findViewById(R.id.botonTambor).setEnabled(true);               findViewById(R.id.botonTambor).setAlpha(1);
+        findViewById(R.id.botonPlatillo).setEnabled(true);             findViewById(R.id.botonPlatillo).setAlpha(1);
         if(running == true){
             if (indice == 0)
                 indice = botonesGuia.size() - 1;
@@ -303,12 +312,12 @@ public class CrearRitmos extends Activity {
 
 
     public void reproducirRitmoPropio(View view){
-        findViewById(R.id.botonPlayRitmo).setEnabled(false);
-        findViewById(R.id.botonPalmada).setEnabled(false);
-        findViewById(R.id.botonStopRitmo).setEnabled(false);
-        findViewById(R.id.botonCaja).setEnabled(false);
-        findViewById(R.id.botonTambor).setEnabled(false);
-        findViewById(R.id.botonPlatillo).setEnabled(false);
+        findViewById(R.id.botonPlayRitmo).setEnabled(false);    findViewById(R.id.botonPlayRitmo).setAlpha(.5f);
+        findViewById(R.id.botonPalmada).setEnabled(false);      findViewById(R.id.botonPalmada).setAlpha(.5f);
+        findViewById(R.id.botonStopRitmo).setEnabled(false);    findViewById(R.id.botonStopRitmo).setAlpha(.5f);
+        findViewById(R.id.botonCaja).setEnabled(false);         findViewById(R.id.botonCaja).setAlpha(.5f);
+        findViewById(R.id.botonTambor).setEnabled(false);       findViewById(R.id.botonTambor).setAlpha(.5f);
+        findViewById(R.id.botonPlatillo).setEnabled(false);     findViewById(R.id.botonPlatillo).setAlpha(.5f);
         if(runningPropio == true){
             indice = 0;
             play = true;
@@ -339,11 +348,12 @@ public class CrearRitmos extends Activity {
 
 
     public void para(@NotNull final View view){
-        findViewById(R.id.botonPlayRitmoPropio).setEnabled(true);
-        findViewById(R.id.botonPalmada).setEnabled(false);
-        findViewById(R.id.botonCaja).setEnabled(false);
-        findViewById(R.id.botonTambor).setEnabled(false);
-        findViewById(R.id.botonPlatillo).setEnabled(false);
+        findViewById(R.id.botonStopRitmo).setEnabled(false);       findViewById(R.id.botonStopRitmo).setAlpha(.5f);
+        findViewById(R.id.botonPlayRitmoPropio).setEnabled(true);  findViewById(R.id.botonPlayRitmoPropio).setAlpha(1);
+        findViewById(R.id.botonPalmada).setEnabled(false);         findViewById(R.id.botonPalmada).setAlpha(.5f);
+        findViewById(R.id.botonCaja).setEnabled(false);            findViewById(R.id.botonCaja).setAlpha(.5f);
+        findViewById(R.id.botonTambor).setEnabled(false);          findViewById(R.id.botonTambor).setAlpha(.5f);
+        findViewById(R.id.botonPlatillo).setEnabled(false);        findViewById(R.id.botonPlatillo).setAlpha(.5f);
         running = false;
         if (indice == 0)
             indice = botonesGuia.size();
@@ -351,6 +361,7 @@ public class CrearRitmos extends Activity {
     }
 
     public void comprobar(View view){
+        comprobado = true;
         if (compruebaArrays()){
             for (Button b : this.botonesGuia){
                 b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
@@ -362,14 +373,14 @@ public class CrearRitmos extends Activity {
             }
         }
         view.setEnabled(false);
-        findViewById(R.id.botonPlayRitmo).setEnabled(false);
-        findViewById(R.id.botonStopRitmo).setEnabled(false);
-        findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);
-        findViewById(R.id.botonResetRitmo).setEnabled(false);
-        findViewById(R.id.botonPalmada).setEnabled(false);
-        findViewById(R.id.botonCaja).setEnabled(false);
-        findViewById(R.id.botonTambor).setEnabled(false);
-        findViewById(R.id.botonPlatillo).setEnabled(false);
+        findViewById(R.id.botonPlayRitmo).setEnabled(false);  findViewById(R.id.botonPlayRitmo).setAlpha(.5f);
+        findViewById(R.id.botonStopRitmo).setEnabled(false);  findViewById(R.id.botonStopRitmo).setAlpha(.5f);
+        findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);  findViewById(R.id.botonPlayRitmoPropio).setAlpha(.5f);
+        findViewById(R.id.botonResetRitmo).setEnabled(false);  findViewById(R.id.botonResetRitmo).setAlpha(.5f);
+        findViewById(R.id.botonPalmada).setEnabled(false);  findViewById(R.id.botonPalmada).setAlpha(.5f);
+        findViewById(R.id.botonCaja).setEnabled(false);  findViewById(R.id.botonCaja).setAlpha(.5f);
+        findViewById(R.id.botonTambor).setEnabled(false);  findViewById(R.id.botonTambor).setAlpha(.5f);
+        findViewById(R.id.botonPlatillo).setEnabled(false);  findViewById(R.id.botonPlatillo).setAlpha(.5f);
     }
 
     private boolean compruebaArrays() {
