@@ -1,5 +1,31 @@
 /*
 
+Nuevos niveles:
+  - Popup  con cambios entre niveles (ernesto)
+  - Funcion BBDD llega por primera vez al nivel (vitores).
+
+Boton tutorial en cada modo
+ - Crear/adivinar intervalo: nombrar los intervalos y su diferencia. Que suenen sobre un LA4 (vitores)
+ - Notas: botones con las notas y sonido. Desplegable para seleccionar octava (vitores)
+
+ - Adivinar acordes: botones con acordes. Desplegables para seleccionar octava y nota
+ - Crear acordes: notas para formar acordes sobre una. Desplegable para seleccionar la nota sobre la que se forman los acordes.
+
+Adivinar intervalo: ventana de notas hasta nivel 4. Boton referencia añadir nombre nota.
+Crear intervalo: diferencia entre intervalos en la etiqueta del nombre hasta nivel 2
+
+Adivinar nota
+ - Niveles 2 y 3 poner segunda referencia DO (verdu)
+
+Adivinar acorde
+ - Desde nivel 3 quitar boton info (verdu)
+
+Crear acorde
+ - Nivel 6 quitar la info (verdu)
+
+Cambiar sonidos metronomo (verdu)
+
+
     boolean esNota = false;
             for(Notas n: Notas.values()){
                 while (!esNota) {

@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,7 +16,6 @@ import androidx.core.content.ContextCompat;
 import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Ritmos.MediaPlayerRitmos;
-import com.example.prototipotfg.Ritmos.Metronomo;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
@@ -27,8 +25,6 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static java.lang.Thread.sleep;
-
 public class HallaRitmos extends Activity {
 
     private Bundle savedInstanceState;
@@ -37,7 +33,7 @@ public class HallaRitmos extends Activity {
     private ArrayList<Integer> ritmos3;
     private ArrayList<Integer> ritmos4;
     private final int COMPASES = 16;
-    private final int BPM = 60;
+    private int pausa;
 
     private View botonesSeleccionados1[]= new View[COMPASES];
     private View botonesSeleccionados2[]= new View[COMPASES];
@@ -108,7 +104,7 @@ public class HallaRitmos extends Activity {
                         }
                     }
                     try {
-                        Thread.sleep(250);
+                        Thread.sleep(pausa);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -171,6 +167,12 @@ public class HallaRitmos extends Activity {
         ritmos2 = getIntent().getExtras().getIntegerArrayList("ritmos2");
         ritmos3 = getIntent().getExtras().getIntegerArrayList("ritmos3");
         ritmos4 = getIntent().getExtras().getIntegerArrayList("ritmos4");
+        if (nivel % 2 == 0){
+            pausa = 325;
+        }
+        else{
+            pausa = 650;
+        }
 
         TextView titulo = (TextView)findViewById(R.id.tituloHallaRitmo);
         titulo.setText(titulo.getText() + String.valueOf(nivel));

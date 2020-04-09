@@ -248,7 +248,7 @@ public final class Controlador {
                 this.num_opciones = 4;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Medio;
-                this.rango = 8;
+                this.rango = 9;
                 this.intervalos = Intervalos.getIntervalosDeRango(getRango());
                 break;
             case 6:

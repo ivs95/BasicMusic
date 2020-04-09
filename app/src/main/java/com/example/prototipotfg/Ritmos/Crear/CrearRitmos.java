@@ -42,7 +42,7 @@ public class CrearRitmos extends Activity {
     private boolean comprobado = false;
     private final int COMPASES = 16;
     private int indiceSonidoActual;
-    private final int BPM = 60;
+    private int pausa;
     private boolean running;
     private boolean runningPropio;
     private boolean go1 = false;
@@ -97,7 +97,8 @@ public class CrearRitmos extends Activity {
                         }
                     }
                     try {
-                        Thread.sleep(250);
+                        Thread.sleep(pausa);
+
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -156,7 +157,7 @@ public class CrearRitmos extends Activity {
                         }
                     }
                     try {
-                        Thread.sleep(250);
+                        Thread.sleep(pausa);
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -233,6 +234,11 @@ public class CrearRitmos extends Activity {
         setContentView(R.layout.crearritmos);
 
         nivel = getIntent().getExtras().getInt("nivel");
+        if (nivel % 2 == 1){
+            pausa = 750;
+        }
+        else
+            pausa = 500;
         ritmos1 = getIntent().getExtras().getIntegerArrayList("ritmos1");
         ritmos2 = getIntent().getExtras().getIntegerArrayList("ritmos2");
         ritmos3 = getIntent().getExtras().getIntegerArrayList("ritmos3");

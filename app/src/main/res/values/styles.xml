@@ -19,6 +19,7 @@
         <item name="android:colorButtonNormal">@color/md_blue_300</item>
 
         <item name="spinnerDropDownItemStyle">@style/mySpinnerItemStyle</item>
+
     </style>
 
         <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
