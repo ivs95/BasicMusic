@@ -59,6 +59,7 @@ public final class Reproductor {
             public void onCompletion(MediaPlayer mp) {
                 mp.stop();
                 if (mp != null)
+                    mp.reset();
                     mp.release();
             }
         });
