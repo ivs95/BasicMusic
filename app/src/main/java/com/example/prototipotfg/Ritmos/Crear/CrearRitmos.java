@@ -351,6 +351,8 @@ public class CrearRitmos extends Activity {
         super.onStop();
         running = false;
         runningPropio = false;
+        if (indice == 0)
+            indice = botonesGuia.size() - 1;
         botonesGuia.get(indice-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
     }
 
