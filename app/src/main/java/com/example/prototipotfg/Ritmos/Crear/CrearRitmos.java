@@ -403,6 +403,7 @@ public class CrearRitmos extends Activity {
             }
         }
         view.setEnabled(false);
+        view.setAlpha(0.5f);
         findViewById(R.id.botonPlayRitmo).setEnabled(false);        findViewById(R.id.botonPlayRitmo).setAlpha(.5f);
         findViewById(R.id.botonStopRitmo).setEnabled(false);        findViewById(R.id.botonStopRitmo).setAlpha(.5f);
         findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);  findViewById(R.id.botonPlayRitmoPropio).setAlpha(.5f);
