@@ -61,9 +61,8 @@
             android:layout_height="match_parent"
             android:divider="@drawable/divisor_botones_menu"
             android:orientation="vertical"
+            android:gravity="center"
             android:showDividers="middle">
-
-
         </LinearLayout>
     </ScrollView>
 

@@ -49,6 +49,7 @@
         <activity android:name=".Estadisticas" />
         <activity android:name=".Ritmos.Crear.CrearRitmos" />
         <activity android:name=".Ritmos.Crear.NivelesCrearRitmo" />
+        <activity android:name=".Intervalos.TutorialIntervalos" />
     </application>
 
 </manifest>

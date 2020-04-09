@@ -147,12 +147,6 @@ public class SeleccionarAdivinarIntervalo extends Activity {
             }
         });
         hiloIntervalo.run();
-
-        /*reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(0).second.getPath()+notasIntervalo.get(0).first.getPath());
-        sleep(400);
-        reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(1).second.getPath()+notasIntervalo.get(1).first.getPath());
-        sleep(100);*/
-
     }
 
 
