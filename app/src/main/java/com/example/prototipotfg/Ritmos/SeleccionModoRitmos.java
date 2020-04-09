@@ -4,10 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.example.prototipotfg.Enumerados.ModoJuego;
+import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Ritmos.Crear.NivelesCrearRitmo;
 import com.example.prototipotfg.Ritmos.Hallar.NivelesHallarRitmos;
+import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class SeleccionModoRitmos extends Activity {
 
@@ -15,6 +19,9 @@ public class SeleccionModoRitmos extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seleccion_ritmos);
+
+        ImageView viewRangoHalla = findViewById(R.id.imageViewRitmos1);        viewRangoHalla.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getRango()).getImage());
+        ImageView viewRangoRealiza = findViewById(R.id.imageViewRitmos2);      viewRangoRealiza.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).getImage());
     }
 
     public void modo(View view){

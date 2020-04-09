@@ -35,20 +35,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <Button
-            android:id="@+id/buttonHalla"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="modo"
-            android:text="Halla ritmo" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/buttonRealizar"
+            <Button
+                android:id="@+id/buttonHalla"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="modo"
+                android:layout_weight="9"
+                android:text="Halla ritmo" />
+
+            <ImageView
+                android:id="@+id/imageViewRitmos1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="modo"
-            android:text="Realiza ritmo" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonRealizar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="modo"
+                android:layout_weight="9"
+                android:text="Realiza ritmo" />
+
+
+            <ImageView
+                android:id="@+id/imageViewRitmos2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
 
     </LinearLayout>
 

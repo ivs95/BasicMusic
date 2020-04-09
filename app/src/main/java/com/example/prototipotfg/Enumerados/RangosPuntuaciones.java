@@ -1,18 +1,20 @@
 package com.example.prototipotfg.Enumerados;
 
+import com.example.prototipotfg.R;
+
 public enum RangosPuntuaciones {
-    Principiante("Principiante", "drawable/semifusa"),
-    Aprendiz("Aprendiz", "drawable/fusa"),
-    Veterano("Veterano", "drawable/semicorchea"),
-    Experto("Experto", "drawable/corchea"),
-    Maestro("Maestro", "drawable/negra"),
-    GranMaestro("Gran Maestro", "drawable/blanca"),
-    Leyenda("Leyenda", "drawable/redonda");
+    Principiante("Principiante", R.drawable.semifusa),
+    Aprendiz("Aprendiz", R.drawable.fusa),
+    Veterano("Veterano", R.drawable.semicorchea),
+    Experto("Experto", R.drawable.corchea),
+    Maestro("Maestro", R.drawable.negra),
+    GranMaestro("Gran Maestro", R.drawable.blanca),
+    Leyenda("Leyenda", R.drawable.redonda);
 
     private String nombre;
-    private String image;
+    private int image;
 
-    RangosPuntuaciones(String nombre, String image){
+    RangosPuntuaciones(String nombre, int image){
         this.nombre=nombre;
         this.image = image;
     }
@@ -58,6 +60,17 @@ public enum RangosPuntuaciones {
         }
 
         return nuevo_rango;
+    }
+
+    public int getImage(){return this.image;}
+
+    public static RangosPuntuaciones getRangoPorNombre(String name){
+        RangosPuntuaciones rango = null;
+        for(int i = 0; i < RangosPuntuaciones.values().length; i++){
+            if(RangosPuntuaciones.values()[i].nombre.equals(name)) rango = RangosPuntuaciones.values()[i];
+
+        }
+        return rango;
     }
 
     }

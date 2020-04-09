@@ -23,37 +23,66 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.20" />
 
+
     <LinearLayout
-        android:id="@+id/linearLayout5"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
         android:divider="@drawable/divisor_botones_menu"
         android:orientation="vertical"
-        android:showDividers="middle"
+        android:showDividers="middle|beginning|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/buttonAcordesModo1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="modo_acordes"
-            android:text="Adivina el acorde" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/buttonAcordesModo2"
+            <Button
+                android:id="@+id/buttonAcordesModo1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="modo_acordes"
+                android:layout_weight="9"
+                android:text="Adivina el acorde" />
+
+            <ImageView
+                android:id="@+id/imageViewAcordes1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="modo_acordes"
-            android:text="Crea el acorde" />
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/buttonAcordesModo2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="modo_acordes"
+                android:layout_weight="9"
+                android:text="Crea el acorde" />
+
+
+            <ImageView
+                android:id="@+id/imageViewAcordes2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
 
     </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

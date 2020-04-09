@@ -370,23 +370,27 @@ public class CrearRitmos extends Activity {
         comprobado = true;
         if (compruebaArrays()){
             for (Button b : this.botonesGuia){
+                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.getNombre()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), true);
                 b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
         }
         else{
             for (Button b : this.botonesGuia) {
+                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.getNombre()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), false);
                 b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
             }
         }
         view.setEnabled(false);
-        findViewById(R.id.botonPlayRitmo).setEnabled(false);  findViewById(R.id.botonPlayRitmo).setAlpha(.5f);
-        findViewById(R.id.botonStopRitmo).setEnabled(false);  findViewById(R.id.botonStopRitmo).setAlpha(.5f);
+        findViewById(R.id.botonPlayRitmo).setEnabled(false);        findViewById(R.id.botonPlayRitmo).setAlpha(.5f);
+        findViewById(R.id.botonStopRitmo).setEnabled(false);        findViewById(R.id.botonStopRitmo).setAlpha(.5f);
         findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);  findViewById(R.id.botonPlayRitmoPropio).setAlpha(.5f);
-        findViewById(R.id.botonResetRitmo).setEnabled(false);  findViewById(R.id.botonResetRitmo).setAlpha(.5f);
-        findViewById(R.id.botonPalmada).setEnabled(false);  findViewById(R.id.botonPalmada).setAlpha(.5f);
-        findViewById(R.id.botonCaja).setEnabled(false);  findViewById(R.id.botonCaja).setAlpha(.5f);
-        findViewById(R.id.botonTambor).setEnabled(false);  findViewById(R.id.botonTambor).setAlpha(.5f);
-        findViewById(R.id.botonPlatillo).setEnabled(false);  findViewById(R.id.botonPlatillo).setAlpha(.5f);
+        findViewById(R.id.botonResetRitmo).setEnabled(false);       findViewById(R.id.botonResetRitmo).setAlpha(.5f);
+        findViewById(R.id.botonPalmada).setEnabled(false);          findViewById(R.id.botonPalmada).setAlpha(.5f);
+        findViewById(R.id.botonCaja).setEnabled(false);             findViewById(R.id.botonCaja).setAlpha(.5f);
+        findViewById(R.id.botonTambor).setEnabled(false);           findViewById(R.id.botonTambor).setAlpha(.5f);
+        findViewById(R.id.botonPlatillo).setEnabled(false);         findViewById(R.id.botonPlatillo).setAlpha(.5f);
     }
 
     private boolean compruebaArrays() {
