@@ -520,6 +520,6 @@ public class GestorBBDD {
     }
 
     public boolean existeUsuario(String correo) {
-        return appDatabase.daoUsuario().findUsuario(correo) == null;
+        return appDatabase.daoUsuario().findUsuario(correo) != null;
     }
 }
