@@ -61,7 +61,6 @@ public enum Notas {
             return Notas.values()[0];
         }
     }
-
     public String getNombre() {
         return nombre;
     }

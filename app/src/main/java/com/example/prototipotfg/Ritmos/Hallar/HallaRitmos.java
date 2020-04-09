@@ -647,6 +647,8 @@ public class HallaRitmos extends Activity {
     public void stop(View view){
         this.comprobado = true;
         NivelAdivinar nivel;
+        view.setEnabled(false);
+        view.setAlpha(0.5f);
         int aciertos=0;
         if(resultado1.equals(ritmos1)){
             //Correct

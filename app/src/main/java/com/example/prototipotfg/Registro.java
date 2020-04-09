@@ -39,6 +39,9 @@ public class Registro extends AppCompatActivity {
             ((EditText)findViewById(R.id.txtPass2)).setError("La contraseña no coincide");
 
         }
+        else if(GestorBBDD.getInstance().existeUsuario(correo)){
+            ((EditText)findViewById(R.id.txtCorreoRegistro)).setError("Email ya registrado");
+        }
         else{
             Usuario usuario = new Usuario(correo,nombre,password,false);
             if (GestorBBDD.getInstance().registraUsuario(usuario))

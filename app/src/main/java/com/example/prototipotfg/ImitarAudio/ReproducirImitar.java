@@ -101,6 +101,8 @@ public class ReproducirImitar extends Activity {
         TextView text2 = findViewById(R.id.textoFrecuencia);
         findViewById(R.id.button2).setEnabled(false);        findViewById(R.id.button2).setAlpha(.5f);
         findViewById(R.id.botonGrabar).setEnabled(false);        findViewById(R.id.botonGrabar).setAlpha(.5f);
+        findViewById(R.id.button4).setEnabled(false);        findViewById(R.id.button4).setAlpha(.5f);
+
 
 
 
@@ -120,6 +122,7 @@ public class ReproducirImitar extends Activity {
     }
 
     public void contador(View view){
+        findViewById(R.id.button2).setEnabled(false);        findViewById(R.id.button2).setAlpha(.5f);
         inicializaArrays();
         view.setVisibility(View.GONE);
         class MiContador extends CountDownTimer {
@@ -193,6 +196,7 @@ public class ReproducirImitar extends Activity {
                 dispatch_Thread.interrupt();
                 poneNota();
                 ((Button)findViewById(R.id.botonGrabar)).setVisibility(View.VISIBLE);
+                findViewById(R.id.button2).setEnabled(true);        findViewById(R.id.button2).setAlpha(1f);
 
             }
         }, 5000);

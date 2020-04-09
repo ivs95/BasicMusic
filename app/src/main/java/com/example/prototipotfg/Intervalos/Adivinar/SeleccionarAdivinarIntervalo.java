@@ -125,34 +125,13 @@ public class SeleccionarAdivinarIntervalo extends Activity {
 
     }
 
-    public void reproduceIntervaloRespuesta(final View view) throws IOException, InterruptedException {
+    public void reproduceIntervaloRespuesta(final View view) throws InterruptedException {
         view.setEnabled(false);
-        Thread hiloIntervalo = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(0).second.getPath()+notasIntervalo.get(0).first.getPath());
-                    sleep(400);
-                    reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(1).second.getPath()+notasIntervalo.get(1).first.getPath());
-                    sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        view.setEnabled(true);
-                    }
-                });
-            }
-        });
-        hiloIntervalo.run();
-
-        /*reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(0).second.getPath()+notasIntervalo.get(0).first.getPath());
+        reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(0).second.getPath()+notasIntervalo.get(0).first.getPath());
         sleep(400);
         reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(1).second.getPath()+notasIntervalo.get(1).first.getPath());
-        sleep(100);*/
-
+        sleep(10);
+        view.setEnabled(true);
     }
 
 

@@ -44,4 +44,9 @@ public class SeleccionarModoIntervalos extends Activity {
             default: break;
         }
     }
+
+    public void tutorialIntervalos(View view){
+        Intent i = new Intent(this, TutorialIntervalos.class);
+        startActivity(i);
+    }
 }

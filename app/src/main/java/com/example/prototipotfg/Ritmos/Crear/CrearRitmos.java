@@ -42,6 +42,7 @@ public class CrearRitmos extends Activity {
     private boolean comprobado = false;
     private final int COMPASES = 16;
     private int indiceSonidoActual;
+    private int indicePintar;
     private int pausa;
     private boolean running;
     private boolean runningPropio;
@@ -98,12 +99,27 @@ public class CrearRitmos extends Activity {
                     }
                     if ((!play && running)) {
 
-                        if(!comprobado)   botonesGuia.get(indice).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_purple_600)));
                         indiceSonidoActual = indice;
-                        if (indice == 0) {
-                            if(!comprobado) botonesGuia.get(botonesGuia.size() - 1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
-                        } else {
-                            if(!comprobado) botonesGuia.get(indice - 1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
+                        indicePintar=indice;
+                        if (!comprobado) {
+                            if (indicePintar == 0) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        botonesGuia.get(indicePintar).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_purple_600)));
+                                        botonesGuia.get(botonesGuia.size() - 1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
+                                    }
+                                });
+                            }
+                            else {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        botonesGuia.get(indicePintar).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_purple_600)));
+                                        botonesGuia.get(indicePintar-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
+                                    }
+                                });
+                            }
                         }
                         indice++;
                     }
@@ -219,7 +235,6 @@ public class CrearRitmos extends Activity {
                         }
                     }
                 }
-                botonesGuia.get(indice).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -351,6 +366,9 @@ public class CrearRitmos extends Activity {
         super.onStop();
         running = false;
         runningPropio = false;
+        if (indice == 0)
+            indice = botonesGuia.size() - 1;
+
         botonesGuia.get(indice-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
     }
 
@@ -385,6 +403,7 @@ public class CrearRitmos extends Activity {
             }
         }
         view.setEnabled(false);
+        view.setAlpha(0.5f);
         findViewById(R.id.botonPlayRitmo).setEnabled(false);        findViewById(R.id.botonPlayRitmo).setAlpha(.5f);
         findViewById(R.id.botonStopRitmo).setEnabled(false);        findViewById(R.id.botonStopRitmo).setAlpha(.5f);
         findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);  findViewById(R.id.botonPlayRitmoPropio).setAlpha(.5f);
