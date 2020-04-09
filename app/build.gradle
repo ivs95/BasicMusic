@@ -29,6 +29,8 @@ repositories {
 
 
 dependencies {
+    implementation 'com.android.support:cardview-v7:21.+'
+    implementation 'com.android.support:recyclerview-v7:21.+'
     implementation 'jp.kshoji:jfugue-android:4.0.3:@aar'
     implementation 'jp.kshoji:midi-driver:0.1.1:@aar'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
