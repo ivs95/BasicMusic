@@ -24,7 +24,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".MenuJugar" />
-        <activity android:name=".ReproducirAdivinar" />
         <activity android:name=".Notas.SeleccionarAdivinarNotas" />
         <activity android:name=".Intervalos.Crear.SeleccionarAdivinarCrearIntervalo" />
         <activity android:name=".Intervalos.Adivinar.SeleccionarAdivinarIntervalo" />

@@ -132,8 +132,6 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(1).second.getPath()+notasIntervalo.get(1).first.getPath());
         sleep(10);
         view.setEnabled(true);
-
-
     }
 
 

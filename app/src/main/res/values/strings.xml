@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">prototipoTFG</string>
+    <string name="app_name">BasicMusic</string>
     <string name="titulo">BasicMusic</string>
     <string name="txtBotonJuego">Jugar</string>
     <string name="txtBotonInfo">Información</string>

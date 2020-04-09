@@ -4,6 +4,7 @@ package com.example.prototipotfg.Singletons;
 import android.util.Pair;
 
 import com.example.prototipotfg.Enumerados.Instrumentos;
+import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
@@ -78,6 +79,24 @@ public final class FactoriaNotas {
             rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), rutaInstrumento+octava.getPath()+nota.getPath());
         }
         return rutasFicherosAudio;
+    }
+
+    public Pair<Notas,Octavas> devuelveNotaCompletaIntervalo(Notas n, Octavas o, Intervalos i){
+        int tono = n.getTono() + i.getDiferencia();
+        Notas notaRetorno;
+        Octavas octavaRetorno = o;
+        if (tono < 1) {
+            notaRetorno = Notas.devuelveNotaPorTono(tono + 12);
+            octavaRetorno = o.devuelveAnteriorOctava(o);
+        }
+        else if (tono > 12){
+            notaRetorno = Notas.devuelveNotaPorTono(tono - 12);
+            octavaRetorno = o.devuelveSiguienteOctava(o);
+        }
+        else{
+            notaRetorno = Notas.devuelveNotaPorTono(tono);
+        }
+        return new Pair<>(notaRetorno,octavaRetorno);
     }
 
     public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, Octavas octava) {
