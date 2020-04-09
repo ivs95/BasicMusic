@@ -99,6 +99,11 @@ public class ReproducirImitar extends Activity {
     public void comparar(View view){
         NivelImitar nivel;
         TextView text2 = findViewById(R.id.textoFrecuencia);
+        findViewById(R.id.button2).setEnabled(false);        findViewById(R.id.button2).setAlpha(.5f);
+        findViewById(R.id.botonGrabar).setEnabled(false);        findViewById(R.id.botonGrabar).setAlpha(.5f);
+
+
+
         if((resNota.getNota().getNombre() + (resNota.getOctava())).equals(nombres.get(0))){
             view = this.getWindow().getDecorView();
             text2.setTextColor(getResources().getColor(R.color.md_green_500));
