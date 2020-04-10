@@ -519,6 +519,16 @@ public class GestorBBDD {
         }
     }
 
+    public boolean esPrimerNivelAdivinar(ModoJuego modo_juego, int nivel){
+        NivelAdivinar n = appDatabase.daoNivel().findNivelAdivinar(usuarioLoggeado.getCorreo(), modo_juego.toString(), nivel);
+        return (n != null && n.getNumFallos() == 0 && n.getNumAciertos() == 0);
+    }
+
+    public boolean esPrimerNivelImitar(RangosVocales rango, String dificultad){
+        NivelImitar n = appDatabase.daoNivel().findNivelImitar(usuarioLoggeado.getCorreo(), dificultad, rango.toString());
+        return (n!= null && n.getNumeroIntentos() == 0);
+    }
+
     public boolean existeUsuario(String correo) {
         return appDatabase.daoUsuario().findUsuario(correo) != null;
     }
