@@ -23,7 +23,7 @@ Adivinar acorde
 Crear acorde
  - Nivel 6 quitar la info (verdu) HECHO
 
-Cambiar sonidos metronomo (verdu)
+Cambiar sonidos metronomo (verdu) HECHO
 
 
     boolean esNota = false;
