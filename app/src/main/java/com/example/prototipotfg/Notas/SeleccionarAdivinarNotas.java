@@ -60,6 +60,7 @@ public class SeleccionarAdivinarNotas extends Activity {
         ponerComprobarVisible(INVISIBLE);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         FactoriaNotas.getInstance().setReferencia(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
+        FactoriaNotas.getInstance().setReferenciaDo(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
         adaptaVista(Controlador.getInstance().getDificultad());
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout opciones = (LinearLayout) findViewById(R.id.opciones);
@@ -105,6 +106,7 @@ public class SeleccionarAdivinarNotas extends Activity {
     }
 
     private void adaptaVista(Dificultad dificultad) {
+        int nivel = Controlador.getInstance().getNivel();
         if (dificultad.equals(Dificultad.Facil)){
             Button referencia = findViewById(R.id.botonReferencia);
             referencia.setVisibility(View.GONE);
@@ -113,6 +115,11 @@ public class SeleccionarAdivinarNotas extends Activity {
             Button referencia = findViewById(R.id.botonReferencia);
             referencia.setVisibility(View.GONE);
         }
+        if(nivel < 2 || nivel > 3){
+            Button referenciaDo = findViewById(R.id.botonReferenciaDo);
+            referenciaDo.setVisibility(View.GONE);
+        }
+
     }
 
 
@@ -179,6 +186,12 @@ public class SeleccionarAdivinarNotas extends Activity {
        /* mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
         mediaPlayer.prepare();
         mediaPlayer.start();*/
+    }
+
+    public void reproducirReferenciaDo(View view) throws IOException {
+        AssetFileDescriptor afd = getAssets().openFd(FactoriaNotas.getInstance().getReferenciaDo());
+        Reproductor.getInstance().reproducirNota(afd);
+        afd.close();
     }
 
 

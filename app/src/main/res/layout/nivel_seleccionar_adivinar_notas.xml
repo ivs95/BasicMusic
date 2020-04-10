@@ -103,6 +103,13 @@
             android:layout_height="wrap_content"
             android:onClick="reproducirReferencia"
             android:text="Referencia(LA)" />
+
+        <Button
+            android:id="@+id/botonReferenciaDo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="reproducirReferenciaDo"
+            android:text="Referencia(DO)" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

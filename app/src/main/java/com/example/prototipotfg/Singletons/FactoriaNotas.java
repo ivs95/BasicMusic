@@ -22,6 +22,7 @@ public final class FactoriaNotas {
     private Random random = new Random();
     private Instrumentos instrumento = Instrumentos.Piano;
     private String rutaReferencia;
+    private String rutaReferenciaDo;
 
 
     public static FactoriaNotas getInstance() {
@@ -34,6 +35,7 @@ public final class FactoriaNotas {
 
     private FactoriaNotas() {}
 
+    public String  getReferenciaDo(){ return rutaReferenciaDo;}
 
     private void setReferencia(String ruta){
         this.rutaReferencia=ruta;
@@ -41,6 +43,10 @@ public final class FactoriaNotas {
 
     public void setReferencia(Octavas o){
         this.rutaReferencia=instrumento.getPath()+o.getPath()+Notas.LA.getPath();
+    }
+
+    public void setReferenciaDo(Octavas o){
+        this.rutaReferenciaDo=instrumento.getPath()+o.getPath()+Notas.DO.getPath();
     }
 
 
