@@ -11,7 +11,7 @@
         android:id="@+id/tituloSeleccionar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Elige la opción correcta"
+        android:text="Elige el intervalo correcto"
         android:textColor="@color/md_blue_900"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -45,11 +45,11 @@
 
             <Button
                 android:id="@+id/buttonIntervalosModo2"
-                android:onClick="modo_intervalo"
-                android:text="Adivina el intervalo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="9" />
+                android:layout_weight="9"
+                android:onClick="modo_intervalo"
+                android:text="Adivina intervalos" />
 
             <ImageView
                 android:id="@+id/imageViewIntervalo1"
@@ -66,11 +66,11 @@
 
             <Button
                 android:id="@+id/buttonIntervalosModo1"
-                android:onClick="modo_intervalo"
-                android:text="Crea el intervalo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="9" />
+                android:layout_weight="9"
+                android:onClick="modo_intervalo"
+                android:text="Crea intervalos" />
 
             <ImageView
                 android:id="@+id/imageViewIntervalo2"

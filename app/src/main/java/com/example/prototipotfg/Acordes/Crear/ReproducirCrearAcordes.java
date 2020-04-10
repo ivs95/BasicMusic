@@ -6,6 +6,7 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -21,6 +22,7 @@ import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -208,6 +210,8 @@ public class ReproducirCrearAcordes extends Activity {
         return retorno;
     }
     public void comprobarCrearAcordes(View view) {
+        int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getRango()).ordinal();
+
         if (!comprobada) {
             this.comprobada = true;
 
@@ -247,12 +251,20 @@ public class ReproducirCrearAcordes extends Activity {
         ArrayList<AssetFileDescriptor> afd = preparaAssets(acordeCorrectoReproducir);
         Reproductor.getInstance().reproducirAcorde(afd);
         cierraAssets(afd);
-        findViewById(R.id.btnCrearAcordeReferencia).setEnabled(false);
-        findViewById(R.id.botonReproduceCrearAcorde).setEnabled(false);
-        findViewById(R.id.infoCrearAcordes).setEnabled(false);
+        findViewById(R.id.btnCrearAcordeReferencia).setEnabled(false);      findViewById(R.id.btnCrearAcordeReferencia).setAlpha(.5f);
+        findViewById(R.id.botonReproduceCrearAcorde).setEnabled(false);     findViewById(R.id.botonReproduceCrearAcorde).setAlpha(.5f);
+        findViewById(R.id.infoCrearAcordes).setEnabled(false);              findViewById(R.id.infoCrearAcordes).setAlpha(.5f);
         for (Button b : botonesOpciones)
             b.setEnabled(false);
         ponerComprobarVisible(GONE);
+
+        int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getRango()).ordinal();
+        if(rangoActual != rangoNuevo) {
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+            RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Crear_Acordes.toString());
+
+        }
     }
 
     public void reproducirNotaInicioAcorde(View view) throws IOException {

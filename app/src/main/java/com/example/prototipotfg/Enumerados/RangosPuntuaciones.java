@@ -1,6 +1,18 @@
 package com.example.prototipotfg.Enumerados;
 
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.GestorBBDD;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public enum RangosPuntuaciones {
     Principiante("Principiante", R.drawable.semifusa),
@@ -71,6 +83,54 @@ public enum RangosPuntuaciones {
 
         }
         return rango;
+    }
+
+    public static void mostrar_popUp_rango(View view, int rangoActual, int rangoNuevo, LayoutInflater inflater, String modoJuego){
+
+
+        View popupView = null;
+        ImageView viewRangoPopup = null;
+        TextView rango = null;
+
+        if(rangoActual < rangoNuevo) {
+            popupView = inflater.inflate(R.layout.popup_nuevo_rango, null);
+            rango = (TextView) popupView.findViewById(R.id.text_rango_popup);
+            rango.setText(rango.getText() + "    " + GestorBBDD.getInstance().devuelvePuntuacion(modoJuego).getRango() + "!");
+
+            viewRangoPopup = popupView.findViewById(R.id.imagen_rango_popup);   viewRangoPopup.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(modoJuego).getRango()).getImage());
+
+        }
+        else {
+            popupView = inflater.inflate(R.layout.popup_nuevo_rango_inf, null);
+            rango = (TextView) popupView.findViewById(R.id.text_rango_popup_inf);
+            rango.setText(rango.getText() + "    " + GestorBBDD.getInstance().devuelvePuntuacion(modoJuego).getRango() + "!");
+
+            viewRangoPopup = popupView.findViewById(R.id.imagen_rango_popup_inf);   viewRangoPopup.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(modoJuego).getRango()).getImage());
+
+        }
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,true);
+
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        // dismiss the popup window when touched
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+
+
     }
 
     }

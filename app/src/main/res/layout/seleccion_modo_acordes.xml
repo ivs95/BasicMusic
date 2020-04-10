@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Modos de acordes"
+        android:text="Acordes"
         android:textColor="@color/md_blue_900"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,9 +48,9 @@
                 android:id="@+id/buttonAcordesModo1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="modo_acordes"
                 android:layout_weight="9"
-                android:text="Adivina el acorde" />
+                android:onClick="modo_acordes"
+                android:text="Adivina acordes" />
 
             <ImageView
                 android:id="@+id/imageViewAcordes1"
@@ -68,9 +68,9 @@
                 android:id="@+id/buttonAcordesModo2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="modo_acordes"
                 android:layout_weight="9"
-                android:text="Crea el acorde" />
+                android:onClick="modo_acordes"
+                android:text="Crea acordes" />
 
 
             <ImageView

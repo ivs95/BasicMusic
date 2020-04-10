@@ -6,6 +6,7 @@ import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -19,6 +20,7 @@ import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -178,6 +180,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
     }
 
     public void comprobarResultado(View view){
+        int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).ordinal();
         if (!comprobada) {
             NivelAdivinar nivel = null;
             this.comprobada = true;
@@ -203,8 +206,15 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         for (Button b : botonesOpciones){
             b.setEnabled(false);
         }
-        findViewById(R.id.botonIntervalo).setEnabled(false);
-        findViewById(R.id.botonReferencia).setEnabled(false);
+        findViewById(R.id.botonIntervalo).setEnabled(false);        findViewById(R.id.botonIntervalo).setAlpha(.5f);
+        findViewById(R.id.botonReferencia).setEnabled(false);       findViewById(R.id.botonReferencia).setAlpha(.5f);
+
+        int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).ordinal();
+        if(rangoActual != rangoNuevo) {
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+            RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Intervalo.toString());
+        }
 
     }
 

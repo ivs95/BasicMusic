@@ -7,7 +7,7 @@
     <string name="txtBtnSalir">Cerrar Sesión</string>
     <string name="tituloJugar">Modos de juego</string>
     <string name="txtBotonExamen">Examen por nivel</string>
-    <string name="txtBotonRepetir">Imitar el audio</string>
-    <string name="txtBotonAdivinar">Adivinar el audio</string>
+    <string name="txtBotonRepetir">Imitar</string>
+    <string name="txtBotonAdivinar">Adivinar</string>
     <string name="txtBotonRitmos">Ritmos</string>
 </resources>

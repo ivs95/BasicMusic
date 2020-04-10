@@ -15,10 +15,14 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class SeleccionModoRitmos extends Activity {
 
+    private Bundle savedInstanceState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seleccion_ritmos);
+        this.savedInstanceState = savedInstanceState;
+
 
         ImageView viewRangoHalla = findViewById(R.id.imageViewRitmos1);        viewRangoHalla.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getRango()).getImage());
         ImageView viewRangoRealiza = findViewById(R.id.imageViewRitmos2);      viewRangoRealiza.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).getImage());
@@ -41,5 +45,9 @@ public class SeleccionModoRitmos extends Activity {
 
             default: break;
         }
+    }
+    public void onResume(){
+        super.onResume();
+        this.onCreate(this.savedInstanceState);
     }
 }

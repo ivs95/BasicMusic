@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -22,6 +23,7 @@ import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -161,6 +163,8 @@ public class ReproducirAdivinarAcordes extends Activity {
     }
 
     public void comprobarAcordes(View view) {
+        int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getRango()).ordinal();
+
         if (!comprobada) {
             NivelAdivinar nivel = null;
             this.comprobada = true;
@@ -184,13 +188,19 @@ public class ReproducirAdivinarAcordes extends Activity {
             GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
         }
         ponerComprobarVisible(GONE);
-        findViewById(R.id.btnAcordeReferencia).setEnabled(false);
-        findViewById(R.id.button_info_adivinarAcorde).setEnabled(false);
-        findViewById(R.id.botonReproduceAdivinarAcorde).setEnabled(false);
+        findViewById(R.id.btnAcordeReferencia).setEnabled(false);             findViewById(R.id.btnAcordeReferencia).setAlpha(.5f);
+        findViewById(R.id.button_info_adivinarAcorde).setEnabled(false);      findViewById(R.id.button_info_adivinarAcorde).setAlpha(.5f);
+        findViewById(R.id.botonReproduceAdivinarAcorde).setEnabled(false);    findViewById(R.id.botonReproduceAdivinarAcorde).setAlpha(.5f);
         for (Button b : botonesOpciones)
             b.setEnabled(false);
 
+        int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getRango()).ordinal();
+        if(rangoActual != rangoNuevo) {
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+            RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Acordes.toString());
 
+        }
     }
 
     public void reproducirAcorde(View view){

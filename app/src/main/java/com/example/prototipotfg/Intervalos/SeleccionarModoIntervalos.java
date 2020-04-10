@@ -17,10 +17,13 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class SeleccionarModoIntervalos extends Activity {
 
+    private Bundle savedInstanceState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seleccion_modo_intervalo);
+        this.savedInstanceState = savedInstanceState;
 
         ImageView viewRangoAdivinar = findViewById(R.id.imageViewIntervalo1);   viewRangoAdivinar.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).getImage());
         ImageView viewRangoCrear = findViewById(R.id.imageViewIntervalo2);      viewRangoCrear.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Intervalo.toString()).getRango()).getImage());
@@ -48,5 +51,10 @@ public class SeleccionarModoIntervalos extends Activity {
     public void tutorialIntervalos(View view){
         Intent i = new Intent(this, TutorialIntervalos.class);
         startActivity(i);
+    }
+
+    public void onResume(){
+        super.onResume();
+        this.onCreate(this.savedInstanceState);
     }
 }

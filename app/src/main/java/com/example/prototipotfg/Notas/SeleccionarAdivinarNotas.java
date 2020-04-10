@@ -227,8 +227,11 @@ public class SeleccionarAdivinarNotas extends Activity {
         findViewById(R.id.comprobar).setVisibility(View.GONE);
 
         int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango()).ordinal();
-        if(rangoActual != rangoNuevo)
-            this.mostrar_popUp_rango(view, rangoActual, rangoNuevo);
+        if(rangoActual != rangoNuevo) {
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+            RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Notas.toString());
+        }
 
     }
 
@@ -236,58 +239,8 @@ public class SeleccionarAdivinarNotas extends Activity {
         for (Button b : botonesNotas){
             b.setEnabled(false);
         }
-        findViewById(R.id.botonReferencia).setEnabled(false);
-        findViewById(R.id.botonNota).setEnabled(false);
-    }
-
-    void mostrar_popUp_rango(View view, int rangoActual, int rangoNuevo){
-
-
-        LayoutInflater inflater = (LayoutInflater)
-                getSystemService(LAYOUT_INFLATER_SERVICE);
-
-        View popupView = null;
-        ImageView viewRangoPopup = null;
-        TextView rango = null;
-
-        if(rangoActual < rangoNuevo) {
-            popupView = inflater.inflate(R.layout.popup_nuevo_rango, null);
-            rango = (TextView) popupView.findViewById(R.id.text_rango_popup);
-            rango.setText(rango.getText() + "    " + GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango() + "!");
-
-            viewRangoPopup = popupView.findViewById(R.id.imagen_rango_popup);   viewRangoPopup.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango()).getImage());
-
-        }
-        else {
-            popupView = inflater.inflate(R.layout.popup_nuevo_rango_inf, null);
-            rango = (TextView) popupView.findViewById(R.id.text_rango_popup_inf);
-            rango.setText(rango.getText() + "    " + GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango() + "!");
-
-            viewRangoPopup = popupView.findViewById(R.id.imagen_rango_popup_inf);   viewRangoPopup.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango()).getImage());
-
-        }
-
-        // create the popup window
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true; // lets taps outside the popup also dismiss it
-        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
-        final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,true);
-
-
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-        // dismiss the popup window when touched
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow.dismiss();
-                return true;
-            }
-        });
-
+        findViewById(R.id.botonReferencia).setEnabled(false);   findViewById(R.id.botonReferencia).setAlpha(.5f);
+        findViewById(R.id.botonNota).setEnabled(false);         findViewById(R.id.botonNota).setAlpha(.5f);
 
     }
 

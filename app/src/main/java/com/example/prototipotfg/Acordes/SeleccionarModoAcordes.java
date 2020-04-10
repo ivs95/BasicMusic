@@ -16,10 +16,12 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class SeleccionarModoAcordes extends Activity {
 
+    private Bundle savedInstanceState;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seleccion_modo_acordes);
+        this.savedInstanceState = savedInstanceState;
 
         ImageView viewRangoAdivinar = findViewById(R.id.imageViewAcordes1);   viewRangoAdivinar.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getRango()).getImage());
         ImageView viewRangoCrear = findViewById(R.id.imageViewAcordes2);      viewRangoCrear.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getRango()).getImage());
@@ -41,5 +43,10 @@ public class SeleccionarModoAcordes extends Activity {
 
             default: break;
         }
+    }
+
+    public void onResume(){
+        super.onResume();
+        this.onCreate(this.savedInstanceState);
     }
 }

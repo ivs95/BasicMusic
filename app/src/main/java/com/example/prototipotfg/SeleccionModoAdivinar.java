@@ -16,10 +16,13 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class SeleccionModoAdivinar extends Activity {
 
+    private Bundle savedInstanceState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.seleccion_adivinar);
+        this.savedInstanceState = savedInstanceState;
 
         ImageView viewRangoAdivinar = findViewById(R.id.imageViewNotas);   viewRangoAdivinar.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango()).getImage());
 
@@ -59,6 +62,11 @@ public class SeleccionModoAdivinar extends Activity {
     private void seleccionarDificultadNotas() {
         Intent i = new Intent(this, SeleccionarNivelAdivinarNotas.class);
         startActivity(i);
+    }
+
+    public void onResume(){
+        super.onResume();
+        this.onCreate(this.savedInstanceState);
     }
 
 }
