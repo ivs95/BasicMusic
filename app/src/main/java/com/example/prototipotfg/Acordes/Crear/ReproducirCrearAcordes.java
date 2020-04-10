@@ -70,6 +70,7 @@ public class ReproducirCrearAcordes extends Activity {
         this.notasPosibles = seleccionaNotasAleatorios(acordeCorrectoReproducir);
         this.botonesSeleccionados = new View[num_notas];
         this.respuestaCorrecta = new View[num_notas];
+        int nivel = Controlador.getInstance().getNivel();
 
         TextView lblNotaInicio = findViewById(R.id.notaInicioCrearAcorde);
         TextView peticionAcorde = findViewById(R.id.lblPeticionCrearAcorde);
@@ -87,7 +88,10 @@ public class ReproducirCrearAcordes extends Activity {
             aux.add(i);
         }
 
-
+        if(nivel > 5){
+            Button info = findViewById(R.id.infoCrearAcordes);
+            info.setVisibility(GONE);
+        }
         LinearLayout opciones = findViewById(R.id.opcionesCrearAcordes);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         for (int i = 0; i < num_notas; i++) {

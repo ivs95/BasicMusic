@@ -36,12 +36,13 @@
         app:layout_constraintTop_toBottomOf="@+id/tituloSeleccionar"
         app:layout_constraintVertical_bias="0.03"
 >
+
         <Button
             android:id="@+id/botonIntervalo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="reproduceIntervaloRespuesta"
-            android:text="Intervalo"/>
+            android:text="Intervalo" />
 
         <Button
             android:id="@+id/botonReferencia"

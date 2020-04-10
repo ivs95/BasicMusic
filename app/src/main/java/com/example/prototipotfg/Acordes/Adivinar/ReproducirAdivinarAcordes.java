@@ -79,7 +79,11 @@ public class ReproducirAdivinarAcordes extends Activity {
         for (Acordes a : acordesPosibles) {
             acordesReproducir.add(Acordes.devuelveNotasAcorde(a, this.octavaInicio, this.notaInicio));
         }
-
+        int nivel = Controlador.getInstance().getNivel();
+        if(nivel > 3){
+            Button info = findViewById(R.id.button_info_adivinarAcorde);
+            info.setVisibility(GONE);
+        }
         LinearLayout opciones = findViewById(R.id.opcionesAcordes);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         for (int i = 0; i < numOpciones; i++) {

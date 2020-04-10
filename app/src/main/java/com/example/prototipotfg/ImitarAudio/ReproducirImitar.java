@@ -62,7 +62,6 @@ public class ReproducirImitar extends Activity {
         TextView titulo = (TextView)findViewById(R.id.tituloImitar);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
 
-
         int id = factory.getAudioRecord().getAudioSessionId();
         if(AcousticEchoCanceler.isAvailable()) {
             echo = AcousticEchoCanceler.create(id);
