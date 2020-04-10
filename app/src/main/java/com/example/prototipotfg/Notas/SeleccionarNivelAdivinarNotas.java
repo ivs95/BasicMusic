@@ -66,9 +66,22 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
                 button.setEnabled(false);
                 button.setAlpha(.5f);
             }
-
-
         }
+        Button tutorial = new Button(this);
+        tutorial.setLayoutParams(lp);
+        tutorial.setText("Tutorial");
+        tutorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tutorial_notas(v);
+            }
+        });
+        llBotonera.addView(tutorial);
+    }
+
+    private void tutorial_notas(View v) {
+        Intent i = new Intent(this, TutorialNotas.class);
+        startActivity(i);
     }
 
     public void nivel_seleccionado(View view) throws IOException {

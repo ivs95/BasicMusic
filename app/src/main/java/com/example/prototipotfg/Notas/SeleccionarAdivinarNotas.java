@@ -8,7 +8,6 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -63,7 +62,7 @@ public class SeleccionarAdivinarNotas extends Activity {
         FactoriaNotas.getInstance().setReferenciaDo(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
         adaptaVista(Controlador.getInstance().getDificultad());
         //Obtenemos el linear layout donde colocar los botones
-        LinearLayout opciones = (LinearLayout) findViewById(R.id.opciones);
+        LinearLayout opciones = findViewById(R.id.opciones);
 
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
@@ -141,17 +140,14 @@ public class SeleccionarAdivinarNotas extends Activity {
 
             if (Controlador.getInstance().getDificultad().equals(Dificultad.Facil)) {
                 String ruta = devuelveRutaBoton(respuesta);
-                MediaPlayer mediaPlayer = new MediaPlayer();
                 try {
                     AssetFileDescriptor afd = getAssets().openFd(ruta);
                     Reproductor.getInstance().reproducirNota(afd);
                     afd.close();
-                    /*mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                    mediaPlayer.prepare();*/
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                //mediaPlayer.start();
             }
 
             ponerComprobarVisible(1);
@@ -165,13 +161,9 @@ public class SeleccionarAdivinarNotas extends Activity {
     }
 
     public void reproduceNotaRespuesta(View view) throws IOException{
-       // MediaPlayer mediaPlayer =  new MediaPlayer();
         AssetFileDescriptor afd = getAssets().openFd(devuelveRutaBoton(((Button)respuestaCorrecta).getText().toString()));
         Reproductor.getInstance().reproducirNota(afd);
         afd.close();
-        /*mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-        mediaPlayer.prepare();
-        mediaPlayer.start();*/
     }
 
     public void volverAtras(View view){
@@ -179,13 +171,10 @@ public class SeleccionarAdivinarNotas extends Activity {
     }
 
     public void reproducirReferencia(View view) throws IOException {
-       // MediaPlayer mediaPlayer =  new MediaPlayer();
         AssetFileDescriptor afd = getAssets().openFd(FactoriaNotas.getInstance().getReferencia());
         Reproductor.getInstance().reproducirNota(afd);
         afd.close();
-       /* mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-        mediaPlayer.prepare();
-        mediaPlayer.start();*/
+
     }
 
     public void reproducirReferenciaDo(View view) throws IOException {

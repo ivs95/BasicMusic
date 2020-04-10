@@ -1,8 +1,12 @@
 /*
 
+Información al usuario
+  - Indicar cuantos puntos quedan y con cuantos se desbloquea el siguiente nivel
+  - Indicar cuantos puntos ha ganado/perdido al comprobar nivel
+
 Nuevos niveles:
   - Popup  con cambios entre niveles (ernesto)
-  - Funcion BBDD llega por primera vez al nivel (vitores).
+  - Funcion BBDD llega por primera vez al nivel (vitores). HECHO
 
 Boton tutorial en cada modo
  - Crear/adivinar intervalo: nombrar los intervalos y su diferencia. Que suenen sobre un LA4 (vitores) HECHO
@@ -24,39 +28,3 @@ Crear acorde
  - Nivel 6 quitar la info (verdu) HECHO
 
 Cambiar sonidos metronomo (verdu) HECHO
-
-
-    boolean esNota = false;
-            for(Notas n: Notas.values()){
-                while (!esNota) {
-                    esNota = compruebaSiEsNota(hz, n, lista, octava);
-                }
-            }
-
-    private boolean compruebaSiEsNota(float hz, Notas n, ArrayList<NotasImitar> lista, int octava) {
-        if (hz >= n.getMinimaFrecuencia() && hz <= n.getMaximaFrecuencia()) {
-            if (lista.contains(new NotasImitar(n, octava))) {
-                    lista.set(lista.indexOf(new NotasImitar(n, octava)), new NotasImitar(n, octava, lista.indexOf(new NotasImitar(n, octava).contador + 1)));
-            } else {
-                    lista.add(new NotasImitar(n, octava, 1));
-            }
-            return true;
-        }
-        return false;
-    } */
-
-
-    Intervalo maximo 12
-    Nota valor (Do 1, Si 12)
-    Coges 1º nota --> RE
-    Para abajo (negativos) == -(RE - 1) (Valor nota - 1) [intervalos_bajo]
-    Para arriba == 12 - RE (Intervalo maximo - valor nota) [intervalos_alto]
-    invervalos_posibles = mezcla(int_bajo, int_alto)
-
-
-Layout arreglados
-activity_login
-activity_main
-niveles
-seleccion_adivinar
-
