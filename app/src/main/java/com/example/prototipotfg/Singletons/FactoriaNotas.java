@@ -3,6 +3,7 @@ package com.example.prototipotfg.Singletons;
 
 import android.util.Pair;
 
+import com.example.prototipotfg.Enumerados.Acordes;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
@@ -193,5 +194,13 @@ public final class FactoriaNotas {
             añadidas++;
         }
         return resul;
+    }
+
+    public ArrayList<ArrayList<Pair<Notas, Octavas>>> devuelveAcordes(Octavas octavaInicio, Notas notaInicio){
+        ArrayList<ArrayList<Pair<Notas, Octavas>>> retorno = new ArrayList<>();
+        for (Acordes a : Acordes.values()){
+            retorno.add(Acordes.devuelveNotasAcorde(a, octavaInicio, notaInicio));
+        }
+        return retorno;
     }
 }

@@ -50,6 +50,7 @@
         <activity android:name=".Ritmos.Crear.NivelesCrearRitmo" />
         <activity android:name=".Intervalos.TutorialIntervalos" />
         <activity android:name=".Notas.TutorialNotas" />
+        <activity android:name=".Acordes.Adivinar.TutorialNivelAdivinarAcordes" />
     </application>
 
 </manifest>

@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.prototipotfg.Acordes.TutorialAdivinarAcordes;
 import com.example.prototipotfg.Enumerados.ModoJuego;
+import com.example.prototipotfg.Notas.TutorialNotas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
@@ -30,6 +32,17 @@ public class SeleccionarNivelAdivinarAcordes extends Activity {
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        Button tutorial = new Button(this);
+        tutorial.setLayoutParams(lp);
+        tutorial.setText("Tutorial");
+        tutorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tutorial_notas(v);
+            }
+        });
+        llBotonera.addView(tutorial);
 
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.getNombre()).getNivel();
 
@@ -57,9 +70,14 @@ public class SeleccionarNivelAdivinarAcordes extends Activity {
                 button.setAlpha(.5f);
             }
         }
+
     }
 
 
+    private void tutorial_notas(View v) {
+        Intent i = new Intent(this, TutorialNivelAdivinarAcordes.class);
+        startActivity(i);
+    }
 
     public void nivel_seleccionado(View view) {
         Intent i = new Intent(this, ReproducirAdivinarAcordes.class);
