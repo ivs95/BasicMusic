@@ -57,6 +57,8 @@ public class SeleccionarAdivinarNotas extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_seleccionar_adivinar_notas);
         ponerComprobarVisible(INVISIBLE);
+
+
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         FactoriaNotas.getInstance().setReferencia(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
         FactoriaNotas.getInstance().setReferenciaDo(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
@@ -102,6 +104,8 @@ public class SeleccionarAdivinarNotas extends Activity {
             }
             botonesNotas.add(button);
         }
+
+        mostrarPopupNuevoNivel(findViewById(android.R.id.content).getRootView());
     }
 
     private void adaptaVista(Dificultad dificultad) {
@@ -232,6 +236,65 @@ public class SeleccionarAdivinarNotas extends Activity {
         findViewById(R.id.botonNota).setEnabled(false);         findViewById(R.id.botonNota).setAlpha(.5f);
 
     }
+
+    public void mostrarPopupNuevoNivel(View view){
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        View popupView = inflater.inflate(R.layout.popup_nuevo_nivel_cambios, null);
+        final View popupView2 = inflater.inflate(R.layout.popup_nuevo_nivel_cambios2, null);
+
+        TextView cambios = (TextView) popupView2.findViewById(R.id.cambios_nivel_text);
+        cambios.setText(" - Ya no podras reproducir las opciones \n\n - Ahora contarás con las referencias de Do y La \n\n" +
+                " - Desbloqueadas la 2º y 3º octava\n");
+
+        TextView nivel_text = (TextView)popupView.findViewById(R.id.nivel_text_popup);
+        nivel_text.setText(String.valueOf(Controlador.getInstance().getNivel()));
+
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,true);
+        final PopupWindow popupWindow2 = new PopupWindow(popupView2, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,true);
+
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+
+        findViewById(R.id.id_adivinar_notas).post(new Runnable() {
+            public void run() {
+                popupWindow.showAtLocation(findViewById(R.id.id_adivinar_notas), Gravity.CENTER, 0, 0);
+            }
+        });
+
+       // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        // dismiss the popup window when touched
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow2.showAtLocation(findViewById(R.id.id_adivinar_notas), Gravity.CENTER, 0, 0);
+                //popupWindow.dismiss();
+                return true;
+            }
+        });
+
+        popupView2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow2.dismiss();
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+
+
+
+    }
+
 
 
 }
