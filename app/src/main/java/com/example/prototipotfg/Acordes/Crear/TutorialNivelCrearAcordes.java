@@ -1,39 +1,28 @@
 package com.example.prototipotfg.Acordes.Crear;
 
 import android.app.Activity;
-import android.content.res.AssetFileDescriptor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Pair;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prototipotfg.Enumerados.Acordes;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
-import com.example.prototipotfg.Singletons.Reproductor;
 
-import org.w3c.dom.Text;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.TreeMap;
 
-import static com.example.prototipotfg.R.*;
+import static com.example.prototipotfg.R.color;
+import static com.example.prototipotfg.R.id;
+import static com.example.prototipotfg.R.layout;
 
 public class TutorialNivelCrearAcordes extends Activity implements AdapterView.OnItemSelectedListener{
-
-    private ArrayList<ArrayList<Pair<Notas, Octavas>>> acordesReproducir;
 
 
     @Override
@@ -44,8 +33,8 @@ public class TutorialNivelCrearAcordes extends Activity implements AdapterView.O
         }
         super.onCreate(savedInstanceState);
         setContentView(layout.tutorial_crear_acordes);
-        Spinner s = (Spinner) findViewById(id.spinnerTutorialCrearAcordes);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, layout.spinner_item, notas);
+        Spinner s = findViewById(id.spinnerTutorialCrearAcordes);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, layout.spinner_item, notas);
         adapter.setDropDownViewResource(layout.spinner_dropdown_item);
         s.setAdapter(adapter);
         s.setOnItemSelectedListener(this);
@@ -54,12 +43,13 @@ public class TutorialNivelCrearAcordes extends Activity implements AdapterView.O
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Notas nota = Notas.devuelveNotaPorNombre((String)parent.getItemAtPosition(position));
+        ArrayList<ArrayList<Pair<Notas, Octavas>>> acordesReproducir = FactoriaNotas.getInstance().devuelveAcordes(Octavas.Cuarta, nota);
+
         LinearLayout tabla = findViewById(R.id.notasTutorialCrearAcordes);
         tabla.removeAllViews();
         tabla.removeAllViews();
         LinearLayout.LayoutParams lpl = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
         LinearLayout.LayoutParams lpb = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,1);
-        acordesReproducir = FactoriaNotas.getInstance().devuelveAcordes(Octavas.Cuarta, nota);
         for (int i = 0; i < acordesReproducir.size(); i++) {
             LinearLayout fila = new LinearLayout(this);
             fila.setOrientation(LinearLayout.HORIZONTAL);
