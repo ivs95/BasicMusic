@@ -50,7 +50,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="9"
                 android:onClick="modo_acordes"
-                android:text="Adivina acordes" />
+                android:text="Adivinar acordes" />
 
             <ImageView
                 android:id="@+id/imageViewAcordes1"
@@ -70,7 +70,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="9"
                 android:onClick="modo_acordes"
-                android:text="Crea acordes" />
+                android:text="Crear acordes" />
 
 
             <ImageView
