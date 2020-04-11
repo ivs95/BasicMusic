@@ -83,7 +83,7 @@ public class TutorialNivelAdivinarAcordes extends Activity{
     private void actualizaVista() {
         LinearLayout tabla = findViewById(R.id.acordesTutorialAcordes);
         tabla.removeAllViews();
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         acordesReproducir = FactoriaNotas.getInstance().devuelveAcordes(this.octavaInicio, this.notaInicio);
         for (int i = 0; i < acordesReproducir.size(); i++) {
             String texto = Acordes.values()[i].getNombre();

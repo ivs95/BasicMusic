@@ -9,8 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
@@ -39,12 +37,12 @@ public class TutorialNotas extends Activity implements AdapterView.OnItemSelecte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String octava = (String)parent.getItemAtPosition(position);
+        Octavas octava = Octavas.devuelveOctavaPorNombre((String)parent.getItemAtPosition(position));
         LinearLayout tabla = findViewById(R.id.notasTutorialNotas);
         tabla.removeAllViews();
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
         for (Notas n : Notas.values()) {
-            final String ruta = FactoriaNotas.getInstance().getInstrumento().getPath() + Octavas.devuelveOctavaPorNombre(octava).getPath() + n.getPath();
+            final String ruta = FactoriaNotas.getInstance().getInstrumento().getPath() + octava.getPath() + n.getPath();
             Button b = new Button(this);
             b.setLayoutParams(lp);
             b.setText(n.getNombre());

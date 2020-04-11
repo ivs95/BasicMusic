@@ -30,6 +30,18 @@ public class SeleccionarNivelCrearAcordes extends Activity {
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        Button tutorial = new Button(this);
+        tutorial.setLayoutParams(lp);
+        tutorial.setText("Tutorial");
+        tutorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tutorial_notas(v);
+            }
+        });
+        llBotonera.addView(tutorial);
+
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.getNombre()).getNivel();
 
         //Creamos los botones en bucle
@@ -58,7 +70,10 @@ public class SeleccionarNivelCrearAcordes extends Activity {
 
         }
     }
-
+    private void tutorial_notas(View v) {
+        Intent i = new Intent(this, TutorialNivelCrearAcordes.class);
+        startActivity(i);
+    }
 
 
     public void nivel_seleccionado(View view) {
