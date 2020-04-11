@@ -245,18 +245,13 @@ public class SeleccionarAdivinarNotas extends Activity {
         final View popupView2 = inflater.inflate(R.layout.popup_nuevo_nivel_cambios2, null);
 
         TextView cambios = (TextView) popupView2.findViewById(R.id.cambios_nivel_text);
-        cambios.setText(" - Ya no podras reproducir las opciones \n\n - Ahora contarás con las referencias de Do y La \n\n" +
-                " - Desbloqueadas la 2º y 3º octava\n");
+        cambios.setText(ModoJuego.Adivinar_Notas.getTextDadoNivel(Controlador.getInstance().getNivel()));
 
         TextView nivel_text = (TextView)popupView.findViewById(R.id.nivel_text_popup);
         nivel_text.setText(String.valueOf(Controlador.getInstance().getNivel()));
 
 
-        // create the popup window
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true; // lets taps outside the popup also dismiss it
-        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+
         final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,true);
         final PopupWindow popupWindow2 = new PopupWindow(popupView2, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,true);
 

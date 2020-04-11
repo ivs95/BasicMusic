@@ -30,6 +30,10 @@ public class Login extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO}, 1000);
         }
+        for (int i = 0; i < ModoJuego.values().length; i++) {
+            ModoJuego.values()[i].rellena_cambios(ModoJuego.values()[i].toString(), this);
+        }
+
         GestorBBDD.getInstance().setContexto(getApplicationContext());
         GestorBBDD.getInstance().compruebaUsuarioPrueba();
         if (GestorBBDD.getInstance().usuarioRecordado()){

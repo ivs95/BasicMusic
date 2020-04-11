@@ -10,4 +10,65 @@
     <string name="txtBotonRepetir">Imitar</string>
     <string name="txtBotonAdivinar">Adivinar</string>
     <string name="txtBotonRitmos">Ritmos</string>
+
+
+    <string name="cambiosNv2AdNotas">- Ya no podras reproducir las opciones \n\n - Ahora contarás con las referencias de Do y La \n\n
+                 - Desbloqueadas la 2º y 3º octava\n</string>
+    <string name="cambiosNv3AdNotas">Ritmos</string>
+    <string name="cambiosNv4AdNotas">Ritmos</string>
+    <string name="cambiosNv5AdNotas">Ritmos</string>
+    <string name="cambiosNv6AdNotas">Ritmos</string>
+    <string name="cambiosNv7AdNotas">Ritmos</string>
+    <string name="cambiosNv8AdNotas">Ritmos</string>
+    <string name="cambiosNv9AdNotas">Ritmos</string>
+    <string name="cambiosNv10AdNotas">Ritmos</string>
+
+
+    <string name="cambiosNv2AdIntervalos">Ritmos</string>
+    <string name="cambiosNv3AdIntervalos">Ritmos</string>
+    <string name="cambiosNv4AdIntervalos">Ritmos</string>
+    <string name="cambiosNv5AdIntervalos">Ritmos</string>
+    <string name="cambiosNv6AdIntervalos">Ritmos</string>
+
+
+    <string name="cambiosNv2CrearIntervalos">Ritmos</string>
+    <string name="cambiosNv3CrearIntervalos">Ritmos</string>
+    <string name="cambiosNv4CrearIntervalos">Ritmos</string>
+    <string name="cambiosNv5CrearIntervalos">Ritmos</string>
+    <string name="cambiosNv6CrearIntervalos">Ritmos</string>
+    <string name="cambiosNv7CrearIntervalos">Ritmos</string>
+    <string name="cambiosNv8CrearIntervalos">Ritmos</string>
+
+    <string name="cambiosNv2AdAcordes">Ritmos</string>
+    <string name="cambiosNv3AdAcordes">Ritmos</string>
+    <string name="cambiosNv4AdAcordes">Ritmos</string>
+    <string name="cambiosNv5AdAcordes">Ritmos</string>
+    <string name="cambiosNv6AdAcordes">Ritmos</string>
+
+
+    <string name="cambiosNv2CrearAcordes">Ritmos</string>
+    <string name="cambiosNv3CrearAcordes">Ritmos</string>
+    <string name="cambiosNv4CrearAcordes">Ritmos</string>
+    <string name="cambiosNv5CrearAcordes">Ritmos</string>
+    <string name="cambiosNv6CrearAcordes">Ritmos</string>
+
+
+    <string name="cambiosNv2HallaRitmos">Ritmos</string>
+    <string name="cambiosNv3HallaRitmos">Ritmos</string>
+    <string name="cambiosNv4HallaRitmos">Ritmos</string>
+    <string name="cambiosNv5HallaRitmos">Ritmos</string>
+    <string name="cambiosNv6HallaRitmos">Ritmos</string>
+    <string name="cambiosNv7HallaRitmos">Ritmos</string>
+    <string name="cambiosNv8HallaRitmos">Ritmos</string>
+
+    <string name="cambiosNv2RealizaRitmos">Ritmos</string>
+    <string name="cambiosNv3RealizaRitmos">Ritmos</string>
+    <string name="cambiosNv4RealizaRitmos">Ritmos</string>
+    <string name="cambiosNv5RealizaRitmos">Ritmos</string>
+    <string name="cambiosNv6RealizaRitmos">Ritmos</string>
+    <string name="cambiosNv7RealizaRitmos">Ritmos</string>
+    <string name="cambiosNv8RealizaRitmos">Ritmos</string>
+
+
+
 </resources>
