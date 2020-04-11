@@ -108,7 +108,7 @@ public class SeleccionarAdivinarNotas extends Activity {
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
 
-        ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Notas.toString(),findViewById(android.R.id.content).getRootView());
+        ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Notas,findViewById(android.R.id.content).getRootView());
     }
 
     private void adaptaVista(Dificultad dificultad) {
@@ -236,6 +236,7 @@ public class SeleccionarAdivinarNotas extends Activity {
             b.setEnabled(false);
         }
         findViewById(R.id.botonReferencia).setEnabled(false);   findViewById(R.id.botonReferencia).setAlpha(.5f);
+        findViewById(R.id.botonReferenciaDo).setEnabled(false);   findViewById(R.id.botonReferenciaDo).setAlpha(.5f);
         findViewById(R.id.botonNota).setEnabled(false);         findViewById(R.id.botonNota).setAlpha(.5f);
 
     }

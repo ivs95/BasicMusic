@@ -12,32 +12,36 @@
     <string name="txtBotonRitmos">Ritmos</string>
 
 
-    <string name="cambiosNv2AdNotas"> Ya no podras reproducir las opciones \n\n  Ahora contarás con las referencias de Do y La \n\n
-                  Desbloqueadas la 2º y 3º octava\n</string>
-    <string name="cambiosNv3AdNotas">Ritmos</string>
-    <string name="cambiosNv4AdNotas">Ritmos</string>
-    <string name="cambiosNv5AdNotas">Ritmos</string>
-    <string name="cambiosNv6AdNotas">Ritmos</string>
-    <string name="cambiosNv7AdNotas">Ritmos</string>
-    <string name="cambiosNv8AdNotas">Ritmos</string>
-    <string name="cambiosNv9AdNotas">Ritmos</string>
-    <string name="cambiosNv10AdNotas">Ritmos</string>
+    <string name="cambiosNv2AdNotas"> Ya no podrás reproducir las opciones &lt;br /&gt;  &lt;br /&gt;Ahora contarás con las referencias de &lt;b>DO&lt;/b> y &lt;b>LA&lt;/b> &lt;br /&gt; &lt;br /&gt;
+        Desbloqueada la &lt;b>5º&lt;/b> octava</string>
+    <string name="cambiosNv3AdNotas">Ahora elegirás entre &lt;b>TRES&lt;/b> opciones</string>
+    <string name="cambiosNv4AdNotas">Ya no contarás con la referencia &lt;b>DO&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>6º&lt;/b> octava \</string>
+    <string name="cambiosNv5AdNotas">Ahora elegirás entre &lt;b>CUATRO&lt;/b> opciones</string>
+    <string name="cambiosNv6AdNotas">Desbloqueda la &lt;b>2º&lt;/b> octava</string>
+    <string name="cambiosNv7AdNotas">Ahora elegirás entre &lt;b>CINCO&lt;/b> opciones</string>
+    <string name="cambiosNv8AdNotas">Desbloqueada la &lt;b>7º&lt;/b> octava</string>
+    <string name="cambiosNv9AdNotas">Ahora elegirás entre &lt;b>SEIS&lt;/b> opciones</string>
+    <string name="cambiosNv10AdNotas">Ya no contarás con la referencia &lt;b>LA&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueda la &lt;b>1º&lt;/b> octava</string>
 
 
-    <string name="cambiosNv2AdIntervalos">Ritmos</string>
-    <string name="cambiosNv3AdIntervalos">Ritmos</string>
-    <string name="cambiosNv4AdIntervalos">Ritmos</string>
-    <string name="cambiosNv5AdIntervalos">Ritmos</string>
-    <string name="cambiosNv6AdIntervalos">Ritmos</string>
+    <string name="cambiosNv2AdIntervalos">Desbloqueados los intervalos con amplitud &lt;b>CINCO&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>3º&lt;/b> y &lt;b>6º&lt;/b> octavas &lt;br /&gt; &lt;br /&gt;
+        Ahora elegirás entre &lt;b>TRES&lt;/b> opciones</string>
+    <string name="cambiosNv3AdIntervalos">Desbloqueados los intervalos con amplitud &lt;b>SIETE&lt;/b> &lt;br /&gt; &lt;br /&gt; Ahora elegirás entre &lt;b>CUATRO&lt;/b> opciones</string>
+    <string name="cambiosNv4AdIntervalos">Desbloqueada la &lt;b>2º&lt;/b> octava</string>
+    <string name="cambiosNv5AdIntervalos">Desbloqueados los intervalos con amplitud &lt;b>NUEVE&lt;/b></string>
+    <string name="cambiosNv6AdIntervalos">Desbloqueados los intervalos con amplitud &lt;b>DOCE&lt;/b> &lt;br /&gt; &lt;br /&gt; Desbloqueada la &lt;b>SEPTIMA&lt;/b> octava &lt;br /&gt; &lt;br /&gt;
+        Ahora elegirás entre &lt;b>CINCO&lt;/b> opciones</string>
 
 
-    <string name="cambiosNv2CrearIntervalos">Ritmos</string>
-    <string name="cambiosNv3CrearIntervalos">Ritmos</string>
-    <string name="cambiosNv4CrearIntervalos">Ritmos</string>
-    <string name="cambiosNv5CrearIntervalos">Ritmos</string>
-    <string name="cambiosNv6CrearIntervalos">Ritmos</string>
-    <string name="cambiosNv7CrearIntervalos">Ritmos</string>
-    <string name="cambiosNv8CrearIntervalos">Ritmos</string>
+    <string name="cambiosNv2CrearIntervalos">Desbloqueados los intervalos con amplitud &lt;b>CINCO&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>3º&lt;/b> octava \n\n
+        Ahora elige entre &lt;b>TRES&lt;/b> opciones</string>
+    <string name="cambiosNv3CrearIntervalos">Desbloqueados los intervalos con amplitud &lt;b>SIETE&lt;/b>  &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>6º&lt;/b> octava </string>
+    <string name="cambiosNv4CrearIntervalos">Desbloqueados los intervalos con amplitud &lt;b>NUEVE&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>2º&lt;/b> octava </string>
+    <string name="cambiosNv5CrearIntervalos">Ya no contarás con el nombre de la nota de inicio del intervalo &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>CUATRO&lt;/b> opciones</string>
+    <string name="cambiosNv6CrearIntervalos">Desbloqueados los intervalos con amplitud &lt;b>ONCE&lt;/b></string>
+    <string name="cambiosNv7CrearIntervalos">Ahora elegirás entre &lt;b>CINCO&lt;/b> opciones</string>
+    <string name="cambiosNv8CrearIntervalos">Desbloqueados los intervalos con amplitud &lt;b>DOCE&lt;/b> &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>SEIS&lt;/b> opciones</string>
+
 
     <string name="cambiosNv2AdAcordes">Ritmos</string>
     <string name="cambiosNv3AdAcordes">Ritmos</string>

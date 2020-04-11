@@ -123,6 +123,10 @@ public class ReproducirCrearAcordes extends Activity {
             opciones.addView(button);
         }
 
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Crear_Acordes,findViewById(android.R.id.content).getRootView());
 
     }
 

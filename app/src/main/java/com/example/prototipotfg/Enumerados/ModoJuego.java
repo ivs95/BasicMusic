@@ -1,7 +1,8 @@
 package com.example.prototipotfg.Enumerados;
 
-import android.app.Service;
 import android.content.Context;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -10,33 +11,27 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Stream;
 
 public enum ModoJuego {
-    Adivinar_Intervalo("Adivinar_Intervalo", 6, new HashMap<Integer, String>()),
-    Adivinar_Notas("Adivinar_Notas", 10, new HashMap<Integer, String>()),
-    Adivinar_Acordes("Adivinar_Acordes", 6, new HashMap<Integer, String>()),
-    Crear_Intervalo("Crear_Intervalo", 8, new HashMap<Integer, String>()),
-    Halla_Ritmo("Halla_Ritmo", 8, new HashMap<Integer, String>()),
-    Realiza_Ritmo("Realiza_Ritmo", 8, new HashMap<Integer, String>()),
-    Crear_Acordes("Crear_Acordes", 6, new HashMap<Integer, String>()),
-    Imitar_Audio("Imitar_Audio", 3, new HashMap<Integer, String>());
+    Adivinar_Intervalo("Adivinar_Intervalo", 6, new HashMap<Integer, Spanned>()),
+    Adivinar_Notas("Adivinar_Notas", 10, new HashMap<Integer, Spanned>()),
+    Adivinar_Acordes("Adivinar_Acordes", 6, new HashMap<Integer, Spanned>()),
+    Crear_Intervalo("Crear_Intervalo", 8, new HashMap<Integer, Spanned>()),
+    Halla_Ritmo("Halla_Ritmo", 8, new HashMap<Integer, Spanned>()),
+    Realiza_Ritmo("Realiza_Ritmo", 8, new HashMap<Integer, Spanned>()),
+    Crear_Acordes("Crear_Acordes", 6, new HashMap<Integer, Spanned>()),
+    Imitar_Audio("Imitar_Audio", 3, new HashMap<Integer, Spanned>());
 
     private String nombre;
     private int max_level;
-    private HashMap<Integer, String> texto;
+    private HashMap<Integer, Spanned> texto;
 
 
-    ModoJuego(String nombre, int max_level, HashMap<Integer, String> texto){
+    ModoJuego(String nombre, int max_level, HashMap<Integer, Spanned> texto){
         this.nombre=nombre;
         this.max_level = max_level;
         this.texto = texto;
@@ -46,7 +41,7 @@ public enum ModoJuego {
         return this.nombre;
     }
 
-    public String getTextDadoNivel(int nivel){
+    public Spanned getTextDadoNivel(int nivel){
         return texto.get(nivel);
     }
 
@@ -55,83 +50,83 @@ public enum ModoJuego {
     public void rellena_cambios(String modoJuego, Context context){
         switch(modoJuego){
             case "Adivinar_Notas": {
-                this.texto.put(2, context.getString(R.string.cambiosNv2AdNotas));
-                this.texto.put(3, context.getString(R.string.cambiosNv3AdNotas));
-                this.texto.put(4, context.getString(R.string.cambiosNv4AdNotas));
-                this.texto.put(5, context.getString(R.string.cambiosNv5AdNotas));
-                this.texto.put(6, context.getString(R.string.cambiosNv6AdNotas));
-                this.texto.put(7, context.getString(R.string.cambiosNv7AdNotas));
-                this.texto.put(8, context.getString(R.string.cambiosNv8AdNotas));
-                this.texto.put(9, context.getString(R.string.cambiosNv9AdNotas));
-                this.texto.put(10, context.getString(R.string.cambiosNv10AdNotas));
+                texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2AdNotas)));
+                texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3AdNotas)));
+                texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4AdNotas)));
+                texto.put(5, Html.fromHtml(context.getString(R.string.cambiosNv5AdNotas)));
+                texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6AdNotas)));
+                texto.put(7, Html.fromHtml(context.getString(R.string.cambiosNv7AdNotas)));
+                texto.put(8, Html.fromHtml(context.getString(R.string.cambiosNv8AdNotas)));
+                texto.put(9, Html.fromHtml(context.getString(R.string.cambiosNv9AdNotas)));
+                texto.put(10, Html.fromHtml(context.getString(R.string.cambiosNv10AdNotas)));
                 break;
             }
-            case "Adivinar_Intervalos":{
-                this.texto.put(2, context.getString(R.string.cambiosNv2AdIntervalos));
-                this.texto.put(3, context.getString(R.string.cambiosNv3AdIntervalos));
-                this.texto.put(4, context.getString(R.string.cambiosNv4AdIntervalos));
-                this.texto.put(5, context.getString(R.string.cambiosNv5AdIntervalos));
-                this.texto.put(6, context.getString(R.string.cambiosNv6AdIntervalos)); break;
+
+            case "Adivinar_Intervalo":{
+                texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2AdIntervalos)));
+                texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3AdIntervalos)));
+                texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4AdIntervalos)));
+                texto.put(5, Html.fromHtml(context.getString(R.string.cambiosNv5AdIntervalos)));
+                texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6AdIntervalos))); break;
             }
 
-            case "Crear_Intervalos":{
-                this.texto.put(2, context.getString(R.string.cambiosNv2CrearIntervalos));
-                this.texto.put(3, context.getString(R.string.cambiosNv3CrearIntervalos));
-                this.texto.put(4, context.getString(R.string.cambiosNv4CrearIntervalos));
-                this.texto.put(5, context.getString(R.string.cambiosNv5CrearIntervalos));
-                this.texto.put(6, context.getString(R.string.cambiosNv6CrearIntervalos));
-                this.texto.put(7, context.getString(R.string.cambiosNv7CrearIntervalos));
-                this.texto.put(8, context.getString(R.string.cambiosNv8CrearIntervalos));break;
+            case "Crear_Intervalo":{
+                texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2CrearIntervalos)));
+                texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3CrearIntervalos)));
+                texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4CrearIntervalos)));
+                texto.put(5, Html.fromHtml(context.getString(R.string.cambiosNv5CrearIntervalos)));
+                texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6CrearIntervalos)));
+                texto.put(7, Html.fromHtml(context.getString(R.string.cambiosNv7CrearIntervalos)));
+                texto.put(8, Html.fromHtml(context.getString(R.string.cambiosNv8CrearIntervalos)));break;
 
             }
             case "Adivinar_Acordes":{
-                this.texto.put(2, context.getString(R.string.cambiosNv2AdAcordes));
-                this.texto.put(3, context.getString(R.string.cambiosNv3AdAcordes));
-                this.texto.put(4, context.getString(R.string.cambiosNv4AdAcordes));
-                this.texto.put(5, context.getString(R.string.cambiosNv5AdAcordes));
-                this.texto.put(6, context.getString(R.string.cambiosNv6AdAcordes)); break;
+                texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2AdAcordes)));
+                texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3AdAcordes)));
+                texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4AdAcordes)));
+                texto.put(5, Html.fromHtml(context.getString(R.string.cambiosNv5AdAcordes)));
+                texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6AdAcordes))); break;
 
             }
             case "Crear_Acordes":{
-                this.texto.put(2, context.getString(R.string.cambiosNv2CrearAcordes));
-                this.texto.put(3, context.getString(R.string.cambiosNv3CrearAcordes));
-                this.texto.put(4, context.getString(R.string.cambiosNv4CrearAcordes));
-                this.texto.put(5, context.getString(R.string.cambiosNv5CrearAcordes));
-                this.texto.put(6, context.getString(R.string.cambiosNv6CrearAcordes)); break;
+                texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2CrearAcordes)));
+                texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3CrearAcordes)));
+                texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4CrearAcordes)));
+                texto.put(5, Html.fromHtml(context.getString(R.string.cambiosNv5CrearAcordes)));
+                texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6CrearAcordes))); break;
 
             }
             case "Halla_Ritmos":{
-                this.texto.put(2, context.getString(R.string.cambiosNv2HallaRitmos));
-                this.texto.put(3, context.getString(R.string.cambiosNv3HallaRitmos));
-                this.texto.put(4, context.getString(R.string.cambiosNv4HallaRitmos));
-                this.texto.put(5, context.getString(R.string.cambiosNv5HallaRitmos));
-                this.texto.put(6, context.getString(R.string.cambiosNv6HallaRitmos));
-                this.texto.put(7, context.getString(R.string.cambiosNv7HallaRitmos));
-                this.texto.put(8, context.getString(R.string.cambiosNv8HallaRitmos));break;
+                texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2HallaRitmos)));
+                texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3HallaRitmos)));
+                texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4HallaRitmos)));
+                texto.put(5, Html.fromHtml(context.getString(R.string.cambiosNv5HallaRitmos)));
+                texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6HallaRitmos)));
+                texto.put(7, Html.fromHtml(context.getString(R.string.cambiosNv7HallaRitmos)));
+                texto.put(8, Html.fromHtml(context.getString(R.string.cambiosNv8HallaRitmos)));break;
 
             }
             case "Realiza_Ritmos":{
-                this.texto.put(2, context.getString(R.string.cambiosNv2RealizaRitmos));
-                this.texto.put(3, context.getString(R.string.cambiosNv3RealizaRitmos));
-                this.texto.put(4, context.getString(R.string.cambiosNv4RealizaRitmos));
-                this.texto.put(5, context.getString(R.string.cambiosNv5RealizaRitmos));
-                this.texto.put(6, context.getString(R.string.cambiosNv6RealizaRitmos));
-                this.texto.put(7, context.getString(R.string.cambiosNv7RealizaRitmos));
-                this.texto.put(8, context.getString(R.string.cambiosNv8RealizaRitmos));break;
+                texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2RealizaRitmos)));
+                texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3RealizaRitmos)));
+                texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4RealizaRitmos)));
+                texto.put(5, Html.fromHtml(context.getString(R.string.cambiosNv5RealizaRitmos)));
+                texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6RealizaRitmos)));
+                texto.put(7, Html.fromHtml(context.getString(R.string.cambiosNv7RealizaRitmos)));
+                texto.put(8, Html.fromHtml(context.getString(R.string.cambiosNv8RealizaRitmos)));break;
 
             }
-
+            default:break;
             }
-
     }
 
-    public static void mostrarPopUpNuevoNivel(LayoutInflater inflater, String modoJuego, final View view){
+    public static void mostrarPopUpNuevoNivel(LayoutInflater inflater, ModoJuego modoJuego, final View view){
 
         View popupView = inflater.inflate(R.layout.popup_nuevo_nivel_cambios, null);
         final View popupView2 = inflater.inflate(R.layout.popup_nuevo_nivel_cambios2, null);
 
         TextView cambios = (TextView) popupView2.findViewById(R.id.cambios_nivel_text);
-        cambios.setText(ModoJuego.Adivinar_Notas.getTextDadoNivel(Controlador.getInstance().getNivel()));
+        cambios.setText(modoJuego.getTextDadoNivel(Controlador.getInstance().getNivel()));
 
         TextView nivel_text = (TextView)popupView.findViewById(R.id.nivel_text_popup);
         nivel_text.setText(String.valueOf(Controlador.getInstance().getNivel()));
@@ -157,8 +152,10 @@ public enum ModoJuego {
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
                 popupWindow2.showAtLocation(view, Gravity.CENTER, 0, 0);
-                //popupWindow.dismiss();
+                popupWindow.dismiss();
+
                 return true;
             }
         });
@@ -167,7 +164,6 @@ public enum ModoJuego {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 popupWindow2.dismiss();
-                popupWindow.dismiss();
                 return true;
             }
         });

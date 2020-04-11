@@ -112,6 +112,10 @@ public class ReproducirAdivinarAcordes extends Activity {
             opciones.addView(button);
         }
 
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Acordes,findViewById(android.R.id.content).getRootView());
 
     }
 

@@ -361,7 +361,7 @@ public final class Controlador {
                 break;
             case 7:
                 this.num_opciones = 5;
-                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
+                setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta)));
                 this.dificultad = Dificultad.Dificil;
                 this.rango = 11;
                 break;

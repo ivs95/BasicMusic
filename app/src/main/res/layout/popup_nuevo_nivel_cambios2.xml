@@ -45,12 +45,7 @@
                 android:textSize = "20dp"
                 android:textStyle = "bold"
                 android:textColor="@color/md_blue_800"
-                android:text = "\n\n2/2"/>
-
-
-
-
-
+                android:text = "\n2/2"/>
 
 
         </LinearLayout>
