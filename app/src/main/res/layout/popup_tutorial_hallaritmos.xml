@@ -17,7 +17,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        app:cardBackgroundColor="@color/md_light_blue_200">
+        app:cardBackgroundColor="@color/md_blue_50">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,9 +44,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="¿Como se juega a Dibuja ritmos?\nEl ritmo consiste en un compás 4/4
+                android:text="¿Como se juega a Dibuja ritmos?\n\nEl ritmo consiste en un compás 4/4
                 \nCada linea de botones que están encima
-                \nrepresenta un instrumento como puedes ver en la leyenda.
+                \nrepresenta un instrumento.
                 \nCada botón representa una semicorchea dentro de ese compás.
                 \nCon ayuda de los botones dibuja en qué momento se usan los intrumentos."
                 android:textColor="@color/md_blue_900"
@@ -553,7 +553,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -572,7 +571,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="PAUSE" />
+                    android:text="PAUSA" />
 
                 <Button
                     android:id="@+id/popup_stop_ritmos"
@@ -586,12 +585,13 @@
                 android:id="@+id/popup_hallaritmos_layoutleyenda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
                 android:orientation="vertical"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nivelPopUpRitmo">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/textRitmos1"
@@ -625,7 +625,7 @@
                     android:id="@+id/textRitmos4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="4º fila: platillo"
+                    android:text="4º fila: platillo\n"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#091AAA"
                     android:visibility="visible" />
@@ -658,21 +658,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/popup_hallaritmos_mensaje1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
-                android:text="Nivel, te indica en qué nivel estás"
-                android:textColor="@color/md_blue_900"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nivelPopUpRitmo"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <Button
                 android:id="@+id/popup_hallaritmos_next"
                 android:layout_width="wrap_content"
@@ -702,13 +687,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Uso de botones:\n
+                android:text="\n
                 \n Play: Reproduce el ritmo del nivel
-                \n Pause: Pausa el ritmo del nivel
-                \n Stop: Para el ritmo del nivel"
+                \n\n Pause: Pausa el ritmo del nivel
+                \n\n Stop: Para el ritmo del nivel"
                 android:textColor="@color/md_blue_900"
-                android:textSize="15sp"
-                android:visibility="invisible"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -721,7 +705,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
                 android:gravity="center"
-                android:text="Nivel "
+                android:text="Nivel 1"
                 android:textAlignment="center"
                 android:textColor="@color/md_blue_900"
                 android:textSize="30sp"
@@ -731,6 +715,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.01" />
+
+            <TextView
+                android:id="@+id/pagina_tutorialHallarRitmos_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:textAlignment="center"
+                android:text=""
+                android:textColor="@color/md_blue_900"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -738,3 +738,5 @@
 
 
 </LinearLayout>
+
+
