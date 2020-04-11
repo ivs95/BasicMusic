@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="5dp"
@@ -19,669 +20,718 @@
         app:cardBackgroundColor="@color/md_light_blue_200">
 
 
-        <TextView
-            android:id="@+id/nivelPopUpRitmo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|top"
-            android:gravity="center"
-            android:text="Nivel "
-            android:textAlignment="center"
-            android:textColor="@color/md_blue_900"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.02" />
-        <TextView
-            android:id="@+id/popup_hallaritmos_mensaje1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:text="Nivel, te indica en qué nivel estás"
-            android:textColor="@color/md_blue_900"
-            android:textSize="20sp"/>
-        <TextView
-            android:id="@+id/popup_hallaritmos_mensaje2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="200dp"
-            android:text="Uso de botones:\n
-            \n Play: Reproduce el ritmo del nivel
-            \n Pause: Pausa el ritmo del nivel
-            \n Stop: Para el ritmo del nivel"
-            android:textColor="@color/md_blue_900"
-            android:visibility="invisible"
-            android:textSize="20sp"/>
-        <TextView
-            android:id="@+id/popup_hallaritmos_mensaje3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="450dp"
-            android:text="¿Como se juega a Dibuja ritmos?\nEl ritmo consiste en un compás 4/4
-            \nCada linea de botones que están encima
-            \nrepresenta un instrumento como puedes ver en la leyenda.
-            \nCada botón representa una semicorchea dentro de ese compás.
-            \nCon ayuda de los botones dibuja en qué momento se usan los intrumentos."
-            android:textColor="@color/md_blue_900"
-            android:visibility="invisible"
-            android:textSize="20sp"/>
-        <TextView
-            android:id="@+id/popup_hallaritmos_mensaje4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="500dp"
-            android:text="Cuando creas que has dibujado bien el ritmo pulsa este botón"
-            android:textColor="@color/md_blue_900"
-            android:visibility="invisible"
-            android:textSize="20sp"/>
-        <TextView
-            android:id="@+id/popup_hallaritmos_mensaje5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="600dp"
-            android:text="¡Que te diviertas!"
-            android:textColor="@color/md_blue_900"
-            android:visibility="invisible"
-            android:textSize="20sp"/>
-        <LinearLayout
-            android:id="@+id/popup_hallaritmos_layoutleyenda"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="45dp"
-            android:orientation="vertical"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tituloHallaRitmo">
+            android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textRitmos1"
-                android:layout_width="match_parent"
+                android:id="@+id/popup_hallaritmos_mensaje4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1º fila: palmadas"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#091AAA"
-                android:visibility="visible" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="Cuando creas que has dibujado bien el ritmo pulsa este botón"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popup_hallaritmos_comprueba" />
 
             <TextView
-                android:id="@+id/textRitmos2"
+                android:id="@+id/popup_hallaritmos_mensaje3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="¿Como se juega a Dibuja ritmos?\nEl ritmo consiste en un compás 4/4
+                \nCada linea de botones que están encima
+                \nrepresenta un instrumento como puedes ver en la leyenda.
+                \nCada botón representa una semicorchea dentro de ese compás.
+                \nCon ayuda de los botones dibuja en qué momento se usan los intrumentos."
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popup_hallaritmos_layoutbotonesRitmo" />
+
+            <LinearLayout
+                android:id="@+id/popup_hallaritmos_layoutbotonesRitmo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2º fila: caja"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#091AAA"
-                android:visibility="visible" />
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popup_hallaritmos_layoutbotones">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-50dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button1"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button2"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button3"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button4"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button5"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button6"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button7"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button8"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button9"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button10"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button11"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button12"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button13"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button14"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button15"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button16"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button17"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button18"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button19"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button20"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button21"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button22"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button23"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button24"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button25"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button26"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button27"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button28"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button29"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button30"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button31"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button32"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button33"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button34"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button35"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button36"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button37"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button38"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button39"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button40"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button41"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button42"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button43"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button44"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button45"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button46"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button47"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button48"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button49"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button50"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button51"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button52"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button53"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button54"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button55"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button56"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button57"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button58"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button59"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button60"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_blue_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button61"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button62"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button63"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/popup_hallaritmos_button64"
+                        android:layout_width="80px"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/md_cyan_300"
+                        android:text="" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/popup_hallaritmos_layoutbotones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popup_hallaritmos_layoutleyenda">
+
+                <Button
+                    android:id="@+id/popup_play_ritmos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PLAY" />
+
+                <Button
+                    android:id="@+id/popup_pause_ritmos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="PAUSE" />
+
+                <Button
+                    android:id="@+id/popup_stop_ritmos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="STOP" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/popup_hallaritmos_layoutleyenda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nivelPopUpRitmo">
+
+                <TextView
+                    android:id="@+id/textRitmos1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1º fila: palmadas"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#091AAA"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/textRitmos2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2º fila: caja"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#091AAA"
+                    android:visibility="visible" />
+
+
+                <TextView
+                    android:id="@+id/textRitmos3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3º fila: tambor"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#091AAA"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/textRitmos4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4º fila: platillo"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#091AAA"
+                    android:visibility="visible" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/textRitmos3"
-                android:layout_width="match_parent"
+                android:id="@+id/popup_hallaritmos_mensaje5"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3º fila: tambor"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#091AAA"
-                android:visibility="visible" />
-
-            <TextView
-                android:id="@+id/textRitmos4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="4º fila: platillo"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#091AAA"
-                android:visibility="visible" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/popup_hallaritmos_layoutbotones"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
-            android:visibility="invisible"
-            android:orientation="horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:text="¡Que te diviertas!"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popup_hallaritmos_mensaje4" />
 
             <Button
-                android:id="@+id/popup_play_ritmos"
+                android:id="@+id/popup_hallaritmos_prev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="PLAY" />
+                android:layout_gravity="bottom|left"
+                android:layout_marginBottom="1dp"
+                android:onClick="prev"
+                android:text="Anterior"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/popup_hallaritmos_mensaje1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:text="Nivel, te indica en qué nivel estás"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nivelPopUpRitmo"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/popup_pause_ritmos"
+                android:id="@+id/popup_hallaritmos_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:text="PAUSE" />
+                android:layout_gravity="bottom|right"
+                android:onClick="next"
+                android:text="Siguiente"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
-                android:id="@+id/popup_stop_ritmos"
+                android:id="@+id/popup_hallaritmos_comprueba"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="STOP" />
-        </LinearLayout>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:text="Comprueba"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popup_hallaritmos_layoutbotonesRitmo" />
 
-        <LinearLayout
-            android:id="@+id/popup_hallaritmos_layoutbotonesRitmo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/popup_hallaritmos_mensaje2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="-50dp"
-                android:orientation="horizontal">
+                android:layout_gravity="center_horizontal"
+                android:text="Uso de botones:\n
+                \n Play: Reproduce el ritmo del nivel
+                \n Pause: Pausa el ritmo del nivel
+                \n Stop: Para el ritmo del nivel"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popup_hallaritmos_layoutbotones"
+                app:layout_constraintVertical_bias="0.75" />
 
-                <Button
-                    android:id="@+id/popup_hallaritmos_button1"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button2"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button3"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button4"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button5"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button6"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button7"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button8"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button9"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button10"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button11"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button12"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button13"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button14"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button15"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button16"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/nivelPopUpRitmo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button17"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button18"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button19"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button20"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button21"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button22"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button23"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button24"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button25"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button26"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button27"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button28"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button29"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button30"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button31"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button32"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button33"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button34"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button35"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button36"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button37"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button38"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button39"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button40"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button41"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button42"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button43"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button44"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button45"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button46"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button47"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button48"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button49"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button50"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button51"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button52"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button53"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button54"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button55"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button56"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button57"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button58"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button59"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button60"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_blue_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button61"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button62"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button63"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/popup_hallaritmos_button64"
-                    android:layout_width="80px"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/md_cyan_300"
-                    android:text="" />
-            </LinearLayout>
-
-        </LinearLayout>
-        <Button
-            android:id="@+id/popup_hallaritmos_comprueba"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="450dp"
-            android:visibility="invisible"
-            android:text="Comprueba" />
-
-        <Button
-            android:id="@+id/popup_hallaritmos_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:onClick="next"
-            android:text="Siguiente"
-            android:visibility="visible" />
-
-        <Button
-            android:id="@+id/popup_hallaritmos_prev"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|left"
-            android:onClick="prev"
-            android:text="Anterior"
-            android:visibility="invisible" />
+                android:layout_gravity="center|top"
+                android:gravity="center"
+                android:text="Nivel "
+                android:textAlignment="center"
+                android:textColor="@color/md_blue_900"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.01" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>
