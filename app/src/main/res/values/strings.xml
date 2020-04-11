@@ -12,8 +12,8 @@
     <string name="txtBotonRitmos">Ritmos</string>
 
 
-    <string name="cambiosNv2AdNotas">- Ya no podras reproducir las opciones \n\n - Ahora contarás con las referencias de Do y La \n\n
-                 - Desbloqueadas la 2º y 3º octava\n</string>
+    <string name="cambiosNv2AdNotas"> Ya no podras reproducir las opciones \n\n  Ahora contarás con las referencias de Do y La \n\n
+                  Desbloqueadas la 2º y 3º octava\n</string>
     <string name="cambiosNv3AdNotas">Ritmos</string>
     <string name="cambiosNv4AdNotas">Ritmos</string>
     <string name="cambiosNv5AdNotas">Ritmos</string>

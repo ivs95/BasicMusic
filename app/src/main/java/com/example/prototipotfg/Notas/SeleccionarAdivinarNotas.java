@@ -105,7 +105,10 @@ public class SeleccionarAdivinarNotas extends Activity {
             botonesNotas.add(button);
         }
 
-        mostrarPopupNuevoNivel(findViewById(android.R.id.content).getRootView());
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Notas.toString(),findViewById(android.R.id.content).getRootView());
     }
 
     private void adaptaVista(Dificultad dificultad) {
@@ -236,60 +239,5 @@ public class SeleccionarAdivinarNotas extends Activity {
         findViewById(R.id.botonNota).setEnabled(false);         findViewById(R.id.botonNota).setAlpha(.5f);
 
     }
-
-    public void mostrarPopupNuevoNivel(View view){
-        LayoutInflater inflater = (LayoutInflater)
-                getSystemService(LAYOUT_INFLATER_SERVICE);
-
-        View popupView = inflater.inflate(R.layout.popup_nuevo_nivel_cambios, null);
-        final View popupView2 = inflater.inflate(R.layout.popup_nuevo_nivel_cambios2, null);
-
-        TextView cambios = (TextView) popupView2.findViewById(R.id.cambios_nivel_text);
-        cambios.setText(ModoJuego.Adivinar_Notas.getTextDadoNivel(Controlador.getInstance().getNivel()));
-
-        TextView nivel_text = (TextView)popupView.findViewById(R.id.nivel_text_popup);
-        nivel_text.setText(String.valueOf(Controlador.getInstance().getNivel()));
-
-
-
-        final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,true);
-        final PopupWindow popupWindow2 = new PopupWindow(popupView2, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,true);
-
-
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
-
-        findViewById(R.id.id_adivinar_notas).post(new Runnable() {
-            public void run() {
-                popupWindow.showAtLocation(findViewById(R.id.id_adivinar_notas), Gravity.CENTER, 0, 0);
-            }
-        });
-
-       // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-        // dismiss the popup window when touched
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow2.showAtLocation(findViewById(R.id.id_adivinar_notas), Gravity.CENTER, 0, 0);
-                //popupWindow.dismiss();
-                return true;
-            }
-        });
-
-        popupView2.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow2.dismiss();
-                popupWindow.dismiss();
-                return true;
-            }
-        });
-
-
-
-    }
-
-
 
 }
