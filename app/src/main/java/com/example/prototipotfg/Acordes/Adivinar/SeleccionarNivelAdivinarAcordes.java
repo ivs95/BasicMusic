@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.prototipotfg.Acordes.TutorialAdivinarAcordes;
+import com.example.prototipotfg.BBDD.Puntuacion;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Notas.TutorialNotas;
 import com.example.prototipotfg.R;
@@ -43,7 +44,6 @@ public class SeleccionarNivelAdivinarAcordes extends Activity {
             }
         });
         llBotonera.addView(tutorial);
-
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.getNombre()).getNivel();
 
         //Creamos los botones en bucle
@@ -62,11 +62,6 @@ public class SeleccionarNivelAdivinarAcordes extends Activity {
                         nivel_seleccionado(v);
                 }
             });
-
-            if (nivelActual == i){
-                button.setError("fdfdfd");
-            }
-
             //Añadimos el botón a la botonera
             llBotonera.addView(button);
 
