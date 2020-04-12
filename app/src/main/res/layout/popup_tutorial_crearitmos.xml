@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="5dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        app:cardBackgroundColor="@color/md_blue_50">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/popup_crearitmos_tituloCrearRitmo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nivel "
+                android:textAlignment="center"
+                android:textColor="@color/md_blue_900"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.05" />
+
+
+            <LinearLayout
+                android:id="@+id/popup_crearitmos_linearOpcionesReproducir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popup_crearitmos_tituloCrearRitmo">
+                <Button
+                    android:id="@+id/popup_crearitmos_botonPlayRitmo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Reproducir ritmo a imitar"/>
+
+                <Button
+                    android:id="@+id/popup_crearitmos_botonStopRitmo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Detener ritmo"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/popup_crearitmos_mensaje1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¡Bienvenido a imitar ritmo!\n\nEstos botones reproducen y paran el ritmo del nivel"
+                android:textAlignment="center"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popup_crearitmos_linearOpcionesReproducir"
+                android:layout_marginTop="10dp" />
+
+            <LinearLayout
+                android:id="@+id/popup_crearitmos_linearRitmo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.31">
+
+                <Button
+                    android:id="@+id/popup_crearitmos_button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/md_purple_800"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+                <Button
+                    android:id="@+id/popup_crearitmos_button16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/popup_crearitmos_mensaje2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Esta es la barra de tiempo de Imitar Ritmos.\n\n Usala como apoyo a la hora de imitar el ritmo del nivel.\n El cuadrado morado es el instante de tiempo dónde te encuentras."
+                android:textAlignment="center"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popup_crearitmos_linearRitmo"
+                android:layout_marginTop="10dp" />
+
+            <LinearLayout
+                android:id="@+id/popup_crearitmos_linearLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/popup_crearitmos_linearOpcionesComprobar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popup_crearitmos_linearRitmo">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:visibility="visible"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/popup_crearitmos_botonPalmada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Palmada"/>
+
+                    <Button
+                        android:id="@+id/popup_crearitmos_botonCaja"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Caja"
+                        android:visibility="visible"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:visibility="visible"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/popup_crearitmos_botonTambor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Tambor"
+                        android:visibility="visible" />
+
+                    <Button
+                        android:id="@+id/popup_crearitmos_botonPlatillo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Platillo"
+                        android:visibility="visible"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/popup_crearitmos_mensaje3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estos botones introducen el instrumento indicado en instante de tiempo marcado por la linea de tiempo"
+                android:textAlignment="center"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popup_crearitmos_linearLayout6"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/popup_crearitmos_mensaje4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Y por último estos botones de aquí abajo, reproducen y borran el ritmo que has creado hasta ahora.\nCuando creas que el ritmo del nivel y tu propio ritmo son iguales pulsa Comprobar Respuesta"
+                android:textAlignment="center"
+                android:textColor="@color/md_blue_900"
+                android:textSize="15sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/popup_crearitmos_linearOpcionesComprobar"
+                android:layout_marginTop="10dp" />
+
+            <LinearLayout
+                android:id="@+id/popup_crearitmos_linearOpcionesComprobar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.95">
+                <Button
+                    android:id="@+id/popup_crearitmos_botonPlayRitmoPropio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Reproducir ritmo"></Button>
+
+                <Button
+                    android:id="@+id/popup_crearitmos_botonResetRitmo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Borrar ritmo"></Button>
+
+
+                <Button
+                    android:id="@+id/popup_crearitmos_botonCompararRitmos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Comprobar respuesta" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/popup_crearitmos_prev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="prev"
+                android:text="Anterior"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/popup_crearitmos_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="next"
+                android:text="Siguiente"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
+
+
