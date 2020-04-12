@@ -774,7 +774,6 @@ public class HallaRitmos extends Activity {
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
 
-        TextView pagina = (TextView)popupView.findViewById(R.id.pagina_tutorialHallarRitmos_id);  pagina.setText("1/3");
 
         findViewById(R.id.id_hallaritmos).post(new Runnable() {
             public void run() {
@@ -799,17 +798,17 @@ public class HallaRitmos extends Activity {
     }
 
     public void actualizaPopUp(View view){
+        Button button = view.findViewById(R.id.popup_hallaritmos_next);
         if(tutorial == 1){
             view.findViewById(R.id.popup_hallaritmos_layoutbotonesRitmo).setVisibility(View.INVISIBLE);
             view.findViewById(R.id.popup_hallaritmos_layoutleyenda).setVisibility(View.INVISIBLE);
             view.findViewById(R.id.popup_hallaritmos_mensaje3).setVisibility(View.INVISIBLE);
 
             view.findViewById(R.id.popup_hallaritmos_layoutbotones).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.popup_hallaritmos_prev).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_hallaritmos_prev).setVisibility(View.GONE);
             view.findViewById(R.id.popup_hallaritmos_mensaje2).setVisibility(View.VISIBLE);
         }
         else if(tutorial == 2){
-            TextView pagina = (TextView)popupView.findViewById(R.id.pagina_tutorialHallarRitmos_id);  pagina.setText("2/3");
 
             view.findViewById(R.id.popup_hallaritmos_prev).setVisibility(View.VISIBLE);
             view.findViewById(R.id.popup_hallaritmos_mensaje2).setVisibility(View.INVISIBLE);
@@ -820,15 +819,18 @@ public class HallaRitmos extends Activity {
             view.findViewById(R.id.popup_hallaritmos_mensaje3).setVisibility(View.VISIBLE);
             view.findViewById(R.id.popup_hallaritmos_layoutbotonesRitmo).setVisibility(View.VISIBLE);
             view.findViewById(R.id.popup_hallaritmos_layoutleyenda).setVisibility(View.VISIBLE);
+
+            button.setText("Siguiente");
         }
         else if(tutorial == 3){
-            TextView pagina = (TextView)popupView.findViewById(R.id.pagina_tutorialHallarRitmos_id);  pagina.setText("3/3");
 
             view.findViewById(R.id.popup_hallaritmos_mensaje3).setVisibility(View.INVISIBLE);
 
             view.findViewById(R.id.popup_hallaritmos_mensaje4).setVisibility(View.VISIBLE);
             view.findViewById(R.id.popup_hallaritmos_mensaje5).setVisibility(View.VISIBLE);
             view.findViewById(R.id.popup_hallaritmos_comprueba).setVisibility(View.VISIBLE);
+
+            button.setText("Cerrar");
         }
         else if(tutorial == 4){
             popupWindow.dismiss();

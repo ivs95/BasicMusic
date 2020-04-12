@@ -510,7 +510,6 @@ public class CrearRitmos extends Activity {
             view.findViewById(R.id.popup_crearitmos_linearRitmo).setVisibility(View.VISIBLE);
             view.findViewById(R.id.popup_crearitmos_prev).setVisibility(View.VISIBLE);
 
-            button.setText("Siguiente");
         }
         else if(tutorial == 3){
             view.findViewById(R.id.popup_crearitmos_mensaje4).setVisibility(View.INVISIBLE);
@@ -519,6 +518,8 @@ public class CrearRitmos extends Activity {
 
             view.findViewById(R.id.popup_crearitmos_mensaje3).setVisibility(View.VISIBLE);
             view.findViewById(R.id.popup_crearitmos_linearLayout6).setVisibility(View.VISIBLE);
+
+            button.setText("Siguiente");
         }
         else if(tutorial == 4){
             view.findViewById(R.id.popup_crearitmos_mensaje3).setVisibility(View.INVISIBLE);

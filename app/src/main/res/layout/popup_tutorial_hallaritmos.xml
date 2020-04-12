@@ -34,6 +34,7 @@
                 android:textColor="@color/md_blue_900"
                 android:textSize="18sp"
                 android:visibility="invisible"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,13 +45,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="¿Como se juega a Dibuja ritmos?\n\nEl ritmo consiste en un solo compás 4/4
-                \nCada hilera de botones representa el sonido de un instrumento.
-                \nCada botón representa una semicorchea dentro de ese compás.
-                \nMarca los botones correspondientes a cada golpe de percusión de cada instrumento"
+                android:text="¿Como se juega a Dibuja ritmos?\nEl ritmo consiste en un solo compás 4/4\nCada hilera de botones representa el sonido de un instrumento.\nCada botón representa una semicorchea dentro de ese compás.\nMarca los botones correspondientes a cada golpe de percusión de cada instrumento"
                 android:textColor="@color/md_blue_900"
                 android:textSize="18sp"
                 android:visibility="invisible"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -653,7 +652,7 @@
                 android:layout_marginBottom="1dp"
                 android:onClick="prev"
                 android:text="Anterior"
-                android:visibility="invisible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -686,10 +685,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="\n
-                \n Play: Reproduce el ritmo del nivel
-                \n\n Pausa: Pausa el ritmo del nivel
-                \n\n Stop: Para el ritmo del nivel"
+                android:text="\n ¡Bienvenida a Dibuja Ritmos!\n\nPlay: Reproduce el ritmo del nivel\n\nPausa: Pausa el ritmo del nivel\n\nStop: Para el ritmo del nivel"
+                android:textAlignment="center"
                 android:textColor="@color/md_blue_900"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
