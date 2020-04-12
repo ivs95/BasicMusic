@@ -1,30 +1,16 @@
 /*
 
 Información al usuario
-  - Indicar cuantos puntos quedan y con cuantos se desbloquea el siguiente nivel
   - Indicar cuantos puntos ha ganado/perdido al comprobar nivel
+  - Popups informando sistema de rangos y como varía la puntuación la 1º vez que entra en la app.
 
 Nuevos niveles:
   - Popup  con cambios entre niveles (ernesto)
-  - Funcion BBDD llega por primera vez al nivel (vitores). HECHO
 
-Boton tutorial en cada modo
- - Crear/adivinar intervalo: nombrar los intervalos y su diferencia. Que suenen sobre un LA4 (vitores) HECHO
- - Notas: botones con las notas y sonido. Desplegable para seleccionar octava (vitores) HECHO
-
- - Adivinar acordes: botones con acordes. Desplegables para seleccionar octava y nota HECHO
- - Crear acordes: notas para formar acordes sobre una. Desplegable para seleccionar la nota sobre la que se forman los acordes.
 
 Adivinar intervalo: ventana de notas hasta nivel 4. Boton referencia añadir nombre nota.
 Crear intervalo: diferencia entre intervalos en la etiqueta del nombre hasta nivel 2
+Funcion BBDD para ver que es la 1º vez que un usuario llega a un modo.
+Indicar cuantos puntos quedan / con cuantos se desbloquea el siguiente nivel
 
-Adivinar nota
- - Niveles 2 y 3 poner segunda referencia DO (verdu) HECHO
 
-Adivinar acorde
- - Desde nivel 3 quitar boton info (verdu) HECHO
-
-Crear acorde
- - Nivel 6 quitar la info (verdu) HECHO
-
-Cambiar sonidos metronomo (verdu) HECHO
