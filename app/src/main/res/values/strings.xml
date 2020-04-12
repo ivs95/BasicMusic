@@ -43,10 +43,13 @@
     <string name="cambiosNv8CrearIntervalos">Desbloqueados los intervalos con amplitud &lt;b>DOCE&lt;/b> &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>SEIS&lt;/b> opciones</string>
 
 
-    <string name="cambiosNv2AdAcordes">Ritmos</string>
-    <string name="cambiosNv3AdAcordes">Ritmos</string>
-    <string name="cambiosNv4AdAcordes">Ritmos</string>
-    <string name="cambiosNv5AdAcordes">Ritmos</string>
+    <string name="cambiosNv2AdAcordes">Ya no podrás reproducir las opciones &lt;br /&gt; &lt;br /&gt; Desbloqueados los &lt;b>ACORDES DISMINUIDOS&lt;/b> y &lt;b>AUMENTADOS&lt;/b>
+        &lt;br /&gt; &lt;br /&gt; Desbloqueada la &lt;b>3º&lt;b> octava &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>TRES&lt;/b> opciones</string>
+    <string name="cambiosNv3AdAcordes">Desbloqueados los &lt;b> ACORDES MAYORES CON SÉPTIMA MAYOR Y MENOR&lt;/b>
+        &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>2º&lt;/b> octava</string>
+    <string name="cambiosNv4AdAcordes">Desbloqueados los &lt;b>ACORDES MENORES CON SÉPTIMA MAYOR Y MENOR&lt;/b> &lt;br /&gt; &lt;br /&gt;
+        Desbloqueada la &lt;b>6º&lt;/b> octava &lt;br /&gt; &lt;br /&gt; Ahora elegirás entre &lt;b>CUATRO&lt;/b> opciones</string>
+    <string name="cambiosNv5AdAcordes">Desbloqueados los &lt;b>ACORDES DISMINUIDOS CON SÉPTIMA MAYOR Y MENOR&lt;/b></string>
     <string name="cambiosNv6AdAcordes">Ritmos</string>
 
 

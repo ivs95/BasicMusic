@@ -32,7 +32,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Cuando creas que has dibujado bien el ritmo pulsa este botón"
                 android:textColor="@color/md_blue_900"
-                android:textSize="15sp"
+                android:textSize="18sp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="¿Como se juega a Dibuja ritmos?\n\nEl ritmo consiste en un compás 4/4
+                android:text="¿Como se juega a Dibuja ritmos?\n\nEl ritmo consiste en un solo compás 4/4
                 \nCada hilera de botones representa el sonido de un instrumento.
                 \nCada botón representa una semicorchea dentro de ese compás.
                 \nMarca los botones correspondientes a cada golpe de percusión de cada instrumento"
