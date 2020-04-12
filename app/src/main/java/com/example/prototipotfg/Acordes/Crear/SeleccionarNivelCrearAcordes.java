@@ -22,7 +22,7 @@ public class SeleccionarNivelCrearAcordes extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
-        GestorBBDD.getInstance().visitaModo(ModoJuego.Crear_Acordes);
+        boolean primeraVez = getIntent().getExtras().getBoolean("visitado");
 
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
         TextView rango = findViewById(R.id.rango_niveles);

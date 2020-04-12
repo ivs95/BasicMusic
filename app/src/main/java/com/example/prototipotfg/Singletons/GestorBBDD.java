@@ -533,16 +533,14 @@ public class GestorBBDD {
         return appDatabase.daoUsuario().findUsuario(correo) != null;
     }
 
-    public void visitaModo(ModoJuego modo){
-        Puntuacion p = appDatabase.daoPuntuacion().findPuntuacion(getUsuarioLoggeado().getCorreo(), modo.toString());
-        if (!p.isIniciado()) {
-            p.setIniciado(true);
-            appDatabase.daoPuntuacion().updatePuntuacion(p);
-        }
-    }
-
     public boolean esPrimeraVezModo(ModoJuego modo){
         Puntuacion p = appDatabase.daoPuntuacion().findPuntuacion(getUsuarioLoggeado().getCorreo(), modo.toString());
-        return (!p.isIniciado());
+        if (p.isIniciado())
+            return false;
+        p.setIniciado(true);
+        appDatabase.daoPuntuacion().updatePuntuacion(p);
+        return true;
     }
+
+
 }

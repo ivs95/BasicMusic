@@ -61,6 +61,7 @@ public class SeleccionModoAdivinar extends Activity {
 
     private void seleccionarDificultadNotas() {
         Intent i = new Intent(this, SeleccionarNivelAdivinarNotas.class);
+        i.putExtra("visitado", GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Adivinar_Notas));
         startActivity(i);
     }
 

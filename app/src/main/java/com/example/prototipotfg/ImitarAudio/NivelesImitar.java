@@ -31,6 +31,8 @@ public class NivelesImitar extends Activity {
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        boolean primeraVez = getIntent().getExtras().getBoolean("visitado");
+
         //Creamos los botones en bucle
         for (int i = 0; i < Dificultad.values().length; i++){
             Button button = new Button(this);

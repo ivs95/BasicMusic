@@ -29,7 +29,7 @@ public class SeleccionNivelCrearIntervalo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
-        GestorBBDD.getInstance().visitaModo(ModoJuego.Crear_Intervalo);
+        boolean primeraVez = getIntent().getExtras().getBoolean("visitado");
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);

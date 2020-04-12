@@ -32,12 +32,15 @@ public class SeleccionarModoAcordes extends Activity {
             case R.id.buttonAcordesModo1:
                 Intent i = new Intent(this, SeleccionarNivelAdivinarAcordes.class);
                 Controlador.getInstance().setModo_juego(ModoJuego.Adivinar_Acordes);
+                i.putExtra("visitado", GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Adivinar_Acordes));
+
                 startActivity(i);
                 break;
 
             case R.id.buttonAcordesModo2:
                 i = new Intent(this, SeleccionarNivelCrearAcordes.class);
                 Controlador.getInstance().setModo_juego(ModoJuego.Crear_Acordes);
+                i.putExtra("visitado", GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Crear_Acordes));
                 startActivity(i);
                 break;
 

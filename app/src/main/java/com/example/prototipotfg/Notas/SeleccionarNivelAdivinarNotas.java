@@ -29,15 +29,14 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
     private PopupWindow popupWindow;
     private View popupView;
     private int tutorial = 1;
-
     private int puntuacion;
     Bundle savedInstanceState;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
-        GestorBBDD.getInstance().visitaModo(ModoJuego.Adivinar_Notas);
 
+        boolean primeraVez = getIntent().getExtras().getBoolean("visitado");
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
 
         TextView rango = findViewById(R.id.rango_niveles);
@@ -86,7 +85,9 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
                 button.setAlpha(.5f);
             }
         }
-        mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
+        if (primeraVez) {
+            mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
+        }
     }
 
     private void tutorial_notas(View v) {
@@ -109,28 +110,28 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
     }
 
     public void mostrarPopupTutorial(View view){
-        LayoutInflater inflater = (LayoutInflater)
-                getSystemService(LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
 
-        popupView = inflater.inflate(R.layout.popup_tutorial_adivinarnotas, null);
+            popupView = inflater.inflate(R.layout.popup_tutorial_adivinarnotas, null);
 
-        // create the popup window
-        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
-        popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,true);
+            // create the popup window
+            //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+            popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
 
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
+            // show the popup window
+            // which view you pass in doesn't matter, it is only used for the window tolken
 
 
-        findViewById(R.id.id_niveles).post(new Runnable() {
-            public void run() {
-                popupWindow.showAtLocation(findViewById(R.id.id_niveles), Gravity.CENTER, 0, 0);
-            }
-        });
+            findViewById(R.id.id_niveles).post(new Runnable() {
+                public void run() {
+                    popupWindow.showAtLocation(findViewById(R.id.id_niveles), Gravity.CENTER, 0, 0);
+                }
+            });
 
-        // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+            // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-        // dismiss the popup window when touched
+            // dismiss the popup window when touched
 
     }
 

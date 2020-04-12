@@ -31,7 +31,7 @@ public class NivelesHallarRitmos extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
-        GestorBBDD.getInstance().visitaModo(ModoJuego.Halla_Ritmo);
+        boolean primeraVez = getIntent().getExtras().getBoolean("visitado");
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
