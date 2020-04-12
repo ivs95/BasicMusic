@@ -85,6 +85,9 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
         TextView peticion = (TextView)findViewById(R.id.Id_intervalo);
         peticion.setText(peticion.getText() + intervalo_nombre);
+        if (Controlador.getInstance().getNivel() == 1){
+            peticion.setText(peticion.getText().toString() + " (" + intervalo_dif + " semitonos)");
+        }
 
         if(Controlador.getInstance().getDificultad().equals(Dificultad.Dificil))
             this.adaptaVistaDificil();

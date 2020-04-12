@@ -62,6 +62,11 @@ public class SeleccionarNivelAdivinarAcordes extends Activity {
                         nivel_seleccionado(v);
                 }
             });
+
+            if (nivelActual == i){
+                button.setError("fdfdfd");
+            }
+
             //Añadimos el botón a la botonera
             llBotonera.addView(button);
 
@@ -69,6 +74,7 @@ public class SeleccionarNivelAdivinarAcordes extends Activity {
                 button.setEnabled(false);
                 button.setAlpha(.5f);
             }
+
         }
 
     }
