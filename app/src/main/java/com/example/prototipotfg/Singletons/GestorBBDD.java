@@ -128,7 +128,7 @@ public class GestorBBDD {
 
     private void inicializaPuntuacionUsuario(Usuario user) {
         for (int i = 0; i < ModoJuego.values().length; i++) {
-                Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), 1, user.getCorreo(), 0, RangosPuntuaciones.Principiante.toString());
+                Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), 1, user.getCorreo(), 0, RangosPuntuaciones.Principiante.toString(), false);
                 appDatabase.daoPuntuacion().insertPuntuacion(p);
         }
 
@@ -513,7 +513,7 @@ public class GestorBBDD {
             Usuario usuario = new Usuario("usuario@prueba.com", "prueba", "1234", false);
             appDatabase.daoUsuario().insertUsuario(usuario);
             for (int i = 0; i < ModoJuego.values().length; i++) {
-                Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), ModoJuego.values()[i].getMax_level(), usuario.getCorreo(), 400, RangosPuntuaciones.Leyenda.toString());
+                Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), ModoJuego.values()[i].getMax_level(), usuario.getCorreo(), 400, RangosPuntuaciones.Leyenda.toString(), true);
                 appDatabase.daoPuntuacion().insertPuntuacion(p);
             }
         }
@@ -531,5 +531,18 @@ public class GestorBBDD {
 
     public boolean existeUsuario(String correo) {
         return appDatabase.daoUsuario().findUsuario(correo) != null;
+    }
+
+    public void visitaModo(ModoJuego modo){
+        Puntuacion p = appDatabase.daoPuntuacion().findPuntuacion(getUsuarioLoggeado().getCorreo(), modo.toString());
+        if (!p.isIniciado()) {
+            p.setIniciado(true);
+            appDatabase.daoPuntuacion().updatePuntuacion(p);
+        }
+    }
+
+    public boolean esPrimeraVezModo(ModoJuego modo){
+        Puntuacion p = appDatabase.daoPuntuacion().findPuntuacion(getUsuarioLoggeado().getCorreo(), modo.toString());
+        return (!p.isIniciado());
     }
 }

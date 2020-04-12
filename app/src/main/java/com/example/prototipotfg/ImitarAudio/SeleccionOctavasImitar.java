@@ -9,9 +9,11 @@ import android.widget.LinearLayout;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosVocales;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,7 @@ public class SeleccionOctavasImitar extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
+        GestorBBDD.getInstance().visitaModo(ModoJuego.Imitar_Audio);
 
           LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
                  //Creamos las propiedades de layout que tendrán los botones.

@@ -16,13 +16,15 @@ public class Puntuacion {
     private String correoUsuario;
     private int puntuacionTotal;
     private String rango;
+    private boolean iniciado;
 
-    public Puntuacion(@NonNull String modoJuego, int nivel, @NonNull String correoUsuario, int puntuacionTotal, String rango) {
+    public Puntuacion(@NonNull String modoJuego, int nivel, @NonNull String correoUsuario, int puntuacionTotal, String rango, boolean iniciado) {
         this.modoJuego = modoJuego;
         this.nivel = nivel;
         this.correoUsuario = correoUsuario;
         this.puntuacionTotal = puntuacionTotal;
         this.rango = rango;
+        this.iniciado = iniciado;
     }
 
     public String getModoJuego(){return this.modoJuego;}
@@ -59,5 +61,13 @@ public class Puntuacion {
         else this.nivel = 10;
 
         this.rango = RangosPuntuaciones.actualizaRango(this.modoJuego, this.puntuacionTotal).toString();
+    }
+
+    public boolean isIniciado() {
+        return iniciado;
+    }
+
+    public void setIniciado(boolean iniciado) {
+        this.iniciado = iniciado;
     }
 }

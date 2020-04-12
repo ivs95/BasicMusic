@@ -29,6 +29,7 @@ public class NivelesAdivinarIntervalos extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
+        GestorBBDD.getInstance().visitaModo(ModoJuego.Adivinar_Intervalo);
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);

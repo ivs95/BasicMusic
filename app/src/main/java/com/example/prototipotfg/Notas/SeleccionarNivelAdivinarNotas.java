@@ -36,6 +36,7 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
+        GestorBBDD.getInstance().visitaModo(ModoJuego.Adivinar_Notas);
 
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
 
