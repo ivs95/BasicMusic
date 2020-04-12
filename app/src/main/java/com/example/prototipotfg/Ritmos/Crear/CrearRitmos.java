@@ -259,8 +259,9 @@ public class CrearRitmos extends Activity {
         setContentView(R.layout.crearritmos);
 
         nivel = getIntent().getExtras().getInt("nivel");
+        Controlador.getInstance().setNivel(nivel);
         if (nivel % 2 == 1){
-            pausa = 750;
+            pausa = 725;
         }
         else
             pausa = 500;

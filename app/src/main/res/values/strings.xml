@@ -64,20 +64,20 @@
         Ahora elegirás entre &lt;b>OCHO&lt;/b> opciones</string>
 
 
-    <string name="cambiosNv2HallaRitmos">Ritmos</string>
-    <string name="cambiosNv3HallaRitmos">Ritmos</string>
-    <string name="cambiosNv4HallaRitmos">Ritmos</string>
-    <string name="cambiosNv5HallaRitmos">Ritmos</string>
-    <string name="cambiosNv6HallaRitmos">Ritmos</string>
-    <string name="cambiosNv7HallaRitmos">Ritmos</string>
-    <string name="cambiosNv8HallaRitmos">Ritmos</string>
+    <string name="cambiosNv2HallaRitmos">Aumenta la velocidad del ritmo</string>
+    <string name="cambiosNv3HallaRitmos">Desbloqueada la &lt;b>CAJA&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
+    <string name="cambiosNv4HallaRitmos">Aumenta la velocidad del ritmo</string>
+    <string name="cambiosNv5HallaRitmos">Desbloqueada la &lt;b>TAMBOR&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
+    <string name="cambiosNv6HallaRitmos">Aumenta la velocidad del ritmo</string>
+    <string name="cambiosNv7HallaRitmos">Desbloqueada los &lt;b>PLATILLOS&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
+    <string name="cambiosNv8HallaRitmos">Aumenta la velocidad del ritmo</string>
 
-    <string name="cambiosNv2RealizaRitmos">Ritmos</string>
-    <string name="cambiosNv3RealizaRitmos">Ritmos</string>
-    <string name="cambiosNv4RealizaRitmos">Ritmos</string>
-    <string name="cambiosNv5RealizaRitmos">Ritmos</string>
-    <string name="cambiosNv6RealizaRitmos">Ritmos</string>
-    <string name="cambiosNv7RealizaRitmos">Ritmos</string>
-    <string name="cambiosNv8RealizaRitmos">Ritmos</string>
+    <string name="cambiosNv2RealizaRitmos">Aumenta la velocidad del ritmo</string>
+    <string name="cambiosNv3RealizaRitmos">Desbloqueada la &lt;b>CAJA&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
+    <string name="cambiosNv4RealizaRitmos">Aumenta la velocidad del ritmo</string>
+    <string name="cambiosNv5RealizaRitmos">Desbloqueada la &lt;b>TAMBOR&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
+    <string name="cambiosNv6RealizaRitmos">Aumenta la velocidad del ritmo</string>
+    <string name="cambiosNv7RealizaRitmos">Desbloqueada los &lt;b>PLATILLOS&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
+    <string name="cambiosNv8RealizaRitmos">Aumenta la velocidad del ritmo</string>
 
 </resources>

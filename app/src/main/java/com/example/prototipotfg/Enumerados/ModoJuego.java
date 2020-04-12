@@ -96,7 +96,7 @@ public enum ModoJuego {
                 texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6CrearAcordes))); break;
 
             }
-            case "Halla_Ritmos":{
+            case "Halla_Ritmo":{
                 texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2HallaRitmos)));
                 texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3HallaRitmos)));
                 texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4HallaRitmos)));
@@ -106,7 +106,7 @@ public enum ModoJuego {
                 texto.put(8, Html.fromHtml(context.getString(R.string.cambiosNv8HallaRitmos)));break;
 
             }
-            case "Realiza_Ritmos":{
+            case "Realiza_Ritmo":{
                 texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2RealizaRitmos)));
                 texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3RealizaRitmos)));
                 texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4RealizaRitmos)));

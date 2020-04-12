@@ -173,6 +173,7 @@ public class HallaRitmos extends Activity {
 
 
         nivel = getIntent().getExtras().getInt("nivel");
+        Controlador.getInstance().setNivel(nivel);
         ritmos1 = getIntent().getExtras().getIntegerArrayList("ritmos1");
         ritmos2 = getIntent().getExtras().getIntegerArrayList("ritmos2");
         ritmos3 = getIntent().getExtras().getIntegerArrayList("ritmos3");
@@ -181,8 +182,10 @@ public class HallaRitmos extends Activity {
             pausa = 325;
         }
         else{
-            pausa = 650;
+            pausa = 575;
         }
+
+        if(nivel == 8) pausa = 275;
 
         TextView titulo = (TextView)findViewById(R.id.tituloHallaRitmo);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
@@ -627,6 +630,10 @@ public class HallaRitmos extends Activity {
             }
         }
         mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Halla_Ritmo,findViewById(android.R.id.content).getRootView());
     }
 
 
