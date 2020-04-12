@@ -21,7 +21,7 @@
     <string name="cambiosNv7AdNotas">Ahora elegirás entre &lt;b>CINCO&lt;/b> opciones</string>
     <string name="cambiosNv8AdNotas">Desbloqueada la &lt;b>7º&lt;/b> octava</string>
     <string name="cambiosNv9AdNotas">Ahora elegirás entre &lt;b>SEIS&lt;/b> opciones</string>
-    <string name="cambiosNv10AdNotas">Ya no contarás con la referencia &lt;b>LA&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueda la &lt;b>1º&lt;/b> octava</string>
+    <string name="cambiosNv10AdNotas">Ahora elegirás entre &lt;b>SIETE&lt;/b> opciones &lt;br /&gt;  &lt;br /&gt;Ya no contarás con la referencia &lt;b>LA&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueda la &lt;b>1º&lt;/b> octava</string>
 
 
     <string name="cambiosNv2AdIntervalos">Desbloqueados los intervalos con amplitud &lt;b>CINCO&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueadas la &lt;b>3º&lt;/b> y &lt;b>6º&lt;/b> octavas &lt;br /&gt; &lt;br /&gt;
@@ -49,15 +49,19 @@
         &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>2º&lt;/b> octava</string>
     <string name="cambiosNv4AdAcordes">Desbloqueados los &lt;b>ACORDES MENORES CON SÉPTIMA MAYOR Y MENOR&lt;/b> &lt;br /&gt; &lt;br /&gt;
         Desbloqueada la &lt;b>6º&lt;/b> octava &lt;br /&gt; &lt;br /&gt; Ahora elegirás entre &lt;b>CUATRO&lt;/b> opciones</string>
-    <string name="cambiosNv5AdAcordes">Desbloqueados los &lt;b>ACORDES DISMINUIDOS CON SÉPTIMA MAYOR Y MENOR&lt;/b></string>
-    <string name="cambiosNv6AdAcordes">Ritmos</string>
+    <string name="cambiosNv5AdAcordes">Desbloqueados el &lt;b>ACORDE DISMINUIDO CON SÉPTIMA MENOR&lt;/b> y &lt;b>ACORDE DE SÉPTIMA CON SÉPTIMA DISMINUIDA&lt;/b></string>
+    <string name="cambiosNv6AdAcordes">Desbloqueada la &lt;b>1º&lt;/b> octava &lt;br /&gt; &lt;br /&gt; Ahora elegirás entre &lt;b>CINCO&lt;/b> opciones</string>
 
 
-    <string name="cambiosNv2CrearAcordes">Ritmos</string>
-    <string name="cambiosNv3CrearAcordes">Ritmos</string>
-    <string name="cambiosNv4CrearAcordes">Ritmos</string>
-    <string name="cambiosNv5CrearAcordes">Ritmos</string>
-    <string name="cambiosNv6CrearAcordes">Ritmos</string>
+    <string name="cambiosNv2CrearAcordes">Ya no podrás reproducir las opciones &lt;br /&gt; &lt;br /&gt; Desbloqueados los &lt;b>ACORDES DISMINUIDOS&lt;/b> y &lt;b>AUMENTADOS&lt;/b>
+        &lt;br /&gt; &lt;br /&gt; Desbloqueada la &lt;b>3º&lt;b> octava &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>SEIS&lt;/b> opciones</string>
+    <string name="cambiosNv3CrearAcordes">Desbloqueados los &lt;b> ACORDES MAYORES CON SÉPTIMA MAYOR Y MENOR&lt;/b>
+        &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>2º&lt;/b> octava</string>
+    <string name="cambiosNv4CrearAcordes">Desbloqueados los &lt;b>ACORDES MENORES CON SÉPTIMA MAYOR Y MENOR&lt;/b> &lt;br /&gt; &lt;br /&gt;
+        Desbloqueada la &lt;b>6º&lt;/b> octava &lt;br /&gt; &lt;br /&gt; Ahora elegirás entre &lt;b>SIETE&lt;/b> opciones</string>
+    <string name="cambiosNv5CrearAcordes">Desbloqueados el &lt;b>ACORDE DISMINUIDO CON SÉPTIMA MENOR&lt;/b> y &lt;b>ACORDE DE SÉPTIMA CON SÉPTIMA DISMINUIDA&lt;/b></string>
+    <string name="cambiosNv6CrearAcordes">Ya no contarás con el nombre de la nota de inicio del acorde &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>1º&lt;/b> octava &lt;br /&gt; &lt;br /&gt;
+        Ahora elegirás entre &lt;b>OCHO&lt;/b> opciones</string>
 
 
     <string name="cambiosNv2HallaRitmos">Ritmos</string>
@@ -75,7 +79,5 @@
     <string name="cambiosNv6RealizaRitmos">Ritmos</string>
     <string name="cambiosNv7RealizaRitmos">Ritmos</string>
     <string name="cambiosNv8RealizaRitmos">Ritmos</string>
-
-
 
 </resources>

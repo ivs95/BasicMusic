@@ -303,15 +303,15 @@ public final class Controlador {
             case 8:
                 this.num_opciones = 5;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
-                this.dificultad = Dificultad.Dificil;
+                this.dificultad = Dificultad.Medio;
                 break;
             case 9:
                 this.num_opciones = 6;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
-                this.dificultad = Dificultad.Dificil;
+                this.dificultad = Dificultad.Medio;
                 break;
             case 10:
-                this.num_opciones = 6;
+                this.num_opciones = 7;
                 setOctavas(new ArrayList<>(Arrays.asList(Octavas.Primera, Octavas.Segunda, Octavas.Tercera, Octavas.Cuarta, Octavas.Quinta, Octavas.Sexta, Octavas.Septima)));
                 this.dificultad = Dificultad.Dificil;
                 break;

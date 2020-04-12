@@ -79,7 +79,7 @@ public enum RangosPuntuaciones {
     public static RangosPuntuaciones getRangoPorNombre(String name){
         RangosPuntuaciones rango = null;
         for(int i = 0; i < RangosPuntuaciones.values().length; i++){
-            if(RangosPuntuaciones.values()[i].nombre.equals(name)) rango = RangosPuntuaciones.values()[i];
+            if(RangosPuntuaciones.values()[i].toString().equals(name)) rango = RangosPuntuaciones.values()[i];
 
         }
         return rango;
