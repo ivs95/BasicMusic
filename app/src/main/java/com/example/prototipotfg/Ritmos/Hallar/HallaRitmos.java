@@ -662,6 +662,7 @@ public class HallaRitmos extends Activity {
 
 
     public void stop(View view){
+        para(view);
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getRango()).ordinal();
 
         this.comprobado = true;
