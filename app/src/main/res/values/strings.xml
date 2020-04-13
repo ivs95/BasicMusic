@@ -53,31 +53,31 @@
     <string name="cambiosNv6AdAcordes">Desbloqueada la &lt;b>1º&lt;/b> octava &lt;br /&gt; &lt;br /&gt; Ahora elegirás entre &lt;b>CINCO&lt;/b> opciones</string>
 
 
-    <string name="cambiosNv2CrearAcordes">Ya no podrás reproducir las opciones &lt;br /&gt; &lt;br /&gt; Desbloqueados los &lt;b>ACORDES DISMINUIDOS&lt;/b> y &lt;b>AUMENTADOS&lt;/b>
+    <string name="cambiosNv2CrearAcordes">Desbloqueados los &lt;b>ACORDES DISMINUIDOS&lt;/b> y &lt;b>AUMENTADOS&lt;/b>
         &lt;br /&gt; &lt;br /&gt; Desbloqueada la &lt;b>3º&lt;b> octava &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>SEIS&lt;/b> opciones</string>
     <string name="cambiosNv3CrearAcordes">Desbloqueados los &lt;b> ACORDES MAYORES CON SÉPTIMA MAYOR Y MENOR&lt;/b>
         &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>2º&lt;/b> octava</string>
     <string name="cambiosNv4CrearAcordes">Desbloqueados los &lt;b>ACORDES MENORES CON SÉPTIMA MAYOR Y MENOR&lt;/b> &lt;br /&gt; &lt;br /&gt;
         Desbloqueada la &lt;b>6º&lt;/b> octava &lt;br /&gt; &lt;br /&gt; Ahora elegirás entre &lt;b>SIETE&lt;/b> opciones</string>
     <string name="cambiosNv5CrearAcordes">Desbloqueados el &lt;b>ACORDE DISMINUIDO CON SÉPTIMA MENOR&lt;/b> y &lt;b>ACORDE DE SÉPTIMA CON SÉPTIMA DISMINUIDA&lt;/b></string>
-    <string name="cambiosNv6CrearAcordes">Ya no contarás con el nombre de la nota de inicio del acorde &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>1º&lt;/b> octava &lt;br /&gt; &lt;br /&gt;
+    <string name="cambiosNv6CrearAcordes">Ya no podrás reproducir las opciones &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>1º&lt;/b> octava &lt;br /&gt; &lt;br /&gt;
         Ahora elegirás entre &lt;b>OCHO&lt;/b> opciones</string>
 
 
     <string name="cambiosNv2HallaRitmos">Aumenta la velocidad del ritmo</string>
     <string name="cambiosNv3HallaRitmos">Desbloqueada la &lt;b>CAJA&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
     <string name="cambiosNv4HallaRitmos">Aumenta la velocidad del ritmo</string>
-    <string name="cambiosNv5HallaRitmos">Desbloqueada la &lt;b>TAMBOR&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
+    <string name="cambiosNv5HallaRitmos">Desbloqueado el &lt;b>TAMBOR&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
     <string name="cambiosNv6HallaRitmos">Aumenta la velocidad del ritmo</string>
-    <string name="cambiosNv7HallaRitmos">Desbloqueada los &lt;b>PLATILLOS&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
-    <string name="cambiosNv8HallaRitmos">Aumenta la velocidad del ritmo</string>
+    <string name="cambiosNv7HallaRitmos">Desbloqueados los &lt;b>PLATILLOS&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
+    <string name="cambiosNv8HallaRitmos">Aumenta mucho la velocidad del ritmo</string>
 
     <string name="cambiosNv2RealizaRitmos">Aumenta la velocidad del ritmo</string>
     <string name="cambiosNv3RealizaRitmos">Desbloqueada la &lt;b>CAJA&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
     <string name="cambiosNv4RealizaRitmos">Aumenta la velocidad del ritmo</string>
-    <string name="cambiosNv5RealizaRitmos">Desbloqueada la &lt;b>TAMBOR&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
+    <string name="cambiosNv5RealizaRitmos">Desbloqueado el &lt;b>TAMBOR&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
     <string name="cambiosNv6RealizaRitmos">Aumenta la velocidad del ritmo</string>
-    <string name="cambiosNv7RealizaRitmos">Desbloqueada los &lt;b>PLATILLOS&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
-    <string name="cambiosNv8RealizaRitmos">Aumenta la velocidad del ritmo</string>
+    <string name="cambiosNv7RealizaRitmos">Desbloqueados los &lt;b>PLATILLOS&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
+    <string name="cambiosNv8RealizaRitmos">Aumenta mucho la velocidad del ritmo</string>
 
 </resources>

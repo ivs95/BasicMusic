@@ -182,7 +182,7 @@ public class HallaRitmos extends Activity {
             pausa = 325;
         }
         else{
-            pausa = 575;
+            pausa = 600;
         }
 
         if(nivel == 8) pausa = 275;
@@ -750,14 +750,14 @@ public class HallaRitmos extends Activity {
 
         }
         if(aciertos == 4){
-            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.getNombre()).getNivel())
+            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Halla_Ritmo.toString(), true);
-            nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.toString(), this.nivel,true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0 );
+            nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.getNombre(), this.nivel,true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0 );
         }
         else{
-            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.getNombre()).getNivel())
+            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Halla_Ritmo.toString(), false);
-            nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.toString(), this.nivel,false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1 );
+            nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.getNombre(), this.nivel,false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1 );
         }
         GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
         int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getRango()).ordinal();

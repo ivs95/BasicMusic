@@ -17,13 +17,13 @@ import com.example.prototipotfg.Singletons.Controlador;
 import java.util.HashMap;
 
 public enum ModoJuego {
-    Adivinar_Intervalo("Adivinar_Intervalo", 6, new HashMap<Integer, Spanned>()),
-    Adivinar_Notas("Adivinar_Notas", 10, new HashMap<Integer, Spanned>()),
-    Adivinar_Acordes("Adivinar_Acordes", 6, new HashMap<Integer, Spanned>()),
-    Crear_Intervalo("Crear_Intervalo", 8, new HashMap<Integer, Spanned>()),
-    Halla_Ritmo("Halla_Ritmo", 8, new HashMap<Integer, Spanned>()),
-    Realiza_Ritmo("Realiza_Ritmo", 8, new HashMap<Integer, Spanned>()),
-    Crear_Acordes("Crear_Acordes", 6, new HashMap<Integer, Spanned>()),
+    Adivinar_Intervalo("Adivinar Intervalos", 6, new HashMap<Integer, Spanned>()),
+    Adivinar_Notas("Adivinar Notas", 10, new HashMap<Integer, Spanned>()),
+    Adivinar_Acordes("Adivinar Acordes", 6, new HashMap<Integer, Spanned>()),
+    Crear_Intervalo("Crear Intervalos", 8, new HashMap<Integer, Spanned>()),
+    Halla_Ritmo("Dibujar Ritmo", 8, new HashMap<Integer, Spanned>()),
+    Realiza_Ritmo("Imitar Ritmo", 8, new HashMap<Integer, Spanned>()),
+    Crear_Acordes("Crear Acordes", 6, new HashMap<Integer, Spanned>()),
     Imitar_Audio("Imitar_Audio", 3, new HashMap<Integer, Spanned>());
 
     private String nombre;

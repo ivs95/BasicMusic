@@ -21,9 +21,9 @@ import java.util.Set;
 public class Estadisticas extends Activity implements AdapterView.OnItemSelectedListener{
 
 
-    private final String[] MODOS_JUEGO = new String[]{"Adivinar nota", "Adivinar intervalo", "Crear intervalo", "Adivinar acorde", "Crear acorde",
-            "Imitar audio - Soprano","Imitar audio - Mezzosoprano","Imitar audio - Contralto","Imitar audio - Tenor","Imitar audio - Barítono","Imitar audio - Bajo",
-            "Hallar ritmo", "Realizar ritmo"};
+    private final String[] MODOS_JUEGO = new String[]{"Adivinar Notas", "Adivinar Intervalos", "Crear Intervalos", "Adivinar Acordes", "Crear Acordes",
+            "Imitar Audio - Soprano","Imitar Audio - Mezzosoprano","Imitar Audio - Contralto","Imitar Audio - Tenor","Imitar Audio - Barítono","Imitar Audio - Bajo",
+            "Dibujar Ritmos", "Imitar Ritmos"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

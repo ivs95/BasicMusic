@@ -261,10 +261,12 @@ public class CrearRitmos extends Activity {
         nivel = getIntent().getExtras().getInt("nivel");
         Controlador.getInstance().setNivel(nivel);
         if (nivel % 2 == 1){
-            pausa = 725;
+            pausa = 700;
         }
         else
-            pausa = 500;
+            pausa = 475;
+
+        if(nivel == 8) pausa = 400;
         ritmos1 = getIntent().getExtras().getIntegerArrayList("ritmos1");
         ritmos2 = getIntent().getExtras().getIntegerArrayList("ritmos2");
         ritmos3 = getIntent().getExtras().getIntegerArrayList("ritmos3");
@@ -404,21 +406,25 @@ public class CrearRitmos extends Activity {
     public void comprobar(View view){
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).ordinal();
 
+        NivelAdivinar nivel = null;
         comprobado = true;
         if (compruebaArrays()){
             for (Button b : this.botonesGuia){
-                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.getNombre()).getNivel())
+                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
                     GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), true);
                 b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                nivel  = new NivelAdivinar(ModoJuego.Realiza_Ritmo.getNombre(), this.nivel,true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
             }
         }
         else{
             for (Button b : this.botonesGuia) {
-                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.getNombre()).getNivel())
+                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
                     GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), false);
+                nivel  = new NivelAdivinar(ModoJuego.Realiza_Ritmo.getNombre(), this.nivel,false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
                 b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
             }
         }
+        GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
 
         view.setEnabled(false);
         view.setAlpha(0.5f);

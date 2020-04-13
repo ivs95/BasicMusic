@@ -34,7 +34,7 @@ public class SeleccionarNivelCrearAcordes extends Activity {
 
         Button tutorial = new Button(this);
         tutorial.setLayoutParams(lp);
-        tutorial.setText("Tutorial");
+        tutorial.setText("Ayuda");
         tutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +43,7 @@ public class SeleccionarNivelCrearAcordes extends Activity {
         });
         llBotonera.addView(tutorial);
 
-        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.getNombre()).getNivel();
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getNivel();
 
         //Creamos los botones en bucle
         for (int i = 0; i < 6; i++) {
