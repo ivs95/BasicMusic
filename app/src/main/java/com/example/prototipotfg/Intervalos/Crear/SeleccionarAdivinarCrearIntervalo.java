@@ -136,11 +136,13 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
             }
         }
 
-        LayoutInflater inflater = (LayoutInflater)
-                getSystemService(LAYOUT_INFLATER_SERVICE);
+        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 
-        ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Crear_Intervalo,findViewById(android.R.id.content).getRootView());
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
 
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Crear_Intervalo, findViewById(android.R.id.content).getRootView());
+        }
     }
     private ArrayList<String> seleccionaNotasAleatorios(Intervalos intervalo) {
         Notas[] notas = new Notas[12];

@@ -630,10 +630,14 @@ public class HallaRitmos extends Activity {
             }
         }
         mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
-        LayoutInflater inflater = (LayoutInflater)
-                getSystemService(LAYOUT_INFLATER_SERVICE);
 
-        ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Halla_Ritmo,findViewById(android.R.id.content).getRootView());
+        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
+
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Halla_Ritmo, findViewById(android.R.id.content).getRootView());
+        }
     }
 
 
