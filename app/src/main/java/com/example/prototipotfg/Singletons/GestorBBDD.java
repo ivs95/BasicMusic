@@ -30,7 +30,7 @@ public class GestorBBDD {
     private final int NIVELES_CREAR_ACORDES=6;
     private final String[] NIVELES_IMITAR_AUDIO = new String[]{"FACIL", "MEDIO", "DIFICIL"};
     private final int NIVELES_HALLAR_RITMO=8;
-    private final int NIVELES_CREAR_RITMO=1;
+    private final int NIVELES_CREAR_RITMO=8;
 
 
 
@@ -208,7 +208,6 @@ public class GestorBBDD {
         List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Realiza_Ritmo.getNombre());
         LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
         String infoNivel = "";
-
         for (int i = 1; i <= NIVELES_CREAR_RITMO; i++){
             retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }

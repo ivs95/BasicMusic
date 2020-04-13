@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
+import com.example.prototipotfg.Enumerados.PuntosNiveles;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 
 @Entity(primaryKeys={"correoUsuario","modoJuego"},
@@ -49,17 +50,7 @@ public class Puntuacion {
     }
 
     private void actualizaNivel() {
-        if(this.puntuacionTotal >= 0 && this.puntuacionTotal < 30) this.nivel = 1;
-        else if (this.puntuacionTotal >= 30 && this.puntuacionTotal < 63) this.nivel = 2;
-        else if (this.puntuacionTotal >= 63 && this.puntuacionTotal < 99) this.nivel = 3;
-        else if (this.puntuacionTotal >= 99 && this.puntuacionTotal < 138) this.nivel = 4;
-        else if (this.puntuacionTotal >= 138 && this.puntuacionTotal < 180) this.nivel = 5;
-        else if (this.puntuacionTotal >= 180 && this.puntuacionTotal < 225) this.nivel = 6;
-        else if (this.puntuacionTotal >= 225 && this.puntuacionTotal < 273) this.nivel = 7;
-        else if (this.puntuacionTotal >= 273 && this.puntuacionTotal < 324) this.nivel = 8;
-        else if (this.puntuacionTotal >= 324 && this.puntuacionTotal < 378) this.nivel = 9;
-        else this.nivel = 10;
-
+        this.nivel = PuntosNiveles.devuelveNivel(this.puntuacionTotal);
         this.rango = RangosPuntuaciones.actualizaRango(this.modoJuego, this.puntuacionTotal).toString();
     }
 
