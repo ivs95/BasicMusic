@@ -37,6 +37,7 @@ public class SeleccionNivelCrearIntervalo extends Activity {
         this.savedInstanceState = savedInstanceState;
         boolean primeraVez = getIntent().getExtras().getBoolean("visitado");
 
+
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
         TextView rango = findViewById(R.id.rango_niveles);
@@ -72,7 +73,8 @@ public class SeleccionNivelCrearIntervalo extends Activity {
                 button.setAlpha(.5f);
             }
         }
-        mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
+        if(primeraVez)
+            mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
     }
 
     public void nivel_seleccionado(View view) {

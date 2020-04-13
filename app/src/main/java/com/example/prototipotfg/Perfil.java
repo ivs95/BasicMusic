@@ -37,7 +37,7 @@ public class Perfil extends AppCompatActivity {
 
         }
         else{
-            Usuario usuario = new Usuario(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(),nombre,password,false);
+            Usuario usuario = new Usuario(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(),nombre,password,false, false);
             if (GestorBBDD.getInstance().UpdateUsuario(usuario)) {
                 GestorBBDD.getInstance().setUsuarioLoggeado(usuario);
                 this.finish();
