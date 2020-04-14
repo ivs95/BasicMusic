@@ -87,7 +87,8 @@ public class SeleccionarNivelCrearAcordes extends Activity {
             }
 
         }
-        mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
+        if(primeraVez)
+            mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
     }
     private void tutorial_notas(View v) {
         Intent i = new Intent(this, TutorialNivelCrearAcordes.class);

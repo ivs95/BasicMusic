@@ -84,7 +84,7 @@ public class SeleccionNivelCrearIntervalo extends Activity {
             }
 
         }
-        //if(primeraVez)
+        if(primeraVez)
             mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
     }
 
