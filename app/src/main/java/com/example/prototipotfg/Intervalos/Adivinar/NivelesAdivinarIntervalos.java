@@ -87,7 +87,7 @@ public class NivelesAdivinarIntervalos extends Activity {
             }
         }
 
-        if(primeraVez)
+        //if(primeraVez)
             mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
     }
 

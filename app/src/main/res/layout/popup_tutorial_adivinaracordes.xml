@@ -23,10 +23,10 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/popup_creaintervalo_tituloSeleccionar"
+                android:id="@+id/popup_adivinaracorde_tituloSeleccionar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Elige la nota correcta"
+                android:text="Elige el acorde correcto"
                 android:textColor="@color/md_blue_900"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +37,7 @@
                 app:layout_constraintVertical_bias="0.05" />
 
             <LinearLayout
-                android:id="@+id/popup_creaintervalo_scrollView2"
+                android:id="@+id/popup_adivinaracorde_scrollView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="60dp"
@@ -47,38 +47,37 @@
                 android:fillViewport="true"
                 android:gravity="center"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@+id/popup_creaintervalo_linearLayout8"
+                app:layout_constraintBottom_toTopOf="@+id/popup_adivinaracorde_linearLayout8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/popup_creaintervalo_linearprincipal"
+                app:layout_constraintTop_toBottomOf="@+id/popup_adivinaracorde_linearprincipal"
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/popup_creaintervalo_button1"
+                    android:id="@+id/popup_adivinaracorde_button1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="LA#4" />
+                    android:text="Acorde Menor" />
 
                 <Button
-                    android:id="@+id/popup_creaintervalo_button2"
+                    android:id="@+id/popup_adivinaracorde_button2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="FA4" />
+                    android:text="Acorde Mayor" />
 
                 <Button
-                    android:id="@+id/popup_creaintervalo_button3"
+                    android:id="@+id/popup_adivinaracorde_button3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="SOL4" />
+                    android:text="Acorde Disminuido" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:id="@+id/popup_creaintervalo_linearLayout8"
+                android:id="@+id/popup_adivinaracorde_linearLayout8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:layout_marginEnd="60dp"
+                android:gravity="center"
                 android:divider="@drawable/divisor_botones_menu"
                 android:orientation="vertical"
                 android:showDividers="middle"
@@ -91,41 +90,54 @@
                 app:layout_constraintVertical_bias="0.85">
 
                 <Button
-                    android:id="@+id/popup_creaintervalo_comprobar"
-                    android:layout_width="match_parent"
+                    android:id="@+id/comprobarAcordes"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Comprobar resultado" />
 
-                <Button
-                    android:id="@+id/popup_creaintervalo_retroceder"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Volver a seleccionar nivel" />
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/retroceder_niveles_adivinar_acordes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Volver a seleccionar nivel" />
+
+                    <Button
+                        android:id="@+id/button_info_adivinarAcorde"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Info" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/popup_creaintervalo_linearprincipal"
+                android:id="@+id/popup_adivinaracorde_linearprincipal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:divider="@drawable/divisor_botones_menu"
                 android:showDividers="middle"
-                app:layout_constraintTop_toBottomOf="@id/popup_creaintervalo_tituloSeleccionar"
+                app:layout_constraintTop_toBottomOf="@id/popup_adivinaracorde_tituloSeleccionar"
                 app:layout_constraintVertical_bias="0.03">
 
                 <TextView
-                    android:id="@+id/popup_creaintervalo_Id_intervalo"
+                    android:id="@+id/popup_adivinaracorde_Id_intervalo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Intervalo de Tercera Menor Ascendente"
+                    android:text="Nota de inicio: Fa#"
                     android:textColor="@color/md_blue_900" />
 
                 <TextView
-                    android:id="@+id/popup_creaintervalo_Id_nota_intervalo"
+                    android:id="@+id/popup_adivinaracorde_Id_nota_intervalo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sobre la nota Re4"
+                    android:text="Octava de inicio: Cuarta"
                     android:textColor="@color/md_blue_900" />
 
                 <LinearLayout
@@ -137,28 +149,23 @@
                     android:showDividers="middle">
 
                     <Button
-                        android:id="@+id/popup_creaintervalo_botonReferencia"
+                        android:id="@+id/popup_adivinaracorde_botonReferencia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Referencia" />
+                        android:text="Acorde" />
 
-                    <Button
-                        android:id="@+id/popup_creaintervalo_Id_boton_reproduce_nota_intervalo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nota" />
                 </LinearLayout>
             </LinearLayout>
 
             <TextView
-                android:id="@+id/popup_creaintervalo_mensaje1"
+                android:id="@+id/popup_adivinaracorde_mensaje1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¡Bienvenido a Crear Intervalo!\n\n El botón Nota reproduce la nota sobre la que es el intervalo que tienes que crear.\n\nEl botón Referencia reproducen una nota que te sirve de ayuda para crear el intervalo del nivel.\n\nPresta atención arriba de los botones, te decimos qué intervalo debes crear y alguna que otra pista para los niveles más bajos."
+                android:text="¡Bienvenida a Adivinar Acorde!\n\n El botón Acorde reproduce el acorde del nivel.\n\nPresta atención arriba del botón, te decimos sobre qué nota es el acorde y en qué octava está."
                 android:textColor="@color/md_blue_900"
                 android:textAlignment="center"
                 android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@id/popup_creaintervalo_linearprincipal"
+                app:layout_constraintTop_toBottomOf="@id/popup_adivinaracorde_linearprincipal"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"
                 app:layout_constraintHorizontal_bias="0.50"
@@ -166,38 +173,37 @@
                 app:layout_constraintVertical_bias="0.05" />
 
             <TextView
-                android:id="@+id/popup_creaintervalo_mensaje2"
+                android:id="@+id/popup_adivinaracorde_mensaje2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Estas son las opciones que te ofrecemos.\nDebes elegir la nota correcta para crear el intervalo que te pedimos sobre la nota que te proponemos. Recuerda, solo hay una respuesta correcta."
+                android:text="Estas son las opciones que te ofrecemos.\nDebes elegir qué tipo de acorde es el que suena. Recuerda, solo hay una respuesta correcta."
                 android:textColor="@color/md_blue_900"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@id/popup_creaintervalo_linearLayout8"
-                app:layout_constraintTop_toBottomOf="@id/popup_creaintervalo_mensaje1"
+                app:layout_constraintTop_toBottomOf="@id/popup_adivinaracorde_scrollView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.50"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.99" />
+                app:layout_constraintVertical_bias="0.75" />
 
             <TextView
-                android:id="@+id/popup_creaintervalo_mensaje3"
+                android:id="@+id/popup_adivinaracorde_mensaje3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cuando tengas claro que la opción que has marcado es la correcta pulsa el botón Comprobar Resultado.\n\n Siempre puedes volver a la pantalla de selección de nivel pulsando el botón Volver a Seleccionar Nivel.\n\n ¡Mucha suerte!"
+                android:text="Cuando tengas claro que la opción que has marcado es la correcta pulsa el botón Comprobar Resultado.\n\n Siempre puedes volver a la pantalla de selección de nivel pulsando el botón Volver a Seleccionar Nivel.\nEn el botón Info te proponemos alguna ayuda para superar los niveles.\n\n ¡Mucha suerte!"
                 android:textColor="@color/md_blue_900"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@id/popup_creaintervalo_linearLayout8"
+                app:layout_constraintBottom_toTopOf="@id/popup_adivinaracorde_linearLayout8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.50"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_bias="0.9" />
 
             <Button
-                android:id="@+id/popup_creaintervalo_prev"
+                android:id="@+id/popup_adivinaracorde_prev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="prev"
@@ -207,7 +213,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/popup_creaintervalo_next"
+                android:id="@+id/popup_adivinaracorde_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="next"

@@ -3,9 +3,12 @@ package com.example.prototipotfg.Acordes.Adivinar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.prototipotfg.Acordes.TutorialAdivinarAcordes;
@@ -19,7 +22,9 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class SeleccionarNivelAdivinarAcordes extends Activity {
 
-
+    private PopupWindow popupWindow;
+    private View popupView;
+    private int tutorial = 1;
     private  Bundle savedInstanceState;
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -82,7 +87,7 @@ public class SeleccionarNivelAdivinarAcordes extends Activity {
             }
 
         }
-
+        mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
     }
 
 
@@ -101,6 +106,79 @@ public class SeleccionarNivelAdivinarAcordes extends Activity {
          * Claves: respuesta, fallo1,...,falloN
          * */
         startActivity(i);
+    }
+
+    public void mostrarPopupTutorial(View view){
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        popupView = inflater.inflate(R.layout.popup_tutorial_adivinaracordes, null);
+
+        // create the popup window
+        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+
+
+        findViewById(R.id.id_niveles).post(new Runnable() {
+            public void run() {
+                popupWindow.showAtLocation(findViewById(R.id.id_niveles), Gravity.CENTER, 0, 0);
+            }
+        });
+
+        // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        // dismiss the popup window when touched
+
+    }
+
+    public void next(View view){
+        tutorial++;
+        actualizaPopUp(popupView);
+    }
+
+    public void prev(View view){
+        tutorial--;
+        actualizaPopUp(popupView);
+    }
+
+
+
+    public void actualizaPopUp(View view){
+        Button button = view.findViewById(R.id.popup_adivinaracorde_next);
+        if(tutorial == 1){
+            view.findViewById(R.id.popup_adivinaracorde_mensaje2).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_adivinaracorde_scrollView2).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_adivinaracorde_prev).setVisibility(View.GONE);
+
+            view.findViewById(R.id.popup_adivinaracorde_mensaje1).setVisibility(View.VISIBLE);
+        }
+        else if(tutorial == 2){
+
+            view.findViewById(R.id.popup_adivinaracorde_mensaje1).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_adivinaracorde_mensaje3).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_adivinaracorde_linearLayout8).setVisibility(View.INVISIBLE);
+
+            view.findViewById(R.id.popup_adivinaracorde_mensaje2).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_adivinaracorde_scrollView2).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_adivinaracorde_prev).setVisibility(View.VISIBLE);
+
+            button.setText("Siguiente");
+        }
+        else if(tutorial == 3){
+            view.findViewById(R.id.popup_adivinaracorde_mensaje2).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_adivinaracorde_scrollView2).setVisibility(View.INVISIBLE);
+
+            view.findViewById(R.id.popup_adivinaracorde_mensaje3).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_adivinaracorde_linearLayout8).setVisibility(View.VISIBLE);
+
+            button.setText("Cerrar");
+        }
+        else if(tutorial == 4){
+            popupWindow.dismiss();
+        }
     }
 
     public void onResume(){

@@ -26,7 +26,7 @@
                 android:id="@+id/popup_adivinaintervalo_tituloSeleccionar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Elige la nota correcta"
+                android:text="Elige el intervalo correcto"
                 android:textColor="@color/md_blue_900"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -151,17 +151,17 @@
                 android:id="@+id/popup_adivinaintervalo_mensaje2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Estas son las opciones que te ofrecemos.\nRecuerda, solo hay una respuesta correcta."
+                android:text="Estas son las opciones que te ofrecemos.\nDebes elegir qué tipo de intervalo es el que suena. Recuerda, solo hay una respuesta correcta."
                 android:textColor="@color/md_blue_900"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@id/popup_adivinaintervalo_linearLayout8"
+                app:layout_constraintBottom_toBottomOf="@id/popup_adivinaintervalo_linearLayout8"
                 app:layout_constraintTop_toBottomOf="@id/popup_adivinaintervalo_mensaje1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.50"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.75" />
+                app:layout_constraintVertical_bias="0.9" />
 
             <TextView
                 android:id="@+id/popup_adivinaintervalo_mensaje3"
