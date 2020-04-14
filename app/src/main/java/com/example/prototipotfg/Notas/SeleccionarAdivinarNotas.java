@@ -58,7 +58,7 @@ public class SeleccionarAdivinarNotas extends Activity {
         setContentView(R.layout.nivel_seleccionar_adivinar_notas);
         ponerComprobarVisible(INVISIBLE);
 
-
+        GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Notas);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         FactoriaNotas.getInstance().setReferencia(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
         FactoriaNotas.getInstance().setReferenciaDo(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));

@@ -36,8 +36,7 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
-
-        boolean primeraVez = getIntent().getExtras().getBoolean("visitado");
+        boolean primeraVez = GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Adivinar_Notas);
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
 
         TextView rango = findViewById(R.id.rango_niveles);
@@ -94,7 +93,6 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
         }
         if (primeraVez) {
             mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
-            primeraVez = false;
         }
     }
 

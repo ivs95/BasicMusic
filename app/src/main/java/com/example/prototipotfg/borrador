@@ -1,17 +1,22 @@
 /*
 
 Información al usuario
-  - Indicar cuantos puntos ha ganado/perdido al comprobar nivel
-  - Popups informando sistema de rangos y como varía la puntuación la 1º vez que entra en la app.
 
-Nuevos niveles:
-  - Popup  con cambios entre niveles (ernesto)
+
+ - Popups informando sistema de rangos y como varía la puntuación la 1º vez que entra en la app.
+
+
+
+
+ - Añadir puntos al lado del rango en niveles - Niveles - Leyenda (509000 puntos)
+ - Apañar popup modo primera vez en todo menos notas.
+ - Boton teoria
+
+
+
+Boton tutoriales VERDU
+Memoria ERNESTO
 
 
 Adivinar intervalo: ventana de notas hasta nivel 4. Boton referencia añadir nombre nota.
-
-
-Crear intervalo: diferencia entre intervalos en la etiqueta del nombre hasta nivel 2 (solo 1)
-Indicar cuantos puntos quedan / con cuantos se desbloquea el siguiente nivel
-
 

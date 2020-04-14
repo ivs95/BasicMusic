@@ -536,9 +536,13 @@ public class GestorBBDD {
         Puntuacion p = appDatabase.daoPuntuacion().findPuntuacion(getUsuarioLoggeado().getCorreo(), modo.toString());
         if (p.isIniciado())
             return false;
+        return true;
+    }
+
+    public void modoRealizado(ModoJuego modo){
+        Puntuacion p = appDatabase.daoPuntuacion().findPuntuacion(getUsuarioLoggeado().getCorreo(), modo.toString());
         p.setIniciado(true);
         appDatabase.daoPuntuacion().updatePuntuacion(p);
-        return true;
     }
 
     public boolean esPrimeraVezApp(){

@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/txtBotonInfo"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
         <Button
             android:id="@+id/botonEstadisticas"
@@ -77,11 +77,17 @@
             android:text="Estadísticas" />
 
         <Button
+            android:id="@+id/botonTutoriales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tutoriales" />
+
+        <Button
             android:id="@+id/botonTeoria"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/txtBotonTeoria"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
         <Button
             android:id="@+id/botonSalir"
