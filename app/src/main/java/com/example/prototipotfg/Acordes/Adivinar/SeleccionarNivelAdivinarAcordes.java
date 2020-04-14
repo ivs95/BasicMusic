@@ -87,7 +87,8 @@ public class SeleccionarNivelAdivinarAcordes extends Activity {
             }
 
         }
-        mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
+        if(primeraVez)
+            mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
     }
 
 

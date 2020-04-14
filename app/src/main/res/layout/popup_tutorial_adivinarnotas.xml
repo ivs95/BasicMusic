@@ -142,16 +142,19 @@
                 android:id="@+id/popup_adivinarnotas_mensaje1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¡Bienvenido a Adivinar Notas!\n\n El botón Nota reproduce la nota que tienes que adivinar.\nLos botones Referencia reproducen notas que te sirven de ayuda para adivinar la nota del nivel."
-                android:textColor="@color/md_blue_900"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@id/popup_adivinarnotas_linearLayout2"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"
+                android:text="¡Bienvenido a Adivinar Notas!\n\n El botón Nota reproduce la nota que tienes que adivinar.\nLos botones Referencia reproducen notas que te sirven de ayuda para adivinar la nota del nivel."
+                android:textAlignment="center"
+                android:textColor="@color/md_blue_900"
+                android:textSize="18sp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.50"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.05" />
+                app:layout_constraintTop_toBottomOf="@id/popup_adivinarnotas_linearLayout2"
+                app:layout_constraintVertical_bias="0.4" />
 
             <TextView
                 android:id="@+id/popup_adivinarnotas_mensaje2"
@@ -162,12 +165,14 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@id/popup_adivinarnotas_linearLayout8"
-                app:layout_constraintTop_toBottomOf="@id/popup_adivinarnotas_mensaje1"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popup_adivinarnotas_scrollView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.50"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.75" />
+                app:layout_constraintVertical_bias="0." />
 
             <TextView
                 android:id="@+id/popup_adivinarnotas_mensaje3"
@@ -178,12 +183,14 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:visibility="invisible"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 app:layout_constraintBottom_toTopOf="@id/popup_adivinarnotas_linearLayout8"
-                app:layout_constraintTop_toBottomOf="@id/popup_adivinarnotas_mensaje1"
+                app:layout_constraintTop_toBottomOf="@id/popup_adivinarnotas_linearLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.50"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.9" />
+                app:layout_constraintVertical_bias="0.8" />
 
             <Button
                 android:id="@+id/popup_adivinarnotas_prev"

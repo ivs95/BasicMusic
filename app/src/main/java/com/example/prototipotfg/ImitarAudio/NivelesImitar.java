@@ -62,7 +62,8 @@ public class NivelesImitar extends Activity {
             //Añadimos el botón a la botonera
             llBotonera.addView(button);
         }
-        mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
+        if(primeraVez)
+            mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
     }
 
     public void nivel_seleccionado(View view) throws IOException {
