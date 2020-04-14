@@ -26,30 +26,6 @@ public final class Reproductor {
 
     private Reproductor(){}
 
-    public void reproducirNota(Octavas octava, Notas nota){
-    }
-
-    public void reproducirIntervalo(Intervalos intervalo, Octavas octavaInicio, Notas notaInicio){
-
-    }
-
-    private void reproducirNotasDeIntervalo(ArrayList<Pair<Octavas,Notas>> notas){
-
-    }
-
-
-    public void reproducirAcorde(Acordes acorde, Octavas octavaInicio, Notas notaInicio){
-
-    }
-
-
-
-    private ArrayList<String> preparaRutasAcorde(){
-        ArrayList<String> retorno = new ArrayList<>();
-
-        return retorno;
-    }
-
 
     public void reproducirNota(AssetFileDescriptor afd) throws IOException {
         reproductorNotas = new MediaPlayer();

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Octavas;
+import com.example.prototipotfg.Enumerados.PuntosNiveles;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -65,24 +66,30 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
             button.setText("Nivel " + String.format("%02d", i + 1));
-
-            //Asignamose el Listener
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
+            if (nivelActual > i) {
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                         nivel_seleccionado(v);
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
-                }
-            });
+                });
+            }
+            else{
+                button.setEnabled(false);
+                button.setAlpha(.5f);
+            }
+            //Asignamose el Listener
+
             //Añadimos el botón a la botonera
             llBotonera.addView(button);
 
-            if(nivelActual < i+1) {
-                button.setEnabled(false);
-                button.setAlpha(.5f);
+            if (nivelActual == i+1 && nivelActual != ModoJuego.Adivinar_Notas.getMax_level()){
+                TextView texto = new TextView(this);
+                texto.setText("Faltan " + (PuntosNiveles.values()[nivelActual].getMinPuntos() - GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getPuntuacionTotal()) +" puntos para desbloquear el siguiente nivel");
+                texto.setLayoutParams(lp);
+                texto.setTextColor(getResources().getColor(R.color.md_blue_900));
+                texto.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                llBotonera.addView(texto);
             }
         }
         if (primeraVez) {
@@ -95,7 +102,7 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
         startActivity(i);
     }
 
-    public void nivel_seleccionado(View view) throws IOException {
+    public void nivel_seleccionado(View view) {
         Intent i = new Intent(this, SeleccionarAdivinarNotas.class);
         Random random = new Random();
         //Nivel que se ha seleccionado

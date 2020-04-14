@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
+import com.example.prototipotfg.Enumerados.PuntosNiveles;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
@@ -54,27 +55,36 @@ public class NivelesHallarRitmos extends Activity {
             button.setText("Nivel "+String.format("%02d", i+1 ));
 
             //Asignamose el Listener
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
+            if (nivelActual > i) {
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                         nivel_seleccionado(v);
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
-                }
-            });
-            //Añadimos el botón a la botonera
-            llBotonera.addView(button);
-
-            if(nivelActual < i+1) {
+                });
+            }
+            else{
                 button.setEnabled(false);
                 button.setAlpha(.5f);
             }
+            //Asignamose el Listener
+
+            //Añadimos el botón a la botonera
+            llBotonera.addView(button);
+
+            if (nivelActual == i+1 && nivelActual != ModoJuego.Halla_Ritmo.getMax_level()){
+                TextView texto = new TextView(this);
+                texto.setText("Faltan " + (PuntosNiveles.values()[nivelActual].getMinPuntos() - GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getPuntuacionTotal()) +" puntos para desbloquear el siguiente nivel");
+                texto.setLayoutParams(lp);
+                texto.setTextColor(getResources().getColor(R.color.md_blue_900));
+                texto.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                llBotonera.addView(texto);
+            }
         }
+
     }
 
-    public void nivel_seleccionado(View view) throws IOException {
+    public void nivel_seleccionado(View view) {
         Intent i = new Intent(this, HallaRitmos.class);
         int nivel = view.getId();
         /*
