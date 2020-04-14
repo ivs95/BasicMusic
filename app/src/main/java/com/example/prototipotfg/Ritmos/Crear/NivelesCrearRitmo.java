@@ -3,9 +3,12 @@ package com.example.prototipotfg.Ritmos.Crear;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
@@ -26,6 +29,10 @@ public class NivelesCrearRitmo extends Activity{
     private int num = 4;
     private int longitud = compas*num;
     private Bundle savedInstanceState;
+
+    private PopupWindow popupWindow;
+    private View popupView;
+    private int tutorial = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -78,6 +85,9 @@ public class NivelesCrearRitmo extends Activity{
                 texto.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 llBotonera.addView(texto);
             }
+
+            if(primeraVez)
+                mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
         }
     }
 
@@ -158,6 +168,88 @@ public class NivelesCrearRitmo extends Activity{
     public void onResume(){
         super.onResume();
         this.onCreate(this.savedInstanceState);
+    }
+
+    public void mostrarPopupTutorial(final View view){
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        popupView = inflater.inflate(R.layout.popup_tutorial_crearitmos, null);
+
+        // create the popup window
+        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,true);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+
+
+        view.post(new Runnable() {
+            public void run() {
+                popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+            }
+        });
+
+        // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        // dismiss the popup window when touched
+
+    }
+
+    public void next(View view){
+        tutorial++;
+        actualizaPopUp(popupView);
+    }
+
+    public void prev(View view){
+        tutorial--;
+        actualizaPopUp(popupView);
+    }
+
+
+
+    public void actualizaPopUp(View view){
+        Button button = view.findViewById(R.id.popup_crearitmos_next);
+        if(tutorial == 1){
+            view.findViewById(R.id.popup_crearitmos_mensaje2).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_crearitmos_linearRitmo).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_crearitmos_prev).setVisibility(View.GONE);
+
+            view.findViewById(R.id.popup_crearitmos_mensaje1).setVisibility(View.VISIBLE);
+        }
+        else if(tutorial == 2){
+
+            view.findViewById(R.id.popup_crearitmos_mensaje1).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_crearitmos_mensaje3).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_crearitmos_linearLayout6).setVisibility(View.INVISIBLE);
+
+            view.findViewById(R.id.popup_crearitmos_mensaje2).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_crearitmos_linearRitmo).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_crearitmos_prev).setVisibility(View.VISIBLE);
+
+        }
+        else if(tutorial == 3){
+            view.findViewById(R.id.popup_crearitmos_mensaje4).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_crearitmos_mensaje2).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_crearitmos_linearOpcionesComprobar).setVisibility(View.INVISIBLE);
+
+            view.findViewById(R.id.popup_crearitmos_mensaje3).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_crearitmos_linearLayout6).setVisibility(View.VISIBLE);
+
+            button.setText("Siguiente");
+        }
+        else if(tutorial == 4){
+            view.findViewById(R.id.popup_crearitmos_mensaje3).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_crearitmos_linearLayout6).setVisibility(View.INVISIBLE);
+
+            view.findViewById(R.id.popup_crearitmos_mensaje4).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_crearitmos_linearOpcionesComprobar).setVisibility(View.VISIBLE);
+
+            button.setText("Cerrar");
+        }
+        else if(tutorial == 5){
+            popupWindow.dismiss();
+        }
     }
 
 }

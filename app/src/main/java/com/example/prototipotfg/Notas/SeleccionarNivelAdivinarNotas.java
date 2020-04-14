@@ -94,6 +94,7 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
         }
         if (primeraVez) {
             mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
+            primeraVez = false;
         }
     }
 

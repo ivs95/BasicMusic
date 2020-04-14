@@ -112,11 +112,13 @@ public class ReproducirAdivinarAcordes extends Activity {
             opciones.addView(button);
         }
 
-        LayoutInflater inflater = (LayoutInflater)
-                getSystemService(LAYOUT_INFLATER_SERVICE);
+        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 
-        ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Acordes,findViewById(android.R.id.content).getRootView());
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
 
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Acordes, findViewById(android.R.id.content).getRootView());
+        }
     }
 
     private void respuesta_seleccionada(View view) {

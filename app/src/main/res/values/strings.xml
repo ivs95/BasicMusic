@@ -29,12 +29,12 @@
     <string name="cambiosNv3AdIntervalos">Desbloqueados los intervalos con amplitud &lt;b>SIETE&lt;/b> &lt;br /&gt; &lt;br /&gt; Ahora elegirás entre &lt;b>CUATRO&lt;/b> opciones</string>
     <string name="cambiosNv4AdIntervalos">Desbloqueada la &lt;b>2º&lt;/b> octava</string>
     <string name="cambiosNv5AdIntervalos">Desbloqueados los intervalos con amplitud &lt;b>NUEVE&lt;/b></string>
-    <string name="cambiosNv6AdIntervalos">Desbloqueados los intervalos con amplitud &lt;b>DOCE&lt;/b> &lt;br /&gt; &lt;br /&gt; Desbloqueada la &lt;b>SEPTIMA&lt;/b> octava &lt;br /&gt; &lt;br /&gt;
+    <string name="cambiosNv6AdIntervalos">Desbloqueados los intervalos con amplitud &lt;b>DOCE&lt;/b> &lt;br /&gt; &lt;br /&gt; Desbloqueada la &lt;b>SÉPTIMA&lt;/b> octava &lt;br /&gt; &lt;br /&gt;
         Ahora elegirás entre &lt;b>CINCO&lt;/b> opciones</string>
 
 
-    <string name="cambiosNv2CrearIntervalos">Ya no contarás con la amplitud del intervalo en semitonos &lt;br /&gt; &lt;br /&gt;Desbloqueados los intervalos con amplitud &lt;b>CINCO&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>3º&lt;/b> octava \n\n
-        Ahora elige entre &lt;b>TRES&lt;/b> opciones</string>
+    <string name="cambiosNv2CrearIntervalos">Ya no contarás con la amplitud del intervalo en semitonos &lt;br /&gt; &lt;br /&gt;Desbloqueados los intervalos con amplitud &lt;b>CINCO&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>3º&lt;/b> octava &lt;br /&gt; &lt;br /&gt;
+        Ahora elegirás entre &lt;b>TRES&lt;/b> opciones</string>
     <string name="cambiosNv3CrearIntervalos">Desbloqueados los intervalos con amplitud &lt;b>SIETE&lt;/b>  &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>6º&lt;/b> octava </string>
     <string name="cambiosNv4CrearIntervalos">Desbloqueados los intervalos con amplitud &lt;b>NUEVE&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>2º&lt;/b> octava </string>
     <string name="cambiosNv5CrearIntervalos">Ya no contarás con el nombre de la nota de inicio del intervalo &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>CUATRO&lt;/b> opciones</string>
@@ -44,7 +44,7 @@
 
 
     <string name="cambiosNv2AdAcordes">Ya no podrás reproducir las opciones &lt;br /&gt; &lt;br /&gt; Desbloqueados los &lt;b>ACORDES DISMINUIDOS&lt;/b> y &lt;b>AUMENTADOS&lt;/b>
-        &lt;br /&gt; &lt;br /&gt; Desbloqueada la &lt;b>3º&lt;b> octava &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>TRES&lt;/b> opciones</string>
+        &lt;br /&gt; &lt;br /&gt; Desbloqueada la &lt;b>3º&lt;/b> octava &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>TRES&lt;/b> opciones</string>
     <string name="cambiosNv3AdAcordes">Desbloqueados los &lt;b> ACORDES MAYORES CON SÉPTIMA MAYOR Y MENOR&lt;/b>
         &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>2º&lt;/b> octava</string>
     <string name="cambiosNv4AdAcordes">Desbloqueados los &lt;b>ACORDES MENORES CON SÉPTIMA MAYOR Y MENOR&lt;/b> &lt;br /&gt; &lt;br /&gt;
@@ -54,7 +54,7 @@
 
 
     <string name="cambiosNv2CrearAcordes">Desbloqueados los &lt;b>ACORDES DISMINUIDOS&lt;/b> y &lt;b>AUMENTADOS&lt;/b>
-        &lt;br /&gt; &lt;br /&gt; Desbloqueada la &lt;b>3º&lt;b> octava &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>SEIS&lt;/b> opciones</string>
+        &lt;br /&gt; &lt;br /&gt; Desbloqueada la &lt;b>3º&lt;/b> octava &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>SEIS&lt;/b> opciones</string>
     <string name="cambiosNv3CrearAcordes">Desbloqueados los &lt;b> ACORDES MAYORES CON SÉPTIMA MAYOR Y MENOR&lt;/b>
         &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>2º&lt;/b> octava</string>
     <string name="cambiosNv4CrearAcordes">Desbloqueados los &lt;b>ACORDES MENORES CON SÉPTIMA MAYOR Y MENOR&lt;/b> &lt;br /&gt; &lt;br /&gt;

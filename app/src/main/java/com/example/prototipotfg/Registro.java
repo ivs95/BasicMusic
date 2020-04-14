@@ -43,7 +43,7 @@ public class Registro extends AppCompatActivity {
             ((EditText)findViewById(R.id.txtCorreoRegistro)).setError("Email ya registrado");
         }
         else{
-            Usuario usuario = new Usuario(correo,nombre,password,false);
+            Usuario usuario = new Usuario(correo,nombre,password,false, false);
             if (GestorBBDD.getInstance().registraUsuario(usuario))
                 this.finish();
             else

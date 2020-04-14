@@ -22,131 +22,125 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/popup_adivinarnotas_tituloSeleccionar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Elige la nota correcta"
-                    android:textColor="@color/md_blue_900"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.50"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.05" />
+            <TextView
+                android:id="@+id/popup_adivinaintervalo_tituloSeleccionar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Elige la nota correcta"
+                android:textColor="@color/md_blue_900"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.50"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.05" />
 
             <LinearLayout
-                    android:id="@+id/popup_adivinarnotas_scrollView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginTop="130dp"
-                    android:layout_marginEnd="60dp"
-                    android:layout_marginBottom="150dp"
-                    android:fillViewport="true"
-                    android:gravity="center"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toTopOf="@+id/popup_adivinarnotas_linearLayout8"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/popup_adivinarnotas_linearLayout2"
+                android:id="@+id/popup_adivinaintervalo_scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="130dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="150dp"
+                android:fillViewport="true"
+                android:gravity="center"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/popup_adivinaintervalo_linearLayout8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popup_adivinaintervalo_linearLayout2"
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/popup_adivinarnotas_button1"
+                    android:id="@+id/popup_adivinaintervalo_button1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:text="Re#4" />
-
-                <Button
-                    android:id="@+id/popup_adivinarnotas_button2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="LA4" />
+                    android:text="Cuarta Justa Ascendente" />
 
                 <Button
-                    android:id="@+id/popup_adivinarnotas_button3"
+                    android:id="@+id/popup_adivinaintervalo_button2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sol4" />
+                    android:text="Tercera Mayor Descendente" />
+
+                <Button
+                    android:id="@+id/popup_adivinaintervalo_button3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Segunda Mayor Descendente" />
             </LinearLayout>
 
 
-                <LinearLayout
-                    android:id="@+id/popup_adivinarnotas_linearLayout8"
+            <LinearLayout
+                android:id="@+id/popup_adivinaintervalo_linearLayout8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:divider="@drawable/divisor_botones_menu"
+                android:orientation="vertical"
+                android:showDividers="middle"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.85">
+
+                <Button
+                    android:id="@+id/popup_adivinaintervalo_comprobar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginEnd="60dp"
-                    android:divider="@drawable/divisor_botones_menu"
-                    android:orientation="vertical"
-                    android:showDividers="middle"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.85">
+                    android:text="Comprobar resultado" />
 
-                    <Button
-                        android:id="@+id/popup_adivinarnotas_comprobar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Comprobar resultado" />
-
-                    <Button
-                        android:id="@+id/popup_adivinarnotas_retroceder"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Volver a seleccionar nivel" />
-                </LinearLayout>
+                <Button
+                    android:id="@+id/popup_adivinaintervalo_retroceder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Volver a seleccionar nivel" />
+            </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/popup_adivinarnotas_linearLayout2"
+                android:id="@+id/popup_adivinaintervalo_linearLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
 
 
-                app:layout_constraintBottom_toTopOf="@+id/popup_adivinarnotas_linearLayout8"
+                app:layout_constraintBottom_toTopOf="@+id/popup_adivinaintervalo_linearLayout8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/popup_adivinarnotas_tituloSeleccionar"
+                app:layout_constraintTop_toBottomOf="@+id/popup_adivinaintervalo_tituloSeleccionar"
                 app:layout_constraintVertical_bias="0.033">
 
                 <Button
-                    android:id="@+id/popup_adivinarnotas_botonNota"
-                    android:layout_width="65dp"
-                    android:layout_height="wrap_content"
-                    android:text="Nota" />
-
-                <Button
-                    android:id="@+id/popup_adivinarnotas_botonReferencia"
+                    android:id="@+id/popup_adivinaintervalo_botonNota"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Referencia(LA)" />
+                    android:text="Intervalo" />
 
                 <Button
-                    android:id="@+id/popup_adivinarnotas_botonReferenciaDo"
+                    android:id="@+id/popup_adivinaintervalo_botonReferencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Referencia(DO)" />
+                    android:text="Referencia" />
+
             </LinearLayout>
 
             <TextView
-                android:id="@+id/popup_adivinarnotas_mensaje1"
+                android:id="@+id/popup_adivinaintervalo_mensaje1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¡Bienvenido a Adivinar Notas!\n\n El botón Nota reproduce la nota que tienes que adivinar.\nLos botones Referencia reproducen notas que te sirven de ayuda para adivinar la nota del nivel."
+                android:text="¡Bienvenido a Adivinar Intervalo!\n\n El botón Intervalo reproduce el intervalo que tienes que adivinar.\nEl botón Referencia reproducen una nota que te sirve de ayuda para adivinar el intervalo del nivel."
                 android:textColor="@color/md_blue_900"
                 android:textAlignment="center"
                 android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@id/popup_adivinarnotas_linearLayout2"
+                app:layout_constraintTop_toBottomOf="@id/popup_adivinaintervalo_linearLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="10dp"
                 app:layout_constraintHorizontal_bias="0.50"
@@ -154,7 +148,7 @@
                 app:layout_constraintVertical_bias="0.05" />
 
             <TextView
-                android:id="@+id/popup_adivinarnotas_mensaje2"
+                android:id="@+id/popup_adivinaintervalo_mensaje2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Estas son las opciones que te ofrecemos.\nRecuerda, solo hay una respuesta correcta."
@@ -162,15 +156,15 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@id/popup_adivinarnotas_linearLayout8"
-                app:layout_constraintTop_toBottomOf="@id/popup_adivinarnotas_mensaje1"
+                app:layout_constraintBottom_toTopOf="@id/popup_adivinaintervalo_linearLayout8"
+                app:layout_constraintTop_toBottomOf="@id/popup_adivinaintervalo_mensaje1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.50"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_bias="0.75" />
 
             <TextView
-                android:id="@+id/popup_adivinarnotas_mensaje3"
+                android:id="@+id/popup_adivinaintervalo_mensaje3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cuando tengas claro que la opción que has marcado es la correcta pulsa el botón Comprobar Resultado.\n\n Siempre puedes volver a la pantalla de selección de nivel pulsando el botón Volver a Seleccionar Nivel.\n\n ¡Mucha suerte!"
@@ -178,15 +172,15 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@id/popup_adivinarnotas_linearLayout8"
-                app:layout_constraintTop_toBottomOf="@id/popup_adivinarnotas_mensaje1"
+                app:layout_constraintBottom_toTopOf="@id/popup_adivinaintervalo_linearLayout8"
+                app:layout_constraintTop_toBottomOf="@id/popup_adivinaintervalo_mensaje1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.50"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_bias="0.9" />
 
             <Button
-                android:id="@+id/popup_adivinarnotas_prev"
+                android:id="@+id/popup_adivinaintervalo_prev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="prev"
@@ -196,7 +190,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/popup_adivinarnotas_next"
+                android:id="@+id/popup_adivinaintervalo_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="next"

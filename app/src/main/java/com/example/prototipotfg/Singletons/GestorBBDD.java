@@ -509,7 +509,7 @@ public class GestorBBDD {
 
     public void compruebaUsuarioPrueba() {
         if (appDatabase.daoUsuario().findUsuario("usuario@prueba.com") == null){
-            Usuario usuario = new Usuario("usuario@prueba.com", "prueba", "1234", false);
+            Usuario usuario = new Usuario("usuario@prueba.com", "prueba", "1234", false, true);
             appDatabase.daoUsuario().insertUsuario(usuario);
             for (int i = 0; i < ModoJuego.values().length; i++) {
                 Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), ModoJuego.values()[i].getMax_level(), usuario.getCorreo(), 400, RangosPuntuaciones.Leyenda.toString(), true);
@@ -519,8 +519,8 @@ public class GestorBBDD {
     }
 
     public boolean esPrimerNivelAdivinar(ModoJuego modo_juego, int nivel){
-        NivelAdivinar n = appDatabase.daoNivel().findNivelAdivinar(usuarioLoggeado.getCorreo(), modo_juego.toString(), nivel);
-        return (n != null && n.getNumFallos() == 0 && n.getNumAciertos() == 0);
+        NivelAdivinar n = appDatabase.daoNivel().findNivelAdivinar(usuarioLoggeado.getCorreo(), modo_juego.getNombre(), nivel);
+        return (n == null || (n.getNumFallos() == 0 && n.getNumAciertos() == 0));
     }
 
     public boolean esPrimerNivelImitar(RangosVocales rango, String dificultad){
@@ -538,6 +538,15 @@ public class GestorBBDD {
             return false;
         p.setIniciado(true);
         appDatabase.daoPuntuacion().updatePuntuacion(p);
+        return true;
+    }
+
+    public boolean esPrimeraVezApp(){
+        Usuario user = appDatabase.daoUsuario().findUsuario(usuarioLoggeado.getCorreo());
+        if (user.getPrimeraVez())
+            return false;
+        user.setPrimeraVez(true);
+        appDatabase.daoUsuario().updateUsuario(user);
         return true;
     }
 

@@ -2,7 +2,12 @@ package com.example.prototipotfg;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //if(GestorBBDD.getInstance().esPrimeraVezApp())
+            mostrarPopupRangos(findViewById(android.R.id.content).getRootView());
+
     }
 
 
@@ -48,5 +57,40 @@ public class MainActivity extends AppCompatActivity {
         GestorBBDD.getInstance().cerrarSesion();
         Intent i = new Intent(this, Login.class);
         startActivity(i);
+    }
+
+    public void mostrarPopupRangos(final View view){
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        View popupView = inflater.inflate(R.layout.popup_tutorial_rangos, null);
+
+        // create the popup window
+        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+
+
+        view.post(new Runnable() {
+            public void run() {
+                popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+            }
+        });
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                popupWindow.dismiss();
+
+                return true;
+            }
+        });
+        // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        // dismiss the popup window when touched
+
     }
 }
