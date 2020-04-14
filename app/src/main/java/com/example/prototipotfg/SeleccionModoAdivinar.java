@@ -24,7 +24,9 @@ public class SeleccionModoAdivinar extends Activity {
         setContentView(R.layout.seleccion_adivinar);
         this.savedInstanceState = savedInstanceState;
 
-        ImageView viewRangoAdivinar = findViewById(R.id.imageViewNotas);   viewRangoAdivinar.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango()).getImage());
+        ImageView viewRangoAdivinar = findViewById(R.id.imageViewNotas);
+        viewRangoAdivinar.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        viewRangoAdivinar.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango()).getImage());
 
     }
 
