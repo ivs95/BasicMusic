@@ -15,7 +15,7 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public enum RangosPuntuaciones {
-    Principiante("Principiante", R.drawable.semifusa_verdu),
+    Principiante("Principiante", R.drawable.semifusa),
     Aprendiz("Aprendiz", R.drawable.fusa),
     Veterano("Veterano", R.drawable.semicorchea),
     Experto("Experto", R.drawable.corchea),

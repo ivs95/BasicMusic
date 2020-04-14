@@ -23,8 +23,13 @@ public class SeleccionarModoAcordes extends Activity {
         setContentView(R.layout.seleccion_modo_acordes);
         this.savedInstanceState = savedInstanceState;
 
-        ImageView viewRangoAdivinar = findViewById(R.id.imageViewAcordes1);   viewRangoAdivinar.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getRango()).getImage());
-        ImageView viewRangoCrear = findViewById(R.id.imageViewAcordes2);      viewRangoCrear.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getRango()).getImage());
+        ImageView viewRangoAdivinar = findViewById(R.id.imageViewAcordes1);
+        viewRangoAdivinar.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        viewRangoAdivinar.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getRango()).getImage());
+
+        ImageView viewRangoCrear = findViewById(R.id.imageViewAcordes2);
+        viewRangoCrear.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        viewRangoCrear.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getRango()).getImage());
     }
 
     public void modo_acordes(View view){

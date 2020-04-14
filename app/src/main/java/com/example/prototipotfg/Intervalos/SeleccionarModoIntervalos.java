@@ -25,8 +25,13 @@ public class SeleccionarModoIntervalos extends Activity {
         setContentView(R.layout.seleccion_modo_intervalo);
         this.savedInstanceState = savedInstanceState;
 
-        ImageView viewRangoAdivinar = findViewById(R.id.imageViewIntervalo1);   viewRangoAdivinar.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).getImage());
-        ImageView viewRangoCrear = findViewById(R.id.imageViewIntervalo2);      viewRangoCrear.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Intervalo.toString()).getRango()).getImage());
+        ImageView viewRangoAdivinar = findViewById(R.id.imageViewIntervalo1);
+        viewRangoAdivinar.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        viewRangoAdivinar.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).getImage());
+
+        ImageView viewRangoCrear = findViewById(R.id.imageViewIntervalo2);
+        viewRangoCrear.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        viewRangoCrear.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Intervalo.toString()).getRango()).getImage());
 
     }
 

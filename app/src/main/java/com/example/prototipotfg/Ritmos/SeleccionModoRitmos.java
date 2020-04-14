@@ -24,8 +24,13 @@ public class SeleccionModoRitmos extends Activity {
         this.savedInstanceState = savedInstanceState;
 
 
-        ImageView viewRangoHalla = findViewById(R.id.imageViewRitmos1);        viewRangoHalla.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getRango()).getImage());
-        ImageView viewRangoRealiza = findViewById(R.id.imageViewRitmos2);      viewRangoRealiza.setBackgroundResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).getImage());
+        ImageView viewRangoHalla = findViewById(R.id.imageViewRitmos1);
+        viewRangoHalla.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        viewRangoHalla.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getRango()).getImage());
+
+        ImageView viewRangoRealiza = findViewById(R.id.imageViewRitmos2);
+        viewRangoRealiza.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        viewRangoRealiza.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).getImage());
     }
 
     public void modo(View view){

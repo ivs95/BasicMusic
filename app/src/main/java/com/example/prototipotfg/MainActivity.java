@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Toast;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //if(GestorBBDD.getInstance().esPrimeraVezApp())
+        if(GestorBBDD.getInstance().esPrimeraVezApp())
             mostrarPopupRangos(findViewById(android.R.id.content).getRootView());
 
     }
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
 
-        View popupView = inflater.inflate(R.layout.popup_tutorial_rangos, null);
+        final View popupView = inflater.inflate(R.layout.popup_tutorial_rangos, null);
 
         // create the popup window
         //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
@@ -79,13 +80,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
+        Button cerrar = (Button)popupView.findViewById(R.id.boton_cerrar_tutorialrangos);
+        cerrar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 popupWindow.dismiss();
-
-                return true;
             }
         });
         // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
