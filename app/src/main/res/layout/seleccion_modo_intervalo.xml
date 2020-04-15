@@ -54,7 +54,7 @@
             <ImageView
                 android:id="@+id/imageViewIntervalo1"
                 android:layout_width="59dp"
-                android:layout_height="59dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 />
         </LinearLayout>
@@ -75,7 +75,7 @@
             <ImageView
                 android:id="@+id/imageViewIntervalo2"
                 android:layout_width="59dp"
-                android:layout_height="59dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 />
         </LinearLayout>

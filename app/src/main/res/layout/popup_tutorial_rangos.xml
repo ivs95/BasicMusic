@@ -42,250 +42,244 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="\nBasicMusic cuenta con un sistema de progresión basado en puntuación con rangos para cada modo de juego, con un total de 7 disponibles. \n\nCon cada nivel acertado subirá tu puntación y con cada nivel fallado bajará dicha puntuación.\n\nLos distintos rangos son representados por figuras musicales que se mostrarán a la derecha del modo de juego correspondiente, son las siguientes:\n"
-                android:textColor="@color/md_blue_900"
-                android:textSize="16dp"
+                android:layout_width="373dp"
+                android:layout_height="219dp"
                 android:paddingLeft="10dp"
+                android:text="\nBasicMusic cuenta con un sistema de progresión basado en puntuación con rangos para cada modo de juego, con un total de 7 disponibles. \n\nLos distintos rangos son representados por figuras musicales que se mostrarán a la derecha del modo de juego correspondiente, son las siguientes:\n"
+                android:textColor="@color/md_blue_900"
+                android:textSize="17dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayoutPadre"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/popup_tutorial_rangos_titulo" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout5"
-                android:layout_width="404dp"
-                android:layout_height="122dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3.33"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imagen_1_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="8"
-                        app:srcCompat="@drawable/semifusa" />
-
-                    <TextView
-                        android:id="@+id/texto_1_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.5"
-                        android:text="Principiante"
-                        android:textAlignment="center"
-                        android:textColor="@color/md_blue_900"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3.33"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imagen_2_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="8"
-                        app:srcCompat="@drawable/fusa" />
-
-                    <TextView
-                        android:id="@+id/texto_2_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.5"
-                        android:text="Aprendiz"
-                        android:textAlignment="center"
-                        android:textColor="@color/md_blue_900"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3.33"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imagen_3_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="8"
-                        app:srcCompat="@drawable/semicorchea" />
-
-                    <TextView
-                        android:id="@+id/texto_3_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.5"
-                        android:text="Veterano"
-                        android:textAlignment="center"
-                        android:textColor="@color/md_blue_900"
-                        android:textSize="18dp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3.33"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imagen_4_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="8"
-                        app:srcCompat="@drawable/corchea" />
-
-                    <TextView
-                        android:id="@+id/texto_4_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.5"
-                        android:text="Experto"
-                        android:textAlignment="center"
-                        android:textColor="@color/md_blue_900"
-                        android:textSize="18dp" />
-
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout18"
-                android:layout_width="400dp"
-                android:layout_height="130dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3.33"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imagen_5_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="8"
-                        app:srcCompat="@drawable/negra" />
-
-                    <TextView
-                        android:id="@+id/texto_5_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.5"
-                        android:text="Maestro"
-                        android:textAlignment="center"
-                        android:textColor="@color/md_blue_900"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3.33"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imagen_6_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="8"
-                        app:srcCompat="@drawable/blanca" />
-
-                    <TextView
-                        android:id="@+id/texto_6_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.5"
-                        android:text="Gran Maestro"
-                        android:textAlignment="center"
-                        android:textColor="@color/md_blue_900"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3.33"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imagen_7_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="8"
-                        app:srcCompat="@drawable/redonda" />
-
-                    <TextView
-                        android:id="@+id/texto_7_tutorangos"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.5"
-                        android:text="Leyenda"
-                        android:textAlignment="center"
-                        android:textColor="@color/md_blue_900"
-                        android:textSize="18dp" />
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/recordatorio_tutorangos"
-                android:layout_width="345dp"
-                android:layout_height="119dp"
-                android:layout_marginLeft="10dp"
-                android:paddingEnd="10dp"
-                android:text="\nY recuerde: Solo sumará puntos el último nivel disponible. \n\n Diviertete!"
-                android:textAlignment="center"
-                android:textColor="@color/md_blue_900"
-                android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.421"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout18"
-                app:layout_constraintVertical_bias="0.125" />
 
             <Button
                 android:id="@+id/boton_cerrar_tutorialrangos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cerrar"
+                android:text="Siguiente"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutPadre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="300dp"
+                android:layout_marginBottom="50dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/boton_cerrar_tutorialrangos"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recordatorio_tutorangos"
-                app:layout_constraintVertical_bias="0.888" />
+                app:layout_constraintTop_toTopOf="@+id/popup_tutorial_rangos_titulo"
+                app:layout_constraintVertical_bias="0.912">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="122dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout18">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.33"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imagen_1_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="9"
+                            app:srcCompat="@drawable/semifusa" />
+
+                        <TextView
+                            android:id="@+id/texto_1_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Principiante"
+                            android:textAlignment="center"
+                            android:textColor="@color/md_blue_900"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.33"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imagen_2_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            app:srcCompat="@drawable/fusa" />
+
+                        <TextView
+                            android:id="@+id/texto_2_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.5"
+                            android:text="Aprendiz"
+                            android:textAlignment="center"
+                            android:textColor="@color/md_blue_900"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.33"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imagen_3_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            app:srcCompat="@drawable/semicorchea" />
+
+                        <TextView
+                            android:id="@+id/texto_3_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.5"
+                            android:text="Veterano"
+                            android:textAlignment="center"
+                            android:textColor="@color/md_blue_900"
+                            android:textSize="18dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.33"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imagen_4_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            app:srcCompat="@drawable/corchea" />
+
+                        <TextView
+                            android:id="@+id/texto_4_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.5"
+                            android:text="Experto"
+                            android:textAlignment="center"
+                            android:textColor="@color/md_blue_900"
+                            android:textSize="18dp" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout18"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.33"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imagen_5_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            app:srcCompat="@drawable/negra" />
+
+                        <TextView
+                            android:id="@+id/texto_5_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.5"
+                            android:text="Maestro"
+                            android:textAlignment="center"
+                            android:textColor="@color/md_blue_900"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.33"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imagen_6_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            app:srcCompat="@drawable/blanca" />
+
+                        <TextView
+                            android:id="@+id/texto_6_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.5"
+                            android:text="Gran Maestro"
+                            android:textAlignment="center"
+                            android:textColor="@color/md_blue_900"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.33"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imagen_7_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="8"
+                            app:srcCompat="@drawable/redonda" />
+
+                        <TextView
+                            android:id="@+id/texto_7_tutorangos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.5"
+                            android:text="Leyenda"
+                            android:textAlignment="center"
+                            android:textColor="@color/md_blue_900"
+                            android:textSize="18dp" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
