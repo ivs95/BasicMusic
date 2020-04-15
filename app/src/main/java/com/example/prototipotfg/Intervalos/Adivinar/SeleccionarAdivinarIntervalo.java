@@ -137,7 +137,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
     public void reproduceIntervaloRespuesta(final View view) throws InterruptedException {
         view.setEnabled(false);
         reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(0).second.getPath()+notasIntervalo.get(0).first.getPath());
-        sleep(400);
+        sleep(750);
         reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+notasIntervalo.get(1).second.getPath()+notasIntervalo.get(1).first.getPath());
         sleep(10);
         view.setEnabled(true);

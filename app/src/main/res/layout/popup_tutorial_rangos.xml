@@ -29,7 +29,7 @@
                 android:id="@+id/popup_tutorial_rangos_titulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sistema de Puntuación "
+                android:text="Sistema de Progresión "
 
                 android:textColor="@color/md_blue_900"
                 android:textSize="30sp"

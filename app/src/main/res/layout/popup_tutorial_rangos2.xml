@@ -26,11 +26,11 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="100dp"
-                android:layout_marginBottom="200dp"
+                android:layout_marginBottom="70dp"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/boton_cerrar_tutorial_2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -41,22 +41,22 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="Cada nivel acertado sumará TRES puntos sobre tu puntuación y cada nivel fallado bajará puntos sobre dicha puntuación.\n\n Aunque recuerda: Solo sumará o restará puntos el último nivel disponible. \n\n Cuanto mas alto sea el nivel, mas dificil será, y perderás mas puntos al fallarlo. "
+                    android:layout_weight="8"
+                    android:text="Cada nivel acertado sumará TRES puntos sobre tu puntuación y cada nivel fallado bajará puntos sobre dicha puntuación.\n\n Aunque recuerda: Solo sumará o restará puntos el último nivel disponible. \n\n Cuanto mas alto sea el nivel, mas dificil será, y perderás mas puntos al fallarlo. \n\nAl aumentar tu puntuación en un modo de juego también subirá tu rango en dicho modo."
                     android:textColor="@color/md_blue_900"
-                    android:textSize="20dp"
-                    android:layout_weight="8"></TextView>
+                    android:textSize="20dp"></TextView>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_weight="8"
+                    android:layout_weight="80"
                     android:text="Diviertete!"
+                    android:textAlignment="center"
                     android:textColor="@color/md_blue_900"
                     android:textSize="25dp"
-                    android:textStyle="bold"
-                    android:textAlignment="center">
+                    android:textStyle="bold">
 
                 </TextView>
 
