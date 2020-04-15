@@ -255,7 +255,7 @@ public class CrearRitmos extends Activity {
         setContentView(R.layout.crearritmos);
 
         nivel = getIntent().getExtras().getInt("nivel");
-        boolean primeraVez = getIntent().getExtras().getBoolean("visitado");
+        GestorBBDD.getInstance().modoRealizado(ModoJuego.Realiza_Ritmo);
 
         Controlador.getInstance().setNivel(nivel);
         if (nivel % 2 == 1){

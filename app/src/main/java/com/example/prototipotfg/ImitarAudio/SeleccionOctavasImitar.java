@@ -24,7 +24,6 @@ public class SeleccionOctavasImitar extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
-        boolean primeraVez = GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Imitar_Audio);
 
           LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
                  //Creamos las propiedades de layout que tendrán los botones.
@@ -61,7 +60,6 @@ public class SeleccionOctavasImitar extends Activity {
             octavas.add(Octavas.devuelveOctavaPorNumero(e).getNombre());
         i.putStringArrayListExtra("octavas", octavas);
         i.putExtra("rangoVocal",nombre);
-        i.putExtra("visitado", GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Imitar_Audio));
         startActivity(i);
     }
 }

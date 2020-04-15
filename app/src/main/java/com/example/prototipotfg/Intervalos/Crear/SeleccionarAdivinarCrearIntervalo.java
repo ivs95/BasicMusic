@@ -63,6 +63,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_crear_intervalo);
         ponerComprobarVisible(INVISIBLE);
+        GestorBBDD.getInstance().modoRealizado(ModoJuego.Crear_Intervalo);
 
         Random r = new Random();
         this.num_opciones = Controlador.getInstance().getNum_opciones();

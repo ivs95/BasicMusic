@@ -61,6 +61,7 @@ public class ReproducirCrearAcordes extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_crear_acorde);
         ponerComprobarVisible(View.GONE);
+        GestorBBDD.getInstance().modoRealizado(ModoJuego.Crear_Acordes);
 
         this.numOpciones = Controlador.getInstance().getNum_opciones();
         this.num_notas = numOpciones + 3;

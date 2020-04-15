@@ -171,6 +171,7 @@ public class HallaRitmos extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hallaritmos);
         this.savedInstanceState = savedInstanceState;
+        GestorBBDD.getInstance().modoRealizado(ModoJuego.Halla_Ritmo);
 
 
         nivel = getIntent().getExtras().getInt("nivel");

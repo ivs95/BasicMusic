@@ -39,14 +39,12 @@ public class SeleccionModoRitmos extends Activity {
             case R.id.buttonHalla:
                 i = new Intent(this, NivelesHallarRitmos.class);
                 i.putExtra("modoRitmo", "hallar");
-                i.putExtra("visitado", GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Halla_Ritmo));
                 startActivity(i);
                 break;
 
             case R.id.buttonRealizar:
                 i = new Intent(this, NivelesCrearRitmo.class);
                 i.putExtra("modoRitmo", "realizar");
-                i.putExtra("visitado", GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Realiza_Ritmo));
                 startActivity(i);
                 break;
 

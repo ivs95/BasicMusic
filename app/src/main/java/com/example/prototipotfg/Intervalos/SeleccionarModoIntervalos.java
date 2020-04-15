@@ -40,7 +40,6 @@ public class SeleccionarModoIntervalos extends Activity {
             case R.id.buttonIntervalosModo2:
                 Intent i = new Intent(this, NivelesAdivinarIntervalos.class);
                 Controlador.getInstance().setModo_juego(ModoJuego.Adivinar_Intervalo);
-                i.putExtra("visitado", GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Adivinar_Intervalo));
 
                 startActivity(i);
                 break;
@@ -48,7 +47,6 @@ public class SeleccionarModoIntervalos extends Activity {
             case R.id.buttonIntervalosModo1:
                 i = new Intent(this, SeleccionNivelCrearIntervalo.class);
                 Controlador.getInstance().setModo_juego(ModoJuego.Crear_Intervalo);
-                i.putExtra("visitado", GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Crear_Intervalo));
                 startActivity(i);
                 break;
 

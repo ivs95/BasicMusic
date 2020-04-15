@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.example.prototipotfg.AudioDispatcherFactory1;
 import com.example.prototipotfg.BBDD.NivelImitar;
+import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.GestorBBDD;
@@ -56,6 +57,9 @@ public class ReproducirImitar extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_reproducir_imitar);
+        GestorBBDD.getInstance().modoRealizado(ModoJuego.Imitar_Audio);
+
+
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         rutas = getIntent().getExtras().getStringArrayList("rutas");
         nivel = getIntent().getExtras().getString("nivel");

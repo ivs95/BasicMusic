@@ -11,9 +11,9 @@
         android:id="@+id/linearTitulos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="5dp"
         android:divider="@drawable/divisor_botones_menu"
         android:gravity="center"
         android:orientation="horizontal"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Niveles -"
             android:textColor="@color/md_blue_900"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/rango_niveles"
@@ -37,7 +37,7 @@
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/md_blue_900"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
     </LinearLayout>
 

@@ -38,12 +38,13 @@ public class NivelesAdivinarIntervalos extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
-        boolean primeraVez = getIntent().getExtras().getBoolean("visitado");
+        boolean primeraVez = GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Adivinar_Intervalo);
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
         TextView rango = findViewById(R.id.rango_niveles);
-        rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango());
+        int puntuacion = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getPuntuacionTotal();
+        rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango() + " (" + puntuacion + " puntos)");
 
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
@@ -79,7 +80,7 @@ public class NivelesAdivinarIntervalos extends Activity {
 
             if (nivelActual == i+1 && nivelActual != ModoJuego.Adivinar_Intervalo.getMax_level()){
                 TextView texto = new TextView(this);
-                texto.setText("Faltan " + (PuntosNiveles.values()[nivelActual].getMinPuntos() - GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getPuntuacionTotal()) +" puntos para desbloquear el siguiente nivel");
+                texto.setText("Faltan " + (PuntosNiveles.values()[nivelActual].getMinPuntos() - puntuacion) +" puntos para desbloquear el siguiente nivel");
                 texto.setLayoutParams(lp);
                 texto.setTextColor(getResources().getColor(R.color.md_blue_900));
                 texto.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);

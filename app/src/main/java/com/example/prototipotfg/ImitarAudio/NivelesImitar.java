@@ -13,9 +13,11 @@ import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
+import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosVocales;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
+import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +39,8 @@ public class NivelesImitar extends Activity {
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        boolean primeraVez = getIntent().getExtras().getBoolean("visitado");
+        boolean primeraVez = GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Imitar_Audio);
+
 
         //Creamos los botones en bucle
         for (int i = 0; i < Dificultad.values().length; i++){
