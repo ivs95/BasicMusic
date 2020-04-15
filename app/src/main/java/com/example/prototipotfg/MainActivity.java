@@ -71,10 +71,12 @@ public class MainActivity extends AppCompatActivity {
                 getSystemService(LAYOUT_INFLATER_SERVICE);
 
         final View popupView = inflater.inflate(R.layout.popup_tutorial_rangos, null);
+        final View popupView2 = inflater.inflate(R.layout.popup_tutorial_rangos2, null);
 
         // create the popup window
         //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
         final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
+        final PopupWindow popupWindow2 = new PopupWindow(popupView2, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
 
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
@@ -89,12 +91,17 @@ public class MainActivity extends AppCompatActivity {
         Button cerrar = (Button)popupView.findViewById(R.id.boton_cerrar_tutorialrangos);
         cerrar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                popupWindow2.showAtLocation(view, Gravity.CENTER, 0, 0);
                 popupWindow.dismiss();
             }
         });
-        // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-        // dismiss the popup window when touched
+        Button cerrar2 = (Button)popupView2.findViewById(R.id.boton_cerrar_tutorial_2);
+        cerrar2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                popupWindow2.dismiss();
+            }
+        });
 
     }
 }
