@@ -1,44 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
+    android:id="@+id/id_tutoriales"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".MainActivity">
-
-
-    <ImageButton
-        android:id="@+id/profile_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/picture"
-        android:onClick="ejecutar_Perfil"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04" />
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/titulo"
+        android:id="@+id/tituloTutoriales"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:text="@string/titulo"
-        android:textAlignment="center"
+        android:gravity="center"
+        android:text="Tutoriales"
         android:textColor="@color/md_blue_900"
-        android:textSize="36sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.20" />
-
+        app:layout_constraintVertical_bias="0.1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,50 +35,66 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7">
+        app:layout_constraintVertical_bias="0.55">
 
         <Button
-            android:id="@+id/botonJuego"
+            android:id="@+id/boton_tutorial_adivinarnotas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="ejecutar_jugar"
-            android:text="@string/txtBotonJuego" />
+            android:onClick="modo_adivinar_notas"
+            android:text="Adivinar Notas" />
 
         <Button
-            android:id="@+id/botonInfo"
+            android:id="@+id/boton_tutorial_imitaraudio"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/txtBotonInfo"
-            android:visibility="visible" />
+            android:onClick="modo_imitar"
+            android:text="Imitar Audio" />
 
         <Button
-            android:id="@+id/botonEstadisticas"
+            android:id="@+id/boton_tutorial_adivinarintervalos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="mostrarEstadisticas"
-            android:text="Estadísticas" />
+            android:onClick="modo_adivinar_intervalos"
+            android:text="Adivinar Intervalos" />
 
         <Button
-            android:id="@+id/botonTutoriales"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="tutoriales"
-            android:text="Tutoriales" />
-
-        <Button
-            android:id="@+id/botonTeoria"
+            android:id="@+id/boton_tutorial_crearintervalos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/txtBotonTeoria"
-            android:visibility="visible" />
+            android:onClick="modo_crear_intervalos"
+            android:text="Crear Intervalos" />
 
         <Button
-            android:id="@+id/botonSalir"
+            android:id="@+id/boton_tutorial_adivinaracordes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="salir"
-            android:text="@string/txtBtnSalir" />
+            android:onClick="modo_adivinar_acordes"
+            android:text="Adivinar Acordes" />
 
+        <Button
+            android:id="@+id/boton_crearacordes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="modo_crear_acordes"
+            android:text="Crear Acordes" />
+
+        <Button
+            android:id="@+id/boton_dibujaritmos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="modo_dibuja_ritmos"
+            android:text="Dibuja ritmos" />
+
+        <Button
+            android:id="@+id/boton_imitaritmos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="modo_imita_ritmos"
+            android:text="Imita ritmos" />
     </LinearLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

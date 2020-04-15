@@ -50,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void tutoriales(View view){
+
+        Intent i = new Intent(this, Tutoriales.class);
+        startActivity(i);
+    }
+
     protected void onStop(){
         super.onStop();
 

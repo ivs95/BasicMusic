@@ -85,7 +85,6 @@ public class NivelesCrearRitmo extends Activity{
                 texto.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 llBotonera.addView(texto);
             }
-
             if(primeraVez)
                 mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
         }
