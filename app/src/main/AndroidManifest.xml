@@ -53,6 +53,7 @@
         <activity android:name=".Acordes.Adivinar.TutorialNivelAdivinarAcordes" />
         <activity android:name=".Acordes.Crear.TutorialNivelCrearAcordes" />
         <activity android:name=".Tutoriales"/>
+        <activity android:name=".Teoria" />
     </application>
 
 </manifest>

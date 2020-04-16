@@ -50,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void teoriaMusical(View view){
+        Intent i = new Intent(this, Teoria.class);
+        startActivity(i);
+    }
+
     public void tutoriales(View view){
 
         Intent i = new Intent(this, Tutoriales.class);
