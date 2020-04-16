@@ -28,12 +28,11 @@
         android:layout_marginEnd="5dp"
         android:text="Nota: sonido que realiza una frencuencia determinada"
         android:textColor="@color/md_blue_900"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintTop_toBottomOf="@id/tituloTeoria" />
 
     <TextView
         android:id="@+id/textView5"
@@ -58,12 +57,11 @@
         android:layout_marginEnd="5dp"
         android:text="Intervalo: distancia entre dos notas. Pueden ser:"
         android:textColor="@color/md_blue_900"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/textView5" />
 
     <TextView
         android:id="@+id/textView6"
@@ -88,12 +86,11 @@
         android:layout_marginEnd="5dp"
         android:text="Octava: intervalo de ocho grados entre dos notas "
         android:textColor="@color/md_blue_900"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55" />
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/textView6" />
 
     <TextView
         android:id="@+id/textView7"
@@ -118,12 +115,11 @@
         android:layout_marginEnd="5dp"
         android:text="Acorde: conjunto de dos o más notas sonando a la vez. "
         android:textColor="@color/md_blue_900"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.80" />
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/textView7"/>
 
 
     <TextView
