@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
 
     }
+    public void informacion(View view){
+        mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
+    }
     public void salir(View view){
         GestorBBDD.getInstance().cerrarSesion();
         Intent i = new Intent(this, Login.class);
@@ -107,6 +110,38 @@ public class MainActivity extends AppCompatActivity {
                 popupWindow2.dismiss();
             }
         });
+
+    }
+
+    public void mostrarPopupTutorial(View view){
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+
+        View popupView = inflater.inflate(R.layout.informacion_popup, null);
+
+        // create the popup window
+        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+        final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+
+
+        findViewById(R.id.linearLayout).post(new Runnable() {
+            public void run() {
+                popupWindow.showAtLocation(findViewById(R.id.linearLayout), Gravity.CENTER, 0, 0);
+            }
+        });
+
+        // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+        // dismiss the popup window when touched
 
     }
 }
