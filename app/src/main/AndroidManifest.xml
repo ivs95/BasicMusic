@@ -14,46 +14,150 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Registro"></activity>
-        <activity android:name=".Perfil"></activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Login">
+        <activity android:name=".Registro"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Perfil"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Login"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MenuJugar" />
-        <activity android:name=".Notas.SeleccionarAdivinarNotas" />
-        <activity android:name=".Intervalos.Crear.SeleccionarAdivinarCrearIntervalo" />
-        <activity android:name=".Intervalos.Adivinar.SeleccionarAdivinarIntervalo" />
-        <activity android:name=".ImitarAudio.NivelesImitar" />
-        <activity android:name=".Ritmos.Hallar.NivelesHallarRitmos" />
-        <activity android:name=".ImitarAudio.ReproducirImitar" />
-        <activity android:name=".SeleccionModoAdivinar" />
-        <activity android:name=".Ritmos.SeleccionModoRitmos" />
-        <activity android:name=".Intervalos.SeleccionarModoIntervalos" />
-        <activity android:name=".Ritmos.Hallar.HallaRitmos" />
-        <activity android:name=".Ritmos.RealizaRitmos" />
-        <activity android:name=".ImitarAudio.SeleccionOctavasImitar" />
-        <activity android:name=".Intervalos.Adivinar.NivelesAdivinarIntervalos" />
-        <activity android:name=".Acordes.SeleccionarModoAcordes" />
-        <activity android:name=".Intervalos.Crear.SeleccionNivelCrearIntervalo" />
-        <activity android:name=".Notas.SeleccionarNivelAdivinarNotas" />
-        <activity android:name=".Acordes.Adivinar.SeleccionarNivelAdivinarAcordes" />
-        <activity android:name=".Acordes.Crear.SeleccionarNivelCrearAcordes" />
-        <activity android:name=".Acordes.Adivinar.ReproducirAdivinarAcordes" />
-        <activity android:name=".Acordes.Crear.ReproducirCrearAcordes" />
-        <activity android:name=".Acordes.TutorialAdivinarAcordes" />
-        <activity android:name=".Estadisticas" />
-        <activity android:name=".Ritmos.Crear.CrearRitmos" />
-        <activity android:name=".Ritmos.Crear.NivelesCrearRitmo" />
-        <activity android:name=".Intervalos.TutorialIntervalos" />
-        <activity android:name=".Notas.TutorialNotas" />
-        <activity android:name=".Acordes.Adivinar.TutorialNivelAdivinarAcordes" />
-        <activity android:name=".Acordes.Crear.TutorialNivelCrearAcordes" />
-        <activity android:name=".Tutoriales"/>
-        <activity android:name=".Teoria" />
+        <activity android:name=".MenuJugar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Notas.SeleccionarAdivinarNotas"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Intervalos.Crear.SeleccionarAdivinarCrearIntervalo"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Intervalos.Adivinar.SeleccionarAdivinarIntervalo"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ImitarAudio.NivelesImitar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Ritmos.Hallar.NivelesHallarRitmos"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ImitarAudio.ReproducirImitar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".SeleccionModoAdivinar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Ritmos.SeleccionModoRitmos"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Intervalos.SeleccionarModoIntervalos"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Ritmos.Hallar.HallaRitmos"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Ritmos.RealizaRitmos"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ImitarAudio.SeleccionOctavasImitar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Intervalos.Adivinar.NivelesAdivinarIntervalos"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Acordes.SeleccionarModoAcordes"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Intervalos.Crear.SeleccionNivelCrearIntervalo"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Notas.SeleccionarNivelAdivinarNotas"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Acordes.Adivinar.SeleccionarNivelAdivinarAcordes"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Acordes.Crear.SeleccionarNivelCrearAcordes"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Acordes.Adivinar.ReproducirAdivinarAcordes"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Acordes.Crear.ReproducirCrearAcordes"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Acordes.TutorialAdivinarAcordes"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Estadisticas"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Ritmos.Crear.CrearRitmos"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Ritmos.Crear.NivelesCrearRitmo"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Intervalos.TutorialIntervalos"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Notas.TutorialNotas"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Acordes.Adivinar.TutorialNivelAdivinarAcordes"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Acordes.Crear.TutorialNivelCrearAcordes"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Tutoriales"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Teoria"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
