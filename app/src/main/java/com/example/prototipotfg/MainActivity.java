@@ -24,9 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(GestorBBDD.getInstance().esPrimeraVezApp())
             mostrarPopupRangos(findViewById(android.R.id.content).getRootView());
-
     }
-
 
     public void ejecutar_jugar(View view) {
 
