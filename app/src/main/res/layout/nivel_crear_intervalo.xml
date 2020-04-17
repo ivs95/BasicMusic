@@ -80,18 +80,19 @@
             android:showDividers="middle">
 
             <Button
-                android:id="@+id/botonReferencia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="reproducirReferencia"
-                android:text="Referencia" />
-
-            <Button
                 android:id="@+id/Id_boton_reproduce_nota_intervalo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="reproducir"
                 android:text="Nota" />
+
+            <Button
+                android:id="@+id/botonReferencia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="reproducirReferencia"
+                android:text="Referencia(LA)" />
+
         </LinearLayout>
     </LinearLayout>
 
