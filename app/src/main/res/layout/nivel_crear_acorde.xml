@@ -125,13 +125,15 @@
                 android:id="@+id/retroceder_niveles_crear_acordes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="8.5"
                 android:onClick="volverAtrasCrearAcordes"
-                android:text="Volver a seleccionar nivel" />
+                android:text="Continuar" />
 
             <Button
                 android:id="@+id/infoCrearAcordes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1.5"
                 android:onClick="muestraPosiblesCrearAcordes"
                 android:text="Info" />
         </LinearLayout>

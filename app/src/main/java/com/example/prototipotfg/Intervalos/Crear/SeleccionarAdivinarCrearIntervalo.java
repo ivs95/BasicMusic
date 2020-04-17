@@ -76,6 +76,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         Intervalos intervalo = getIntervaloConDif((tono2-tono1));
         this.notasPosibles = seleccionaNotasAleatorios(intervalo);
 
+        findViewById(R.id.continuar_ci).setAlpha(.5f);
 
         intervalo_nombre = intervalo.getNombre();
         intervalo_dif = intervalo.getDiferencia();
@@ -300,6 +301,9 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
                         getSystemService(LAYOUT_INFLATER_SERVICE);
                 RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Crear_Intervalo.toString());
             }
+
+            findViewById(R.id.continuar_ci).setEnabled(true);      findViewById(R.id.continuar_ci).setAlpha(1);
+
         }
     }
 
@@ -320,4 +324,10 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
 
         return intervalos_lista[i-1];
     }
+
+    public void continuar(View view){
+        finish();
+        overridePendingTransition( 0, 0);
+        startActivity(getIntent());
+        overridePendingTransition( 0, 0);    }
 }

@@ -117,11 +117,11 @@
             android:text="Comprobar resultado" />
 
         <Button
-            android:id="@+id/retroceder_crear_intervalo"
+            android:id="@+id/continuar_ci"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="volverAtras"
-            android:text="Volver a seleccionar nivel" />
+            android:onClick="continuar"
+            android:text="Continuar" />
 
     </LinearLayout>
 

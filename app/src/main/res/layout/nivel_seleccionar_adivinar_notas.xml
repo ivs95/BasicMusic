@@ -71,11 +71,12 @@
             android:text="Comprobar resultado" />
 
         <Button
-            android:id="@+id/retroceder"
+            android:id="@+id/continuar_an"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="volverAtras"
-            android:text="Volver a seleccionar nivel" />
+            android:onClick="continuar"
+            android:enabled="false"
+            android:text="Continuar" />
     </LinearLayout>
 
     <LinearLayout

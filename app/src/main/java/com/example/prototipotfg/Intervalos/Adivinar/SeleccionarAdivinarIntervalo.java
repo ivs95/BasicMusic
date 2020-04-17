@@ -50,7 +50,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         setContentView(R.layout.nivel_adivinar_intervalo);
         ponerComprobarVisible(GONE);
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Intervalo);
-
+        findViewById(R.id.continuar_ai).setAlpha(.5f);
 
         notasIntervalo = FactoriaNotas.getInstance().getNotasIntervalo(Controlador.getInstance().getOctavas(), Controlador.getInstance().getRango());
         int tono1 = notasIntervalo.get(0).first.getTono();
@@ -223,6 +223,8 @@ public class SeleccionarAdivinarIntervalo extends Activity {
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Intervalo.toString());
         }
 
+        findViewById(R.id.continuar_ai).setEnabled(true);      findViewById(R.id.continuar_ai).setAlpha(1);
+
     }
 
     public Intervalos getIntervaloConDif(int dif){
@@ -244,5 +246,11 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         Reproductor.getInstance().reproducirNota(afd);
         afd.close();
     }
+
+    public void continuar(View view){
+        finish();
+        overridePendingTransition( 0, 0);
+        startActivity(getIntent());
+        overridePendingTransition( 0, 0);    }
 
 }

@@ -105,11 +105,11 @@
             android:text="Comprobar resultado"/>
 
         <Button
-            android:id="@+id/retroceder"
+            android:id="@+id/continuar_ai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="volverAtras"
-            android:text="Volver a seleccionar nivel" />
+            android:onClick="continuar"
+            android:text="continuar" />
 
 
 

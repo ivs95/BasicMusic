@@ -2,23 +2,14 @@ package com.example.prototipotfg.Notas;
 
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
@@ -28,14 +19,11 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
-import com.example.prototipotfg.Perfil;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 import com.example.prototipotfg.Singletons.Reproductor;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,6 +46,7 @@ public class SeleccionarAdivinarNotas extends Activity {
         setContentView(R.layout.nivel_seleccionar_adivinar_notas);
         ponerComprobarVisible(INVISIBLE);
 
+        findViewById(R.id.continuar_an).setAlpha(.5f);
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Notas);
         nombres = getIntent().getExtras().getStringArrayList("nombres");
         FactoriaNotas.getInstance().setReferencia(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
@@ -232,6 +221,10 @@ public class SeleccionarAdivinarNotas extends Activity {
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Notas.toString());
         }
 
+        findViewById(R.id.continuar_an).setEnabled(true);         findViewById(R.id.continuar_an).setAlpha(1);
+
+
+
     }
 
     private void deshabilitaBotones() {
@@ -243,5 +236,11 @@ public class SeleccionarAdivinarNotas extends Activity {
         findViewById(R.id.botonNota).setEnabled(false);         findViewById(R.id.botonNota).setAlpha(.5f);
 
     }
+
+    public void continuar(View view){
+        finish();
+        overridePendingTransition( 0, 0);
+        startActivity(getIntent());
+        overridePendingTransition( 0, 0);    }
 
 }
