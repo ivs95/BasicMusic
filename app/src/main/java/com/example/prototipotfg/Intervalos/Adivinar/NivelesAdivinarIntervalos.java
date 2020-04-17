@@ -44,7 +44,7 @@ public class NivelesAdivinarIntervalos extends Activity {
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
         TextView rango = findViewById(R.id.rango_niveles);
         int puntuacion = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getPuntuacionTotal();
-        rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango() + " (" + puntuacion + " puntos)");
+        rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango() + " (" + puntuacion + " puntos)");
 
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
