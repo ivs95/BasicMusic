@@ -46,11 +46,13 @@ public enum PuntosNiveles {
         this.maxPuntos = maxPuntos;
     }
 
-    public static int devuelveNivel(int puntuacion){
+    public static int devuelveNivel(int puntuacion, ModoJuego modoJuego){
+        int nivel = 0;
         for (PuntosNiveles p : PuntosNiveles.values()){
             if (puntuacion >= p.getMinPuntos() && puntuacion < p.getMaxPuntos())
-                return p.getNivel();
+                nivel = p.getNivel();
         }
-        return 10;
+        if(nivel > modoJuego.getMax_level()) return modoJuego.getMax_level();
+        else return nivel;
     }
 }

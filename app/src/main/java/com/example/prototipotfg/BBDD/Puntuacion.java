@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
+import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.PuntosNiveles;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 
@@ -50,7 +51,7 @@ public class Puntuacion {
     }
 
     private void actualizaNivel() {
-        this.nivel = PuntosNiveles.devuelveNivel(this.puntuacionTotal);
+        this.nivel = PuntosNiveles.devuelveNivel(this.puntuacionTotal, ModoJuego.valueOf(this.modoJuego));
         this.rango = RangosPuntuaciones.actualizaRango(this.modoJuego, this.puntuacionTotal).toString();
     }
 
