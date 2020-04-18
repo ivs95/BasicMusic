@@ -50,6 +50,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         setContentView(R.layout.nivel_adivinar_intervalo);
         ponerComprobarVisible(GONE);
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Intervalo);
+
         findViewById(R.id.continuar_ai).setAlpha(.5f);
 
         notasIntervalo = FactoriaNotas.getInstance().getNotasIntervalo(Controlador.getInstance().getOctavas(), Controlador.getInstance().getRango());

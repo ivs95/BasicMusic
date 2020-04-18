@@ -266,6 +266,8 @@ public class CrearRitmos extends Activity {
 
         Controlador.getInstance().setNivel(nivel);
 
+        findViewById(R.id.continuar_cr).setAlpha(.5f);
+
         Random random = new Random();
         ritmos1 = new ArrayList<>();
         ritmos2 = new ArrayList<>();
@@ -301,10 +303,7 @@ public class CrearRitmos extends Activity {
             pausa = 475;
 
         if(nivel == 8) pausa = 400;
-        ritmos1 = getIntent().getExtras().getIntegerArrayList("ritmos1");
-        ritmos2 = getIntent().getExtras().getIntegerArrayList("ritmos2");
-        ritmos3 = getIntent().getExtras().getIntegerArrayList("ritmos3");
-        ritmos4 = getIntent().getExtras().getIntegerArrayList("ritmos4");
+
         TextView titulo = findViewById(R.id.tituloCrearRitmo);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
         LinearLayout guia = findViewById(R.id.linearRitmo);
@@ -480,6 +479,9 @@ public class CrearRitmos extends Activity {
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Realiza_Ritmo.toString());
         }
 
+        findViewById(R.id.continuar_cr).setEnabled(true);          findViewById(R.id.continuar_cr).setAlpha(1);
+
+
     }
 
     public void agregaFigura(int figura, ArrayList<Integer> ritmos, int compas){
@@ -564,6 +566,10 @@ public class CrearRitmos extends Activity {
         resultado4.set(indiceSonidoActual,1);
     }
 
-
+    public void continuar(View view){
+        finish();
+        overridePendingTransition( 0, 0);
+        startActivity(getIntent());
+        overridePendingTransition( 0, 0);    }
 
 }

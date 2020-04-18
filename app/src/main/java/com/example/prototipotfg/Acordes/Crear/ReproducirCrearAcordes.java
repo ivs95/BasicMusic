@@ -63,6 +63,8 @@ public class ReproducirCrearAcordes extends Activity {
         ponerComprobarVisible(View.GONE);
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Crear_Acordes);
 
+        findViewById(R.id.continuar_ac).setAlpha(.5f);
+
         this.numOpciones = Controlador.getInstance().getNum_opciones();
         this.num_notas = numOpciones + 3;
         this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()-1));
@@ -272,6 +274,9 @@ public class ReproducirCrearAcordes extends Activity {
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Crear_Acordes.toString());
 
         }
+
+        findViewById(R.id.continuar_ca).setEnabled(true);          findViewById(R.id.continuar_ca).setAlpha(1);
+
     }
 
     public void reproducirNotaInicioAcorde(View view) throws IOException {
@@ -337,4 +342,11 @@ public class ReproducirCrearAcordes extends Activity {
     public void volverAtrasCrearAcordes(View view) {
         finish();
     }
+
+    public void continuar(View view){
+        finish();
+        overridePendingTransition( 0, 0);
+        startActivity(getIntent());
+        overridePendingTransition( 0, 0);    }
+
 }

@@ -182,6 +182,8 @@ public class HallaRitmos extends Activity {
         this.savedInstanceState = savedInstanceState;
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Halla_Ritmo);
 
+        findViewById(R.id.continuar_hr).setAlpha(.5f);
+
         Random random = new Random();
         ritmos1 = new ArrayList<>(longitud);
         ritmos2 = new ArrayList<>(longitud);
@@ -804,6 +806,9 @@ public class HallaRitmos extends Activity {
                     getSystemService(LAYOUT_INFLATER_SERVICE);
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Halla_Ritmo.toString());
         }
+
+        findViewById(R.id.continuar_hr).setEnabled(true);          findViewById(R.id.continuar_hr).setAlpha(1);
+
     }
 
     public void agregaFigura(int figura, ArrayList<Integer> ritmos, int compas){
@@ -854,5 +859,10 @@ public class HallaRitmos extends Activity {
         running = false;
     }
 
+    public void continuar(View view){
+        finish();
+        overridePendingTransition( 0, 0);
+        startActivity(getIntent());
+        overridePendingTransition( 0, 0);    }
 
 }

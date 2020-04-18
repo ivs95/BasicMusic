@@ -122,12 +122,12 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/retroceder_niveles_adivinar_acordes"
+                android:id="@+id/continuar_ac"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="8.5"
-                android:onClick="volverAtrasAcordes"
-                android:text="Continuar" />
+                android:onClick="continuar"
+                android:text="Otra!" />
 
             <Button
                 android:id="@+id/button_info_adivinarAcorde"

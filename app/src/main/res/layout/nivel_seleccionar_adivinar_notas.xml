@@ -74,9 +74,9 @@
             android:id="@+id/continuar_an"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="continuar"
             android:enabled="false"
-            android:text="Continuar" />
+            android:onClick="continuar"
+            android:text="Otra!" />
     </LinearLayout>
 
     <LinearLayout

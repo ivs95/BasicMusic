@@ -58,6 +58,8 @@ public class ReproducirAdivinarAcordes extends Activity {
         ponerComprobarVisible(View.GONE);
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Acordes);
 
+        findViewById(R.id.continuar_ac).setAlpha(.5f);
+
         this.numOpciones = Controlador.getInstance().getNum_opciones();
         this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()-1));
         this.acordesPosibles = seleccionaAcordesAleatorios(numOpciones, Controlador.getInstance().getAcordes());
@@ -208,6 +210,9 @@ public class ReproducirAdivinarAcordes extends Activity {
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Acordes.toString());
 
         }
+
+        findViewById(R.id.continuar_ac).setEnabled(true);          findViewById(R.id.continuar_ac).setAlpha(1);
+
     }
 
     public void reproducirAcorde(View view){
@@ -268,4 +273,11 @@ public class ReproducirAdivinarAcordes extends Activity {
     public void volverAtrasAcordes(View view) {
         finish();
     }
+
+    public void continuar(View view){
+        finish();
+        overridePendingTransition( 0, 0);
+        startActivity(getIntent());
+        overridePendingTransition( 0, 0);    }
+
 }
