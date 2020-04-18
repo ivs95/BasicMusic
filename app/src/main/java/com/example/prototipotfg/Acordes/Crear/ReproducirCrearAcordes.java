@@ -63,7 +63,7 @@ public class ReproducirCrearAcordes extends Activity {
         ponerComprobarVisible(View.GONE);
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Crear_Acordes);
 
-        findViewById(R.id.continuar_ac).setAlpha(.5f);
+        findViewById(R.id.continuar_ca).setEnabled(false);       findViewById(R.id.continuar_ca).setAlpha(.5f);
 
         this.numOpciones = Controlador.getInstance().getNum_opciones();
         this.num_notas = numOpciones + 3;

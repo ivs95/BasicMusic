@@ -51,7 +51,7 @@ public class SeleccionarAdivinarIntervalo extends Activity {
         ponerComprobarVisible(GONE);
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Intervalo);
 
-        findViewById(R.id.continuar_ai).setAlpha(.5f);
+        findViewById(R.id.continuar_ai).setEnabled(false);           findViewById(R.id.continuar_ai).setAlpha(.5f);
 
         notasIntervalo = FactoriaNotas.getInstance().getNotasIntervalo(Controlador.getInstance().getOctavas(), Controlador.getInstance().getRango());
         int tono1 = notasIntervalo.get(0).first.getTono();

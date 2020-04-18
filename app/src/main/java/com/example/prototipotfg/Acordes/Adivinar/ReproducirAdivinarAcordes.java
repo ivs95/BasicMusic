@@ -58,7 +58,7 @@ public class ReproducirAdivinarAcordes extends Activity {
         ponerComprobarVisible(View.GONE);
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Acordes);
 
-        findViewById(R.id.continuar_ac).setAlpha(.5f);
+        findViewById(R.id.continuar_ac).setEnabled(false);       findViewById(R.id.continuar_ac).setAlpha(.5f);
 
         this.numOpciones = Controlador.getInstance().getNum_opciones();
         this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()-1));

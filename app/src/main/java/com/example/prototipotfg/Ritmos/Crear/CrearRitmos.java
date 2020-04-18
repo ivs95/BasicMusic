@@ -266,7 +266,7 @@ public class CrearRitmos extends Activity {
 
         Controlador.getInstance().setNivel(nivel);
 
-        findViewById(R.id.continuar_cr).setAlpha(.5f);
+        findViewById(R.id.continuar_cr).setEnabled(false);           findViewById(R.id.continuar_cr).setAlpha(.5f);
 
         Random random = new Random();
         ritmos1 = new ArrayList<>();

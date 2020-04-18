@@ -76,7 +76,7 @@ public class SeleccionarAdivinarCrearIntervalo extends Activity {
         Intervalos intervalo = getIntervaloConDif((tono2-tono1));
         this.notasPosibles = seleccionaNotasAleatorios(intervalo);
 
-        findViewById(R.id.continuar_ci).setAlpha(.5f);
+        findViewById(R.id.continuar_ci).setEnabled(false);           findViewById(R.id.continuar_ci).setAlpha(.5f);
 
         intervalo_nombre = intervalo.getNombre();
         intervalo_dif = intervalo.getDiferencia();
