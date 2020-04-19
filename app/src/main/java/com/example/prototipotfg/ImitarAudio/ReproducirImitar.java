@@ -20,13 +20,20 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.example.prototipotfg.AudioDispatcherFactory1;
 import com.example.prototipotfg.BBDD.NivelImitar;
+import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
+import com.example.prototipotfg.Enumerados.RangosVocales;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.FactoriaNotas;
 import com.example.prototipotfg.Singletons.GestorBBDD;
+import com.example.prototipotfg.Singletons.Reproductor;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
+
 import be.tarsos.dsp.AudioDispatcher;
 import be.tarsos.dsp.AudioEvent;
 import be.tarsos.dsp.AudioProcessor;
@@ -44,7 +51,12 @@ public class ReproducirImitar extends Activity {
     private NotasImitar resNota;
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
-    private String nivel;
+    private int nivel;
+    private int reproducciones=0;
+    private int reproduccionesTotales;
+    private int intentos=0;
+    private int intentosTotales;
+    private boolean octavas = true;
     private AcousticEchoCanceler echo;
     private NoiseSuppressor noise;
     private AutomaticGainControl gain;
@@ -59,12 +71,11 @@ public class ReproducirImitar extends Activity {
         setContentView(R.layout.nivel_reproducir_imitar);
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Imitar_Audio);
 
-
-        nombres = getIntent().getExtras().getStringArrayList("nombres");
-        rutas = getIntent().getExtras().getStringArrayList("rutas");
-        nivel = getIntent().getExtras().getString("nivel");
+        nivel = getIntent().getExtras().getInt("nivel");
         TextView titulo = (TextView)findViewById(R.id.tituloImitar);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
+
+        inicializaPorDificultad();
 
         int id = factory.getAudioRecord().getAudioSessionId();
         if(AcousticEchoCanceler.isAvailable()) {
@@ -90,38 +101,128 @@ public class ReproducirImitar extends Activity {
         }
     }
 
-    public void reproducir(View view) throws IOException {
-        MediaPlayer mediaPlayer =  new MediaPlayer();
-        AssetFileDescriptor afd = getAssets().openFd(rutas.get(0));
-        mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-        mediaPlayer.prepare();
-        mediaPlayer.start();
+    public void rangoPorNivel(){
+        RangosVocales RangoVocal = RangosVocales.devuelveRVPorNombre(getIntent().getExtras().getString("rangoVocal"));
+        if(nivel>4 && nivel <6){
+            if(RangoVocal.getNombre().equalsIgnoreCase("Hombre"))
+                RangoVocal = RangosVocales.HombreM;
+            else if(RangoVocal.getNombre().equalsIgnoreCase("Mujer"))
+                RangoVocal = RangosVocales.MujerM;
+            else if(RangoVocal.getNombre().equalsIgnoreCase("Niño"))
+                RangoVocal = RangosVocales.NiñoM;
+        }
+        else if(nivel > 6){
+            if(RangoVocal.getNombre().equalsIgnoreCase("Hombre"))
+                RangoVocal = RangosVocales.HombreD;
+            else if(RangoVocal.getNombre().equalsIgnoreCase("Mujer"))
+                RangoVocal = RangosVocales.MujerD;
+            else if(RangoVocal.getNombre().equalsIgnoreCase("Niño"))
+                RangoVocal = RangosVocales.NiñoD;
+        }
+        HashMap<String, String> notas = FactoriaNotas.getInstance().getNotasRV(RangoVocal,1, Instrumentos.Piano);
+        nombres = new ArrayList<>(notas.keySet());
+        rutas = new ArrayList<>(notas.values());
+    }
 
+    public void inicializaPorDificultad(){
+        if(this.nivel==1){
+            rangoPorNivel();
+            intentosTotales = 3;
+            reproduccionesTotales=10000;
+        }
+        else if(this.nivel==2){
+            rangoPorNivel();
+            intentosTotales = 2;
+            reproduccionesTotales=3;
+        }
+        else if(this.nivel==3){
+            rangoPorNivel();
+            intentosTotales = 2;
+            reproduccionesTotales=3;
+            octavas=false;
+        }
+        else if(this.nivel==4){
+            rangoPorNivel();
+            intentosTotales = 2;
+            reproduccionesTotales=3;
+            octavas=false;
+        }
+        else if(this.nivel==5){
+            rangoPorNivel();
+            intentosTotales = 2;
+            reproduccionesTotales=2;
+            octavas=false;
+        }
+        else if(this.nivel==6){
+            rangoPorNivel();
+            intentosTotales = 2;
+            reproduccionesTotales=2;
+            octavas=false;
+        }
+        else if(this.nivel==7){
+            rangoPorNivel();
+            intentosTotales = 1;
+            reproduccionesTotales=2;
+            octavas=false;
+        }
+        else if(this.nivel==8){
+            rangoPorNivel();
+            intentosTotales = 1;
+            reproduccionesTotales=1;
+            octavas=false;
+        }
+    }
+
+    public void reproducir(View view) throws IOException {
+        AssetFileDescriptor afd = getAssets().openFd(rutas.get(0));
+        Reproductor.getInstance().reproducirNota(afd);
+        reproducciones++;
+        if(reproducciones == reproduccionesTotales) {
+            findViewById(R.id.button2).setEnabled(false);
+            findViewById(R.id.button2).setAlpha(.5f);
+        }
     }
 
     public void comparar(View view){
         NivelImitar nivel;
         TextView text2 = findViewById(R.id.textoFrecuencia);
-        findViewById(R.id.button2).setEnabled(false);        findViewById(R.id.button2).setAlpha(.5f);
-        findViewById(R.id.botonGrabar).setEnabled(false);        findViewById(R.id.botonGrabar).setAlpha(.5f);
-        findViewById(R.id.button4).setEnabled(false);        findViewById(R.id.button4).setAlpha(.5f);
+        boolean correct = false;
+        intentos++;
 
+        if(octavas ==false) {
+            if ((resNota.getNota().getNombre() + (resNota.getOctava())).equals(nombres.get(0))) {
+                view = this.getWindow().getDecorView();
+                text2.setTextColor(getResources().getColor(R.color.md_green_500));
+                //PONER RANGO VOCAL
+                nivel = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), true, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
+                correct = true;
+            } else {
+                view = this.getWindow().getDecorView();
+                text2.setTextColor(getResources().getColor(R.color.md_red_500));
 
-
-
-        if((resNota.getNota().getNombre() + (resNota.getOctava())).equals(nombres.get(0))){
-            view = this.getWindow().getDecorView();
-            text2.setTextColor(getResources().getColor(R.color.md_green_500));
-            //PONER RANGO VOCAL
-            nivel  = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), true, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
+                nivel = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), false, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
+            }
         }
         else{
-            view = this.getWindow().getDecorView();
-            text2.setTextColor(getResources().getColor(R.color.md_red_500));
+            if ((resNota.getNota().getNombre()).equals(nombres.get(0).substring(0,nombres.get(0).length()-1))) {
+                view = this.getWindow().getDecorView();
+                text2.setTextColor(getResources().getColor(R.color.md_green_500));
+                //PONER RANGO VOCAL
+                nivel = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), true, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
+                correct = true;
+            } else {
+                view = this.getWindow().getDecorView();
+                text2.setTextColor(getResources().getColor(R.color.md_red_500));
 
-            nivel  = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), false, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
+                nivel = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), false, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
+            }
         }
-        GestorBBDD.getInstance().insertaNivelImitar(nivel);
+        if(correct || intentos >= intentosTotales) {
+            GestorBBDD.getInstance().insertaNivelImitar(nivel);
+            findViewById(R.id.button2).setEnabled(false);        findViewById(R.id.button2).setAlpha(.5f);
+            findViewById(R.id.botonGrabar).setEnabled(false);        findViewById(R.id.botonGrabar).setAlpha(.5f);
+            findViewById(R.id.button4).setEnabled(false);        findViewById(R.id.button4).setAlpha(.5f);
+        }
     }
 
     public void contador(View view){

@@ -28,7 +28,7 @@ public class GestorBBDD {
     private final int NIVELES_CREAR_INTERVALOS=8;
     private final int NIVELES_ADIVINAR_ACORDES=6;
     private final int NIVELES_CREAR_ACORDES=6;
-    private final String[] NIVELES_IMITAR_AUDIO = new String[]{"FACIL", "MEDIO", "DIFICIL"};
+    private final int NIVELES_IMITAR_AUDIO = 8;
     private final int NIVELES_HALLAR_RITMO=8;
     private final int NIVELES_CREAR_RITMO=8;
 
@@ -175,23 +175,14 @@ public class GestorBBDD {
             case "Crear Acordes":
                 retorno = estadisticaCrearAcorde();
                 break;
-            case "Imitar Audio - Soprano":
-                retorno = estadisticaImitarAudio(RangosVocales.Soprano.getNombre());
+            case "Imitar Audio - Hombre":
+                retorno = estadisticaImitarAudio(RangosVocales.Hombre.getNombre());
                 break;
-            case "Imitar Audio - Mezzosoprano":
-                retorno = estadisticaImitarAudio(RangosVocales.Mezzo.getNombre());
+            case "Imitar Audio - Mujer":
+                retorno = estadisticaImitarAudio(RangosVocales.Mujer.getNombre());
                 break;
-            case "Imitar Audio - Contralto":
-                retorno = estadisticaImitarAudio(RangosVocales.Contralto.getNombre());
-                break;
-            case "Imitar Audio - Tenor":
-                retorno = estadisticaImitarAudio(RangosVocales.Tenor.getNombre());
-                break;
-            case "Imitar Audio - Barítono":
-                retorno = estadisticaImitarAudio(RangosVocales.Baritono.getNombre());
-                break;
-            case "Imitar Audio - Bajo":
-                retorno = estadisticaImitarAudio(RangosVocales.Bajo.getNombre());
+            case "Imitar Audio - Niño":
+                retorno = estadisticaImitarAudio(RangosVocales.Niño.getNombre());
                 break;
             case "Dibujar Ritmos":
                 retorno = estadisticaHallarRitmo();
@@ -237,8 +228,8 @@ public class GestorBBDD {
     List<NivelImitar> listaNiveles = appDatabase.daoNivel().findNivelesImitarByCorreo(usuarioLoggeado.getCorreo(), rangoVocal);
         LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
         String infoNivel = "";
-        for (int i = 0; i < NIVELES_IMITAR_AUDIO.length; i++){
-            retorno.put("Dificultad " + NIVELES_IMITAR_AUDIO[i].toLowerCase(), "0 intentos;0% afinacion");
+        for (int i = 0; i < NIVELES_IMITAR_AUDIO; i++){
+            retorno.put("Nivel" + String.valueOf(i), "0 intentos;0% afinacion");
         }
         for (NivelImitar n : listaNiveles){
             infoNivel = n.getNumeroIntentos() + " intentos;" + n.getPorcentajeAfinacion() + "% afinacion";
@@ -347,22 +338,13 @@ public class GestorBBDD {
                 puntuacionCrearAcorde(nivel, superado);
                 break;
             case "Imitar_Audio - Soprano":
-                puntuacionImitarAudio(RangosVocales.Soprano.getNombre(), nivel, superado);
+                puntuacionImitarAudio(RangosVocales.Hombre.getNombre(), nivel, superado);
                 break;
             case "Imitar_Audio - Mezzosoprano":
-                puntuacionImitarAudio(RangosVocales.Mezzo.getNombre(), nivel, superado);
+                puntuacionImitarAudio(RangosVocales.Mujer.getNombre(), nivel, superado);
                 break;
             case "Imitar_Audio - Contralto":
-                puntuacionImitarAudio(RangosVocales.Contralto.getNombre(), nivel, superado);
-                break;
-            case "Imitar_Audio - Tenor":
-                puntuacionImitarAudio(RangosVocales.Tenor.getNombre(), nivel, superado);
-                break;
-            case "Imitar_Audio - Barítono":
-                puntuacionImitarAudio(RangosVocales.Baritono.getNombre(), nivel, superado);
-                break;
-            case "Imitar_Audio - Bajo":
-                puntuacionImitarAudio(RangosVocales.Bajo.getNombre(), nivel, superado);
+                puntuacionImitarAudio(RangosVocales.Niño.getNombre(), nivel, superado);
                 break;
             case "Halla_Ritmo":
                 puntuacionHallarRitmo(nivel, superado);
@@ -523,7 +505,7 @@ public class GestorBBDD {
         return (n == null || (n.getNumFallos() == 0 && n.getNumAciertos() == 0));
     }
 
-    public boolean esPrimerNivelImitar(RangosVocales rango, String dificultad){
+    public boolean esPrimerNivelImitar(RangosVocales rango, int dificultad){
         NivelImitar n = appDatabase.daoNivel().findNivelImitar(usuarioLoggeado.getCorreo(), dificultad, rango.toString());
         return (n!= null && n.getNumeroIntentos() == 0);
     }

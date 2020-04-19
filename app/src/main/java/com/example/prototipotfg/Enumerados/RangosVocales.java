@@ -5,12 +5,15 @@ import java.util.Arrays;
 
 public enum RangosVocales {
 
-    Soprano("Soprano",4, 6, 1, 1 ),
-    Mezzo("Mezzosoprano",3, 5, 10, 10),
-    Contralto("Contralto",3, 5, 8,6),
-    Tenor("Tenor",3, 4, 3,10),
-    Baritono("Baritono",2, 4,8,5),
-    Bajo("Bajo",2, 4, 5,5);
+    Mujer("Mujer",3, 6, 10, 1),
+    Hombre("Hombre",2, 4, 8, 10 ),
+    Niño("Niño",3, 5, 3,6),
+    MujerM("Mujer",3, 6, 8, 1),
+    HombreM("Hombre",2, 5, 8, 6 ),
+    NiñoM("Niño",3, 5, 3,10),
+    MujerD("Mujer",3, 6, 3, 1),
+    HombreD("Hombre",2, 4, 5, 10 ),
+    NiñoD("Niño",3, 6, 3,1);
 
 
     private String nombre;

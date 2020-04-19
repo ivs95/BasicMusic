@@ -12,6 +12,8 @@ import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -27,7 +29,7 @@ public final class Reproductor {
     private Reproductor(){}
 
 
-    public void reproducirNota(AssetFileDescriptor afd) throws IOException {
+    public void reproducirNota(@NotNull AssetFileDescriptor afd) throws IOException {
         reproductorNotas = new MediaPlayer();
         reproductorNotas.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
         reproductorNotas.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {

@@ -30,7 +30,7 @@ public class SeleccionOctavasImitar extends Activity {
                  //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
                  LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 //Creamos los botones en bucle
-                  for (int i=0; i<RangosVocales.values().length; i++){
+                  for (int i=0; i<3; i++){
                       Button button = new Button(this);
                       button.setId(i+1);
                       //Asignamos propiedades de layout al boton
