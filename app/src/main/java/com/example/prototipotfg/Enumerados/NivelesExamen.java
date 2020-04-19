@@ -22,6 +22,15 @@ public enum NivelesExamen {
     Diez(10,new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
             ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{10,6,8,6,6,8,8});
 
+    /*
+    * 2 preguntas cada tipo
+    * Puntuaciones desbloquear y rango como notas
+    * Porcentaje pruebas acertadas
+    * Puntos como notas
+    * Mezclar las pruebas
+    * onResume para lanzar siguiente prueba
+    * */
+
     private int nivel;
     private ModoJuego[] modos;
     private int[] niveles_modos;
