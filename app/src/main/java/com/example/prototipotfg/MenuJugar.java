@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
+import com.example.prototipotfg.Examen.SeleccionNivelExamen;
 import com.example.prototipotfg.ImitarAudio.SeleccionOctavasImitar;
 import com.example.prototipotfg.Ritmos.SeleccionModoRitmos;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -31,6 +32,11 @@ public class MenuJugar extends Activity {
 
     public void modo_ritmos(View view) {
         Intent i = new Intent(this, SeleccionModoRitmos.class);
+        startActivity(i);
+    }
+
+    public void examen(View view){
+        Intent i = new Intent(this, SeleccionNivelExamen.class);
         startActivity(i);
     }
 
