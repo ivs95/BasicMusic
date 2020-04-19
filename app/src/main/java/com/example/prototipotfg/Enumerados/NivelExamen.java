@@ -1,6 +1,6 @@
 package com.example.prototipotfg.Enumerados;
 
-public enum NivelesExamen {
+public enum NivelExamen {
     Uno(1,new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
             ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{1,1,1,1,1,1,1}),
     Dos(2, new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
@@ -35,10 +35,18 @@ public enum NivelesExamen {
     private ModoJuego[] modos;
     private int[] niveles_modos;
 
-    NivelesExamen (int nivel , ModoJuego [] modos, int[] niveles_modos){
+    NivelExamen(int nivel , ModoJuego [] modos, int[] niveles_modos){
         this.nivel = nivel;
         this.modos = modos;
         this.niveles_modos = niveles_modos;
+    }
+
+    public static NivelExamen getNivelExamen(int nivel) {
+        for (NivelExamen n : values()){
+            if (n.getNivel()==nivel)
+                return n;
+        }
+        return null;
     }
 
     public int getNivelModo(ModoJuego modo){
@@ -48,5 +56,29 @@ public enum NivelesExamen {
             }
         }
         return 0;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    public ModoJuego[] getModos() {
+        return modos;
+    }
+
+    public void setModos(ModoJuego[] modos) {
+        this.modos = modos;
+    }
+
+    public int[] getNiveles_modos() {
+        return niveles_modos;
+    }
+
+    public void setNiveles_modos(int[] niveles_modos) {
+        this.niveles_modos = niveles_modos;
     }
 }

@@ -37,6 +37,12 @@ public enum ModoJuego {
         this.texto = texto;
     }
 
+    public static ModoJuego[] devuelvePruebasExamen() {
+        ModoJuego[] retorno = {Adivinar_Intervalo, Adivinar_Notas, Adivinar_Acordes, Crear_Intervalo, Halla_Ritmo, Realiza_Ritmo,
+                Crear_Acordes,Adivinar_Intervalo, Adivinar_Notas, Adivinar_Acordes, Crear_Intervalo, Halla_Ritmo, Realiza_Ritmo, Crear_Acordes};
+        return retorno;
+    }
+
     public String getNombre(){
         return this.nombre;
     }

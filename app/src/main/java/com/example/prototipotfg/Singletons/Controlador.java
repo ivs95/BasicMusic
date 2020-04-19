@@ -27,8 +27,7 @@ public final class Controlador {
         return INSTANCE;
     }
 
-    private Controlador() {
-    }
+    private Controlador() {}
 
     public ArrayList<Acordes> getAcordes() {
         return acordes;
