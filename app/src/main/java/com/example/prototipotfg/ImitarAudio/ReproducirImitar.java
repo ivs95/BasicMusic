@@ -57,6 +57,7 @@ public class ReproducirImitar extends Activity {
     private int intentos=0;
     private int intentosTotales;
     private boolean octavas = true;
+    private int octava;
     private AcousticEchoCanceler echo;
     private NoiseSuppressor noise;
     private AutomaticGainControl gain;
@@ -76,6 +77,14 @@ public class ReproducirImitar extends Activity {
         titulo.setText(titulo.getText() + String.valueOf(nivel));
 
         inicializaPorDificultad();
+
+        TextView restantes = findViewById(R.id.textViewRestantes);
+        if(this.nivel == 1) {
+            restantes.setText("Reproducciones restantes: ∞\n Intentos restantes: "+(intentosTotales-intentos));
+        }
+        else{
+            restantes.setText("Reproducciones restantes: "+ (reproduccionesTotales-reproducciones)+"\n Intentos restantes: "+(intentosTotales-intentos));
+        }
 
         int id = factory.getAudioRecord().getAudioSessionId();
         if(AcousticEchoCanceler.isAvailable()) {
@@ -181,6 +190,13 @@ public class ReproducirImitar extends Activity {
             findViewById(R.id.button2).setEnabled(false);
             findViewById(R.id.button2).setAlpha(.5f);
         }
+        TextView restantes = findViewById(R.id.textViewRestantes);
+        if(this.nivel == 1) {
+            restantes.setText("Reproducciones restantes: ∞\n Intentos restantes: "+(intentosTotales-intentos));
+        }
+        else{
+            restantes.setText("Reproducciones restantes: "+ (reproduccionesTotales-reproducciones)+"\n Intentos restantes: "+(intentosTotales-intentos));
+        }
     }
 
     public void comparar(View view){
@@ -223,10 +239,19 @@ public class ReproducirImitar extends Activity {
             findViewById(R.id.botonGrabar).setEnabled(false);        findViewById(R.id.botonGrabar).setAlpha(.5f);
             findViewById(R.id.button4).setEnabled(false);        findViewById(R.id.button4).setAlpha(.5f);
         }
+
+        TextView restantes = findViewById(R.id.textViewRestantes);
+        if(this.nivel == 1) {
+            restantes.setText("Reproducciones restantes: ∞\n Intentos restantes: "+(intentosTotales-intentos));
+        }
+        else{
+            restantes.setText("Reproducciones restantes: "+ (reproduccionesTotales-reproducciones)+"\n Intentos restantes: "+(intentosTotales-intentos));
+        }
     }
 
     public void contador(View view){
         findViewById(R.id.button2).setEnabled(false);        findViewById(R.id.button2).setAlpha(.5f);
+        TextView text2 = findViewById(R.id.textoFrecuencia); text2.setTextColor(getResources().getColor(R.color.md_blue_900));
         inicializaArrays();
         view.setVisibility(View.GONE);
         class MiContador extends CountDownTimer {
@@ -300,7 +325,10 @@ public class ReproducirImitar extends Activity {
                 dispatch_Thread.interrupt();
                 poneNota();
                 ((Button)findViewById(R.id.botonGrabar)).setVisibility(View.VISIBLE);
-                findViewById(R.id.button2).setEnabled(true);        findViewById(R.id.button2).setAlpha(1f);
+                if(reproducciones < reproduccionesTotales) {
+                    findViewById(R.id.button2).setEnabled(true);
+                    findViewById(R.id.button2).setAlpha(1f);
+                }
 
             }
         }, 5000);
@@ -308,7 +336,7 @@ public class ReproducirImitar extends Activity {
 
     private void hallaMax(float hz){
         if (hz != -1) {
-            Integer octava = 5;
+            octava = 5;
             //Situa a la nota en la octava que le corresponde
             if (hz < Notas.DO.getMinimaFrecuencia()) {
                 while (hz < Notas.DO.getMinimaFrecuencia()) {
@@ -380,7 +408,13 @@ public class ReproducirImitar extends Activity {
         if(lista.size()>0) {
             resNota = lista.get(0);
             resPorcentaje = porcentajes.get(0)/resNota.getContador();
-            resPorcentaje = resPorcentaje*100/(float)resNota.getNota().getFrecuencia();
+            int octavaOrigen = Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1,nombres.get(0).length()));
+            if(octavaOrigen>=5) {
+                resPorcentaje = resPorcentaje * 100 / (float) (Notas.devuelveNotaPorNombre(nombres.get(0).substring(0, nombres.get(0).length() - 1)).getFrecuencia()/(2*(octavaOrigen-5)));
+            }
+            else{
+                resPorcentaje = resPorcentaje * 100 / (float) (Notas.devuelveNotaPorNombre(nombres.get(0).substring(0, nombres.get(0).length() - 1)).getFrecuencia()*(2*(5-octavaOrigen)));
+            }
             if(resPorcentaje > 100) {
                 resPorcentaje = 100 - (resPorcentaje - 100);
             }

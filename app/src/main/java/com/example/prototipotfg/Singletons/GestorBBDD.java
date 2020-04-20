@@ -228,12 +228,12 @@ public class GestorBBDD {
     List<NivelImitar> listaNiveles = appDatabase.daoNivel().findNivelesImitarByCorreo(usuarioLoggeado.getCorreo(), rangoVocal);
         LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
         String infoNivel = "";
-        for (int i = 0; i < NIVELES_IMITAR_AUDIO; i++){
-            retorno.put("Nivel" + String.valueOf(i), "0 intentos;0% afinacion");
+        for (int i = 1; i <= NIVELES_IMITAR_AUDIO; i++){
+            retorno.put("Nivel " + String.valueOf(i), "0 intentos;0% afinacion");
         }
         for (NivelImitar n : listaNiveles){
             infoNivel = n.getNumeroIntentos() + " intentos;" + n.getPorcentajeAfinacion() + "% afinacion";
-            retorno.put("Dificultad " + n.getNivel(), infoNivel);
+            retorno.put("Nivel " + n.getNivel(), infoNivel);
         }
 
         return retorno;
@@ -337,13 +337,13 @@ public class GestorBBDD {
             case "Crear_Acordes":
                 puntuacionCrearAcorde(nivel, superado);
                 break;
-            case "Imitar_Audio - Soprano":
+            case "Imitar_Audio - Hombre":
                 puntuacionImitarAudio(RangosVocales.Hombre.getNombre(), nivel, superado);
                 break;
-            case "Imitar_Audio - Mezzosoprano":
+            case "Imitar_Audio - Mujer":
                 puntuacionImitarAudio(RangosVocales.Mujer.getNombre(), nivel, superado);
                 break;
-            case "Imitar_Audio - Contralto":
+            case "Imitar_Audio - Niño":
                 puntuacionImitarAudio(RangosVocales.Niño.getNombre(), nivel, superado);
                 break;
             case "Halla_Ritmo":
