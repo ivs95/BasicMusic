@@ -113,7 +113,7 @@ public class ReproducirImitar extends Activity {
             }
         }
 
-        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
+        if(GestorBBDD.getInstance().esPrimerNivelImitar(getIntent().getExtras().getString("rangoVocal"), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -257,11 +257,12 @@ public class ReproducirImitar extends Activity {
             }
         }
         if(correct || intentos >= intentosTotales) {
-            GestorBBDD.getInstance().insertaNivelImitar(nivel);
+
             findViewById(R.id.button2).setEnabled(false);        findViewById(R.id.button2).setAlpha(.5f);
             findViewById(R.id.botonGrabar).setEnabled(false);        findViewById(R.id.botonGrabar).setAlpha(.5f);
             findViewById(R.id.button4).setEnabled(false);        findViewById(R.id.button4).setAlpha(.5f);
         }
+
 
         TextView restantes = findViewById(R.id.textViewRestantes);
         if(this.nivel == 1) {

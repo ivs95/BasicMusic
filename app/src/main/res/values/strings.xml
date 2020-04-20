@@ -81,13 +81,12 @@
     <string name="cambiosNv8RealizaRitmos">Aumenta mucho la velocidad del ritmo</string>
 
 
-    <string name="cambiosNv2ImitarAudio">Ya no contarás con la amplitud del intervalo en semitonos &lt;br /&gt; &lt;br /&gt;Desbloqueados los intervalos con amplitud &lt;b>CINCO&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>3º&lt;/b> octava &lt;br /&gt; &lt;br /&gt;
-        Ahora elegirás entre &lt;b>TRES&lt;/b> opciones</string>
-    <string name="cambiosNv3ImitarAudio">Desbloqueados los intervalos con amplitud &lt;b>SIETE&lt;/b>  &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>6º&lt;/b> octava </string>
-    <string name="cambiosNv4ImitarAudio">Desbloqueados los intervalos con amplitud &lt;b>NUEVE&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>2º&lt;/b> octava </string>
-    <string name="cambiosNv5ImitarAudio">Ya no contarás con el nombre de la nota de inicio del intervalo &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>CUATRO&lt;/b> opciones</string>
-    <string name="cambiosNv6ImitarAudio">Desbloqueados los intervalos con amplitud &lt;b>ONCE&lt;/b></string>
-    <string name="cambiosNv7ImitarAudio">Ahora elegirás entre &lt;b>CINCO&lt;/b> opciones</string>
-    <string name="cambiosNv8ImitarAudio">Desbloqueados los intervalos con amplitud &lt;b>DOCE&lt;/b> &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>SEIS&lt;/b> opciones</string>
+    <string name="cambiosNv2ImitarAudio">Ahora tendrás &lt;b>TRES&lt;/b> intentos &lt;br /&gt; &lt;br /&gt; Ahora podrás reproducir la nota solo &lt;b>TRES&lt;/b> veces</string>
+    <string name="cambiosNv3ImitarAudio">Ahora tendrás que entonar la nota de una octava concreta</string>
+    <string name="cambiosNv4ImitarAudio">Nuevas octavas desbloqueadas</string>
+    <string name="cambiosNv5ImitarAudio">Ahora podrás reproducir la nota &lt;b>DOS&lt;/b> veces</string>
+    <string name="cambiosNv6ImitarAudio">Nuevos octavas desbloqueadas</string>
+    <string name="cambiosNv7ImitarAudio">Ahora tendrás &lt;b>UN SOLO&lt;/b> intento</string>
+    <string name="cambiosNv8ImitarAudio">Ahora podrás reproducir la nota &lt;b>UNA&lt;/b> vez</string>
 
 </resources>

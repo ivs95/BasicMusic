@@ -516,9 +516,9 @@ public class GestorBBDD {
         return (n == null || (n.getNumFallos() == 0 && n.getNumAciertos() == 0));
     }
 
-    public boolean esPrimerNivelImitar(RangosVocales rango, int dificultad){
-        NivelImitar n = appDatabase.daoNivel().findNivelImitar(usuarioLoggeado.getCorreo(), dificultad, rango.toString());
-        return (n!= null && n.getNumeroIntentos() == 0);
+    public boolean esPrimerNivelImitar(String rango, int dificultad){
+        NivelImitar n = appDatabase.daoNivel().findNivelImitar(usuarioLoggeado.getCorreo(), dificultad, rango);
+        return (n == null || n.getNumeroIntentos() == 0);
     }
 
     public boolean existeUsuario(String correo) {
