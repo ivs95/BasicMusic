@@ -24,7 +24,7 @@ public enum ModoJuego {
     Halla_Ritmo("Dibujar Ritmo", 8, new HashMap<Integer, Spanned>()),
     Realiza_Ritmo("Imitar Ritmo", 8, new HashMap<Integer, Spanned>()),
     Crear_Acordes("Crear Acordes", 6, new HashMap<Integer, Spanned>()),
-    Imitar_Audio("Imitar_Audio", 3, new HashMap<Integer, Spanned>());
+    Imitar_Audio("Imitar_Audio", 8, new HashMap<Integer, Spanned>());
 
     private String nombre;
     private int max_level;

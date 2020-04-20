@@ -25,6 +25,7 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.RangosVocales;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 import com.example.prototipotfg.Singletons.Reproductor;
@@ -33,6 +34,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 import be.tarsos.dsp.AudioDispatcher;
 import be.tarsos.dsp.AudioEvent;
@@ -73,6 +75,7 @@ public class ReproducirImitar extends Activity {
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Imitar_Audio);
 
         nivel = getIntent().getExtras().getInt("nivel");
+        Controlador.getInstance().setNivel(nivel);
         TextView titulo = (TextView)findViewById(R.id.tituloImitar);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
 
@@ -209,12 +212,18 @@ public class ReproducirImitar extends Activity {
             if ((resNota.getNota().getNombre() + (resNota.getOctava())).equals(nombres.get(0))) {
                 view = this.getWindow().getDecorView();
                 text2.setTextColor(getResources().getColor(R.color.md_green_500));
-                //PONER RANGO VOCAL
+
+                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Imitar_Audio.toString(), true);
+
                 nivel = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), true, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
                 correct = true;
             } else {
                 view = this.getWindow().getDecorView();
                 text2.setTextColor(getResources().getColor(R.color.md_red_500));
+
+                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Imitar_Audio.toString(), false);
 
                 nivel = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), false, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
             }
@@ -224,11 +233,16 @@ public class ReproducirImitar extends Activity {
                 view = this.getWindow().getDecorView();
                 text2.setTextColor(getResources().getColor(R.color.md_green_500));
                 //PONER RANGO VOCAL
+                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Imitar_Audio.toString(), true);
                 nivel = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), true, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
                 correct = true;
             } else {
                 view = this.getWindow().getDecorView();
                 text2.setTextColor(getResources().getColor(R.color.md_red_500));
+
+                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Imitar_Audio.toString(), false);
 
                 nivel = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), false, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
             }

@@ -338,13 +338,7 @@ public class GestorBBDD {
                 puntuacionCrearAcorde(nivel, superado);
                 break;
             case "Imitar_Audio - Hombre":
-                puntuacionImitarAudio(RangosVocales.Hombre.getNombre(), nivel, superado);
-                break;
-            case "Imitar_Audio - Mujer":
-                puntuacionImitarAudio(RangosVocales.Mujer.getNombre(), nivel, superado);
-                break;
-            case "Imitar_Audio - Niño":
-                puntuacionImitarAudio(RangosVocales.Niño.getNombre(), nivel, superado);
+                puntuacionImitarAudio(nivel, superado);
                 break;
             case "Halla_Ritmo":
                 puntuacionHallarRitmo(nivel, superado);
@@ -387,8 +381,25 @@ public class GestorBBDD {
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Halla_Ritmo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
     }
 
-    private void puntuacionImitarAudio(String rangoVocal, int nivel, boolean superado) {
+    private void puntuacionImitarAudio(int nivel, boolean superado) {
+        int puntuacion_fallo = 0;
+        switch (nivel){
+            case 1: puntuacion_fallo = 1; break;
+            case 2: puntuacion_fallo = 1; break;
+            case 3: puntuacion_fallo = 1; break;
+            case 4: puntuacion_fallo = 1; break;
+            case 5: puntuacion_fallo = 1; break;
+            case 6: puntuacion_fallo = 2; break;
+            case 7: puntuacion_fallo = 3; break;
+            case 8: puntuacion_fallo = 3; break;
+            default: break;
+        }
 
+
+        if(superado)
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Imitar_Audio.toString()).actualizarPuntuacionTotal(3, true));
+        else
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Imitar_Audio.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
     }
 
     private void puntuacionCrearAcorde(int nivel, boolean superado) {

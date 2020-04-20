@@ -25,6 +25,8 @@ import java.util.HashMap;
 
 public class NivelesImitar extends Activity {
 
+    private Bundle savedInstanceState;
+
     private PopupWindow popupWindow;
     private View popupView;
     private int tutorial = 1;
@@ -33,6 +35,8 @@ public class NivelesImitar extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
+        this.savedInstanceState = savedInstanceState;
+
         TextView titulo = findViewById(R.id.tituloNiveles);
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
@@ -40,6 +44,12 @@ public class NivelesImitar extends Activity {
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         boolean primeraVez = GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Imitar_Audio);
+
+        TextView rango = findViewById(R.id.rango_niveles);
+        int puntuacion = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getPuntuacionTotal();
+        rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getRango() + " (" + puntuacion + " puntos)");
+
+
 
 
         //Creamos los botones en bucle
@@ -49,7 +59,7 @@ public class NivelesImitar extends Activity {
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            button.setText(""+(i+1));
+            button.setText("Nivel "+(i+1));
 
             //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +175,12 @@ public class NivelesImitar extends Activity {
         else if(tutorial == 4){
             popupWindow.dismiss();
         }
+    }
+
+    public void onResume(){
+        super.onResume();
+        this.onCreate(this.savedInstanceState);
+
     }
 
 }

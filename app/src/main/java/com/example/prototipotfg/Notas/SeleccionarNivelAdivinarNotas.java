@@ -65,7 +65,8 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            button.setText("Nivel " + String.format("%02d", i + 1));
+            //button.setText("Nivel " + String.format("%02d", i + 1));
+            button.setText("Nivel " + (i + 1));
             if (nivelActual > i) {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
