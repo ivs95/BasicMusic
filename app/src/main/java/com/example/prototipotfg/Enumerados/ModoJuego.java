@@ -122,6 +122,16 @@ public enum ModoJuego {
                 texto.put(8, Html.fromHtml(context.getString(R.string.cambiosNv8RealizaRitmos)));break;
 
             }
+
+            case "Imitar_Audio":{
+                texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2ImitarAudio)));
+                texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3ImitarAudio)));
+                texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4ImitarAudio)));
+                texto.put(5, Html.fromHtml(context.getString(R.string.cambiosNv5ImitarAudio)));
+                texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6ImitarAudio)));
+                texto.put(7, Html.fromHtml(context.getString(R.string.cambiosNv7ImitarAudio)));
+                texto.put(8, Html.fromHtml(context.getString(R.string.cambiosNv8ImitarAudio)));break;
+            }
             default:break;
             }
     }

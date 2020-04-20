@@ -80,4 +80,14 @@
     <string name="cambiosNv7RealizaRitmos">Desbloqueados los &lt;b>PLATILLOS&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
     <string name="cambiosNv8RealizaRitmos">Aumenta mucho la velocidad del ritmo</string>
 
+
+    <string name="cambiosNv2ImitarAudio">Ya no contarás con la amplitud del intervalo en semitonos &lt;br /&gt; &lt;br /&gt;Desbloqueados los intervalos con amplitud &lt;b>CINCO&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>3º&lt;/b> octava &lt;br /&gt; &lt;br /&gt;
+        Ahora elegirás entre &lt;b>TRES&lt;/b> opciones</string>
+    <string name="cambiosNv3ImitarAudio">Desbloqueados los intervalos con amplitud &lt;b>SIETE&lt;/b>  &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>6º&lt;/b> octava </string>
+    <string name="cambiosNv4ImitarAudio">Desbloqueados los intervalos con amplitud &lt;b>NUEVE&lt;/b> &lt;br /&gt; &lt;br /&gt;Desbloqueada la &lt;b>2º&lt;/b> octava </string>
+    <string name="cambiosNv5ImitarAudio">Ya no contarás con el nombre de la nota de inicio del intervalo &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>CUATRO&lt;/b> opciones</string>
+    <string name="cambiosNv6ImitarAudio">Desbloqueados los intervalos con amplitud &lt;b>ONCE&lt;/b></string>
+    <string name="cambiosNv7ImitarAudio">Ahora elegirás entre &lt;b>CINCO&lt;/b> opciones</string>
+    <string name="cambiosNv8ImitarAudio">Desbloqueados los intervalos con amplitud &lt;b>DOCE&lt;/b> &lt;br /&gt; &lt;br /&gt;Ahora elegirás entre &lt;b>SEIS&lt;/b> opciones</string>
+
 </resources>

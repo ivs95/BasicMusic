@@ -337,7 +337,7 @@ public class GestorBBDD {
             case "Crear_Acordes":
                 puntuacionCrearAcorde(nivel, superado);
                 break;
-            case "Imitar_Audio - Hombre":
+            case "Imitar_Audio":
                 puntuacionImitarAudio(nivel, superado);
                 break;
             case "Halla_Ritmo":

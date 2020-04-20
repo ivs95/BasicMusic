@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
+import com.example.prototipotfg.Enumerados.PuntosNiveles;
 import com.example.prototipotfg.Enumerados.RangosVocales;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -49,8 +50,7 @@ public class NivelesImitar extends Activity {
         int puntuacion = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getPuntuacionTotal();
         rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getRango() + " (" + puntuacion + " puntos)");
 
-
-
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel();
 
         //Creamos los botones en bucle
         for (int i = 0; i < 8; i++){
@@ -62,18 +62,34 @@ public class NivelesImitar extends Activity {
             button.setText("Nivel "+(i+1));
 
             //Asignamose el Listener
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        nivel_seleccionado(v);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+
+            if (nivelActual > i) {
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            nivel_seleccionado(v);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-            });
+                });
+            }
+            else{
+                button.setEnabled(false);
+                button.setAlpha(.5f);
+            }
+
             //Añadimos el botón a la botonera
             llBotonera.addView(button);
+            if (nivelActual == i+1 && nivelActual != ModoJuego.Imitar_Audio.getMax_level()){
+                TextView texto = new TextView(this);
+                texto.setText("Faltan " + (PuntosNiveles.values()[nivelActual].getMinPuntos() - puntuacion) +" puntos para desbloquear el siguiente nivel");
+                texto.setLayoutParams(lp);
+                texto.setTextColor(getResources().getColor(R.color.md_blue_900));
+                texto.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                llBotonera.addView(texto);
+            }
         }
         if(primeraVez)
             mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());

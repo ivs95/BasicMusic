@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -110,6 +111,14 @@ public class ReproducirImitar extends Activity {
                 gain.setEnabled(false);
                 Log.d("Gain", "Off");
             }
+        }
+
+        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
+
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Imitar_Audio, findViewById(android.R.id.content).getRootView());
         }
     }
 
@@ -261,6 +270,7 @@ public class ReproducirImitar extends Activity {
         else{
             restantes.setText("Reproducciones restantes: "+ (reproduccionesTotales-reproducciones)+"\n Intentos restantes: "+(intentosTotales-intentos));
         }
+
     }
 
     public void contador(View view){
@@ -291,10 +301,6 @@ public class ReproducirImitar extends Activity {
         }
         MiContador timer = new MiContador(2999,100);
         timer.start();
-
-
-
-
     }
 
     private void inicializaArrays() {
