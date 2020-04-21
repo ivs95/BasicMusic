@@ -24,6 +24,7 @@ import com.example.prototipotfg.BBDD.NivelImitar;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
+import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.Enumerados.RangosVocales;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -120,6 +121,8 @@ public class ReproducirImitar extends Activity {
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Imitar_Audio, findViewById(android.R.id.content).getRootView());
         }
+
+        findViewById(R.id.continuar_ia).setEnabled(false);           findViewById(R.id.continuar_ia).setAlpha(.5f);
     }
 
     public void rangoPorNivel(){
@@ -212,6 +215,8 @@ public class ReproducirImitar extends Activity {
     }
 
     public void comparar(View view){
+        int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getRango()).ordinal();
+
         NivelImitar nivel;
         TextView text2 = findViewById(R.id.textoFrecuencia);
         boolean correct = false;
@@ -261,6 +266,16 @@ public class ReproducirImitar extends Activity {
             findViewById(R.id.button2).setEnabled(false);        findViewById(R.id.button2).setAlpha(.5f);
             findViewById(R.id.botonGrabar).setEnabled(false);        findViewById(R.id.botonGrabar).setAlpha(.5f);
             findViewById(R.id.button4).setEnabled(false);        findViewById(R.id.button4).setAlpha(.5f);
+
+            int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).ordinal();
+            if(rangoActual != rangoNuevo) {
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Intervalo.toString());
+            }
+
+            findViewById(R.id.continuar_ia).setEnabled(true);      findViewById(R.id.continuar_ia).setAlpha(1);
+
         }
 
 
