@@ -58,6 +58,14 @@ public enum RangosPuntuaciones {
                 break;
 
             case "Imitar_Audio":
+                if(puntuacion >= 0  && puntuacion < 20) nuevo_rango = RangosPuntuaciones.Principiante;
+                else if(puntuacion >= 20 && puntuacion < 66) nuevo_rango = RangosPuntuaciones.Aprendiz;
+                else if(puntuacion >= 66 && puntuacion < 89) nuevo_rango = RangosPuntuaciones.Veterano;
+                else if(puntuacion >= 89 && puntuacion < 115) nuevo_rango = RangosPuntuaciones.Experto;
+                else if(puntuacion >= 115 && puntuacion < 141) nuevo_rango = RangosPuntuaciones.Maestro;
+                else if(puntuacion >= 141 && puntuacion < 170) nuevo_rango = RangosPuntuaciones.GranMaestro;
+                else nuevo_rango = RangosPuntuaciones.Leyenda;
+                break;
             case "Crear_Intervalo":
             case "Halla_Ritmo":
 

@@ -84,7 +84,7 @@ public class NivelesImitar extends Activity {
             llBotonera.addView(button);
             if (nivelActual == i+1 && nivelActual != ModoJuego.Imitar_Audio.getMax_level()){
                 TextView texto = new TextView(this);
-                texto.setText("Faltan " + (PuntosNiveles.values()[nivelActual].getMinPuntos() - puntuacion) +" puntos para desbloquear el siguiente nivel");
+                texto.setText("Faltan " + (PuntosNiveles.values()[nivelActual+10].getMinPuntos() - puntuacion) +" puntos para desbloquear el siguiente nivel");
                 texto.setLayoutParams(lp);
                 texto.setTextColor(getResources().getColor(R.color.md_blue_900));
                 texto.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
