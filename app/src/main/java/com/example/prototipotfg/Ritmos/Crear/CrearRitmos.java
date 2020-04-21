@@ -445,20 +445,23 @@ public class CrearRitmos extends Activity {
         comprobado = true;
         if (compruebaArrays()){
             for (Button b : this.botonesGuia){
-                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
-                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), true);
                 b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
-                nivel  = new NivelAdivinar(ModoJuego.Realiza_Ritmo.getNombre(), this.nivel,true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
             }
+            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
+                GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), true);
+            nivel  = new NivelAdivinar(ModoJuego.Realiza_Ritmo.getNombre(), this.nivel,true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
+
         }
         else{
             for (Button b : this.botonesGuia) {
-                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
-                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), false);
-                nivel  = new NivelAdivinar(ModoJuego.Realiza_Ritmo.getNombre(), this.nivel,false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
                 b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
             }
+            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
+                GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), false);
+            nivel  = new NivelAdivinar(ModoJuego.Realiza_Ritmo.getNombre(), this.nivel,false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
+
         }
+
         GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
 
         view.setEnabled(false);
