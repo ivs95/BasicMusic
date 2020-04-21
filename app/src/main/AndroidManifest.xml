@@ -157,6 +157,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".Examen.Ejercicios.AdivinarNotasExamen" />
     </application>
 
 </manifest>

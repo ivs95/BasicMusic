@@ -33,13 +33,13 @@ import static android.view.View.INVISIBLE;
 
 public class SeleccionarAdivinarNotas extends Activity {
 
-    private View botonSeleccionado;
-    private View respuestaCorrecta;
-    private boolean comprobada = false;
-    private ArrayList<String> nombres;
+    protected View botonSeleccionado;
+    protected View respuestaCorrecta;
+    protected boolean comprobada = false;
+    protected ArrayList<String> nombres;
     private ArrayList<Button> botonesNotas = new ArrayList<>();
 
-    private String respuesta;
+    protected String respuesta;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -228,7 +228,7 @@ public class SeleccionarAdivinarNotas extends Activity {
 
     }
 
-    private void deshabilitaBotones() {
+    protected void deshabilitaBotones() {
         for (Button b : botonesNotas){
             b.setEnabled(false);
         }

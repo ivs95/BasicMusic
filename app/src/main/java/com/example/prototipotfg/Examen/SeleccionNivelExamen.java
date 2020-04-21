@@ -80,7 +80,7 @@ public class SeleccionNivelExamen extends Activity {
 
     public void nivel_seleccionado(View view) {
         ControladorExamen.getInstance().setNivel(view.getId());
-        ControladorExamen.getInstance().preparaExamen();
+        ControladorExamen.getInstance().iniciaExamen();
         Pair<ModoJuego, Integer> ejercicio = ControladorExamen.getInstance().devuelveEjercicio();
         lanzaNivel(ejercicio);
     }

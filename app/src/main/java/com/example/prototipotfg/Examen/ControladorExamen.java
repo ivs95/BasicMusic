@@ -4,6 +4,7 @@ import android.util.Pair;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.NivelExamen;
+import com.example.prototipotfg.Singletons.Controlador;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,22 +13,20 @@ import java.util.Collections;
 public final class ControladorExamen {
 
     private static final ControladorExamen INSTANCE = new ControladorExamen();
-    private int ejercicioActual;
-    private int numEjercicios;
+    private final int NUM_EJERCICIOS = 14;
+    private int indiceActual;
+    private Pair<ModoJuego, Integer> ejercicioActual;
     private NivelExamen nivel;
     private ArrayList<ModoJuego> ejercicios = new ArrayList<> (Arrays.asList(ModoJuego.devuelvePruebasExamen()));
-    private boolean[] acertados = new boolean[12];
+    private boolean[] acertados = new boolean[14];
     private int numAciertos;
-    private ArrayList<Integer> repeticiones;
+    private boolean aprobado;
 
 
     /*
-     * 2 preguntas cada tipo
      * Puntuaciones desbloquear y rango como notas
      * Porcentaje pruebas acertadas
      * Puntos como notas
-     * Mezclar las pruebas
-     * onResume para lanzar siguiente prueba
      * */
 
     public static ControladorExamen getInstance() {
@@ -40,24 +39,51 @@ public final class ControladorExamen {
 
     public void preparaExamen() {
         Collections.shuffle(ejercicios);
-        ejercicioActual=0;
+        indiceActual=0;
         numAciertos=0;
     }
 
-    public Pair<ModoJuego,Integer> devuelveEjercicio() {
-        ModoJuego pruebaActual = ejercicios.get(ejercicioActual);
-        Integer nivelPrueba = nivel.getNivelModo(pruebaActual);
-        return new Pair<ModoJuego,Integer>(pruebaActual,nivelPrueba);
+    public void iniciaExamen(){
+        preparaExamen();
+        while(!finalExamen()) {
+            setEjercicio();
+            iniciaPrueba();
+        }
+        setResultadoExamen();
+    }
+
+    private void setResultadoExamen() {
+        this.aprobado=((double)numAciertos/NUM_EJERCICIOS)>=nivel.getPorcentajeAprobar();
+    }
+
+    public void setEjercicio() {
+        ejercicioActual = new Pair(ejercicios.get(indiceActual), nivel.getNivelModo(ejercicios.get(indiceActual)));
+
     }
 
     public void setResultadoEjercicioActual(boolean resultado){
-        acertados[ejercicioActual] = resultado;
-        ejercicioActual++;
+        acertados[indiceActual] = resultado;
+        indiceActual++;
         if (resultado)
             numAciertos++;
     }
 
+    private void iniciaPrueba() {
+        Controlador.getInstance().setModo_juego(ejercicioActual.first);
+        Controlador.getInstance().setNivel(ejercicioActual.second);
+        Controlador.getInstance().estableceDificultad();
+        switch (ejercicioActual.first){
+            case Adivinar_Acordes:
+            case Adivinar_Intervalo:
+            case Halla_Ritmo:
+            case Realiza_Ritmo:
+            case Crear_Acordes:
+            case Crear_Intervalo:
+            case Adivinar_Notas:
+        }
+    }
+
     public boolean finalExamen() {
-        return numEjercicios == ejercicioActual;
+        return NUM_EJERCICIOS == indiceActual;
     }
 }
