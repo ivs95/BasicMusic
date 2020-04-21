@@ -267,6 +267,8 @@ public class ReproducirImitar extends Activity {
             findViewById(R.id.botonGrabar).setEnabled(false);        findViewById(R.id.botonGrabar).setAlpha(.5f);
             findViewById(R.id.button4).setEnabled(false);        findViewById(R.id.button4).setAlpha(.5f);
 
+            GestorBBDD.getInstance().insertaNivelImitar(nivel);
+
             int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).ordinal();
             if(rangoActual != rangoNuevo) {
                 LayoutInflater inflater = (LayoutInflater)
