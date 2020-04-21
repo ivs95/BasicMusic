@@ -20,12 +20,11 @@ import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class SeleccionarNivelAdivinarNotas extends Activity {
+public class SeleccionNivelAdivinarNota extends Activity {
 
     private PopupWindow popupWindow;
     private View popupView;
@@ -104,7 +103,7 @@ public class SeleccionarNivelAdivinarNotas extends Activity {
     }
 
     public void nivel_seleccionado(View view) {
-        Intent i = new Intent(this, SeleccionarAdivinarNotas.class);
+        Intent i = new Intent(this, AdivinarNota.class);
         Random random = new Random();
         //Nivel que se ha seleccionado
         Controlador.getInstance().setNivel(view.getId());

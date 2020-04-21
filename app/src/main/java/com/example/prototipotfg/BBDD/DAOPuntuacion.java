@@ -6,8 +6,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import java.util.List;
-
 @Dao
 public interface DAOPuntuacion {
     @Query("SELECT * FROM puntuacion WHERE correoUsuario = :correo AND modoJuego = :modo")

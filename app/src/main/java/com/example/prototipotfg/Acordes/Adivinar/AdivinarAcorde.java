@@ -38,7 +38,7 @@ import java.util.Random;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-public class ReproducirAdivinarAcordes extends Activity {
+public class AdivinarAcorde extends Activity {
 
     private Acordes acordeCorrecto;
     private ArrayList<Button> botonesOpciones = new ArrayList<>();

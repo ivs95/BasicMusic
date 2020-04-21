@@ -33,11 +33,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import java.util.ResourceBundle;
 
 import static android.view.View.INVISIBLE;
 
-public class SeleccionarAdivinarCrearIntervalo extends Activity {
+public class CrearIntervalo extends Activity {
 
     private View botonSeleccionado;
 

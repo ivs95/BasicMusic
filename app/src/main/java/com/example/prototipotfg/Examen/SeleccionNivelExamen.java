@@ -1,8 +1,8 @@
 package com.example.prototipotfg.Examen;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -81,29 +81,8 @@ public class SeleccionNivelExamen extends Activity {
     public void nivel_seleccionado(View view) {
         ControladorExamen.getInstance().setNivel(view.getId());
         ControladorExamen.getInstance().iniciaExamen();
-        Pair<ModoJuego, Integer> ejercicio = ControladorExamen.getInstance().devuelveEjercicio();
-        lanzaNivel(ejercicio);
+        Intent i = new Intent(this , ResultadoExamen.class);
     }
 
-    private void lanzaNivel(Pair<ModoJuego, Integer> ejercicio) {
 
-
-    }
-
-    public void onResume() {
-        if (!corregido) {
-            super.onResume();
-            if (!ControladorExamen.getInstance().finalExamen()) {
-                Pair<ModoJuego, Integer> ejercicio = ControladorExamen.getInstance().devuelveEjercicio();
-                lanzaNivel(ejercicio);
-            } else {
-                corregido = true;
-                //Lanzar actividad que muestra el resultado del examen
-            }
-        } else {
-            //Acabar la actividad
-            this.onCreate(this.savedInstanceState);
-
-        }
-    }
 }

@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-
 import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.BBDD.NivelAdivinar;
@@ -35,7 +34,7 @@ import java.util.Random;
 import static android.view.View.GONE;
 import static java.lang.Thread.sleep;
 
-public class SeleccionarAdivinarIntervalo extends Activity {
+public class AdivinarIntervalo extends Activity {
     private View botonSeleccionado;
     private View respuestaCorrecta;
     private String respuesta;

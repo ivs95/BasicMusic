@@ -11,16 +11,13 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.example.prototipotfg.Acordes.TutorialAdivinarAcordes;
-import com.example.prototipotfg.BBDD.Puntuacion;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.PuntosNiveles;
-import com.example.prototipotfg.Notas.TutorialNotas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
-public class SeleccionarNivelAdivinarAcordes extends Activity {
+public class SeleccionNivelAdivinarAcorde extends Activity {
 
     private PopupWindow popupWindow;
     private View popupView;
@@ -94,12 +91,12 @@ public class SeleccionarNivelAdivinarAcordes extends Activity {
 
 
     private void tutorial_notas(View v) {
-        Intent i = new Intent(this, TutorialNivelAdivinarAcordes.class);
+        Intent i = new Intent(this, TutorialNivelAdivinarAcorde.class);
         startActivity(i);
     }
 
     public void nivel_seleccionado(View view) {
-        Intent i = new Intent(this, ReproducirAdivinarAcordes.class);
+        Intent i = new Intent(this, AdivinarAcorde.class);
         Controlador.getInstance().setNivel(view.getId());
         Controlador.getInstance().estableceDificultad();
         /*

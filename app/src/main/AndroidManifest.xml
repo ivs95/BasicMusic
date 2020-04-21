@@ -37,15 +37,15 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Notas.SeleccionarAdivinarNotas"
+        <activity android:name=".Notas.AdivinarNota"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Intervalos.Crear.SeleccionarAdivinarCrearIntervalo"
+        <activity android:name=".Intervalos.Crear.CrearIntervalo"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Intervalos.Adivinar.SeleccionarAdivinarIntervalo"
+        <activity android:name=".Intervalos.Adivinar.AdivinarIntervalo"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
@@ -53,7 +53,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Ritmos.Hallar.NivelesHallarRitmos"
+        <activity android:name=".Ritmos.Hallar.SeleccionNivelHallarRitmo"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
@@ -73,7 +73,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Ritmos.Hallar.HallaRitmos"
+        <activity android:name=".Ritmos.Hallar.HallarRitmo"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
@@ -85,7 +85,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Intervalos.Adivinar.NivelesAdivinarIntervalos"
+        <activity android:name=".Intervalos.Adivinar.SeleccionNivelAdivinarIntervalo"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
@@ -97,23 +97,23 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Notas.SeleccionarNivelAdivinarNotas"
+        <activity android:name=".Notas.SeleccionNivelAdivinarNota"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Acordes.Adivinar.SeleccionarNivelAdivinarAcordes"
+        <activity android:name=".Acordes.Adivinar.SeleccionNivelAdivinarAcorde"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Acordes.Crear.SeleccionarNivelCrearAcordes"
+        <activity android:name=".Acordes.Crear.SeleccionNivelCrearAcorde"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Acordes.Adivinar.ReproducirAdivinarAcordes"
+        <activity android:name=".Acordes.Adivinar.AdivinarAcorde"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Acordes.Crear.ReproducirCrearAcordes"
+        <activity android:name=".Acordes.Crear.CrearAcorde"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
@@ -125,11 +125,11 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Ritmos.Crear.CrearRitmos"
+        <activity android:name=".Ritmos.Crear.CrearRitmo"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Ritmos.Crear.NivelesCrearRitmo"
+        <activity android:name=".Ritmos.Crear.SeleccionNivelCrearRitmo"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
@@ -141,11 +141,11 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Acordes.Adivinar.TutorialNivelAdivinarAcordes"
+        <activity android:name=".Acordes.Adivinar.TutorialNivelAdivinarAcorde"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Acordes.Crear.TutorialNivelCrearAcordes"
+        <activity android:name=".Acordes.Crear.TutorialNivelCrearAcorde"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
@@ -157,7 +157,14 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Examen.Ejercicios.AdivinarNotasExamen" />
+        <activity android:name=".Examen.Ejercicios.AdivinarNotaExamen" />
+        <activity android:name=".Examen.Ejercicios.AdivinarAcordeExamen" />
+        <activity android:name=".Examen.Ejercicios.AdivinarIntervaloExamen" />
+        <activity android:name=".Examen.Ejercicios.CrearAcordeExamen" />
+        <activity android:name=".Examen.Ejercicios.CrearIntervaloExamen" />
+        <activity android:name=".Examen.Ejercicios.CrearRitmoExamen" />
+        <activity android:name=".Examen.Ejercicios.HallarRitmoExamen" />
+        <activity android:name=".Examen.ResultadoExamen" />
     </application>
 
 </manifest>

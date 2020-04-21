@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.prototipotfg.Acordes.Adivinar.SeleccionarNivelAdivinarAcordes;
-import com.example.prototipotfg.Acordes.Crear.SeleccionarNivelCrearAcordes;
+import com.example.prototipotfg.Acordes.Adivinar.SeleccionNivelAdivinarAcorde;
+import com.example.prototipotfg.Acordes.Crear.SeleccionNivelCrearAcorde;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.R;
@@ -35,14 +35,14 @@ public class SeleccionarModoAcordes extends Activity {
     public void modo_acordes(View view){
         switch (view.getId()){
             case R.id.buttonAcordesModo1:
-                Intent i = new Intent(this, SeleccionarNivelAdivinarAcordes.class);
+                Intent i = new Intent(this, SeleccionNivelAdivinarAcorde.class);
                 Controlador.getInstance().setModo_juego(ModoJuego.Adivinar_Acordes);
 
                 startActivity(i);
                 break;
 
             case R.id.buttonAcordesModo2:
-                i = new Intent(this, SeleccionarNivelCrearAcordes.class);
+                i = new Intent(this, SeleccionNivelCrearAcorde.class);
                 Controlador.getInstance().setModo_juego(ModoJuego.Crear_Acordes);
                 startActivity(i);
                 break;

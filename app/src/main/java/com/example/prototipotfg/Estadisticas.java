@@ -1,6 +1,5 @@
 package com.example.prototipotfg;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,9 +13,7 @@ import android.widget.TextView;
 
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Set;
 
 public class Estadisticas extends Activity implements AdapterView.OnItemSelectedListener{
 

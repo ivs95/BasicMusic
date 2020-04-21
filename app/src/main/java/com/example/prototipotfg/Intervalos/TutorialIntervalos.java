@@ -2,17 +2,11 @@ package com.example.prototipotfg.Intervalos;
 
 import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.Intervalos;
@@ -20,12 +14,10 @@ import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
-import com.example.prototipotfg.Singletons.GestorBBDD;
 import com.example.prototipotfg.Singletons.Reproductor;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 import static java.lang.Thread.sleep;
 

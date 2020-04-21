@@ -14,16 +14,9 @@ import android.widget.TextView;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.PuntosNiveles;
 import com.example.prototipotfg.R;
-import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
-
-import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSimbolo;
-
-public class NivelesHallarRitmos extends Activity {
+public class SeleccionNivelHallarRitmo extends Activity {
 
     private Bundle savedInstanceState;
 
@@ -93,7 +86,7 @@ public class NivelesHallarRitmos extends Activity {
     }
 
     public void nivel_seleccionado(View view) {
-        Intent i = new Intent(this, HallaRitmos.class);
+        Intent i = new Intent(this, HallarRitmo.class);
         int nivel = view.getId();
 
         i.putExtra("nivel", nivel);

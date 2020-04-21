@@ -9,11 +9,11 @@ import androidx.core.content.ContextCompat;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.Examen.ControladorExamen;
-import com.example.prototipotfg.Notas.SeleccionarAdivinarNotas;
+import com.example.prototipotfg.Notas.AdivinarNota;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
-public class AdivinarNotasExamen extends SeleccionarAdivinarNotas {
+public class AdivinarNotaExamen extends AdivinarNota {
 
     @Override
     public void comprobarResultado(View view) {

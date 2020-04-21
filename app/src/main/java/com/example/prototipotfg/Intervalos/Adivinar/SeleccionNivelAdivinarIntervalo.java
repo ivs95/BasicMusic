@@ -1,4 +1,4 @@
-package com.example.prototipotfg.Acordes.Crear;
+package com.example.prototipotfg.Intervalos.Adivinar;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,51 +17,42 @@ import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
-public class SeleccionarNivelCrearAcordes extends Activity {
+public class SeleccionNivelAdivinarIntervalo extends Activity {
 
-    private Bundle savedInstanceState;
     private PopupWindow popupWindow;
     private View popupView;
     private int tutorial = 1;
 
+    private  Bundle savedInstanceState;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
-        boolean primeraVez = GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Crear_Acordes);
+        boolean primeraVez = GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Adivinar_Intervalo);
 
+        //Obtenemos el linear layout donde colocar los botones
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
         TextView rango = findViewById(R.id.rango_niveles);
-        int puntuacion = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getPuntuacionTotal();
-        rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getRango() + " (" + puntuacion + " puntos)");
+        int puntuacion = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getPuntuacionTotal();
+        rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango() + " (" + puntuacion + " puntos)");
+
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
-
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        Button tutorial = new Button(this);
-        tutorial.setLayoutParams(lp);
-        tutorial.setText("Ayuda");
-        tutorial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tutorial_notas(v);
-            }
-        });
-        llBotonera.addView(tutorial);
-
-        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getNivel();
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getNivel();
 
         //Creamos los botones en bucle
-        for (int i = 0; i < 6; i++) {
+        for (int i=0; i<6; i++){
             Button button = new Button(this);
-            button.setId(i + 1);
+            button.setId(i+1);
             //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
             //Asignamos Texto al botón
-            button.setText("Nivel " + String.format("%02d", i + 1));
+            button.setText("Nivel " + (i+1));
 
+            //Asignamose el Listener
             if (nivelActual > i) {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -74,11 +65,11 @@ public class SeleccionarNivelCrearAcordes extends Activity {
                 button.setEnabled(false);
                 button.setAlpha(.5f);
             }
+
             //Añadimos el botón a la botonera
             llBotonera.addView(button);
 
-
-            if (nivelActual == i+1 && nivelActual != ModoJuego.Crear_Acordes.getMax_level()){
+            if (nivelActual == i+1 && nivelActual != ModoJuego.Adivinar_Intervalo.getMax_level()){
                 TextView texto = new TextView(this);
                 texto.setText("Faltan " + (PuntosNiveles.values()[nivelActual].getMinPuntos() - puntuacion) +" puntos para desbloquear el siguiente nivel");
                 texto.setLayoutParams(lp);
@@ -86,26 +77,18 @@ public class SeleccionarNivelCrearAcordes extends Activity {
                 texto.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 llBotonera.addView(texto);
             }
-
         }
+
         if(primeraVez)
             mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
-    }
-    private void tutorial_notas(View v) {
-        Intent i = new Intent(this, TutorialNivelCrearAcordes.class);
-        startActivity(i);
     }
 
 
     public void nivel_seleccionado(View view) {
-        Intent i = new Intent(this, ReproducirCrearAcordes.class);
+        Intent i = new Intent(this, AdivinarIntervalo.class);
+        //Nivel que se ha seleccionado
         Controlador.getInstance().setNivel(view.getId());
         Controlador.getInstance().estableceDificultad();
-        /*
-         * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
-         * Crear clase para seleccionar notas aleatorias
-         * Claves: respuesta, fallo1,...,falloN
-         * */
         startActivity(i);
     }
 
@@ -113,7 +96,7 @@ public class SeleccionarNivelCrearAcordes extends Activity {
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
 
-        popupView = inflater.inflate(R.layout.popup_tutorial_crearacordes, null);
+        popupView = inflater.inflate(R.layout.popup_tutorial_adivinaintervalo, null);
 
         // create the popup window
         //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
@@ -148,32 +131,32 @@ public class SeleccionarNivelCrearAcordes extends Activity {
 
 
     public void actualizaPopUp(View view){
-        Button button = view.findViewById(R.id.popup_crearacorde_next);
+        Button button = view.findViewById(R.id.popup_adivinaintervalo_next);
         if(tutorial == 1){
-            view.findViewById(R.id.popup_crearacorde_mensaje2).setVisibility(View.INVISIBLE);
-            view.findViewById(R.id.popup_crearacorde_scrollView2).setVisibility(View.INVISIBLE);
-            view.findViewById(R.id.popup_crearacorde_prev).setVisibility(View.GONE);
+            view.findViewById(R.id.popup_adivinaintervalo_mensaje2).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_scrollView2).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_prev).setVisibility(View.GONE);
 
-            view.findViewById(R.id.popup_crearacorde_mensaje1).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_mensaje1).setVisibility(View.VISIBLE);
         }
         else if(tutorial == 2){
 
-            view.findViewById(R.id.popup_crearacorde_mensaje1).setVisibility(View.INVISIBLE);
-            view.findViewById(R.id.popup_crearacorde_mensaje3).setVisibility(View.INVISIBLE);
-            view.findViewById(R.id.popup_crearacorde_linearLayout8).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_mensaje1).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_mensaje3).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_linearLayout8).setVisibility(View.INVISIBLE);
 
-            view.findViewById(R.id.popup_crearacorde_mensaje2).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.popup_crearacorde_scrollView2).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.popup_crearacorde_prev).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_mensaje2).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_scrollView2).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_prev).setVisibility(View.VISIBLE);
 
             button.setText("Siguiente");
         }
         else if(tutorial == 3){
-            view.findViewById(R.id.popup_crearacorde_mensaje2).setVisibility(View.INVISIBLE);
-            view.findViewById(R.id.popup_crearacorde_scrollView2).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_mensaje2).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_scrollView2).setVisibility(View.INVISIBLE);
 
-            view.findViewById(R.id.popup_crearacorde_mensaje3).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.popup_crearacorde_linearLayout8).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_mensaje3).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.popup_adivinaintervalo_linearLayout8).setVisibility(View.VISIBLE);
 
             button.setText("Cerrar");
         }
@@ -186,4 +169,5 @@ public class SeleccionarNivelCrearAcordes extends Activity {
         super.onResume();
         this.onCreate(this.savedInstanceState);
     }
+
 }

@@ -35,9 +35,8 @@ import java.util.Collections;
 import java.util.Random;
 
 import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 
-public class ReproducirCrearAcordes extends Activity {
+public class CrearAcorde extends Activity {
 
     private Acordes acordeCorrecto;
     private ArrayList<String> notasPosibles = new ArrayList<>();

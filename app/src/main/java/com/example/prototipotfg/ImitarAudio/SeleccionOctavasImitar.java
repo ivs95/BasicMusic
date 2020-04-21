@@ -7,13 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import androidx.core.content.ContextCompat;
-
-import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosVocales;
 import com.example.prototipotfg.R;
-import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import java.util.ArrayList;
 

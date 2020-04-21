@@ -90,7 +90,7 @@ public class SeleccionNivelCrearIntervalo extends Activity {
     }
 
     public void nivel_seleccionado(View view) {
-        Intent i = new Intent(this, SeleccionarAdivinarCrearIntervalo.class);
+        Intent i = new Intent(this, CrearIntervalo.class);
         Random random = new Random();
         Controlador.getInstance().setNivel(view.getId());
         Controlador.getInstance().estableceDificultad();

@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
-import com.example.prototipotfg.Intervalos.Adivinar.NivelesAdivinarIntervalos;
+import com.example.prototipotfg.Intervalos.Adivinar.SeleccionNivelAdivinarIntervalo;
 import com.example.prototipotfg.Intervalos.Crear.SeleccionNivelCrearIntervalo;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -38,7 +37,7 @@ public class SeleccionarModoIntervalos extends Activity {
     public void modo_intervalo(View view){
         switch (view.getId()){
             case R.id.buttonIntervalosModo2:
-                Intent i = new Intent(this, NivelesAdivinarIntervalos.class);
+                Intent i = new Intent(this, SeleccionNivelAdivinarIntervalo.class);
                 Controlador.getInstance().setModo_juego(ModoJuego.Adivinar_Intervalo);
 
                 startActivity(i);

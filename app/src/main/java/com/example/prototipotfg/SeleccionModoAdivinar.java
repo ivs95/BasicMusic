@@ -10,7 +10,7 @@ import com.example.prototipotfg.Acordes.SeleccionarModoAcordes;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.Intervalos.SeleccionarModoIntervalos;
-import com.example.prototipotfg.Notas.SeleccionarNivelAdivinarNotas;
+import com.example.prototipotfg.Notas.SeleccionNivelAdivinarNota;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
@@ -62,7 +62,7 @@ public class SeleccionModoAdivinar extends Activity {
     }
 
     private void seleccionarDificultadNotas() {
-        Intent i = new Intent(this, SeleccionarNivelAdivinarNotas.class);
+        Intent i = new Intent(this, SeleccionNivelAdivinarNota.class);
         startActivity(i);
     }
 

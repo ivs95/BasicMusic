@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class TutorialNivelAdivinarAcordes extends Activity{
+public class TutorialNivelAdivinarAcorde extends Activity{
 
     private Notas notaInicio = Notas.values()[0];
     private Octavas octavaInicio = Octavas.values()[0];

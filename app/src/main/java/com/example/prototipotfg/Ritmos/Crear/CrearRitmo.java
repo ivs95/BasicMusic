@@ -1,18 +1,14 @@
 package com.example.prototipotfg.Ritmos.Crear;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -33,7 +29,7 @@ import java.util.Random;
 
 import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSimbolo;
 
-public class CrearRitmos extends Activity {
+public class CrearRitmo extends Activity {
 
     private int compas = 4;
     private int num = 4;

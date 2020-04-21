@@ -17,7 +17,6 @@ import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.Reproductor;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 

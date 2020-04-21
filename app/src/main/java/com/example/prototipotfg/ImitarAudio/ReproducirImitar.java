@@ -1,11 +1,7 @@
 package com.example.prototipotfg.ImitarAudio;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
-import android.content.res.ColorStateList;
-import android.media.MediaPlayer;
 import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AutomaticGainControl;
 import android.media.audiofx.NoiseSuppressor;
@@ -17,8 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+
 import com.example.prototipotfg.AudioDispatcherFactory1;
 import com.example.prototipotfg.BBDD.NivelImitar;
 import com.example.prototipotfg.Enumerados.Instrumentos;
@@ -36,7 +31,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
 import be.tarsos.dsp.AudioDispatcher;
 import be.tarsos.dsp.AudioEvent;

@@ -31,7 +31,7 @@ import java.util.Random;
 
 import static android.view.View.INVISIBLE;
 
-public class SeleccionarAdivinarNotas extends Activity {
+public class AdivinarNota extends Activity {
 
     protected View botonSeleccionado;
     protected View respuestaCorrecta;

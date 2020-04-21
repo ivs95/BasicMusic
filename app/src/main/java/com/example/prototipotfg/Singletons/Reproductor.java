@@ -1,16 +1,7 @@
 package com.example.prototipotfg.Singletons;
 
-import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
-import android.provider.MediaStore;
-import android.util.Pair;
-
-import com.example.prototipotfg.Enumerados.Acordes;
-import com.example.prototipotfg.Enumerados.Instrumentos;
-import com.example.prototipotfg.Enumerados.Intervalos;
-import com.example.prototipotfg.Enumerados.Notas;
-import com.example.prototipotfg.Enumerados.Octavas;
 
 import org.jetbrains.annotations.NotNull;
 

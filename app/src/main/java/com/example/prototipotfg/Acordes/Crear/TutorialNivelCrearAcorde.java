@@ -22,7 +22,7 @@ import static com.example.prototipotfg.R.color;
 import static com.example.prototipotfg.R.id;
 import static com.example.prototipotfg.R.layout;
 
-public class TutorialNivelCrearAcordes extends Activity implements AdapterView.OnItemSelectedListener{
+public class TutorialNivelCrearAcorde extends Activity implements AdapterView.OnItemSelectedListener{
 
 
     @Override
