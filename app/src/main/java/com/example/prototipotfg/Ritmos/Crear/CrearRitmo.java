@@ -435,6 +435,7 @@ public class CrearRitmo extends Activity {
     }
 
     public void comprobar(View view){
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).ordinal();
 
         NivelAdivinar nivel = null;
@@ -471,11 +472,17 @@ public class CrearRitmo extends Activity {
         findViewById(R.id.botonTambor).setEnabled(false);           findViewById(R.id.botonTambor).setAlpha(.5f);
         findViewById(R.id.botonPlatillo).setEnabled(false);         findViewById(R.id.botonPlatillo).setAlpha(.5f);
 
+        int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel();
         int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).ordinal();
         if(rangoActual != rangoNuevo) {
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Realiza_Ritmo.toString());
+        }
+
+        if(nivelActual != nivelNuevo){
+            Controlador.getInstance().setNivel(nivelNuevo);
+            Controlador.getInstance().estableceDificultad();
         }
 
         findViewById(R.id.continuar_cr).setEnabled(true);          findViewById(R.id.continuar_cr).setAlpha(1);

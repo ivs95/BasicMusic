@@ -257,6 +257,7 @@ public class CrearIntervalo extends Activity {
 
 
     public void comprobarResultado(View view) {
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Intervalo.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Intervalo.toString()).getRango()).ordinal();
 
         if (!comprobada) {
@@ -292,11 +293,17 @@ public class CrearIntervalo extends Activity {
                 b.setEnabled(false);
             }
 
+            int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Intervalo.toString()).getNivel();
             int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Intervalo.toString()).getRango()).ordinal();
             if(rangoActual != rangoNuevo) {
                 LayoutInflater inflater = (LayoutInflater)
                         getSystemService(LAYOUT_INFLATER_SERVICE);
                 RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Crear_Intervalo.toString());
+            }
+
+            if(nivelActual != nivelNuevo){
+                Controlador.getInstance().setNivel(nivelNuevo);
+                Controlador.getInstance().estableceDificultad();
             }
 
             findViewById(R.id.continuar_ci).setEnabled(true);      findViewById(R.id.continuar_ci).setAlpha(1);

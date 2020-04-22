@@ -172,6 +172,7 @@ public class AdivinarAcorde extends Activity {
     }
 
     public void comprobarAcordes(View view) {
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getRango()).ordinal();
 
         if (!comprobada) {
@@ -203,12 +204,18 @@ public class AdivinarAcorde extends Activity {
         for (Button b : botonesOpciones)
             b.setEnabled(false);
 
+        int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel();
         int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getRango()).ordinal();
         if(rangoActual != rangoNuevo) {
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Acordes.toString());
 
+        }
+
+        if(nivelActual != nivelNuevo){
+            Controlador.getInstance().setNivel(nivelNuevo);
+            Controlador.getInstance().estableceDificultad();
         }
 
         findViewById(R.id.continuar_ac).setEnabled(true);          findViewById(R.id.continuar_ac).setAlpha(1);

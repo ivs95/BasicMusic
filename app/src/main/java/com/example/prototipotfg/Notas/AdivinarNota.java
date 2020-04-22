@@ -236,9 +236,8 @@ public class AdivinarNota extends Activity {
             Controlador.getInstance().setNivel(nivelNuevo);
             Controlador.getInstance().estableceDificultad();
         }
+
         findViewById(R.id.continuar_an).setEnabled(true);         findViewById(R.id.continuar_an).setAlpha(1);
-
-
 
     }
 

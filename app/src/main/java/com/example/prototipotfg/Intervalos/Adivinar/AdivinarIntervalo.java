@@ -187,6 +187,7 @@ public class AdivinarIntervalo extends Activity {
     }
 
     public void comprobarResultado(View view){
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).ordinal();
         if (!comprobada) {
             NivelAdivinar nivel = null;
@@ -216,11 +217,17 @@ public class AdivinarIntervalo extends Activity {
         findViewById(R.id.botonIntervalo).setEnabled(false);        findViewById(R.id.botonIntervalo).setAlpha(.5f);
         findViewById(R.id.botonReferencia).setEnabled(false);       findViewById(R.id.botonReferencia).setAlpha(.5f);
 
+        int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getNivel();
         int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).ordinal();
         if(rangoActual != rangoNuevo) {
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Intervalo.toString());
+        }
+
+        if(nivelActual != nivelNuevo){
+            Controlador.getInstance().setNivel(nivelNuevo);
+            Controlador.getInstance().estableceDificultad();
         }
 
         findViewById(R.id.continuar_ai).setEnabled(true);      findViewById(R.id.continuar_ai).setAlpha(1);

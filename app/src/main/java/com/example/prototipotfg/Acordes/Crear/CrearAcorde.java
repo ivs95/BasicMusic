@@ -218,6 +218,7 @@ public class CrearAcorde extends Activity {
         return retorno;
     }
     public void comprobarCrearAcordes(View view) {
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getRango()).ordinal();
 
         if (!comprobada) {
@@ -266,12 +267,18 @@ public class CrearAcorde extends Activity {
             b.setEnabled(false);
         ponerComprobarVisible(GONE);
 
+        int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getNivel();
         int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getRango()).ordinal();
         if(rangoActual != rangoNuevo) {
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Crear_Acordes.toString());
 
+        }
+
+        if(nivelActual != nivelNuevo){
+            Controlador.getInstance().setNivel(nivelNuevo);
+            Controlador.getInstance().estableceDificultad();
         }
 
         findViewById(R.id.continuar_ca).setEnabled(true);          findViewById(R.id.continuar_ca).setAlpha(1);

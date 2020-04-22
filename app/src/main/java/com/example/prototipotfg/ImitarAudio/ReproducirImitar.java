@@ -211,6 +211,7 @@ public class ReproducirImitar extends Activity {
     }
 
     public void comparar(View view){
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getRango()).ordinal();
 
         NivelImitar nivel;
@@ -265,11 +266,17 @@ public class ReproducirImitar extends Activity {
 
             GestorBBDD.getInstance().insertaNivelImitar(nivel);
 
+            int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel();
             int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).ordinal();
             if(rangoActual != rangoNuevo) {
                 LayoutInflater inflater = (LayoutInflater)
                         getSystemService(LAYOUT_INFLATER_SERVICE);
                 RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Intervalo.toString());
+            }
+
+            if(nivelActual != nivelNuevo){
+                Controlador.getInstance().setNivel(nivelNuevo);
+                Controlador.getInstance().estableceDificultad();
             }
 
             findViewById(R.id.continuar_ia).setEnabled(true);      findViewById(R.id.continuar_ia).setAlpha(1);
