@@ -198,6 +198,7 @@ public class AdivinarNota extends Activity {
     }
 
     public void comprobarResultado(View view) {
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango()).ordinal();
         if (!comprobada) {
             NivelAdivinar nivel = null;
@@ -223,6 +224,7 @@ public class AdivinarNota extends Activity {
         }
         findViewById(R.id.comprobar).setVisibility(View.GONE);
 
+        int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getNivel();
         int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango()).ordinal();
         if(rangoActual != rangoNuevo) {
             LayoutInflater inflater = (LayoutInflater)
@@ -230,6 +232,10 @@ public class AdivinarNota extends Activity {
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Notas.toString());
         }
 
+        if(nivelActual != nivelNuevo){
+            Controlador.getInstance().setNivel(nivelNuevo);
+            Controlador.getInstance().estableceDificultad();
+        }
         findViewById(R.id.continuar_an).setEnabled(true);         findViewById(R.id.continuar_an).setAlpha(1);
 
 
