@@ -54,6 +54,8 @@ public class ReproducirImitar extends Activity {
     private int reproduccionesTotales;
     private int intentos=0;
     private int intentosTotales;
+    private double frecuenciaMax = 1046.50;
+    private double frecuenciaMin = 164.81;
     private boolean octavas = true;
     private int octava;
     private AcousticEchoCanceler echo;
@@ -334,15 +336,6 @@ public class ReproducirImitar extends Activity {
                     }
                 }).start();
 
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        TextView text = (TextView) findViewById(R.id.textoFrecuencia);
-                        text.setText("Escuchando...");
-
-                    }
-                });
             }
         };
         p = new PitchProcessor(PitchProcessor.PitchEstimationAlgorithm.FFT_YIN, 22050, 1024, pdh);
@@ -439,29 +432,41 @@ public class ReproducirImitar extends Activity {
     public void poneNota(){
         if(lista.size()>0) {
             resNota = lista.get(0);
-            resPorcentaje = porcentajes.get(0)/resNota.getContador();
-            int octavaOrigen = Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1,nombres.get(0).length()));
-            if(octavaOrigen>=5) {
-                resPorcentaje = resPorcentaje * 100 / (float) (Notas.devuelveNotaPorNombre(nombres.get(0).substring(0, nombres.get(0).length() - 1)).getFrecuencia()/(2*(octavaOrigen-5)));
-            }
-            else{
-                resPorcentaje = resPorcentaje * 100 / (float) (Notas.devuelveNotaPorNombre(nombres.get(0).substring(0, nombres.get(0).length() - 1)).getFrecuencia()*(2*(5-octavaOrigen)));
-            }
-            if(resPorcentaje > 100) {
-                resPorcentaje = 100 - (resPorcentaje - 100);
-            }
             for (int i = 1; i < lista.size(); i++) {
                 if (lista.get(i).getContador() > resNota.getContador()) {
                     resNota = lista.get(i);
-                    resPorcentaje = porcentajes.get(i)/resNota.getContador();
-                    resPorcentaje = resPorcentaje*100/(float)resNota.getNota().getFrecuencia();
-                    if(resPorcentaje > 100) {
-                        resPorcentaje = 100 - (resPorcentaje - 100);
-                    }
                 }
             }
 
-            runOnUiThread(new Runnable() {
+            double resFrecuencia;
+            double origenFrecuencia;
+            if(resNota.getOctava() > 5){
+                resFrecuencia = resNota.getNota().getFrecuencia()*(2*(resNota.getOctava()-5));
+            }
+            else if(resNota.getOctava()<5){
+                resFrecuencia = resNota.getNota().getFrecuencia()/2*(5-resNota.getOctava());
+            }
+            else{
+                resFrecuencia = resNota.getNota().getFrecuencia();
+            }
+            int aux= Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1,nombres.get(0).length()));
+            if(aux>5){
+                origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia()*(2*(aux-5));
+            }
+            else if (aux<5){
+                origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia()/(2*(5-aux));
+            }
+            else{
+                origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia();
+            }
+            if(resFrecuencia > origenFrecuencia) {
+                resPorcentaje = (float)((frecuenciaMax-resFrecuencia)*100/(frecuenciaMax-origenFrecuencia));
+            }
+            else{
+                resPorcentaje = (float)((resFrecuencia-frecuenciaMin)*100/(origenFrecuencia-frecuenciaMin));
+            }
+
+                        runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
 
