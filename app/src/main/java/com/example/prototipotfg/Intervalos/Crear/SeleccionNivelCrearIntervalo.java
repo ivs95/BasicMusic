@@ -11,19 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.example.prototipotfg.Enumerados.Instrumentos;
-import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
-import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.PuntosNiveles;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
-import com.example.prototipotfg.Singletons.FactoriaNotas;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
 
 public class SeleccionNivelCrearIntervalo extends Activity {
     private Bundle savedInstanceState;
@@ -91,25 +84,9 @@ public class SeleccionNivelCrearIntervalo extends Activity {
 
     public void nivel_seleccionado(View view) {
         Intent i = new Intent(this, CrearIntervalo.class);
-        Random random = new Random();
+
         Controlador.getInstance().setNivel(view.getId());
         Controlador.getInstance().estableceDificultad();
-
-
-        //Nivel que se ha seleccionado
-        ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
-        ArrayList<Intervalos> intervalos = Controlador.getInstance().getIntervalos();
-        HashMap<String, String> notas = null;
-
-            Octavas octava_intervalos = octavas.get(random.nextInt(octavas.size()));
-            notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones()+1, Instrumentos.Piano, octava_intervalos);
-
-
-        ArrayList<String> nombres = new ArrayList<>(notas.keySet());
-        ArrayList<String> rutas = new ArrayList<>(notas.values());
-
-        i.putStringArrayListExtra("nombres", nombres);
-        i.putStringArrayListExtra("rutas", rutas);
 
         startActivity(i);
     }

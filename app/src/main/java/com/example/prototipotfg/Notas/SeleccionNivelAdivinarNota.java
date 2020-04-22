@@ -11,18 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
-import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.PuntosNiveles;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
-import com.example.prototipotfg.Singletons.FactoriaNotas;
 import com.example.prototipotfg.Singletons.GestorBBDD;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
 
 public class SeleccionNivelAdivinarNota extends Activity {
 
@@ -104,15 +97,10 @@ public class SeleccionNivelAdivinarNota extends Activity {
 
     public void nivel_seleccionado(View view) {
         Intent i = new Intent(this, AdivinarNota.class);
-        Random random = new Random();
         //Nivel que se ha seleccionado
         Controlador.getInstance().setNivel(view.getId());
         Controlador.getInstance().estableceDificultad();
-        ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
-        HashMap<String, String> notas = null;
-        notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones(), Instrumentos.Piano, octavas);
-        ArrayList<String> nombres = new ArrayList<>(notas.keySet());
-        i.putStringArrayListExtra("nombres", nombres);
+
         startActivity(i);
     }
 

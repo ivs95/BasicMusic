@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Dificultad;
+import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
@@ -27,6 +28,7 @@ import com.example.prototipotfg.Singletons.Reproductor;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import static android.view.View.INVISIBLE;
@@ -46,10 +48,16 @@ public class AdivinarNota extends Activity {
         setContentView(R.layout.nivel_seleccionar_adivinar_notas);
         ponerComprobarVisible(INVISIBLE);
 
+
+        ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
+        HashMap<String, String> notas = null;
+        notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones(), Instrumentos.Piano, octavas);
+        nombres = new ArrayList<>(notas.keySet());
+
+
         findViewById(R.id.continuar_an).setEnabled(false);           findViewById(R.id.continuar_an).setAlpha(.5f);
 
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Notas);
-        nombres = getIntent().getExtras().getStringArrayList("nombres");
         FactoriaNotas.getInstance().setReferencia(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
         FactoriaNotas.getInstance().setReferenciaDo(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
         adaptaVista(Controlador.getInstance().getDificultad());

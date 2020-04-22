@@ -99,13 +99,10 @@ public class SeleccionNivelCrearAcorde extends Activity {
 
     public void nivel_seleccionado(View view) {
         Intent i = new Intent(this, CrearAcorde.class);
+
         Controlador.getInstance().setNivel(view.getId());
         Controlador.getInstance().estableceDificultad();
-        /*
-         * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
-         * Crear clase para seleccionar notas aleatorias
-         * Claves: respuesta, fallo1,...,falloN
-         * */
+
         startActivity(i);
     }
 

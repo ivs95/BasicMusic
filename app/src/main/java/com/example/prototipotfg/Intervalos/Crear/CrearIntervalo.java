@@ -93,8 +93,6 @@ public class CrearIntervalo extends Activity {
         if(Controlador.getInstance().getDificultad().equals(Dificultad.Dificil))
             this.adaptaVistaDificil();
 
-        intervalo_nombre = getIntent().getExtras().getString("peticion_nombre");
-        intervalo_dif = getIntent().getExtras().getInt("peticion_dif");
 
         //Obtenemos el linear layout donde colocar los botones
         LinearLayout opciones = (LinearLayout) findViewById(R.id.opciones_crear_intervalo);
