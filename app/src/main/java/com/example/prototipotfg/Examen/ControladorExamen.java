@@ -1,9 +1,12 @@
 package com.example.prototipotfg.Examen;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Pair;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.NivelExamen;
+import com.example.prototipotfg.Examen.Ejercicios.AdivinarAcordeExamen;
 import com.example.prototipotfg.Singletons.Controlador;
 
 import java.util.ArrayList;
@@ -13,6 +16,7 @@ import java.util.Collections;
 public final class ControladorExamen {
 
     private static final ControladorExamen INSTANCE = new ControladorExamen();
+    private Context contexto;
     private final int NUM_EJERCICIOS = 14;
     private int indiceActual;
     private Pair<ModoJuego, Integer> ejercicioActual;
@@ -35,6 +39,9 @@ public final class ControladorExamen {
 
     public void setNivel(int nivel) {
         this.nivel = NivelExamen.getNivelExamen(nivel);
+    }
+    public void setContext(Context contexto){
+        this.contexto=contexto;
     }
 
     public void preparaExamen() {
@@ -72,15 +79,24 @@ public final class ControladorExamen {
         Controlador.getInstance().setModo_juego(ejercicioActual.first);
         Controlador.getInstance().setNivel(ejercicioActual.second);
         Controlador.getInstance().estableceDificultad();
+        Intent i = null;
         switch (ejercicioActual.first){
             case Adivinar_Acordes:
+                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
             case Adivinar_Intervalo:
+                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
             case Halla_Ritmo:
+                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
             case Realiza_Ritmo:
+                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
             case Crear_Acordes:
+                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
             case Crear_Intervalo:
+                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
             case Adivinar_Notas:
+                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
         }
+        contexto.startActivity(i);
     }
 
     public boolean finalExamen() {

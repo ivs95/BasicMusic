@@ -40,17 +40,17 @@ import static android.view.View.VISIBLE;
 
 public class AdivinarAcorde extends Activity {
 
-    private Acordes acordeCorrecto;
-    private ArrayList<Button> botonesOpciones = new ArrayList<>();
-    private ArrayList<Acordes> acordesPosibles = new ArrayList<>();
-    private ArrayList<ArrayList<Pair<Notas, Octavas>>> acordesReproducir = new ArrayList<>();
-    private ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir = new ArrayList<>();
-    private Notas notaInicio;
-    private View botonSeleccionado;
-    private View respuestaCorrecta;
-    private int numOpciones;
-    private boolean comprobada = false;
-    private Octavas octavaInicio;
+    protected Acordes acordeCorrecto;
+    protected ArrayList<Button> botonesOpciones = new ArrayList<>();
+    protected ArrayList<Acordes> acordesPosibles = new ArrayList<>();
+    protected ArrayList<ArrayList<Pair<Notas, Octavas>>> acordesReproducir = new ArrayList<>();
+    protected ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir = new ArrayList<>();
+    protected Notas notaInicio;
+    protected View botonSeleccionado;
+    protected View respuestaCorrecta;
+    protected int numOpciones;
+    protected boolean comprobada = false;
+    protected Octavas octavaInicio;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,7 +124,7 @@ public class AdivinarAcorde extends Activity {
         }
     }
 
-    private void respuesta_seleccionada(View view) {
+    protected void respuesta_seleccionada(View view) {
 
         if (!comprobada) {
             Button b = (Button) view;
@@ -151,13 +151,13 @@ public class AdivinarAcorde extends Activity {
 
 
 
-    private void ponerComprobarVisible(int visible) {
+    protected void ponerComprobarVisible(int visible) {
         Button comprobar = findViewById(R.id.comprobarAcordes);
         comprobar.setVisibility(visible);
 
     }
 
-    private ArrayList<Acordes> seleccionaAcordesAleatorios(int numOpciones, ArrayList<Acordes> acordes) {
+    protected ArrayList<Acordes> seleccionaAcordesAleatorios(int numOpciones, ArrayList<Acordes> acordes) {
         ArrayList<Acordes> retorno = new ArrayList<>();
         Random random = new Random();
         Acordes acorde;
@@ -174,29 +174,26 @@ public class AdivinarAcorde extends Activity {
     public void comprobarAcordes(View view) {
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getRango()).ordinal();
-
-        if (!comprobada) {
-            NivelAdivinar nivel = null;
-            this.comprobada = true;
-            if (this.botonSeleccionado != this.respuestaCorrecta) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-                }
-                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel())
-                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Adivinar_Acordes.toString(), false);
-                nivel = new NivelAdivinar(ModoJuego.Adivinar_Acordes.getNombre(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0 , 1);
-
-            }
-            else {
-                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel())
-                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Adivinar_Acordes.toString(), true);
-                nivel = new NivelAdivinar(ModoJuego.Adivinar_Acordes.getNombre(), Controlador.getInstance().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
-            }
+        NivelAdivinar nivel = null;
+        this.comprobada = true;
+        if (this.botonSeleccionado != this.respuestaCorrecta) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
             }
-            GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
+            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel())
+                GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Adivinar_Acordes.toString(), false);
+            nivel = new NivelAdivinar(ModoJuego.Adivinar_Acordes.getNombre(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0 , 1);
+
         }
+        else {
+            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel())
+                GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Adivinar_Acordes.toString(), true);
+            nivel = new NivelAdivinar(ModoJuego.Adivinar_Acordes.getNombre(), Controlador.getInstance().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+        }
+        GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
         ponerComprobarVisible(GONE);
         findViewById(R.id.btnAcordeReferencia).setEnabled(false);             findViewById(R.id.btnAcordeReferencia).setAlpha(.5f);
         findViewById(R.id.button_info_adivinarAcorde).setEnabled(false);      findViewById(R.id.button_info_adivinarAcorde).setAlpha(.5f);
@@ -218,7 +215,8 @@ public class AdivinarAcorde extends Activity {
             Controlador.getInstance().estableceDificultad();
         }
 
-        findViewById(R.id.continuar_ac).setEnabled(true);          findViewById(R.id.continuar_ac).setAlpha(1);
+        findViewById(R.id.continuar_ac).setEnabled(true);
+        findViewById(R.id.continuar_ac).setAlpha(1);
 
     }
 
