@@ -216,6 +216,8 @@ public class ReproducirImitar extends Activity {
 
         NivelImitar nivel;
         TextView text2 = findViewById(R.id.textoFrecuencia);
+        TextView text3 = findViewById(R.id.textoPorcentaje);
+        text3.setText(resPorcentaje+"%");
         boolean correct = false;
         intentos++;
 
@@ -293,6 +295,8 @@ public class ReproducirImitar extends Activity {
     public void contador(View view){
         findViewById(R.id.button2).setEnabled(false);        findViewById(R.id.button2).setAlpha(.5f);
         TextView text2 = findViewById(R.id.textoFrecuencia); text2.setTextColor(getResources().getColor(R.color.md_blue_900));
+        TextView text3 = findViewById(R.id.textoPorcentaje);
+        text3.setText("");
         inicializaArrays();
         view.setVisibility(View.GONE);
         class MiContador extends CountDownTimer {
@@ -477,7 +481,7 @@ public class ReproducirImitar extends Activity {
                 public void run() {
 
                     TextView text2 = findViewById(R.id.textoFrecuencia);
-                    text2.setText("Resultado: " + resNota.getNota().getNombre() + (resNota.getOctava()) + "   " + resPorcentaje+"%");
+                    text2.setText("Resultado: " + resNota.getNota().getNombre() + (resNota.getOctava()));
                     Button comparar = (Button) findViewById(R.id.button4);
                     comparar.setEnabled(true);
                     comparar.setVisibility(View.VISIBLE);
