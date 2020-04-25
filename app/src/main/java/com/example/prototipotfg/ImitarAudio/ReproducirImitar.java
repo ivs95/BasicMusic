@@ -73,8 +73,7 @@ public class ReproducirImitar extends Activity {
         setContentView(R.layout.nivel_reproducir_imitar);
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Imitar_Audio);
 
-        nivel = getIntent().getExtras().getInt("nivel");
-        Controlador.getInstance().setNivel(nivel);
+        nivel = Controlador.getInstance().getNivel();
         TextView titulo = (TextView)findViewById(R.id.tituloImitar);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
 
@@ -225,17 +224,11 @@ public class ReproducirImitar extends Activity {
                 view = this.getWindow().getDecorView();
                 text2.setTextColor(getResources().getColor(R.color.md_green_500));
 
-                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel())
-                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Imitar_Audio.toString(), true);
-
                 nivel = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), true, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
                 correct = true;
             } else {
                 view = this.getWindow().getDecorView();
                 text2.setTextColor(getResources().getColor(R.color.md_red_500));
-
-                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel())
-                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Imitar_Audio.toString(), false);
 
                 nivel = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), false, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
             }
@@ -270,11 +263,11 @@ public class ReproducirImitar extends Activity {
                     GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Imitar_Audio.toString(), false);
             }
             int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel();
-            int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).ordinal();
+            int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getRango()).ordinal();
             if(rangoActual != rangoNuevo) {
                 LayoutInflater inflater = (LayoutInflater)
                         getSystemService(LAYOUT_INFLATER_SERVICE);
-                RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Intervalo.toString());
+                RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Imitar_Audio.toString());
             }
 
             if(nivelActual != nivelNuevo){

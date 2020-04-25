@@ -14,9 +14,12 @@ import android.widget.TextView;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.PuntosNiveles;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import java.io.IOException;
+import java.util.ConcurrentModificationException;
+import java.util.ResourceBundle;
 
 public class NivelesImitar extends Activity {
 
@@ -93,15 +96,10 @@ public class NivelesImitar extends Activity {
         Intent i = new Intent(this, ReproducirImitar.class);
         int nivel = view.getId();
 
-        /*
-         * Aquí hay que seleccionar la nota y las variables (strings de los nombre) y meterlas en el bundle
-         * Crear clase para seleccionar notas aleatorias
-         * Claves: respuesta, fallo1,...,falloN
-         * */
+
         String rangoVocal = getIntent().getExtras().getString("rangoVocal");
         i.putExtra("rangoVocal" , rangoVocal);
-        i.putExtra("nivel", nivel);
-        //i.putExtra("dificultad", getIntent().getExtras().getString("dificultad"));
+        Controlador.getInstance().setNivel(nivel);
 
         startActivity(i);
     }
