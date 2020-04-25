@@ -55,9 +55,10 @@ public class ReproducirImitar extends Activity {
     private int intentos=0;
     private int intentosTotales;
     private double frecuenciaMax = 1046.50;
-    private double frecuenciaMin = 164.81;
+    private double frecuenciaMin = 65.41;
     private boolean octavas = true;
     private int octava;
+    private boolean destroy = false;
     private AcousticEchoCanceler echo;
     private NoiseSuppressor noise;
     private AutomaticGainControl gain;
@@ -327,6 +328,8 @@ public class ReproducirImitar extends Activity {
     private void inicializaArrays() {
         lista = new ArrayList<>();
         porcentajes = new ArrayList<>();
+        resNota=null;
+        resPorcentaje=null;
     }
 
     private void inicializaPitch() {
@@ -361,7 +364,6 @@ public class ReproducirImitar extends Activity {
                     findViewById(R.id.button2).setEnabled(true);
                     findViewById(R.id.button2).setAlpha(1f);
                 }
-
             }
         }, 5000);
     }
@@ -427,13 +429,15 @@ public class ReproducirImitar extends Activity {
     public void onDestroy(){
         super.onDestroy();
         dispatch_Thread.interrupt();
-        dispatcher.stop();
+        if(!destroy)
+            dispatcher.stop();
         if(echo != null)
             echo.release();
         if(noise != null)
             noise.release();
         if(gain != null)
             gain.release();
+
     }
 
     public void poneNota(){
@@ -450,8 +454,8 @@ public class ReproducirImitar extends Activity {
             if(resNota.getOctava() > 5){
                 resFrecuencia = resNota.getNota().getFrecuencia()*(2*(resNota.getOctava()-5));
             }
-            else if(resNota.getOctava()<5){
-                resFrecuencia = resNota.getNota().getFrecuencia()/2*(5-resNota.getOctava());
+            else if(resNota.getOctava() < 5){
+                resFrecuencia = resNota.getNota().getFrecuencia()/(2*(5-resNota.getOctava()));
             }
             else{
                 resFrecuencia = resNota.getNota().getFrecuencia();
@@ -467,10 +471,10 @@ public class ReproducirImitar extends Activity {
                 origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia();
             }
             if(resFrecuencia > origenFrecuencia) {
-                resPorcentaje = (float)((frecuenciaMax-resFrecuencia)*100/(frecuenciaMax-origenFrecuencia));
+                resPorcentaje = (float)(((frecuenciaMax-resFrecuencia)*100)/(frecuenciaMax-origenFrecuencia));
             }
             else{
-                resPorcentaje = (float)((resFrecuencia-frecuenciaMin)*100/(origenFrecuencia-frecuenciaMin));
+                resPorcentaje = (float)(((resFrecuencia-frecuenciaMin)*100)/(origenFrecuencia-frecuenciaMin));
             }
 
                         runOnUiThread(new Runnable() {
@@ -503,9 +507,12 @@ public class ReproducirImitar extends Activity {
     }
 
     public void continuar(View view){
+        onDestroy();
+        destroy = true;
         finish();
         overridePendingTransition( 0, 0);
         startActivity(getIntent());
-        overridePendingTransition( 0, 0);    }
+        overridePendingTransition( 0, 0);
+    }
 
 }
