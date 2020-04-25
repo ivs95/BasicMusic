@@ -55,7 +55,7 @@ public class ReproducirImitar extends Activity {
     private int intentos=0;
     private int intentosTotales;
     private double frecuenciaMax = 1046.50;
-    private double frecuenciaMin = 65.41;
+    private double frecuenciaMin = 38.89;
     private boolean octavas = true;
     private int octava;
     private boolean destroy = false;
@@ -447,20 +447,20 @@ public class ReproducirImitar extends Activity {
             double resFrecuencia;
             double origenFrecuencia;
             if(resNota.getOctava() > 5){
-                resFrecuencia = resNota.getNota().getFrecuencia()*(2*(resNota.getOctava()-5));
+                resFrecuencia = resNota.getNota().getFrecuencia()*(Math.pow(2,resNota.getOctava()-5));
             }
             else if(resNota.getOctava() < 5){
-                resFrecuencia = resNota.getNota().getFrecuencia()/(2*(5-resNota.getOctava()));
+                resFrecuencia = resNota.getNota().getFrecuencia()/(Math.pow(2,5-resNota.getOctava()));
             }
             else{
                 resFrecuencia = resNota.getNota().getFrecuencia();
             }
             int aux= Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1,nombres.get(0).length()));
             if(aux>5){
-                origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia()*(2*(aux-5));
+                origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia()*(Math.pow(2,aux-5));
             }
             else if (aux<5){
-                origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia()/(2*(5-aux));
+                origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia()/(Math.pow(2,5-aux));
             }
             else{
                 origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia();
