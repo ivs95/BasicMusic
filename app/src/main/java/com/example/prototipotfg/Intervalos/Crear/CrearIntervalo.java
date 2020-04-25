@@ -38,25 +38,25 @@ import static android.view.View.INVISIBLE;
 
 public class CrearIntervalo extends Activity {
 
-    private View botonSeleccionado;
+    protected View botonSeleccionado;
 
 
-    private View respuestaCorrecta;
+    protected View respuestaCorrecta;
     private boolean comprobada = false;
 
-    private ArrayList<Pair<Notas,Octavas>> notasIntervalo = new ArrayList<>();
-    private ArrayList<String> notasPosibles = new ArrayList<>();
-    private ArrayList<Button> botonesOpciones = new ArrayList<>();
-    private Notas notaInicio;
-    private Octavas octavaInicio;
-    private Octavas octavaReproducir;
-    private int num_opciones;
+    protected ArrayList<Pair<Notas,Octavas>> notasIntervalo = new ArrayList<>();
+    protected ArrayList<String> notasPosibles = new ArrayList<>();
+    protected ArrayList<Button> botonesOpciones = new ArrayList<>();
+    protected Notas notaInicio;
+    protected Octavas octavaInicio;
+    protected Octavas octavaReproducir;
+    protected int num_opciones;
 
-    private String intervalo_nombre;
-    private int intervalo_dif;
+    protected String intervalo_nombre;
+    protected int intervalo_dif;
 
-    private String respuesta;
-    private String respuesta_correcta;
+    protected String respuesta;
+    protected String respuesta_correcta;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -74,8 +74,8 @@ public class CrearIntervalo extends Activity {
         int tono2 = notasIntervalo.get(1).first.getTono();
         Intervalos intervalo = getIntervaloConDif((tono2-tono1));
         this.notasPosibles = seleccionaNotasAleatorios(intervalo);
-
-        findViewById(R.id.continuar_ci).setEnabled(false);           findViewById(R.id.continuar_ci).setAlpha(.5f);
+        findViewById(R.id.continuar_ci).setEnabled(false);
+        findViewById(R.id.continuar_ci).setAlpha(.5f);
 
         intervalo_nombre = intervalo.getNombre();
         intervalo_dif = intervalo.getDiferencia();
@@ -143,7 +143,7 @@ public class CrearIntervalo extends Activity {
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Crear_Intervalo, findViewById(android.R.id.content).getRootView());
         }
     }
-    private ArrayList<String> seleccionaNotasAleatorios(Intervalos intervalo) {
+    protected ArrayList<String> seleccionaNotasAleatorios(Intervalos intervalo) {
         Notas[] notas = new Notas[12];
         boolean siguiente_octava = false;
         ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
@@ -242,7 +242,7 @@ public class CrearIntervalo extends Activity {
     }
 
 
-    private void ponerComprobarVisible(int visible) {
+    protected void ponerComprobarVisible(int visible) {
         Button comprobar = (Button)findViewById(R.id.comprobar_crear_intervalo);
         comprobar.setVisibility(visible);
     }
@@ -267,22 +267,17 @@ public class CrearIntervalo extends Activity {
                 if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Intervalo.toString()).getNivel())
                     GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Crear_Intervalo.toString(), false);
                 nivel = new NivelAdivinar(ModoJuego.Crear_Intervalo.getNombre(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
+                botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-                }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
-                }
+
             }
             else {
                 if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Intervalo.toString()).getNivel())
                     GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Crear_Intervalo.toString(), true);
                 nivel = new NivelAdivinar(ModoJuego.Crear_Intervalo.getNombre(), Controlador.getInstance().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
-                }
+
             }
+            respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
 
             GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
             findViewById(R.id.comprobar_crear_intervalo).setVisibility(View.GONE);
@@ -311,7 +306,7 @@ public class CrearIntervalo extends Activity {
         }
     }
 
-    private void adaptaVistaDificil() {
+    protected void adaptaVistaDificil() {
         TextView nota = findViewById(R.id.Id_nota_intervalo);
         nota.setVisibility(View.GONE);
     }

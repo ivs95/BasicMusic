@@ -38,22 +38,22 @@ import static android.view.View.GONE;
 
 public class CrearAcorde extends Activity {
 
-    private Acordes acordeCorrecto;
-    private ArrayList<String> notasPosibles = new ArrayList<>();
-    private ArrayList<Acordes> acordesPosibles = new ArrayList<>();
+    protected Acordes acordeCorrecto;
+    protected ArrayList<String> notasPosibles = new ArrayList<>();
+    protected ArrayList<Acordes> acordesPosibles = new ArrayList<>();
     private ArrayList<ArrayList<Pair<Notas, Octavas>>> acordesReproducir = new ArrayList<>();
-    private ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir = new ArrayList<>();
-    private ArrayList<Button> botonesOpciones = new ArrayList<>();
+    protected ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir = new ArrayList<>();
+    protected ArrayList<Button> botonesOpciones = new ArrayList<>();
 
-    private Notas notaInicio;
-    private int numOpciones;
-    private int num_notas;
+    protected Notas notaInicio;
+    protected int numOpciones;
+    protected int num_notas;
     private boolean comprobada = false;
     private int num_marcadas = 0;
-    private ArrayList<String> respuestas = new ArrayList<String>();
-    private Octavas octavaInicio;
-    private View botonesSeleccionados[];
-    private View respuestaCorrecta[];
+    protected ArrayList<String> respuestas = new ArrayList<String>();
+    protected Octavas octavaInicio;
+    protected View[] botonesSeleccionados;
+    protected View[] respuestaCorrecta;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +134,7 @@ public class CrearAcorde extends Activity {
         }
     }
 
-    private void respuesta_seleccionada(View view) {
+    protected void respuesta_seleccionada(View view) {
 
         if (!comprobada) {
             Button b = (Button) view;
@@ -170,13 +170,13 @@ public class CrearAcorde extends Activity {
         Octavas o = Octavas.devuelveOctavaPorNumero(Integer.parseInt(text.substring(text.length()-1)));
         return FactoriaNotas.getInstance().getInstrumento().getPath()+o.getPath()+n.getPath();
     }
-    private void ponerComprobarVisible(int visible) {
+    protected void ponerComprobarVisible(int visible) {
         Button comprobar = findViewById(R.id.comprobarCrearAcordes);
         comprobar.setVisibility(visible);
 
     }
 
-    private ArrayList<Acordes> seleccionaAcordesAleatorios(ArrayList<Acordes> acordes) {
+    protected ArrayList<Acordes> seleccionaAcordesAleatorios(ArrayList<Acordes> acordes) {
         ArrayList<Acordes> retorno = new ArrayList<>();
         Random random = new Random();
         Acordes acorde;
@@ -190,7 +190,7 @@ public class CrearAcorde extends Activity {
         return retorno;
     }
 
-    private ArrayList<String> seleccionaNotasAleatorios(ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir) {
+    protected ArrayList<String> seleccionaNotasAleatorios(ArrayList<Pair<Notas, Octavas>> acordeCorrectoReproducir) {
         Notas[] notas = new Notas[12];
         notas = Notas.values();
         ArrayList<String> retorno = new ArrayList<>();
@@ -302,7 +302,7 @@ public class CrearAcorde extends Activity {
         }
     }
 
-    private ArrayList<AssetFileDescriptor> preparaAssets(ArrayList<Pair<Notas, Octavas>> acorde){
+    protected ArrayList<AssetFileDescriptor> preparaAssets(ArrayList<Pair<Notas, Octavas>> acorde){
         ArrayList<AssetFileDescriptor> retorno = new ArrayList<>();
         for (Pair<Notas, Octavas> nota : acorde){
             try {
@@ -315,7 +315,7 @@ public class CrearAcorde extends Activity {
     }
 
 
-    private void cierraAssets(ArrayList<AssetFileDescriptor> assetFileDescriptors) {
+    protected void cierraAssets(ArrayList<AssetFileDescriptor> assetFileDescriptors) {
         for (AssetFileDescriptor afd : assetFileDescriptors) {
             try {
                 afd.close();
