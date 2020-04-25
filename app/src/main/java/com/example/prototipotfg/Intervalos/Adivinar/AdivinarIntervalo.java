@@ -35,13 +35,13 @@ import static android.view.View.GONE;
 import static java.lang.Thread.sleep;
 
 public class AdivinarIntervalo extends Activity {
-    private View botonSeleccionado;
-    private View respuestaCorrecta;
-    private String respuesta;
-    private ArrayList<Button> botonesOpciones = new ArrayList<>();
-    private ArrayList<Pair<Notas,Octavas>> notasIntervalo = new ArrayList<>();
-    private String intervalo_correcto;
-    private boolean comprobada = false;
+    protected View botonSeleccionado;
+    protected View respuestaCorrecta;
+    protected String respuesta;
+    protected ArrayList<Button> botonesOpciones = new ArrayList<>();
+    protected ArrayList<Pair<Notas,Octavas>> notasIntervalo = new ArrayList<>();
+    protected String intervalo_correcto;
+    protected boolean comprobada = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -181,7 +181,7 @@ public class AdivinarIntervalo extends Activity {
 
 
 
-    private void ponerComprobarVisible(int visible) {
+    protected void ponerComprobarVisible(int visible) {
         Button comprobar = (Button)findViewById(R.id.comprobar);
         comprobar.setVisibility(visible);
     }
@@ -189,33 +189,33 @@ public class AdivinarIntervalo extends Activity {
     public void comprobarResultado(View view){
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).ordinal();
-        if (!comprobada) {
-            NivelAdivinar nivel = null;
-            this.comprobada = true;
-            if (respuesta != this.intervalo_correcto) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getNivel())
-                        GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Adivinar_Intervalo.toString(), false);
-                    botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-                    nivel = new NivelAdivinar(ModoJuego.Adivinar_Intervalo.getNombre(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0 , 1);
-                }
-            }
-            else {
-                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getNivel())
-                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Adivinar_Intervalo.toString(), true);
-                nivel = new NivelAdivinar(ModoJuego.Adivinar_Intervalo.getNombre(), Controlador.getInstance().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
-            }
+        NivelAdivinar nivel = null;
+        this.comprobada = true;
+        if (respuesta != this.intervalo_correcto) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Adivinar_Intervalo.toString(), false);
+                botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                nivel = new NivelAdivinar(ModoJuego.Adivinar_Intervalo.getNombre(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0 , 1);
             }
-            GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
         }
+        else {
+            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getNivel())
+                GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Adivinar_Intervalo.toString(), true);
+            nivel = new NivelAdivinar(ModoJuego.Adivinar_Intervalo.getNombre(), Controlador.getInstance().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+        }
+        GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
         findViewById(R.id.comprobar).setVisibility(View.GONE);
         for (Button b : botonesOpciones){
             b.setEnabled(false);
         }
-        findViewById(R.id.botonIntervalo).setEnabled(false);        findViewById(R.id.botonIntervalo).setAlpha(.5f);
-        findViewById(R.id.botonReferencia).setEnabled(false);       findViewById(R.id.botonReferencia).setAlpha(.5f);
+        findViewById(R.id.botonIntervalo).setEnabled(false);
+        findViewById(R.id.botonIntervalo).setAlpha(.5f);
+        findViewById(R.id.botonReferencia).setEnabled(false);
+        findViewById(R.id.botonReferencia).setAlpha(.5f);
 
         int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getNivel();
         int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Intervalo.toString()).getRango()).ordinal();
@@ -230,7 +230,8 @@ public class AdivinarIntervalo extends Activity {
             Controlador.getInstance().estableceDificultad();
         }
 
-        findViewById(R.id.continuar_ai).setEnabled(true);      findViewById(R.id.continuar_ai).setAlpha(1);
+        findViewById(R.id.continuar_ai).setEnabled(true);
+        findViewById(R.id.continuar_ai).setAlpha(1);
 
     }
 

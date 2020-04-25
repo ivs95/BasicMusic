@@ -39,7 +39,7 @@ public class AdivinarNota extends Activity {
     protected View respuestaCorrecta;
     protected boolean comprobada = false;
     protected ArrayList<String> nombres;
-    private ArrayList<Button> botonesNotas = new ArrayList<>();
+    protected ArrayList<Button> botonesNotas = new ArrayList<>();
 
     protected String respuesta;
     @Override
@@ -112,7 +112,7 @@ public class AdivinarNota extends Activity {
         }
     }
 
-    private void adaptaVista(Dificultad dificultad) {
+    protected void adaptaVista(Dificultad dificultad) {
         int nivel = Controlador.getInstance().getNivel();
         if (dificultad.equals(Dificultad.Facil)){
             Button referencia = findViewById(R.id.botonReferencia);
@@ -192,7 +192,7 @@ public class AdivinarNota extends Activity {
     }
 
 
-    private void ponerComprobarVisible(int visible) {
+    protected void ponerComprobarVisible(int visible) {
         Button comprobar = (Button)findViewById(R.id.comprobar);
         comprobar.setVisibility(visible);
     }
