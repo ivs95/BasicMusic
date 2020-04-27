@@ -7,6 +7,12 @@ import android.util.Pair;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.NivelExamen;
 import com.example.prototipotfg.Examen.Ejercicios.AdivinarAcordeExamen;
+import com.example.prototipotfg.Examen.Ejercicios.AdivinarIntervaloExamen;
+import com.example.prototipotfg.Examen.Ejercicios.AdivinarNotaExamen;
+import com.example.prototipotfg.Examen.Ejercicios.CrearAcordeExamen;
+import com.example.prototipotfg.Examen.Ejercicios.CrearIntervaloExamen;
+import com.example.prototipotfg.Examen.Ejercicios.CrearRitmoExamen;
+import com.example.prototipotfg.Examen.Ejercicios.HallarRitmoExamen;
 import com.example.prototipotfg.Singletons.Controlador;
 
 import java.util.ArrayList;
@@ -79,17 +85,17 @@ public final class ControladorExamen {
             case Adivinar_Acordes:
                 i = new Intent(contexto, AdivinarAcordeExamen.class);break;
             case Adivinar_Intervalo:
-                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
+                i = new Intent(contexto, AdivinarIntervaloExamen.class);break;
             case Halla_Ritmo:
-                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
+                i = new Intent(contexto, HallarRitmoExamen.class);break;
             case Realiza_Ritmo:
-                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
+                i = new Intent(contexto, CrearRitmoExamen.class);break;
             case Crear_Acordes:
-                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
+                i = new Intent(contexto, CrearAcordeExamen.class);break;
             case Crear_Intervalo:
-                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
+                i = new Intent(contexto, CrearIntervaloExamen.class);break;
             case Adivinar_Notas:
-                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
+                i = new Intent(contexto, AdivinarNotaExamen.class);break;
         }
         return i;
     }

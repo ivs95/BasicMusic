@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.PuntosNiveles;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class SeleccionNivelCrearRitmo extends Activity{
@@ -83,8 +84,8 @@ public class SeleccionNivelCrearRitmo extends Activity{
 
     public void nivel_seleccionado(View view) {
         Intent i = new Intent(this, CrearRitmo.class);
-        int nivel = view.getId();
-        i.putExtra("nivel", nivel);
+        Controlador.getInstance().setNivel(view.getId());
+
 
         startActivity(i);
     }

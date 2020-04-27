@@ -82,15 +82,13 @@ public class SeleccionNivelExamen extends Activity {
         ControladorExamen.getInstance().setNivel(view.getId());
         ControladorExamen.getInstance().setContext(this);
         ControladorExamen.getInstance().iniciaExamen();
+        while(!ControladorExamen.getInstance().finalExamen()) {
             ControladorExamen.getInstance().setEjercicio();
             Intent i = ControladorExamen.getInstance().iniciaPrueba(this);
             startActivity(i);
-            /*
-            while(!ControladorExamen.getInstance().finalExamen()) {
-
         }
         ControladorExamen.getInstance().setResultadoExamen();
-        Intent i = new Intent(this , ResultadoExamen.class);*/
+        Intent i = new Intent(this , ResultadoExamen.class);
     }
 
 

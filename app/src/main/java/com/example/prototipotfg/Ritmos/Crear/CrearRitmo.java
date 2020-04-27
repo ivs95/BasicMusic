@@ -257,10 +257,10 @@ public class CrearRitmo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crearritmos);
 
-        nivel = getIntent().getExtras().getInt("nivel");
+        nivel = Controlador.getInstance().getNivel();
+
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Realiza_Ritmo);
 
-        Controlador.getInstance().setNivel(nivel);
 
         findViewById(R.id.continuar_cr).setEnabled(false);           findViewById(R.id.continuar_cr).setAlpha(.5f);
 
