@@ -165,6 +165,7 @@
         <activity android:name=".Examen.Ejercicios.CrearRitmoExamen" />
         <activity android:name=".Examen.Ejercicios.HallarRitmoExamen" />
         <activity android:name=".Examen.ResultadoExamen" />
+        <activity android:name=".Examen.SeleccionNivelExamen" />
     </application>
 
 </manifest>

@@ -52,14 +52,9 @@ public final class ControladorExamen {
 
     public void iniciaExamen(){
         preparaExamen();
-        while(!finalExamen()) {
-            setEjercicio();
-            iniciaPrueba();
-        }
-        setResultadoExamen();
     }
 
-    private void setResultadoExamen() {
+    public void setResultadoExamen() {
         this.aprobado=((double)numAciertos/NUM_EJERCICIOS)>=nivel.getPorcentajeAprobar();
     }
 
@@ -75,31 +70,32 @@ public final class ControladorExamen {
             numAciertos++;
     }
 
-    private void iniciaPrueba() {
+    public Intent iniciaPrueba(Context contexto) {
         Controlador.getInstance().setModo_juego(ejercicioActual.first);
         Controlador.getInstance().setNivel(ejercicioActual.second);
         Controlador.getInstance().estableceDificultad();
         Intent i = null;
         switch (ejercicioActual.first){
             case Adivinar_Acordes:
-                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
+                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
             case Adivinar_Intervalo:
-                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
+                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
             case Halla_Ritmo:
-                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
+                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
             case Realiza_Ritmo:
-                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
+                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
             case Crear_Acordes:
-                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
+                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
             case Crear_Intervalo:
-                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
+                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
             case Adivinar_Notas:
-                i = new Intent(this.contexto, AdivinarAcordeExamen.class);
+                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
         }
-        contexto.startActivity(i);
+        return i;
     }
 
     public boolean finalExamen() {
         return NUM_EJERCICIOS == indiceActual;
     }
+
 }

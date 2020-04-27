@@ -136,8 +136,8 @@ public class AdivinarIntervaloExamen extends AdivinarIntervalo {
         findViewById(R.id.botonReferencia).setAlpha(.5f);
         findViewById(R.id.continuar_ai).setEnabled(true);
         findViewById(R.id.continuar_ai).setAlpha(1);
-        ((Button)findViewById(R.id.continuar_an)).setText("Continuar");
-        findViewById(R.id.continuar_an).setOnClickListener(new View.OnClickListener() {
+        ((Button)findViewById(R.id.continuar_ai)).setText("Continuar");
+        findViewById(R.id.continuar_ai).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

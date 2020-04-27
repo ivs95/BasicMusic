@@ -34,31 +34,31 @@ import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSim
 public class HallarRitmo extends Activity {
 
 
-    private Bundle savedInstanceState;
+    protected Bundle savedInstanceState;
 
-    private int compas = 4;
+    protected int compas = 4;
     private int num = 4;
-    private int longitud = compas*num;
+    protected int longitud = compas*num;
 
-    private ArrayList<Integer> ritmos1;
-    private ArrayList<Integer> ritmos2;
-    private ArrayList<Integer> ritmos3;
-    private ArrayList<Integer> ritmos4;
+    protected ArrayList<Integer> ritmos1;
+    protected ArrayList<Integer> ritmos2;
+    protected ArrayList<Integer> ritmos3;
+    protected ArrayList<Integer> ritmos4;
     private final int COMPASES = 16;
-    private int pausa;
+    protected int pausa;
 
 
-    private View botonesSeleccionados1[]= new View[COMPASES];
-    private View botonesSeleccionados2[]= new View[COMPASES];
-    private View botonesSeleccionados3[]= new View[COMPASES];
-    private View botonesSeleccionados4[]= new View[COMPASES];
-    private View botonesResultado1[]= new View[COMPASES];
-    private View botonesResultado2[]= new View[COMPASES];
-    private View botonesResultado3[]= new View[COMPASES];
-    private View botonesResultado4[]= new View[COMPASES];
+    protected View[] botonesSeleccionados1 = new View[COMPASES];
+    protected View[] botonesSeleccionados2 = new View[COMPASES];
+    protected View[] botonesSeleccionados3 = new View[COMPASES];
+    protected View[] botonesSeleccionados4 = new View[COMPASES];
+    protected View[] botonesResultado1 = new View[COMPASES];
+    protected View[] botonesResultado2 = new View[COMPASES];
+    protected View[] botonesResultado3 = new View[COMPASES];
+    protected View[] botonesResultado4 = new View[COMPASES];
 
-    private boolean comprobado = false;
-    private boolean running;
+    protected boolean comprobado = false;
+    protected boolean running;
     private boolean go1 = false;
     private boolean go2 = false;
     private boolean go3 = false;
@@ -68,7 +68,7 @@ public class HallarRitmo extends Activity {
     private boolean end = false;
     private boolean play = false;
     private boolean pause = false;
-    private int nivel;
+    protected int nivel;
     private int indice = 0;
     private int tutorial = 1;
 
@@ -76,18 +76,18 @@ public class HallarRitmo extends Activity {
     private View popupView;
 
 
-    private ArrayList<Integer> resultado1 = new ArrayList<>();
-    private ArrayList<Integer> resultado2 = new ArrayList<>();
-    private ArrayList<Integer> resultado3 = new ArrayList<>();
-    private ArrayList<Integer> resultado4 = new ArrayList<>();
-    private ArrayList<Integer> metronomo = new ArrayList<>();
-    private MediaPlayerRitmos mediaPlayer1 =  new MediaPlayerRitmos();
-    private MediaPlayerRitmos mediaPlayer2 =  new MediaPlayerRitmos();
-    private MediaPlayerRitmos mediaPlayer3 =  new MediaPlayerRitmos();
-    private MediaPlayerRitmos mediaPlayer4 =  new MediaPlayerRitmos();
-    private MediaPlayerRitmos mediaPlayerMetronomo =  new MediaPlayerRitmos();
+    protected ArrayList<Integer> resultado1 = new ArrayList<>();
+    protected ArrayList<Integer> resultado2 = new ArrayList<>();
+    protected ArrayList<Integer> resultado3 = new ArrayList<>();
+    protected ArrayList<Integer> resultado4 = new ArrayList<>();
+    protected ArrayList<Integer> metronomo = new ArrayList<>();
+    protected MediaPlayerRitmos mediaPlayer1 =  new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer2 =  new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer3 =  new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer4 =  new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayerMetronomo =  new MediaPlayerRitmos();
 
-    private  Thread hilo_ritmos = new Thread(new Runnable(){
+    protected Thread hilo_ritmos = new Thread(new Runnable(){
         @Override
         public void run() {
             while(!end) {
@@ -136,7 +136,7 @@ public class HallarRitmo extends Activity {
 
     });
 
-    private Thread hiloPlayer1 = new Thread(new Runnable() {
+    protected Thread hiloPlayer1 = new Thread(new Runnable() {
 
         @Override
         public void run() {

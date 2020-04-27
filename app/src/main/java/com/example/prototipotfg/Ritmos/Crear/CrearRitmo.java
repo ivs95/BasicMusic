@@ -31,27 +31,27 @@ import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSim
 
 public class CrearRitmo extends Activity {
 
-    private int compas = 4;
+    protected int compas = 4;
     private int num = 4;
-    private int longitud = compas*num;
+    protected int longitud = compas*num;
 
-    private ArrayList<Integer> ritmos1  = new ArrayList<>();
-    private ArrayList<Integer> ritmos2 = new ArrayList<>();
-    private ArrayList<Integer> ritmos3 = new ArrayList<>();
-    private ArrayList<Integer> ritmos4 = new ArrayList<>();
-    private ArrayList<Integer> resultado1 = new ArrayList<>();
-    private ArrayList<Integer> resultado2 = new ArrayList<>();
-    private ArrayList<Integer> resultado3 = new ArrayList<>();
-    private ArrayList<Integer> resultado4 = new ArrayList<>();
-    private ArrayList<Integer> metronomo = new ArrayList<>();
-    private ArrayList<Button> botonesGuia = new ArrayList<>();
+    protected ArrayList<Integer> ritmos1  = new ArrayList<>();
+    protected ArrayList<Integer> ritmos2 = new ArrayList<>();
+    protected ArrayList<Integer> ritmos3 = new ArrayList<>();
+    protected ArrayList<Integer> ritmos4 = new ArrayList<>();
+    protected ArrayList<Integer> resultado1 = new ArrayList<>();
+    protected ArrayList<Integer> resultado2 = new ArrayList<>();
+    protected ArrayList<Integer> resultado3 = new ArrayList<>();
+    protected ArrayList<Integer> resultado4 = new ArrayList<>();
+    protected ArrayList<Integer> metronomo = new ArrayList<>();
+    protected ArrayList<Button> botonesGuia = new ArrayList<>();
 
     private boolean comprobado = false;
-    private final int COMPASES = 16;
+    protected final int COMPASES = 16;
     private int indiceSonidoActual;
     private int indicePintar;
-    private int pausa;
-    private boolean running;
+    protected int pausa;
+    protected boolean running;
     private boolean runningPropio;
     private boolean go1 = false;
     private boolean go2 = false;
@@ -62,16 +62,16 @@ public class CrearRitmo extends Activity {
     private boolean end = false;
     private boolean play = false;
     private boolean pause = false;
-    private int nivel;
+    protected int nivel;
     private int indice = 0;
 
-    private MediaPlayerRitmos mediaPlayer1 =  new MediaPlayerRitmos();
-    private MediaPlayerRitmos mediaPlayer2 =  new MediaPlayerRitmos();
-    private MediaPlayerRitmos mediaPlayer3 =  new MediaPlayerRitmos();
-    private MediaPlayerRitmos mediaPlayer4 =  new MediaPlayerRitmos();
-    private MediaPlayerRitmos mediaPlayerMetronomo =  new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer1 =  new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer2 =  new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer3 =  new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer4 =  new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayerMetronomo =  new MediaPlayerRitmos();
 
-    private  Thread hilo_ritmos = new Thread(new Runnable(){
+    protected Thread hilo_ritmos = new Thread(new Runnable(){
         @Override
         public void run() {
             while(!end) {
@@ -148,7 +148,7 @@ public class CrearRitmo extends Activity {
 
     });
 
-    private  Thread hilo_ritmos_propio = new Thread(new Runnable(){
+    protected Thread hilo_ritmos_propio = new Thread(new Runnable(){
         @Override
         public void run() {
             while(!end) {
@@ -212,7 +212,7 @@ public class CrearRitmo extends Activity {
 
     });
 
-    private Thread hiloPlayer1 = new Thread(new Runnable() {
+    protected Thread hiloPlayer1 = new Thread(new Runnable() {
 
         @Override
         public void run() {
@@ -521,7 +521,7 @@ public class CrearRitmo extends Activity {
 
 
 
-    private boolean compruebaArrays() {
+    protected boolean compruebaArrays() {
         switch (nivel){
             case 1:
             case 2: return (ritmos1.equals(resultado1));

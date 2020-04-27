@@ -16,13 +16,10 @@ import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Acordes;
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
-import com.example.prototipotfg.Enumerados.ModoJuego;
-import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.Examen.ControladorExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
-import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import java.util.Collections;
 import java.util.Random;
@@ -30,7 +27,7 @@ import java.util.Random;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-public class AdivinarAcordeExamen extends AdivinarAcorde {
+public class AdivinarAcordeExamen extends AdivinarAcorde{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,8 +104,8 @@ public class AdivinarAcordeExamen extends AdivinarAcorde {
         for (Button b : botonesOpciones)
             b.setEnabled(false);
         findViewById(R.id.continuar_ac).setEnabled(true);          findViewById(R.id.continuar_ac).setAlpha(1);
-        ((Button)findViewById(R.id.continuar_an)).setText("Continuar");
-        findViewById(R.id.continuar_an).setOnClickListener(new View.OnClickListener() {
+        ((Button)findViewById(R.id.continuar_ac)).setText("Continuar");
+        findViewById(R.id.continuar_ac).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

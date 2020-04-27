@@ -147,8 +147,8 @@ public class CrearAcordeExamen extends CrearAcorde {
         ponerComprobarVisible(GONE);
         findViewById(R.id.continuar_ca).setEnabled(true);
         findViewById(R.id.continuar_ca).setAlpha(1);
-        ((Button)findViewById(R.id.continuar_an)).setText("Continuar");
-        findViewById(R.id.continuar_an).setOnClickListener(new View.OnClickListener() {
+        ((Button)findViewById(R.id.continuar_ca)).setText("Continuar");
+        findViewById(R.id.continuar_ca).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

@@ -118,8 +118,8 @@ public class CrearIntervaloExamen extends CrearIntervalo {
         }
         findViewById(R.id.continuar_ci).setEnabled(true);
         findViewById(R.id.continuar_ci).setAlpha(1);
-        ((Button)findViewById(R.id.continuar_an)).setText("Continuar");
-        findViewById(R.id.continuar_an).setOnClickListener(new View.OnClickListener() {
+        ((Button)findViewById(R.id.continuar_ci)).setText("Continuar");
+        findViewById(R.id.continuar_ci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
