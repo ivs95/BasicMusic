@@ -179,8 +179,8 @@ public class HallarRitmo extends Activity {
         this.savedInstanceState = savedInstanceState;
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Halla_Ritmo);
 
-        findViewById(R.id.continuar_hr).setEnabled(false);           findViewById(R.id.continuar_hr).setAlpha(.5f);
-
+        findViewById(R.id.continuar_hr).setEnabled(false);
+        findViewById(R.id.continuar_hr).setAlpha(.5f);
         Random random = new Random();
         ritmos1 = new ArrayList<>(longitud);
         ritmos2 = new ArrayList<>(longitud);
@@ -209,8 +209,8 @@ public class HallarRitmo extends Activity {
 
         }
 
-        nivel = getIntent().getExtras().getInt("nivel");
-        Controlador.getInstance().setNivel(nivel);
+        nivel = Controlador.getInstance().getNivel();
+
 
         if (nivel % 2 == 0){
             pausa = 325;
