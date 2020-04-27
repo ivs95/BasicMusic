@@ -5,15 +5,15 @@ import java.util.Arrays;
 
 public enum RangosVocales {
 
-    Mujer("Mujer",4, 6, 10, 1),
-    Hombre("Hombre",3, 4, 8, 10 ),
-    Niño("Niño",4, 6, 3,6),
-    MujerM("Mujer",4, 6, 8, 1),
-    HombreM("Hombre",3, 5, 8, 6 ),
-    NiñoM("Niño",4, 6, 3,10),
-    MujerD("Mujer",4, 6, 3, 1),
-    HombreD("Hombre",3, 4, 5, 10 ),
-    NiñoD("Niño",4, 6, 3,1);
+    Mujer("Mujer",3, 6, 10, 1),
+    Hombre("Hombre",2, 4, 8, 10 ),
+    Niño("Niño",3, 6, 3,6),
+    MujerM("Mujer",3, 6, 8, 1),
+    HombreM("Hombre",2, 5, 8, 6 ),
+    NiñoM("Niño",3, 6, 3,10),
+    MujerD("Mujer",3, 6, 3, 1),
+    HombreD("Hombre",2, 4, 5, 10 ),
+    NiñoD("Niño",3, 6, 3,1);
 
 
     private String nombre;

@@ -54,8 +54,7 @@ public class ReproducirImitar extends Activity {
     private int reproduccionesTotales;
     private int intentos=0;
     private int intentosTotales;
-    private double frecuenciaMax = 1046.50;
-    private double frecuenciaMin = 38.89;
+
     private boolean octavas = true;
     private int octava;
     private boolean destroy = false;
@@ -216,8 +215,7 @@ public class ReproducirImitar extends Activity {
 
         NivelImitar nivel;
         TextView text2 = findViewById(R.id.textoFrecuencia);
-        TextView text3 = findViewById(R.id.textoPorcentaje);
-        text3.setText(resPorcentaje+"%");
+
         boolean correct = false;
         intentos++;
 
@@ -257,6 +255,8 @@ public class ReproducirImitar extends Activity {
 
             GestorBBDD.getInstance().insertaNivelImitar(nivel);
             if(correct){
+                TextView text3 = findViewById(R.id.textoPorcentaje);
+                text3.setText(Math.round(resPorcentaje)+"%");
                 if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel())
                     GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Imitar_Audio.toString(), true);
             }
@@ -369,7 +369,7 @@ public class ReproducirImitar extends Activity {
 
     private void hallaMax(float hz){
         if (hz != -1) {
-            octava = 5;
+            octava = 4;
             //Situa a la nota en la octava que le corresponde
             if (hz < Notas.DO.getMinimaFrecuencia()) {
                 while (hz < Notas.DO.getMinimaFrecuencia()) {
@@ -440,40 +440,40 @@ public class ReproducirImitar extends Activity {
     }
 
     public void poneNota(){
+        double frecuencia;
         if(lista.size()>0) {
             resNota = lista.get(0);
+            frecuencia = porcentajes.get(0);
             for (int i = 1; i < lista.size(); i++) {
                 if (lista.get(i).getContador() > resNota.getContador()) {
                     resNota = lista.get(i);
+                    frecuencia = porcentajes.get(i);
                 }
             }
-
-            double resFrecuencia;
+            frecuencia = frecuencia/resNota.getContador();
             double origenFrecuencia;
-            if(resNota.getOctava() > 5){
-                resFrecuencia = resNota.getNota().getFrecuencia()*(Math.pow(2,resNota.getOctava()-5));
+            /*
+             double resFrecuencia;
+            if(resNota.getOctava() > 3){
+                resFrecuencia = frecuencia/(Math.pow(2,resNota.getOctava()-5));
             }
-            else if(resNota.getOctava() < 5){
-                resFrecuencia = resNota.getNota().getFrecuencia()/(Math.pow(2,5-resNota.getOctava()));
-            }
-            else{
-                resFrecuencia = resNota.getNota().getFrecuencia();
-            }
-            int aux= Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1,nombres.get(0).length()));
-            if(aux>5){
-                origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia()*(Math.pow(2,aux-5));
-            }
-            else if (aux<5){
-                origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia()/(Math.pow(2,5-aux));
+            else if(resNota.getOctava() < 3){
+                resFrecuencia = frecuencia*(Math.pow(2,5-resNota.getOctava()));
             }
             else{
-                origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia();
+                resFrecuencia = frecuencia;
             }
-            if(resFrecuencia > origenFrecuencia) {
-                resPorcentaje = (float)(((frecuenciaMax-resFrecuencia)*100)/(frecuenciaMax-origenFrecuencia));
+
+             */
+
+            origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia();
+            double frecuenciaMax = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getMaximaFrecuencia();
+            double frecuenciaMin = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getMinimaFrecuencia();
+            if(frecuencia > origenFrecuencia) {
+                resPorcentaje = (float)(((frecuenciaMax-frecuencia)*100)/(frecuenciaMax-origenFrecuencia));
             }
             else{
-                resPorcentaje = (float)(((resFrecuencia-frecuenciaMin)*100)/(origenFrecuencia-frecuenciaMin));
+                resPorcentaje = (float)(((frecuencia-frecuenciaMin)*100)/(origenFrecuencia-frecuenciaMin));
             }
 
                         runOnUiThread(new Runnable() {
