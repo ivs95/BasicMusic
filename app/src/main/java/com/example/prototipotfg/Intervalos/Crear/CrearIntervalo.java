@@ -23,6 +23,7 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
+import com.example.prototipotfg.Examen.Ejercicios.CrearIntervaloExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class CrearIntervalo extends Activity {
 
@@ -61,9 +63,6 @@ public class CrearIntervalo extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_crear_intervalo);
-        ponerComprobarVisible(INVISIBLE);
-        GestorBBDD.getInstance().modoRealizado(ModoJuego.Crear_Intervalo);
-
         Random r = new Random();
         this.num_opciones = Controlador.getInstance().getNum_opciones();
         notasIntervalo = FactoriaNotas.getInstance().getNotasIntervalo(Controlador.getInstance().getOctavas(), Controlador.getInstance().getRango());
@@ -74,8 +73,6 @@ public class CrearIntervalo extends Activity {
         int tono2 = notasIntervalo.get(1).first.getTono();
         Intervalos intervalo = getIntervaloConDif((tono2-tono1));
         this.notasPosibles = seleccionaNotasAleatorios(intervalo);
-        findViewById(R.id.continuar_ci).setEnabled(false);
-        findViewById(R.id.continuar_ci).setAlpha(.5f);
 
         intervalo_nombre = intervalo.getNombre();
         intervalo_dif = intervalo.getDiferencia();
@@ -134,13 +131,15 @@ public class CrearIntervalo extends Activity {
                 respuesta_correcta = button.getText().toString();
             }
         }
+        if (!(this instanceof CrearIntervaloExamen)) {
+            GestorBBDD.getInstance().modoRealizado(ModoJuego.Crear_Intervalo);
+            if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 
-        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
 
-            LayoutInflater inflater = (LayoutInflater)
-                    getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Crear_Intervalo, findViewById(android.R.id.content).getRootView());
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Crear_Intervalo, findViewById(android.R.id.content).getRootView());
+            }
         }
     }
     protected ArrayList<String> seleccionaNotasAleatorios(Intervalos intervalo) {
@@ -217,9 +216,9 @@ public class CrearIntervalo extends Activity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            ponerComprobarVisible(VISIBLE);
+            findViewById(R.id.comprobar_crear_intervalo).setEnabled(true);
 
-
-            ponerComprobarVisible(1);
         }
     }
 
@@ -243,8 +242,7 @@ public class CrearIntervalo extends Activity {
 
 
     protected void ponerComprobarVisible(int visible) {
-        Button comprobar = (Button)findViewById(R.id.comprobar_crear_intervalo);
-        comprobar.setVisibility(visible);
+        findViewById(R.id.comprobar_crear_intervalo).setVisibility(visible);
     }
 
     public void reproducir(View view) throws IOException {
@@ -301,8 +299,7 @@ public class CrearIntervalo extends Activity {
                 Controlador.getInstance().estableceDificultad();
             }
 
-            findViewById(R.id.continuar_ci).setEnabled(true);      findViewById(R.id.continuar_ci).setAlpha(1);
-
+            findViewById(R.id.continuar_ci).setVisibility(VISIBLE);
         }
     }
 

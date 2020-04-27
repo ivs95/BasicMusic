@@ -20,6 +20,7 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
+import com.example.prototipotfg.Examen.Ejercicios.AdivinarIntervaloExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -32,6 +33,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 import static java.lang.Thread.sleep;
 
 public class AdivinarIntervalo extends Activity {
@@ -47,11 +49,6 @@ public class AdivinarIntervalo extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_adivinar_intervalo);
-        ponerComprobarVisible(GONE);
-        GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Intervalo);
-
-        findViewById(R.id.continuar_ai).setEnabled(false);           findViewById(R.id.continuar_ai).setAlpha(.5f);
-
         notasIntervalo = FactoriaNotas.getInstance().getNotasIntervalo(Controlador.getInstance().getOctavas(), Controlador.getInstance().getRango());
         int tono1 = notasIntervalo.get(0).first.getTono();
         int tono2 = notasIntervalo.get(1).first.getTono();
@@ -124,13 +121,15 @@ public class AdivinarIntervalo extends Activity {
             botonesOpciones.add(button);
             opciones.addView(button);
         }
+        if (!(this instanceof AdivinarIntervaloExamen)) {
+            GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Intervalo);
+            if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 
-        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
 
-            LayoutInflater inflater = (LayoutInflater)
-                    getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Intervalo, findViewById(android.R.id.content).getRootView());
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Intervalo, findViewById(android.R.id.content).getRootView());
+            }
         }
     }
 
@@ -170,7 +169,8 @@ public class AdivinarIntervalo extends Activity {
             }
 
             respuesta = b.getText().toString();
-            ponerComprobarVisible(1);
+            ponerComprobarVisible(VISIBLE);
+            findViewById(R.id.comprobar).setEnabled(true);
         }
     }
 
@@ -182,8 +182,7 @@ public class AdivinarIntervalo extends Activity {
 
 
     protected void ponerComprobarVisible(int visible) {
-        Button comprobar = (Button)findViewById(R.id.comprobar);
-        comprobar.setVisibility(visible);
+        findViewById(R.id.comprobar).setVisibility(visible);
     }
 
     public void comprobarResultado(View view){
@@ -230,8 +229,7 @@ public class AdivinarIntervalo extends Activity {
             Controlador.getInstance().estableceDificultad();
         }
 
-        findViewById(R.id.continuar_ai).setEnabled(true);
-        findViewById(R.id.continuar_ai).setAlpha(1);
+        findViewById(R.id.continuar_ai).setVisibility(View.VISIBLE);
 
     }
 

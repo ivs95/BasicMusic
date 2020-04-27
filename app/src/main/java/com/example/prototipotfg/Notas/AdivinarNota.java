@@ -20,6 +20,7 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
+import com.example.prototipotfg.Examen.Ejercicios.AdivinarNotaExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -32,6 +33,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class AdivinarNota extends Activity {
 
@@ -46,7 +48,6 @@ public class AdivinarNota extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_seleccionar_adivinar_notas);
-        ponerComprobarVisible(INVISIBLE);
 
 
         ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
@@ -54,10 +55,6 @@ public class AdivinarNota extends Activity {
         notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones(), Instrumentos.Piano, octavas);
         nombres = new ArrayList<>(notas.keySet());
 
-
-        findViewById(R.id.continuar_an).setEnabled(false);           findViewById(R.id.continuar_an).setAlpha(.5f);
-
-        GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Notas);
         FactoriaNotas.getInstance().setReferencia(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
         FactoriaNotas.getInstance().setReferenciaDo(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
         adaptaVista(Controlador.getInstance().getDificultad());
@@ -102,13 +99,16 @@ public class AdivinarNota extends Activity {
             }
             botonesNotas.add(button);
         }
+        if (!(this instanceof AdivinarNotaExamen)) {
+            GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Notas);
 
-        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
+            if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 
-            LayoutInflater inflater = (LayoutInflater)
-                    getSystemService(LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
 
-            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Notas, findViewById(android.R.id.content).getRootView());
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Notas, findViewById(android.R.id.content).getRootView());
+            }
         }
     }
 
@@ -158,7 +158,8 @@ public class AdivinarNota extends Activity {
                 }
             }
 
-            ponerComprobarVisible(1);
+            ponerComprobarVisible(VISIBLE);
+            findViewById(R.id.comprobar).setEnabled(true);
         }
     }
 
@@ -193,8 +194,7 @@ public class AdivinarNota extends Activity {
 
 
     protected void ponerComprobarVisible(int visible) {
-        Button comprobar = (Button)findViewById(R.id.comprobar);
-        comprobar.setVisibility(visible);
+        findViewById(R.id.comprobar).setVisibility(visible);
     }
 
     public void comprobarResultado(View view) {
@@ -232,13 +232,13 @@ public class AdivinarNota extends Activity {
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Notas.toString());
         }
 
-        if(nivelActual != nivelNuevo){
-            Controlador.getInstance().setNivel(nivelNuevo);
-            Controlador.getInstance().estableceDificultad();
-        }
+            if (nivelActual != nivelNuevo) {
+                Controlador.getInstance().setNivel(nivelNuevo);
+                Controlador.getInstance().estableceDificultad();
+            }
 
-        findViewById(R.id.continuar_an).setEnabled(true);         findViewById(R.id.continuar_an).setAlpha(1);
 
+        findViewById(R.id.continuar_an).setVisibility(VISIBLE);
     }
 
     protected void deshabilitaBotones() {

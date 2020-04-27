@@ -23,6 +23,8 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
+import com.example.prototipotfg.Examen.Ejercicios.AdivinarAcordeExamen;
+import com.example.prototipotfg.Examen.Ejercicios.CrearAcordeExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -59,10 +61,6 @@ public class CrearAcorde extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_crear_acorde);
-        ponerComprobarVisible(View.GONE);
-        GestorBBDD.getInstance().modoRealizado(ModoJuego.Crear_Acordes);
-
-        findViewById(R.id.continuar_ca).setEnabled(false);       findViewById(R.id.continuar_ca).setAlpha(.5f);
 
         this.numOpciones = Controlador.getInstance().getNum_opciones();
         this.num_notas = numOpciones + 3;
@@ -124,13 +122,15 @@ public class CrearAcorde extends Activity {
             botonesOpciones.add(button);
             opciones.addView(button);
         }
+        if (!(this instanceof CrearAcordeExamen)) {
+            GestorBBDD.getInstance().modoRealizado(ModoJuego.Crear_Acordes);
+            if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 
-        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
 
-            LayoutInflater inflater = (LayoutInflater)
-                    getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Crear_Acordes, findViewById(android.R.id.content).getRootView());
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Crear_Acordes, findViewById(android.R.id.content).getRootView());
+            }
         }
     }
 
@@ -260,9 +260,13 @@ public class CrearAcorde extends Activity {
         ArrayList<AssetFileDescriptor> afd = preparaAssets(acordeCorrectoReproducir);
         Reproductor.getInstance().reproducirAcorde(afd);
         cierraAssets(afd);
-        findViewById(R.id.btnCrearAcordeReferencia).setEnabled(false);      findViewById(R.id.btnCrearAcordeReferencia).setAlpha(.5f);
-        findViewById(R.id.botonReproduceCrearAcorde).setEnabled(false);     findViewById(R.id.botonReproduceCrearAcorde).setAlpha(.5f);
-        findViewById(R.id.infoCrearAcordes).setEnabled(false);              findViewById(R.id.infoCrearAcordes).setAlpha(.5f);
+        findViewById(R.id.infoCrearAcordes).setVisibility(GONE);
+        findViewById(R.id.botonReproduceCrearAcorde).setEnabled(false);
+        findViewById(R.id.botonReproduceCrearAcorde).setAlpha(.5f);
+        findViewById(R.id.btnCrearAcordeReferencia).setEnabled(false);
+        findViewById(R.id.btnCrearAcordeReferencia).setAlpha(.5f);
+
+
         for (Button b : botonesOpciones)
             b.setEnabled(false);
         ponerComprobarVisible(GONE);
@@ -280,8 +284,7 @@ public class CrearAcorde extends Activity {
             Controlador.getInstance().setNivel(nivelNuevo);
             Controlador.getInstance().estableceDificultad();
         }
-
-        findViewById(R.id.continuar_ca).setEnabled(true);          findViewById(R.id.continuar_ca).setAlpha(1);
+        findViewById(R.id.continuar_ca).setVisibility(View.VISIBLE);
 
     }
 

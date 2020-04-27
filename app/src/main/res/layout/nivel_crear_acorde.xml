@@ -101,6 +101,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,33 +111,28 @@
 
         <Button
             android:id="@+id/comprobarCrearAcordes"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="comprobarCrearAcordes"
-            android:text="Comprobar resultado" />
+            android:text="Comprobar resultado"
+            android:visibility="gone" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
+
 
             <Button
                 android:id="@+id/continuar_ca"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="8.5"
                 android:onClick="continuar"
-                android:text="Otra!" />
+                android:text="Otra!"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/infoCrearAcordes"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
                 android:onClick="muestraPosiblesCrearAcordes"
                 android:text="Info" />
-        </LinearLayout>
 
     </LinearLayout>
 

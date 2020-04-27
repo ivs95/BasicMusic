@@ -113,6 +113,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="comprobarResultado"
+            android:visibility="invisible"
+            android:enabled="false"
             android:text="Comprobar resultado" />
 
         <Button
@@ -120,6 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="continuar"
+            android:visibility="gone"
             android:text="Otra!" />
 
     </LinearLayout>

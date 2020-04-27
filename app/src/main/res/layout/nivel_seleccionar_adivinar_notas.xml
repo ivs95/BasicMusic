@@ -68,13 +68,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="comprobarResultado"
-            android:text="Comprobar resultado" />
+            android:text="Comprobar resultado"
+            android:visibility="invisible"
+            android:enabled="false"/>
 
         <Button
             android:id="@+id/continuar_an"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
+            android:visibility="gone"
             android:onClick="continuar"
             android:text="Otra!" />
     </LinearLayout>

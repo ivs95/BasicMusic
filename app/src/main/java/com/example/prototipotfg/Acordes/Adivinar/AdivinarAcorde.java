@@ -56,11 +56,6 @@ public class AdivinarAcorde extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_adivinar_acorde);
-        ponerComprobarVisible(View.GONE);
-        GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Acordes);
-
-        findViewById(R.id.continuar_ac).setEnabled(false);       findViewById(R.id.continuar_ac).setAlpha(.5f);
-
         this.numOpciones = Controlador.getInstance().getNum_opciones();
         this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()-1));
         this.acordesPosibles = seleccionaAcordesAleatorios(numOpciones, Controlador.getInstance().getAcordes());
@@ -115,12 +110,12 @@ public class AdivinarAcorde extends Activity {
             botonesOpciones.add(button);
             opciones.addView(button);
         }
-        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
-
-            LayoutInflater inflater = (LayoutInflater)
-                    getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Acordes, findViewById(android.R.id.content).getRootView());
+        if (!(this instanceof AdivinarAcordeExamen)) {
+            GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Acordes);
+            if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
+                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Acordes, findViewById(android.R.id.content).getRootView());
+            }
         }
     }
 
@@ -146,15 +141,15 @@ public class AdivinarAcorde extends Activity {
 
                 }
             }
-            ponerComprobarVisible(1);
+            ponerComprobarVisible(VISIBLE);
+            findViewById(R.id.comprobarAcordes).setEnabled(true);
+
         }
 
 
 
     protected void ponerComprobarVisible(int visible) {
-        Button comprobar = findViewById(R.id.comprobarAcordes);
-        comprobar.setVisibility(visible);
-
+        findViewById(R.id.comprobarAcordes).setVisibility(visible);
     }
 
     protected ArrayList<Acordes> seleccionaAcordesAleatorios(int numOpciones, ArrayList<Acordes> acordes) {
@@ -195,9 +190,11 @@ public class AdivinarAcorde extends Activity {
         }
         GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
         ponerComprobarVisible(GONE);
-        findViewById(R.id.btnAcordeReferencia).setEnabled(false);             findViewById(R.id.btnAcordeReferencia).setAlpha(.5f);
-        findViewById(R.id.button_info_adivinarAcorde).setEnabled(false);      findViewById(R.id.button_info_adivinarAcorde).setAlpha(.5f);
-        findViewById(R.id.botonReproduceAdivinarAcorde).setEnabled(false);    findViewById(R.id.botonReproduceAdivinarAcorde).setAlpha(.5f);
+        findViewById(R.id.button_info_adivinarAcorde).setVisibility(GONE);
+        findViewById(R.id.botonReproduceAdivinarAcorde).setEnabled(false);
+        findViewById(R.id.botonReproduceAdivinarAcorde).setAlpha(.5f);
+        findViewById(R.id.btnAcordeReferencia).setEnabled(false);
+        findViewById(R.id.btnAcordeReferencia).setAlpha(.5f);
         for (Button b : botonesOpciones)
             b.setEnabled(false);
 
@@ -216,6 +213,8 @@ public class AdivinarAcorde extends Activity {
         }
 
         findViewById(R.id.continuar_ac).setEnabled(true);
+        findViewById(R.id.continuar_ac).setVisibility(VISIBLE);
+
         findViewById(R.id.continuar_ac).setAlpha(1);
 
     }

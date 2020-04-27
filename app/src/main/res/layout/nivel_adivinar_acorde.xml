@@ -101,6 +101,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,33 +111,28 @@
 
         <Button
             android:id="@+id/comprobarAcordes"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="comprobarAcordes"
-            android:text="Comprobar resultado" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:text="Comprobar resultado"
+            android:visibility="invisible"
+            android:enabled="false"/>
 
             <Button
                 android:id="@+id/continuar_ac"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="8.5"
                 android:onClick="continuar"
+                android:enabled="false"
+                android:visibility="gone"
                 android:text="Otra!" />
 
             <Button
                 android:id="@+id/button_info_adivinarAcorde"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
                 android:onClick="muestraPosibles"
                 android:text="Info" />
-        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

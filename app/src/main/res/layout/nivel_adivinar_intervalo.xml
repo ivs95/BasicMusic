@@ -101,13 +101,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="comprobarResultado"
-            android:text="Comprobar resultado"/>
+            android:text="Comprobar resultado"
+            android:visibility="invisible"
+            android:enabled="false"/>
 
         <Button
             android:id="@+id/continuar_ai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="continuar"
+            android:visibility="gone"
             android:text="Otra!" />
 
 

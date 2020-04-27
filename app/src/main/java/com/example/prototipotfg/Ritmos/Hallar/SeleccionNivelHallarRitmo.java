@@ -151,7 +151,6 @@ public class SeleccionNivelHallarRitmo extends Activity {
             view.findViewById(R.id.popup_hallaritmos_mensaje4).setVisibility(View.INVISIBLE);
             view.findViewById(R.id.popup_hallaritmos_mensaje5).setVisibility(View.INVISIBLE);
             view.findViewById(R.id.popup_hallaritmos_comprueba).setVisibility(View.INVISIBLE);
-
             view.findViewById(R.id.popup_hallaritmos_mensaje3).setVisibility(View.VISIBLE);
             view.findViewById(R.id.popup_hallaritmos_layoutbotonesRitmo).setVisibility(View.VISIBLE);
             view.findViewById(R.id.popup_hallaritmos_layoutleyenda).setVisibility(View.VISIBLE);
