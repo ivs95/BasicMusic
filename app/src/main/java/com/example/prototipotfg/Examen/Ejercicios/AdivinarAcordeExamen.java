@@ -32,59 +32,6 @@ public class AdivinarAcordeExamen extends AdivinarAcorde{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nivel_adivinar_acorde);
-        ponerComprobarVisible(View.GONE);
-        findViewById(R.id.continuar_ac).setEnabled(false);
-        findViewById(R.id.continuar_ac).setAlpha(.5f);
-        findViewById(R.id.button_info_adivinarAcorde).setVisibility(GONE);
-        this.numOpciones = Controlador.getInstance().getNum_opciones();
-        this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()-1));
-        this.acordesPosibles = seleccionaAcordesAleatorios(numOpciones, Controlador.getInstance().getAcordes());
-        this.notaInicio = FactoriaNotas.getInstance().getNotaInicioIntervalo(Instrumentos.Piano, octavaInicio);
-        this.acordeCorrecto = acordesPosibles.get(0);
-        this.acordeCorrectoReproducir = Acordes.devuelveNotasAcorde(acordeCorrecto,octavaInicio,notaInicio);
-        TextView lblNotaInicio = findViewById(R.id.lblNotaInicioAcorde);
-        TextView lblOctavaInicio = findViewById(R.id.lblOctavaInicioAcorde);
-        if (Controlador.getInstance().getDificultad().equals(Dificultad.Dificil)){
-            lblNotaInicio.setVisibility(GONE);
-            lblOctavaInicio.setVisibility(GONE);
-            Button botonTutorial = findViewById(R.id.button_info_adivinarAcorde);
-            botonTutorial.setVisibility(GONE);
-            Button botonReferencia = findViewById(R.id.btnAcordeReferencia);
-            botonReferencia.setVisibility(VISIBLE);
-        }
-        else {
-            lblNotaInicio.setText(lblNotaInicio.getText() + notaInicio.getNombre());
-            lblOctavaInicio.setText(lblOctavaInicio.getText() + octavaInicio.getNombre());
-        }
-        Collections.shuffle(acordesPosibles);
-        for (Acordes a : acordesPosibles)
-            acordesReproducir.add(Acordes.devuelveNotasAcorde(a, this.octavaInicio, this.notaInicio));
-
-        LinearLayout opciones = findViewById(R.id.opcionesAcordes);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        for (int i = 0; i < numOpciones; i++) {
-            Button button = new Button(this);
-            button.setId(i + 1);
-            //Asignamos propiedades de layout al boton
-            button.setLayoutParams(lp);
-            //Asignamos Texto al botón
-            button.setText(acordesPosibles.get(i).getNombre());
-
-            //Asignamose el Listener
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    respuesta_seleccionada(v);
-                }
-            });
-            //Añadimos el botón a la botonera
-            button.setPadding(0, 0, 0, 0);
-            if (button.getText().equals(this.acordeCorrecto.getNombre()))
-                respuestaCorrecta = button;
-            botonesOpciones.add(button);
-            opciones.addView(button);
-        }
     }
 
     @Override

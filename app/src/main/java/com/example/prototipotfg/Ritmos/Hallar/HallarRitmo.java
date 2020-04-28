@@ -18,6 +18,8 @@ import androidx.core.content.ContextCompat;
 import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
+import com.example.prototipotfg.Examen.Ejercicios.CrearRitmoExamen;
+import com.example.prototipotfg.Examen.Ejercicios.HallarRitmoExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Ritmos.MediaPlayerRitmos;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -663,12 +665,12 @@ public class HallarRitmo extends Activity {
                 }
             }
         }
-        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Halla_Ritmo, Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
-
-            LayoutInflater inflater = (LayoutInflater)
-                    getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Halla_Ritmo, findViewById(android.R.id.content).getRootView());
+        if (!(this instanceof HallarRitmoExamen)) {
+            GestorBBDD.getInstance().modoRealizado(ModoJuego.Halla_Ritmo);
+            if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Halla_Ritmo, Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
+                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Halla_Ritmo, findViewById(android.R.id.content).getRootView());
+            }
         }
     }
 
