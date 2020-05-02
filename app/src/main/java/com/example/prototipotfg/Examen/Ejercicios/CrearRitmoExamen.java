@@ -1,6 +1,7 @@
 package com.example.prototipotfg.Examen.Ejercicios;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import java.util.Random;
 import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSimbolo;
 
 public class CrearRitmoExamen extends CrearRitmo {
+    private boolean resultado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -39,14 +41,14 @@ public class CrearRitmoExamen extends CrearRitmo {
             for (Button b : this.botonesGuia){
                 b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
-            ControladorExamen.getInstance().setResultadoEjercicioActual(true);
+            resultado=true;
 
         }
         else{
             for (Button b : this.botonesGuia) {
                 b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
             }
-            ControladorExamen.getInstance().setResultadoEjercicioActual(false);
+            resultado=false;
         }
 
 
@@ -68,14 +70,16 @@ public class CrearRitmoExamen extends CrearRitmo {
         findViewById(R.id.botonTambor).setAlpha(.5f);
         findViewById(R.id.botonPlatillo).setEnabled(false);
         findViewById(R.id.botonPlatillo).setAlpha(.5f);
-        findViewById(R.id.continuar_cr).setEnabled(true);
-        findViewById(R.id.continuar_cr).setAlpha(1);
+        findViewById(R.id.continuar_cr).setVisibility(View.VISIBLE);
         ((Button)findViewById(R.id.continuar_cr)).setText("Continuar");
         findViewById(R.id.continuar_cr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-            }
+
+                Intent intent=new Intent();
+                intent.putExtra("resultado",resultado);
+                setResult(2,intent);
+                finish();            }
         });
 
     }

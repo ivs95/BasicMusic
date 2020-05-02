@@ -1,5 +1,6 @@
 package com.example.prototipotfg.Examen.Ejercicios;
 
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import static android.view.View.GONE;
 
 public class CrearAcordeExamen extends CrearAcorde {
 
+    private boolean resultado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,16 +60,11 @@ public class CrearAcordeExamen extends CrearAcorde {
             String text = respuestas.get(i);
             Pair<Notas, Octavas> par = new Pair<>(Notas.devuelveNotaPorNombre(text.substring(0, text.length()-1)), Octavas.devuelveOctavaPorNumero(Integer.parseInt(text.substring(text.length()-1))));
             if (!acordeCorrectoReproducir.contains(par)) {
-                correcta = false;
+                resultado = false;
             }
         }
         if(respuestas.size() != acordeCorrectoReproducir.size()-1)
-            correcta = false;
-
-        if(correcta)
-            ControladorExamen.getInstance().setResultadoEjercicioActual(true);
-        else
-            ControladorExamen.getInstance().setResultadoEjercicioActual(false);
+            resultado = false;
         ArrayList<AssetFileDescriptor> afd = preparaAssets(acordeCorrectoReproducir);
         Reproductor.getInstance().reproducirAcorde(afd);
         cierraAssets(afd);
@@ -80,12 +77,14 @@ public class CrearAcordeExamen extends CrearAcorde {
         for (Button b : botonesOpciones)
             b.setEnabled(false);
         ponerComprobarVisible(GONE);
-        findViewById(R.id.continuar_ca).setEnabled(true);
-        findViewById(R.id.continuar_ca).setAlpha(1);
+        findViewById(R.id.continuar_ca).setVisibility(View.VISIBLE);
         ((Button)findViewById(R.id.continuar_ca)).setText("Continuar");
         findViewById(R.id.continuar_ca).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.putExtra("resultado",resultado);
+                setResult(2,intent);
                 finish();
             }
         });

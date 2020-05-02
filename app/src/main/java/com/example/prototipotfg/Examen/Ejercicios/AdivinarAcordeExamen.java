@@ -1,5 +1,6 @@
 package com.example.prototipotfg.Examen.Ejercicios;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 public class AdivinarAcordeExamen extends AdivinarAcorde{
+    private boolean resultado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +41,26 @@ public class AdivinarAcordeExamen extends AdivinarAcorde{
         this.comprobada = true;
         if (this.botonSeleccionado != this.respuestaCorrecta) {
             botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-            ControladorExamen.getInstance().setResultadoEjercicioActual(false);
+            resultado=false;
         }
         else
-            ControladorExamen.getInstance().setResultadoEjercicioActual(true);
-            respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+           resultado=true;
+
+        respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
         ponerComprobarVisible(GONE);
         findViewById(R.id.btnAcordeReferencia).setEnabled(false);             findViewById(R.id.btnAcordeReferencia).setAlpha(.5f);
         findViewById(R.id.button_info_adivinarAcorde).setEnabled(false);      findViewById(R.id.button_info_adivinarAcorde).setAlpha(.5f);
         findViewById(R.id.botonReproduceAdivinarAcorde).setEnabled(false);    findViewById(R.id.botonReproduceAdivinarAcorde).setAlpha(.5f);
         for (Button b : botonesOpciones)
             b.setEnabled(false);
-        findViewById(R.id.continuar_ac).setEnabled(true);          findViewById(R.id.continuar_ac).setAlpha(1);
+        findViewById(R.id.continuar_ac).setVisibility(VISIBLE);
         ((Button)findViewById(R.id.continuar_ac)).setText("Continuar");
         findViewById(R.id.continuar_ac).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.putExtra("resultado",resultado);
+                setResult(2,intent);
                 finish();
             }
         });

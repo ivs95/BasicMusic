@@ -264,7 +264,6 @@ public class CrearRitmo extends Activity {
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Realiza_Ritmo);
 
 
-        findViewById(R.id.continuar_cr).setEnabled(false);           findViewById(R.id.continuar_cr).setAlpha(.5f);
 
         Random random = new Random();
         ritmos1 = new ArrayList<>();
@@ -488,7 +487,7 @@ public class CrearRitmo extends Activity {
             Controlador.getInstance().estableceDificultad();
         }
 
-        findViewById(R.id.continuar_cr).setEnabled(true);          findViewById(R.id.continuar_cr).setAlpha(1);
+        findViewById(R.id.continuar_cr).setVisibility(View.VISIBLE);
 
 
     }

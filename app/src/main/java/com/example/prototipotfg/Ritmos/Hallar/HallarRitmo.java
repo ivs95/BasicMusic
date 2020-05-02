@@ -180,9 +180,6 @@ public class HallarRitmo extends Activity {
         setContentView(R.layout.hallaritmos);
         this.savedInstanceState = savedInstanceState;
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Halla_Ritmo);
-
-        findViewById(R.id.continuar_hr).setEnabled(false);
-        findViewById(R.id.continuar_hr).setAlpha(.5f);
         Random random = new Random();
         ritmos1 = new ArrayList<>(longitud);
         ritmos2 = new ArrayList<>(longitud);
@@ -814,7 +811,7 @@ public class HallarRitmo extends Activity {
             Controlador.getInstance().estableceDificultad();
         }
 
-        findViewById(R.id.continuar_hr).setEnabled(true);          findViewById(R.id.continuar_hr).setAlpha(1);
+        findViewById(R.id.continuar_hr).setVisibility(View.VISIBLE);
 
     }
 

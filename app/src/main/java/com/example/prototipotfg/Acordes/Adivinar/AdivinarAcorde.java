@@ -212,7 +212,6 @@ public class AdivinarAcorde extends Activity {
             Controlador.getInstance().estableceDificultad();
         }
 
-        findViewById(R.id.continuar_ac).setEnabled(true);
         findViewById(R.id.continuar_ac).setVisibility(VISIBLE);
 
         findViewById(R.id.continuar_ac).setAlpha(1);

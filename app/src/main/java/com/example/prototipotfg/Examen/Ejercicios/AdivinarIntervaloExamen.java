@@ -1,5 +1,6 @@
 package com.example.prototipotfg.Examen.Ejercicios;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import static android.view.View.GONE;
 
 public class AdivinarIntervaloExamen extends AdivinarIntervalo {
 
+    private boolean resultado;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -40,10 +42,10 @@ public class AdivinarIntervaloExamen extends AdivinarIntervalo {
         this.comprobada = true;
         if (respuesta != this.intervalo_correcto) {
             botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-            ControladorExamen.getInstance().setResultadoEjercicioActual(false);
+            resultado=false;
         }
         else
-            ControladorExamen.getInstance().setResultadoEjercicioActual(true);
+            resultado=true;
         respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
 
         findViewById(R.id.comprobar).setVisibility(View.GONE);
@@ -54,12 +56,14 @@ public class AdivinarIntervaloExamen extends AdivinarIntervalo {
         findViewById(R.id.botonIntervalo).setAlpha(.5f);
         findViewById(R.id.botonReferencia).setEnabled(false);
         findViewById(R.id.botonReferencia).setAlpha(.5f);
-        findViewById(R.id.continuar_ai).setEnabled(true);
-        findViewById(R.id.continuar_ai).setAlpha(1);
+        findViewById(R.id.continuar_ai).setVisibility(View.VISIBLE);
         ((Button)findViewById(R.id.continuar_ai)).setText("Continuar");
         findViewById(R.id.continuar_ai).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.putExtra("resultado",resultado);
+                setResult(2,intent);
                 finish();
             }
         });

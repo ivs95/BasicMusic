@@ -2,6 +2,7 @@ package com.example.prototipotfg.Examen.Ejercicios;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSim
 
 public class HallarRitmoExamen extends HallarRitmo {
 
+    private boolean resultado;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -122,19 +124,20 @@ public class HallarRitmoExamen extends HallarRitmo {
 
         }
         if(aciertos == 4)
-            ControladorExamen.getInstance().setResultadoEjercicioActual(true);
+            resultado=true;
 
         else
-            ControladorExamen.getInstance().setResultadoEjercicioActual(false);
+            resultado=false;
 
-        findViewById(R.id.continuar_hr).setEnabled(true);
-        findViewById(R.id.continuar_hr).setAlpha(1);
+        findViewById(R.id.continuar_hr).setVisibility(View.VISIBLE);
         ((Button)findViewById(R.id.continuar_hr)).setText("Continuar");
         findViewById(R.id.continuar_hr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-            }
+                Intent intent=new Intent();
+                intent.putExtra("resultado",resultado);
+                setResult(2,intent);
+                finish();            }
         });
 
 
