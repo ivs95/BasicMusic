@@ -461,6 +461,7 @@ public class HallarRitmo extends Activity {
                         }
                     }
                 } else if (i >= 8 && i < 12) {
+                    button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

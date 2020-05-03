@@ -118,8 +118,11 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#091AAA"
             android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/linearControlRitmo"
+            app:layout_constraintBottom_toTopOf="@+id/scroll1"
             android:visibility="invisible" />
         <HorizontalScrollView
+            android:id="@+id/scroll1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
@@ -143,8 +146,66 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#091AAA"
             android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/scroll1"
+            app:layout_constraintBottom_toTopOf="@+id/scroll2"
             android:visibility="invisible" />
         <HorizontalScrollView
+            android:id="@+id/scroll4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/botoneraRitmos4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/divisor_botones_menu"
+                android:orientation="horizontal"
+                android:showDividers="middle"></LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/textRitmos3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tambor"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#091AAA"
+            android:gravity="center_horizontal|bottom"
+            app:layout_constraintTop_toBottomOf="@+id/scroll2"
+            app:layout_constraintBottom_toTopOf="@+id/scroll3"
+            android:visibility="invisible" />
+        <HorizontalScrollView
+
+            android:id="@+id/scroll3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/botoneraRitmos3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/divisor_botones_menu"
+                android:orientation="horizontal"
+                android:showDividers="middle"></LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/textRitmos4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Platillo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#091AAA"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/scroll3"
+            app:layout_constraintBottom_toTopOf="@+id/scroll4"
+            android:visibility="invisible" />
+        <HorizontalScrollView
+            android:id="@+id/scroll2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
@@ -160,56 +221,7 @@
                 android:showDividers="middle"></LinearLayout>
         </HorizontalScrollView>
 
-        <TextView
-            android:id="@+id/textRitmos3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tambor"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#091AAA"
-            android:gravity="center"
-            android:visibility="invisible" />
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:fillViewport="true">
 
-            <LinearLayout
-                android:id="@+id/botoneraRitmos3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@drawable/divisor_botones_menu"
-                android:orientation="horizontal"
-                android:showDividers="middle"></LinearLayout>
-        </HorizontalScrollView>
-
-        <TextView
-            android:id="@+id/textRitmos4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Platillo"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#091AAA"
-            android:gravity="center"
-            android:visibility="invisible" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:fillViewport="true">
-
-            <LinearLayout
-                android:id="@+id/botoneraRitmos4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@drawable/divisor_botones_menu"
-                android:orientation="horizontal"
-                android:showDividers="middle"></LinearLayout>
-        </HorizontalScrollView>
 
     </LinearLayout>
 
