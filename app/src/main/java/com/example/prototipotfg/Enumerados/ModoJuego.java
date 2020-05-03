@@ -24,6 +24,7 @@ public enum ModoJuego {
     Halla_Ritmo("Dibujar Ritmo", 8, new HashMap<Integer, Spanned>()),
     Realiza_Ritmo("Imitar Ritmo", 8, new HashMap<Integer, Spanned>()),
     Crear_Acordes("Crear Acordes", 6, new HashMap<Integer, Spanned>()),
+    Modo_Mix("Modo Mix", 8, new HashMap<Integer, Spanned>()),
     Imitar_Audio("Imitar_Audio", 8, new HashMap<Integer, Spanned>());
 
     private String nombre;
@@ -131,6 +132,16 @@ public enum ModoJuego {
                 texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6ImitarAudio)));
                 texto.put(7, Html.fromHtml(context.getString(R.string.cambiosNv7ImitarAudio)));
                 texto.put(8, Html.fromHtml(context.getString(R.string.cambiosNv8ImitarAudio)));break;
+            }
+            case "Modo_Mix":{
+                texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2ImitarAudio)));
+                texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3ImitarAudio)));
+                texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4ImitarAudio)));
+                texto.put(5, Html.fromHtml(context.getString(R.string.cambiosNv5ImitarAudio)));
+                texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6ImitarAudio)));
+                texto.put(7, Html.fromHtml(context.getString(R.string.cambiosNv7ImitarAudio)));
+                texto.put(8, Html.fromHtml(context.getString(R.string.cambiosNv8ImitarAudio)));break;
+
             }
             default:break;
             }

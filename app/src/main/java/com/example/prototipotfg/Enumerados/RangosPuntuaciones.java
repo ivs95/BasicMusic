@@ -64,6 +64,7 @@ public enum RangosPuntuaciones {
                 else if(puntuacion >= 141 && puntuacion < 170) nuevo_rango = RangosPuntuaciones.GranMaestro;
                 else nuevo_rango = RangosPuntuaciones.Leyenda;
                 break;
+            case "Modo_Mix":
             case "Crear_Intervalo":
             case "Halla_Ritmo":
 

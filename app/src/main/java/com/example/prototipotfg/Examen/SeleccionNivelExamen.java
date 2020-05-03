@@ -3,6 +3,7 @@ package com.example.prototipotfg.Examen;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -10,7 +11,9 @@ import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.PuntosNiveles;
+import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class SeleccionNivelExamen extends Activity {
@@ -26,8 +29,8 @@ public class SeleccionNivelExamen extends Activity {
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
 
         TextView rango = findViewById(R.id.rango_niveles);
-        int puntuacion = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getPuntuacionTotal();
-        rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango() + " (" + puntuacion + " puntos)");
+        int puntuacion = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getPuntuacionTotal();
+        rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getRango() + " (" + puntuacion + " puntos)");
         //Creamos las propiedades de layout que tendrán los botones.
         //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -35,7 +38,7 @@ public class SeleccionNivelExamen extends Activity {
         //Creamos los botones en bucle
 
 
-        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getNivel();
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel();
         for (int i = 0; i < 10; i++) {
             Button button = new Button(this);
             button.setId(i + 1);
@@ -59,7 +62,7 @@ public class SeleccionNivelExamen extends Activity {
             //Añadimos el botón a la botonera
             llBotonera.addView(button);
 
-            if (nivelActual == i + 1 && nivelActual != ModoJuego.Adivinar_Notas.getMax_level()) {
+            if (nivelActual == i + 1 && nivelActual != ModoJuego.Modo_Mix.getMax_level()) {
                 TextView texto = new TextView(this);
                 texto.setText("Faltan " + (PuntosNiveles.values()[nivelActual].getMinPuntos() - puntuacion) + " puntos para desbloquear el siguiente nivel");
                 texto.setLayoutParams(lp);
@@ -101,6 +104,31 @@ public class SeleccionNivelExamen extends Activity {
             startActivityForResult(i, 2);
         }
         else {
+            int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel();
+            int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getRango()).ordinal();
+            if(0 == 0) {
+                if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Modo_Mix.toString(), true);
+            }
+            else{
+                if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Modo_Mix.toString(), false);
+            }
+            int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel();
+
+            int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getRango()).ordinal();
+            if(rangoActual != rangoNuevo) {
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                RangosPuntuaciones.mostrar_popUp_rango(findViewById(android.R.id.content).getRootView(), rangoActual, rangoNuevo, inflater, ModoJuego.Modo_Mix.toString());
+
+            }
+
+            if(nivelActual != nivelNuevo){
+                Controlador.getInstance().setNivel(nivelNuevo);
+                Controlador.getInstance().estableceDificultad();
+            }
+
             ControladorExamen.getInstance().setResultadoExamen();
             Intent i = new Intent(this , ResultadoExamen.class);
             startActivity(i);

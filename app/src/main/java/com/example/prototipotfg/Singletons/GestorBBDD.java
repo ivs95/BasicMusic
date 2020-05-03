@@ -344,6 +344,9 @@ public class GestorBBDD {
             case "Realiza_Ritmo":
                 puntuacionRealizarRitmo(nivel, superado);
                 break;
+            case "Modo_Mix":
+                puntuacionModoMix(nivel, superado);
+                break;
             default:
                 break;
         }
@@ -508,6 +511,27 @@ public class GestorBBDD {
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Notas.toString()).actualizarPuntuacionTotal(3, true));
         else
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Notas.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
+
+    }
+
+    private void puntuacionModoMix(int nivel, boolean superado) {
+        int puntuacion_fallo = 0;
+        switch (nivel){
+            case 1: puntuacion_fallo = 1; break;
+            case 2: puntuacion_fallo = 1; break;
+            case 3: puntuacion_fallo = 1; break;
+            case 4: puntuacion_fallo = 2; break;
+            case 5: puntuacion_fallo = 2; break;
+            case 6: puntuacion_fallo = 2; break;
+            case 7: puntuacion_fallo = 3; break;
+            case 8: puntuacion_fallo = 3; break;
+            default: break;
+        }
+
+        if(superado)
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Modo_Mix.toString()).actualizarPuntuacionTotal(3, true));
+        else
+            this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Modo_Mix.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
 
     }
 
