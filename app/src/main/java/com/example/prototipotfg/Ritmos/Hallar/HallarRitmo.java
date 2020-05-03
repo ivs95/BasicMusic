@@ -18,6 +18,8 @@ import androidx.core.content.ContextCompat;
 import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
+import com.example.prototipotfg.Examen.Ejercicios.CrearRitmoExamen;
+import com.example.prototipotfg.Examen.Ejercicios.HallarRitmoExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Ritmos.MediaPlayerRitmos;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -178,9 +180,6 @@ public class HallarRitmo extends Activity {
         setContentView(R.layout.hallaritmos);
         this.savedInstanceState = savedInstanceState;
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Halla_Ritmo);
-
-        findViewById(R.id.continuar_hr).setEnabled(false);
-        findViewById(R.id.continuar_hr).setAlpha(.5f);
         Random random = new Random();
         ritmos1 = new ArrayList<>(longitud);
         ritmos2 = new ArrayList<>(longitud);
@@ -663,12 +662,12 @@ public class HallarRitmo extends Activity {
                 }
             }
         }
-        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Halla_Ritmo, Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
-
-            LayoutInflater inflater = (LayoutInflater)
-                    getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Halla_Ritmo, findViewById(android.R.id.content).getRootView());
+        if (!(this instanceof HallarRitmoExamen)) {
+            GestorBBDD.getInstance().modoRealizado(ModoJuego.Halla_Ritmo);
+            if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Halla_Ritmo, Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
+                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Halla_Ritmo, findViewById(android.R.id.content).getRootView());
+            }
         }
     }
 
@@ -812,7 +811,7 @@ public class HallarRitmo extends Activity {
             Controlador.getInstance().estableceDificultad();
         }
 
-        findViewById(R.id.continuar_hr).setEnabled(true);          findViewById(R.id.continuar_hr).setAlpha(1);
+        findViewById(R.id.continuar_hr).setVisibility(View.VISIBLE);
 
     }
 

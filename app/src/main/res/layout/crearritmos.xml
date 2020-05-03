@@ -176,7 +176,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="continuar"
-            android:text="Otra!" />
+            android:text="Otra!"
+            android:visibility="gone"/>
 
 
     </LinearLayout>

@@ -23,7 +23,6 @@ public class SeleccionNivelExamen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
-        boolean primeraVez = GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Adivinar_Notas);
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
 
         TextView rango = findViewById(R.id.rango_niveles);
@@ -69,9 +68,7 @@ public class SeleccionNivelExamen extends Activity {
                 llBotonera.addView(texto);
             }
         }
-        if (primeraVez) {
-            mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
-        }
+
     }
 
     private void mostrarPopupTutorial(View rootView) {
@@ -82,14 +79,33 @@ public class SeleccionNivelExamen extends Activity {
         ControladorExamen.getInstance().setNivel(view.getId());
         ControladorExamen.getInstance().setContext(this);
         ControladorExamen.getInstance().iniciaExamen();
-        while(!ControladorExamen.getInstance().finalExamen()) {
+        siguienteEjercicio();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        // check if the request code is same as what is passed  here it is 2
+        if(requestCode==2)
+        {
+            ControladorExamen.getInstance().setResultadoEjercicioActual(data.getBooleanExtra("resultado", false));
+            siguienteEjercicio();
+        }
+    }
+
+    private void siguienteEjercicio() {
+        if(!ControladorExamen.getInstance().finalExamen()) {
             ControladorExamen.getInstance().setEjercicio();
             Intent i = ControladorExamen.getInstance().iniciaPrueba(this);
+            startActivityForResult(i, 2);
+        }
+        else {
+            ControladorExamen.getInstance().setResultadoExamen();
+            Intent i = new Intent(this , ResultadoExamen.class);
             startActivity(i);
         }
-        ControladorExamen.getInstance().setResultadoExamen();
-        Intent i = new Intent(this , ResultadoExamen.class);
-    }
+        }
 
 
 }

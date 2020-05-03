@@ -16,6 +16,8 @@ import androidx.core.content.ContextCompat;
 import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
+import com.example.prototipotfg.Examen.Ejercicios.AdivinarAcordeExamen;
+import com.example.prototipotfg.Examen.Ejercicios.CrearRitmoExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Ritmos.MediaPlayerRitmos;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -262,7 +264,6 @@ public class CrearRitmo extends Activity {
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Realiza_Ritmo);
 
 
-        findViewById(R.id.continuar_cr).setEnabled(false);           findViewById(R.id.continuar_cr).setAlpha(.5f);
 
         Random random = new Random();
         ritmos1 = new ArrayList<>();
@@ -347,13 +348,14 @@ public class CrearRitmo extends Activity {
         findViewById(R.id.botonTambor).setEnabled(false);   findViewById(R.id.botonTambor).setAlpha(.5f);
         findViewById(R.id.botonPlatillo).setEnabled(false);   findViewById(R.id.botonPlatillo).setAlpha(.5f);
 
-        if(GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Realiza_Ritmo, Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
-
-            LayoutInflater inflater = (LayoutInflater)
-                    getSystemService(LAYOUT_INFLATER_SERVICE);
-
-            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Realiza_Ritmo, findViewById(android.R.id.content).getRootView());
+        if (!(this instanceof CrearRitmoExamen)) {
+            GestorBBDD.getInstance().modoRealizado(ModoJuego.Realiza_Ritmo);
+            if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Realiza_Ritmo, Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
+                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Realiza_Ritmo, findViewById(android.R.id.content).getRootView());
+            }
         }
+
     }
 
     public void play(@NotNull final View view){
@@ -498,7 +500,7 @@ public class CrearRitmo extends Activity {
             Controlador.getInstance().estableceDificultad();
         }
 
-        findViewById(R.id.continuar_cr).setEnabled(true);          findViewById(R.id.continuar_cr).setAlpha(1);
+        findViewById(R.id.continuar_cr).setVisibility(View.VISIBLE);
 
 
     }

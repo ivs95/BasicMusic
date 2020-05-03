@@ -1,5 +1,6 @@
 package com.example.prototipotfg.Examen.Ejercicios;
 
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -35,74 +36,10 @@ import static android.view.View.GONE;
 
 public class CrearAcordeExamen extends CrearAcorde {
 
+    private boolean resultado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nivel_crear_acorde);
-        ponerComprobarVisible(View.GONE);
-        findViewById(R.id.continuar_ca).setEnabled(false);
-        findViewById(R.id.continuar_ca).setAlpha(.5f);
-        this.numOpciones = Controlador.getInstance().getNum_opciones();
-        this.num_notas = numOpciones + 3;
-        this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()-1));
-        this.acordesPosibles = seleccionaAcordesAleatorios(Controlador.getInstance().getAcordes());
-        this.notaInicio = FactoriaNotas.getInstance().getNotaInicioIntervalo(Instrumentos.Piano, octavaInicio);
-        this.acordeCorrecto = acordesPosibles.get(0);
-        this.acordeCorrectoReproducir = Acordes.devuelveNotasAcorde(acordeCorrecto,octavaInicio,notaInicio);
-        this.notasPosibles = seleccionaNotasAleatorios(acordeCorrectoReproducir);
-        this.botonesSeleccionados = new View[num_notas];
-        this.respuestaCorrecta = new View[num_notas];
-        int nivel = Controlador.getInstance().getNivel();
-
-        TextView lblNotaInicio = findViewById(R.id.notaInicioCrearAcorde);
-        TextView peticionAcorde = findViewById(R.id.lblPeticionCrearAcorde);
-
-        //Button botonReferencia = findViewById(R.id.btnAcordeReferencia);
-        //botonReferencia.setVisibility(VISIBLE);
-        lblNotaInicio.setText(lblNotaInicio.getText() + acordeCorrectoReproducir.get(0).first.getNombre() + acordeCorrectoReproducir.get(0).second.getOctava());
-        peticionAcorde.setText(peticionAcorde.getText() + acordeCorrecto.getNombre());
-
-        Collections.shuffle(notasPosibles);
-
-        ArrayList<Integer> aux = new ArrayList<Integer>();
-        for(int i = 0; i < num_notas; i++) {
-            aux.add(i);
-        }
-
-        if(nivel > 5){
-            Button info = findViewById(R.id.infoCrearAcordes);
-            info.setVisibility(GONE);
-        }
-        LinearLayout opciones = findViewById(R.id.opcionesCrearAcordes);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        for (int i = 0; i < num_notas; i++) {
-            Button button = new Button(this);
-            button.setId(i + 1);
-            //Asignamos propiedades de layout al boton
-            button.setLayoutParams(lp);
-            //Asignamos Texto al botón
-            button.setText(notasPosibles.get(aux.get(i)));
-
-            //Asignamose el Listener
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    respuesta_seleccionada(v);
-                }
-            });
-            //Añadimos el botón a la botonera
-            button.setPadding(0, 0, 0, 0);
-            String text = button.getText().toString();
-            Pair<Notas, Octavas> par = new Pair<>(Notas.devuelveNotaPorNombre(text.substring(0, text.length()-1)), Octavas.devuelveOctavaPorNumero(Integer.parseInt(text.substring(text.length()-1))));
-            if (acordeCorrectoReproducir.contains(par)) {
-                respuestaCorrecta[(int) button.getId() - 1] = button;
-            }
-            else respuestaCorrecta[(int) button.getId() - 1] = null;
-            botonesOpciones.add(button);
-            opciones.addView(button);
-        }
-
-
     }
 
     @Override
@@ -123,16 +60,11 @@ public class CrearAcordeExamen extends CrearAcorde {
             String text = respuestas.get(i);
             Pair<Notas, Octavas> par = new Pair<>(Notas.devuelveNotaPorNombre(text.substring(0, text.length()-1)), Octavas.devuelveOctavaPorNumero(Integer.parseInt(text.substring(text.length()-1))));
             if (!acordeCorrectoReproducir.contains(par)) {
-                correcta = false;
+                resultado = false;
             }
         }
         if(respuestas.size() != acordeCorrectoReproducir.size()-1)
-            correcta = false;
-
-        if(correcta)
-            ControladorExamen.getInstance().setResultadoEjercicioActual(true);
-        else
-            ControladorExamen.getInstance().setResultadoEjercicioActual(false);
+            resultado = false;
         ArrayList<AssetFileDescriptor> afd = preparaAssets(acordeCorrectoReproducir);
         Reproductor.getInstance().reproducirAcorde(afd);
         cierraAssets(afd);
@@ -145,12 +77,14 @@ public class CrearAcordeExamen extends CrearAcorde {
         for (Button b : botonesOpciones)
             b.setEnabled(false);
         ponerComprobarVisible(GONE);
-        findViewById(R.id.continuar_ca).setEnabled(true);
-        findViewById(R.id.continuar_ca).setAlpha(1);
+        findViewById(R.id.continuar_ca).setVisibility(View.VISIBLE);
         ((Button)findViewById(R.id.continuar_ca)).setText("Continuar");
         findViewById(R.id.continuar_ca).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.putExtra("resultado",resultado);
+                setResult(2,intent);
                 finish();
             }
         });
