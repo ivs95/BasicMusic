@@ -438,6 +438,8 @@ public class CrearRitmo extends Activity {
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).ordinal();
 
+        running=false;
+        runningPropio=false;
         NivelAdivinar nivel = null;
         comprobado = true;
         if (compruebaArrays()){
@@ -450,8 +452,19 @@ public class CrearRitmo extends Activity {
 
         }
         else{
+            int i = 0;
+            int indice = 0;
             for (Button b : this.botonesGuia) {
-                b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                if(ritmos1.get(indice) == 1) {
+                    if(resultado1.get(indice)==1)
+                        b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                    else
+                        b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                }
+                indice++;
+                if(indice == 16)
+                    indice = 0;
+                i++;
             }
             if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), false);

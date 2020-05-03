@@ -388,7 +388,6 @@ public class Tutoriales extends Activity {
         Button button = view.findViewById(R.id.popup_hallaritmos_next);
         if(tutorial == 1){
             view.findViewById(R.id.popup_hallaritmos_layoutbotonesRitmo).setVisibility(View.INVISIBLE);
-            view.findViewById(R.id.popup_hallaritmos_layoutleyenda).setVisibility(View.INVISIBLE);
             view.findViewById(R.id.popup_hallaritmos_mensaje3).setVisibility(View.INVISIBLE);
 
             view.findViewById(R.id.popup_hallaritmos_layoutbotones).setVisibility(View.VISIBLE);
@@ -405,7 +404,6 @@ public class Tutoriales extends Activity {
 
             view.findViewById(R.id.popup_hallaritmos_mensaje3).setVisibility(View.VISIBLE);
             view.findViewById(R.id.popup_hallaritmos_layoutbotonesRitmo).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.popup_hallaritmos_layoutleyenda).setVisibility(View.VISIBLE);
 
             button.setText("Siguiente");
         }
