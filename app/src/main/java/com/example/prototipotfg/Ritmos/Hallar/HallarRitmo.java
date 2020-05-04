@@ -702,6 +702,8 @@ public class HallarRitmo extends Activity {
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getRango()).ordinal();
 
+        TextView resultado = findViewById(R.id.textRitmosResultado);
+
         this.comprobado = true;
         NivelAdivinar nivel;
         view.setEnabled(false);
@@ -787,12 +789,20 @@ public class HallarRitmo extends Activity {
             }
 
         }
-        if(aciertos == 4){
+        if((aciertos==1 && this.nivel<3) || (aciertos==2 && this.nivel>2 && this.nivel < 5) ||(aciertos==3 && this.nivel >= 5 && this.nivel < 7) ||(aciertos==4 && this.nivel>=7)){
+
+            resultado.setText("¡Bien hecho!");
+            resultado.setVisibility(View.VISIBLE);
+            resultado.setTextColor(getResources().getColor(R.color.md_green_500));
             if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Halla_Ritmo.toString(), true);
             nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.getNombre(), this.nivel,true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0 );
         }
         else{
+
+            resultado.setText("Prueba otra vez");
+            resultado.setVisibility(View.VISIBLE);
+            resultado.setTextColor(getResources().getColor(R.color.md_red_500));
             if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Halla_Ritmo.toString(), false);
             nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.getNombre(), this.nivel,false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1 );

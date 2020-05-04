@@ -439,12 +439,16 @@ public class CrearRitmo extends Activity {
     public void comprobar(View view){
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).ordinal();
+        TextView resultado = findViewById(R.id.textRitmosResultado2);
 
         running=false;
         runningPropio=false;
         NivelAdivinar nivel = null;
         comprobado = true;
         if (compruebaArrays()){
+            resultado.setText("¡Bien hecho!");
+            resultado.setVisibility(View.VISIBLE);
+            resultado.setTextColor(getResources().getColor(R.color.md_green_500));
             for (Button b : this.botonesGuia){
                 b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
@@ -454,6 +458,9 @@ public class CrearRitmo extends Activity {
 
         }
         else{
+            resultado.setText("Prueba otra vez");
+            resultado.setVisibility(View.VISIBLE);
+            resultado.setTextColor(getResources().getColor(R.color.md_red_500));
             int i = 0;
             int indice = 0;
             for (Button b : this.botonesGuia) {
