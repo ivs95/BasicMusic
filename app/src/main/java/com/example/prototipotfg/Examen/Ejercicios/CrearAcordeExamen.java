@@ -40,6 +40,14 @@ public class CrearAcordeExamen extends CrearAcorde {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorExamen.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorExamen.getInstance().getNivel().getNivel() != 1) {
+
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView());
+        }
     }
 
     @Override
@@ -65,6 +73,7 @@ public class CrearAcordeExamen extends CrearAcorde {
         }
         if(respuestas.size() != acordeCorrectoReproducir.size()-1)
             resultado = false;
+        Controlador.getInstance().setMixIniciado(true);
         ArrayList<AssetFileDescriptor> afd = preparaAssets(acordeCorrectoReproducir);
         Reproductor.getInstance().reproducirAcorde(afd);
         cierraAssets(afd);

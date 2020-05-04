@@ -35,6 +35,14 @@ public class AdivinarIntervaloExamen extends AdivinarIntervalo {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
+        if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorExamen.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorExamen.getInstance().getNivel().getNivel() != 1) {
+
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView());
+        }
     }
 
     @Override
@@ -52,6 +60,8 @@ public class AdivinarIntervaloExamen extends AdivinarIntervalo {
         for (Button b : botonesOpciones){
             b.setEnabled(false);
         }
+
+        Controlador.getInstance().setMixIniciado(true);
         findViewById(R.id.botonIntervalo).setEnabled(false);
         findViewById(R.id.botonIntervalo).setAlpha(.5f);
         findViewById(R.id.botonReferencia).setEnabled(false);

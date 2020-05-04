@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.example.prototipotfg.Examen.ControladorExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 
@@ -24,7 +25,7 @@ public enum ModoJuego {
     Halla_Ritmo("Dibujar Ritmo", 8, new HashMap<Integer, Spanned>()),
     Realiza_Ritmo("Imitar Ritmo", 8, new HashMap<Integer, Spanned>()),
     Crear_Acordes("Crear Acordes", 6, new HashMap<Integer, Spanned>()),
-    Modo_Mix("Modo Mix", 8, new HashMap<Integer, Spanned>()),
+    Modo_Mix("Modo Mix", 10, new HashMap<Integer, Spanned>()),
     Imitar_Audio("Imitar_Audio", 8, new HashMap<Integer, Spanned>());
 
     private String nombre;
@@ -134,13 +135,16 @@ public enum ModoJuego {
                 texto.put(8, Html.fromHtml(context.getString(R.string.cambiosNv8ImitarAudio)));break;
             }
             case "Modo_Mix":{
-                texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2ImitarAudio)));
-                texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3ImitarAudio)));
-                texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4ImitarAudio)));
-                texto.put(5, Html.fromHtml(context.getString(R.string.cambiosNv5ImitarAudio)));
-                texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6ImitarAudio)));
-                texto.put(7, Html.fromHtml(context.getString(R.string.cambiosNv7ImitarAudio)));
-                texto.put(8, Html.fromHtml(context.getString(R.string.cambiosNv8ImitarAudio)));break;
+                texto.put(2, Html.fromHtml(context.getString(R.string.cambiosNv2ModoMix)));
+                texto.put(3, Html.fromHtml(context.getString(R.string.cambiosNv3ModoMix)));
+                texto.put(4, Html.fromHtml(context.getString(R.string.cambiosNv4ModoMix)));
+                texto.put(5, Html.fromHtml(context.getString(R.string.cambiosNv5ModoMix)));
+                texto.put(6, Html.fromHtml(context.getString(R.string.cambiosNv6ModoMix)));
+                texto.put(7, Html.fromHtml(context.getString(R.string.cambiosNv7ModoMix)));
+                texto.put(8, Html.fromHtml(context.getString(R.string.cambiosNv8ModoMix)));
+                texto.put(9, Html.fromHtml(context.getString(R.string.cambiosNv9ModoMix)));
+                texto.put(10, Html.fromHtml(context.getString(R.string.cambiosNv10ModoMix)));
+                break;
 
             }
             default:break;
@@ -151,13 +155,19 @@ public enum ModoJuego {
 
         View popupView = inflater.inflate(R.layout.popup_nuevo_nivel_cambios, null);
         final View popupView2 = inflater.inflate(R.layout.popup_nuevo_nivel_cambios2, null);
-
         TextView cambios = (TextView) popupView2.findViewById(R.id.cambios_nivel_text);
-        cambios.setText(modoJuego.getTextDadoNivel(Controlador.getInstance().getNivel()));
+        TextView nivel_text = (TextView) popupView.findViewById(R.id.nivel_text_popup);
 
-        TextView nivel_text = (TextView)popupView.findViewById(R.id.nivel_text_popup);
-        nivel_text.setText(String.valueOf(Controlador.getInstance().getNivel()));
+        if(modoJuego != ModoJuego.Modo_Mix) {
+            cambios.setText(modoJuego.getTextDadoNivel(Controlador.getInstance().getNivel()));
 
+            nivel_text.setText(String.valueOf(Controlador.getInstance().getNivel()));
+        }
+        else{
+            cambios.setText(modoJuego.getTextDadoNivel(ControladorExamen.getInstance().getNivel().getNivel()));
+
+            nivel_text.setText(String.valueOf(ControladorExamen.getInstance().getNivel().getNivel()));
+        }
 
 
         final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,true);

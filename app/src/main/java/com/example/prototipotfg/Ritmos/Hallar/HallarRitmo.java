@@ -791,7 +791,8 @@ public class HallarRitmo extends Activity {
         }
         if((aciertos==1 && this.nivel<3) || (aciertos==2 && this.nivel>2 && this.nivel < 5) ||(aciertos==3 && this.nivel >= 5 && this.nivel < 7) ||(aciertos==4 && this.nivel>=7)){
 
-            resultado.setText("¡Bien hecho!");
+            resultado.setText("¡Bien hecho!\n");
+            resultado.setTextSize(22);
             resultado.setVisibility(View.VISIBLE);
             resultado.setTextColor(getResources().getColor(R.color.md_green_500));
             if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel())
@@ -800,7 +801,8 @@ public class HallarRitmo extends Activity {
         }
         else{
 
-            resultado.setText("Prueba otra vez");
+            resultado.setText("Prueba otra vez\n");
+            resultado.setTextSize(22);
             resultado.setVisibility(View.VISIBLE);
             resultado.setTextColor(getResources().getColor(R.color.md_red_500));
             if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel())

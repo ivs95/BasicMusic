@@ -89,12 +89,15 @@
     <string name="cambiosNv7ImitarAudio">Ahora tendrás &lt;b>UN SOLO&lt;/b> intento</string>
     <string name="cambiosNv8ImitarAudio">Ahora podrás reproducir la nota &lt;b>UNA&lt;/b> vez</string>
 
-    <string name="cambiosNv2ModoMix">Ahora tendrás &lt;b>DOS&lt;/b> intentos &lt;br /&gt; &lt;br /&gt; Ahora podrás reproducir la nota solo &lt;b>TRES&lt;/b> veces</string>
-    <string name="cambiosNv3ModoMix">Ahora tendrás que entonar la nota de una octava concreta</string>
-    <string name="cambiosNv4ModoMix">Nuevas octavas desbloqueadas</string>
-    <string name="cambiosNv5ModoMix">Ahora podrás reproducir la nota &lt;b>DOS&lt;/b> veces</string>
-    <string name="cambiosNv6ModoMix">Nuevos octavas desbloqueadas</string>
-    <string name="cambiosNv7ModoMix">Ahora tendrás &lt;b>UN SOLO&lt;/b> intento</string>
-    <string name="cambiosNv8ModoMix">Ahora podrás reproducir la nota &lt;b>UNA&lt;/b> vez</string>
+    <string name="cambiosNv2ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv3ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv4ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv5ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv6ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv7ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv8ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv9ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv10ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+
 
 </resources>

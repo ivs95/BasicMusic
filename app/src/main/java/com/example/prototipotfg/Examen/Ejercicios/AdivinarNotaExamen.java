@@ -32,6 +32,14 @@ public class AdivinarNotaExamen extends AdivinarNota {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
+        if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorExamen.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorExamen.getInstance().getNivel().getNivel() != 1) {
+
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView());
+        }
     }
 
     @Override
@@ -46,6 +54,7 @@ public class AdivinarNotaExamen extends AdivinarNota {
             respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             super.deshabilitaBotones();
 
+        Controlador.getInstance().setMixIniciado(true);
         findViewById(R.id.comprobar).setVisibility(View.GONE);
         findViewById(R.id.continuar_an).setVisibility(View.VISIBLE);
         ((Button)findViewById(R.id.continuar_an)).setText("Continuar");

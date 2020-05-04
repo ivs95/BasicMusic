@@ -34,6 +34,14 @@ public class HallarRitmoExamen extends HallarRitmo {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
+        if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorExamen.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorExamen.getInstance().getNivel().getNivel() != 1) {
+
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView());
+        }
     }
     @Override
     public void stop(View view){
@@ -123,12 +131,25 @@ public class HallarRitmoExamen extends HallarRitmo {
             }
 
         }
-        if(aciertos == 4)
-            resultado=true;
+        if((aciertos==1 && this.nivel<3) || (aciertos==2 && this.nivel>2 && this.nivel < 5) ||(aciertos==3 && this.nivel >= 5 && this.nivel < 7) ||(aciertos==4 && this.nivel>=7)){
+            TextView resultadoText = findViewById(R.id.textRitmosResultado);
+            resultadoText.setText("¡Bien hecho!\n");
+            resultadoText.setTextSize(22);
+            resultadoText.setVisibility(View.VISIBLE);
+            resultadoText.setTextColor(getResources().getColor(R.color.md_green_500));
+            resultado = true;
+        }
 
-        else
-            resultado=false;
+        else {
+            TextView resultadoText = findViewById(R.id.textRitmosResultado);
+            resultadoText.setText("Prueba otra vez\n");
+            resultadoText.setTextSize(22);
+            resultadoText.setVisibility(View.VISIBLE);
+            resultadoText.setTextColor(getResources().getColor(R.color.md_red_500));
+            resultado = false;
+        }
 
+        Controlador.getInstance().setMixIniciado(true);
         findViewById(R.id.continuar_hr).setVisibility(View.VISIBLE);
         ((Button)findViewById(R.id.continuar_hr)).setText("Continuar");
         findViewById(R.id.continuar_hr).setOnClickListener(new View.OnClickListener() {

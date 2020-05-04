@@ -35,6 +35,14 @@ public class CrearIntervaloExamen extends CrearIntervalo {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
+        if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorExamen.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorExamen.getInstance().getNivel().getNivel() != 1) {
+
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView());
+        }
     }
 
     @Override
@@ -46,6 +54,7 @@ public class CrearIntervaloExamen extends CrearIntervalo {
         else
             resultado =true;
 
+
         respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
         findViewById(R.id.comprobar_crear_intervalo).setVisibility(View.GONE);
         findViewById(R.id.Id_boton_reproduce_nota_intervalo).setEnabled(false);
@@ -55,6 +64,7 @@ public class CrearIntervaloExamen extends CrearIntervalo {
         for (Button b : botonesOpciones){
             b.setEnabled(false);
         }
+        Controlador.getInstance().setMixIniciado(true);
         findViewById(R.id.continuar_ci).setVisibility(View.VISIBLE);
         ((Button)findViewById(R.id.continuar_ci)).setText("Continuar");
         findViewById(R.id.continuar_ci).setOnClickListener(new View.OnClickListener() {

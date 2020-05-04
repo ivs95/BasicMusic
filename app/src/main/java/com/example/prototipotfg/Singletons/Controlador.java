@@ -23,6 +23,8 @@ public final class Controlador {
     private int rango;
     private int num_opciones;
 
+    private boolean mixIniciado;
+
     public static Controlador getInstance() {
         return INSTANCE;
     }
@@ -36,6 +38,10 @@ public final class Controlador {
     private void setAcordes(ArrayList<Acordes> acordes) {
         this.acordes = acordes;
     }
+
+    public void setMixIniciado(boolean mixIniciado){this.mixIniciado = mixIniciado;}
+
+    public boolean getMixIniciado(){ return this.mixIniciado;}
 
     private void setOctavas(ArrayList<Octavas> octavas) {
         this.octavas=octavas;

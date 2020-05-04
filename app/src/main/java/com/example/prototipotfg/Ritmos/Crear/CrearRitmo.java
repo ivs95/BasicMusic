@@ -445,12 +445,23 @@ public class CrearRitmo extends Activity {
         runningPropio=false;
         NivelAdivinar nivel = null;
         comprobado = true;
+        int indice = 0;
         if (compruebaArrays()){
-            resultado.setText("¡Bien hecho!");
+            resultado.setText("¡Bien hecho!\n");
+            resultado.setTextSize(22);
             resultado.setVisibility(View.VISIBLE);
             resultado.setTextColor(getResources().getColor(R.color.md_green_500));
-            for (Button b : this.botonesGuia){
-                b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+
+            for (Button b : this.botonesGuia) {
+                if (ritmos1.get(indice) == 1) {
+                    if (resultado1.get(indice) == 1)
+                        b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                    else
+                        b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                }
+                indice++;
+                if (indice == 16)
+                    indice = 0;
             }
             if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), true);
@@ -458,11 +469,11 @@ public class CrearRitmo extends Activity {
 
         }
         else{
-            resultado.setText("Prueba otra vez");
+            resultado.setText("Prueba otra vez\n");
+            resultado.setTextSize(22);
             resultado.setVisibility(View.VISIBLE);
             resultado.setTextColor(getResources().getColor(R.color.md_red_500));
             int i = 0;
-            int indice = 0;
             for (Button b : this.botonesGuia) {
                 if(ritmos1.get(indice) == 1) {
                     if(resultado1.get(indice)==1)
