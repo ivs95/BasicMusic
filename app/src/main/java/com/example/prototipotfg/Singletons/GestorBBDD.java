@@ -29,6 +29,7 @@ public class GestorBBDD {
     private final int NIVELES_IMITAR_AUDIO = 8;
     private final int NIVELES_HALLAR_RITMO=8;
     private final int NIVELES_CREAR_RITMO=8;
+    private final int NIVELES_MODO_MIX = 10;
 
 
 
@@ -188,7 +189,24 @@ public class GestorBBDD {
             case "Imitar Ritmos":
                 retorno = estadisticaRealizarRitmo();
                 break;
+            case "Modo Mix":
+                retorno = estadisticaModoMix();
+                break;
             default:break;
+        }
+        return retorno;
+    }
+
+    private LinkedHashMap<String, String> estadisticaModoMix() {
+        List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Modo_Mix.getNombre());
+        LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
+        String infoNivel = "";
+        for (int i = 1; i <= NIVELES_MODO_MIX; i++){
+            retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
+        }
+        for (NivelAdivinar n : listaNiveles){
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int)(((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100) + "% acierto";
+            retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
         return retorno;
     }
