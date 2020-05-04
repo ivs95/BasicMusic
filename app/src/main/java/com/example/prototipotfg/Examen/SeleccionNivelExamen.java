@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.PuntosNiveles;
+import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.R;
+import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class SeleccionNivelExamen extends Activity {
@@ -110,6 +112,31 @@ public class SeleccionNivelExamen extends Activity {
             startActivityForResult(i, 2);
         }
         else {
+            int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel();
+            int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getRango()).ordinal();
+            if(0 == 0) {
+                if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Modo_Mix.toString(), true);
+            }
+            else{
+                if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel())
+                    GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Modo_Mix.toString(), false);
+            }
+            int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel();
+
+            int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getRango()).ordinal();
+            if(rangoActual != rangoNuevo) {
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                RangosPuntuaciones.mostrar_popUp_rango(findViewById(android.R.id.content).getRootView(), rangoActual, rangoNuevo, inflater, ModoJuego.Modo_Mix.toString());
+
+            }
+
+            if(nivelActual != nivelNuevo){
+                Controlador.getInstance().setNivel(nivelNuevo);
+                Controlador.getInstance().estableceDificultad();
+            }
+
             ControladorExamen.getInstance().setResultadoExamen();
             Intent i = new Intent(this , ResultadoExamen.class);
             startActivity(i);
