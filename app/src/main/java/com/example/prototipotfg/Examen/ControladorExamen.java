@@ -18,6 +18,7 @@ import com.example.prototipotfg.Singletons.Controlador;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 public final class ControladorExamen {
 
@@ -30,7 +31,9 @@ public final class ControladorExamen {
     private ArrayList<ModoJuego> ejercicios = new ArrayList<> (Arrays.asList(ModoJuego.devuelvePruebasExamen()));
     private boolean[] acertados = new boolean[14];
     private int numAciertos;
+    private double porcentajeAcierto;
     private boolean aprobado;
+    private HashMap<ModoJuego, Integer> resultadoEjercicios = new HashMap<>();
 
 
     /*
@@ -46,14 +49,31 @@ public final class ControladorExamen {
     public void setNivel(int nivel) {
         this.nivel = NivelExamen.getNivelExamen(nivel);
     }
+
+    public NivelExamen getNivel(){return this.nivel;}
     public void setContext(Context contexto){
         this.contexto=contexto;
     }
-
+    public double getPorcentajeAcierto(){return this.porcentajeAcierto;}
     public void preparaExamen() {
         Collections.shuffle(ejercicios);
         indiceActual=0;
         numAciertos=0;
+        inicializaResultados();
+    }
+
+    private void inicializaResultados() {
+        resultadoEjercicios.put(ModoJuego.Adivinar_Acordes,0);
+        resultadoEjercicios.put(ModoJuego.Adivinar_Intervalo,0);
+        resultadoEjercicios.put(ModoJuego.Adivinar_Notas,0);
+        resultadoEjercicios.put(ModoJuego.Crear_Acordes,0);
+        resultadoEjercicios.put(ModoJuego.Crear_Intervalo,0);
+        resultadoEjercicios.put(ModoJuego.Halla_Ritmo,0);
+        resultadoEjercicios.put(ModoJuego.Realiza_Ritmo,0);
+    }
+
+    public int getNumAciertos(){
+        return this.numAciertos;
     }
 
     public void iniciaExamen(){
@@ -61,7 +81,12 @@ public final class ControladorExamen {
     }
 
     public void setResultadoExamen() {
-        this.aprobado=((double)numAciertos/NUM_EJERCICIOS)>=nivel.getPorcentajeAprobar();
+        this.porcentajeAcierto=((double)numAciertos/NUM_EJERCICIOS);
+        this.aprobado=this.porcentajeAcierto>=nivel.getPorcentajeAprobar();
+    }
+
+    public boolean isAprobado(){
+        return aprobado;
     }
 
     public void setEjercicio() {
@@ -72,8 +97,10 @@ public final class ControladorExamen {
     public void setResultadoEjercicioActual(boolean resultado){
         acertados[indiceActual] = resultado;
         indiceActual++;
-        if (resultado)
+        if (resultado) {
+            resultadoEjercicios.put(ejercicios.get(indiceActual-1), resultadoEjercicios.get(ejercicios.get(indiceActual-1)) + 1);
             numAciertos++;
+        }
     }
 
     public Intent iniciaPrueba(Context contexto) {
@@ -104,4 +131,12 @@ public final class ControladorExamen {
         return NUM_EJERCICIOS == indiceActual;
     }
 
+
+    public HashMap<ModoJuego, Integer> getResultadoEjercicios() {
+        return resultadoEjercicios;
+    }
+
+    public int getNumEjercicios() {
+        return this.NUM_EJERCICIOS;
+    }
 }

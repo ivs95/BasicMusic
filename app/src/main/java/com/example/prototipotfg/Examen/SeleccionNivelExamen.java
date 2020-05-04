@@ -26,6 +26,12 @@ public class SeleccionNivelExamen extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
+        /*
+        * Popup indicando que cambia al desbloquear un nivel
+        * Popup de primeras indicando en que consiste
+        *
+        * */
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
