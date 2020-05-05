@@ -39,7 +39,9 @@ public class SeleccionNivelExamen extends Activity {
         this.savedInstanceState = savedInstanceState;
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
 
-        Controlador.getInstance().setMixIniciado(false);
+        boolean primeraVez = GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Modo_Mix);
+
+
         Controlador.getInstance().setModo_juego(ModoJuego.Modo_Mix);
         TextView rango = findViewById(R.id.rango_niveles);
         int puntuacion = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getPuntuacionTotal();
@@ -84,7 +86,8 @@ public class SeleccionNivelExamen extends Activity {
                 llBotonera.addView(texto);
             }
         }
-        mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
+        if(primeraVez)
+            mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
     }
 
 
@@ -92,6 +95,7 @@ public class SeleccionNivelExamen extends Activity {
         ControladorExamen.getInstance().setNivel(view.getId());
         ControladorExamen.getInstance().setContext(this);
         ControladorExamen.getInstance().iniciaExamen();
+        Controlador.getInstance().setMixIniciado(false);
         siguienteEjercicio();
 
     }
@@ -103,8 +107,13 @@ public class SeleccionNivelExamen extends Activity {
         // check if the request code is same as what is passed  here it is 2
         if(requestCode==2)
         {
-            ControladorExamen.getInstance().setResultadoEjercicioActual(data.getBooleanExtra("resultado", false));
-            siguienteEjercicio();
+            if(resultCode != RESULT_CANCELED) {
+                ControladorExamen.getInstance().setResultadoEjercicioActual(data.getBooleanExtra("resultado", false));
+                siguienteEjercicio();
+            }
+            else {
+                super.onCreate(this.savedInstanceState);
+            }
         }
     }
 

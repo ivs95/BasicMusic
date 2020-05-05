@@ -14,6 +14,7 @@ import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Examen.ControladorExamen;
+import com.example.prototipotfg.Examen.SeleccionNivelExamen;
 import com.example.prototipotfg.Notas.AdivinarNota;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -29,6 +30,7 @@ import static android.view.View.INVISIBLE;
 public class AdivinarNotaExamen extends AdivinarNota {
 
     private boolean resultado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -54,6 +56,7 @@ public class AdivinarNotaExamen extends AdivinarNota {
             respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             super.deshabilitaBotones();
 
+
         Controlador.getInstance().setMixIniciado(true);
         findViewById(R.id.comprobar).setVisibility(View.GONE);
         findViewById(R.id.continuar_an).setVisibility(View.VISIBLE);
@@ -63,9 +66,11 @@ public class AdivinarNotaExamen extends AdivinarNota {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.putExtra("resultado",resultado);
-                setResult(2,intent);
+                setResult(RESULT_OK,intent);
                 finish();
             }
         });
     }
+
+
 }

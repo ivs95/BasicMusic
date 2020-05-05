@@ -6,7 +6,7 @@
     <string name="txtBotonTeoria">Teoría</string>
     <string name="txtBtnSalir">Cerrar Sesión</string>
     <string name="tituloJugar">Modos de juego</string>
-    <string name="txtBotonExamen">Examen por nivel</string>
+    <string name="txtBotonExamen">Modo Mix</string>
     <string name="txtBotonRepetir">Imitar</string>
     <string name="txtBotonAdivinar">Adivinar</string>
     <string name="txtBotonRitmos">Ritmos</string>
@@ -89,15 +89,15 @@
     <string name="cambiosNv7ImitarAudio">Ahora tendrás &lt;b>UN SOLO&lt;/b> intento</string>
     <string name="cambiosNv8ImitarAudio">Ahora podrás reproducir la nota &lt;b>UNA&lt;/b> vez</string>
 
-    <string name="cambiosNv2ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
-    <string name="cambiosNv3ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
-    <string name="cambiosNv4ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
-    <string name="cambiosNv5ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
-    <string name="cambiosNv6ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
-    <string name="cambiosNv7ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
-    <string name="cambiosNv8ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
-    <string name="cambiosNv9ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
-    <string name="cambiosNv10ModoMix">Ahora te enfrentarás a pruebas con mayor nivel&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv2ModoMix">Ha subido el nivel de &lt;b>TODAS&lt;/b> las pruebas&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv3ModoMix">Ha subido el nivel de las pruebas de &lt;b>Adivinar Notas, Adivinar Intervalos, Crear Intervalos y Adivinar Acordes&lt;/b>&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv4ModoMix">Ha subido el nivel de las pruebas de &lt;b>Adivinar Notas, Crear Intervalos, Crear Acordes, Dibujar Ritmos e Imitar Ritmos&lt;/b>&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv5ModoMix">Ha subido el nivel de las pruebas de &lt;b>Adivinar Notas, Adivinar Acordes, Dibujar Ritmos e Imitar Ritmos&lt;/b>&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv6ModoMix">Ha subido el nivel de las pruebas de &lt;b>Adivinar Notas, Adivinar Intervalos, Crear Intervalos, Crear Acordes y Dibujar Ritmos&lt;/b>&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv7ModoMix">Ha subido el nivel de las pruebas de &lt;b>Adivinar Notas, Crear Intervalos, Adivinar Acordes, Dibujar Ritmos e Imitar Ritmos&lt;/b>&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv8ModoMix">Ha subido el nivel de las pruebas de &lt;b>Adivinar Notas, Adivinar Intervalos, Crear Acordes, e Imitar Ritmos&lt;/b>&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv9ModoMix">Ha subido el nivel de las pruebas de &lt;b>Adivinar Notas, Crear Intervalos, Dibujar Ritmos e Imitar Ritmos&lt;/b>&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
+    <string name="cambiosNv10ModoMix">Ha subido el nivel de &lt;b>TODAS&lt;/b> las pruebas&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar mas pruebas para aprobar</string>
 
 
 </resources>

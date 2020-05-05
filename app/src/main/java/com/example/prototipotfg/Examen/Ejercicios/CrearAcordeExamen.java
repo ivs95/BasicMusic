@@ -22,6 +22,7 @@ import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.Examen.ControladorExamen;
+import com.example.prototipotfg.Examen.SeleccionNivelExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -37,6 +38,7 @@ import static android.view.View.GONE;
 public class CrearAcordeExamen extends CrearAcorde {
 
     private boolean resultado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +75,7 @@ public class CrearAcordeExamen extends CrearAcorde {
         }
         if(respuestas.size() != acordeCorrectoReproducir.size()-1)
             resultado = false;
+
         Controlador.getInstance().setMixIniciado(true);
         ArrayList<AssetFileDescriptor> afd = preparaAssets(acordeCorrectoReproducir);
         Reproductor.getInstance().reproducirAcorde(afd);
@@ -93,12 +96,14 @@ public class CrearAcordeExamen extends CrearAcorde {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.putExtra("resultado",resultado);
-                setResult(2,intent);
+                setResult(RESULT_OK,intent);
                 finish();
             }
         });
 
 
     }
+
+
 
 }

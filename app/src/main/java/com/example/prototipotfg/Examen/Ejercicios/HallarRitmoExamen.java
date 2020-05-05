@@ -31,6 +31,7 @@ import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSim
 public class HallarRitmoExamen extends HallarRitmo {
 
     private boolean resultado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -149,6 +150,7 @@ public class HallarRitmoExamen extends HallarRitmo {
             resultado = false;
         }
 
+
         Controlador.getInstance().setMixIniciado(true);
         findViewById(R.id.continuar_hr).setVisibility(View.VISIBLE);
         ((Button)findViewById(R.id.continuar_hr)).setText("Continuar");
@@ -157,11 +159,12 @@ public class HallarRitmoExamen extends HallarRitmo {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.putExtra("resultado",resultado);
-                setResult(2,intent);
+                setResult(RESULT_OK,intent);
                 finish();            }
         });
 
 
 
     }
+
 }

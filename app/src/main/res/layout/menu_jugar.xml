@@ -44,25 +44,52 @@
             android:text="@string/txtBotonAdivinar" />
 
         <Button
-            android:id="@+id/botonRepetir"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="modo_imitar"
-            android:text="@string/txtBotonRepetir" />
-
-        <Button
             android:id="@+id/botonRitmos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="modo_ritmos"
             android:text="@string/txtBotonRitmos" />
 
-        <Button
-            android:id="@+id/botonExamen"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="examen"
-            android:text="@string/txtBotonExamen" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/botonRepetir"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:onClick="modo_imitar"
+                android:text="@string/txtBotonRepetir" />
+
+            <ImageView
+                android:id="@+id/imageViewImitar"
+                android:layout_width="59dp"
+                android:layout_height="50dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/botonExamen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:onClick="examen"
+                android:text="@string/txtBotonExamen" />
+
+            <ImageView
+                android:id="@+id/imageViewExamen"
+                android:layout_width="59dp"
+                android:layout_height="50dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
     </LinearLayout>
 
 

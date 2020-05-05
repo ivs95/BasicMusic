@@ -23,6 +23,7 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 public class CrearRitmoExamen extends CrearRitmo {
     private boolean resultado;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -107,7 +108,7 @@ public class CrearRitmoExamen extends CrearRitmo {
 
                 Intent intent=new Intent();
                 intent.putExtra("resultado",resultado);
-                setResult(2,intent);
+                setResult(RESULT_OK,intent);
                 finish();            }
         });
 

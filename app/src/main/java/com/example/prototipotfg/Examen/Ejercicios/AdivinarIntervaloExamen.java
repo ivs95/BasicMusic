@@ -17,6 +17,7 @@ import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.Examen.ControladorExamen;
+import com.example.prototipotfg.Examen.SeleccionNivelExamen;
 import com.example.prototipotfg.Intervalos.Adivinar.AdivinarIntervalo;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -32,6 +33,7 @@ import static android.view.View.GONE;
 public class AdivinarIntervaloExamen extends AdivinarIntervalo {
 
     private boolean resultado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -61,6 +63,7 @@ public class AdivinarIntervaloExamen extends AdivinarIntervalo {
             b.setEnabled(false);
         }
 
+
         Controlador.getInstance().setMixIniciado(true);
         findViewById(R.id.botonIntervalo).setEnabled(false);
         findViewById(R.id.botonIntervalo).setAlpha(.5f);
@@ -73,9 +76,10 @@ public class AdivinarIntervaloExamen extends AdivinarIntervalo {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.putExtra("resultado",resultado);
-                setResult(2,intent);
+                setResult(RESULT_OK,intent);
                 finish();
             }
         });
     }
+
 }

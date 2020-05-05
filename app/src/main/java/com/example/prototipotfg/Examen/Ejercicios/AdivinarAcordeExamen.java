@@ -19,6 +19,7 @@ import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Examen.ControladorExamen;
+import com.example.prototipotfg.Examen.SeleccionNivelExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -65,19 +66,21 @@ public class AdivinarAcordeExamen extends AdivinarAcorde{
             b.setEnabled(false);
 
 
-
         findViewById(R.id.continuar_ac).setVisibility(VISIBLE);
         ((Button)findViewById(R.id.continuar_ac)).setText("Continuar");
         findViewById(R.id.continuar_ac).setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.putExtra("resultado",resultado);
-                setResult(2,intent);
+                setResult(RESULT_OK,intent);
                 finish();
             }
         });
 
 
     }
+
+
 }
