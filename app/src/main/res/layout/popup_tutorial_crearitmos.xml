@@ -28,7 +28,7 @@
                 android:id="@+id/popup_crearitmos_tituloCrearRitmo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nivel "
+                android:text="Imita el ritmo"
                 android:textAlignment="center"
                 android:textColor="@color/md_blue_900"
                 android:textSize="30sp"
