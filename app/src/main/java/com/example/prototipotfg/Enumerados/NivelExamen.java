@@ -2,25 +2,25 @@ package com.example.prototipotfg.Enumerados;
 
 public enum NivelExamen {
     Uno(1,new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
-            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{1,1,1,1,1,1,1}, 0.60),
+            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{1,1,1,1,1,1,1}, 7),
     Dos(2, new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
-            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{2,2,2,2,2,2,2}, 0.65),
+            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{2,2,2,2,2,2,2}, 7),
     Tres(3, new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
-            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{3,3,3,3,2,2,2}, 0.70),
+            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{3,3,3,3,2,2,2}, 8),
     Cuatro(4,new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
-            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{4,3,4,3,3,3,3}, 0.75),
+            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{4,3,4,3,3,3,3}, 9),
     Cinco(5,new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
-            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{5,3,4,4,3,4,4}, 0.80),
+            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{5,3,4,4,3,4,4}, 10),
     Seis(6,new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
-            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{6,4,5,4,4,5,4}, 0.85),
+            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{6,4,5,4,4,5,4}, 11),
     Siete(7,new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
-            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{7,4,6,5,4,6,5}, 0.90),
+            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{7,4,6,5,4,6,5}, 12),
     Ocho(8,new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
-            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{8,5,6,5,5,6,6}, 0.95),
+            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{8,5,6,5,5,6,6}, 13),
     Nueve(9,new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
-            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{9,5,7,5,5,7,7}, 1.00),
+            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{9,5,7,5,5,7,7}, 14),
     Diez(10,new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
-            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{10,6,8,6,6,8,8}, 1.00);
+            ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{10,6,8,6,6,8,8}, 14);
 
     /*
     * 2 preguntas cada tipo
@@ -34,13 +34,13 @@ public enum NivelExamen {
     private int nivel;
     private ModoJuego[] modos;
     private int[] niveles_modos;
-    private double porcentajeAprobar;
+    private int aciertosAprobar;
 
-    NivelExamen(int nivel , ModoJuego [] modos, int[] niveles_modos, double porcentajeAprobar){
+    NivelExamen(int nivel , ModoJuego [] modos, int[] niveles_modos, int aciertosAprobar){
         this.nivel = nivel;
         this.modos = modos;
         this.niveles_modos = niveles_modos;
-        this.porcentajeAprobar=porcentajeAprobar;
+        this.aciertosAprobar=aciertosAprobar;
     }
 
     public static NivelExamen getNivelExamen(int nivel) {
@@ -68,12 +68,12 @@ public enum NivelExamen {
         this.nivel = nivel;
     }
 
-    public double getPorcentajeAprobar() {
-        return porcentajeAprobar;
+    public int getAciertosAprobar() {
+        return aciertosAprobar;
     }
 
-    public void setPorcentajeAprobar(double porcentajeAprobar) {
-        this.porcentajeAprobar = porcentajeAprobar;
+    public void setAciertosAprobar(int aciertosAprobar) {
+        this.aciertosAprobar = aciertosAprobar;
     }
 
     public ModoJuego[] getModos() {

@@ -65,23 +65,19 @@ public class ResultadoExamen extends Activity {
         for (ModoJuego m : resultado.keySet()){
             setTextoResultado(m, resultado.get(m));
         }
-        TextView lbl = findViewById(R.id.resultadoExamen);
-        int numAciertos = ControladorExamen.getInstance().getNumAciertos();
-        lbl.setText(lbl.getText() + "Total de aciertos: " + numAciertos + "\n Total de fallos: " + (ControladorExamen.getInstance().getNumEjercicios()-numAciertos));
-        setTextoAprobado(ControladorExamen.getInstance().isAprobado(), ControladorExamen.getInstance().getPorcentajeAcierto(), ControladorExamen.getInstance().getNivel().getPorcentajeAprobar(), (TextView) findViewById(R.id.resultadoAprobado));
+        setTextoAprobado(ControladorExamen.getInstance().isAprobado(), ControladorExamen.getInstance().getNumAciertos(), ControladorExamen.getInstance().getNivel().getAciertosAprobar(), (TextView) findViewById(R.id.resultadoAprobado));
 
     }
 
-    private void setTextoAprobado(boolean aprobado, double porcentajeAcierto, double porcentajeAprobar, TextView lbl) {
-        porcentajeAcierto = porcentajeAcierto*100;
+    private void setTextoAprobado(boolean aprobado, int numAciertos, int aciertosAprobar, TextView lbl) {
         if (aprobado) {
-            lbl.setText(lbl.getText() + "¡Felicidades, has aprobado!\nTu porcentaje de acierto: " +
-                    ((int)(porcentajeAcierto*100)) + "%\nPorcentaje requerido: " + ((int)(porcentajeAprobar*100)) + "%");
+            lbl.setText(lbl.getText() + "¡Felicidades, has aprobado!\nTu total de aciertos: " +
+                    numAciertos + "\nAciertos requeridos: " + aciertosAprobar);
             lbl.setTextColor(ContextCompat.getColor(this, R.color.md_green_500));
         }
         else {
-            lbl.setText(lbl.getText() + "Inténtalo de nuevo\nTu porcentaje de acierto: " +
-                    ((int)(porcentajeAcierto*100)) + "%\nPorcentaje requerido: " + ((int)(porcentajeAprobar*100)) + "%");
+            lbl.setText(lbl.getText() + "Inténtalo de nuevo\nTu total de aciertos: " +
+                    numAciertos + "\nAciertos requeridos: " + aciertosAprobar);
             lbl.setTextColor(ContextCompat.getColor(this, R.color.md_red_500));
         }
     }

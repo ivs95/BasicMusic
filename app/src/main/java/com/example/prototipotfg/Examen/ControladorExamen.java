@@ -28,10 +28,9 @@ public final class ControladorExamen {
     private int indiceActual;
     private Pair<ModoJuego, Integer> ejercicioActual;
     private NivelExamen nivel;
-    private ArrayList<ModoJuego> ejercicios = new ArrayList<> (Arrays.asList(ModoJuego.devuelvePruebasExamen()));
+    private ArrayList<ModoJuego> ejercicios = new ArrayList<> (Arrays.asList(NivelExamen.Uno.getModos()));
     private boolean[] acertados = new boolean[14];
     private int numAciertos;
-    private double porcentajeAcierto;
     private boolean aprobado;
     private HashMap<ModoJuego, Integer> resultadoEjercicios = new HashMap<>();
 
@@ -54,7 +53,6 @@ public final class ControladorExamen {
     public void setContext(Context contexto){
         this.contexto=contexto;
     }
-    public double getPorcentajeAcierto(){return this.porcentajeAcierto;}
     public void preparaExamen() {
         Collections.shuffle(ejercicios);
         indiceActual=0;
@@ -81,8 +79,7 @@ public final class ControladorExamen {
     }
 
     public void setResultadoExamen() {
-        this.porcentajeAcierto=((double)numAciertos/NUM_EJERCICIOS);
-        this.aprobado=this.porcentajeAcierto>=nivel.getPorcentajeAprobar();
+        this.aprobado=this.numAciertos>=nivel.getAciertosAprobar();
     }
 
     public boolean isAprobado(){
@@ -139,4 +136,5 @@ public final class ControladorExamen {
     public int getNumEjercicios() {
         return this.NUM_EJERCICIOS;
     }
+
 }

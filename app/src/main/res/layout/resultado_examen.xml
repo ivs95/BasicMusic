@@ -25,7 +25,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="40dp"
-        android:divider="@drawable/divisor_botones_menu"
+        android:divider="@drawable/divisor_resultado_examen"
         android:orientation="vertical"
         android:showDividers="middle"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,14 +88,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="CREAR RITMO\n"
-            android:textColor="@color/md_blue_900" />
-
-        <TextView
-            android:id="@+id/resultadoExamen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="RESULTADO TOTAL\n"
             android:textColor="@color/md_blue_900" />
 
         <TextView
