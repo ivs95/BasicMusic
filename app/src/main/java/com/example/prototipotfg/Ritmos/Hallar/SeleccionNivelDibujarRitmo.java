@@ -17,7 +17,7 @@ import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
-public class SeleccionNivelHallarRitmo extends Activity {
+public class SeleccionNivelDibujarRitmo extends Activity {
 
     private Bundle savedInstanceState;
 
@@ -87,7 +87,7 @@ public class SeleccionNivelHallarRitmo extends Activity {
     }
 
     public void nivel_seleccionado(View view) {
-        Intent i = new Intent(this, HallarRitmo.class);
+        Intent i = new Intent(this, DibujarRitmo.class);
         Controlador.getInstance().setNivel(view.getId());
         startActivity(i);
     }

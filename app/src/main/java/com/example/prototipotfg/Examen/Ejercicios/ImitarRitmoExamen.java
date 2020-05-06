@@ -1,6 +1,5 @@
 package com.example.prototipotfg.Examen.Ejercicios;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -15,12 +14,12 @@ import androidx.core.content.ContextCompat;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Examen.ControladorExamen;
 import com.example.prototipotfg.R;
-import com.example.prototipotfg.Ritmos.Crear.CrearRitmo;
+import com.example.prototipotfg.Ritmos.Crear.ImitarRitmo;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
 
-public class CrearRitmoExamen extends CrearRitmo {
+public class ImitarRitmoExamen extends ImitarRitmo {
     private boolean resultado;
 
 
@@ -38,7 +37,7 @@ public class CrearRitmoExamen extends CrearRitmo {
     }
     @Override
     public void comprobar(View view){
-
+        para(view);
         int indice = 0;
         if (compruebaArrays()){
             for (Button b : this.botonesGuia){

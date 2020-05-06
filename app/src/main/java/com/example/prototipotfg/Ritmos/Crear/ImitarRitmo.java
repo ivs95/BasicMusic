@@ -16,8 +16,7 @@ import androidx.core.content.ContextCompat;
 import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
-import com.example.prototipotfg.Examen.Ejercicios.AdivinarAcordeExamen;
-import com.example.prototipotfg.Examen.Ejercicios.CrearRitmoExamen;
+import com.example.prototipotfg.Examen.Ejercicios.ImitarRitmoExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Ritmos.MediaPlayerRitmos;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -31,7 +30,7 @@ import java.util.Random;
 
 import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSimbolo;
 
-public class CrearRitmo extends Activity {
+public class ImitarRitmo extends Activity {
 
     protected int compas = 4;
     private int num = 4;
@@ -301,8 +300,6 @@ public class CrearRitmo extends Activity {
 
         if(nivel == 8) pausa = 400;
 
-        TextView titulo = findViewById(R.id.tituloCrearRitmo);
-        titulo.setText(titulo.getText() + String.valueOf(nivel));
         LinearLayout guia = findViewById(R.id.linearRitmo);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,1 );
         running = false;
@@ -348,7 +345,7 @@ public class CrearRitmo extends Activity {
         findViewById(R.id.botonTambor).setEnabled(false);   findViewById(R.id.botonTambor).setAlpha(.5f);
         findViewById(R.id.botonPlatillo).setEnabled(false);   findViewById(R.id.botonPlatillo).setAlpha(.5f);
 
-        if (!(this instanceof CrearRitmoExamen)) {
+        if (!(this instanceof ImitarRitmoExamen)) {
             GestorBBDD.getInstance().modoRealizado(ModoJuego.Realiza_Ritmo);
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Realiza_Ritmo, Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -441,8 +438,7 @@ public class CrearRitmo extends Activity {
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).ordinal();
         TextView resultado = findViewById(R.id.textRitmosResultado2);
 
-        running=false;
-        runningPropio=false;
+        para(view);
         NivelAdivinar nivel = null;
         comprobado = true;
         int indice = 0;

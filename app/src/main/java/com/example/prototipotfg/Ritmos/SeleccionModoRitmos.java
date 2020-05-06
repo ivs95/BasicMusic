@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.R;
-import com.example.prototipotfg.Ritmos.Crear.SeleccionNivelCrearRitmo;
-import com.example.prototipotfg.Ritmos.Hallar.SeleccionNivelHallarRitmo;
+import com.example.prototipotfg.Ritmos.Crear.SeleccionNivelImitarRitmo;
+import com.example.prototipotfg.Ritmos.Hallar.SeleccionNivelDibujarRitmo;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class SeleccionModoRitmos extends Activity {
@@ -37,13 +37,13 @@ public class SeleccionModoRitmos extends Activity {
         Intent i;
         switch (view.getId()){
             case R.id.buttonHalla:
-                i = new Intent(this, SeleccionNivelHallarRitmo.class);
+                i = new Intent(this, SeleccionNivelDibujarRitmo.class);
                 i.putExtra("modoRitmo", "hallar");
                 startActivity(i);
                 break;
 
             case R.id.buttonRealizar:
-                i = new Intent(this, SeleccionNivelCrearRitmo.class);
+                i = new Intent(this, SeleccionNivelImitarRitmo.class);
                 i.putExtra("modoRitmo", "realizar");
                 startActivity(i);
                 break;

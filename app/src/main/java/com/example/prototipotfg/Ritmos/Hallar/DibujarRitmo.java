@@ -18,8 +18,7 @@ import androidx.core.content.ContextCompat;
 import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
-import com.example.prototipotfg.Examen.Ejercicios.CrearRitmoExamen;
-import com.example.prototipotfg.Examen.Ejercicios.HallarRitmoExamen;
+import com.example.prototipotfg.Examen.Ejercicios.DibujarRitmoExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Ritmos.MediaPlayerRitmos;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -33,7 +32,7 @@ import java.util.Random;
 
 import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSimbolo;
 
-public class HallarRitmo extends Activity {
+public class DibujarRitmo extends Activity {
 
 
     protected Bundle savedInstanceState;
@@ -219,9 +218,6 @@ public class HallarRitmo extends Activity {
         }
 
         if(nivel == 8) pausa = 275;
-
-        TextView titulo = (TextView)findViewById(R.id.tituloHallaRitmo);
-        titulo.setText(titulo.getText() + String.valueOf(nivel));
 
         running = false;
         hilo_ritmos.start();
@@ -663,7 +659,7 @@ public class HallarRitmo extends Activity {
                 }
             }
         }
-        if (!(this instanceof HallarRitmoExamen)) {
+        if (!(this instanceof DibujarRitmoExamen)) {
             GestorBBDD.getInstance().modoRealizado(ModoJuego.Halla_Ritmo);
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Halla_Ritmo, Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);

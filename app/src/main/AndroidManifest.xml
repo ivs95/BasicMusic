@@ -53,7 +53,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Ritmos.Hallar.SeleccionNivelHallarRitmo"
+        <activity android:name=".Ritmos.Hallar.SeleccionNivelDibujarRitmo"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
@@ -73,7 +73,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Ritmos.Hallar.HallarRitmo"
+        <activity android:name=".Ritmos.Hallar.DibujarRitmo"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
@@ -125,11 +125,11 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Ritmos.Crear.CrearRitmo"
+        <activity android:name=".Ritmos.Crear.ImitarRitmo"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Ritmos.Crear.SeleccionNivelCrearRitmo"
+        <activity android:name=".Ritmos.Crear.SeleccionNivelImitarRitmo"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
@@ -162,8 +162,8 @@
         <activity android:name=".Examen.Ejercicios.AdivinarIntervaloExamen" />
         <activity android:name=".Examen.Ejercicios.CrearAcordeExamen" />
         <activity android:name=".Examen.Ejercicios.CrearIntervaloExamen" />
-        <activity android:name=".Examen.Ejercicios.CrearRitmoExamen" />
-        <activity android:name=".Examen.Ejercicios.HallarRitmoExamen" />
+        <activity android:name=".Examen.Ejercicios.ImitarRitmoExamen" />
+        <activity android:name=".Examen.Ejercicios.DibujarRitmoExamen" />
         <activity android:name=".Examen.ResultadoExamen" />
         <activity android:name=".Examen.SeleccionNivelExamen" />
     </application>

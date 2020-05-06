@@ -1,34 +1,23 @@
 package com.example.prototipotfg.Examen.Ejercicios;
 
-import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.prototipotfg.BBDD.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.ModoJuego;
-import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.Examen.ControladorExamen;
 import com.example.prototipotfg.R;
-import com.example.prototipotfg.Ritmos.Hallar.HallarRitmo;
+import com.example.prototipotfg.Ritmos.Hallar.DibujarRitmo;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSimbolo;
-
-public class HallarRitmoExamen extends HallarRitmo {
+public class DibujarRitmoExamen extends DibujarRitmo {
 
     private boolean resultado;
 
