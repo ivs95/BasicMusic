@@ -23,7 +23,6 @@ import java.util.HashMap;
 public final class ControladorExamen {
 
     private static final ControladorExamen INSTANCE = new ControladorExamen();
-    private Context contexto;
     private final int NUM_EJERCICIOS = 14;
     private int indiceActual;
     private Pair<ModoJuego, Integer> ejercicioActual;
@@ -50,15 +49,16 @@ public final class ControladorExamen {
     }
 
     public NivelExamen getNivel(){return this.nivel;}
-    public void setContext(Context contexto){
-        this.contexto=contexto;
-    }
     public void preparaExamen() {
         ejercicios.addAll(ejercicios);
         Collections.shuffle(ejercicios);
         indiceActual=0;
         numAciertos=0;
         inicializaResultados();
+    }
+
+    public int getIndiceActual(){
+        return this.indiceActual;
     }
 
     private void inicializaResultados() {

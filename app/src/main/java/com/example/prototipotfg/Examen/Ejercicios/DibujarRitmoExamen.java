@@ -32,6 +32,9 @@ public class DibujarRitmoExamen extends DibujarRitmo {
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView());
         }
+        ((TextView)findViewById(R.id.lblIndice)).setText(ControladorExamen.getInstance().getIndiceActual()+1 + "/" + ControladorExamen.getInstance().getNumEjercicios());
+        findViewById(R.id.lblIndice).setVisibility(View.VISIBLE);
+
     }
     @Override
     public void stop(View view){

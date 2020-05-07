@@ -93,7 +93,6 @@ public class SeleccionNivelExamen extends Activity {
 
     public void nivel_seleccionado(View view) {
         ControladorExamen.getInstance().setNivel(view.getId());
-        ControladorExamen.getInstance().setContext(this);
         ControladorExamen.getInstance().iniciaExamen();
         Controlador.getInstance().setMixIniciado(false);
         siguienteEjercicio();
