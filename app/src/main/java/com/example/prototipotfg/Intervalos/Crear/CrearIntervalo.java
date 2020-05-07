@@ -138,7 +138,7 @@ public class CrearIntervalo extends Activity {
                 LayoutInflater inflater = (LayoutInflater)
                         getSystemService(LAYOUT_INFLATER_SERVICE);
 
-                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Crear_Intervalo, findViewById(android.R.id.content).getRootView());
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Crear_Intervalo, findViewById(android.R.id.content).getRootView(), false);
             }
         }
     }
@@ -295,6 +295,12 @@ public class CrearIntervalo extends Activity {
             }
 
             if(nivelActual != nivelNuevo){
+                if(nivelNuevo < nivelActual) {
+                    LayoutInflater inflater = (LayoutInflater)
+                            getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                    ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Crear_Intervalo, findViewById(android.R.id.content).getRootView(), true);
+                }
                 Controlador.getInstance().setNivel(nivelNuevo);
                 Controlador.getInstance().estableceDificultad();
             }

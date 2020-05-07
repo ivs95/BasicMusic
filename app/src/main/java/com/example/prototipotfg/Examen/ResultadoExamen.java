@@ -71,12 +71,12 @@ public class ResultadoExamen extends Activity {
 
     private void setTextoAprobado(boolean aprobado, int numAciertos, int aciertosAprobar, TextView lbl) {
         if (aprobado) {
-            lbl.setText(lbl.getText() + "¡Felicidades, has aprobado!\nTu total de aciertos: " +
+            lbl.setText(lbl.getText() + "\n¡Felicidades, has aprobado!\nTu total de aciertos: " +
                     numAciertos + "\nAciertos requeridos: " + aciertosAprobar);
             lbl.setTextColor(ContextCompat.getColor(this, R.color.md_green_500));
         }
         else {
-            lbl.setText(lbl.getText() + "Inténtalo de nuevo\nTu total de aciertos: " +
+            lbl.setText(lbl.getText() + "\nInténtalo de nuevo\nTu total de aciertos: " +
                     numAciertos + "\nAciertos requeridos: " + aciertosAprobar);
             lbl.setTextColor(ContextCompat.getColor(this, R.color.md_red_500));
         }

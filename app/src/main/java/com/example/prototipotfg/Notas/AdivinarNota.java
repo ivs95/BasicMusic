@@ -107,7 +107,7 @@ public class AdivinarNota extends Activity {
                 LayoutInflater inflater = (LayoutInflater)
                         getSystemService(LAYOUT_INFLATER_SERVICE);
 
-                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Notas, findViewById(android.R.id.content).getRootView());
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Notas, findViewById(android.R.id.content).getRootView(), false);
             }
         }
     }
@@ -233,6 +233,12 @@ public class AdivinarNota extends Activity {
         }
 
             if (nivelActual != nivelNuevo) {
+                if(nivelNuevo < nivelActual) {
+                    LayoutInflater inflater = (LayoutInflater)
+                            getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                    ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Notas, findViewById(android.R.id.content).getRootView(), true);
+                }
                 Controlador.getInstance().setNivel(nivelNuevo);
                 Controlador.getInstance().estableceDificultad();
             }
@@ -252,9 +258,12 @@ public class AdivinarNota extends Activity {
     }
 
     public void continuar(View view){
-        finish();
-        overridePendingTransition( 0, 0);
-        startActivity(getIntent());
-        overridePendingTransition( 0, 0);    }
+
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+            overridePendingTransition(0, 0);
+        }
+
 
 }

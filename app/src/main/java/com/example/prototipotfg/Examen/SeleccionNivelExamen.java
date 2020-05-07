@@ -117,6 +117,7 @@ public class SeleccionNivelExamen extends Activity {
     }
 
     private void siguienteEjercicio() {
+        GestorBBDD.getInstance().modoRealizado(ModoJuego.Modo_Mix);
         if(!ControladorExamen.getInstance().finalExamen()) {
             ControladorExamen.getInstance().setEjercicio();
             Intent i = ControladorExamen.getInstance().iniciaPrueba(this);

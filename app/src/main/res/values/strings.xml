@@ -89,8 +89,8 @@
     <string name="cambiosNv7ImitarAudio">Ahora tendrás &lt;b>UN SOLO&lt;/b> intento</string>
     <string name="cambiosNv8ImitarAudio">Ahora podrás reproducir la nota &lt;b>UNA&lt;/b> vez</string>
 
-    <string name="cambiosNv2ModoMix">Ha subido el nivel de &lt;b>TODAS&lt;/b> las pruebas&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar &lt;b>SEIS&lt;/b> pruebas para aprobar</string>
-    <string name="cambiosNv3ModoMix">Ha subido el nivel de las pruebas de &lt;b>Adivinar Notas, Adivinar Intervalos, Crear Intervalos y Adivinar Acordes&lt;/b>&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar &lt;b>SIETE&lt;/b> pruebas para aprobar</string>
+    <string name="cambiosNv2ModoMix">Ha subido el nivel de &lt;b>TODAS&lt;/b> las pruebas</string>
+    <string name="cambiosNv3ModoMix">Ha subido el nivel de las pruebas de &lt;b>Adivinar Notas, Adivinar Intervalos, Crear Intervalos y Adivinar Acordes&lt;/b>&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar &lt;b>OCHO&lt;/b> pruebas para aprobar</string>
     <string name="cambiosNv4ModoMix">Ha subido el nivel de las pruebas de &lt;b>Adivinar Notas, Crear Intervalos, Crear Acordes, Dibujar Ritmos e Imitar Ritmos&lt;/b>&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar &lt;b>OCHO&lt;/b> pruebas para aprobar</string>
     <string name="cambiosNv5ModoMix">Ha subido el nivel de las pruebas de &lt;b>Adivinar Notas, Adivinar Acordes, Dibujar Ritmos e Imitar Ritmos&lt;/b>&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar &lt;b>NUEVE&lt;/b> pruebas para aprobar</string>
     <string name="cambiosNv6ModoMix">Ha subido el nivel de las pruebas de &lt;b>Adivinar Notas, Adivinar Intervalos, Crear Intervalos, Crear Acordes y Dibujar Ritmos&lt;/b>&lt;br /&gt; &lt;br /&gt; Ahora necesitarás acertar &lt;b>DIEZ&lt;/b> pruebas para aprobar</string>

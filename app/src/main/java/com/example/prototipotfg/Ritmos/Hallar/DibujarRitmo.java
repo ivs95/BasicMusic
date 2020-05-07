@@ -663,7 +663,7 @@ public class DibujarRitmo extends Activity {
             GestorBBDD.getInstance().modoRealizado(ModoJuego.Halla_Ritmo);
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Halla_Ritmo, Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Halla_Ritmo, findViewById(android.R.id.content).getRootView());
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Halla_Ritmo, findViewById(android.R.id.content).getRootView(), false);
             }
         }
     }
@@ -816,6 +816,12 @@ public class DibujarRitmo extends Activity {
         }
 
         if(nivelActual != nivelNuevo){
+            if(nivelNuevo < nivelActual) {
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Halla_Ritmo, findViewById(android.R.id.content).getRootView(), true);
+            }
             Controlador.getInstance().setNivel(nivelNuevo);
             Controlador.getInstance().estableceDificultad();
         }

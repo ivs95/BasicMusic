@@ -34,7 +34,7 @@
                 android:textStyle = "bold"
                 android:textSize = "35dp"
                 android:textColor="@color/md_blue_800"
-                android:text = "Bienvenido al nivel \n"/>
+                />
 
             <TextView
                 android:id = "@+id/nivel_text_popup"
@@ -49,6 +49,7 @@
 
 
             <TextView
+                android:id="@+id/indicePopUp"
                 android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
                 android:layout_marginLeft = "20dp"

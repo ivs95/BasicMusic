@@ -96,6 +96,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="RESULTADO FINAL\n"
-            android:textColor="@color/md_blue_900" />
+            android:textColor="@color/md_blue_900"
+            android:textSize="20sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

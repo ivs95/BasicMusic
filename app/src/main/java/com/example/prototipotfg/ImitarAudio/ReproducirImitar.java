@@ -114,7 +114,7 @@ public class ReproducirImitar extends Activity {
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
 
-            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Imitar_Audio, findViewById(android.R.id.content).getRootView());
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Imitar_Audio, findViewById(android.R.id.content).getRootView(), false);
         }
 
         findViewById(R.id.continuar_ia).setEnabled(false);           findViewById(R.id.continuar_ia).setAlpha(.5f);
@@ -273,6 +273,12 @@ public class ReproducirImitar extends Activity {
             }
 
             if(nivelActual != nivelNuevo){
+                if(nivelNuevo < nivelActual) {
+                    LayoutInflater inflater = (LayoutInflater)
+                            getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                    ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Imitar_Audio, findViewById(android.R.id.content).getRootView(), true);
+                }
                 Controlador.getInstance().setNivel(nivelNuevo);
                 Controlador.getInstance().estableceDificultad();
             }

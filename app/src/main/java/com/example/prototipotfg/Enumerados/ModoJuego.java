@@ -17,6 +17,8 @@ import com.example.prototipotfg.Singletons.Controlador;
 
 import java.util.HashMap;
 
+import static android.view.View.GONE;
+
 public enum ModoJuego {
     Adivinar_Intervalo("Adivinar Intervalos", 6, new HashMap<Integer, Spanned>()),
     Adivinar_Notas("Adivinar Notas", 10, new HashMap<Integer, Spanned>()),
@@ -145,12 +147,21 @@ public enum ModoJuego {
             }
     }
 
-    public static void mostrarPopUpNuevoNivel(LayoutInflater inflater, ModoJuego modoJuego, final View view){
+    public static void mostrarPopUpNuevoNivel(LayoutInflater inflater, ModoJuego modoJuego, final View view, boolean bajar){
 
         View popupView = inflater.inflate(R.layout.popup_nuevo_nivel_cambios, null);
         final View popupView2 = inflater.inflate(R.layout.popup_nuevo_nivel_cambios2, null);
         TextView cambios = (TextView) popupView2.findViewById(R.id.cambios_nivel_text);
         TextView nivel_text = (TextView) popupView.findViewById(R.id.nivel_text_popup);
+        TextView pre_text = (TextView) popupView.findViewById(R.id.pre_nivel_text);
+        if(!bajar)
+            pre_text.setText("Bienvenido al nivel \n");
+        else {
+            pre_text.setText("Has bajado al nivel \n");
+            TextView indicePopUp = (TextView) popupView.findViewById(R.id.indicePopUp);
+            indicePopUp.setText("\n");
+            nivel_text.setTextSize(60);
+        }
 
         if(modoJuego != ModoJuego.Modo_Mix) {
             cambios.setText(modoJuego.getTextDadoNivel(Controlador.getInstance().getNivel()));
@@ -180,16 +191,28 @@ public enum ModoJuego {
         // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         // dismiss the popup window when touched
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
+        if(!bajar) {
+            popupView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
 
-                popupWindow2.showAtLocation(view, Gravity.CENTER, 0, 0);
-                popupWindow.dismiss();
+                    popupWindow2.showAtLocation(view, Gravity.CENTER, 0, 0);
+                    popupWindow.dismiss();
 
-                return true;
-            }
-        });
+                    return true;
+                }
+            });
+        }
+        else{
+            popupView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    popupWindow.dismiss();
+                    return true;
+                }
+            });
+        }
 
         popupView2.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -200,4 +223,5 @@ public enum ModoJuego {
         });
 
     }
+
 }
