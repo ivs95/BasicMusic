@@ -54,6 +54,7 @@ public final class ControladorExamen {
         this.contexto=contexto;
     }
     public void preparaExamen() {
+        ejercicios.addAll(ejercicios);
         Collections.shuffle(ejercicios);
         indiceActual=0;
         numAciertos=0;
