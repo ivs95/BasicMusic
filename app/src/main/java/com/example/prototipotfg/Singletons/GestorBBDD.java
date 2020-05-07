@@ -538,11 +538,13 @@ public class GestorBBDD {
             case 1: puntuacion_fallo = 1; break;
             case 2: puntuacion_fallo = 1; break;
             case 3: puntuacion_fallo = 1; break;
-            case 4: puntuacion_fallo = 2; break;
+            case 4: puntuacion_fallo = 1; break;
             case 5: puntuacion_fallo = 2; break;
             case 6: puntuacion_fallo = 2; break;
-            case 7: puntuacion_fallo = 3; break;
-            case 8: puntuacion_fallo = 3; break;
+            case 7: puntuacion_fallo = 2; break;
+            case 8: puntuacion_fallo = 2; break;
+            case 9: puntuacion_fallo = 3; break;
+            case 10: puntuacion_fallo =3; break;
             default: break;
         }
 
