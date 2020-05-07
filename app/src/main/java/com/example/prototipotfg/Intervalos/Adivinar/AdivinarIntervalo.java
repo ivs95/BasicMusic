@@ -225,13 +225,13 @@ public class AdivinarIntervalo extends Activity {
         }
 
         if(nivelActual != nivelNuevo){
+            Controlador.getInstance().setNivel(nivelNuevo);
             if(nivelNuevo < nivelActual) {
                 LayoutInflater inflater = (LayoutInflater)
                         getSystemService(LAYOUT_INFLATER_SERVICE);
 
                 ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Intervalo, findViewById(android.R.id.content).getRootView(), true);
             }
-            Controlador.getInstance().setNivel(nivelNuevo);
             Controlador.getInstance().estableceDificultad();
         }
 

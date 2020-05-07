@@ -233,13 +233,13 @@ public class AdivinarNota extends Activity {
         }
 
             if (nivelActual != nivelNuevo) {
+                Controlador.getInstance().setNivel(nivelNuevo);
                 if(nivelNuevo < nivelActual) {
                     LayoutInflater inflater = (LayoutInflater)
                             getSystemService(LAYOUT_INFLATER_SERVICE);
 
                     ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Notas, findViewById(android.R.id.content).getRootView(), true);
                 }
-                Controlador.getInstance().setNivel(nivelNuevo);
                 Controlador.getInstance().estableceDificultad();
             }
 
