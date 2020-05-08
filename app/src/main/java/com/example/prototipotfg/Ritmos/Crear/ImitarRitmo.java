@@ -349,7 +349,7 @@ public class ImitarRitmo extends Activity {
             GestorBBDD.getInstance().modoRealizado(ModoJuego.Realiza_Ritmo);
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Realiza_Ritmo, Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Realiza_Ritmo, findViewById(android.R.id.content).getRootView(), false);
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Realiza_Ritmo, findViewById(android.R.id.content).getRootView(), false, 0, 0);
             }
         }
 
@@ -511,12 +511,11 @@ public class ImitarRitmo extends Activity {
 
         if(nivelActual != nivelNuevo){
             Controlador.getInstance().setNivel(nivelNuevo);
-            if(nivelNuevo < nivelActual) {
-                LayoutInflater inflater = (LayoutInflater)
+            LayoutInflater inflater = (LayoutInflater)
                         getSystemService(LAYOUT_INFLATER_SERVICE);
 
-                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Realiza_Ritmo, findViewById(android.R.id.content).getRootView(), true);
-            }
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Realiza_Ritmo, findViewById(android.R.id.content).getRootView(), true, nivelActual, nivelNuevo);
+
             Controlador.getInstance().estableceDificultad();
         }
 

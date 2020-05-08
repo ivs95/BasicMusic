@@ -114,7 +114,7 @@ public class AdivinarAcorde extends Activity {
             GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Acordes);
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Acordes, findViewById(android.R.id.content).getRootView(), false);
+                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Acordes, findViewById(android.R.id.content).getRootView(), false, 0, 0);
             }
         }
     }
@@ -210,12 +210,11 @@ public class AdivinarAcorde extends Activity {
         if(nivelActual != nivelNuevo){
             Controlador.getInstance().setNivel(nivelNuevo);
 
-            if(nivelNuevo < nivelActual) {
-                LayoutInflater inflater = (LayoutInflater)
-                        getSystemService(LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
 
-                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Acordes, findViewById(android.R.id.content).getRootView(), true);
-            }
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Acordes, findViewById(android.R.id.content).getRootView(), true, nivelActual, nivelNuevo);
+
             Controlador.getInstance().estableceDificultad();
         }
 

@@ -147,7 +147,7 @@ public enum ModoJuego {
             }
     }
 
-    public static void mostrarPopUpNuevoNivel(LayoutInflater inflater, ModoJuego modoJuego, final View view, boolean bajar){
+    public static void mostrarPopUpNuevoNivel(LayoutInflater inflater, ModoJuego modoJuego, final View view, boolean bajar, int nivActual, int nivNuevo){
 
         View popupView = inflater.inflate(R.layout.popup_nuevo_nivel_cambios, null);
         final View popupView2 = inflater.inflate(R.layout.popup_nuevo_nivel_cambios2, null);
@@ -157,10 +157,13 @@ public enum ModoJuego {
         if(!bajar)
             pre_text.setText("Bienvenido al nivel \n");
         else {
-            pre_text.setText("Has bajado al nivel \n");
+            if(nivActual > nivNuevo)
+                pre_text.setText("Has bajado al nivel \n");
+            else
+                pre_text.setText("Has subido al nivel \n");
             TextView indicePopUp = (TextView) popupView.findViewById(R.id.indicePopUp);
-            indicePopUp.setText("\n");
-            nivel_text.setTextSize(60);
+            indicePopUp.setVisibility(GONE);
+            nivel_text.setTextSize(87);
         }
 
         if(modoJuego != ModoJuego.Modo_Mix) {
