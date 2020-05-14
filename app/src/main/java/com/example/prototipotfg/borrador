@@ -1,6 +1,51 @@
 
+VERDU
+    RITMOS
+     - VELOCIDAD Y Nº COMPASES (CONTROLADOR)
+    POP-UP ritmos
+    - Poner entre parentesis fracciones
+    TUTORIALES - INDICAR ES TUTORIAL
+
+
+VITORES
+    Menu inicial boton jugar grande
+    Teoria extender notas hasta 16
+    IMITAR RITMOS
+     - Buscar imagenes
+     - Cambiar botoncitos por iconos para pulsar
+     - Debajo de cada barra poner iconos para corregir
+
+Intervalos y acordes
+ -
+
+
+Acordes - ERNESTO
+ - Suene acorde que llevas seleccionado hasta nivel 3
+
+
+
 Indice prueba del examen
 Popup ritmos cambiar titulo
 
 
+Atributo superado de los niveles creo que sobra, ya lo tenemos en puntuación.
 
+INFO DE ACORDES SE VE MAL
+
+CREAR ACORDE PODER HACER SONAR EL ELEGIDO
+
+Los puntos que hemos hablado:
+
+- Tildes: más, Diviértete
+
+- Ritmos demasiado lentos (así es casi más difícil)
+- En adivinar ritmo, no he llegado a niveles altos, pero se podría forzar a hacer con timeout
+- En imitar ritmo: Se podrían poner iconos, y mejor sería que se arrastrasen. También tendríamos que poder editar el ritmo que se está haciendo
+- En ambos hay que hacerlo mucho más fácil en los primeros niveles. Al principio mejor con corcheas y con más velocidad. Como está se parece mas a hacer 4 compases y resulta más difícil.
+
+- Adivinar acordes hay que darle una vuelta, al menos a los primeros niveles para que uno lo pueda hacer con buen oido, sin saberse la teoría.
+  Se podría por ejemplo escuchar el acorde que se está formando, al menos al dar a una nota que suene esa junto con las ya elegidas o algo así, y posiblemente limitando el número de opciones.
+
+- Adivinar intervalos me ha fallado -> No suenan
+
+- Insisto en que vería mejor que el modo por defecto es el Mix, y que si uno quiere ir libremente a cualquier nivel de cualquier clase de pregunta también se puede poner de juego libre (estilo New Super Mario)
