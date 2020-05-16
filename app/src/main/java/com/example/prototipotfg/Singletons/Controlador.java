@@ -18,6 +18,10 @@ public final class Controlador {
     private ArrayList<Octavas> octavas = new ArrayList<>();
     private ArrayList<Intervalos> intervalos = new ArrayList<>();
 
+    private int compas;
+    private int num;
+    private int longitud;
+
 
     private ArrayList<Acordes> acordes = new ArrayList<>();
     private int rango;
@@ -74,6 +78,10 @@ public final class Controlador {
         this.dificultad = dificultad;
     }
 
+    public int getLongitud(){ return longitud;}
+
+    public int getCompas(){ return compas;}
+
     public void estableceDificultad() {
 
         /*
@@ -97,6 +105,8 @@ public final class Controlador {
             case Crear_Acordes:
                 estableceDificultadCrearAcorde();
                 break;
+            case Halla_Ritmo:
+                estableceDificultadDibujarRitmos();
             default:
                 break;
         }
@@ -377,6 +387,51 @@ public final class Controlador {
                 this.rango = 12;
                 break;
             default:
+                break;
+        }
+    }
+
+    private void estableceDificultadDibujarRitmos() {
+        switch (this.nivel) {
+            case 1:
+                compas = 4;
+                num = 2;
+                longitud = compas*num;
+                break;
+            case 2:
+                compas = 4;
+                num = 2;
+                longitud = compas*num;
+                break;
+            case 3:
+                compas = 4;
+                num = 2;
+                longitud = compas*num;
+                break;
+            case 4:
+                compas = 4;
+                num = 4;
+                longitud = compas*num;
+                break;
+            case 5:
+                compas = 4;
+                num = 4;
+                longitud = compas*num;
+                break;
+            case 6:
+                compas = 4;
+                num = 4;
+                longitud = compas*num;
+                break;
+            case 7:
+                compas = 4;
+                num = 4;
+                longitud = compas*num;
+                break;
+            case 8:
+                compas = 4;
+                num = 4;
+                longitud = compas*num;
                 break;
         }
     }

@@ -89,6 +89,7 @@ public class SeleccionNivelDibujarRitmo extends Activity {
     public void nivel_seleccionado(View view) {
         Intent i = new Intent(this, DibujarRitmo.class);
         Controlador.getInstance().setNivel(view.getId());
+        Controlador.getInstance().estableceDificultad();
         startActivity(i);
     }
 

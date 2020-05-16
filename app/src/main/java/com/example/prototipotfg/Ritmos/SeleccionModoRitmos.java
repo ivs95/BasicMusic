@@ -11,6 +11,7 @@ import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Ritmos.Crear.SeleccionNivelImitarRitmo;
 import com.example.prototipotfg.Ritmos.Hallar.SeleccionNivelDibujarRitmo;
+import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class SeleccionModoRitmos extends Activity {
@@ -37,12 +38,14 @@ public class SeleccionModoRitmos extends Activity {
         Intent i;
         switch (view.getId()){
             case R.id.buttonHalla:
+                Controlador.getInstance().setModo_juego(ModoJuego.Halla_Ritmo);
                 i = new Intent(this, SeleccionNivelDibujarRitmo.class);
                 i.putExtra("modoRitmo", "hallar");
                 startActivity(i);
                 break;
 
             case R.id.buttonRealizar:
+                Controlador.getInstance().setModo_juego(ModoJuego.Realiza_Ritmo);
                 i = new Intent(this, SeleccionNivelImitarRitmo.class);
                 i.putExtra("modoRitmo", "realizar");
                 startActivity(i);

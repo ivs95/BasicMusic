@@ -37,26 +37,21 @@ public class DibujarRitmo extends Activity {
 
     protected Bundle savedInstanceState;
 
-    protected int compas = 4;
-    private int num = 4;
-    protected int longitud = compas*num;
-
     protected ArrayList<Integer> ritmos1;
     protected ArrayList<Integer> ritmos2;
     protected ArrayList<Integer> ritmos3;
     protected ArrayList<Integer> ritmos4;
-    private final int COMPASES = 16;
     protected int pausa;
 
 
-    protected View[] botonesSeleccionados1 = new View[COMPASES];
-    protected View[] botonesSeleccionados2 = new View[COMPASES];
-    protected View[] botonesSeleccionados3 = new View[COMPASES];
-    protected View[] botonesSeleccionados4 = new View[COMPASES];
-    protected View[] botonesResultado1 = new View[COMPASES];
-    protected View[] botonesResultado2 = new View[COMPASES];
-    protected View[] botonesResultado3 = new View[COMPASES];
-    protected View[] botonesResultado4 = new View[COMPASES];
+    protected View[] botonesSeleccionados1 = new View[Controlador.getInstance().getLongitud()];
+    protected View[] botonesSeleccionados2 = new View[Controlador.getInstance().getLongitud()];
+    protected View[] botonesSeleccionados3 = new View[Controlador.getInstance().getLongitud()];
+    protected View[] botonesSeleccionados4 = new View[Controlador.getInstance().getLongitud()];
+    protected View[] botonesResultado1 = new View[Controlador.getInstance().getLongitud()];
+    protected View[] botonesResultado2 = new View[Controlador.getInstance().getLongitud()];
+    protected View[] botonesResultado3 = new View[Controlador.getInstance().getLongitud()];
+    protected View[] botonesResultado4 = new View[Controlador.getInstance().getLongitud()];
 
     protected boolean comprobado = false;
     protected boolean running;
@@ -71,10 +66,6 @@ public class DibujarRitmo extends Activity {
     private boolean pause = false;
     protected int nivel;
     private int indice = 0;
-    private int tutorial = 1;
-
-    private PopupWindow popupWindow;
-    private View popupView;
 
 
     protected ArrayList<Integer> resultado1 = new ArrayList<>();
@@ -129,7 +120,7 @@ public class DibujarRitmo extends Activity {
                     if (!play) {
                         indice++;
                     }
-                    if (indice >= COMPASES)
+                    if (indice >= Controlador.getInstance().getLongitud())
                         indice = 0;
                 }
             }
@@ -180,28 +171,28 @@ public class DibujarRitmo extends Activity {
         this.savedInstanceState = savedInstanceState;
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Halla_Ritmo);
         Random random = new Random();
-        ritmos1 = new ArrayList<>(longitud);
-        ritmos2 = new ArrayList<>(longitud);
-        ritmos3 = new ArrayList<>(longitud);
-        ritmos4 = new ArrayList<>(longitud);
+        ritmos1 = new ArrayList<>(Controlador.getInstance().getLongitud());
+        ritmos2 = new ArrayList<>(Controlador.getInstance().getLongitud());
+        ritmos3 = new ArrayList<>(Controlador.getInstance().getLongitud());
+        ritmos4 = new ArrayList<>(Controlador.getInstance().getLongitud());
         for(int x = 0; x<4; x++) {
             int nota = random.nextInt(3) + 1;
             //Llenar aleatorios
 
-            for (int j = getSonidoPorSimbolo(nota).getSilencio(); j <= longitud; j += getSonidoPorSimbolo(nota).getSilencio()) {
+            for (int j = getSonidoPorSimbolo(nota).getSilencio(); j <= Controlador.getInstance().getLongitud(); j += getSonidoPorSimbolo(nota).getSilencio()) {
                 if(x == 0)
-                    agregaFigura(nota, ritmos1, compas);
+                    agregaFigura(nota, ritmos1, Controlador.getInstance().getCompas());
                 else if (x==1)
-                    agregaFigura(nota, ritmos2, compas);
+                    agregaFigura(nota, ritmos2, Controlador.getInstance().getCompas());
                 else if (x==2)
-                    agregaFigura(nota, ritmos3, compas);
+                    agregaFigura(nota, ritmos3, Controlador.getInstance().getCompas());
                 else if (x==3)
-                    agregaFigura(nota, ritmos4, compas);
-                if (longitud - j >= 4)
+                    agregaFigura(nota, ritmos4, Controlador.getInstance().getCompas());
+                if (Controlador.getInstance().getLongitud() - j >= 4)
                     nota = random.nextInt(4);
-                else if (longitud - j == 3 || longitud - j == 2)
+                else if (Controlador.getInstance().getLongitud() - j == 3 || Controlador.getInstance().getLongitud() - j == 2)
                     nota = random.nextInt(2) + 2;
-                else if (longitud - j == 1)
+                else if (Controlador.getInstance().getLongitud() - j == 1)
                     nota = 3;
             }
 
@@ -456,7 +447,7 @@ public class DibujarRitmo extends Activity {
                             botonesResultado4[(int) button.getId() - 1]=button;
                         }
                     }
-                } else if (i >= 8 && i < 12) {
+                } if (i >= 8 && i < 12) {
                     button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
