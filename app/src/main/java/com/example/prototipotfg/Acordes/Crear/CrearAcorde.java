@@ -152,10 +152,25 @@ public class CrearAcorde extends Activity {
                 botonesSeleccionados[(int) b.getId() - 1] = b;
                 respuestas.add(b.getText().toString());
                 num_marcadas++;
+
+                if((Controlador.getInstance().getDificultad().equals(Dificultad.Facil) || Controlador.getInstance().getDificultad().equals(Dificultad.Medio)) && Controlador.getInstance().getNivel() != 5) {
+                    ArrayList<Pair<Notas, Octavas>> respuestasReproducir = new ArrayList<>();
+                    Pair<Notas, Octavas> par = new Pair<>(this.notaInicio, this.octavaInicio);
+                    respuestasReproducir.add(par);
+                    for (int i = 0; i < respuestas.size(); i++) {
+
+                        par = new Pair<>(Notas.devuelveNotaPorNombre(respuestas.get(i).substring(0, respuestas.get(i).length() - 1)), Octavas.devuelveOctavaPorNumero(Integer.parseInt(respuestas.get(i).substring(respuestas.get(i).length() - 1))));
+                        respuestasReproducir.add(par);
+                    }
+
+                    ArrayList<AssetFileDescriptor> afd = preparaAssets(respuestasReproducir);
+                    Reproductor.getInstance().reproducirAcorde(afd);
+                    cierraAssets(afd);
+                }
             }
 
 
-            if (!Controlador.getInstance().getDificultad().equals(Dificultad.Dificil)) {
+            if (Controlador.getInstance().getNivel() == 5) {
                 String ruta = devuelveRutaBoton(b.getText().toString());
                 reproduceNota(ruta);
             }
@@ -163,6 +178,7 @@ public class CrearAcorde extends Activity {
         }
         if(num_marcadas >= 2 && !comprobada)
             ponerComprobarVisible(1);
+
     }
 
     private String devuelveRutaBoton(String text) {
@@ -351,10 +367,6 @@ public class CrearAcorde extends Activity {
         i.putExtra("nivel", Controlador.getInstance().getNivel());
         startActivity(i);
 
-    }
-
-    public void volverAtrasCrearAcordes(View view) {
-        finish();
     }
 
     public void continuar(View view){
