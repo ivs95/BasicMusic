@@ -6,7 +6,7 @@
     <string name="txtBotonTeoria">Teoría</string>
     <string name="txtBtnSalir">Cerrar Sesión</string>
     <string name="tituloJugar">Modos de juego</string>
-    <string name="txtBotonExamen">Modo Mix</string>
+    <string name="txtBotonExamen">Mix</string>
     <string name="txtBotonRepetir">Imitar</string>
     <string name="txtBotonAdivinar">Adivinar</string>
     <string name="txtBotonRitmos">Ritmos</string>

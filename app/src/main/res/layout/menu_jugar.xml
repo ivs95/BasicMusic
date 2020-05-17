@@ -36,19 +36,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.55">
 
-        <Button
-            android:id="@+id/botonAdivinar"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="modo_adivinar"
-            android:text="@string/txtBotonAdivinar" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/botonRitmos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="modo_ritmos"
-            android:text="@string/txtBotonRitmos" />
+            <Button
+                android:id="@+id/botonExamen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:onClick="examen"
+                android:text="@string/txtBotonExamen" />
+
+            <ImageView
+                android:id="@+id/imageViewExamen"
+                android:layout_width="59dp"
+                android:layout_height="50dp"
+                android:layout_weight="1" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,18 +82,20 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/botonExamen"
+                android:id="@+id/botonAdivinar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="9"
-                android:onClick="examen"
-                android:text="@string/txtBotonExamen" />
+                android:layout_weight="1"
+                android:onClick="modo_adivinar"
+                android:text="@string/txtBotonAdivinar"/>
 
-            <ImageView
-                android:id="@+id/imageViewExamen"
-                android:layout_width="59dp"
-                android:layout_height="50dp"
-                android:layout_weight="1" />
+            <Button
+                android:id="@+id/botonRitmos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="modo_ritmos"
+                android:text="@string/txtBotonRitmos" />
         </LinearLayout>
 
     </LinearLayout>
