@@ -79,11 +79,11 @@ public final class Controlador {
         this.dificultad = dificultad;
     }
 
-    public int getLongitud(){ return longitud;}
+    public int getLongitud(){ return this.longitud;}
 
-    public int getCompas(){ return compas;}
+    public int getCompas(){ return this.compas;}
 
-    public int getPausa(){return pausa;}
+    public int getPausa(){return this.pausa;}
 
     public void estableceDificultad() {
 
@@ -110,8 +110,10 @@ public final class Controlador {
                 break;
             case Halla_Ritmo:
                 estableceDificultadDibujarRitmos();
+                break;
             case Realiza_Ritmo:
                 estableceDificultadImitarRitmos();
+                break;
             default:
                 break;
         }
@@ -402,43 +404,43 @@ public final class Controlador {
                 compas = 4;
                 num = 2;
                 longitud = compas*num;
-                pausa = 250;
+                pausa = 325;
                 break;
             case 2:
                 compas = 4;
                 num = 2;
                 longitud = compas*num;
-                pausa = 250;
+                pausa = 275;
                 break;
             case 3:
                 compas = 4;
                 num = 2;
                 longitud = compas*num;
-                pausa = 250;
+                pausa = 325;
                 break;
             case 4:
                 compas = 4;
                 num = 4;
                 longitud = compas*num;
-                pausa = 250;
+                pausa = 275;
                 break;
             case 5:
                 compas = 4;
                 num = 4;
                 longitud = compas*num;
-                pausa = 250;
+                pausa = 325;
                 break;
             case 6:
                 compas = 4;
                 num = 4;
                 longitud = compas*num;
-                pausa = 250;
+                pausa = 275;
                 break;
             case 7:
                 compas = 4;
                 num = 4;
                 longitud = compas*num;
-                pausa = 250;
+                pausa = 325;
                 break;
             case 8:
                 compas = 4;
@@ -455,7 +457,7 @@ public final class Controlador {
                 compas = 4;
                 num = 2;
                 longitud = compas*num;
-                pausa = 250;
+                pausa = 275;
                 break;
             case 2:
                 compas = 4;
@@ -467,7 +469,7 @@ public final class Controlador {
                 compas = 4;
                 num = 2;
                 longitud = compas*num;
-                pausa = 250;
+                pausa = 275;
                 break;
             case 4:
                 compas = 4;
@@ -479,7 +481,7 @@ public final class Controlador {
                 compas = 4;
                 num = 4;
                 longitud = compas*num;
-                pausa = 250;
+                pausa = 275;
                 break;
             case 6:
                 compas = 4;
@@ -491,13 +493,13 @@ public final class Controlador {
                 compas = 4;
                 num = 4;
                 longitud = compas*num;
-                pausa = 250;
+                pausa = 275;
                 break;
             case 8:
                 compas = 4;
                 num = 4;
                 longitud = compas*num;
-                pausa = 250;
+                pausa = 225;
                 break;
         }
     }
