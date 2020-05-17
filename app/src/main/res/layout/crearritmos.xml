@@ -70,10 +70,12 @@
 
     <LinearLayout
         android:id="@+id/linearLayout6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="15dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearOpcionesComprobar"
@@ -85,51 +87,61 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/botonPalmada"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Palmada"
-                android:onClick="registraPalmada"/>
+                android:backgroundTint="@color/md_blue_700"
+                android:onClick="registraPalmada"
+                android:scaleType="fitXY"
+                android:src="@drawable/palmas"
+  />
 
-            <Button
+            <ImageButton
                 android:id="@+id/botonCaja"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="registraCaja"
                 android:text="Caja"
-                android:visibility="gone"
-                android:onClick="registraCaja"/>
+                android:backgroundTint="@color/md_blue_700"
+                android:scaleType="fitXY"
+                android:src="@drawable/caja"
+                />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/botonTambor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Tambor"
-                android:visibility="gone"
+                android:backgroundTint="@color/md_blue_700"
+                android:onClick="registraTambor"
+                android:scaleType="fitXY"
+                android:src="@drawable/tambor"
+                android:text="Tambor" />
 
-                android:onClick="registraTambor"/>
-
-            <Button
+            <ImageButton
                 android:id="@+id/botonPlatillo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:backgroundTint="@color/md_blue_700"
+                android:src="@drawable/platillos"
+                android:onClick="registraPlatillo"
                 android:text="Platillo"
-                android:visibility="gone"
-
-                android:onClick="registraPlatillo"/>
+                android:scaleType="fitXY"/>
         </LinearLayout>
     </LinearLayout>
 

@@ -137,7 +137,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="10dp"
-            android:text="El numerador indica el número de pulsos en los que se divide cada compás\n\nEl denominador indica la duración de cada pulso \n(1 = redonda, 2 = blanca, 4 = negra...) \n\nEjemplo: un compás 4/4 indica que cada compás se divide en 4 y cada división dura una negra"
+            android:gravity="center"
+            android:text="El numerador indica el número de pulsos en los que se divide cada compás\n\nEl denominador indica la duración de cada pulso \n(1 = redonda, 2 = blanca, 4 = negra\n8 = corchea, 16 = semicorchea) \n\nEjemplo: un compás 4/4 indica que cada compás se divide en 4 y cada división dura una negra"
             android:textColor="@color/md_blue_700"
             android:visibility="gone" />
     </LinearLayout>

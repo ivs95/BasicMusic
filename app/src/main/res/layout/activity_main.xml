@@ -45,15 +45,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
-        android:divider="@drawable/divisor_botones_menu"
         android:orientation="vertical"
-        android:showDividers="middle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7">
+        app:layout_constraintVertical_bias="0.6">
 
         <Button
             android:id="@+id/botonJuego"
@@ -62,35 +60,57 @@
             android:onClick="ejecutar_jugar"
             android:text="@string/txtBotonJuego" />
 
-        <Button
-            android:id="@+id/botonEstadisticas"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="mostrarEstadisticas"
-            android:text="Estadísticas" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/botonTutoriales"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="tutoriales"
-            android:text="Tutoriales" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/botonTeoria"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="teoriaMusical"
-            android:text="@string/txtBotonTeoria"
-            android:visibility="visible" />
+                <Button
+                    android:id="@+id/botonTutoriales"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="tutoriales"
+                    android:layout_weight="1"
+                    android:text="Tutoriales" />
+                <Button
+                    android:id="@+id/botonTeoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="teoriaMusical"
+                    android:layout_weight="1"
+                    android:text="@string/txtBotonTeoria"
+                    android:visibility="visible" />
 
-        <Button
-            android:id="@+id/botonInfo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="informacion"
-            android:text="@string/txtBotonInfo"
-            android:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/botonInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="informacion"
+                    android:layout_weight="1"
+                    android:text="@string/txtBotonInfo"
+                    android:visibility="visible" />
+                <Button
+                    android:id="@+id/botonEstadisticas"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="mostrarEstadisticas"
+                    android:layout_weight="1"
+                    android:text="Estadísticas" />
+
+            </LinearLayout>
+        </LinearLayout>
 
         <Button
             android:id="@+id/botonSalir"

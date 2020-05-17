@@ -296,13 +296,10 @@ public class ImitarRitmo extends Activity {
         mediaPlayer1.init1(this);
         if(nivel>2) {
             mediaPlayer2.init2(this);
-            findViewById(R.id.botonCaja).setVisibility(View.VISIBLE);
             if(nivel>4) {
                 mediaPlayer3.init3(this);
-                findViewById(R.id.botonTambor).setVisibility(View.VISIBLE);
                 if(nivel > 6) {
                     mediaPlayer4.init4(this);
-                    findViewById(R.id.botonPlatillo).setVisibility(View.VISIBLE);
                 }
             }
         }
@@ -342,12 +339,10 @@ public class ImitarRitmo extends Activity {
     }
 
     public void play(@NotNull final View view){
+        habilitaBotones(Controlador.getInstance().getNivel());
         findViewById(R.id.botonStopRitmo).setEnabled(true);            findViewById(R.id.botonStopRitmo).setAlpha(1);
         findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);     findViewById(R.id.botonPlayRitmoPropio).setAlpha(.5f);
-        findViewById(R.id.botonPalmada).setEnabled(true);              findViewById(R.id.botonPalmada).setAlpha(1);
-        findViewById(R.id.botonCaja).setEnabled(true);                 findViewById(R.id.botonCaja).setAlpha(1);
-        findViewById(R.id.botonTambor).setEnabled(true);               findViewById(R.id.botonTambor).setAlpha(1);
-        findViewById(R.id.botonPlatillo).setEnabled(true);             findViewById(R.id.botonPlatillo).setAlpha(1);
+
         if(running == true){
             if (indice == 0)
                 indice = botonesGuia.size() - 1;
@@ -362,6 +357,24 @@ public class ImitarRitmo extends Activity {
             if(pause == false)
                 indice = 0;
             pause = false;
+        }
+    }
+
+    private void habilitaBotones(int nivel) {
+        findViewById(R.id.botonPalmada).setEnabled(true);
+        findViewById(R.id.botonPalmada).setAlpha(1);
+        if (nivel > 2){
+            findViewById(R.id.botonCaja).setEnabled(true);
+            findViewById(R.id.botonCaja).setAlpha(1);
+            if (nivel > 4) {
+                findViewById(R.id.botonTambor).setEnabled(true);
+                findViewById(R.id.botonTambor).setAlpha(1);
+
+                if (nivel > 6) {
+                    findViewById(R.id.botonPlatillo).setEnabled(true);
+                    findViewById(R.id.botonPlatillo).setAlpha(1);
+                }
+            }
         }
     }
 
@@ -423,7 +436,10 @@ public class ImitarRitmo extends Activity {
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).ordinal();
         TextView resultado = findViewById(R.id.textRitmosResultado2);
-
+        findViewById(R.id.botonPalmada).setVisibility(View.GONE);
+        findViewById(R.id.botonCaja).setVisibility(View.GONE);
+        findViewById(R.id.botonTambor).setVisibility(View.GONE);
+        findViewById(R.id.botonPlatillo).setVisibility(View.GONE);
         para(view);
         NivelAdivinar nivel = null;
         comprobado = true;
