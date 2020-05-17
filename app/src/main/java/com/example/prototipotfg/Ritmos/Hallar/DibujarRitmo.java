@@ -41,7 +41,6 @@ public class DibujarRitmo extends Activity {
     protected ArrayList<Integer> ritmos2;
     protected ArrayList<Integer> ritmos3;
     protected ArrayList<Integer> ritmos4;
-    protected int pausa;
 
 
     protected View[] botonesSeleccionados1 = new View[Controlador.getInstance().getLongitud()];
@@ -113,7 +112,7 @@ public class DibujarRitmo extends Activity {
                         }
                     }
                     try {
-                        Thread.sleep(pausa);
+                        Thread.sleep(Controlador.getInstance().getPausa());
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -201,15 +200,6 @@ public class DibujarRitmo extends Activity {
         nivel = Controlador.getInstance().getNivel();
 
 
-        if (nivel % 2 == 0){
-            pausa = 325;
-        }
-        else{
-            pausa = 600;
-        }
-
-        if(nivel == 8) pausa = 275;
-
         running = false;
         hilo_ritmos.start();
         hiloPlayer1.start();
@@ -247,7 +237,7 @@ public class DibujarRitmo extends Activity {
         for(int j=0; j<(nivel+1)/2; j++) {
             //Creamos los botones en bucle
             final int finalJ = j;
-            for (int i = 0; i < 16; i++) {
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
                 final Button button = new Button(this);
                 button.setId(i + 1);
                 //Asignamos propiedades de layout al boton
@@ -698,7 +688,7 @@ public class DibujarRitmo extends Activity {
         int aciertos=0;
         if(resultado1.equals(ritmos1)){
             //Correct
-            for(int i = 0; i<16; i++){
+            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
                 if(botonesSeleccionados1[i]!=null){
                     botonesSeleccionados1[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
@@ -707,7 +697,7 @@ public class DibujarRitmo extends Activity {
         }
         else{
             //Incorrect
-            for(int i = 0; i<16; i++){
+            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
                 if(botonesSeleccionados1[i]!=null){
                     botonesSeleccionados1[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
@@ -718,7 +708,7 @@ public class DibujarRitmo extends Activity {
         }
         if(resultado2.equals(ritmos2)){
             //Correct
-            for(int i = 0; i<16; i++){
+            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
                 if(botonesSeleccionados2[i]!=null){
                     botonesSeleccionados2[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
@@ -727,7 +717,7 @@ public class DibujarRitmo extends Activity {
         }
         else{
             //Incorrect
-            for(int i = 0; i<16; i++){
+            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
                 if(botonesSeleccionados2[i]!=null){
                     botonesSeleccionados2[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
@@ -738,7 +728,7 @@ public class DibujarRitmo extends Activity {
         }
         if(resultado3.equals(ritmos3)){
             //Correct
-            for(int i = 0; i<16; i++){
+            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
                 if(botonesSeleccionados3[i]!=null){
                     botonesSeleccionados3[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
@@ -747,7 +737,7 @@ public class DibujarRitmo extends Activity {
         }
         else{
             //Incorrect
-            for(int i = 0; i<16; i++){
+            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
                 if(botonesSeleccionados3[i]!=null){
                     botonesSeleccionados3[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
@@ -757,7 +747,7 @@ public class DibujarRitmo extends Activity {
         }
         if(resultado4.equals(ritmos4)){
             //Correct
-            for(int i = 0; i<16; i++){
+            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
                 if(botonesSeleccionados4[i]!=null){
                     botonesSeleccionados4[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
@@ -767,7 +757,7 @@ public class DibujarRitmo extends Activity {
         }
         else{
             //Incorrect
-            for(int i = 0; i<16; i++){
+            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
                 if(botonesSeleccionados4[i]!=null){
                     botonesSeleccionados4[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }

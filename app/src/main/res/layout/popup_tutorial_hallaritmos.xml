@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="¿Como se juega a Dibujar ritmos?\nEl ritmo consiste en un solo compás 4/4\nCada hilera de botones representa el sonido de un instrumento.\nCada botón representa una semicorchea dentro de ese compás.\nMarca los botones correspondientes a cada golpe de percusión de cada instrumento"
+                android:text="¿Como se juega a Dibujar ritmos?\nEl ritmo consiste en un solo compás 4/4\nCada hilera de botones representa el sonido de un instrumento.\nCada botón representa una semicorchea(1/16) dentro de ese compás.\nMarca los botones correspondientes a cada golpe de percusión de cada instrumento"
                 android:textColor="@color/md_blue_900"
                 android:textSize="18sp"
                 android:visibility="invisible"

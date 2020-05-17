@@ -32,10 +32,6 @@ import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSim
 
 public class ImitarRitmo extends Activity {
 
-    protected int compas = 4;
-    private int num = 4;
-    protected int longitud = compas*num;
-
     protected ArrayList<Integer> ritmos1  = new ArrayList<>();
     protected ArrayList<Integer> ritmos2 = new ArrayList<>();
     protected ArrayList<Integer> ritmos3 = new ArrayList<>();
@@ -48,10 +44,8 @@ public class ImitarRitmo extends Activity {
     protected ArrayList<Button> botonesGuia = new ArrayList<>();
 
     private boolean comprobado = false;
-    protected final int COMPASES = 16;
     private int indiceSonidoActual;
     private int indicePintar;
-    protected int pausa;
     protected boolean running;
     private boolean runningPropio;
     private boolean go1 = false;
@@ -133,7 +127,7 @@ public class ImitarRitmo extends Activity {
                         indice++;
                     }
                     try {
-                        Thread.sleep(pausa);
+                        Thread.sleep(Controlador.getInstance().getPausa());
 
 
                     } catch (InterruptedException e) {
@@ -141,7 +135,7 @@ public class ImitarRitmo extends Activity {
                     }
 
 
-                    if (indice >= COMPASES)
+                    if (indice >= Controlador.getInstance().getLongitud())
                         indice = 0;
                 }
             }
@@ -183,7 +177,7 @@ public class ImitarRitmo extends Activity {
                         }
                     }
                     try {
-                        Thread.sleep(pausa);
+                        Thread.sleep(Controlador.getInstance().getPausa());
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -191,7 +185,7 @@ public class ImitarRitmo extends Activity {
                     if (!play && runningPropio) {
                         indice++;
                     }
-                    if (indice == COMPASES) {
+                    if (indice == Controlador.getInstance().getLongitud()) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -273,32 +267,24 @@ public class ImitarRitmo extends Activity {
             int nota = random.nextInt(3) + 1;
             //Llenar aleatorios
 
-            for (int j = getSonidoPorSimbolo(nota).getSilencio(); j <= longitud; j += getSonidoPorSimbolo(nota).getSilencio()) {
+            for (int j = getSonidoPorSimbolo(nota).getSilencio(); j <= Controlador.getInstance().getLongitud(); j += getSonidoPorSimbolo(nota).getSilencio()) {
                 if(x == 0)
-                    agregaFigura(nota, ritmos1, compas);
+                    agregaFigura(nota, ritmos1, Controlador.getInstance().getCompas());
                 else if (x==1)
-                    agregaFigura(nota, ritmos2, compas);
+                    agregaFigura(nota, ritmos2, Controlador.getInstance().getCompas());
                 else if (x==2)
-                    agregaFigura(nota, ritmos3, compas);
+                    agregaFigura(nota, ritmos3, Controlador.getInstance().getCompas());
                 else if (x==3)
-                    agregaFigura(nota, ritmos4, compas);
-                if (longitud - j >= 4)
+                    agregaFigura(nota, ritmos4, Controlador.getInstance().getCompas());
+                if (Controlador.getInstance().getLongitud() - j >= 4)
                     nota = random.nextInt(4);
-                else if (longitud - j == 3 || longitud - j == 2)
+                else if (Controlador.getInstance().getLongitud() - j == 3 || Controlador.getInstance().getLongitud() - j == 2)
                     nota = random.nextInt(2) + 2;
-                else if (longitud - j == 1)
+                else if (Controlador.getInstance().getLongitud() - j == 1)
                     nota = 3;
             }
 
         }
-
-        if (nivel % 2 == 1){
-            pausa = 700;
-        }
-        else
-            pausa = 475;
-
-        if(nivel == 8) pausa = 400;
 
         LinearLayout guia = findViewById(R.id.linearRitmo);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,1 );
@@ -320,7 +306,7 @@ public class ImitarRitmo extends Activity {
                 }
             }
         }
-        for (int i = 0; i < COMPASES; i++){
+        for (int i = 0; i < Controlador.getInstance().getLongitud(); i++){
             resultado1.add(0);
             resultado2.add(0);
             resultado3.add(0);
@@ -400,7 +386,7 @@ public class ImitarRitmo extends Activity {
     }
 
     public void borrarRitmoPropio(View view){
-        for (int i = 0; i < COMPASES; i++){
+        for (int i = 0; i < Controlador.getInstance().getLongitud(); i++){
             resultado1.set(i,0);
             resultado2.set(i,0);
             resultado3.set(i,0);

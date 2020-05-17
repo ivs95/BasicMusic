@@ -21,6 +21,7 @@ public final class Controlador {
     private int compas;
     private int num;
     private int longitud;
+    private int pausa;
 
 
     private ArrayList<Acordes> acordes = new ArrayList<>();
@@ -82,6 +83,8 @@ public final class Controlador {
 
     public int getCompas(){ return compas;}
 
+    public int getPausa(){return pausa;}
+
     public void estableceDificultad() {
 
         /*
@@ -107,6 +110,8 @@ public final class Controlador {
                 break;
             case Halla_Ritmo:
                 estableceDificultadDibujarRitmos();
+            case Realiza_Ritmo:
+                estableceDificultadImitarRitmos();
             default:
                 break;
         }
@@ -397,41 +402,102 @@ public final class Controlador {
                 compas = 4;
                 num = 2;
                 longitud = compas*num;
+                pausa = 250;
                 break;
             case 2:
                 compas = 4;
                 num = 2;
                 longitud = compas*num;
+                pausa = 250;
                 break;
             case 3:
                 compas = 4;
                 num = 2;
                 longitud = compas*num;
+                pausa = 250;
                 break;
             case 4:
                 compas = 4;
                 num = 4;
                 longitud = compas*num;
+                pausa = 250;
                 break;
             case 5:
                 compas = 4;
                 num = 4;
                 longitud = compas*num;
+                pausa = 250;
                 break;
             case 6:
                 compas = 4;
                 num = 4;
                 longitud = compas*num;
+                pausa = 250;
                 break;
             case 7:
                 compas = 4;
                 num = 4;
                 longitud = compas*num;
+                pausa = 250;
                 break;
             case 8:
                 compas = 4;
                 num = 4;
                 longitud = compas*num;
+                pausa = 250;
+                break;
+        }
+    }
+
+    private void estableceDificultadImitarRitmos() {
+        switch (this.nivel) {
+            case 1:
+                compas = 4;
+                num = 2;
+                longitud = compas*num;
+                pausa = 250;
+                break;
+            case 2:
+                compas = 4;
+                num = 2;
+                longitud = compas*num;
+                pausa = 250;
+                break;
+            case 3:
+                compas = 4;
+                num = 2;
+                longitud = compas*num;
+                pausa = 250;
+                break;
+            case 4:
+                compas = 4;
+                num = 4;
+                longitud = compas*num;
+                pausa = 250;
+                break;
+            case 5:
+                compas = 4;
+                num = 4;
+                longitud = compas*num;
+                pausa = 250;
+                break;
+            case 6:
+                compas = 4;
+                num = 4;
+                longitud = compas*num;
+                pausa = 250;
+                break;
+            case 7:
+                compas = 4;
+                num = 4;
+                longitud = compas*num;
+                pausa = 250;
+                break;
+            case 8:
+                compas = 4;
+                num = 4;
+                longitud = compas*num;
+                pausa = 250;
                 break;
         }
     }
