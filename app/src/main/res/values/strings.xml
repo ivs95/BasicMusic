@@ -66,7 +66,7 @@
 
     <string name="cambiosNv2HallaRitmos">Aumenta la velocidad del ritmo</string>
     <string name="cambiosNv3HallaRitmos">Desbloqueada la &lt;b>CAJA&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
-    <string name="cambiosNv4HallaRitmos">Aumenta la velocidad del ritmo</string>
+    <string name="cambiosNv4HallaRitmos">Ahora el compas será 4/4&lt;br /&gt; &lt;br /&gt;Aumenta la velocidad del ritmo</string>
     <string name="cambiosNv5HallaRitmos">Desbloqueado el &lt;b>TAMBOR&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
     <string name="cambiosNv6HallaRitmos">Aumenta la velocidad del ritmo</string>
     <string name="cambiosNv7HallaRitmos">Desbloqueados los &lt;b>PLATILLOS&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
@@ -83,7 +83,7 @@
 
     <string name="cambiosNv2ImitarAudio">Ahora tendrás &lt;b>DOS&lt;/b> intentos &lt;br /&gt; &lt;br /&gt; Ahora podrás reproducir la nota solo &lt;b>TRES&lt;/b> veces</string>
     <string name="cambiosNv3ImitarAudio">Ahora tendrás que entonar la nota de una octava concreta</string>
-    <string name="cambiosNv4ImitarAudio">Ahora el compas será 4/4&lt;br /&gt; &lt;br /&gt;Nuevas octavas desbloqueadas</string>
+    <string name="cambiosNv4ImitarAudio">Nuevas octavas desbloqueadas</string>
     <string name="cambiosNv5ImitarAudio">Ahora podrás reproducir la nota &lt;b>DOS&lt;/b> veces</string>
     <string name="cambiosNv6ImitarAudio">Nuevos octavas desbloqueadas</string>
     <string name="cambiosNv7ImitarAudio">Ahora tendrás &lt;b>UN SOLO&lt;/b> intento</string>
