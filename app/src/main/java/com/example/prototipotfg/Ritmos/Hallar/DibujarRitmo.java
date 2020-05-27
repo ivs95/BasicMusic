@@ -236,6 +236,7 @@ public class DibujarRitmo extends Activity {
         for(int j=0; j<(nivel+1)/2; j++) {
             //Creamos los botones en bucle
             final int finalJ = j;
+            System.out.println(Controlador.getInstance().getPausa());
             for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
                 final Button button = new Button(this);
                 button.setId(i + 1);
