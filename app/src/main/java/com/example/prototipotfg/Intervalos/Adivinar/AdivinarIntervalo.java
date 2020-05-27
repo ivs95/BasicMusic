@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.prototipotfg.BBDD.NivelAdivinar;
+import com.example.prototipotfg.BBDD.Modelo.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static java.lang.Thread.sleep;
 

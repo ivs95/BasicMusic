@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.prototipotfg.BBDD.NivelAdivinar;
+import com.example.prototipotfg.BBDD.Modelo.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.Examen.Ejercicios.ImitarRitmoExamen;

@@ -15,7 +15,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.Acordes.TutorialAdivinarAcordes;
-import com.example.prototipotfg.BBDD.NivelAdivinar;
+import com.example.prototipotfg.BBDD.Modelo.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Acordes;
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
@@ -23,7 +23,6 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
-import com.example.prototipotfg.Examen.Ejercicios.AdivinarAcordeExamen;
 import com.example.prototipotfg.Examen.Ejercicios.CrearAcordeExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;

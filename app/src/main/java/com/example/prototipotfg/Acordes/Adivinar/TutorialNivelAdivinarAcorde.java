@@ -43,7 +43,7 @@ public class TutorialNivelAdivinarAcorde extends Activity{
             notas[i] = Notas.values()[i].getNombre();
         }
 
-        Spinner s = (Spinner) findViewById(R.id.spinnerOctavas);
+        Spinner s = findViewById(R.id.spinnerOctavas);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, octavas);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         s.setAdapter(adapter);

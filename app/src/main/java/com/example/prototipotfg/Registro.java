@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.prototipotfg.BBDD.Usuario;
+import com.example.prototipotfg.BBDD.Modelo.Usuario;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class Registro extends AppCompatActivity {

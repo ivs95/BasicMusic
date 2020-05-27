@@ -6,6 +6,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.prototipotfg.BBDD.Modelo.Puntuacion;
+
 @Dao
 public interface DAOPuntuacion {
     @Query("SELECT * FROM puntuacion WHERE correoUsuario = :correo AND modoJuego = :modo")

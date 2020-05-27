@@ -3,10 +3,10 @@ package com.example.prototipotfg.Singletons;
 import android.content.Context;
 
 import com.example.prototipotfg.BBDD.AppDatabase;
-import com.example.prototipotfg.BBDD.NivelAdivinar;
-import com.example.prototipotfg.BBDD.NivelImitar;
-import com.example.prototipotfg.BBDD.Puntuacion;
-import com.example.prototipotfg.BBDD.Usuario;
+import com.example.prototipotfg.BBDD.Modelo.NivelAdivinar;
+import com.example.prototipotfg.BBDD.Modelo.NivelImitar;
+import com.example.prototipotfg.BBDD.Modelo.Puntuacion;
+import com.example.prototipotfg.BBDD.Modelo.Usuario;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.Enumerados.RangosVocales;

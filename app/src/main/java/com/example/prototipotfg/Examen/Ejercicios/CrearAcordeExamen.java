@@ -8,30 +8,21 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.Acordes.Crear.CrearAcorde;
-import com.example.prototipotfg.BBDD.NivelAdivinar;
-import com.example.prototipotfg.Enumerados.Acordes;
-import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
-import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.Examen.ControladorExamen;
-import com.example.prototipotfg.Examen.SeleccionNivelExamen;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
-import com.example.prototipotfg.Singletons.FactoriaNotas;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 import com.example.prototipotfg.Singletons.Reproductor;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 
 import static android.view.View.GONE;
 

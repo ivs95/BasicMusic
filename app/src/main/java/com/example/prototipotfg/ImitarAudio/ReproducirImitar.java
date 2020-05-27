@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.prototipotfg.AudioDispatcherFactory1;
-import com.example.prototipotfg.BBDD.NivelImitar;
+import com.example.prototipotfg.BBDD.Modelo.NivelImitar;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
