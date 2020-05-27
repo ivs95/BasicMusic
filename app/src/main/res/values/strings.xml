@@ -66,7 +66,7 @@
 
     <string name="cambiosNv2HallaRitmos">Aumenta la velocidad del ritmo</string>
     <string name="cambiosNv3HallaRitmos">Desbloqueada la &lt;b>CAJA&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
-    <string name="cambiosNv4HallaRitmos">Aumenta la velocidad del ritmo</string>
+    <string name="cambiosNv4HallaRitmos">Ahora el compas será 4/4&lt;br /&gt; &lt;br /&gt;Aumenta la velocidad del ritmo</string>
     <string name="cambiosNv5HallaRitmos">Desbloqueado el &lt;b>TAMBOR&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
     <string name="cambiosNv6HallaRitmos">Aumenta la velocidad del ritmo</string>
     <string name="cambiosNv7HallaRitmos">Desbloqueados los &lt;b>PLATILLOS&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
@@ -74,7 +74,7 @@
 
     <string name="cambiosNv2RealizaRitmos">Aumenta la velocidad del ritmo</string>
     <string name="cambiosNv3RealizaRitmos">Desbloqueada la &lt;b>CAJA&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
-    <string name="cambiosNv4RealizaRitmos">Aumenta la velocidad del ritmo</string>
+    <string name="cambiosNv4RealizaRitmos">Ahora el compas será 4/4&lt;br /&gt; &lt;br /&gt;Aumenta la velocidad del ritmo</string>
     <string name="cambiosNv5RealizaRitmos">Desbloqueado el &lt;b>TAMBOR&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
     <string name="cambiosNv6RealizaRitmos">Aumenta la velocidad del ritmo</string>
     <string name="cambiosNv7RealizaRitmos">Desbloqueados los &lt;b>PLATILLOS&lt;/b> &lt;br /&gt; &lt;br /&gt; Disminuye la velocidad del ritmo</string>
