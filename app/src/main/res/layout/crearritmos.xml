@@ -74,22 +74,19 @@
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toTopOf="@id/linearOpcionesComprobar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearRitmo"
-        app:layout_constraintVertical_bias="0.05">
+        app:layout_constraintVertical_bias="0.02">
 
         <LinearLayout
             android:id="@+id/linearSolucion1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
             android:orientation="vertical"></LinearLayout>
 
         <LinearLayout

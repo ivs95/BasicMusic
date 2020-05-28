@@ -598,7 +598,7 @@ public class ImitarRitmo extends Activity {
     private void mostrarSolucion() {
         int numeroBotones = Controlador.getInstance().getLongitud();
 
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 120, 1);
         lp.setMargins(5, 0, 5, 10);
         LinearLayout linear = findViewById(R.id.linearSoluciones);
         for (int i = 0; i < numeroBotones; i++)
