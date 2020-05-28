@@ -451,6 +451,7 @@ public class ImitarRitmo extends Activity {
         findViewById(R.id.botonPlatillo).setEnabled(false);
         findViewById(R.id.botonPlatillo).setAlpha(.5f);
         running = false;
+        runningPropio=false;
         if (indice == 0)
             indice = botonesGuia.size();
         botonesGuia.get(indice - 1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
@@ -525,6 +526,7 @@ public class ImitarRitmo extends Activity {
                 if (!fallo && (resultado1.get(indice) == 1 || resultado2.get(indice) == 1 || resultado3.get(indice) == 1 || resultado4.get(indice) == 1)) {
                     b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
+
                 indice++;
             }
             if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
@@ -598,7 +600,7 @@ public class ImitarRitmo extends Activity {
     private void mostrarSolucion() {
         int numeroBotones = Controlador.getInstance().getLongitud();
 
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 120, 1);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100, 1);
         lp.setMargins(5, 0, 5, 10);
         LinearLayout linear = findViewById(R.id.linearSoluciones);
         for (int i = 0; i < numeroBotones; i++)
