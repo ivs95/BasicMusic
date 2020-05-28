@@ -3,6 +3,7 @@ package com.example.prototipotfg.Examen;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -69,12 +70,12 @@ public class ResultadoExamen extends Activity {
 
     private void setTextoAprobado(boolean aprobado, int numAciertos, int aciertosAprobar, TextView lbl) {
         if (aprobado) {
-            lbl.setText(lbl.getText() + "\n¡Felicidades, has aprobado!\nTu total de aciertos: " +
+            lbl.setText("¡Felicidades, has aprobado!\n\nTu total de aciertos: " +
                     numAciertos + "\nAciertos requeridos: " + aciertosAprobar);
             lbl.setTextColor(ContextCompat.getColor(this, R.color.md_green_500));
         }
         else {
-            lbl.setText(lbl.getText() + "\nInténtalo de nuevo\nTu total de aciertos: " +
+            lbl.setText("Inténtalo de nuevo\n\nTu total de aciertos: " +
                     numAciertos + "\nAciertos requeridos: " + aciertosAprobar);
             lbl.setTextColor(ContextCompat.getColor(this, R.color.md_red_500));
         }
@@ -113,5 +114,9 @@ public class ResultadoExamen extends Activity {
                 lbl.setText(lbl.getText() + "Aciertos " +aciertos.toString() + " Fallos " + fallos);
                 break;
         }
+    }
+
+    public void continuarResultado(View view){
+        finish();
     }
 }
