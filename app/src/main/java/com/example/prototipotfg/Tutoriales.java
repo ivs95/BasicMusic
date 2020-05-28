@@ -1,6 +1,7 @@
 package com.example.prototipotfg;
 
 import android.app.Activity;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+
+import androidx.core.content.ContextCompat;
 
 
 public class Tutoriales extends Activity {
@@ -364,6 +367,12 @@ public class Tutoriales extends Activity {
             view.findViewById(R.id.popup_crearitmos_mensaje4).setVisibility(View.INVISIBLE);
             view.findViewById(R.id.popup_crearitmos_mensaje2).setVisibility(View.INVISIBLE);
             view.findViewById(R.id.popup_crearitmos_linearOpcionesComprobar).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_crearitmos_linearSoluciones).setVisibility(View.INVISIBLE);
+
+            view.findViewById((R.id.popup_crearitmos_button2)).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_blue_300)));
+            view.findViewById((R.id.popup_crearitmos_button6)).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_blue_300)));
+            view.findViewById((R.id.popup_crearitmos_button10)).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_blue_300)));
+            view.findViewById((R.id.popup_crearitmos_button12)).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_purple_800)));
 
             view.findViewById(R.id.popup_crearitmos_mensaje3).setVisibility(View.VISIBLE);
             view.findViewById(R.id.popup_crearitmos_linearLayout6).setVisibility(View.VISIBLE);
@@ -373,6 +382,12 @@ public class Tutoriales extends Activity {
         else if(tutorial == 4){
             view.findViewById(R.id.popup_crearitmos_mensaje3).setVisibility(View.INVISIBLE);
             view.findViewById(R.id.popup_crearitmos_linearLayout6).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.popup_crearitmos_linearSoluciones).setVisibility(View.VISIBLE);
+
+            view.findViewById((R.id.popup_crearitmos_button2)).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+            view.findViewById((R.id.popup_crearitmos_button6)).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+            view.findViewById((R.id.popup_crearitmos_button10)).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+            view.findViewById((R.id.popup_crearitmos_button12)).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
 
             view.findViewById(R.id.popup_crearitmos_mensaje4).setVisibility(View.VISIBLE);
             view.findViewById(R.id.popup_crearitmos_linearOpcionesComprobar).setVisibility(View.VISIBLE);
