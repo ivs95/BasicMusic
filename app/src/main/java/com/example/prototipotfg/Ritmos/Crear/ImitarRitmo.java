@@ -1,5 +1,6 @@
 package com.example.prototipotfg.Ritmos.Crear;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -34,7 +35,8 @@ import static com.example.prototipotfg.Enumerados.DuracionSonido.getSonidoPorSim
 
 public class ImitarRitmo extends Activity {
 
-    protected ArrayList<Integer> ritmos1  = new ArrayList<>();
+    private static final int MAX_BOTONES = 16;
+    protected ArrayList<Integer> ritmos1 = new ArrayList<>();
     protected ArrayList<Integer> ritmos2 = new ArrayList<>();
     protected ArrayList<Integer> ritmos3 = new ArrayList<>();
     protected ArrayList<Integer> ritmos4 = new ArrayList<>();
@@ -62,16 +64,16 @@ public class ImitarRitmo extends Activity {
     protected int nivel;
     private int indice = 0;
 
-    protected MediaPlayerRitmos mediaPlayer1 =  new MediaPlayerRitmos();
-    protected MediaPlayerRitmos mediaPlayer2 =  new MediaPlayerRitmos();
-    protected MediaPlayerRitmos mediaPlayer3 =  new MediaPlayerRitmos();
-    protected MediaPlayerRitmos mediaPlayer4 =  new MediaPlayerRitmos();
-    protected MediaPlayerRitmos mediaPlayerMetronomo =  new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer1 = new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer2 = new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer3 = new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer4 = new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayerMetronomo = new MediaPlayerRitmos();
 
-    protected Thread hilo_ritmos = new Thread(new Runnable(){
+    protected Thread hilo_ritmos = new Thread(new Runnable() {
         @Override
         public void run() {
-            while(!end) {
+            while (!end) {
                 while (running) {
 
                     play = false;
@@ -105,7 +107,7 @@ public class ImitarRitmo extends Activity {
                     if ((!play && running)) {
 
                         indiceSonidoActual = indice;
-                        indicePintar=indice;
+                        indicePintar = indice;
                         if (!comprobado) {
                             if (indicePintar == 0) {
                                 runOnUiThread(new Runnable() {
@@ -115,13 +117,12 @@ public class ImitarRitmo extends Activity {
                                         botonesGuia.get(botonesGuia.size() - 1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
                                     }
                                 });
-                            }
-                            else {
+                            } else {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         botonesGuia.get(indicePintar).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_purple_600)));
-                                        botonesGuia.get(indicePintar-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
+                                        botonesGuia.get(indicePintar - 1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
                                     }
                                 });
                             }
@@ -145,10 +146,10 @@ public class ImitarRitmo extends Activity {
 
     });
 
-    protected Thread hilo_ritmos_propio = new Thread(new Runnable(){
+    protected Thread hilo_ritmos_propio = new Thread(new Runnable() {
         @Override
         public void run() {
-            while(!end) {
+            while (!end) {
                 while (runningPropio) {
                     play = false;
                     if (metronomo.get(indice) == 1) {
@@ -191,12 +192,18 @@ public class ImitarRitmo extends Activity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                findViewById(R.id.botonPlayRitmo).setEnabled(true);     findViewById(R.id.botonPlayRitmo).setAlpha(1);
-                                findViewById(R.id.botonStopRitmo).setEnabled(false);     findViewById(R.id.botonStopRitmo).setAlpha(.5f);
-                                findViewById(R.id.botonPalmada).setEnabled(false);       findViewById(R.id.botonPalmada).setAlpha(.5f);
-                                findViewById(R.id.botonCaja).setEnabled(false);          findViewById(R.id.botonCaja).setAlpha(.5f);
-                                findViewById(R.id.botonTambor).setEnabled(false);        findViewById(R.id.botonTambor).setAlpha(.5f);
-                                findViewById(R.id.botonPlatillo).setEnabled(false);      findViewById(R.id.botonPlatillo).setAlpha(.5f);
+                                findViewById(R.id.botonPlayRitmo).setEnabled(true);
+                                findViewById(R.id.botonPlayRitmo).setAlpha(1);
+                                findViewById(R.id.botonStopRitmo).setEnabled(false);
+                                findViewById(R.id.botonStopRitmo).setAlpha(.5f);
+                                findViewById(R.id.botonPalmada).setEnabled(false);
+                                findViewById(R.id.botonPalmada).setAlpha(.5f);
+                                findViewById(R.id.botonCaja).setEnabled(false);
+                                findViewById(R.id.botonCaja).setAlpha(.5f);
+                                findViewById(R.id.botonTambor).setEnabled(false);
+                                findViewById(R.id.botonTambor).setAlpha(.5f);
+                                findViewById(R.id.botonPlatillo).setEnabled(false);
+                                findViewById(R.id.botonPlatillo).setAlpha(.5f);
                             }
                         });
                         indice = 0;
@@ -214,7 +221,7 @@ public class ImitarRitmo extends Activity {
         @Override
         public void run() {
             try {
-                while(!end) {
+                while (!end) {
                     while (running || runningPropio) {
 
                         if (go1) {
@@ -247,7 +254,7 @@ public class ImitarRitmo extends Activity {
     });
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
 
         final Context contexto = this;
 
@@ -259,24 +266,23 @@ public class ImitarRitmo extends Activity {
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Realiza_Ritmo);
 
 
-
         Random random = new Random();
         ritmos1 = new ArrayList<>();
         ritmos2 = new ArrayList<>();
         ritmos3 = new ArrayList<>();
         ritmos4 = new ArrayList<>();
-        for(int x = 0; x<4; x++) {
+        for (int x = 0; x < 4; x++) {
             int nota = random.nextInt(3) + 1;
             //Llenar aleatorios
 
             for (int j = getSonidoPorSimbolo(nota).getSilencio(); j <= Controlador.getInstance().getLongitud(); j += getSonidoPorSimbolo(nota).getSilencio()) {
-                if(x == 0)
+                if (x == 0)
                     agregaFigura(nota, ritmos1, Controlador.getInstance().getCompas());
-                else if (x==1)
+                else if (x == 1 && nivel > 2)
                     agregaFigura(nota, ritmos2, Controlador.getInstance().getCompas());
-                else if (x==2)
+                else if (x == 2 && nivel > 4)
                     agregaFigura(nota, ritmos3, Controlador.getInstance().getCompas());
-                else if (x==3)
+                else if (x == 3 && nivel > 6)
                     agregaFigura(nota, ritmos4, Controlador.getInstance().getCompas());
                 if (Controlador.getInstance().getLongitud() - j >= 4)
                     nota = random.nextInt(4);
@@ -289,32 +295,31 @@ public class ImitarRitmo extends Activity {
         }
 
         LinearLayout guia = findViewById(R.id.linearRitmo);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,1 );
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
         running = false;
         hilo_ritmos.start();
         hiloPlayer1.start();
         hilo_ritmos_propio.start();
         mediaPlayerMetronomo.initMetronomo(this);
         mediaPlayer1.init1(this);
-        if(nivel>2) {
+        if (nivel > 2) {
             mediaPlayer2.init2(this);
-            if(nivel>4) {
+            if (nivel > 4) {
                 mediaPlayer3.init3(this);
-                if(nivel > 6) {
+                if (nivel > 6) {
                     mediaPlayer4.init4(this);
                 }
             }
         }
-        for (int i = 0; i < Controlador.getInstance().getLongitud(); i++){
+        for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
             resultado1.add(0);
             resultado2.add(0);
             resultado3.add(0);
             resultado4.add(0);
-            if(i%4==0){
-                metronomo.add(i,1);
-            }
-            else{
-                metronomo.add(i,0);
+            if (i % 4 == 0) {
+                metronomo.add(i, 1);
+            } else {
+                metronomo.add(i, 0);
             }
 
             Button button = new Button(this);
@@ -324,11 +329,16 @@ public class ImitarRitmo extends Activity {
             guia.addView(button);
             botonesGuia.add(button);
         }
-        findViewById(R.id.botonStopRitmo).setEnabled(false);   findViewById(R.id.botonStopRitmo).setAlpha(.5f);
-        findViewById(R.id.botonPalmada).setEnabled(false);   findViewById(R.id.botonPalmada).setAlpha(.5f);
-        findViewById(R.id.botonCaja).setEnabled(false);   findViewById(R.id.botonCaja).setAlpha(.5f);
-        findViewById(R.id.botonTambor).setEnabled(false);   findViewById(R.id.botonTambor).setAlpha(.5f);
-        findViewById(R.id.botonPlatillo).setEnabled(false);   findViewById(R.id.botonPlatillo).setAlpha(.5f);
+        findViewById(R.id.botonStopRitmo).setEnabled(false);
+        findViewById(R.id.botonStopRitmo).setAlpha(.5f);
+        findViewById(R.id.botonPalmada).setEnabled(false);
+        findViewById(R.id.botonPalmada).setAlpha(.5f);
+        findViewById(R.id.botonCaja).setEnabled(false);
+        findViewById(R.id.botonCaja).setAlpha(.5f);
+        findViewById(R.id.botonTambor).setEnabled(false);
+        findViewById(R.id.botonTambor).setAlpha(.5f);
+        findViewById(R.id.botonPlatillo).setEnabled(false);
+        findViewById(R.id.botonPlatillo).setAlpha(.5f);
 
         if (!(this instanceof ImitarRitmoExamen)) {
             GestorBBDD.getInstance().modoRealizado(ModoJuego.Realiza_Ritmo);
@@ -340,12 +350,14 @@ public class ImitarRitmo extends Activity {
 
     }
 
-    public void play(@NotNull final View view){
+    public void play(@NotNull final View view) {
         habilitaBotones(Controlador.getInstance().getNivel());
-        findViewById(R.id.botonStopRitmo).setEnabled(true);            findViewById(R.id.botonStopRitmo).setAlpha(1);
-        findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);     findViewById(R.id.botonPlayRitmoPropio).setAlpha(.5f);
+        findViewById(R.id.botonStopRitmo).setEnabled(true);
+        findViewById(R.id.botonStopRitmo).setAlpha(1);
+        findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);
+        findViewById(R.id.botonPlayRitmoPropio).setAlpha(.5f);
 
-        if(running == true){
+        if (running == true) {
             if (indice == 0)
                 indice = botonesGuia.size() - 1;
             else
@@ -353,10 +365,9 @@ public class ImitarRitmo extends Activity {
             botonesGuia.get(indice).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
             indice = 0;
             play = true;
-        }
-        else {
+        } else {
             running = true;
-            if(pause == false)
+            if (pause == false)
                 indice = 0;
             pause = false;
         }
@@ -365,7 +376,7 @@ public class ImitarRitmo extends Activity {
     private void habilitaBotones(int nivel) {
         findViewById(R.id.botonPalmada).setEnabled(true);
         findViewById(R.id.botonPalmada).setAlpha(1);
-        if (nivel > 2){
+        if (nivel > 2) {
             findViewById(R.id.botonCaja).setEnabled(true);
             findViewById(R.id.botonCaja).setAlpha(1);
             if (nivel > 4) {
@@ -381,60 +392,71 @@ public class ImitarRitmo extends Activity {
     }
 
 
-    public void reproducirRitmoPropio(View view){
-        findViewById(R.id.botonPlayRitmo).setEnabled(false);    findViewById(R.id.botonPlayRitmo).setAlpha(.5f);
-        findViewById(R.id.botonPalmada).setEnabled(false);      findViewById(R.id.botonPalmada).setAlpha(.5f);
-        findViewById(R.id.botonStopRitmo).setEnabled(false);    findViewById(R.id.botonStopRitmo).setAlpha(.5f);
-        findViewById(R.id.botonCaja).setEnabled(false);         findViewById(R.id.botonCaja).setAlpha(.5f);
-        findViewById(R.id.botonTambor).setEnabled(false);       findViewById(R.id.botonTambor).setAlpha(.5f);
-        findViewById(R.id.botonPlatillo).setEnabled(false);     findViewById(R.id.botonPlatillo).setAlpha(.5f);
-        if(runningPropio == true){
+    public void reproducirRitmoPropio(View view) {
+        findViewById(R.id.botonPlayRitmo).setEnabled(false);
+        findViewById(R.id.botonPlayRitmo).setAlpha(.5f);
+        findViewById(R.id.botonPalmada).setEnabled(false);
+        findViewById(R.id.botonPalmada).setAlpha(.5f);
+        findViewById(R.id.botonStopRitmo).setEnabled(false);
+        findViewById(R.id.botonStopRitmo).setAlpha(.5f);
+        findViewById(R.id.botonCaja).setEnabled(false);
+        findViewById(R.id.botonCaja).setAlpha(.5f);
+        findViewById(R.id.botonTambor).setEnabled(false);
+        findViewById(R.id.botonTambor).setAlpha(.5f);
+        findViewById(R.id.botonPlatillo).setEnabled(false);
+        findViewById(R.id.botonPlatillo).setAlpha(.5f);
+        if (runningPropio == true) {
             indice = 0;
             play = true;
-        }
-        else {
+        } else {
             runningPropio = true;
-            if(pause == false)
+            if (pause == false)
                 indice = 0;
             pause = false;
         }
     }
 
-    public void borrarRitmoPropio(View view){
-        for (int i = 0; i < Controlador.getInstance().getLongitud(); i++){
-            resultado1.set(i,0);
-            resultado2.set(i,0);
-            resultado3.set(i,0);
-            resultado4.set(i,0);
+    public void borrarRitmoPropio(View view) {
+        for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+            resultado1.set(i, 0);
+            resultado2.set(i, 0);
+            resultado3.set(i, 0);
+            resultado4.set(i, 0);
         }
     }
 
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
         running = false;
         runningPropio = false;
         if (indice == 0)
             indice = botonesGuia.size() - 1;
 
-        botonesGuia.get(indice-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
+        botonesGuia.get(indice - 1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
     }
 
 
-    public void para(@NotNull final View view){
-        findViewById(R.id.botonStopRitmo).setEnabled(false);       findViewById(R.id.botonStopRitmo).setAlpha(.5f);
-        findViewById(R.id.botonPlayRitmoPropio).setEnabled(true);  findViewById(R.id.botonPlayRitmoPropio).setAlpha(1);
-        findViewById(R.id.botonPalmada).setEnabled(false);         findViewById(R.id.botonPalmada).setAlpha(.5f);
-        findViewById(R.id.botonCaja).setEnabled(false);            findViewById(R.id.botonCaja).setAlpha(.5f);
-        findViewById(R.id.botonTambor).setEnabled(false);          findViewById(R.id.botonTambor).setAlpha(.5f);
-        findViewById(R.id.botonPlatillo).setEnabled(false);        findViewById(R.id.botonPlatillo).setAlpha(.5f);
+    public void para(@NotNull final View view) {
+        findViewById(R.id.botonStopRitmo).setEnabled(false);
+        findViewById(R.id.botonStopRitmo).setAlpha(.5f);
+        findViewById(R.id.botonPlayRitmoPropio).setEnabled(true);
+        findViewById(R.id.botonPlayRitmoPropio).setAlpha(1);
+        findViewById(R.id.botonPalmada).setEnabled(false);
+        findViewById(R.id.botonPalmada).setAlpha(.5f);
+        findViewById(R.id.botonCaja).setEnabled(false);
+        findViewById(R.id.botonCaja).setAlpha(.5f);
+        findViewById(R.id.botonTambor).setEnabled(false);
+        findViewById(R.id.botonTambor).setAlpha(.5f);
+        findViewById(R.id.botonPlatillo).setEnabled(false);
+        findViewById(R.id.botonPlatillo).setAlpha(.5f);
         running = false;
         if (indice == 0)
             indice = botonesGuia.size();
-        botonesGuia.get(indice-1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
+        botonesGuia.get(indice - 1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
     }
 
-    public void comprobar(View view){
+    public void comprobar(View view) {
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).ordinal();
         TextView resultado = findViewById(R.id.textRitmosResultado2);
@@ -450,7 +472,7 @@ public class ImitarRitmo extends Activity {
         NivelAdivinar nivel = null;
         comprobado = true;
         int indice = 0;
-        if (compruebaArrays()){
+        if (compruebaArrays()) {
             resultado.setText("¡Bien hecho!\n");
             resultado.setTextSize(22);
             resultado.setVisibility(View.VISIBLE);
@@ -467,32 +489,31 @@ public class ImitarRitmo extends Activity {
                 if (indice == 16)
                     indice = 0;
             }
-            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
+            if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), true);
-            nivel  = new NivelAdivinar(ModoJuego.Realiza_Ritmo.getNombre(), this.nivel,true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
+            nivel = new NivelAdivinar(ModoJuego.Realiza_Ritmo.getNombre(), this.nivel, true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
 
-        }
-        else{
+        } else {
             resultado.setText("Prueba otra vez\n");
             resultado.setTextSize(22);
             resultado.setVisibility(View.VISIBLE);
             resultado.setTextColor(getResources().getColor(R.color.md_red_500));
             int i = 0;
             for (Button b : this.botonesGuia) {
-                if(ritmos1.get(indice) == 1) {
-                    if(resultado1.get(indice)==1)
+                if (ritmos1.get(indice) == 1) {
+                    if (resultado1.get(indice) == 1)
                         b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                     else
                         b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
                 indice++;
-                if(indice == 16)
+                if (indice == 16)
                     indice = 0;
                 i++;
             }
-            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
+            if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), false);
-            nivel  = new NivelAdivinar(ModoJuego.Realiza_Ritmo.getNombre(), this.nivel,false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
+            nivel = new NivelAdivinar(ModoJuego.Realiza_Ritmo.getNombre(), this.nivel, false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
 
         }
 
@@ -500,27 +521,35 @@ public class ImitarRitmo extends Activity {
 
         view.setEnabled(false);
         view.setAlpha(0.5f);
-        findViewById(R.id.botonPlayRitmo).setEnabled(false);        findViewById(R.id.botonPlayRitmo).setAlpha(.5f);
-        findViewById(R.id.botonStopRitmo).setEnabled(false);        findViewById(R.id.botonStopRitmo).setAlpha(.5f);
-        findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);  findViewById(R.id.botonPlayRitmoPropio).setAlpha(.5f);
-        findViewById(R.id.botonResetRitmo).setEnabled(false);       findViewById(R.id.botonResetRitmo).setAlpha(.5f);
-        findViewById(R.id.botonPalmada).setEnabled(false);          findViewById(R.id.botonPalmada).setAlpha(.5f);
-        findViewById(R.id.botonCaja).setEnabled(false);             findViewById(R.id.botonCaja).setAlpha(.5f);
-        findViewById(R.id.botonTambor).setEnabled(false);           findViewById(R.id.botonTambor).setAlpha(.5f);
-        findViewById(R.id.botonPlatillo).setEnabled(false);         findViewById(R.id.botonPlatillo).setAlpha(.5f);
+        findViewById(R.id.botonPlayRitmo).setEnabled(false);
+        findViewById(R.id.botonPlayRitmo).setAlpha(.5f);
+        findViewById(R.id.botonStopRitmo).setEnabled(false);
+        findViewById(R.id.botonStopRitmo).setAlpha(.5f);
+        findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);
+        findViewById(R.id.botonPlayRitmoPropio).setAlpha(.5f);
+        findViewById(R.id.botonResetRitmo).setEnabled(false);
+        findViewById(R.id.botonResetRitmo).setAlpha(.5f);
+        findViewById(R.id.botonPalmada).setEnabled(false);
+        findViewById(R.id.botonPalmada).setAlpha(.5f);
+        findViewById(R.id.botonCaja).setEnabled(false);
+        findViewById(R.id.botonCaja).setAlpha(.5f);
+        findViewById(R.id.botonTambor).setEnabled(false);
+        findViewById(R.id.botonTambor).setAlpha(.5f);
+        findViewById(R.id.botonPlatillo).setEnabled(false);
+        findViewById(R.id.botonPlatillo).setAlpha(.5f);
 
         int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel();
         int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).ordinal();
-        if(rangoActual != rangoNuevo) {
+        if (rangoActual != rangoNuevo) {
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Realiza_Ritmo.toString());
         }
 
-        if(nivelActual != nivelNuevo){
+        if (nivelActual != nivelNuevo) {
             Controlador.getInstance().setNivel(nivelNuevo);
             LayoutInflater inflater = (LayoutInflater)
-                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Realiza_Ritmo, findViewById(android.R.id.content).getRootView(), true, nivelActual, nivelNuevo);
 
@@ -534,84 +563,127 @@ public class ImitarRitmo extends Activity {
 
     private void mostrarSolucion() {
         int numeroBotones = Controlador.getInstance().getLongitud();
-        LinearLayout linear = findViewById(R.id.linearSolucion1);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,1 );
-        /*
-        for(int i = 0; i< numeroBotones; i++){
 
-        }
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1);
+        lp.setMargins(5, 0, 5, 10);
+        LinearLayout linear = findViewById(R.id.linearSoluciones);
+        for (int i = 0; i < numeroBotones; i++)
+            addBotonesSolucion((LinearLayout) linear.getChildAt(i), lp, i);
+        for (int i = numeroBotones; i < MAX_BOTONES; i++)
+            linear.getChildAt(i).setVisibility(View.GONE);
+    }
 
-         */
-        lp.setMargins(0,0,0,20);
+    private void addBotonesSolucion(LinearLayout linear, LinearLayout.LayoutParams lp, int i) {
+        int contador = 0;
+        ImageView imagen = setImagen(R.drawable.palmas, lp);
+        contador = pintaFigura(ritmos1.get(i), resultado1.get(i), imagen, linear, lp, contador);
+        imagen = setImagen(R.drawable.caja, lp);
+        if (nivel > 2)
+            contador = pintaFigura(ritmos2.get(i), resultado2.get(i), imagen, linear, lp, contador);
+        else
+            pintaFiguraInvisible(imagen, linear, contador);
+        imagen = setImagen(R.drawable.tambor, lp);
+        if (nivel > 4)
+            contador = pintaFigura(ritmos3.get(i), resultado3.get(i), imagen, linear, lp, contador);
+        else
+            pintaFiguraInvisible(imagen, linear, contador);
+        imagen = setImagen(R.drawable.platillos, lp);
+        if (nivel > 6)
+            pintaFigura(ritmos4.get(i), resultado4.get(i), imagen, linear, lp, contador);
+
+        else
+            pintaFiguraInvisible(imagen, linear, contador);
+    }
+
+    private ImageView setImagen(int icono, LinearLayout.LayoutParams lp) {
         ImageView imagen = new ImageView(this);
         imagen.setLayoutParams(lp);
-        imagen.setImageResource(R.drawable.palmas);
-        imagen.setBackgroundColor(Color.BLUE);
+        imagen.setImageResource(icono);
         imagen.setScaleType(ImageView.ScaleType.FIT_XY);
-        linear.addView(imagen,0);
-        imagen = new ImageView(this);
-        imagen.setLayoutParams(lp);
-        imagen.setImageResource(R.drawable.palmas);
-        imagen.setBackgroundColor(Color.BLUE);
-        imagen.setScaleType(ImageView.ScaleType.FIT_XY);
-        linear.addView(imagen,0);
-        imagen = new ImageView(this);
-        imagen.setLayoutParams(lp);
-        imagen.setImageResource(R.drawable.palmas);
-        imagen.setBackgroundColor(Color.BLUE);
-        imagen.setScaleType(ImageView.ScaleType.FIT_XY);
+        return imagen;
+    }
+
+    private void pintaFiguraInvisible(ImageView imagen, LinearLayout linear, int contador) {
         imagen.setVisibility(View.INVISIBLE);
-        linear.addView(imagen,0);
-        imagen = new ImageView(this);
-        imagen.setLayoutParams(lp);
-        imagen.setImageResource(R.drawable.palmas);
+        linear.addView(imagen, contador);
+    }
+
+
+    @SuppressLint("NewApi")
+    private int pintaFigura(Integer solucion, Integer respuesta, ImageView imagen, LinearLayout linear, LinearLayout.LayoutParams lp, int indice) {
         imagen.setBackgroundColor(Color.BLUE);
-        imagen.setScaleType(ImageView.ScaleType.FIT_XY);
-        linear.addView(imagen,0);
+        if (solucion == 1) {
+            //Hay palmada
+            if (respuesta == 1) {
+                //Ha acertado, pintar en verde
+                linear.addView(imagen, indice);
+                imagen.setBackgroundColor(this.getColor(R.color.md_green_500));
+                return indice + 1;
+            } else {
+                //No lo ha puesto, pintar en azul
+                imagen.setBackgroundColor(this.getColor(R.color.md_blue_500));
+                linear.addView(imagen, indice);
+                return indice + 1;
+            }
+        } else {
+            //No hay palmada
+            if (respuesta == 1) {
+                //Falla, pintar en rojo
+                imagen.setBackgroundColor(this.getColor(R.color.md_red_500));
+                linear.addView(imagen, indice);
+                return indice + 1;
+            }
+            imagen.setVisibility(View.INVISIBLE);
+            linear.addView(imagen, indice);
+            return indice;
 
+        }
     }
 
-    public void agregaFigura(int figura, ArrayList<Integer> ritmos, int compas){
-        if(figura == 1){
+    public void agregaFigura(int figura, ArrayList<Integer> ritmos, int compas) {
+        if (figura == 1) {
             ritmos.add(1);
-            for(int i = 0; i<(getSonidoPorSimbolo(figura).getSilencio()-1); i++){
+            for (int i = 0; i < (getSonidoPorSimbolo(figura).getSilencio() - 1); i++) {
                 ritmos.add(0);
             }
         }
-        if(figura == 2){
+        if (figura == 2) {
             ritmos.add(1);
-            for(int i = 0; i<(getSonidoPorSimbolo(figura).getSilencio()-1); i++){
+            for (int i = 0; i < (getSonidoPorSimbolo(figura).getSilencio() - 1); i++) {
                 ritmos.add(0);
             }
         }
 
-        if (figura == 3){
+        if (figura == 3) {
             ritmos.add(1);
-            for(int i = 0; i<(getSonidoPorSimbolo(figura).getSilencio()-1); i++){
+            for (int i = 0; i < (getSonidoPorSimbolo(figura).getSilencio() - 1); i++) {
                 ritmos.add(0);
             }
         }
-        if(figura==0){
-            for(int i = 0; i<(getSonidoPorSimbolo(figura).getSilencio()); i++){
+        if (figura == 0) {
+            for (int i = 0; i < (getSonidoPorSimbolo(figura).getSilencio()); i++) {
                 ritmos.add(0);
             }
         }
 
 
     }
-
 
 
     protected boolean compruebaArrays() {
-        switch (nivel){
+        switch (nivel) {
             case 1:
-            case 2: return (ritmos1.equals(resultado1));
+            case 2:
+                return (ritmos1.equals(resultado1));
             case 3:
-            case 4: return (ritmos1.equals(resultado1) && ritmos2.equals(resultado2));
+            case 4:
+                return (ritmos1.equals(resultado1) && ritmos2.equals(resultado2));
             case 5:
-            case 6: return (ritmos1.equals(resultado1) && ritmos2.equals(resultado2) && ritmos3.equals(resultado3));
+            case 6:
+                return (ritmos1.equals(resultado1) && ritmos2.equals(resultado2) && ritmos3.equals(resultado3));
             case 7:
-            case 8: return (ritmos1.equals(resultado1) && ritmos2.equals(resultado2) && ritmos3.equals(resultado3) && ritmos4.equals(resultado4));
+            case 8:
+                return (ritmos1.equals(resultado1) && ritmos2.equals(resultado2) && ritmos3.equals(resultado3) && ritmos4.equals(resultado4));
         }
         return false;
     }
@@ -625,38 +697,39 @@ public class ImitarRitmo extends Activity {
         hiloPlayer1.interrupt();
         mediaPlayer1.stop();
         mediaPlayerMetronomo.stopMetronomo();
-        if(nivel > 2) {
+        if (nivel > 2) {
             mediaPlayer2.stop();
-            if(nivel > 4) {
+            if (nivel > 4) {
                 mediaPlayer3.stop();
             }
-            if(nivel > 6)
+            if (nivel > 6)
                 mediaPlayer4.stop();
         }
 
     }
 
-    public void registraPalmada(View view){
-        resultado1.set(indiceSonidoActual,1);
+    public void registraPalmada(View view) {
+        resultado1.set(indiceSonidoActual, 1);
     }
 
-    public void registraCaja(View view){
-        resultado2.set(indiceSonidoActual,1);
+    public void registraCaja(View view) {
+        resultado2.set(indiceSonidoActual, 1);
     }
 
-    public void registraTambor(View view){
-        resultado3.set(indiceSonidoActual,1);
+    public void registraTambor(View view) {
+        resultado3.set(indiceSonidoActual, 1);
     }
 
 
-    public void registraPlatillo(View view){
-        resultado4.set(indiceSonidoActual,1);
+    public void registraPlatillo(View view) {
+        resultado4.set(indiceSonidoActual, 1);
     }
 
-    public void continuar(View view){
+    public void continuar(View view) {
         finish();
-        overridePendingTransition( 0, 0);
+        overridePendingTransition(0, 0);
         startActivity(getIntent());
-        overridePendingTransition( 0, 0);    }
+        overridePendingTransition(0, 0);
+    }
 
 }
