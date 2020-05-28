@@ -479,16 +479,22 @@ public class ImitarRitmo extends Activity {
             resultado.setTextColor(getResources().getColor(R.color.md_green_500));
 
             for (Button b : this.botonesGuia) {
-                if (ritmos1.get(indice) == 1) {
-                    if (resultado1.get(indice) == 1)
+                if (ritmos1.get(indice) == 1)
+                    b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                else if (this.nivel > 2) {
+                    if (ritmos2.get(indice) == 1) {
                         b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
-                    else
-                        b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                    } else if (this.nivel > 4) {
+                        if (ritmos3.get(indice) == 1)
+                            b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                        else if (this.nivel > 6 && ritmos4.get(indice) == 1)
+                            b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+                    }
                 }
                 indice++;
-                if (indice == 16)
-                    indice = 0;
             }
+
+
             if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), true);
             nivel = new NivelAdivinar(ModoJuego.Realiza_Ritmo.getNombre(), this.nivel, true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
@@ -498,18 +504,28 @@ public class ImitarRitmo extends Activity {
             resultado.setTextSize(22);
             resultado.setVisibility(View.VISIBLE);
             resultado.setTextColor(getResources().getColor(R.color.md_red_500));
-            int i = 0;
             for (Button b : this.botonesGuia) {
-                if (ritmos1.get(indice) == 1) {
-                    if (resultado1.get(indice) == 1)
-                        b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
-                    else
-                        b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                boolean fallo = false;
+                if (ritmos1.get(indice) != resultado1.get(indice)) {
+                    b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                    fallo = true;
+                }
+                if (!fallo && this.nivel > 2 && ritmos2.get(indice) != resultado2.get(indice)) {
+                    b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                    fallo = true;
+                }
+                if (!fallo && this.nivel > 4 && ritmos3.get(indice) != resultado3.get(indice)) {
+                    b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                    fallo = true;
+                }
+                if (!fallo && this.nivel > 6 && ritmos4.get(indice) != resultado4.get(indice)) {
+                    b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+                    fallo = true;
+                }
+                if (!fallo && (resultado1.get(indice) == 1 || resultado2.get(indice) == 1 || resultado3.get(indice) == 1 || resultado4.get(indice) == 1)) {
+                    b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
                 indice++;
-                if (indice == 16)
-                    indice = 0;
-                i++;
             }
             if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), false);
@@ -521,21 +537,37 @@ public class ImitarRitmo extends Activity {
 
         view.setEnabled(false);
         view.setAlpha(0.5f);
+
         findViewById(R.id.botonPlayRitmo).setEnabled(false);
+
         findViewById(R.id.botonPlayRitmo).setAlpha(.5f);
+
         findViewById(R.id.botonStopRitmo).setEnabled(false);
+
         findViewById(R.id.botonStopRitmo).setAlpha(.5f);
+
         findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);
+
         findViewById(R.id.botonPlayRitmoPropio).setAlpha(.5f);
+
         findViewById(R.id.botonResetRitmo).setEnabled(false);
+
         findViewById(R.id.botonResetRitmo).setAlpha(.5f);
+
         findViewById(R.id.botonPalmada).setEnabled(false);
+
         findViewById(R.id.botonPalmada).setAlpha(.5f);
+
         findViewById(R.id.botonCaja).setEnabled(false);
+
         findViewById(R.id.botonCaja).setAlpha(.5f);
+
         findViewById(R.id.botonTambor).setEnabled(false);
+
         findViewById(R.id.botonTambor).setAlpha(.5f);
+
         findViewById(R.id.botonPlatillo).setEnabled(false);
+
         findViewById(R.id.botonPlatillo).setAlpha(.5f);
 
         int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel();
@@ -556,7 +588,9 @@ public class ImitarRitmo extends Activity {
             Controlador.getInstance().estableceDificultad();
         }
 
-        findViewById(R.id.continuar_cr).setVisibility(View.VISIBLE);
+        findViewById(R.id.continuar_cr).
+
+                setVisibility(View.VISIBLE);
 
 
     }
