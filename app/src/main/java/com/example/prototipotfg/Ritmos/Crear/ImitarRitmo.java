@@ -3,11 +3,13 @@ package com.example.prototipotfg.Ritmos.Crear;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -440,6 +442,10 @@ public class ImitarRitmo extends Activity {
         findViewById(R.id.botonCaja).setVisibility(View.GONE);
         findViewById(R.id.botonTambor).setVisibility(View.GONE);
         findViewById(R.id.botonPlatillo).setVisibility(View.GONE);
+        findViewById(R.id.botonPlayRitmoPropio).setVisibility(View.GONE);
+        findViewById(R.id.botonResetRitmo).setVisibility(View.GONE);
+        findViewById(R.id.botonCompararRitmos).setVisibility(View.GONE);
+        mostrarSolucion();
         para(view);
         NivelAdivinar nivel = null;
         comprobado = true;
@@ -523,6 +529,45 @@ public class ImitarRitmo extends Activity {
 
         findViewById(R.id.continuar_cr).setVisibility(View.VISIBLE);
 
+
+    }
+
+    private void mostrarSolucion() {
+        int numeroBotones = Controlador.getInstance().getLongitud();
+        LinearLayout linear = findViewById(R.id.linearSolucion1);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,1 );
+        /*
+        for(int i = 0; i< numeroBotones; i++){
+
+        }
+
+         */
+        lp.setMargins(0,0,0,20);
+        ImageView imagen = new ImageView(this);
+        imagen.setLayoutParams(lp);
+        imagen.setImageResource(R.drawable.palmas);
+        imagen.setBackgroundColor(Color.BLUE);
+        imagen.setScaleType(ImageView.ScaleType.FIT_XY);
+        linear.addView(imagen,0);
+        imagen = new ImageView(this);
+        imagen.setLayoutParams(lp);
+        imagen.setImageResource(R.drawable.palmas);
+        imagen.setBackgroundColor(Color.BLUE);
+        imagen.setScaleType(ImageView.ScaleType.FIT_XY);
+        linear.addView(imagen,0);
+        imagen = new ImageView(this);
+        imagen.setLayoutParams(lp);
+        imagen.setImageResource(R.drawable.palmas);
+        imagen.setBackgroundColor(Color.BLUE);
+        imagen.setScaleType(ImageView.ScaleType.FIT_XY);
+        imagen.setVisibility(View.INVISIBLE);
+        linear.addView(imagen,0);
+        imagen = new ImageView(this);
+        imagen.setLayoutParams(lp);
+        imagen.setImageResource(R.drawable.palmas);
+        imagen.setBackgroundColor(Color.BLUE);
+        imagen.setScaleType(ImageView.ScaleType.FIT_XY);
+        linear.addView(imagen,0);
 
     }
 

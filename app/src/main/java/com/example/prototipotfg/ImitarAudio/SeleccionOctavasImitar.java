@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosVocales;
@@ -20,6 +21,10 @@ public class SeleccionOctavasImitar extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
+        TextView titulo = findViewById(R.id.tituloNiveles);
+        titulo.setText("Categorías");
+        titulo.setTextSize(30);
+        titulo.setPadding(0,400,0,0);
 
           LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
                  //Creamos las propiedades de layout que tendrán los botones.

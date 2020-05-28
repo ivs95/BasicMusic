@@ -33,7 +33,7 @@
                 android:textStyle = "bold"
                 android:textSize = "35dp"
                 android:textColor="@color/md_blue_800"
-                android:text = "Enhorabuena!"/>
+                android:text = "¡Enhorabuena!"/>
 
 
             <ImageView
