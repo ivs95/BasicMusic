@@ -48,7 +48,6 @@ public class ImitarRitmoExamen extends ImitarRitmo {
     }
     @Override
     public void comprobar(View view) {
-        TextView resultado = findViewById(R.id.textRitmosResultado2);
         findViewById(R.id.botonPalmada).setVisibility(View.GONE);
         findViewById(R.id.botonCaja).setVisibility(View.GONE);
         findViewById(R.id.botonTambor).setVisibility(View.GONE);
@@ -58,16 +57,10 @@ public class ImitarRitmoExamen extends ImitarRitmo {
         findViewById(R.id.botonCompararRitmos).setVisibility(View.GONE);
         mostrarSolucion();
         para(view);
-        NivelAdivinar nivel = null;
         //comprobado = true;
         int indice = 0;
         if (compruebaArrays()) {
             resultadoPrueba = true;
-            resultado.setText("¡Bien hecho!\n");
-            resultado.setTextSize(22);
-            resultado.setVisibility(View.VISIBLE);
-            resultado.setTextColor(getResources().getColor(R.color.md_green_500));
-
             for (Button b : this.botonesGuia) {
                 if (ritmos1.get(indice) == 1)
                     b.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
@@ -86,10 +79,6 @@ public class ImitarRitmoExamen extends ImitarRitmo {
 
         } else {
             resultadoPrueba = false;
-            resultado.setText("Prueba otra vez\n");
-            resultado.setTextSize(22);
-            resultado.setVisibility(View.VISIBLE);
-            resultado.setTextColor(getResources().getColor(R.color.md_red_500));
             for (Button b : this.botonesGuia) {
                 boolean fallo = false;
                 if (ritmos1.get(indice) != resultado1.get(indice)) {
@@ -152,10 +141,9 @@ public class ImitarRitmoExamen extends ImitarRitmo {
         findViewById(R.id.botonPlatillo).setEnabled(false);
 
         findViewById(R.id.botonPlatillo).setAlpha(.5f);
+        ((Button)findViewById(R.id.continuar_cr)).setText("Continuar");
 
-        findViewById(R.id.continuar_cr).
-
-                setVisibility(View.VISIBLE);
+        findViewById(R.id.continuar_cr).setVisibility(View.VISIBLE);
 
         Controlador.getInstance().setMixIniciado(true);
         findViewById(R.id.continuar_cr).setOnClickListener(new View.OnClickListener() {

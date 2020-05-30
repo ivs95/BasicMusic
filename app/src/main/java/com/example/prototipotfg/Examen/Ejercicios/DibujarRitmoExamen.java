@@ -129,25 +129,16 @@ public class DibujarRitmoExamen extends DibujarRitmo {
             }
 
         }
-        if((aciertos==1 && this.nivel<3) || (aciertos==2 && this.nivel>2 && this.nivel < 5) ||(aciertos==3 && this.nivel >= 5 && this.nivel < 7) ||(aciertos==4 && this.nivel>=7)){
-
-            resultado.setText("¡Bien hecho!\n");
-            resultado.setTextSize(22);
-            resultado.setVisibility(View.VISIBLE);
-            resultado.setTextColor(getResources().getColor(R.color.md_green_500));
+        if((aciertos==1 && this.nivel<3) || (aciertos==2 && this.nivel>2 && this.nivel < 5) ||(aciertos==3 && this.nivel >= 5 && this.nivel < 7) ||(aciertos==4 && this.nivel>=7))
             resultadoPrueba = true;
-        }
-        else{
 
-            resultado.setText("Prueba otra vez\n");
-            resultado.setTextSize(22);
-            resultado.setVisibility(View.VISIBLE);
-            resultado.setTextColor(getResources().getColor(R.color.md_red_500));
+        else
             resultadoPrueba = false;
 
-        }
+
 
         Controlador.getInstance().setMixIniciado(true);
+        ((Button)findViewById(R.id.continuar_hr)).setText("Continuar");
         findViewById(R.id.continuar_hr).setVisibility(View.VISIBLE);
         findViewById(R.id.continuar_hr).setOnClickListener(new View.OnClickListener() {
             @Override
