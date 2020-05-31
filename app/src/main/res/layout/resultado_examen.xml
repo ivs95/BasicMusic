@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="ADIVINAR NOTA\n"
+            android:text="ADIVINAR NOTAS\n"
             android:textColor="@color/md_blue_900" />
 
         <TextView
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="ADIVINAR INTERVALO\n"
+            android:text="ADIVINAR INTERVALOS\n"
             android:textColor="@color/md_blue_900" />
 
         <TextView
@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="CREAR INTERVALO \n"
+            android:text="CREAR INTERVALOS \n"
             android:textColor="@color/md_blue_900" />
 
         <TextView
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="ADIVINAR ACORDE\n"
+            android:text="ADIVINAR ACORDES\n"
             android:textColor="@color/md_blue_900" />
 
         <TextView
@@ -72,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="CREAR ACORDE\n"
+            android:text="CREAR ACORDES\n"
             android:textColor="@color/md_blue_900" />
 
         <TextView
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="HALLAR RITMO\n"
+            android:text="DIBUJAR RITMOS\n"
             android:textColor="@color/md_blue_900" />
 
         <TextView
@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="CREAR RITMO\n"
+            android:text="IMITAR RITMOS\n"
             android:textColor="@color/md_blue_900" />
 
         <TextView
