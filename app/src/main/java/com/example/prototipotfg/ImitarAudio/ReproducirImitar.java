@@ -458,20 +458,6 @@ public class ReproducirImitar extends Activity {
             }
             frecuencia = frecuencia/resNota.getContador();
             double origenFrecuencia;
-            /*
-             double resFrecuencia;
-            if(resNota.getOctava() > 3){
-                resFrecuencia = frecuencia/(Math.pow(2,resNota.getOctava()-5));
-            }
-            else if(resNota.getOctava() < 3){
-                resFrecuencia = frecuencia*(Math.pow(2,5-resNota.getOctava()));
-            }
-            else{
-                resFrecuencia = frecuencia;
-            }
-
-             */
-
             origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia();
             double frecuenciaMax = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getMaximaFrecuencia();
             double frecuenciaMin = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getMinimaFrecuencia();
