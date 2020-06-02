@@ -77,7 +77,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Ritmos.RealizaRitmos"
+        <activity android:name=".Ritmos.Crear.ImitarRitmo"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>

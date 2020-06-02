@@ -649,7 +649,6 @@ public class DibujarRitmo extends Activity {
         }
     }
 
-
     public void play(@NotNull final View view){
         if(running == true){
             indice = 0;
@@ -671,8 +670,6 @@ public class DibujarRitmo extends Activity {
     public void para(@NotNull final View view){
         running = false;
     }
-
-
 
     public void stop(View view){
         para(view);
