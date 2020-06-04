@@ -1,4 +1,4 @@
-package com.example.prototipotfg.Examen.Ejercicios;
+package com.example.prototipotfg.Mix.Ejercicios;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -6,29 +6,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
-import com.example.prototipotfg.Enumerados.Octavas;
-import com.example.prototipotfg.Examen.ControladorExamen;
-import com.example.prototipotfg.Examen.SeleccionNivelExamen;
+import com.example.prototipotfg.Singletons.ControladorMix;
 import com.example.prototipotfg.Notas.AdivinarNota;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
-import com.example.prototipotfg.Singletons.FactoriaNotas;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
-
-import static android.view.View.INVISIBLE;
-
-public class AdivinarNotaExamen extends AdivinarNota {
+public class AdivinarNotaMix extends AdivinarNota {
 
     private boolean resultado;
 
@@ -36,14 +25,14 @@ public class AdivinarNotaExamen extends AdivinarNota {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorExamen.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorExamen.getInstance().getNivel().getNivel() != 1) {
+        if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorMix.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorMix.getInstance().getNivel().getNivel() != 1) {
 
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView(), false, 0, 0);
         }
-        ((TextView)findViewById(R.id.lblIndice)).setText(ControladorExamen.getInstance().getIndiceActual()+1 + "/" + ControladorExamen.getInstance().getNumEjercicios());
+        ((TextView)findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual()+1 + "/" + ControladorMix.getInstance().getNumEjercicios());
         findViewById(R.id.lblIndice).setVisibility(View.VISIBLE);
 
     }

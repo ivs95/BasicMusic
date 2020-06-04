@@ -1,33 +1,32 @@
-package com.example.prototipotfg.Examen;
+package com.example.prototipotfg.Singletons;
 
 import android.content.Context;
 import android.content.Intent;
 import android.util.Pair;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
-import com.example.prototipotfg.Enumerados.NivelExamen;
-import com.example.prototipotfg.Examen.Ejercicios.AdivinarAcordeExamen;
-import com.example.prototipotfg.Examen.Ejercicios.AdivinarIntervaloExamen;
-import com.example.prototipotfg.Examen.Ejercicios.AdivinarNotaExamen;
-import com.example.prototipotfg.Examen.Ejercicios.CrearAcordeExamen;
-import com.example.prototipotfg.Examen.Ejercicios.CrearIntervaloExamen;
-import com.example.prototipotfg.Examen.Ejercicios.ImitarRitmoExamen;
-import com.example.prototipotfg.Examen.Ejercicios.DibujarRitmoExamen;
-import com.example.prototipotfg.Singletons.Controlador;
+import com.example.prototipotfg.Enumerados.NivelMix;
+import com.example.prototipotfg.Mix.Ejercicios.AdivinarAcordeMix;
+import com.example.prototipotfg.Mix.Ejercicios.AdivinarIntervaloMix;
+import com.example.prototipotfg.Mix.Ejercicios.AdivinarNotaMix;
+import com.example.prototipotfg.Mix.Ejercicios.CrearAcordeMix;
+import com.example.prototipotfg.Mix.Ejercicios.CrearIntervaloMix;
+import com.example.prototipotfg.Mix.Ejercicios.ImitarRitmoMix;
+import com.example.prototipotfg.Mix.Ejercicios.DibujarRitmoMix;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
-public final class ControladorExamen {
+public final class ControladorMix {
 
-    private static final ControladorExamen INSTANCE = new ControladorExamen();
+    private static final ControladorMix INSTANCE = new ControladorMix();
     private final int NUM_EJERCICIOS = 14;
     private int indiceActual;
     private Pair<ModoJuego, Integer> ejercicioActual;
-    private NivelExamen nivel;
-    private ArrayList<ModoJuego> ejercicios = new ArrayList<> (Arrays.asList(NivelExamen.Uno.getModos()));
+    private NivelMix nivel;
+    private ArrayList<ModoJuego> ejercicios = new ArrayList<> (Arrays.asList(NivelMix.Uno.getModos()));
     private boolean[] acertados = new boolean[14];
     private int numAciertos;
     private boolean aprobado;
@@ -40,15 +39,15 @@ public final class ControladorExamen {
      * Puntos como notas
      * */
 
-    public static ControladorExamen getInstance() {
+    public static ControladorMix getInstance() {
         return INSTANCE;
     }
 
     public void setNivel(int nivel) {
-        this.nivel = NivelExamen.getNivelExamen(nivel);
+        this.nivel = NivelMix.getNivelExamen(nivel);
     }
 
-    public NivelExamen getNivel(){return this.nivel;}
+    public NivelMix getNivel(){return this.nivel;}
     public void preparaExamen() {
         ejercicios.addAll(ejercicios);
         Collections.shuffle(ejercicios);
@@ -108,19 +107,19 @@ public final class ControladorExamen {
         Intent i = null;
         switch (ejercicioActual.first){
             case Adivinar_Acordes:
-                i = new Intent(contexto, AdivinarAcordeExamen.class);break;
+                i = new Intent(contexto, AdivinarAcordeMix.class);break;
             case Adivinar_Intervalo:
-                i = new Intent(contexto, AdivinarIntervaloExamen.class);break;
+                i = new Intent(contexto, AdivinarIntervaloMix.class);break;
             case Halla_Ritmo:
-                i = new Intent(contexto, DibujarRitmoExamen.class);break;
+                i = new Intent(contexto, DibujarRitmoMix.class);break;
             case Realiza_Ritmo:
-                i = new Intent(contexto, ImitarRitmoExamen.class);break;
+                i = new Intent(contexto, ImitarRitmoMix.class);break;
             case Crear_Acordes:
-                i = new Intent(contexto, CrearAcordeExamen.class);break;
+                i = new Intent(contexto, CrearAcordeMix.class);break;
             case Crear_Intervalo:
-                i = new Intent(contexto, CrearIntervaloExamen.class);break;
+                i = new Intent(contexto, CrearIntervaloMix.class);break;
             case Adivinar_Notas:
-                i = new Intent(contexto, AdivinarNotaExamen.class);break;
+                i = new Intent(contexto, AdivinarNotaMix.class);break;
         }
         return i;
     }

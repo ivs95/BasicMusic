@@ -16,7 +16,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.Acordes.TutorialAdivinarAcordes;
-import com.example.prototipotfg.BBDD.Modelo.NivelAdivinar;
+import com.example.prototipotfg.BBDD.Entidades.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Acordes;
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
@@ -24,7 +24,7 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
-import com.example.prototipotfg.Examen.Ejercicios.AdivinarAcordeExamen;
+import com.example.prototipotfg.Mix.Ejercicios.AdivinarAcordeMix;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -110,7 +110,7 @@ public class AdivinarAcorde extends Activity {
             botonesOpciones.add(button);
             opciones.addView(button);
         }
-        if (!(this instanceof AdivinarAcordeExamen)) {
+        if (!(this instanceof AdivinarAcordeMix)) {
             GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Acordes);
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);

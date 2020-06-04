@@ -6,10 +6,10 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.prototipotfg.BBDD.Modelo.NivelAdivinar;
-import com.example.prototipotfg.BBDD.Modelo.NivelImitar;
-import com.example.prototipotfg.BBDD.Modelo.Puntuacion;
-import com.example.prototipotfg.BBDD.Modelo.Usuario;
+import com.example.prototipotfg.BBDD.Entidades.NivelAdivinar;
+import com.example.prototipotfg.BBDD.Entidades.NivelImitar;
+import com.example.prototipotfg.BBDD.Entidades.Puntuacion;
+import com.example.prototipotfg.BBDD.Entidades.Usuario;
 
 @Database(entities = {Usuario.class, NivelAdivinar.class, NivelImitar.class, Puntuacion.class}, version=1)
 public abstract class AppDatabase extends RoomDatabase {

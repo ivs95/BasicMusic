@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.prototipotfg.BBDD.Modelo.Puntuacion;
+import com.example.prototipotfg.BBDD.Entidades.Puntuacion;
 
 @Dao
 public interface DAOPuntuacion {

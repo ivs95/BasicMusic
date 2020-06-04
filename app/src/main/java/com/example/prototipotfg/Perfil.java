@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.prototipotfg.BBDD.Modelo.Usuario;
+import com.example.prototipotfg.BBDD.Entidades.Usuario;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class Perfil extends AppCompatActivity {

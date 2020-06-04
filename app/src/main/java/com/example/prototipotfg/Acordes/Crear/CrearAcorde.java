@@ -15,7 +15,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.Acordes.TutorialAdivinarAcordes;
-import com.example.prototipotfg.BBDD.Modelo.NivelAdivinar;
+import com.example.prototipotfg.BBDD.Entidades.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Acordes;
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
@@ -23,7 +23,7 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
-import com.example.prototipotfg.Examen.Ejercicios.CrearAcordeExamen;
+import com.example.prototipotfg.Mix.Ejercicios.CrearAcordeMix;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -121,7 +121,7 @@ public class CrearAcorde extends Activity {
             botonesOpciones.add(button);
             opciones.addView(button);
         }
-        if (!(this instanceof CrearAcordeExamen)) {
+        if (!(this instanceof CrearAcordeMix)) {
             GestorBBDD.getInstance().modoRealizado(ModoJuego.Crear_Acordes);
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 

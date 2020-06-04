@@ -1,4 +1,4 @@
-package com.example.prototipotfg.Examen;
+package com.example.prototipotfg.Mix;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,12 +13,12 @@ import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.PuntosNiveles;
-import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
+import com.example.prototipotfg.Singletons.ControladorMix;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
-public class SeleccionNivelExamen extends Activity {
+public class SeleccionNivelMix extends Activity {
 
     private boolean corregido = false;
     private Bundle savedInstanceState;
@@ -92,8 +92,8 @@ public class SeleccionNivelExamen extends Activity {
 
 
     public void nivel_seleccionado(View view) {
-        ControladorExamen.getInstance().setNivel(view.getId());
-        ControladorExamen.getInstance().iniciaExamen();
+        ControladorMix.getInstance().setNivel(view.getId());
+        ControladorMix.getInstance().iniciaExamen();
         Controlador.getInstance().setMixIniciado(false);
         siguienteEjercicio();
 
@@ -107,7 +107,7 @@ public class SeleccionNivelExamen extends Activity {
         if(requestCode==2)
         {
             if(resultCode != RESULT_CANCELED) {
-                ControladorExamen.getInstance().setResultadoEjercicioActual(data.getBooleanExtra("resultado", false));
+                ControladorMix.getInstance().setResultadoEjercicioActual(data.getBooleanExtra("resultado", false));
                 siguienteEjercicio();
             }
             else {
@@ -118,14 +118,14 @@ public class SeleccionNivelExamen extends Activity {
 
     private void siguienteEjercicio() {
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Modo_Mix);
-        if(!ControladorExamen.getInstance().finalExamen()) {
-            ControladorExamen.getInstance().setEjercicio();
-            Intent i = ControladorExamen.getInstance().iniciaPrueba(this);
+        if(!ControladorMix.getInstance().finalExamen()) {
+            ControladorMix.getInstance().setEjercicio();
+            Intent i = ControladorMix.getInstance().iniciaPrueba(this);
             startActivityForResult(i, 2);
         }
         else {
-            ControladorExamen.getInstance().setResultadoExamen();
-            Intent i = new Intent(this , ResultadoExamen.class);
+            ControladorMix.getInstance().setResultadoExamen();
+            Intent i = new Intent(this , ResultadoMix.class);
             startActivity(i);
         }
         }

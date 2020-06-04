@@ -1,4 +1,4 @@
-package com.example.prototipotfg.Examen;
+package com.example.prototipotfg.Mix;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,16 +8,17 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.prototipotfg.BBDD.Modelo.NivelAdivinar;
+import com.example.prototipotfg.BBDD.Entidades.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
+import com.example.prototipotfg.Singletons.ControladorMix;
 import com.example.prototipotfg.Singletons.GestorBBDD;
 
 import java.util.HashMap;
 
-public class ResultadoExamen extends Activity {
+public class ResultadoMix extends Activity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +28,17 @@ public class ResultadoExamen extends Activity {
         NivelAdivinar nivel = null;
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getRango()).ordinal();
-        if(ControladorExamen.getInstance().isAprobado()) {
-            if (ControladorExamen.getInstance().getNivel().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel())
-                GestorBBDD.getInstance().actualizarPuntuacion(ControladorExamen.getInstance().getNivel().getNivel(), ModoJuego.Modo_Mix.toString(), true);
-            nivel = new NivelAdivinar(ModoJuego.Modo_Mix.getNombre(), ControladorExamen.getInstance().getNivel().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1 , 0);
+        if(ControladorMix.getInstance().isAprobado()) {
+            if (ControladorMix.getInstance().getNivel().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel())
+                GestorBBDD.getInstance().actualizarPuntuacion(ControladorMix.getInstance().getNivel().getNivel(), ModoJuego.Modo_Mix.toString(), true);
+            nivel = new NivelAdivinar(ModoJuego.Modo_Mix.getNombre(), ControladorMix.getInstance().getNivel().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1 , 0);
 
         }
 
         else{
-            if (ControladorExamen.getInstance().getNivel().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel())
-                GestorBBDD.getInstance().actualizarPuntuacion(ControladorExamen.getInstance().getNivel().getNivel(), ModoJuego.Modo_Mix.toString(), false);
-            nivel = new NivelAdivinar(ModoJuego.Modo_Mix.getNombre(), ControladorExamen.getInstance().getNivel().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0 , 1);
+            if (ControladorMix.getInstance().getNivel().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel())
+                GestorBBDD.getInstance().actualizarPuntuacion(ControladorMix.getInstance().getNivel().getNivel(), ModoJuego.Modo_Mix.toString(), false);
+            nivel = new NivelAdivinar(ModoJuego.Modo_Mix.getNombre(), ControladorMix.getInstance().getNivel().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0 , 1);
 
         }
         GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
@@ -55,16 +56,16 @@ public class ResultadoExamen extends Activity {
 
         if(nivelActual != nivelNuevo){
             Controlador.getInstance().setNivel(nivelNuevo);
-            ControladorExamen.getInstance().setNivel(nivelNuevo);
+            ControladorMix.getInstance().setNivel(nivelNuevo);
             Controlador.getInstance().estableceDificultad();
         }
 
 
-        HashMap<ModoJuego, Integer> resultado = ControladorExamen.getInstance().getResultadoEjercicios();
+        HashMap<ModoJuego, Integer> resultado = ControladorMix.getInstance().getResultadoEjercicios();
         for (ModoJuego m : resultado.keySet()){
             setTextoResultado(m, resultado.get(m));
         }
-        setTextoAprobado(ControladorExamen.getInstance().isAprobado(), ControladorExamen.getInstance().getNumAciertos(), ControladorExamen.getInstance().getNivel().getAciertosAprobar(), (TextView) findViewById(R.id.resultadoAprobado));
+        setTextoAprobado(ControladorMix.getInstance().isAprobado(), ControladorMix.getInstance().getNumAciertos(), ControladorMix.getInstance().getNivel().getAciertosAprobar(), (TextView) findViewById(R.id.resultadoAprobado));
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.prototipotfg.Examen.Ejercicios;
+package com.example.prototipotfg.Mix.Ejercicios;
 
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
@@ -16,7 +16,7 @@ import com.example.prototipotfg.Acordes.Crear.CrearAcorde;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
-import com.example.prototipotfg.Examen.ControladorExamen;
+import com.example.prototipotfg.Singletons.ControladorMix;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.GestorBBDD;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 import static android.view.View.GONE;
 
-public class CrearAcordeExamen extends CrearAcorde {
+public class CrearAcordeMix extends CrearAcorde {
 
     private boolean resultado;
 
@@ -34,14 +34,14 @@ public class CrearAcordeExamen extends CrearAcorde {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorExamen.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorExamen.getInstance().getNivel().getNivel() != 1) {
+        if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorMix.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorMix.getInstance().getNivel().getNivel() != 1) {
 
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView(), false, 0, 0);
         }
-        ((TextView)findViewById(R.id.lblIndice)).setText(ControladorExamen.getInstance().getIndiceActual()+1 + "/" + ControladorExamen.getInstance().getNumEjercicios());
+        ((TextView)findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual()+1 + "/" + ControladorMix.getInstance().getNumEjercicios());
         findViewById(R.id.lblIndice).setVisibility(View.VISIBLE);
 
     }

@@ -13,14 +13,14 @@ import android.widget.LinearLayout;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.prototipotfg.BBDD.Modelo.NivelAdivinar;
+import com.example.prototipotfg.BBDD.Entidades.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
-import com.example.prototipotfg.Examen.Ejercicios.AdivinarNotaExamen;
+import com.example.prototipotfg.Mix.Ejercicios.AdivinarNotaMix;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -98,7 +98,7 @@ public class AdivinarNota extends Activity {
             }
             botonesNotas.add(button);
         }
-        if (!(this instanceof AdivinarNotaExamen)) {
+        if (!(this instanceof AdivinarNotaMix)) {
             GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Notas);
 
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {

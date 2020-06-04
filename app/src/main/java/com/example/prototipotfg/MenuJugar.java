@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
-import com.example.prototipotfg.Examen.SeleccionNivelExamen;
+import com.example.prototipotfg.Mix.SeleccionNivelMix;
 import com.example.prototipotfg.ImitarAudio.SeleccionOctavasImitar;
 import com.example.prototipotfg.Ritmos.SeleccionModoRitmos;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -47,7 +47,7 @@ public class MenuJugar extends Activity {
     }
 
     public void examen(View view){
-        Intent i = new Intent(this, SeleccionNivelExamen.class);
+        Intent i = new Intent(this, SeleccionNivelMix.class);
         startActivity(i);
     }
 

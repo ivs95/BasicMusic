@@ -16,10 +16,10 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.prototipotfg.BBDD.Modelo.NivelAdivinar;
+import com.example.prototipotfg.BBDD.Entidades.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
-import com.example.prototipotfg.Examen.Ejercicios.ImitarRitmoExamen;
+import com.example.prototipotfg.Mix.Ejercicios.ImitarRitmoMix;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Ritmos.MediaPlayerRitmos;
 import com.example.prototipotfg.Singletons.Controlador;
@@ -340,7 +340,7 @@ public class ImitarRitmo extends Activity {
         findViewById(R.id.botonPlatillo).setEnabled(false);
         findViewById(R.id.botonPlatillo).setAlpha(.5f);
 
-        if (!(this instanceof ImitarRitmoExamen)) {
+        if (!(this instanceof ImitarRitmoMix)) {
             GestorBBDD.getInstance().modoRealizado(ModoJuego.Realiza_Ritmo);
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Realiza_Ritmo, Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);

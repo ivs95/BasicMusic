@@ -1,4 +1,4 @@
-package com.example.prototipotfg.BBDD.Modelo;
+package com.example.prototipotfg.BBDD.Entidades;
 
 
 import androidx.annotation.NonNull;

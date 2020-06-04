@@ -157,15 +157,15 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Examen.Ejercicios.AdivinarNotaExamen" />
-        <activity android:name=".Examen.Ejercicios.AdivinarAcordeExamen" />
-        <activity android:name=".Examen.Ejercicios.AdivinarIntervaloExamen" />
-        <activity android:name=".Examen.Ejercicios.CrearAcordeExamen" />
-        <activity android:name=".Examen.Ejercicios.CrearIntervaloExamen" />
-        <activity android:name=".Examen.Ejercicios.ImitarRitmoExamen" />
-        <activity android:name=".Examen.Ejercicios.DibujarRitmoExamen" />
-        <activity android:name=".Examen.ResultadoExamen" />
-        <activity android:name=".Examen.SeleccionNivelExamen" />
+        <activity android:name=".Mix.Ejercicios.AdivinarNotaMix" />
+        <activity android:name=".Mix.Ejercicios.AdivinarAcordeMix" />
+        <activity android:name=".Mix.Ejercicios.AdivinarIntervaloMix" />
+        <activity android:name=".Mix.Ejercicios.CrearAcordeMix" />
+        <activity android:name=".Mix.Ejercicios.CrearIntervaloMix" />
+        <activity android:name=".Mix.Ejercicios.ImitarRitmoMix" />
+        <activity android:name=".Mix.Ejercicios.DibujarRitmoMix" />
+        <activity android:name=".Mix.ResultadoMix" />
+        <activity android:name=".Mix.SeleccionNivelMix" />
     </application>
 
 </manifest>

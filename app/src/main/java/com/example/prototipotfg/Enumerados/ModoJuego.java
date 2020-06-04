@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.example.prototipotfg.Examen.ControladorExamen;
+import com.example.prototipotfg.Singletons.ControladorMix;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 
@@ -172,9 +172,9 @@ public enum ModoJuego {
             nivel_text.setText(String.valueOf(Controlador.getInstance().getNivel()));
         }
         else{
-            cambios.setText(modoJuego.getTextDadoNivel(ControladorExamen.getInstance().getNivel().getNivel()));
+            cambios.setText(modoJuego.getTextDadoNivel(ControladorMix.getInstance().getNivel().getNivel()));
 
-            nivel_text.setText(String.valueOf(ControladorExamen.getInstance().getNivel().getNivel()));
+            nivel_text.setText(String.valueOf(ControladorMix.getInstance().getNivel().getNivel()));
         }
 
 

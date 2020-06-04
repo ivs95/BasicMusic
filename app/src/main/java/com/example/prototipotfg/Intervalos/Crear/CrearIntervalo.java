@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.prototipotfg.BBDD.Modelo.NivelAdivinar;
+import com.example.prototipotfg.BBDD.Entidades.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Dificultad;
 import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Intervalos;
@@ -23,7 +23,7 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
-import com.example.prototipotfg.Examen.Ejercicios.CrearIntervaloExamen;
+import com.example.prototipotfg.Mix.Ejercicios.CrearIntervaloMix;
 import com.example.prototipotfg.R;
 import com.example.prototipotfg.Singletons.Controlador;
 import com.example.prototipotfg.Singletons.FactoriaNotas;
@@ -130,7 +130,7 @@ public class CrearIntervalo extends Activity {
                 respuesta_correcta = button.getText().toString();
             }
         }
-        if (!(this instanceof CrearIntervaloExamen)) {
+        if (!(this instanceof CrearIntervaloMix)) {
             GestorBBDD.getInstance().modoRealizado(ModoJuego.Crear_Intervalo);
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 

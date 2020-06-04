@@ -1,6 +1,6 @@
 package com.example.prototipotfg.Enumerados;
 
-public enum NivelExamen {
+public enum NivelMix {
     Uno(1,new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
             ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{1,1,1,1,1,1,1}, 7),
     Dos(2, new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
@@ -36,15 +36,15 @@ public enum NivelExamen {
     private int[] niveles_modos;
     private int aciertosAprobar;
 
-    NivelExamen(int nivel , ModoJuego [] modos, int[] niveles_modos, int aciertosAprobar){
+    NivelMix(int nivel , ModoJuego [] modos, int[] niveles_modos, int aciertosAprobar){
         this.nivel = nivel;
         this.modos = modos;
         this.niveles_modos = niveles_modos;
         this.aciertosAprobar=aciertosAprobar;
     }
 
-    public static NivelExamen getNivelExamen(int nivel) {
-        for (NivelExamen n : values()){
+    public static NivelMix getNivelExamen(int nivel) {
+        for (NivelMix n : values()){
             if (n.getNivel()==nivel)
                 return n;
         }
