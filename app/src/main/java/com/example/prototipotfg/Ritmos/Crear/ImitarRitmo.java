@@ -391,7 +391,6 @@ public class ImitarRitmo extends Activity {
         }
     }
 
-
     public void reproducirRitmoPropio(View view) {
         findViewById(R.id.botonPlayRitmo).setEnabled(false);
         findViewById(R.id.botonPlayRitmo).setAlpha(.5f);
@@ -435,7 +434,6 @@ public class ImitarRitmo extends Activity {
 
         botonesGuia.get(indice - 1).setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getApplicationContext(), R.color.md_blue_300)));
     }
-
 
     public void para(@NotNull final View view) {
         findViewById(R.id.botonStopRitmo).setEnabled(false);
@@ -644,7 +642,6 @@ public class ImitarRitmo extends Activity {
         linear.addView(imagen, contador);
     }
 
-
     @SuppressLint("NewApi")
     private int pintaFigura(Integer solucion, Integer respuesta, ImageView imagen, LinearLayout linear, LinearLayout.LayoutParams lp, int indice) {
         imagen.setBackgroundColor(Color.BLUE);
@@ -704,7 +701,6 @@ public class ImitarRitmo extends Activity {
 
 
     }
-
 
     protected boolean compruebaArrays() {
         switch (nivel) {
