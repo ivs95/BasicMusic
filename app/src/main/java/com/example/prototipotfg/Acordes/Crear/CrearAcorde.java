@@ -65,7 +65,7 @@ public class CrearAcorde extends Activity {
         this.num_notas = numOpciones + 3;
         this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()-1));
         this.acordesPosibles = seleccionaAcordesAleatorios(Controlador.getInstance().getAcordes());
-        this.notaInicio = FactoriaNotas.getInstance().getNotaInicioIntervalo(Instrumentos.Piano, octavaInicio);
+        this.notaInicio = FactoriaNotas.getInstance().getNotaInicioIntervalo();
         this.acordeCorrecto = acordesPosibles.get(0);
         this.acordeCorrectoReproducir = Acordes.devuelveNotasAcorde(acordeCorrecto,octavaInicio,notaInicio);
         this.notasPosibles = seleccionaNotasAleatorios(acordeCorrectoReproducir);

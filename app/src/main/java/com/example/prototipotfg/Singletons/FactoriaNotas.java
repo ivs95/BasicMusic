@@ -59,11 +59,15 @@ public final class FactoriaNotas {
         this.instrumento = instrumento;
     }
 
+    /**
+     *
+     * @param numeroNotas longitud del array a devolver
+     * @param instrumento instrumento del que son las notas
+     * @param octavas array de octavas entre las que se seleccionan las notas
+     * @return array de notas aleatorias. La primera nota es la que se tiene que adivinar
+     */
     public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, ArrayList<Octavas> octavas) {
-        /*
-        * Funcion que devuelve num notas aleatorias en un array
-        * La primera posicion del array se utilizara como la nota a adivinar
-        * */
+
         String rutaInstrumento = instrumento.getPath();
         setReferencia(instrumento.getPath()+"cuatro/A.wav");
         setInstrumento(instrumento);
@@ -88,6 +92,13 @@ public final class FactoriaNotas {
         return rutasFicherosAudio;
     }
 
+    /**
+     * Funcion que devuelve la nota que completa un intervalo
+     * @param n nota de inicio de un intervalo
+     * @param o octava de la nota de inicio
+     * @param i intervalo a completar
+     * @return par formado por nota,octava con la nota que completa el intervalo
+     */
     public Pair<Notas,Octavas> devuelveNotaCompletaIntervalo(Notas n, Octavas o, Intervalos i){
         int tono = n.getTono() + i.getDiferencia();
         Notas notaRetorno;
@@ -105,33 +116,6 @@ public final class FactoriaNotas {
         }
         return new Pair<>(notaRetorno,octavaRetorno);
     }
-
-    public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, Octavas octava) {
-        /*
-         * Funcion que devuelve num notas aleatorias en un array
-         * La primera posicion del array se utilizara como la nota a adivinar
-         */
-        String rutaInstrumento = instrumento.getPath();
-        setReferencia(instrumento.getPath()+"cuatro/A.wav");
-        setInstrumento(instrumento);
-
-        //HashMap con clave nombre de nota y su octava y valor el path a su fichero
-        HashMap<String,String> rutasFicherosAudio = new HashMap<>();
-        Notas nota = devuelveNotaAleatoria(Notas.values(), 0, 0, false);
-
-        int tonoNotaAnt = getTonoNota(nota.getNombre());
-
-        String ruta = rutaInstrumento+octava.getPath()+nota.getPath();
-        rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), ruta);
-        for (int i = 1 ; i < numeroNotas; i++){
-            while (rutasFicherosAudio.containsKey(nota.getNombre()+octava.getOctava())){
-                nota = devuelveNotaAleatoria(Notas.values(), i, tonoNotaAnt, false);
-            }
-            rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), rutaInstrumento+octava.getPath()+nota.getPath());
-        }
-        return rutasFicherosAudio;
-    }
-    //0, 1, , 2 --> 8, 9, 10
 
     private Notas devuelveNotaAleatoria(Notas[] notas, int i, int tonoNotaAnt, boolean ultNota) {
         if((Controlador.getInstance().getModo_juego() == ModoJuego.Adivinar_Intervalo || Controlador.getInstance().getModo_juego() == ModoJuego.Crear_Intervalo)&& i == 1 && !ultNota){
@@ -158,17 +142,17 @@ public final class FactoriaNotas {
         return lista_notas[i-1].getTono();
     }
 
-    public Notas getNotaInicioIntervalo(Instrumentos piano, Octavas octavaInicio) {
+    public Notas getNotaInicioIntervalo() {
         return Notas.values()[new Random().nextInt(Notas.values().length)];
     }
 
     public ArrayList<Pair<Notas,Octavas>> getNotasIntervalo(ArrayList<Octavas> octavas, int rango) {
         ArrayList<Pair<Notas,Octavas>> retorno = new ArrayList<>();
         Octavas o = devuelveOctavaAleatoria(octavas);
-        Pair<Notas,Octavas> par = new Pair(getNotaInicioIntervalo(getInstrumento(), o),o);
+        Pair<Notas,Octavas> par = new Pair(getNotaInicioIntervalo(),o);
         retorno.add(par);
         while (retorno.contains(par) || Math.abs(par.first.getTono()-retorno.get(0).first.getTono())>rango){
-            par = new Pair(getNotaInicioIntervalo(getInstrumento(), o),o);
+            par = new Pair(getNotaInicioIntervalo(),o);
         }
         retorno.add(par);
         return retorno;
