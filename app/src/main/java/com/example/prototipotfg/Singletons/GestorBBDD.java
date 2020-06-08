@@ -174,13 +174,13 @@ public class GestorBBDD {
             case "Crear Acordes":
                 retorno = estadisticaCrearAcorde();
                 break;
-            case "Imitar Audio - Hombre":
+            case "Entonación - Hombre":
                 retorno = estadisticaImitarAudio(RangosVocales.Hombre.getNombre());
                 break;
-            case "Imitar Audio - Mujer":
+            case "Entonación - Mujer":
                 retorno = estadisticaImitarAudio(RangosVocales.Mujer.getNombre());
                 break;
-            case "Imitar Audio - Niño":
+            case "Entonación - Niño":
                 retorno = estadisticaImitarAudio(RangosVocales.Niño.getNombre());
                 break;
             case "Dibujar Ritmos":

@@ -19,7 +19,7 @@ public class Estadisticas extends Activity implements AdapterView.OnItemSelected
 
 
     private final String[] MODOS_JUEGO = new String[]{"Adivinar Notas", "Adivinar Intervalos", "Crear Intervalos", "Adivinar Acordes", "Crear Acordes",
-            "Imitar Audio - Niño","Imitar Audio - Mujer","Imitar Audio - Hombre", "Dibujar Ritmos", "Imitar Ritmos", "Modo Mix"};
+            "Entonación - Niño","Entonación - Mujer","Entonación - Hombre", "Dibujar Ritmos", "Imitar Ritmos", "Modo Mix"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
