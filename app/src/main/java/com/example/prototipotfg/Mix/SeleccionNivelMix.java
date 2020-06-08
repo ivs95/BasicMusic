@@ -20,7 +20,6 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 
 public class SeleccionNivelMix extends Activity {
 
-    private boolean corregido = false;
     private Bundle savedInstanceState;
     private PopupWindow popupWindow;
     private View popupView;
@@ -37,7 +36,7 @@ public class SeleccionNivelMix extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
-        LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
+        LinearLayout llBotonera = findViewById(R.id.Botonera);
 
         boolean primeraVez = GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Modo_Mix);
 
@@ -93,7 +92,7 @@ public class SeleccionNivelMix extends Activity {
 
     public void nivel_seleccionado(View view) {
         ControladorMix.getInstance().setNivel(view.getId());
-        ControladorMix.getInstance().iniciaExamen();
+        ControladorMix.getInstance().iniciaModo();
         Controlador.getInstance().setMixIniciado(false);
         siguienteEjercicio();
 
@@ -118,13 +117,13 @@ public class SeleccionNivelMix extends Activity {
 
     private void siguienteEjercicio() {
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Modo_Mix);
-        if(!ControladorMix.getInstance().finalExamen()) {
+        if(!ControladorMix.getInstance().finalMix()) {
             ControladorMix.getInstance().setEjercicio();
             Intent i = ControladorMix.getInstance().iniciaPrueba(this);
             startActivityForResult(i, 2);
         }
         else {
-            ControladorMix.getInstance().setResultadoExamen();
+            ControladorMix.getInstance().setResultadoModo();
             Intent i = new Intent(this , ResultadoMix.class);
             startActivity(i);
         }

@@ -44,11 +44,11 @@ public final class ControladorMix {
     }
 
     public void setNivel(int nivel) {
-        this.nivel = NivelMix.getNivelExamen(nivel);
+        this.nivel = NivelMix.getNivelMix(nivel);
     }
 
     public NivelMix getNivel(){return this.nivel;}
-    public void preparaExamen() {
+    public void preparaModo() {
         ejercicios.addAll(ejercicios);
         Collections.shuffle(ejercicios);
         indiceActual=0;
@@ -74,11 +74,11 @@ public final class ControladorMix {
         return this.numAciertos;
     }
 
-    public void iniciaExamen(){
-        preparaExamen();
+    public void iniciaModo(){
+        preparaModo();
     }
 
-    public void setResultadoExamen() {
+    public void setResultadoModo() {
         this.aprobado=this.numAciertos>=nivel.getAciertosAprobar();
     }
 
@@ -124,7 +124,7 @@ public final class ControladorMix {
         return i;
     }
 
-    public boolean finalExamen() {
+    public boolean finalMix() {
         return NUM_EJERCICIOS == indiceActual;
     }
 

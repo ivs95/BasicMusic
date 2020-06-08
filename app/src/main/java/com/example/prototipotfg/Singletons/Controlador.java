@@ -75,10 +75,6 @@ public final class Controlador {
         return dificultad;
     }
 
-    public void setDificultad(Dificultad dificultad) {
-        this.dificultad = dificultad;
-    }
-
     public int getLongitud(){ return this.longitud;}
 
     public int getCompas(){ return this.compas;}

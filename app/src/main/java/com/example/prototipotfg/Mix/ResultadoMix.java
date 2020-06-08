@@ -25,7 +25,7 @@ public class ResultadoMix extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resultado_examen);
 
-        NivelAdivinar nivel = null;
+        NivelAdivinar nivel;
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getRango()).ordinal();
         if(ControladorMix.getInstance().isAprobado()) {

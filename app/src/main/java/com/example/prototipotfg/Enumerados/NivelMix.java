@@ -43,7 +43,7 @@ public enum NivelMix {
         this.aciertosAprobar=aciertosAprobar;
     }
 
-    public static NivelMix getNivelExamen(int nivel) {
+    public static NivelMix getNivelMix(int nivel) {
         for (NivelMix n : values()){
             if (n.getNivel()==nivel)
                 return n;
