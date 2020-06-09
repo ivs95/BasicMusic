@@ -182,6 +182,8 @@ public class NivelesImitar extends Activity {
         }
         else if(tutorial == 4){
             popupWindow.dismiss();
+            GestorBBDD.getInstance().modoRealizado(ModoJuego.Imitar_Audio);
+
         }
     }
 

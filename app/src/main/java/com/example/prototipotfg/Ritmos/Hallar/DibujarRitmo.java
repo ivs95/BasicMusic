@@ -167,7 +167,6 @@ public class DibujarRitmo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hallaritmos);
         this.savedInstanceState = savedInstanceState;
-        GestorBBDD.getInstance().modoRealizado(ModoJuego.Halla_Ritmo);
         Random random = new Random();
         ritmos1 = new ArrayList<>(Controlador.getInstance().getLongitud());
         ritmos2 = new ArrayList<>(Controlador.getInstance().getLongitud());

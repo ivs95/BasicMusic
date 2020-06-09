@@ -174,6 +174,8 @@ public class SeleccionNivelAdivinarAcorde extends Activity {
         }
         else if(tutorial == 4){
             popupWindow.dismiss();
+            GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Acordes);
+
         }
     }
 

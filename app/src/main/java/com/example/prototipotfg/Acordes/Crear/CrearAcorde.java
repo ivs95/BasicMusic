@@ -122,7 +122,6 @@ public class CrearAcorde extends Activity {
             opciones.addView(button);
         }
         if (!(this instanceof CrearAcordeMix)) {
-            GestorBBDD.getInstance().modoRealizado(ModoJuego.Crear_Acordes);
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 
                 LayoutInflater inflater = (LayoutInflater)

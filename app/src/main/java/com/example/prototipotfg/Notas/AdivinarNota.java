@@ -99,7 +99,6 @@ public class AdivinarNota extends Activity {
             botonesNotas.add(button);
         }
         if (!(this instanceof AdivinarNotaMix)) {
-            GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Notas);
 
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 

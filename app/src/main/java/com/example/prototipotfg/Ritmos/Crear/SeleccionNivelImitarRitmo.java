@@ -190,6 +190,7 @@ public class SeleccionNivelImitarRitmo extends Activity{
         }
         else if(tutorial == 5){
             popupWindow.dismiss();
+            GestorBBDD.getInstance().modoRealizado(ModoJuego.Realiza_Ritmo);
         }
     }
 

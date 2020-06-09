@@ -100,12 +100,13 @@ public class SeleccionNivelAdivinarNota extends Activity {
         //Nivel que se ha seleccionado
         Controlador.getInstance().setNivel(view.getId());
         Controlador.getInstance().estableceDificultad();
-
         startActivity(i);
     }
 
     public void mostrarPopupTutorial(View view){
-            LayoutInflater inflater = (LayoutInflater)
+
+
+        LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
 
             popupView = inflater.inflate(R.layout.popup_tutorial_adivinarnotas, null);
@@ -174,6 +175,8 @@ public class SeleccionNivelAdivinarNota extends Activity {
         }
         else if(tutorial == 4){
             popupWindow.dismiss();
+            GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Notas);
+
         }
     }
 

@@ -28,7 +28,7 @@
                 android:id="@+id/popup_tutorial_rangos_titulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sistema de Progresión "
+                android:text="Sistema de progresión "
 
                 android:textColor="@color/md_blue_900"
                 android:textSize="30sp"
@@ -41,10 +41,10 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="373dp"
-                android:layout_height="219dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:text="\nBasicMusic cuenta con un sistema de progresión basado en puntuación con rangos para cada modo de juego, con un total de 7 disponibles. \n\nLos distintos rangos son representados por figuras musicales que se mostrarán a la derecha del modo de juego correspondiente, son las siguientes:\n"
+                android:text="\nBasicMusic cuenta con un sistema de progresión basado en puntuación con rangos para cada modo de juego, con un total de 7 disponibles. \n\nLos distintos rangos son representados por figuras musicales que se mostrarán a la derecha del modo de juego correspondiente. Estas figuras son las siguientes:\n"
                 android:textColor="@color/md_blue_900"
                 android:textSize="17dp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayoutPadre"
@@ -64,16 +64,16 @@
 
             <LinearLayout
                 android:id="@+id/linearLayoutPadre"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="300dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="50dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/boton_cerrar_tutorialrangos"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/popup_tutorial_rangos_titulo"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
                 app:layout_constraintVertical_bias="0.912">
 
                 <LinearLayout

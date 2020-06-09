@@ -70,7 +70,6 @@ public class ReproducirImitar extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_reproducir_imitar);
-        GestorBBDD.getInstance().modoRealizado(ModoJuego.Imitar_Audio);
 
         nivel = Controlador.getInstance().getNivel();
         TextView titulo = (TextView)findViewById(R.id.tituloImitar);

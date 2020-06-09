@@ -263,7 +263,6 @@ public class ImitarRitmo extends Activity {
 
         nivel = Controlador.getInstance().getNivel();
 
-        GestorBBDD.getInstance().modoRealizado(ModoJuego.Realiza_Ritmo);
 
 
         Random random = new Random();

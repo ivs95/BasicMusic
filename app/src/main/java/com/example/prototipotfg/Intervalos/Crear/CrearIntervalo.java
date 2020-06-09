@@ -131,7 +131,6 @@ public class CrearIntervalo extends Activity {
             }
         }
         if (!(this instanceof CrearIntervaloMix)) {
-            GestorBBDD.getInstance().modoRealizado(ModoJuego.Crear_Intervalo);
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 
                 LayoutInflater inflater = (LayoutInflater)

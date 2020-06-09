@@ -121,7 +121,6 @@ public class AdivinarIntervalo extends Activity {
             opciones.addView(button);
         }
         if (!(this instanceof AdivinarIntervaloMix)) {
-            GestorBBDD.getInstance().modoRealizado(ModoJuego.Adivinar_Intervalo);
             if (GestorBBDD.getInstance().esPrimerNivelAdivinar(Controlador.getInstance().getModo_juego(), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 
                 LayoutInflater inflater = (LayoutInflater)
