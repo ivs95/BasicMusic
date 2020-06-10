@@ -39,7 +39,6 @@ public class SeleccionarModoIntervalos extends Activity {
             case R.id.buttonIntervalosModo2:
                 Intent i = new Intent(this, SeleccionNivelAdivinarIntervalo.class);
                 Controlador.getInstance().setModo_juego(ModoJuego.Adivinar_Intervalo);
-
                 startActivity(i);
                 break;
 

@@ -24,13 +24,12 @@ import static java.lang.Thread.sleep;
 public class TutorialIntervalos extends Activity{
     ArrayList<Button> opciones = new ArrayList<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         ((TextView)findViewById(R.id.tituloNiveles)).setText("Intervalos sobre LA4");
-        LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
+        LinearLayout llBotonera = findViewById(R.id.Botonera);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         for (int i = 0; i < Intervalos.values().length; i++){
             Button button = new Button(this);
@@ -54,10 +53,10 @@ public class TutorialIntervalos extends Activity{
 
         Pair<Notas, Octavas> segundaNota = FactoriaNotas.getInstance().devuelveNotaCompletaIntervalo(Notas.LA, Octavas.Cuarta, Intervalos.getIntervaloPorDiferencia(v.getId()));
         deshabilitaBotones();
-        reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath()+ Octavas.Cuarta.getPath() + Notas.LA.getPath());
+        reproduceNota("piano/"+ Octavas.Cuarta.getPath() + Notas.LA.getPath());
         try {
             sleep(400);
-            reproduceNota(FactoriaNotas.getInstance().getInstrumento().getPath() + segundaNota.second.getPath()+segundaNota.first.getPath());
+            reproduceNota("piano/" + segundaNota.second.getPath()+segundaNota.first.getPath());
             sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -66,7 +65,7 @@ public class TutorialIntervalos extends Activity{
     }
 
     public void reproduceNota(String ruta) {
-        AssetFileDescriptor afd = null;
+        AssetFileDescriptor afd;
         try {
             afd = getAssets().openFd(ruta);
             Reproductor.getInstance().reproducirNota(afd);

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -19,6 +18,7 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 public class Login extends AppCompatActivity {
 
     private boolean registro = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,31 +31,27 @@ public class Login extends AppCompatActivity {
 
         GestorBBDD.getInstance().setContexto(getApplicationContext());
         GestorBBDD.getInstance().compruebaUsuarioPrueba();
-        if (GestorBBDD.getInstance().usuarioRecordado()){
+        if (GestorBBDD.getInstance().usuarioRecordado()) {
             confirmaLogin();
         }
         setContentView(R.layout.activity_login);
-
-
     }
 
-    public void log(View view){
-        String correo = ((EditText)findViewById(R.id.txtEmail)).getText().toString();
-        String password = ((EditText)findViewById(R.id.txtPassword)).getText().toString();
-        boolean recordado= ((CheckBox)findViewById(R.id.checkRecordado)).isChecked();
-        if (!correo.isEmpty() && !password.isEmpty()){
-            if (GestorBBDD.getInstance().validaUsuario(correo,password,recordado)){
+    public void log(View view) {
+        String correo = ((EditText) findViewById(R.id.txtEmail)).getText().toString();
+        String password = ((EditText) findViewById(R.id.txtPassword)).getText().toString();
+        boolean recordado = ((CheckBox) findViewById(R.id.checkRecordado)).isChecked();
+        if (!correo.isEmpty() && !password.isEmpty()) {
+            if (GestorBBDD.getInstance().validaUsuario(correo, password, recordado)) {
                 confirmaLogin();
-            }
-            else{
-                ((TextView)findViewById(R.id.textErrorLog)).setVisibility(View.VISIBLE);
-                ((EditText)findViewById(R.id.txtEmail)).setText("");
-                ((EditText)findViewById(R.id.txtPassword)).setText("");
+            } else {
+                findViewById(R.id.textErrorLog).setVisibility(View.VISIBLE);
+                ((EditText) findViewById(R.id.txtEmail)).setText("");
+                ((EditText) findViewById(R.id.txtPassword)).setText("");
 
             }
-        }
-        else{
-            ((TextView)findViewById(R.id.textErrorLog)).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.textErrorLog).setVisibility(View.VISIBLE);
         }
     }
 
@@ -65,19 +61,16 @@ public class Login extends AppCompatActivity {
         startActivity(i);
     }
 
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
-        if(!registro)
+        if (!registro)
             finishAffinity();
     }
 
-
-
-    public void registro(View view){
+    public void registro(View view) {
         registro = true;
         Intent i = new Intent(this, Registro.class);
         startActivity(i);
     }
-
 
 }

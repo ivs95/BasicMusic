@@ -22,7 +22,7 @@ public class AdivinarIntervaloMix extends AdivinarIntervalo {
     private boolean resultado;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorMix.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorMix.getInstance().getNivel().getNivel() != 1) {
@@ -32,25 +32,24 @@ public class AdivinarIntervaloMix extends AdivinarIntervalo {
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView(), false, 0, 0);
         }
-        ((TextView)findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual()+1 + "/" + ControladorMix.getInstance().getNumEjercicios());
+        ((TextView) findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual() + 1 + "/" + ControladorMix.getInstance().getNumEjercicios());
         findViewById(R.id.lblIndice).setVisibility(View.VISIBLE);
 
 
     }
 
     @Override
-    public void comprobarResultado(View view){
+    public void comprobarResultado(View view) {
         this.comprobada = true;
         if (respuesta != this.intervalo_correcto) {
             botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-            resultado=false;
-        }
-        else
-            resultado=true;
+            resultado = false;
+        } else
+            resultado = true;
         respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
 
         findViewById(R.id.comprobar).setVisibility(View.GONE);
-        for (Button b : botonesOpciones){
+        for (Button b : botonesOpciones) {
             b.setEnabled(false);
         }
 
@@ -61,13 +60,13 @@ public class AdivinarIntervaloMix extends AdivinarIntervalo {
         findViewById(R.id.botonReferencia).setEnabled(false);
         findViewById(R.id.botonReferencia).setAlpha(.5f);
         findViewById(R.id.continuar_ai).setVisibility(View.VISIBLE);
-        ((Button)findViewById(R.id.continuar_ai)).setText("Continuar");
+        ((Button) findViewById(R.id.continuar_ai)).setText("Continuar");
         findViewById(R.id.continuar_ai).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent();
-                intent.putExtra("resultado",resultado);
-                setResult(RESULT_OK,intent);
+                Intent intent = new Intent();
+                intent.putExtra("resultado", resultado);
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });

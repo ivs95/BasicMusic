@@ -17,6 +17,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/tituloSeleccionar"
         android:layout_width="wrap_content"
@@ -32,8 +33,6 @@
         app:layout_constraintVertical_bias="0.05" />
 
 
-
-
     <LinearLayout
         android:id="@+id/linearLayout10"
         android:layout_width="match_parent"
@@ -44,8 +43,7 @@
         android:showDividers="middle"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout9"
         app:layout_constraintTop_toBottomOf="@+id/tituloSeleccionar"
-        app:layout_constraintVertical_bias="0.03"
->
+        app:layout_constraintVertical_bias="0.03">
 
         <Button
             android:id="@+id/botonIntervalo"
@@ -62,7 +60,6 @@
             android:text="Referencia(LA)" />
 
     </LinearLayout>
-
 
 
     <ScrollView
@@ -84,11 +81,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@drawable/divisor_botones_menu"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:showDividers="middle" />
     </ScrollView>
-
 
 
     <LinearLayout
@@ -111,19 +107,18 @@
             android:id="@+id/comprobar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:onClick="comprobarResultado"
             android:text="Comprobar resultado"
-            android:visibility="invisible"
-            android:enabled="false"/>
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/continuar_ai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="continuar"
-            android:visibility="gone"
-            android:text="Otra!" />
-
+            android:text="Otra!"
+            android:visibility="gone" />
 
 
     </LinearLayout>

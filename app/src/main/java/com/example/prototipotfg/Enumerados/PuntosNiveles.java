@@ -45,17 +45,11 @@ public enum PuntosNiveles {
         return minPuntos;
     }
 
-    public void setMinPuntos(int minPuntos) {
-        this.minPuntos = minPuntos;
-    }
 
     public int getMaxPuntos() {
         return maxPuntos;
     }
 
-    public void setMaxPuntos(int maxPuntos) {
-        this.maxPuntos = maxPuntos;
-    }
 
     public static int devuelveNivel(int puntuacion, ModoJuego modoJuego){
         int nivel = 0;

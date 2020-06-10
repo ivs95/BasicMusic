@@ -22,14 +22,6 @@ public enum NivelMix {
     Diez(10,new ModoJuego[]{ModoJuego.Adivinar_Notas,ModoJuego.Adivinar_Intervalo, ModoJuego.Crear_Intervalo, ModoJuego.Adivinar_Acordes,
             ModoJuego.Crear_Acordes,ModoJuego.Halla_Ritmo, ModoJuego.Realiza_Ritmo}, new int[]{10,6,8,6,6,8,8}, 14);
 
-    /*
-    * 2 preguntas cada tipo
-    * Puntuaciones desbloquear y rango como notas
-    * Porcentaje pruebas acertadas
-    * Puntos como notas
-    * Mezclar las pruebas
-    * onResume para lanzar siguiente prueba
-    * */
 
     private int nivel;
     private ModoJuego[] modos;
@@ -72,23 +64,9 @@ public enum NivelMix {
         return aciertosAprobar;
     }
 
-    public void setAciertosAprobar(int aciertosAprobar) {
-        this.aciertosAprobar = aciertosAprobar;
-    }
-
     public ModoJuego[] getModos() {
         return modos;
     }
 
-    public void setModos(ModoJuego[] modos) {
-        this.modos = modos;
-    }
 
-    public int[] getNiveles_modos() {
-        return niveles_modos;
-    }
-
-    public void setNiveles_modos(int[] niveles_modos) {
-        this.niveles_modos = niveles_modos;
-    }
 }

@@ -9,12 +9,13 @@ public class NotasImitar {
     private Integer octava;
     private Integer contador;
 
-    public NotasImitar(Notas n, Integer o, Integer c){
+    public NotasImitar(Notas n, Integer o, Integer c) {
         nota = n;
         octava = o;
         contador = c;
     }
-    public NotasImitar(Notas n, Integer o){
+
+    public NotasImitar(Notas n, Integer o) {
         nota = n;
         octava = o;
     }

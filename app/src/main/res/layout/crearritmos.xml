@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/id_crearritmos"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
@@ -27,29 +26,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="60dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloCrearRitmo">
+
         <Button
             android:id="@+id/botonPlayRitmo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Reproducir ritmo a imitar"
-            android:onClick="play" />
+            android:onClick="play"
+            android:text="Reproducir ritmo a imitar" />
 
         <Button
             android:id="@+id/botonStopRitmo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Detener ritmo"
-            android:onClick="para" />
+            android:onClick="para"
+            android:text="Detener ritmo" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,8 +65,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearOpcionesReproducir"
-        app:layout_constraintVertical_bias="0.08">
-    </LinearLayout>
+        app:layout_constraintVertical_bias="0.08"></LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearSoluciones"
@@ -213,8 +212,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <ImageButton
@@ -225,27 +224,25 @@
                 android:backgroundTint="@color/md_blue_700"
                 android:onClick="registraPalmada"
                 android:scaleType="fitXY"
-                android:src="@drawable/palmas"
-  />
+                android:src="@drawable/palmas" />
 
             <ImageButton
                 android:id="@+id/botonCaja"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="registraCaja"
-                android:text="Caja"
                 android:backgroundTint="@color/md_blue_700"
+                android:onClick="registraCaja"
                 android:scaleType="fitXY"
                 android:src="@drawable/caja"
-                />
+                android:text="Caja" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_weight="1"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <ImageButton
@@ -265,10 +262,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:backgroundTint="@color/md_blue_700"
-                android:src="@drawable/platillos"
                 android:onClick="registraPlatillo"
-                android:text="Platillo"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/platillos"
+                android:text="Platillo" />
         </LinearLayout>
     </LinearLayout>
 
@@ -296,33 +293,33 @@
             android:textColor="#091AAA"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/botonPlayRitmoPropio"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/botonPlayRitmoPropio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="reproducirRitmoPropio"
             android:layout_weight="1"
+            android:onClick="reproducirRitmoPropio"
             android:text="Reproducir ritmo"></Button>
 
         <Button
             android:id="@+id/botonResetRitmo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="borrarRitmoPropio"
             android:layout_weight="1"
+            android:onClick="borrarRitmoPropio"
             android:text="Borrar ritmo"></Button>
 
 
-            <Button
-                android:id="@+id/botonCompararRitmos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="comprobar"
-                android:layout_weight="1"
-                android:text="Comprobar respuesta" />
+        <Button
+            android:id="@+id/botonCompararRitmos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="comprobar"
+            android:text="Comprobar respuesta" />
 
         <Button
             android:id="@+id/continuar_cr"
@@ -331,7 +328,7 @@
             android:layout_weight="1"
             android:onClick="continuar"
             android:text="Otra!"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
 
     </LinearLayout>

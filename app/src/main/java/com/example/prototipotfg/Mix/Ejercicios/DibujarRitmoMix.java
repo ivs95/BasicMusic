@@ -23,7 +23,7 @@ public class DibujarRitmoMix extends DibujarRitmo {
     private boolean resultadoPrueba;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorMix.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorMix.getInstance().getNivel().getNivel() != 1) {
@@ -33,119 +33,105 @@ public class DibujarRitmoMix extends DibujarRitmo {
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView(), false, 0, 0);
         }
-        ((TextView)findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual()+1 + "/" + ControladorMix.getInstance().getNumEjercicios());
+        ((TextView) findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual() + 1 + "/" + ControladorMix.getInstance().getNumEjercicios());
         findViewById(R.id.lblIndice).setVisibility(View.VISIBLE);
 
     }
+
     @Override
-    public void stop(View view){
+    public void stop(View view) {
         para(view);
 
-        TextView resultado = findViewById(R.id.textRitmosResultado);
-
         this.comprobado = true;
-        NivelAdivinar nivel;
         view.setEnabled(false);
         view.setAlpha(0.5f);
-        int aciertos=0;
-        if(resultado1.equals(ritmos1)){
-            //Correct
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados1[i]!=null){
+        int aciertos = 0;
+        if (resultado1.equals(ritmos1)) {
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados1[i] != null) {
                     botonesSeleccionados1[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
             }
             aciertos++;
-        }
-        else{
-            //Incorrect
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados1[i]!=null){
+        } else {
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados1[i] != null) {
                     botonesSeleccionados1[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
-                if(botonesResultado1[i]!=null)
+                if (botonesResultado1[i] != null)
                     botonesResultado1[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
 
         }
-        if(resultado2.equals(ritmos2)){
-            //Correct
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados2[i]!=null){
+        if (resultado2.equals(ritmos2)) {
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados2[i] != null) {
                     botonesSeleccionados2[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
             }
             aciertos++;
-        }
-        else{
-            //Incorrect
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados2[i]!=null){
+        } else {
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados2[i] != null) {
                     botonesSeleccionados2[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
-                if(botonesResultado2[i]!=null)
+                if (botonesResultado2[i] != null)
                     botonesResultado2[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
 
         }
-        if(resultado3.equals(ritmos3)){
-            //Correct
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados3[i]!=null){
+        if (resultado3.equals(ritmos3)) {
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados3[i] != null) {
                     botonesSeleccionados3[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
             }
             aciertos++;
-        }
-        else{
-            //Incorrect
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados3[i]!=null){
+        } else {
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados3[i] != null) {
                     botonesSeleccionados3[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
-                if(botonesResultado3[i]!=null)
+                if (botonesResultado3[i] != null)
                     botonesResultado3[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
         }
-        if(resultado4.equals(ritmos4)){
-            //Correct
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados4[i]!=null){
+        if (resultado4.equals(ritmos4)) {
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados4[i] != null) {
                     botonesSeleccionados4[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
 
             }
             aciertos++;
-        }
-        else{
-            //Incorrect
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados4[i]!=null){
+        } else {
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados4[i] != null) {
                     botonesSeleccionados4[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
-                if(botonesResultado4[i]!=null)
+                if (botonesResultado4[i] != null)
                     botonesResultado4[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
 
         }
-        if((aciertos==1 && this.nivel<3) || (aciertos==2 && this.nivel>2 && this.nivel < 5) ||(aciertos==3 && this.nivel >= 5 && this.nivel < 7) ||(aciertos==4 && this.nivel>=7))
+        if ((aciertos == 1 && this.nivel < 3) || (aciertos == 2 && this.nivel > 2 && this.nivel < 5) || (aciertos == 3 && this.nivel >= 5 && this.nivel < 7) || (aciertos == 4 && this.nivel >= 7))
             resultadoPrueba = true;
 
         else
             resultadoPrueba = false;
 
 
-
         Controlador.getInstance().setMixIniciado(true);
-        ((Button)findViewById(R.id.continuar_hr)).setText("Continuar");
+        ((Button) findViewById(R.id.continuar_hr)).setText("Continuar");
         findViewById(R.id.continuar_hr).setVisibility(View.VISIBLE);
         findViewById(R.id.continuar_hr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent();
-                intent.putExtra("resultado",resultadoPrueba);
-                setResult(RESULT_OK,intent);
-                finish();                 }
+                Intent intent = new Intent();
+                intent.putExtra("resultado", resultadoPrueba);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
         });
     }
 

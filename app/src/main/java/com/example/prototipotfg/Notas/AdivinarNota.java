@@ -15,7 +15,6 @@ import androidx.core.content.ContextCompat;
 
 import com.example.prototipotfg.BBDD.Entidades.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Dificultad;
-import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
@@ -43,58 +42,52 @@ public class AdivinarNota extends Activity {
     protected ArrayList<Button> botonesNotas = new ArrayList<>();
 
     protected String respuesta;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_seleccionar_adivinar_notas);
 
 
         ArrayList<Octavas> octavas = Controlador.getInstance().getOctavas();
-        HashMap<String, String> notas = null;
-        notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones(), Instrumentos.Piano, octavas);
+        HashMap<String, String> notas;
+        notas = FactoriaNotas.getInstance().getNumNotasAleatorias(Controlador.getInstance().getNum_opciones(),  octavas);
         nombres = new ArrayList<>(notas.keySet());
 
-        FactoriaNotas.getInstance().setReferencia(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
-        FactoriaNotas.getInstance().setReferenciaDo(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length()-1))));
+        FactoriaNotas.getInstance().setReferencia(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length() - 1))));
+        FactoriaNotas.getInstance().setReferenciaDo(Octavas.devuelveOctavaPorNumero(Integer.parseInt(nombres.get(0).substring(nombres.get(0).length() - 1))));
         adaptaVista(Controlador.getInstance().getDificultad());
-        //Obtenemos el linear layout donde colocar los botones
         LinearLayout opciones = findViewById(R.id.opciones);
 
-        //Creamos las propiedades de layout que tendrán los botones.
-        //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         Random rand = new Random();
+
         int num_respuestas = nombres.size();
         int random1 = rand.nextInt(num_respuestas);
-        ArrayList <Integer> aux = new ArrayList<Integer>();
+        ArrayList<Integer> aux = new ArrayList<Integer>();
         aux.add(random1);
-        for(int i = 0; i< num_respuestas-1; i++) {
+        for (int i = 0; i < num_respuestas - 1; i++) {
             while (aux.contains(random1))
                 random1 = rand.nextInt(num_respuestas);
 
             aux.add(random1);
         }
 
-        //Creamos los botones en bucle
-        for (int i=0; i<num_respuestas; i++){
+        for (int i = 0; i < num_respuestas; i++) {
             Button button = new Button(this);
-            button.setId(i+1);
-            //Asignamos propiedades de layout al boton
+            button.setId(i + 1);
             button.setLayoutParams(lp);
-            //Asignamos Texto al botón
             button.setText(nombres.get(aux.get(i)));
-
-            //Asignamose el Listener
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     respuesta_seleccionada(v);
                 }
             });
-            //Añadimos el botón a la botonera
             opciones.addView(button);
-            if (button.getText().toString() == nombres.get(0)){
-                this.respuestaCorrecta=button;
+
+            if (button.getText().toString() == nombres.get(0)) {
+                this.respuestaCorrecta = button;
             }
             botonesNotas.add(button);
         }
@@ -112,15 +105,14 @@ public class AdivinarNota extends Activity {
 
     protected void adaptaVista(Dificultad dificultad) {
         int nivel = Controlador.getInstance().getNivel();
-        if (dificultad.equals(Dificultad.Facil)){
+        if (dificultad.equals(Dificultad.Facil)) {
+            Button referencia = findViewById(R.id.botonReferencia);
+            referencia.setVisibility(View.GONE);
+        } else if (dificultad.equals(Dificultad.Dificil)) {
             Button referencia = findViewById(R.id.botonReferencia);
             referencia.setVisibility(View.GONE);
         }
-        else if (dificultad.equals(Dificultad.Dificil)){
-            Button referencia = findViewById(R.id.botonReferencia);
-            referencia.setVisibility(View.GONE);
-        }
-        if(nivel < 2 || nivel > 3){
+        if (nivel < 2 || nivel > 3) {
             Button referenciaDo = findViewById(R.id.botonReferenciaDo);
             referenciaDo.setVisibility(View.GONE);
         }
@@ -128,8 +120,7 @@ public class AdivinarNota extends Activity {
     }
 
 
-
-    public void respuesta_seleccionada(View view){
+    public void respuesta_seleccionada(View view) {
         if (!comprobada) {
             Button b = (Button) view;
             if (botonSeleccionado != null) {
@@ -162,19 +153,15 @@ public class AdivinarNota extends Activity {
     }
 
     private String devuelveRutaBoton(String text) {
-        Notas n = Notas.devuelveNotaPorNombre(text.substring(0, text.length()-1));
-        Octavas o = Octavas.devuelveOctavaPorNumero(Integer.parseInt(text.substring(text.length()-1)));
-        return FactoriaNotas.getInstance().getInstrumento().getPath()+o.getPath()+n.getPath();
+        Notas n = Notas.devuelveNotaPorNombre(text.substring(0, text.length() - 1));
+        Octavas o = Octavas.devuelveOctavaPorNumero(Integer.parseInt(text.substring(text.length() - 1)));
+        return "piano/" + o.getPath() + n.getPath();
     }
 
-    public void reproduceNotaRespuesta(View view) throws IOException{
-        AssetFileDescriptor afd = getAssets().openFd(devuelveRutaBoton(((Button)respuestaCorrecta).getText().toString()));
+    public void reproduceNotaRespuesta(View view) throws IOException {
+        AssetFileDescriptor afd = getAssets().openFd(devuelveRutaBoton(((Button) respuestaCorrecta).getText().toString()));
         Reproductor.getInstance().reproducirNota(afd);
         afd.close();
-    }
-
-    public void volverAtras(View view){
-        finish();
     }
 
     public void reproducirReferencia(View view) throws IOException {
@@ -204,13 +191,12 @@ public class AdivinarNota extends Activity {
             if (respuesta != nombres.get(0)) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-                    if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getNivel())
+                    if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getNivel())
                         GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Adivinar_Notas.toString(), false);
-                    nivel = new NivelAdivinar(ModoJuego.Adivinar_Notas.getNombre(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0 , 1);
+                    nivel = new NivelAdivinar(ModoJuego.Adivinar_Notas.getNombre(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
                 }
-            }
-            else {
-                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getNivel())
+            } else {
+                if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getNivel())
                     GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Adivinar_Notas.toString(), true);
                 nivel = new NivelAdivinar(ModoJuego.Adivinar_Notas.getNombre(), Controlador.getInstance().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
             }
@@ -224,42 +210,45 @@ public class AdivinarNota extends Activity {
 
         int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getNivel();
         int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Notas.toString()).getRango()).ordinal();
-        if(rangoActual != rangoNuevo) {
+        if (rangoActual != rangoNuevo) {
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Notas.toString());
         }
 
-            if (nivelActual != nivelNuevo) {
-                Controlador.getInstance().setNivel(nivelNuevo);
-                LayoutInflater inflater = (LayoutInflater)
-                            getSystemService(LAYOUT_INFLATER_SERVICE);
-                ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Notas, findViewById(android.R.id.content).getRootView(), true, nivelActual, nivelNuevo);
+        if (nivelActual != nivelNuevo) {
+            Controlador.getInstance().setNivel(nivelNuevo);
+            LayoutInflater inflater = (LayoutInflater)
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
+            ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Notas, findViewById(android.R.id.content).getRootView(), true, nivelActual, nivelNuevo);
 
-                Controlador.getInstance().estableceDificultad();
-            }
+            Controlador.getInstance().estableceDificultad();
+        }
 
 
         findViewById(R.id.continuar_an).setVisibility(VISIBLE);
     }
 
     protected void deshabilitaBotones() {
-        for (Button b : botonesNotas){
+        for (Button b : botonesNotas) {
             b.setEnabled(false);
         }
-        findViewById(R.id.botonReferencia).setEnabled(false);   findViewById(R.id.botonReferencia).setAlpha(.5f);
-        findViewById(R.id.botonReferenciaDo).setEnabled(false);   findViewById(R.id.botonReferenciaDo).setAlpha(.5f);
-        findViewById(R.id.botonNota).setEnabled(false);         findViewById(R.id.botonNota).setAlpha(.5f);
+
+        findViewById(R.id.botonReferencia).setEnabled(false);
+        findViewById(R.id.botonReferencia).setAlpha(.5f);
+        findViewById(R.id.botonReferenciaDo).setEnabled(false);
+        findViewById(R.id.botonReferenciaDo).setAlpha(.5f);
+        findViewById(R.id.botonNota).setEnabled(false);
+        findViewById(R.id.botonNota).setAlpha(.5f);
 
     }
 
-    public void continuar(View view){
+    public void continuar(View view) {
 
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(getIntent());
-            overridePendingTransition(0, 0);
-        }
-
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+    }
 
 }

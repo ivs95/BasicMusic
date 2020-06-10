@@ -8,15 +8,16 @@ import androidx.room.PrimaryKey;
 public class Usuario {
 
 
-
-    @PrimaryKey @NonNull
+    @PrimaryKey
+    @NonNull
     private String correo;
     private String nombre;
     private String password;
     private boolean recordado;
     private boolean primeraVez;
 
-    public Usuario(){}
+    public Usuario() {
+    }
 
     public Usuario(@NonNull String correo, String nombre, String password, boolean recordado, boolean primeraVez) {
         this.correo = correo;
@@ -38,7 +39,9 @@ public class Usuario {
         return nombre;
     }
 
-    public boolean getPrimeraVez(){return this.primeraVez;}
+    public boolean getPrimeraVez() {
+        return this.primeraVez;
+    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -60,5 +63,7 @@ public class Usuario {
         this.recordado = recordado;
     }
 
-    public void setPrimeraVez(boolean primeraVez){this.primeraVez = primeraVez;}
+    public void setPrimeraVez(boolean primeraVez) {
+        this.primeraVez = primeraVez;
+    }
 }

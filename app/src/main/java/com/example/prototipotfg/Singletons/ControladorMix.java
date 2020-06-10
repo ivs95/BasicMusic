@@ -33,11 +33,6 @@ public final class ControladorMix {
     private HashMap<ModoJuego, Integer> resultadoEjercicios = new HashMap<>();
 
 
-    /*
-     * Puntuaciones desbloquear y rango como notas
-     * Porcentaje pruebas acertadas
-     * Puntos como notas
-     * */
 
     public static ControladorMix getInstance() {
         return INSTANCE;
@@ -127,7 +122,6 @@ public final class ControladorMix {
     public boolean finalMix() {
         return NUM_EJERCICIOS == indiceActual;
     }
-
 
     public HashMap<ModoJuego, Integer> getResultadoEjercicios() {
         return resultadoEjercicios;

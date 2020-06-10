@@ -30,7 +30,7 @@ public class ImitarRitmoMix extends ImitarRitmo {
     private boolean resultadoPrueba;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorMix.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorMix.getInstance().getNivel().getNivel() != 1) {
@@ -40,12 +40,14 @@ public class ImitarRitmoMix extends ImitarRitmo {
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView(), false, 0, 0);
         }
-        ((TextView)findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual()+1 + "/" + ControladorMix.getInstance().getNumEjercicios());
+        ((TextView) findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual() + 1 + "/" + ControladorMix.getInstance().getNumEjercicios());
         findViewById(R.id.lblIndice).setVisibility(View.VISIBLE);
 
     }
+
     @Override
     public void comprobar(View view) {
+
         findViewById(R.id.botonPalmada).setVisibility(View.GONE);
         findViewById(R.id.botonCaja).setVisibility(View.GONE);
         findViewById(R.id.botonTambor).setVisibility(View.GONE);
@@ -55,7 +57,7 @@ public class ImitarRitmoMix extends ImitarRitmo {
         findViewById(R.id.botonCompararRitmos).setVisibility(View.GONE);
         mostrarSolucion();
         para(view);
-        //comprobado = true;
+
         int indice = 0;
         if (compruebaArrays()) {
             resultadoPrueba = true;
@@ -139,7 +141,7 @@ public class ImitarRitmoMix extends ImitarRitmo {
         findViewById(R.id.botonPlatillo).setEnabled(false);
 
         findViewById(R.id.botonPlatillo).setAlpha(.5f);
-        ((Button)findViewById(R.id.continuar_cr)).setText("Continuar");
+        ((Button) findViewById(R.id.continuar_cr)).setText("Continuar");
 
         findViewById(R.id.continuar_cr).setVisibility(View.VISIBLE);
 
@@ -147,10 +149,11 @@ public class ImitarRitmoMix extends ImitarRitmo {
         findViewById(R.id.continuar_cr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent();
-                intent.putExtra("resultado",resultadoPrueba);
-                setResult(RESULT_OK,intent);
-                finish();                 }
+                Intent intent = new Intent();
+                intent.putExtra("resultado", resultadoPrueba);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
         });
     }
 

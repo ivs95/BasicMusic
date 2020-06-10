@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/popup_hallaritmos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="5dp"
@@ -8,7 +9,6 @@
     android:layout_marginRight="5dp"
     android:layout_marginBottom="5dp"
     android:gravity="center"
-    android:id="@+id/popup_hallaritmos"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -31,8 +31,8 @@
                 android:text="TUTORIAL"
                 android:textColor="@color/md_purple_800"
                 android:textSize="20sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/popup_hallaritmos_mensaje4"
@@ -41,10 +41,10 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:text="Cuando creas que has dibujado bien el ritmo pulsa este botón"
+                android:textAlignment="center"
                 android:textColor="@color/md_blue_900"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,12 +55,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
                 android:text="¿Como se juega a Dibujar ritmos?\nEl ritmo consiste en un solo compás 4/4\nCada hilera de botones representa el sonido de un instrumento.\nCada botón representa una semicorchea(1/16) dentro de ese compás.\nMarca los botones correspondientes a cada golpe de percusión de cada instrumento"
+                android:textAlignment="center"
                 android:textColor="@color/md_blue_900"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                android:textAlignment="center"
-                android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,12 +84,13 @@
                     android:id="@+id/textRitmos1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Palmadas"
                     android:gravity="center"
+                    android:text="Palmadas"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#091AAA"
-                    app:layout_constraintBottom_toTopOf="@id/popup_hallaritmos_linearbotones1"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@id/popup_hallaritmos_linearbotones1" />
+
                 <LinearLayout
                     android:id="@+id/popup_hallaritmos_linearbotones1"
                     android:layout_width="wrap_content"
@@ -213,12 +214,12 @@
                     android:id="@+id/textRitmos2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Caja"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#091AAA"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toTopOf="@id/popup_hallaritmos_linearbotones2"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@id/popup_hallaritmos_linearbotones2" />
 
                 <LinearLayout
                     android:id="@+id/popup_hallaritmos_linearbotones2"
@@ -344,12 +345,12 @@
                     android:id="@+id/textRitmos3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Tambor"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#091AAA"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toTopOf="@id/popup_hallaritmos_linearbotones3"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@id/popup_hallaritmos_linearbotones3" />
 
                 <LinearLayout
                     android:id="@+id/popup_hallaritmos_linearbotones3"
@@ -477,11 +478,11 @@
                 android:id="@+id/popup_hallaritmos_layoutbotones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="10dp"
                 app:layout_constraintTop_toBottomOf="@id/nivelPopUpRitmo">
 
                 <Button
@@ -520,9 +521,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintVertical_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/popup_hallaritmos_mensaje4" />
+                app:layout_constraintTop_toBottomOf="@id/popup_hallaritmos_mensaje4"
+                app:layout_constraintVertical_bias="0.1" />
 
             <Button
                 android:id="@+id/popup_hallaritmos_prev"
@@ -597,12 +598,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
-                android:textAlignment="center"
+                android:layout_marginBottom="5dp"
                 android:text=""
+                android:textAlignment="center"
                 android:textColor="@color/md_blue_900"
                 android:textSize="22dp"
                 android:textStyle="bold"
-                android:layout_marginBottom="5dp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

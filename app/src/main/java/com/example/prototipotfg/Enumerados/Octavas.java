@@ -1,6 +1,5 @@
 package com.example.prototipotfg.Enumerados;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public enum Octavas {
@@ -18,7 +17,7 @@ public enum Octavas {
     private String path;
     private int octava;
 
-    private Octavas(String nombre, String path,int octava){
+    Octavas(String nombre, String path,int octava){
         this.nombre=nombre;
         this.path=path;
         this.octava=octava;
@@ -45,13 +44,7 @@ public enum Octavas {
         return Arrays.asList(Octavas.values()).indexOf(o);
     }
 
-    public static ArrayList<Octavas> devuelveOctavas(ArrayList<String> octavas) {
-        ArrayList<Octavas> retorno = new ArrayList<Octavas>();
-        for (String nombre: octavas) {
-            retorno.add(Octavas.devuelveOctavaPorNombre(nombre));
-        }
-        return retorno;
-    }
+
 
     public String getNombre() {
         return nombre;
@@ -65,9 +58,6 @@ public enum Octavas {
         return path;
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
 
     public int getOctava() {
         return octava;

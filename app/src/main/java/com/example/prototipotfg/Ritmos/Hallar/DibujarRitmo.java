@@ -71,16 +71,16 @@ public class DibujarRitmo extends Activity {
     protected ArrayList<Integer> resultado3 = new ArrayList<>();
     protected ArrayList<Integer> resultado4 = new ArrayList<>();
     protected ArrayList<Integer> metronomo = new ArrayList<>();
-    protected MediaPlayerRitmos mediaPlayer1 =  new MediaPlayerRitmos();
-    protected MediaPlayerRitmos mediaPlayer2 =  new MediaPlayerRitmos();
-    protected MediaPlayerRitmos mediaPlayer3 =  new MediaPlayerRitmos();
-    protected MediaPlayerRitmos mediaPlayer4 =  new MediaPlayerRitmos();
-    protected MediaPlayerRitmos mediaPlayerMetronomo =  new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer1 = new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer2 = new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer3 = new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayer4 = new MediaPlayerRitmos();
+    protected MediaPlayerRitmos mediaPlayerMetronomo = new MediaPlayerRitmos();
 
-    protected Thread hilo_ritmos = new Thread(new Runnable(){
+    protected Thread hilo_ritmos = new Thread(new Runnable() {
         @Override
         public void run() {
-            while(!end) {
+            while (!end) {
                 while (running) {
                     play = false;
                     if (metronomo.get(indice) == 1) {
@@ -131,7 +131,7 @@ public class DibujarRitmo extends Activity {
         @Override
         public void run() {
             try {
-                while(!end) {
+                while (!end) {
                     while (running) {
                         if (go1) {
                             mediaPlayer1.play();
@@ -163,7 +163,7 @@ public class DibujarRitmo extends Activity {
     });
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hallaritmos);
         this.savedInstanceState = savedInstanceState;
@@ -172,18 +172,18 @@ public class DibujarRitmo extends Activity {
         ritmos2 = new ArrayList<>(Controlador.getInstance().getLongitud());
         ritmos3 = new ArrayList<>(Controlador.getInstance().getLongitud());
         ritmos4 = new ArrayList<>(Controlador.getInstance().getLongitud());
-        for(int x = 0; x<4; x++) {
+        for (int x = 0; x < 4; x++) {
             int nota = random.nextInt(3) + 1;
             //Llenar aleatorios
 
             for (int j = getSonidoPorSimbolo(nota).getSilencio(); j <= Controlador.getInstance().getLongitud(); j += getSonidoPorSimbolo(nota).getSilencio()) {
-                if(x == 0)
+                if (x == 0)
                     agregaFigura(nota, ritmos1, Controlador.getInstance().getCompas());
-                else if (x==1)
+                else if (x == 1)
                     agregaFigura(nota, ritmos2, Controlador.getInstance().getCompas());
-                else if (x==2)
+                else if (x == 2)
                     agregaFigura(nota, ritmos3, Controlador.getInstance().getCompas());
-                else if (x==3)
+                else if (x == 3)
                     agregaFigura(nota, ritmos4, Controlador.getInstance().getCompas());
                 if (Controlador.getInstance().getLongitud() - j >= 4)
                     nota = random.nextInt(4);
@@ -201,20 +201,16 @@ public class DibujarRitmo extends Activity {
         running = false;
         hilo_ritmos.start();
         hiloPlayer1.start();
-
         mediaPlayerMetronomo.initMetronomo(this);
         mediaPlayer1.init1(this);
         findViewById(R.id.textRitmos1).setVisibility(View.VISIBLE);
-        if(nivel>2) {
-            //hiloPlayer2.start();
+        if (nivel > 2) {
             mediaPlayer2.init2(this);
             findViewById(R.id.textRitmos2).setVisibility(View.VISIBLE);
-            if(nivel>4) {
-                //hiloPlayer3.start();
+            if (nivel > 4) {
                 mediaPlayer3.init3(this);
                 findViewById(R.id.textRitmos3).setVisibility(View.VISIBLE);
-                if(nivel > 6) {
-                 //   hiloPlayer4.start();
+                if (nivel > 6) {
                     mediaPlayer4.init4(this);
                     findViewById(R.id.textRitmos4).setVisibility(View.VISIBLE);
                 }
@@ -230,9 +226,8 @@ public class DibujarRitmo extends Activity {
         LinearLayout llBotonera3 = (LinearLayout) findViewById(R.id.botoneraRitmos3);
         LinearLayout llBotonera4 = (LinearLayout) findViewById(R.id.botoneraRitmos4);
         //Creamos las propiedades de layout que tendrán los botones.
-        //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(80, LinearLayout.LayoutParams.WRAP_CONTENT);
-        for(int j=0; j<(nivel+1)/2; j++) {
+        for (int j = 0; j < (nivel + 1) / 2; j++) {
             //Creamos los botones en bucle
             final int finalJ = j;
             System.out.println(Controlador.getInstance().getPausa());
@@ -241,12 +236,10 @@ public class DibujarRitmo extends Activity {
                 button.setId(i + 1);
                 //Asignamos propiedades de layout al boton
                 button.setLayoutParams(lp);
-                //Asignamos el Listener
                 final int finalI = i;
-                //Añadimos el botón a la botonera
                 if (i < 4) {
 
-                    if(!comprobado) {
+                    if (!comprobado) {
                         button.setOnClickListener(new View.OnClickListener() {
                             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                             @Override
@@ -316,28 +309,25 @@ public class DibujarRitmo extends Activity {
                             }
                         });
                     }
-                    if(j==0) {
+                    if (j == 0) {
                         llBotonera1.addView(button);
-                        if(ritmos1.get(i)==1){
-                            botonesResultado1[(int) button.getId() - 1]=button;
+                        if (ritmos1.get(i) == 1) {
+                            botonesResultado1[(int) button.getId() - 1] = button;
                         }
-                    }
-                    else if(j==1) {
+                    } else if (j == 1) {
                         llBotonera4.addView(button);
-                        if(ritmos2.get(i)==1){
-                            botonesResultado2[(int) button.getId() - 1]=button;
+                        if (ritmos2.get(i) == 1) {
+                            botonesResultado2[(int) button.getId() - 1] = button;
                         }
-                    }
-                    else if(j==2) {
+                    } else if (j == 2) {
                         llBotonera3.addView(button);
-                        if(ritmos3.get(i)==1){
-                            botonesResultado3[(int) button.getId() - 1]=button;
+                        if (ritmos3.get(i) == 1) {
+                            botonesResultado3[(int) button.getId() - 1] = button;
                         }
-                    }
-                    else if(j==3) {
+                    } else if (j == 3) {
                         llBotonera2.addView(button);
-                        if(ritmos4.get(i)==1){
-                            botonesResultado4[(int) button.getId() - 1]=button;
+                        if (ritmos4.get(i) == 1) {
+                            botonesResultado4[(int) button.getId() - 1] = button;
                         }
                     }
                 } else if (i >= 4 && i < 8) {
@@ -412,31 +402,29 @@ public class DibujarRitmo extends Activity {
                             }
                         }
                     });
-                    if(j==0) {
+                    if (j == 0) {
                         llBotonera1.addView(button);
-                        if(ritmos1.get(i)==1){
-                            botonesResultado1[(int) button.getId() - 1]=button;
+                        if (ritmos1.get(i) == 1) {
+                            botonesResultado1[(int) button.getId() - 1] = button;
                         }
-                    }
-                    else if(j==1) {
+                    } else if (j == 1) {
                         llBotonera4.addView(button);
-                        if(ritmos2.get(i)==1){
-                            botonesResultado2[(int) button.getId() - 1]=button;
+                        if (ritmos2.get(i) == 1) {
+                            botonesResultado2[(int) button.getId() - 1] = button;
                         }
-                    }
-                    else if(j==2) {
+                    } else if (j == 2) {
                         llBotonera3.addView(button);
-                        if(ritmos3.get(i)==1){
-                            botonesResultado3[(int) button.getId() - 1]=button;
+                        if (ritmos3.get(i) == 1) {
+                            botonesResultado3[(int) button.getId() - 1] = button;
                         }
-                    }
-                    else if(j==3) {
+                    } else if (j == 3) {
                         llBotonera2.addView(button);
-                        if(ritmos4.get(i)==1){
-                            botonesResultado4[(int) button.getId() - 1]=button;
+                        if (ritmos4.get(i) == 1) {
+                            botonesResultado4[(int) button.getId() - 1] = button;
                         }
                     }
-                } if (i >= 8 && i < 12) {
+                }
+                if (i >= 8 && i < 12) {
                     button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.md_blue_300)));
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -506,28 +494,25 @@ public class DibujarRitmo extends Activity {
                             }
                         }
                     });
-                    if(j==0) {
+                    if (j == 0) {
                         llBotonera1.addView(button);
-                        if(ritmos1.get(i)==1){
-                            botonesResultado1[(int) button.getId() - 1]=button;
+                        if (ritmos1.get(i) == 1) {
+                            botonesResultado1[(int) button.getId() - 1] = button;
                         }
-                    }
-                    else if(j==1) {
+                    } else if (j == 1) {
                         llBotonera4.addView(button);
-                        if(ritmos2.get(i)==1){
-                            botonesResultado2[(int) button.getId() - 1]=button;
+                        if (ritmos2.get(i) == 1) {
+                            botonesResultado2[(int) button.getId() - 1] = button;
                         }
-                    }
-                    else if(j==2) {
+                    } else if (j == 2) {
                         llBotonera3.addView(button);
-                        if(ritmos3.get(i)==1){
-                            botonesResultado3[(int) button.getId() - 1]=button;
+                        if (ritmos3.get(i) == 1) {
+                            botonesResultado3[(int) button.getId() - 1] = button;
                         }
-                    }
-                    else if(j==3) {
+                    } else if (j == 3) {
                         llBotonera2.addView(button);
-                        if(ritmos4.get(i)==1){
-                            botonesResultado4[(int) button.getId() - 1]=button;
+                        if (ritmos4.get(i) == 1) {
+                            botonesResultado4[(int) button.getId() - 1] = button;
                         }
                     }
                 } else if (i >= 12 && i < 16) {
@@ -600,28 +585,25 @@ public class DibujarRitmo extends Activity {
                             }
                         }
                     });
-                    if(j==0) {
+                    if (j == 0) {
                         llBotonera1.addView(button);
-                        if(ritmos1.get(i)==1){
-                            botonesResultado1[(int) button.getId() - 1]=button;
+                        if (ritmos1.get(i) == 1) {
+                            botonesResultado1[(int) button.getId() - 1] = button;
                         }
-                    }
-                    else if(j==1) {
+                    } else if (j == 1) {
                         llBotonera4.addView(button);
-                        if(ritmos2.get(i)==1){
-                            botonesResultado2[(int) button.getId() - 1]=button;
+                        if (ritmos2.get(i) == 1) {
+                            botonesResultado2[(int) button.getId() - 1] = button;
                         }
-                    }
-                    else if(j==2) {
+                    } else if (j == 2) {
                         llBotonera3.addView(button);
-                        if(ritmos3.get(i)==1){
-                            botonesResultado3[(int) button.getId() - 1]=button;
+                        if (ritmos3.get(i) == 1) {
+                            botonesResultado3[(int) button.getId() - 1] = button;
                         }
-                    }
-                    else if(j==3) {
+                    } else if (j == 3) {
                         llBotonera2.addView(button);
-                        if(ritmos4.get(i)==1){
-                            botonesResultado4[(int) button.getId() - 1]=button;
+                        if (ritmos4.get(i) == 1) {
+                            botonesResultado4[(int) button.getId() - 1] = button;
                         }
                     }
                 }
@@ -631,11 +613,10 @@ public class DibujarRitmo extends Activity {
                 resultado2.add(0);
                 resultado3.add(0);
                 resultado4.add(0);
-                if(i%4==0){
-                    metronomo.add(i,1);
-                }
-                else{
-                    metronomo.add(i,0);
+                if (i % 4 == 0) {
+                    metronomo.add(i, 1);
+                } else {
+                    metronomo.add(i, 0);
                 }
             }
         }
@@ -648,29 +629,28 @@ public class DibujarRitmo extends Activity {
         }
     }
 
-    public void play(@NotNull final View view){
-        if(running == true){
+    public void play(@NotNull final View view) {
+        if (running == true) {
             indice = 0;
             play = true;
-        }
-        else {
+        } else {
             running = true;
-            if(pause == false)
+            if (pause == false)
                 indice = 0;
             pause = false;
         }
     }
 
-    public void pause(@NotNull final View view){
+    public void pause(@NotNull final View view) {
         running = false;
         pause = true;
     }
 
-    public void para(@NotNull final View view){
+    public void para(@NotNull final View view) {
         running = false;
     }
 
-    public void stop(View view){
+    public void stop(View view) {
         para(view);
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getRango()).ordinal();
@@ -681,121 +661,116 @@ public class DibujarRitmo extends Activity {
         NivelAdivinar nivel;
         view.setEnabled(false);
         view.setAlpha(0.5f);
-        int aciertos=0;
-        if(resultado1.equals(ritmos1)){
+        int aciertos = 0;
+        if (resultado1.equals(ritmos1)) {
             //Correct
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados1[i]!=null){
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados1[i] != null) {
                     botonesSeleccionados1[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
             }
             aciertos++;
-        }
-        else{
+        } else {
             //Incorrect
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados1[i]!=null){
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados1[i] != null) {
                     botonesSeleccionados1[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
-                if(botonesResultado1[i]!=null)
+                if (botonesResultado1[i] != null)
                     botonesResultado1[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
 
         }
-        if(resultado2.equals(ritmos2)){
+        if (resultado2.equals(ritmos2)) {
             //Correct
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados2[i]!=null){
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados2[i] != null) {
                     botonesSeleccionados2[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
             }
             aciertos++;
-        }
-        else{
+        } else {
             //Incorrect
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados2[i]!=null){
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados2[i] != null) {
                     botonesSeleccionados2[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
-                if(botonesResultado2[i]!=null)
+                if (botonesResultado2[i] != null)
                     botonesResultado2[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
 
         }
-        if(resultado3.equals(ritmos3)){
+        if (resultado3.equals(ritmos3)) {
             //Correct
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados3[i]!=null){
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados3[i] != null) {
                     botonesSeleccionados3[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
             }
             aciertos++;
-        }
-        else{
+        } else {
             //Incorrect
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados3[i]!=null){
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados3[i] != null) {
                     botonesSeleccionados3[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
-                if(botonesResultado3[i]!=null)
+                if (botonesResultado3[i] != null)
                     botonesResultado3[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
         }
-        if(resultado4.equals(ritmos4)){
+        if (resultado4.equals(ritmos4)) {
             //Correct
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados4[i]!=null){
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados4[i] != null) {
                     botonesSeleccionados4[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
                 }
 
             }
             aciertos++;
-        }
-        else{
+        } else {
             //Incorrect
-            for(int i = 0; i<Controlador.getInstance().getLongitud(); i++){
-                if(botonesSeleccionados4[i]!=null){
+            for (int i = 0; i < Controlador.getInstance().getLongitud(); i++) {
+                if (botonesSeleccionados4[i] != null) {
                     botonesSeleccionados4[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
                 }
-                if(botonesResultado4[i]!=null)
+                if (botonesResultado4[i] != null)
                     botonesResultado4[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
             }
 
         }
-        if((aciertos==1 && this.nivel<3) || (aciertos==2 && this.nivel>2 && this.nivel < 5) ||(aciertos==3 && this.nivel >= 5 && this.nivel < 7) ||(aciertos==4 && this.nivel>=7)){
+        if ((aciertos == 1 && this.nivel < 3) || (aciertos == 2 && this.nivel > 2 && this.nivel < 5) || (aciertos == 3 && this.nivel >= 5 && this.nivel < 7) || (aciertos == 4 && this.nivel >= 7)) {
 
             resultado.setText("¡Bien hecho!\n");
             resultado.setTextSize(22);
             resultado.setVisibility(View.VISIBLE);
             resultado.setTextColor(getResources().getColor(R.color.md_green_500));
-            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel())
+            if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Halla_Ritmo.toString(), true);
-            nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.getNombre(), this.nivel,true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0 );
-        }
-        else{
+            nivel = new NivelAdivinar(ModoJuego.Halla_Ritmo.getNombre(), this.nivel, true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
+        } else {
 
             resultado.setText("Prueba otra vez\n");
             resultado.setTextSize(22);
             resultado.setVisibility(View.VISIBLE);
             resultado.setTextColor(getResources().getColor(R.color.md_red_500));
-            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel())
+            if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Halla_Ritmo.toString(), false);
-            nivel  = new NivelAdivinar(ModoJuego.Halla_Ritmo.getNombre(), this.nivel,false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1 );
+            nivel = new NivelAdivinar(ModoJuego.Halla_Ritmo.getNombre(), this.nivel, false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
         }
         GestorBBDD.getInstance().insertaNivelAdivinar(nivel);
 
         int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getNivel();
         int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Halla_Ritmo.toString()).getRango()).ordinal();
-        if(rangoActual != rangoNuevo) {
+        if (rangoActual != rangoNuevo) {
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Halla_Ritmo.toString());
         }
 
-        if(nivelActual != nivelNuevo){
+        if (nivelActual != nivelNuevo) {
             Controlador.getInstance().setNivel(nivelNuevo);
             LayoutInflater inflater = (LayoutInflater)
-                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                    getSystemService(LAYOUT_INFLATER_SERVICE);
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Halla_Ritmo, findViewById(android.R.id.content).getRootView(), true, nivelActual, nivelNuevo);
 
@@ -806,32 +781,33 @@ public class DibujarRitmo extends Activity {
 
     }
 
-    public void agregaFigura(int figura, ArrayList<Integer> ritmos, int compas){
-        if(figura == 1){
-            ritmos.add(1);
-            for(int i = 0; i<(getSonidoPorSimbolo(figura).getSilencio()-1); i++){
-                ritmos.add(0);
-            }
-        }
-        if(figura == 2){
-            ritmos.add(1);
-            for(int i = 0; i<(getSonidoPorSimbolo(figura).getSilencio()-1); i++){
-                ritmos.add(0);
-            }
-        }
+    public void agregaFigura(int figura, ArrayList<Integer> ritmos, int compas) {
+        switch (figura) {
+            case 1:
+                ritmos.add(1);
+                for (int i = 0; i < (getSonidoPorSimbolo(figura).getSilencio() - 1); i++) {
+                    ritmos.add(0);
+                }
+                break;
+            case 2:
+                ritmos.add(1);
+                for (int i = 0; i < (getSonidoPorSimbolo(figura).getSilencio() - 1); i++) {
+                    ritmos.add(0);
+                }
+                break;
 
-        if (figura == 3){
-            ritmos.add(1);
-            for(int i = 0; i<(getSonidoPorSimbolo(figura).getSilencio()-1); i++){
-                ritmos.add(0);
-            }
+            case 3:
+                ritmos.add(1);
+                for (int i = 0; i < (getSonidoPorSimbolo(figura).getSilencio() - 1); i++) {
+                    ritmos.add(0);
+                }
+                break;
+            case 0:
+                for (int i = 0; i < (getSonidoPorSimbolo(figura).getSilencio()); i++) {
+                    ritmos.add(0);
+                }
+                break;
         }
-        if(figura==0){
-            for(int i = 0; i<(getSonidoPorSimbolo(figura).getSilencio()); i++){
-                ritmos.add(0);
-            }
-        }
-
 
     }
 
@@ -849,15 +825,16 @@ public class DibujarRitmo extends Activity {
     }
 
     @Override
-    public void onStop(){
+    public void onStop() {
         super.onStop();
         running = false;
     }
 
-    public void continuar(View view){
+    public void continuar(View view) {
         finish();
-        overridePendingTransition( 0, 0);
+        overridePendingTransition(0, 0);
         startActivity(getIntent());
-        overridePendingTransition( 0, 0);    }
+        overridePendingTransition(0, 0);
+    }
 
 }

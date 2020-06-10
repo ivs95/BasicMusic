@@ -21,93 +21,68 @@ public class GestorBBDD {
     private Context contexto;
     private Usuario usuarioLoggeado;
     private AppDatabase appDatabase;
-    private final int NIVELES_ADIVINAR_NOTAS=10;
-    private final int NIVELES_ADIVINAR_INTERVALOS=6;
-    private final int NIVELES_CREAR_INTERVALOS=8;
-    private final int NIVELES_ADIVINAR_ACORDES=6;
-    private final int NIVELES_CREAR_ACORDES=6;
+
+    private final int NIVELES_ADIVINAR_NOTAS = 10;
+    private final int NIVELES_ADIVINAR_INTERVALOS = 6;
+    private final int NIVELES_CREAR_INTERVALOS = 8;
+    private final int NIVELES_ADIVINAR_ACORDES = 6;
+    private final int NIVELES_CREAR_ACORDES = 6;
     private final int NIVELES_IMITAR_AUDIO = 8;
-    private final int NIVELES_HALLAR_RITMO=8;
-    private final int NIVELES_CREAR_RITMO=8;
+    private final int NIVELES_HALLAR_RITMO = 8;
+    private final int NIVELES_CREAR_RITMO = 8;
     private final int NIVELES_MODO_MIX = 10;
 
 
-
-    public static GestorBBDD getInstance(){
+    public static GestorBBDD getInstance() {
         return ourInstance;
     }
-    public void setContexto(Context contexto){
+
+    public void setContexto(Context contexto) {
         this.contexto = contexto;
         this.appDatabase = AppDatabase.getInstance(this.contexto);
     }
 
-    public void setUsuarioLoggeado(Usuario usuario){
+    public void setUsuarioLoggeado(Usuario usuario) {
         this.usuarioLoggeado = usuario;
     }
 
-
-
-
-    public void insertaNivelImitar(NivelImitar nivel){
-        if (appDatabase.daoNivel().findNivelImitar(usuarioLoggeado.getCorreo(), nivel.getNivel(), nivel.getRangoVocal())==null){
+    public void insertaNivelImitar(NivelImitar nivel) {
+        if (appDatabase.daoNivel().findNivelImitar(usuarioLoggeado.getCorreo(), nivel.getNivel(), nivel.getRangoVocal()) == null) {
             appDatabase.daoNivel().insertImitar(nivel);
-        }
-        else{
+        } else {
             actualizaNivelImitar(nivel);
         }
     }
 
-    public void insertaNivelAdivinar(NivelAdivinar nivel){
-        if (appDatabase.daoNivel().findNivelAdivinar(usuarioLoggeado.getCorreo(), nivel.getModoJuego(), nivel.getNivel())==null){
+    public void insertaNivelAdivinar(NivelAdivinar nivel) {
+        if (appDatabase.daoNivel().findNivelAdivinar(usuarioLoggeado.getCorreo(), nivel.getModoJuego(), nivel.getNivel()) == null) {
             appDatabase.daoNivel().insertAdivinar(nivel);
-        }
-        else{
+        } else {
             actualizaNivelAdivinar(nivel);
         }
     }
 
-    private void actualizaNivelImitar(NivelImitar nivel){
+    private void actualizaNivelImitar(NivelImitar nivel) {
         NivelImitar nivelOriginal = appDatabase.daoNivel().findNivelImitar(usuarioLoggeado.getCorreo(), nivel.getNivel(), nivel.getRangoVocal());
         nivelOriginal.actualizaPorcentajeAfinacion(nivel.getPorcentajeAfinacion());
         appDatabase.daoNivel().updateNivelImitar(nivelOriginal);
 
     }
 
-    private void actualizaNivelAdivinar(NivelAdivinar nivel){
+    private void actualizaNivelAdivinar(NivelAdivinar nivel) {
         NivelAdivinar nivelOriginal = appDatabase.daoNivel().findNivelAdivinar(usuarioLoggeado.getCorreo(), nivel.getModoJuego(), nivel.getNivel());
         nivelOriginal.actualizaEstadisticas(nivel.getSuperado());
         appDatabase.daoNivel().updateNivelAdivinar(nivelOriginal);
     }
 
-    public void borraUsuario(Usuario usuario){
-        if (appDatabase.daoUsuario().findUsuario(usuario.getCorreo())!= null)
-            appDatabase.daoUsuario().deleteUsuario(usuario);
+    public Usuario getUsuarioLoggeado() {
+        return usuarioLoggeado;
     }
-
-    public void borraNivelImitar(NivelImitar nivel) {
-        if (appDatabase.daoNivel().findNivelImitar(nivel.getCorreoUsuario(), nivel.getNivel(), nivel.getRangoVocal())!=null)
-            appDatabase.daoNivel().deleteImitar(nivel);
-    }
-
-    public void borraNivelAdivinar(NivelAdivinar nivel){
-        if (appDatabase.daoNivel().findNivelAdivinar(usuarioLoggeado.getCorreo(), nivel.getModoJuego(), nivel.getNivel())==null)
-                appDatabase.daoNivel().deleteAdivinar(nivel);
-    }
-
-    public List<NivelImitar> devuelveNivelesImitar(String rangoVocal){
-        return null;
-    }
-
-    public List<NivelAdivinar> devuelveNivelesAdivinar(String modo_juego){
-        return null;
-    }
-
-    public Usuario getUsuarioLoggeado(){return usuarioLoggeado;}
 
     public boolean validaUsuario(String correo, String password, boolean recordado) {
         Usuario usuario = appDatabase.daoUsuario().findUsuario(correo);
         if (usuario != null) {
-            if (usuario.getPassword().equals(password)){
+            if (usuario.getPassword().equals(password)) {
                 if (recordado) {
                     usuario.setRecordado(recordado);
                     appDatabase.daoUsuario().updateUsuario(usuario);
@@ -119,7 +94,7 @@ public class GestorBBDD {
         return false;
     }
 
-    public void cerrarSesion(){
+    public void cerrarSesion() {
         usuarioLoggeado.setRecordado(false);
         appDatabase.daoUsuario().updateUsuario(usuarioLoggeado);
         setUsuarioLoggeado(null);
@@ -127,38 +102,38 @@ public class GestorBBDD {
 
     private void inicializaPuntuacionUsuario(Usuario user) {
         for (int i = 0; i < ModoJuego.values().length; i++) {
-                Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), 1, user.getCorreo(), 0, RangosPuntuaciones.Principiante.toString(), false);
-                appDatabase.daoPuntuacion().insertPuntuacion(p);
+            Puntuacion p = new Puntuacion(ModoJuego.values()[i].toString(), 1, user.getCorreo(), 0, RangosPuntuaciones.Principiante.toString(), false);
+            appDatabase.daoPuntuacion().insertPuntuacion(p);
         }
 
     }
 
     public boolean registraUsuario(Usuario usuario) {
-        if(appDatabase.daoUsuario().findUsuario(usuario.getCorreo())==null){
+        if (appDatabase.daoUsuario().findUsuario(usuario.getCorreo()) == null) {
             appDatabase.daoUsuario().insertUsuario(usuario);
             inicializaPuntuacionUsuario(usuario);
-            }
+        }
         return true;
     }
 
     public boolean UpdateUsuario(Usuario usuario) {
-            appDatabase.daoUsuario().updateUsuario(usuario);
-            return true;
+        appDatabase.daoUsuario().updateUsuario(usuario);
+        return true;
 
     }
 
     public boolean usuarioRecordado() {
         Usuario usuario = appDatabase.daoUsuario().findUsuarioRecordado();
-        if (usuario != null){
+        if (usuario != null) {
             setUsuarioLoggeado(usuario);
             return true;
         }
         return false;
     }
 
-    public LinkedHashMap<String,String> devuelveEstadistica(String modo_juego){
-        LinkedHashMap<String,String> retorno = null;
-        switch(modo_juego) {
+    public LinkedHashMap<String, String> devuelveEstadistica(String modo_juego) {
+        LinkedHashMap<String, String> retorno = null;
+        switch (modo_juego) {
             case "Adivinar Notas":
                 retorno = estadisticaAdivinarNota();
                 break;
@@ -192,7 +167,8 @@ public class GestorBBDD {
             case "Modo Mix":
                 retorno = estadisticaModoMix();
                 break;
-            default:break;
+            default:
+                break;
         }
         return retorno;
     }
@@ -201,11 +177,11 @@ public class GestorBBDD {
         List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Modo_Mix.getNombre());
         LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
         String infoNivel = "";
-        for (int i = 1; i <= NIVELES_MODO_MIX; i++){
+        for (int i = 1; i <= NIVELES_MODO_MIX; i++) {
             retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
-        for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int)(((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100) + "% acierto";
+        for (NivelAdivinar n : listaNiveles) {
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int) (((float) n.getNumAciertos() / (n.getNumAciertos() + n.getNumFallos())) * 100) + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
         return retorno;
@@ -215,11 +191,11 @@ public class GestorBBDD {
         List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Realiza_Ritmo.getNombre());
         LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
         String infoNivel = "";
-        for (int i = 1; i <= NIVELES_CREAR_RITMO; i++){
+        for (int i = 1; i <= NIVELES_CREAR_RITMO; i++) {
             retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
-        for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int)(((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100) + "% acierto";
+        for (NivelAdivinar n : listaNiveles) {
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int) (((float) n.getNumAciertos() / (n.getNumAciertos() + n.getNumFallos())) * 100) + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
         return retorno;
@@ -229,11 +205,11 @@ public class GestorBBDD {
         List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Halla_Ritmo.getNombre());
         LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
         String infoNivel = "";
-        for (int i = 1; i <= NIVELES_HALLAR_RITMO; i++){
-                retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
+        for (int i = 1; i <= NIVELES_HALLAR_RITMO; i++) {
+            retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
-        for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int)(((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100) + "% acierto";
+        for (NivelAdivinar n : listaNiveles) {
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int) (((float) n.getNumAciertos() / (n.getNumAciertos() + n.getNumFallos())) * 100) + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
 
@@ -241,13 +217,13 @@ public class GestorBBDD {
     }
 
     private LinkedHashMap<String, String> estadisticaImitarAudio(String rangoVocal) {
-    List<NivelImitar> listaNiveles = appDatabase.daoNivel().findNivelesImitarByCorreo(usuarioLoggeado.getCorreo(), rangoVocal);
+        List<NivelImitar> listaNiveles = appDatabase.daoNivel().findNivelesImitarByCorreo(usuarioLoggeado.getCorreo(), rangoVocal);
         LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
         String infoNivel = "";
-        for (int i = 1; i <= NIVELES_IMITAR_AUDIO; i++){
+        for (int i = 1; i <= NIVELES_IMITAR_AUDIO; i++) {
             retorno.put("Nivel " + String.valueOf(i), "0 intentos;0% afinacion");
         }
-        for (NivelImitar n : listaNiveles){
+        for (NivelImitar n : listaNiveles) {
             infoNivel = n.getNumeroIntentos() + " intentos;" + n.getPorcentajeAfinacion() + "% afinacion";
             retorno.put("Nivel " + n.getNivel(), infoNivel);
         }
@@ -259,11 +235,11 @@ public class GestorBBDD {
         List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Crear_Acordes.getNombre());
         LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
         String infoNivel = "";
-        for (int i = 1; i <= NIVELES_CREAR_ACORDES; i++){
-                retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
+        for (int i = 1; i <= NIVELES_CREAR_ACORDES; i++) {
+            retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
-        for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int)(((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100) + "% acierto";
+        for (NivelAdivinar n : listaNiveles) {
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int) (((float) n.getNumAciertos() / (n.getNumAciertos() + n.getNumFallos())) * 100) + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
 
@@ -274,11 +250,11 @@ public class GestorBBDD {
         List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Acordes.getNombre());
         LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
         String infoNivel = "";
-        for (int i = 1; i <= NIVELES_ADIVINAR_ACORDES; i++){
-                retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
+        for (int i = 1; i <= NIVELES_ADIVINAR_ACORDES; i++) {
+            retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
-        for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int)(((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100) + "% acierto";
+        for (NivelAdivinar n : listaNiveles) {
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int) (((float) n.getNumAciertos() / (n.getNumAciertos() + n.getNumFallos())) * 100) + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
 
@@ -289,12 +265,12 @@ public class GestorBBDD {
         List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Crear_Intervalo.getNombre());
         LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
         String infoNivel = "";
-        for (int i = 1; i <= NIVELES_CREAR_INTERVALOS; i++){
+        for (int i = 1; i <= NIVELES_CREAR_INTERVALOS; i++) {
             retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
 
         }
-        for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int)(((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100) + "% acierto";
+        for (NivelAdivinar n : listaNiveles) {
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int) (((float) n.getNumAciertos() / (n.getNumAciertos() + n.getNumFallos())) * 100) + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
 
@@ -305,11 +281,11 @@ public class GestorBBDD {
         List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Intervalo.getNombre());
         LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
         String infoNivel = "";
-        for (int i = 1; i <= NIVELES_ADIVINAR_INTERVALOS; i++){
+        for (int i = 1; i <= NIVELES_ADIVINAR_INTERVALOS; i++) {
             retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
-        for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int)(((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100) + "% acierto";
+        for (NivelAdivinar n : listaNiveles) {
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int) (((float) n.getNumAciertos() / (n.getNumAciertos() + n.getNumFallos())) * 100) + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
 
@@ -320,24 +296,23 @@ public class GestorBBDD {
         List<NivelAdivinar> listaNiveles = appDatabase.daoNivel().findNivelesAdivinarByCorreo(usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Notas.getNombre());
         LinkedHashMap<String, String> retorno = new LinkedHashMap<>();
         String infoNivel = "";
-        for (int i = 1; i <= NIVELES_ADIVINAR_NOTAS; i++){
+        for (int i = 1; i <= NIVELES_ADIVINAR_NOTAS; i++) {
             retorno.put("Nivel " + String.valueOf(i), "0 aciertos;0 fallos;0% acierto");
         }
-        for (NivelAdivinar n : listaNiveles){
-            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int)(((float)n.getNumAciertos()/(n.getNumAciertos()+n.getNumFallos()))*100) + "% acierto";
+        for (NivelAdivinar n : listaNiveles) {
+            infoNivel = n.getNumAciertos() + " aciertos;" + n.getNumFallos() + " fallos;" + (int) (((float) n.getNumAciertos() / (n.getNumAciertos() + n.getNumFallos())) * 100) + "% acierto";
             retorno.put("Nivel " + n.getNivel().toString(), infoNivel);
         }
 
         return retorno;
     }
 
-    public Puntuacion devuelvePuntuacion(String modoJuego){
-        Puntuacion puntuacion = appDatabase.daoPuntuacion().findPuntuacion(usuarioLoggeado.getCorreo(), modoJuego);
-        return puntuacion;
+    public Puntuacion devuelvePuntuacion(String modoJuego) {
+        return appDatabase.daoPuntuacion().findPuntuacion(usuarioLoggeado.getCorreo(), modoJuego);
     }
 
-    public void actualizarPuntuacion(int nivel, @NotNull String modoJuego, boolean superado){
-        switch(modoJuego) {
+    public void actualizarPuntuacion(int nivel, @NotNull String modoJuego, boolean superado) {
+        switch (modoJuego) {
             case "Adivinar_Notas":
                 puntuacionAdivinarNota(nivel, superado);
                 break;
@@ -374,19 +349,26 @@ public class GestorBBDD {
 
     private void puntuacionRealizarRitmo(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
-        switch (nivel){
-            case 1: puntuacion_fallo = 1; break;
-            case 2: puntuacion_fallo = 1; break;
-            case 3: puntuacion_fallo = 1; break;
-            case 4: puntuacion_fallo = 1; break;
-            case 5: puntuacion_fallo = 1; break;
-            case 6: puntuacion_fallo = 2; break;
-            case 7: puntuacion_fallo = 3; break;
-            case 8: puntuacion_fallo = 3; break;
-            default: break;
+        switch (nivel) {
+            case 1:
+            case 5:
+            case 4:
+            case 3:
+            case 2:
+                puntuacion_fallo = 1;
+                break;
+            case 6:
+                puntuacion_fallo = 2;
+                break;
+            case 7:
+            case 8:
+                puntuacion_fallo = 3;
+                break;
+            default:
+                break;
         }
 
-        if(superado)
+        if (superado)
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Realiza_Ritmo.toString()).actualizarPuntuacionTotal(3, true));
         else
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Realiza_Ritmo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
@@ -394,20 +376,27 @@ public class GestorBBDD {
 
     private void puntuacionHallarRitmo(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
-        switch (nivel){
-            case 1: puntuacion_fallo = 1; break;
-            case 2: puntuacion_fallo = 1; break;
-            case 3: puntuacion_fallo = 1; break;
-            case 4: puntuacion_fallo = 1; break;
-            case 5: puntuacion_fallo = 1; break;
-            case 6: puntuacion_fallo = 2; break;
-            case 7: puntuacion_fallo = 3; break;
-            case 8: puntuacion_fallo = 3; break;
-            default: break;
+        switch (nivel) {
+            case 1:
+            case 5:
+            case 4:
+            case 3:
+            case 2:
+                puntuacion_fallo = 1;
+                break;
+            case 6:
+                puntuacion_fallo = 2;
+                break;
+            case 7:
+            case 8:
+                puntuacion_fallo = 3;
+                break;
+            default:
+                break;
         }
 
 
-        if(superado)
+        if (superado)
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Halla_Ritmo.toString()).actualizarPuntuacionTotal(3, true));
         else
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Halla_Ritmo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
@@ -415,20 +404,27 @@ public class GestorBBDD {
 
     private void puntuacionImitarAudio(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
-        switch (nivel){
-            case 1: puntuacion_fallo = 1; break;
-            case 2: puntuacion_fallo = 1; break;
-            case 3: puntuacion_fallo = 1; break;
-            case 4: puntuacion_fallo = 1; break;
-            case 5: puntuacion_fallo = 1; break;
-            case 6: puntuacion_fallo = 2; break;
-            case 7: puntuacion_fallo = 3; break;
-            case 8: puntuacion_fallo = 3; break;
-            default: break;
+        switch (nivel) {
+            case 1:
+            case 5:
+            case 4:
+            case 3:
+            case 2:
+                puntuacion_fallo = 1;
+                break;
+            case 6:
+                puntuacion_fallo = 2;
+                break;
+            case 7:
+            case 8:
+                puntuacion_fallo = 3;
+                break;
+            default:
+                break;
         }
 
 
-        if(superado)
+        if (superado)
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Imitar_Audio.toString()).actualizarPuntuacionTotal(3, true));
         else
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Imitar_Audio.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
@@ -436,17 +432,24 @@ public class GestorBBDD {
 
     private void puntuacionCrearAcorde(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
-        switch (nivel){
-            case 1: puntuacion_fallo = 1; break;
-            case 2: puntuacion_fallo = 1; break;
-            case 3: puntuacion_fallo = 2; break;
-            case 4: puntuacion_fallo = 2; break;
-            case 5: puntuacion_fallo = 3; break;
-            case 6: puntuacion_fallo = 3; break;
-            default: break;
+        switch (nivel) {
+            case 1:
+            case 2:
+                puntuacion_fallo = 1;
+                break;
+            case 3:
+            case 4:
+                puntuacion_fallo = 2;
+                break;
+            case 5:
+            case 6:
+                puntuacion_fallo = 3;
+                break;
+            default:
+                break;
         }
 
-        if(superado)
+        if (superado)
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Acordes.toString()).actualizarPuntuacionTotal(3, true));
         else
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Acordes.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
@@ -454,17 +457,24 @@ public class GestorBBDD {
 
     private void puntuacionAdivinarAcorde(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
-        switch (nivel){
-            case 1: puntuacion_fallo = 1; break;
-            case 2: puntuacion_fallo = 1; break;
-            case 3: puntuacion_fallo = 2; break;
-            case 4: puntuacion_fallo = 2; break;
-            case 5: puntuacion_fallo = 3; break;
-            case 6: puntuacion_fallo = 3; break;
-            default: break;
+        switch (nivel) {
+            case 1:
+            case 2:
+                puntuacion_fallo = 1;
+                break;
+            case 3:
+            case 4:
+                puntuacion_fallo = 2;
+                break;
+            case 5:
+            case 6:
+                puntuacion_fallo = 3;
+                break;
+            default:
+                break;
         }
 
-        if(superado)
+        if (superado)
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Acordes.toString()).actualizarPuntuacionTotal(3, true));
         else
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Acordes.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
@@ -472,19 +482,26 @@ public class GestorBBDD {
 
     private void puntuacionCrearIntervalo(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
-        switch (nivel){
-            case 1: puntuacion_fallo = 1; break;
-            case 2: puntuacion_fallo = 1; break;
-            case 3: puntuacion_fallo = 1; break;
-            case 4: puntuacion_fallo = 2; break;
-            case 5: puntuacion_fallo = 2; break;
-            case 6: puntuacion_fallo = 2; break;
-            case 7: puntuacion_fallo = 3; break;
-            case 8: puntuacion_fallo = 3; break;
-            default: break;
+        switch (nivel) {
+            case 1:
+            case 3:
+            case 2:
+                puntuacion_fallo = 1;
+                break;
+            case 4:
+            case 6:
+            case 5:
+                puntuacion_fallo = 2;
+                break;
+            case 7:
+            case 8:
+                puntuacion_fallo = 3;
+                break;
+            default:
+                break;
         }
 
-        if(superado)
+        if (superado)
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Intervalo.toString()).actualizarPuntuacionTotal(3, true));
         else
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Crear_Intervalo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
@@ -493,17 +510,24 @@ public class GestorBBDD {
     private void puntuacionAdivinarIntervalo(int nivel, boolean superado) {
 
         int puntuacion_fallo = 0;
-        switch (nivel){
-            case 1: puntuacion_fallo = 1; break;
-            case 2: puntuacion_fallo = 1; break;
-            case 3: puntuacion_fallo = 2; break;
-            case 4: puntuacion_fallo = 2; break;
-            case 5: puntuacion_fallo = 3; break;
-            case 6: puntuacion_fallo = 3; break;
-            default: break;
+        switch (nivel) {
+            case 1:
+            case 2:
+                puntuacion_fallo = 1;
+                break;
+            case 3:
+            case 4:
+                puntuacion_fallo = 2;
+                break;
+            case 5:
+            case 6:
+                puntuacion_fallo = 3;
+                break;
+            default:
+                break;
         }
 
-        if(superado)
+        if (superado)
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Intervalo.toString()).actualizarPuntuacionTotal(3, true));
         else
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Intervalo.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
@@ -511,21 +535,28 @@ public class GestorBBDD {
 
     private void puntuacionAdivinarNota(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
-        switch (nivel){
-            case 1: puntuacion_fallo = 1; break;
-            case 2: puntuacion_fallo = 1; break;
-            case 3: puntuacion_fallo = 1; break;
-            case 4: puntuacion_fallo = 1; break;
-            case 5: puntuacion_fallo = 2; break;
-            case 6: puntuacion_fallo = 2; break;
-            case 7: puntuacion_fallo = 2; break;
-            case 8: puntuacion_fallo = 2; break;
-            case 9: puntuacion_fallo = 3; break;
-            case 10: puntuacion_fallo =3; break;
-            default: break;
+        switch (nivel) {
+            case 1:
+            case 4:
+            case 3:
+            case 2:
+                puntuacion_fallo = 1;
+                break;
+            case 5:
+            case 8:
+            case 7:
+            case 6:
+                puntuacion_fallo = 2;
+                break;
+            case 9:
+            case 10:
+                puntuacion_fallo = 3;
+                break;
+            default:
+                break;
         }
 
-        if(superado)
+        if (superado)
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Notas.toString()).actualizarPuntuacionTotal(3, true));
         else
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Adivinar_Notas.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
@@ -534,21 +565,28 @@ public class GestorBBDD {
 
     private void puntuacionModoMix(int nivel, boolean superado) {
         int puntuacion_fallo = 0;
-        switch (nivel){
-            case 1: puntuacion_fallo = 1; break;
-            case 2: puntuacion_fallo = 1; break;
-            case 3: puntuacion_fallo = 1; break;
-            case 4: puntuacion_fallo = 1; break;
-            case 5: puntuacion_fallo = 2; break;
-            case 6: puntuacion_fallo = 2; break;
-            case 7: puntuacion_fallo = 2; break;
-            case 8: puntuacion_fallo = 2; break;
-            case 9: puntuacion_fallo = 3; break;
-            case 10: puntuacion_fallo =3; break;
-            default: break;
+        switch (nivel) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                puntuacion_fallo = 1;
+                break;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+                puntuacion_fallo = 2;
+                break;
+            case 9:
+            case 10:
+                puntuacion_fallo = 3;
+                break;
+            default:
+                break;
         }
 
-        if(superado)
+        if (superado)
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Modo_Mix.toString()).actualizarPuntuacionTotal(3, true));
         else
             this.appDatabase.daoPuntuacion().updatePuntuacion(this.appDatabase.daoPuntuacion().findPuntuacion(this.usuarioLoggeado.getCorreo(), ModoJuego.Modo_Mix.toString()).actualizarPuntuacionTotal(puntuacion_fallo, false));
@@ -556,7 +594,7 @@ public class GestorBBDD {
     }
 
     public void compruebaUsuarioPrueba() {
-        if (appDatabase.daoUsuario().findUsuario("usuario@prueba.com") == null){
+        if (appDatabase.daoUsuario().findUsuario("usuario@prueba.com") == null) {
             Usuario usuario = new Usuario("usuario@prueba.com", "prueba", "1234", false, true);
             appDatabase.daoUsuario().insertUsuario(usuario);
             for (int i = 0; i < ModoJuego.values().length; i++) {
@@ -566,12 +604,12 @@ public class GestorBBDD {
         }
     }
 
-    public boolean esPrimerNivelAdivinar(ModoJuego modo_juego, int nivel){
+    public boolean esPrimerNivelAdivinar(ModoJuego modo_juego, int nivel) {
         NivelAdivinar n = appDatabase.daoNivel().findNivelAdivinar(usuarioLoggeado.getCorreo(), modo_juego.getNombre(), nivel);
         return (n == null || (n.getNumFallos() == 0 && n.getNumAciertos() == 0));
     }
 
-    public boolean esPrimerNivelImitar(String rango, int dificultad){
+    public boolean esPrimerNivelImitar(String rango, int dificultad) {
         NivelImitar n = appDatabase.daoNivel().findNivelImitar(usuarioLoggeado.getCorreo(), dificultad, rango);
         return (n == null || n.getNumeroIntentos() == 0);
     }
@@ -580,20 +618,18 @@ public class GestorBBDD {
         return appDatabase.daoUsuario().findUsuario(correo) != null;
     }
 
-    public boolean esPrimeraVezModo(ModoJuego modo){
+    public boolean esPrimeraVezModo(ModoJuego modo) {
         Puntuacion p = appDatabase.daoPuntuacion().findPuntuacion(getUsuarioLoggeado().getCorreo(), modo.toString());
-        if (p.isIniciado())
-            return false;
-        return true;
+        return !p.isIniciado();
     }
 
-    public void modoRealizado(ModoJuego modo){
+    public void modoRealizado(ModoJuego modo) {
         Puntuacion p = appDatabase.daoPuntuacion().findPuntuacion(getUsuarioLoggeado().getCorreo(), modo.toString());
         p.setIniciado(true);
         appDatabase.daoPuntuacion().updatePuntuacion(p);
     }
 
-    public boolean esPrimeraVezApp(){
+    public boolean esPrimeraVezApp() {
         Usuario user = appDatabase.daoUsuario().findUsuario(usuarioLoggeado.getCorreo());
         if (user.getPrimeraVez())
             return false;
@@ -601,6 +637,5 @@ public class GestorBBDD {
         appDatabase.daoUsuario().updateUsuario(user);
         return true;
     }
-
 
 }

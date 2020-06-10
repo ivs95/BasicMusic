@@ -41,7 +41,7 @@ public class CrearAcordeMix extends CrearAcorde {
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView(), false, 0, 0);
         }
-        ((TextView)findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual()+1 + "/" + ControladorMix.getInstance().getNumEjercicios());
+        ((TextView) findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual() + 1 + "/" + ControladorMix.getInstance().getNumEjercicios());
         findViewById(R.id.lblIndice).setVisibility(View.VISIBLE);
 
     }
@@ -50,24 +50,23 @@ public class CrearAcordeMix extends CrearAcorde {
     public void comprobarCrearAcordes(View view) {
 
 
-        for(int i = 0; i<num_notas; i++){
-            if(respuestaCorrecta[i] != null)
+        for (int i = 0; i < num_notas; i++) {
+            if (respuestaCorrecta[i] != null)
                 respuestaCorrecta[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
 
-            if(botonesSeleccionados[i]!=null && respuestaCorrecta[i] == null){
+            if (botonesSeleccionados[i] != null && respuestaCorrecta[i] == null) {
                 botonesSeleccionados[i].setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
             }
         }
 
-        boolean correcta = true;
-        for(int i = 0; i < respuestas.size();i++){
+        for (int i = 0; i < respuestas.size(); i++) {
             String text = respuestas.get(i);
-            Pair<Notas, Octavas> par = new Pair<>(Notas.devuelveNotaPorNombre(text.substring(0, text.length()-1)), Octavas.devuelveOctavaPorNumero(Integer.parseInt(text.substring(text.length()-1))));
+            Pair<Notas, Octavas> par = new Pair<>(Notas.devuelveNotaPorNombre(text.substring(0, text.length() - 1)), Octavas.devuelveOctavaPorNumero(Integer.parseInt(text.substring(text.length() - 1))));
             if (!acordeCorrectoReproducir.contains(par)) {
                 resultado = false;
             }
         }
-        if(respuestas.size() != acordeCorrectoReproducir.size()-1)
+        if (respuestas.size() != acordeCorrectoReproducir.size() - 1)
             resultado = false;
 
         Controlador.getInstance().setMixIniciado(true);
@@ -84,20 +83,17 @@ public class CrearAcordeMix extends CrearAcorde {
             b.setEnabled(false);
         ponerComprobarVisible(GONE);
         findViewById(R.id.continuar_ca).setVisibility(View.VISIBLE);
-        ((Button)findViewById(R.id.continuar_ca)).setText("Continuar");
+        ((Button) findViewById(R.id.continuar_ca)).setText("Continuar");
         findViewById(R.id.continuar_ca).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent();
-                intent.putExtra("resultado",resultado);
-                setResult(RESULT_OK,intent);
+                Intent intent = new Intent();
+                intent.putExtra("resultado", resultado);
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });
 
-
     }
-
-
 
 }

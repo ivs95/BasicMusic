@@ -52,8 +52,7 @@
                 android:id="@+id/imageViewRitmos1"
                 android:layout_width="59dp"
                 android:layout_height="50dp"
-                android:layout_weight="1"
-                />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -74,8 +73,7 @@
                 android:id="@+id/imageViewRitmos2"
                 android:layout_width="59dp"
                 android:layout_height="50dp"
-                android:layout_weight="1"
-                />
+                android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>

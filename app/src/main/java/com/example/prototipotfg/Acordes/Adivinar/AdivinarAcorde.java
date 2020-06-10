@@ -19,7 +19,6 @@ import com.example.prototipotfg.Acordes.TutorialAdivinarAcordes;
 import com.example.prototipotfg.BBDD.Entidades.NivelAdivinar;
 import com.example.prototipotfg.Enumerados.Acordes;
 import com.example.prototipotfg.Enumerados.Dificultad;
-import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
@@ -57,22 +56,19 @@ public class AdivinarAcorde extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_adivinar_acorde);
         this.numOpciones = Controlador.getInstance().getNum_opciones();
-        this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size()-1));
+        this.octavaInicio = Controlador.getInstance().getOctavas().get((new Random()).nextInt(Controlador.getInstance().getOctavas().size() - 1));
         this.acordesPosibles = seleccionaAcordesAleatorios(numOpciones, Controlador.getInstance().getAcordes());
         this.notaInicio = FactoriaNotas.getInstance().getNotaInicioIntervalo();
         this.acordeCorrecto = acordesPosibles.get(0);
-        this.acordeCorrectoReproducir = Acordes.devuelveNotasAcorde(acordeCorrecto,octavaInicio,notaInicio);
+        this.acordeCorrectoReproducir = Acordes.devuelveNotasAcorde(acordeCorrecto, octavaInicio, notaInicio);
         TextView lblNotaInicio = findViewById(R.id.lblNotaInicioAcorde);
         TextView lblOctavaInicio = findViewById(R.id.lblOctavaInicioAcorde);
-        if (Controlador.getInstance().getDificultad().equals(Dificultad.Dificil)){
+        if (Controlador.getInstance().getDificultad().equals(Dificultad.Dificil)) {
             lblNotaInicio.setVisibility(GONE);
             lblOctavaInicio.setVisibility(GONE);
-            Button botonTutorial = findViewById(R.id.button_info_adivinarAcorde);
-            botonTutorial.setVisibility(GONE);
-            Button botonReferencia = findViewById(R.id.btnAcordeReferencia);
-            botonReferencia.setVisibility(VISIBLE);
-        }
-        else {
+            findViewById(R.id.button_info_adivinarAcorde).setVisibility(GONE);
+            findViewById(R.id.btnAcordeReferencia).setVisibility(VISIBLE);
+        } else {
             lblNotaInicio.setText(lblNotaInicio.getText() + notaInicio.getNombre());
             lblOctavaInicio.setText(lblOctavaInicio.getText() + octavaInicio.getNombre());
         }
@@ -80,8 +76,8 @@ public class AdivinarAcorde extends Activity {
         for (Acordes a : acordesPosibles) {
             acordesReproducir.add(Acordes.devuelveNotasAcorde(a, this.octavaInicio, this.notaInicio));
         }
-        int nivel = Controlador.getInstance().getNivel();
-        if(nivel > 3){
+
+        if (Controlador.getInstance().getNivel() > 3) {
             Button info = findViewById(R.id.button_info_adivinarAcorde);
             info.setVisibility(GONE);
         }
@@ -131,21 +127,18 @@ public class AdivinarAcorde extends Activity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_blue_700)));
             }
-            int indiceSeleccionado = view.getId();
+            int indiceSeleccionado = botonSeleccionado.getId();
             if (Controlador.getInstance().getDificultad().equals(Dificultad.Facil)) {
                 ArrayList<Pair<Notas, Octavas>> acordeSeleccionado = acordesReproducir.get(indiceSeleccionado - 1);
                 ArrayList<AssetFileDescriptor> assetFileDescriptors = preparaAssets(acordeSeleccionado);
                 Reproductor.getInstance().reproducirAcorde(assetFileDescriptors);
                 cierraAssets(assetFileDescriptors);
-
-                }
             }
-            ponerComprobarVisible(VISIBLE);
-            findViewById(R.id.comprobarAcordes).setEnabled(true);
-
         }
+        ponerComprobarVisible(VISIBLE);
+        findViewById(R.id.comprobarAcordes).setEnabled(true);
 
-
+    }
 
     protected void ponerComprobarVisible(int visible) {
         findViewById(R.id.comprobarAcordes).setVisibility(visible);
@@ -166,21 +159,19 @@ public class AdivinarAcorde extends Activity {
     }
 
     public void comprobarAcordes(View view) {
-        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel();
-        int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getRango()).ordinal();
-        NivelAdivinar nivel = null;
+
+        NivelAdivinar nivel;
         this.comprobada = true;
         if (this.botonSeleccionado != this.respuestaCorrecta) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
             }
-            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel())
+            if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Adivinar_Acordes.toString(), false);
-            nivel = new NivelAdivinar(ModoJuego.Adivinar_Acordes.getNombre(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0 , 1);
+            nivel = new NivelAdivinar(ModoJuego.Adivinar_Acordes.getNombre(), Controlador.getInstance().getNivel(), false, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 0, 1);
 
-        }
-        else {
-            if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel())
+        } else {
+            if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Adivinar_Acordes.toString(), true);
             nivel = new NivelAdivinar(ModoJuego.Adivinar_Acordes.getNombre(), Controlador.getInstance().getNivel(), true, GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), 1, 0);
         }
@@ -197,45 +188,40 @@ public class AdivinarAcorde extends Activity {
         for (Button b : botonesOpciones)
             b.setEnabled(false);
 
+        int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel();
+        int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getRango()).ordinal();
         int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getNivel();
         int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Adivinar_Acordes.toString()).getRango()).ordinal();
-        if(rangoActual != rangoNuevo) {
+        if (rangoActual != rangoNuevo) {
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
             RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Adivinar_Acordes.toString());
 
         }
 
-        if(nivelActual != nivelNuevo){
+        if (nivelActual != nivelNuevo) {
             Controlador.getInstance().setNivel(nivelNuevo);
-
-            LayoutInflater inflater = (LayoutInflater)
-                    getSystemService(LAYOUT_INFLATER_SERVICE);
-
+            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Adivinar_Acordes, findViewById(android.R.id.content).getRootView(), true, nivelActual, nivelNuevo);
-
             Controlador.getInstance().estableceDificultad();
         }
 
         findViewById(R.id.continuar_ac).setVisibility(VISIBLE);
-
         findViewById(R.id.continuar_ac).setAlpha(1);
 
     }
 
-    public void reproducirAcorde(View view){
+    public void reproducirAcorde(View view) {
         ArrayList<AssetFileDescriptor> assetFileDescriptors = preparaAssets(acordeCorrectoReproducir);
         Reproductor.getInstance().reproducirAcorde(assetFileDescriptors);
         cierraAssets(assetFileDescriptors);
-
-
     }
 
-    private ArrayList<AssetFileDescriptor> preparaAssets(ArrayList<Pair<Notas, Octavas>> acorde){
+    private ArrayList<AssetFileDescriptor> preparaAssets(ArrayList<Pair<Notas, Octavas>> acorde) {
         ArrayList<AssetFileDescriptor> retorno = new ArrayList<>();
-        for (Pair<Notas, Octavas> nota : acorde){
+        for (Pair<Notas, Octavas> nota : acorde) {
             try {
-                retorno.add(getAssets().openFd(Instrumentos.Piano.getPath() + nota.second.getPath() + nota.first.getPath()));
+                retorno.add(getAssets().openFd("piano/" + nota.second.getPath() + nota.first.getPath()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -255,9 +241,10 @@ public class AdivinarAcorde extends Activity {
     }
 
 
-    public void reproduceReferencia(View view){
+    public void reproduceReferencia(View view) {
+
         try {
-            AssetFileDescriptor afd = getAssets().openFd(Instrumentos.Piano.getPath() + this.octavaInicio.getPath() + Notas.LA.getPath());
+            AssetFileDescriptor afd = getAssets().openFd("piano/" + this.octavaInicio.getPath() + Notas.LA.getPath());
             Reproductor.getInstance().reproducirNota(afd);
             afd.close();
         } catch (IOException e) {
@@ -265,13 +252,12 @@ public class AdivinarAcorde extends Activity {
         }
     }
 
-    public void muestraPosibles(View view){
+    public void muestraPosibles(View view) {
         Intent i = new Intent(this, TutorialAdivinarAcordes.class);
         i.putExtra("octava", this.octavaInicio.getNombre());
-        if (Controlador.getInstance().getNivel() == 1 || Controlador.getInstance().getNivel() == 2){
+        if (Controlador.getInstance().getNivel() == 1 || Controlador.getInstance().getNivel() == 2) {
             i.putExtra("nota", this.notaInicio.getNombre());
-        }
-        else
+        } else
             i.putExtra("nota", Notas.LA.getNombre());
         i.putExtra("nivel", Controlador.getInstance().getNivel());
         startActivity(i);
@@ -282,10 +268,11 @@ public class AdivinarAcorde extends Activity {
         finish();
     }
 
-    public void continuar(View view){
+    public void continuar(View view) {
         finish();
-        overridePendingTransition( 0, 0);
+        overridePendingTransition(0, 0);
         startActivity(getIntent());
-        overridePendingTransition( 0, 0);    }
+        overridePendingTransition(0, 0);
+    }
 
 }

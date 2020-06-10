@@ -60,10 +60,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@drawable/divisor_botones_menu"
-            android:orientation="vertical"
             android:gravity="center"
-            android:showDividers="middle">
-        </LinearLayout>
+            android:orientation="vertical"
+            android:showDividers="middle"></LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

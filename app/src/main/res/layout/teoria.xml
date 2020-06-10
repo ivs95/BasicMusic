@@ -25,8 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Siguiente"
         android:onClick="siguiente"
+        android:text="Siguiente"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -36,9 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:onClick="cerrar"
         android:text="Cerrar"
         android:visibility="gone"
-        android:onClick="cerrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -70,7 +70,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginEnd="10dp"            android:text="La distancia entre notas básicas es de 1 grado \n \nLa distancia entre un sostenido/bemol y una nota \nes de 1/2 grado"
+            android:layout_marginEnd="10dp"
+            android:text="La distancia entre notas básicas es de 1 grado \n \nLa distancia entre un sostenido/bemol y una nota \nes de 1/2 grado"
             android:textColor="@color/md_blue_700" />
 
         <TextView

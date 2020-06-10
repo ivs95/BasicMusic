@@ -20,7 +20,7 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-public class AdivinarAcordeMix extends AdivinarAcorde{
+public class AdivinarAcordeMix extends AdivinarAcorde {
     private boolean resultado;
 
     @Override
@@ -33,7 +33,7 @@ public class AdivinarAcordeMix extends AdivinarAcorde{
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView(), false, 0, 0);
         }
-        ((TextView)findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual()+1 + "/" + ControladorMix.getInstance().getNumEjercicios());
+        ((TextView) findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual() + 1 + "/" + ControladorMix.getInstance().getNumEjercicios());
         findViewById(R.id.lblIndice).setVisibility(View.VISIBLE);
 
     }
@@ -43,30 +43,32 @@ public class AdivinarAcordeMix extends AdivinarAcorde{
         this.comprobada = true;
         if (this.botonSeleccionado != this.respuestaCorrecta) {
             botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-            resultado=false;
-        }
-        else
-           resultado=true;
+            resultado = false;
+        } else
+            resultado = true;
 
         Controlador.getInstance().setMixIniciado(true);
         respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
         ponerComprobarVisible(GONE);
-        findViewById(R.id.btnAcordeReferencia).setEnabled(false);             findViewById(R.id.btnAcordeReferencia).setAlpha(.5f);
-        findViewById(R.id.button_info_adivinarAcorde).setEnabled(false);      findViewById(R.id.button_info_adivinarAcorde).setAlpha(.5f);
-        findViewById(R.id.botonReproduceAdivinarAcorde).setEnabled(false);    findViewById(R.id.botonReproduceAdivinarAcorde).setAlpha(.5f);
+        findViewById(R.id.btnAcordeReferencia).setEnabled(false);
+        findViewById(R.id.btnAcordeReferencia).setAlpha(.5f);
+        findViewById(R.id.button_info_adivinarAcorde).setEnabled(false);
+        findViewById(R.id.button_info_adivinarAcorde).setAlpha(.5f);
+        findViewById(R.id.botonReproduceAdivinarAcorde).setEnabled(false);
+        findViewById(R.id.botonReproduceAdivinarAcorde).setAlpha(.5f);
         for (Button b : botonesOpciones)
             b.setEnabled(false);
 
 
         findViewById(R.id.continuar_ac).setVisibility(VISIBLE);
-        ((Button)findViewById(R.id.continuar_ac)).setText("Continuar");
+        ((Button) findViewById(R.id.continuar_ac)).setText("Continuar");
         findViewById(R.id.continuar_ac).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent();
-                intent.putExtra("resultado",resultado);
-                setResult(RESULT_OK,intent);
+                Intent intent = new Intent();
+                intent.putExtra("resultado", resultado);
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });

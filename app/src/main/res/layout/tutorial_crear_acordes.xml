@@ -9,8 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Selecciona una nota para ver cuáles completan sus acordes"
         android:gravity="center"
+        android:text="Selecciona una nota para ver cuáles completan sus acordes"
         android:textColor="@color/md_blue_900"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,8 +49,7 @@
             android:layout_height="match_parent"
             android:divider="@drawable/divisor_botones_tutorial"
             android:orientation="vertical"
-            android:showDividers="middle">
-        </LinearLayout>
+            android:showDividers="middle"></LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

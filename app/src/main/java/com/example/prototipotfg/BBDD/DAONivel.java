@@ -33,11 +33,6 @@ public interface DAONivel {
     @Insert
     void insertImitar(NivelImitar nivelImitar);
 
-    @Insert
-    void insertAllAdivinar(NivelAdivinar... nivelesAdivinar);
-
-    @Insert
-    void insertAllImitar(NivelImitar... nivelesImitar);
 
     @Update
     public void updateNivelAdivinar(NivelAdivinar nivelAdivinar);

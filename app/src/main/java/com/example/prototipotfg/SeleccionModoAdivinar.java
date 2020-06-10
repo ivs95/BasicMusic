@@ -30,9 +30,8 @@ public class SeleccionModoAdivinar extends Activity {
 
     }
 
-    public void modo(View view){
-        Intent i;
-        switch (view.getId()){
+    public void modo(View view) {
+        switch (view.getId()) {
             case R.id.buttonNotas:
                 Controlador.getInstance().setModo_juego(ModoJuego.Adivinar_Notas);
                 seleccionarDificultadNotas();
@@ -47,7 +46,8 @@ public class SeleccionModoAdivinar extends Activity {
                 seleccionarModoIntervalos();
                 break;
 
-            default: break;
+            default:
+                break;
         }
     }
 
@@ -66,7 +66,7 @@ public class SeleccionModoAdivinar extends Activity {
         startActivity(i);
     }
 
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         this.onCreate(this.savedInstanceState);
     }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public enum Intervalos {
 
-    //Unisono("Unisono", 0, 0),
     Segunda_menor("Segunda Menor Ascendente",1, 1),
     Segunda_mayor("Segunda Mayor Ascendente",2, 2),
     Tercera_menor("Tercera Menor Ascendente",3, 3),
@@ -70,22 +69,6 @@ public enum Intervalos {
     }
 
 
-    public static ArrayList<Intervalos> devuelveIntervalosPosibles(Notas nota){
-
-        ArrayList<Intervalos> retorno = new ArrayList<>();
-        int tono = nota.getTono();
-        int negativos = -(nota.getTono() - 1);
-        int positivos = 12 - nota.getTono();
-
-        for (int i = -1; i >= negativos; i--){
-                retorno.add(getIntervaloPorDiferencia(i));
-        }
-        for (int i = 1; i <= positivos; i++){
-                retorno.add(getIntervaloPorDiferencia(tono + i));
-        }
-
-        return retorno;
-    }
 
 
 

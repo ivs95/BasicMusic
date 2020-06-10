@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/lblIndice"
         android:layout_width="wrap_content"
@@ -15,6 +16,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/tituloSeleccionar_crear_intervalo"
         android:layout_width="match_parent"
@@ -48,8 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@drawable/divisor_botones_menu"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:showDividers="middle">
 
         </LinearLayout>
@@ -59,9 +61,9 @@
         android:id="@+id/linearLayout12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:divider="@drawable/divisor_botones_menu"
         android:gravity="center"
         android:orientation="vertical"
-        android:divider="@drawable/divisor_botones_menu"
         android:showDividers="middle"
         app:layout_constraintBottom_toTopOf="@id/linearLayout11"
         app:layout_constraintTop_toBottomOf="@+id/tituloSeleccionar_crear_intervalo"
@@ -123,18 +125,18 @@
             android:id="@+id/comprobar_crear_intervalo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="comprobarResultado"
-            android:visibility="invisible"
             android:enabled="false"
-            android:text="Comprobar resultado" />
+            android:onClick="comprobarResultado"
+            android:text="Comprobar resultado"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/continuar_ci"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="continuar"
-            android:visibility="gone"
-            android:text="Otra!" />
+            android:text="Otra!"
+            android:visibility="gone" />
 
     </LinearLayout>
 

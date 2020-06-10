@@ -18,17 +18,19 @@ import com.example.prototipotfg.Singletons.Reproductor;
 
 import java.io.IOException;
 
-public class TutorialNotas extends Activity implements AdapterView.OnItemSelectedListener{
+public class TutorialNotas extends Activity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String[] octavas = new String[Octavas.values().length];
-        for (int i = 0; i < octavas.length; i++){
+
+        for (int i = 0; i < octavas.length; i++) {
             octavas[i] = Octavas.values()[i].getNombre();
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tutorial_notas);
-        Spinner s = (Spinner) findViewById(R.id.spinnerTutorialNotas);
+        Spinner s = findViewById(R.id.spinnerTutorialNotas);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, octavas);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         s.setAdapter(adapter);
@@ -37,12 +39,14 @@ public class TutorialNotas extends Activity implements AdapterView.OnItemSelecte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Octavas octava = Octavas.devuelveOctavaPorNombre((String)parent.getItemAtPosition(position));
+        Octavas octava = Octavas.devuelveOctavaPorNombre((String) parent.getItemAtPosition(position));
+
         LinearLayout tabla = findViewById(R.id.notasTutorialNotas);
         tabla.removeAllViews();
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
         for (Notas n : Notas.values()) {
-            final String ruta = FactoriaNotas.getInstance().getInstrumento().getPath() + octava.getPath() + n.getPath();
+            final String ruta = "piano/" + octava.getPath() + n.getPath();
             Button b = new Button(this);
             b.setLayoutParams(lp);
             b.setText(n.getNombre());
@@ -56,19 +60,19 @@ public class TutorialNotas extends Activity implements AdapterView.OnItemSelecte
         }
     }
 
-
-    public void reproduceNota(String ruta){
-        AssetFileDescriptor afd = null;
+    public void reproduceNota(String ruta) {
+        AssetFileDescriptor afd;
         try {
             afd = getAssets().openFd(ruta);
             Reproductor.getInstance().reproducirNota(afd);
             afd.close();
         } catch (IOException e) {
             e.printStackTrace();
+
         }
     }
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 }

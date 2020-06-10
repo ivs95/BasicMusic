@@ -23,7 +23,6 @@ public final class Controlador {
     private int longitud;
     private int pausa;
 
-
     private ArrayList<Acordes> acordes = new ArrayList<>();
     private int rango;
     private int num_opciones;
@@ -34,7 +33,8 @@ public final class Controlador {
         return INSTANCE;
     }
 
-    private Controlador() {}
+    private Controlador() {
+    }
 
     public ArrayList<Acordes> getAcordes() {
         return acordes;
@@ -44,13 +44,18 @@ public final class Controlador {
         this.acordes = acordes;
     }
 
-    public void setMixIniciado(boolean mixIniciado){this.mixIniciado = mixIniciado;}
+    public void setMixIniciado(boolean mixIniciado) {
+        this.mixIniciado = mixIniciado;
+    }
 
-    public boolean getMixIniciado(){ return this.mixIniciado;}
+    public boolean getMixIniciado() {
+        return this.mixIniciado;
+    }
 
     private void setOctavas(ArrayList<Octavas> octavas) {
-        this.octavas=octavas;
+        this.octavas = octavas;
     }
+
     public ModoJuego getModo_juego() {
         return modo_juego;
     }
@@ -75,11 +80,17 @@ public final class Controlador {
         return dificultad;
     }
 
-    public int getLongitud(){ return this.longitud;}
+    public int getLongitud() {
+        return this.longitud;
+    }
 
-    public int getCompas(){ return this.compas;}
+    public int getCompas() {
+        return this.compas;
+    }
 
-    public int getPausa(){return this.pausa;}
+    public int getPausa() {
+        return this.pausa;
+    }
 
     public void estableceDificultad() {
 
@@ -87,6 +98,7 @@ public final class Controlador {
          * Hacer un switch del tipo modo y modo juego como corresponda
          * Segun el nivel pues seguir tablita del word para setear numOpciones, Octavas y dificultad (configuracion en la tablita)
          * */
+
         switch (this.modo_juego) {
             case Adivinar_Intervalo:
                 estableceDificultadAdivinarIntervalo();
@@ -228,7 +240,6 @@ public final class Controlador {
                 break;
             default:
                 break;
-
         }
     }
 
@@ -399,49 +410,39 @@ public final class Controlador {
             case 1:
                 compas = 4;
                 num = 2;
-                longitud = compas*num;
+                longitud = compas * num;
                 pausa = 325;
                 break;
             case 2:
                 compas = 4;
                 num = 2;
-                longitud = compas*num;
+                longitud = compas * num;
                 pausa = 275;
                 break;
             case 3:
                 compas = 4;
                 num = 2;
-                longitud = compas*num;
+                longitud = compas * num;
                 pausa = 325;
                 break;
             case 4:
-                compas = 4;
-                num = 4;
-                longitud = compas*num;
-                pausa = 275;
-                break;
-            case 5:
-                compas = 4;
-                num = 4;
-                longitud = compas*num;
-                pausa = 325;
-                break;
             case 6:
                 compas = 4;
                 num = 4;
-                longitud = compas*num;
+                longitud = compas * num;
                 pausa = 275;
                 break;
+            case 5:
             case 7:
                 compas = 4;
                 num = 4;
-                longitud = compas*num;
+                longitud = compas * num;
                 pausa = 325;
                 break;
             case 8:
                 compas = 4;
                 num = 4;
-                longitud = compas*num;
+                longitud = compas * num;
                 pausa = 250;
                 break;
         }
@@ -450,51 +451,36 @@ public final class Controlador {
     private void estableceDificultadImitarRitmos() {
         switch (this.nivel) {
             case 1:
+            case 3:
                 compas = 4;
                 num = 2;
-                longitud = compas*num;
+                longitud = compas * num;
                 pausa = 275;
                 break;
             case 2:
                 compas = 4;
                 num = 2;
-                longitud = compas*num;
+                longitud = compas * num;
                 pausa = 250;
-                break;
-            case 3:
-                compas = 4;
-                num = 2;
-                longitud = compas*num;
-                pausa = 275;
                 break;
             case 4:
-                compas = 4;
-                num = 4;
-                longitud = compas*num;
-                pausa = 250;
-                break;
-            case 5:
-                compas = 4;
-                num = 4;
-                longitud = compas*num;
-                pausa = 275;
-                break;
             case 6:
                 compas = 4;
                 num = 4;
-                longitud = compas*num;
+                longitud = compas * num;
                 pausa = 250;
                 break;
+            case 5:
             case 7:
                 compas = 4;
                 num = 4;
-                longitud = compas*num;
+                longitud = compas * num;
                 pausa = 275;
                 break;
             case 8:
                 compas = 4;
                 num = 4;
-                longitud = compas*num;
+                longitud = compas * num;
                 pausa = 225;
                 break;
         }

@@ -17,7 +17,7 @@ public final class Reproductor {
         return INSTANCE;
     }
 
-    private Reproductor(){}
+    private Reproductor() {}
 
 
     public void reproducirNota(@NotNull AssetFileDescriptor afd) throws IOException {
@@ -29,7 +29,7 @@ public final class Reproductor {
                 mp.stop();
                 if (mp != null)
                     mp.reset();
-                    mp.release();
+                mp.release();
             }
         });
         reproductorNotas.prepare();
@@ -38,14 +38,13 @@ public final class Reproductor {
     }
 
 
-
     public void reproducirAcorde(ArrayList<AssetFileDescriptor> afds) {
         try {
             reproductoresAcordes = preparaMediaPlayers(afds);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (MediaPlayer mp : reproductoresAcordes){
+        for (MediaPlayer mp : reproductoresAcordes) {
             mp.start();
         }
     }

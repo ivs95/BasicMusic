@@ -182,8 +182,7 @@ public enum ModoJuego {
         final PopupWindow popupWindow2 = new PopupWindow(popupView2, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT,true);
 
 
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
+
 
         view.post(new Runnable() {
             public void run() {
@@ -191,9 +190,7 @@ public enum ModoJuego {
             }
         });
 
-        // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-        // dismiss the popup window when touched
         if(!bajar) {
             popupView.setOnTouchListener(new View.OnTouchListener() {
                 @Override

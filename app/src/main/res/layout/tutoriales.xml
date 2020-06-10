@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="modo_imitar"
-            android:text="Imitar Audio" />
+            android:text="Entonación" />
 
         <Button
             android:id="@+id/boton_tutorial_adivinarintervalos"
@@ -93,8 +93,6 @@
             android:onClick="modo_imita_ritmos"
             android:text="Imita ritmos" />
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

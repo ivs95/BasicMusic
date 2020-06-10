@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.example.prototipotfg.Enumerados.Acordes;
-import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
@@ -23,7 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class TutorialNivelAdivinarAcorde extends Activity{
+public class TutorialNivelAdivinarAcorde extends Activity {
 
     private Notas notaInicio = Notas.values()[0];
     private Octavas octavaInicio = Octavas.values()[0];
@@ -36,10 +35,10 @@ public class TutorialNivelAdivinarAcorde extends Activity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tutorial_adivinar_acordes);
-        for (int i = 0; i < octavas.length; i++){
+        for (int i = 0; i < octavas.length; i++) {
             octavas[i] = Octavas.values()[i].getNombre();
         }
-        for (int i = 0; i < notas.length; i++){
+        for (int i = 0; i < notas.length; i++) {
             notas[i] = Notas.values()[i].getNombre();
         }
 
@@ -50,7 +49,7 @@ public class TutorialNivelAdivinarAcorde extends Activity{
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                octavaInicio = Octavas.devuelveOctavaPorNombre((String)parent.getItemAtPosition(position));
+                octavaInicio = Octavas.devuelveOctavaPorNombre((String) parent.getItemAtPosition(position));
                 actualizaVista();
             }
 
@@ -61,14 +60,14 @@ public class TutorialNivelAdivinarAcorde extends Activity{
         });
 
 
-        s = (Spinner) findViewById(R.id.spinnerNotas);
+        s = findViewById(R.id.spinnerNotas);
         adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, notas);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         s.setAdapter(adapter);
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                notaInicio = Notas.devuelveNotaPorNombre((String)parent.getItemAtPosition(position));
+                notaInicio = Notas.devuelveNotaPorNombre((String) parent.getItemAtPosition(position));
 
                 actualizaVista();
             }
@@ -101,19 +100,18 @@ public class TutorialNivelAdivinarAcorde extends Activity{
         }
     }
 
-    public void reproducirAcorde(View view){
+    public void reproducirAcorde(View view) {
         ArrayList<AssetFileDescriptor> assetFileDescriptors = preparaAssets(acordesReproducir.get(view.getId()));
         Reproductor.getInstance().reproducirAcorde(assetFileDescriptors);
         cierraAssets(assetFileDescriptors);
 
-
     }
 
-    private ArrayList<AssetFileDescriptor> preparaAssets(ArrayList<Pair<Notas, Octavas>> acorde){
+    private ArrayList<AssetFileDescriptor> preparaAssets(ArrayList<Pair<Notas, Octavas>> acorde) {
         ArrayList<AssetFileDescriptor> retorno = new ArrayList<>();
-        for (Pair<Notas, Octavas> nota : acorde){
+        for (Pair<Notas, Octavas> nota : acorde) {
             try {
-                retorno.add(getAssets().openFd(Instrumentos.Piano.getPath() + nota.second.getPath() + nota.first.getPath()));
+                retorno.add(getAssets().openFd("piano/" + nota.second.getPath() + nota.first.getPath()));
             } catch (IOException e) {
                 e.printStackTrace();
             }

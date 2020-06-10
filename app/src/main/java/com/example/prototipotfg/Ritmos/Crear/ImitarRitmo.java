@@ -356,7 +356,7 @@ public class ImitarRitmo extends Activity {
         findViewById(R.id.botonPlayRitmoPropio).setEnabled(false);
         findViewById(R.id.botonPlayRitmoPropio).setAlpha(.5f);
 
-        if (running == true) {
+        if (running) {
             if (indice == 0)
                 indice = botonesGuia.size() - 1;
             else
@@ -366,7 +366,7 @@ public class ImitarRitmo extends Activity {
             play = true;
         } else {
             running = true;
-            if (pause == false)
+            if (!pause)
                 indice = 0;
             pause = false;
         }
@@ -403,12 +403,12 @@ public class ImitarRitmo extends Activity {
         findViewById(R.id.botonTambor).setAlpha(.5f);
         findViewById(R.id.botonPlatillo).setEnabled(false);
         findViewById(R.id.botonPlatillo).setAlpha(.5f);
-        if (runningPropio == true) {
+        if (runningPropio) {
             indice = 0;
             play = true;
         } else {
             runningPropio = true;
-            if (pause == false)
+            if (!pause)
                 indice = 0;
             pause = false;
         }
@@ -467,7 +467,7 @@ public class ImitarRitmo extends Activity {
         findViewById(R.id.botonCompararRitmos).setVisibility(View.GONE);
         mostrarSolucion();
         para(view);
-        NivelAdivinar nivel = null;
+        NivelAdivinar nivel;
         comprobado = true;
         int indice = 0;
         if (compruebaArrays()) {
@@ -491,7 +491,6 @@ public class ImitarRitmo extends Activity {
                 }
                 indice++;
             }
-
 
             if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getNivel())
                 GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Realiza_Ritmo.toString(), true);
@@ -679,20 +678,20 @@ public class ImitarRitmo extends Activity {
                 ritmos.add(0);
             }
         }
-        if (figura == 2) {
+        else if (figura == 2) {
             ritmos.add(1);
             for (int i = 0; i < (getSonidoPorSimbolo(figura).getSilencio() - 1); i++) {
                 ritmos.add(0);
             }
         }
 
-        if (figura == 3) {
+        else if (figura == 3) {
             ritmos.add(1);
             for (int i = 0; i < (getSonidoPorSimbolo(figura).getSilencio() - 1); i++) {
                 ritmos.add(0);
             }
         }
-        if (figura == 0) {
+        else if (figura == 0) {
             for (int i = 0; i < (getSonidoPorSimbolo(figura).getSilencio()); i++) {
                 ritmos.add(0);
             }

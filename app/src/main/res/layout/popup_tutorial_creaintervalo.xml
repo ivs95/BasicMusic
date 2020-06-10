@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/popup_creaIntervalo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:gravity="center"
-    android:id="@+id/popup_creaIntervalo"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -30,8 +30,8 @@
                 android:text="TUTORIAL"
                 android:textColor="@color/md_purple_800"
                 android:textSize="24sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/popup_creaintervalo_tituloSeleccionar"
@@ -57,12 +57,12 @@
                 android:layout_marginBottom="150dp"
                 android:fillViewport="true"
                 android:gravity="center"
+                android:orientation="vertical"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/popup_creaintervalo_linearLayout8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/popup_creaintervalo_linearprincipal"
-                android:orientation="vertical">
+                app:layout_constraintTop_toBottomOf="@+id/popup_creaintervalo_linearprincipal">
 
                 <Button
                     android:id="@+id/popup_creaintervalo_button1"
@@ -118,9 +118,9 @@
                 android:id="@+id/popup_creaintervalo_linearprincipal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:divider="@drawable/divisor_botones_menu"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:divider="@drawable/divisor_botones_menu"
                 android:showDividers="middle"
                 app:layout_constraintTop_toBottomOf="@id/popup_creaintervalo_tituloSeleccionar"
                 app:layout_constraintVertical_bias="0.03">
@@ -165,35 +165,35 @@
                 android:id="@+id/popup_creaintervalo_mensaje1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¡Bienvenido a Crear Intervalo!\n\n El botón Nota reproduce la nota sobre la que es el intervalo que tienes que crear.\n\nEl botón Referencia reproduce una nota que te sirve de ayuda para crear el intervalo del nivel.\n\nPresta atención arriba de los botones, te decimos qué intervalo debes crear y alguna que otra pista para los niveles más bajos."
-                android:textColor="@color/md_blue_900"
-                android:textAlignment="center"
-                android:textSize="18sp"
+                android:layout_marginTop="10dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                app:layout_constraintTop_toBottomOf="@id/popup_creaintervalo_linearprincipal"
+                android:text="¡Bienvenido a Crear Intervalo!\n\n El botón Nota reproduce la nota sobre la que es el intervalo que tienes que crear.\n\nEl botón Referencia reproduce una nota que te sirve de ayuda para crear el intervalo del nivel.\n\nPresta atención arriba de los botones, te decimos qué intervalo debes crear y alguna que otra pista para los niveles más bajos."
+                android:textAlignment="center"
+                android:textColor="@color/md_blue_900"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp"
                 app:layout_constraintHorizontal_bias="0.50"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popup_creaintervalo_linearprincipal"
                 app:layout_constraintVertical_bias="0.05" />
 
             <TextView
                 android:id="@+id/popup_creaintervalo_mensaje2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Estas son las opciones que te ofrecemos.\nDebes elegir la nota correcta para crear el intervalo que te pedimos sobre la nota que te proponemos. Recuerda, solo hay una respuesta correcta."
-                android:textColor="@color/md_blue_900"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:visibility="invisible"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
+                android:text="Estas son las opciones que te ofrecemos.\nDebes elegir la nota correcta para crear el intervalo que te pedimos sobre la nota que te proponemos. Recuerda, solo hay una respuesta correcta."
+                android:textAlignment="center"
+                android:textColor="@color/md_blue_900"
+                android:textSize="18sp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@id/popup_creaintervalo_linearLayout8"
-                app:layout_constraintTop_toBottomOf="@id/popup_creaintervalo_mensaje1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.50"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/popup_creaintervalo_mensaje1"
                 app:layout_constraintVertical_bias="0.99" />
 
             <TextView

@@ -21,7 +21,7 @@ public class CrearIntervaloMix extends CrearIntervalo {
     private boolean resultado;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorMix.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorMix.getInstance().getNivel().getNivel() != 1) {
@@ -31,20 +31,17 @@ public class CrearIntervaloMix extends CrearIntervalo {
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView(), false, 0, 0);
         }
-        ((TextView)findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual()+1 + "/" + ControladorMix.getInstance().getNumEjercicios());
+        ((TextView) findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual() + 1 + "/" + ControladorMix.getInstance().getNumEjercicios());
         findViewById(R.id.lblIndice).setVisibility(View.VISIBLE);
-
     }
 
     @Override
     public void comprobarResultado(View view) {
         if (respuesta != respuesta_correcta) {
-            resultado =false;
+            resultado = false;
             botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-        }
-        else
-            resultado =true;
-
+        } else
+            resultado = true;
 
         respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
         findViewById(R.id.comprobar_crear_intervalo).setVisibility(View.GONE);
@@ -52,22 +49,23 @@ public class CrearIntervaloMix extends CrearIntervalo {
         findViewById(R.id.Id_boton_reproduce_nota_intervalo).setAlpha(.5f);
         findViewById(R.id.botonReferencia).setEnabled(false);
         findViewById(R.id.botonReferencia).setAlpha(.5f);
-        for (Button b : botonesOpciones){
+
+        for (Button b : botonesOpciones) {
             b.setEnabled(false);
         }
+
         Controlador.getInstance().setMixIniciado(true);
         findViewById(R.id.continuar_ci).setVisibility(View.VISIBLE);
-        ((Button)findViewById(R.id.continuar_ci)).setText("Continuar");
+        ((Button) findViewById(R.id.continuar_ci)).setText("Continuar");
         findViewById(R.id.continuar_ci).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent();
-                intent.putExtra("resultado",resultado);
-                setResult(RESULT_OK,intent);
-                finish();                 }
+                Intent intent = new Intent();
+                intent.putExtra("resultado", resultado);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
         });
-
     }
-
 
 }

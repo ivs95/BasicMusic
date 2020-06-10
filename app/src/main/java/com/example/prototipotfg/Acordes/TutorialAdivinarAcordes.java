@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.prototipotfg.Enumerados.Acordes;
-import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.Octavas;
 import com.example.prototipotfg.R;
@@ -36,12 +35,10 @@ public class TutorialAdivinarAcordes extends Activity {
         notaAcordes = Notas.devuelveNotaPorNombre(getIntent().getExtras().getString("nota"));
         titulo.setText("Acordes sobre " + notaAcordes.getNombre());
         LinearLayout llBotonera = (LinearLayout) findViewById(R.id.Botonera);
-        //Creamos las propiedades de layout que tendrán los botones.
-        //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
+
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.setMargins(150, 0, 150, 0);
         acordes = Controlador.getInstance().getAcordes();
-        //Creamos los botones en bucle
 
         for (Acordes a : acordes) {
             acordesReproducir.add(Acordes.devuelveNotasAcorde(a, this.octavaAcordes, notaAcordes));
@@ -78,7 +75,7 @@ public class TutorialAdivinarAcordes extends Activity {
         ArrayList<AssetFileDescriptor> retorno = new ArrayList<>();
         for (Pair<Notas, Octavas> nota : acorde){
             try {
-                retorno.add(getAssets().openFd(Instrumentos.Piano.getPath() + nota.second.getPath() + nota.first.getPath()));
+                retorno.add(getAssets().openFd("piano/" + nota.second.getPath() + nota.first.getPath()));
             } catch (IOException e) {
                 e.printStackTrace();
             }

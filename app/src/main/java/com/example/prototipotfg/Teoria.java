@@ -15,7 +15,7 @@ public class Teoria extends Activity {
         setContentView(R.layout.teoria);
     }
 
-    public void siguiente(View view){
+    public void siguiente(View view) {
         findViewById(R.id.textView1).setVisibility(GONE);
         findViewById(R.id.textView2).setVisibility(GONE);
         findViewById(R.id.textView3).setVisibility(GONE);
@@ -30,7 +30,7 @@ public class Teoria extends Activity {
         findViewById(R.id.btnCerrar).setVisibility(View.VISIBLE);
     }
 
-    public void cerrar(View view){
+    public void cerrar(View view) {
         this.finish();
     }
 }

@@ -9,13 +9,13 @@ import java.io.IOException;
 public class MediaPlayerRitmos {
     private MediaPlayer player = new MediaPlayer();
     private MediaPlayer player2 = new MediaPlayer();
-    public void init1(Context myContext){
+
+    public void init1(Context myContext) {
 
         AssetFileDescriptor afd = null;
         try {
             afd = myContext.getAssets().openFd("metronomo/Clap.wav");
-        } catch (
-                IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         try {
@@ -29,7 +29,8 @@ public class MediaPlayerRitmos {
             e.printStackTrace();
         }
     }
-    public void init2(Context myContext){
+
+    public void init2(Context myContext) {
 
         AssetFileDescriptor afd = null;
         try {
@@ -49,7 +50,8 @@ public class MediaPlayerRitmos {
             e.printStackTrace();
         }
     }
-    public void init3(Context myContext){
+
+    public void init3(Context myContext) {
 
         AssetFileDescriptor afd = null;
         try {
@@ -69,7 +71,8 @@ public class MediaPlayerRitmos {
             e.printStackTrace();
         }
     }
-    public void init4(Context myContext){
+
+    public void init4(Context myContext) {
 
         AssetFileDescriptor afd = null;
         try {
@@ -90,7 +93,7 @@ public class MediaPlayerRitmos {
         }
     }
 
-    public void initMetronomo(Context myContext){
+    public void initMetronomo(Context myContext) {
         AssetFileDescriptor afd1 = null;
         AssetFileDescriptor afd2 = null;
         try {
@@ -123,14 +126,13 @@ public class MediaPlayerRitmos {
     }
 
     public void playMetronomo(boolean tick) throws IOException {
-        if(tick == true) {
+        if (tick == true) {
             if (this.player.isPlaying()) {
                 player.stop();
                 player.prepare();
             }
             player.start();
-        }
-        else {
+        } else {
             if (this.player2.isPlaying()) {
                 player2.stop();
                 player2.prepare();
@@ -139,13 +141,14 @@ public class MediaPlayerRitmos {
         }
     }
 
-    public void stop(){
+    public void stop() {
         player.stop();
         player.reset();
         player.release();
         player2.release();
     }
-    public void stopMetronomo(){
+
+    public void stopMetronomo() {
         player.stop();
         player2.stop();
         player.reset();

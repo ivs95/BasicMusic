@@ -1,7 +1,6 @@
 package com.example.prototipotfg.BBDD;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -16,14 +15,9 @@ public interface DAOPuntuacion {
     @Insert
     void insertPuntuacion(Puntuacion puntuacion);
 
-    @Insert
-    void insertAllPuntuacion(Puntuacion... puntuaciones);
 
     @Update
     public void updatePuntuacion(Puntuacion puntuacion);
-
-    @Delete
-    public void deletePuntuacion(Puntuacion puntuacion);
 
 
 }

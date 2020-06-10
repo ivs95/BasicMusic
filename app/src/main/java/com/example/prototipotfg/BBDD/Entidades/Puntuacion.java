@@ -8,7 +8,7 @@ import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.PuntosNiveles;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
 
-@Entity(primaryKeys={"correoUsuario","modoJuego"},
+@Entity(primaryKeys = {"correoUsuario", "modoJuego"},
         foreignKeys = @ForeignKey(entity = Usuario.class, parentColumns = "correo", childColumns = "correoUsuario"))
 public class Puntuacion {
     @NonNull
@@ -29,21 +29,31 @@ public class Puntuacion {
         this.iniciado = iniciado;
     }
 
-    public String getModoJuego(){return this.modoJuego;}
+    public String getModoJuego() {
+        return this.modoJuego;
+    }
 
-    public  int getNivel(){return this.nivel;}
+    public int getNivel() {
+        return this.nivel;
+    }
 
-    public String getCorreoUsuario(){return this.correoUsuario;}
+    public String getCorreoUsuario() {
+        return this.correoUsuario;
+    }
 
-    public int getPuntuacionTotal(){return this.puntuacionTotal;}
+    public int getPuntuacionTotal() {
+        return this.puntuacionTotal;
+    }
 
-    public String getRango(){return this.rango;}
+    public String getRango() {
+        return this.rango;
+    }
 
-    public Puntuacion actualizarPuntuacionTotal(int puntuacion, boolean superado){
-        if(superado)
+    public Puntuacion actualizarPuntuacionTotal(int puntuacion, boolean superado) {
+        if (superado)
             this.puntuacionTotal += puntuacion;
-        else{
-            if(this.puntuacionTotal - puntuacion < 0) puntuacionTotal = 0;
+        else {
+            if (this.puntuacionTotal - puntuacion < 0) puntuacionTotal = 0;
             else this.puntuacionTotal -= puntuacion;
         }
         actualizaNivel();

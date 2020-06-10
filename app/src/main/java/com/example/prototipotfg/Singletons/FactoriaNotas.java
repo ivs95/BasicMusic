@@ -4,7 +4,6 @@ package com.example.prototipotfg.Singletons;
 import android.util.Pair;
 
 import com.example.prototipotfg.Enumerados.Acordes;
-import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.Intervalos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
@@ -21,7 +20,6 @@ public final class FactoriaNotas {
 
     private static final FactoriaNotas INSTANCE = new FactoriaNotas();
     private Random random = new Random();
-    private Instrumentos instrumento = Instrumentos.Piano;
     private String rutaReferencia;
     private String rutaReferenciaDo;
 
@@ -43,41 +41,28 @@ public final class FactoriaNotas {
     }
 
     public void setReferencia(Octavas o){
-        this.rutaReferencia=instrumento.getPath()+o.getPath()+Notas.LA.getPath();
+        this.rutaReferencia="piano/"+o.getPath()+Notas.LA.getPath();
     }
 
     public void setReferenciaDo(Octavas o){
-        this.rutaReferenciaDo=instrumento.getPath()+o.getPath()+Notas.DO.getPath();
-    }
-
-
-    public Instrumentos getInstrumento() {
-        return instrumento;
-    }
-
-    public void setInstrumento(Instrumentos instrumento) {
-        this.instrumento = instrumento;
+        this.rutaReferenciaDo="piano/"+o.getPath()+Notas.DO.getPath();
     }
 
     /**
-     *
      * @param numeroNotas longitud del array a devolver
-     * @param instrumento instrumento del que son las notas
      * @param octavas array de octavas entre las que se seleccionan las notas
      * @return array de notas aleatorias. La primera nota es la que se tiene que adivinar
      */
-    public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, Instrumentos instrumento, ArrayList<Octavas> octavas) {
+    public HashMap<String,String> getNumNotasAleatorias(int numeroNotas, ArrayList<Octavas> octavas) {
 
-        String rutaInstrumento = instrumento.getPath();
-        setReferencia(instrumento.getPath()+"cuatro/A.wav");
-        setInstrumento(instrumento);
+        setReferencia("piano/cuatro/A.wav");
 
         //HashMap con clave nombre de nota y su octava y valor el path a su fichero
         HashMap<String,String> rutasFicherosAudio = new HashMap<>();
         Octavas octava = devuelveOctavaAleatoria(octavas);
         Notas nota = devuelveNotaAleatoria(Notas.values() ,0, 0, false);
         int tonoNotaAnt = getTonoNota(nota.getNombre());
-        String ruta = rutaInstrumento + octava.getPath() + nota.getPath();
+        String ruta = "piano/" + octava.getPath() + nota.getPath();
         rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), ruta);
         for (int i = 1 ; i < numeroNotas; i++){
             while (rutasFicherosAudio.containsKey(nota.getNombre()+octava.getOctava())){
@@ -87,7 +72,7 @@ public final class FactoriaNotas {
 
 
             }
-            rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), rutaInstrumento+octava.getPath()+nota.getPath());
+            rutasFicherosAudio.put(nota.getNombre()+octava.getOctava(), "piano/"+octava.getPath()+nota.getPath());
         }
         return rutasFicherosAudio;
     }
@@ -159,7 +144,7 @@ public final class FactoriaNotas {
 
     }
 
-    public HashMap<String,String> getNotasRV(RangosVocales rv, int n, Instrumentos instrumento){
+    public HashMap<String,String> getNotasRV(RangosVocales rv, int n){
         HashMap<String,String> resul = new HashMap<String,String>();
         Random r = new Random();
         int añadidas = 0;
@@ -167,13 +152,13 @@ public final class FactoriaNotas {
             Octavas octava = Octavas.devuelveOctavaPorNumero(r.nextInt(rv.getOctavaFin() - rv.getOctavaIni() + 1) + rv.getOctavaIni());
             if (octava.getOctava() == rv.getOctavaFin()) {
                 Notas nota = Notas.devuelveNotaPorTono(r.nextInt(rv.getTonoFin()-1+1)+1);
-                resul.put(nota.getNombre()+octava.getOctava(),instrumento.getPath()+octava.getPath()+nota.getPath());
+                resul.put(nota.getNombre()+octava.getOctava(),"piano/"+octava.getPath()+nota.getPath());
             } else if (octava.getOctava() == rv.getOctavaIni()) {
                 Notas nota = Notas.devuelveNotaPorTono(r.nextInt(12-rv.getTonoIni()+1)+rv.getTonoIni());
-                resul.put(nota.getNombre()+octava.getOctava(),instrumento.getPath()+octava.getPath()+nota.getPath());
+                resul.put(nota.getNombre()+octava.getOctava(),"piano/"+octava.getPath()+nota.getPath());
             } else {
                 Notas nota = Notas.devuelveNotaPorTono(r.nextInt(12-1+1)+1);
-                resul.put(nota.getNombre()+octava.getOctava(),instrumento.getPath()+octava.getPath()+nota.getPath());
+                resul.put(nota.getNombre()+octava.getOctava(),"piano/"+octava.getPath()+nota.getPath());
             }
             añadidas++;
         }

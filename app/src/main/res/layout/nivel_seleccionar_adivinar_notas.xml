@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/id_adivinar_notas"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id = "@+id/id_adivinar_notas">
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/lblIndice"
         android:layout_width="wrap_content"
@@ -52,9 +53,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@drawable/divisor_botones_menu"
+            android:gravity="center"
             android:orientation="vertical"
-            android:showDividers="middle"
-            android:gravity="center"/>
+            android:showDividers="middle" />
     </ScrollView>
 
 
@@ -78,18 +79,18 @@
             android:id="@+id/comprobar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:onClick="comprobarResultado"
             android:text="Comprobar resultado"
-            android:visibility="invisible"
-            android:enabled="false"/>
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/continuar_an"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:onClick="continuar"
-            android:text="Otra!" />
+            android:text="Otra!"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout

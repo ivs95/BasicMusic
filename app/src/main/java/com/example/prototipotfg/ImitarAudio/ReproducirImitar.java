@@ -14,9 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.prototipotfg.AudioDispatcherFactory1;
 import com.example.prototipotfg.BBDD.Entidades.NivelImitar;
-import com.example.prototipotfg.Enumerados.Instrumentos;
 import com.example.prototipotfg.Enumerados.ModoJuego;
 import com.example.prototipotfg.Enumerados.Notas;
 import com.example.prototipotfg.Enumerados.RangosPuntuaciones;
@@ -42,7 +40,7 @@ import be.tarsos.dsp.pitch.PitchProcessor;
 
 public class ReproducirImitar extends Activity {
     private AudioDispatcherFactory1 factory = new AudioDispatcherFactory1();
-    private AudioDispatcher dispatcher = factory.fromDefaultMicrophone(22050,1024,0);
+    private AudioDispatcher dispatcher = factory.fromDefaultMicrophone(22050, 1024, 0);
     private ArrayList<NotasImitar> lista = new ArrayList<>();
     private ArrayList<Float> porcentajes = new ArrayList<>();
     private Float resPorcentaje;
@@ -50,9 +48,9 @@ public class ReproducirImitar extends Activity {
     private ArrayList<String> nombres;
     private ArrayList<String> rutas;
     private int nivel;
-    private int reproducciones=0;
+    private int reproducciones = 0;
     private int reproduccionesTotales;
-    private int intentos=0;
+    private int intentos = 0;
     private int intentosTotales;
 
     private boolean octavas = true;
@@ -62,53 +60,50 @@ public class ReproducirImitar extends Activity {
     private NoiseSuppressor noise;
     private AutomaticGainControl gain;
     private AudioProcessor p;
-    private Thread dispatch_Thread = new Thread(dispatcher,"Audio Dispatcher");
-
-
+    private Thread dispatch_Thread = new Thread(dispatcher, "Audio Dispatcher");
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nivel_reproducir_imitar);
 
         nivel = Controlador.getInstance().getNivel();
-        TextView titulo = (TextView)findViewById(R.id.tituloImitar);
+        TextView titulo = findViewById(R.id.tituloImitar);
         titulo.setText(titulo.getText() + String.valueOf(nivel));
 
         inicializaPorDificultad();
 
         TextView restantes = findViewById(R.id.textViewRestantes);
-        if(this.nivel == 1) {
-            restantes.setText("Reproducciones restantes: ∞\n Intentos restantes: "+(intentosTotales-intentos));
-        }
-        else{
-            restantes.setText("Reproducciones restantes: "+ (reproduccionesTotales-reproducciones)+"\n Intentos restantes: "+(intentosTotales-intentos));
+        if (this.nivel == 1) {
+            restantes.setText("Reproducciones restantes: ∞\n Intentos restantes: " + (intentosTotales - intentos));
+        } else {
+            restantes.setText("Reproducciones restantes: " + (reproduccionesTotales - reproducciones) + "\n Intentos restantes: " + (intentosTotales - intentos));
         }
 
         int id = factory.getAudioRecord().getAudioSessionId();
-        if(AcousticEchoCanceler.isAvailable()) {
+        if (AcousticEchoCanceler.isAvailable()) {
             echo = AcousticEchoCanceler.create(id);
-            if(echo != null) {
+            if (echo != null) {
                 echo.setEnabled(true);
                 Log.d("Echo", "Off");
             }
         }
-        if(NoiseSuppressor.isAvailable()) {
+        if (NoiseSuppressor.isAvailable()) {
             noise = NoiseSuppressor.create(id);
-            if(noise != null) {
+            if (noise != null) {
                 noise.setEnabled(true);
                 Log.d("Noise", "Off");
             }
         }
-        if(AutomaticGainControl.isAvailable()) {
+        if (AutomaticGainControl.isAvailable()) {
             gain = AutomaticGainControl.create(id);
-            if(gain != null) {
+            if (gain != null) {
                 gain.setEnabled(false);
                 Log.d("Gain", "Off");
             }
         }
 
-        if(GestorBBDD.getInstance().esPrimerNivelImitar(getIntent().getExtras().getString("rangoVocal"), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
+        if (GestorBBDD.getInstance().esPrimerNivelImitar(getIntent().getExtras().getString("rangoVocal"), Controlador.getInstance().getNivel()) && Controlador.getInstance().getNivel() != 1) {
 
             LayoutInflater inflater = (LayoutInflater)
                     getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -116,99 +111,93 @@ public class ReproducirImitar extends Activity {
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Imitar_Audio, findViewById(android.R.id.content).getRootView(), false, 0, 0);
         }
 
-        findViewById(R.id.continuar_ia).setEnabled(false);           findViewById(R.id.continuar_ia).setAlpha(.5f);
+        findViewById(R.id.continuar_ia).setEnabled(false);
+        findViewById(R.id.continuar_ia).setAlpha(.5f);
     }
 
-    public void rangoPorNivel(){
+    public void rangoPorNivel() {
         RangosVocales RangoVocal = RangosVocales.devuelveRVPorNombre(getIntent().getExtras().getString("rangoVocal"));
-        if(nivel>4 && nivel <6){
-            if(RangoVocal.getNombre().equalsIgnoreCase("Hombre"))
+        if (nivel >= 4 && nivel < 6) {
+            if (RangoVocal.getNombre().equalsIgnoreCase("Hombre"))
                 RangoVocal = RangosVocales.HombreM;
-            else if(RangoVocal.getNombre().equalsIgnoreCase("Mujer"))
+            else if (RangoVocal.getNombre().equalsIgnoreCase("Mujer"))
                 RangoVocal = RangosVocales.MujerM;
-            else if(RangoVocal.getNombre().equalsIgnoreCase("Niño"))
+            else if (RangoVocal.getNombre().equalsIgnoreCase("Niño"))
                 RangoVocal = RangosVocales.NiñoM;
-        }
-        else if(nivel > 6){
-            if(RangoVocal.getNombre().equalsIgnoreCase("Hombre"))
+        } else if (nivel > 6) {
+            if (RangoVocal.getNombre().equalsIgnoreCase("Hombre"))
                 RangoVocal = RangosVocales.HombreD;
-            else if(RangoVocal.getNombre().equalsIgnoreCase("Mujer"))
+            else if (RangoVocal.getNombre().equalsIgnoreCase("Mujer"))
                 RangoVocal = RangosVocales.MujerD;
-            else if(RangoVocal.getNombre().equalsIgnoreCase("Niño"))
+            else if (RangoVocal.getNombre().equalsIgnoreCase("Niño"))
                 RangoVocal = RangosVocales.NiñoD;
         }
-        HashMap<String, String> notas = FactoriaNotas.getInstance().getNotasRV(RangoVocal,1, Instrumentos.Piano);
+        HashMap<String, String> notas = FactoriaNotas.getInstance().getNotasRV(RangoVocal, 1);
         nombres = new ArrayList<>(notas.keySet());
         rutas = new ArrayList<>(notas.values());
     }
 
-    public void inicializaPorDificultad(){
-        if(this.nivel==1){
-            rangoPorNivel();
-            intentosTotales = 3;
-            reproduccionesTotales=10000;
+    public void inicializaPorDificultad() {
+        switch (this.nivel) {
+            case 1:
+                rangoPorNivel();
+                intentosTotales = 3;
+                reproduccionesTotales = 10000;
+                break;
+            case 2:
+                rangoPorNivel();
+                intentosTotales = 2;
+                reproduccionesTotales = 3;
+                break;
+            case 3:
+            case 4:
+                rangoPorNivel();
+                intentosTotales = 2;
+                reproduccionesTotales = 3;
+                octavas = false;
+                break;
+            case 5:
+            case 6:
+                rangoPorNivel();
+                intentosTotales = 2;
+                reproduccionesTotales = 2;
+                octavas = false;
+                break;
+            case 7:
+                rangoPorNivel();
+                intentosTotales = 1;
+                reproduccionesTotales = 2;
+                octavas = false;
+                break;
+            case 8:
+                rangoPorNivel();
+                intentosTotales = 1;
+                reproduccionesTotales = 1;
+                octavas = false;
+                break;
+            default:
+                break;
         }
-        else if(this.nivel==2){
-            rangoPorNivel();
-            intentosTotales = 2;
-            reproduccionesTotales=3;
-        }
-        else if(this.nivel==3){
-            rangoPorNivel();
-            intentosTotales = 2;
-            reproduccionesTotales=3;
-            octavas=false;
-        }
-        else if(this.nivel==4){
-            rangoPorNivel();
-            intentosTotales = 2;
-            reproduccionesTotales=3;
-            octavas=false;
-        }
-        else if(this.nivel==5){
-            rangoPorNivel();
-            intentosTotales = 2;
-            reproduccionesTotales=2;
-            octavas=false;
-        }
-        else if(this.nivel==6){
-            rangoPorNivel();
-            intentosTotales = 2;
-            reproduccionesTotales=2;
-            octavas=false;
-        }
-        else if(this.nivel==7){
-            rangoPorNivel();
-            intentosTotales = 1;
-            reproduccionesTotales=2;
-            octavas=false;
-        }
-        else if(this.nivel==8){
-            rangoPorNivel();
-            intentosTotales = 1;
-            reproduccionesTotales=1;
-            octavas=false;
-        }
+
     }
 
     public void reproducir(View view) throws IOException {
         AssetFileDescriptor afd = getAssets().openFd(rutas.get(0));
         Reproductor.getInstance().reproducirNota(afd);
         reproducciones++;
-        if(reproducciones == reproduccionesTotales) {
+        if (reproducciones == reproduccionesTotales) {
             findViewById(R.id.button2).setEnabled(false);
             findViewById(R.id.button2).setAlpha(.5f);
         }
         TextView restantes = findViewById(R.id.textViewRestantes);
-        if(this.nivel == 1) {
-            restantes.setText("Reproducciones restantes: ∞\n Intentos restantes: "+(intentosTotales-intentos));
-        }
-        else{
-            restantes.setText("Reproducciones restantes: "+ (reproduccionesTotales-reproducciones)+"\n Intentos restantes: "+(intentosTotales-intentos));
+        if (this.nivel == 1) {
+            restantes.setText("Reproducciones restantes: ∞\n Intentos restantes: " + (intentosTotales - intentos));
+        } else {
+            restantes.setText("Reproducciones restantes: " + (reproduccionesTotales - reproducciones) + "\n Intentos restantes: " + (intentosTotales - intentos));
         }
     }
 
-    public void comparar(View view){
+    public void comparar(View view) {
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel();
         int rangoActual = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getRango()).ordinal();
 
@@ -218,7 +207,7 @@ public class ReproducirImitar extends Activity {
         boolean correct = false;
         intentos++;
 
-        if(octavas ==false) {
+        if (!octavas) {
             if ((resNota.getNota().getNombre() + (resNota.getOctava())).equals(nombres.get(0))) {
                 view = this.getWindow().getDecorView();
                 text2.setTextColor(getResources().getColor(R.color.md_green_500));
@@ -231,9 +220,8 @@ public class ReproducirImitar extends Activity {
 
                 nivel = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), false, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
             }
-        }
-        else{
-            if ((resNota.getNota().getNombre()).equals(nombres.get(0).substring(0,nombres.get(0).length()-1))) {
+        } else {
+            if ((resNota.getNota().getNombre()).equals(nombres.get(0).substring(0, nombres.get(0).length() - 1))) {
                 view = this.getWindow().getDecorView();
                 text2.setTextColor(getResources().getColor(R.color.md_green_500));
 
@@ -246,60 +234,64 @@ public class ReproducirImitar extends Activity {
                 nivel = new NivelImitar(GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo(), false, resPorcentaje, 1, getIntent().getExtras().getString("rangoVocal"), this.nivel);
             }
         }
-        if(correct || intentos >= intentosTotales) {
+        if (correct || intentos >= intentosTotales) {
 
-            findViewById(R.id.button2).setEnabled(false);        findViewById(R.id.button2).setAlpha(.5f);
-            findViewById(R.id.botonGrabar).setEnabled(false);        findViewById(R.id.botonGrabar).setAlpha(.5f);
-            findViewById(R.id.button4).setEnabled(false);        findViewById(R.id.button4).setAlpha(.5f);
+            findViewById(R.id.button2).setEnabled(false);
+            findViewById(R.id.button2).setAlpha(.5f);
+            findViewById(R.id.botonGrabar).setEnabled(false);
+            findViewById(R.id.botonGrabar).setAlpha(.5f);
+            findViewById(R.id.button4).setEnabled(false);
+            findViewById(R.id.button4).setAlpha(.5f);
 
             GestorBBDD.getInstance().insertaNivelImitar(nivel);
-            if(correct){
+            if (correct) {
                 TextView text3 = findViewById(R.id.textoPorcentaje);
-                text3.setText(Math.round(resPorcentaje)+"%");
-                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel())
+                text3.setText(Math.round(resPorcentaje) + "%");
+                if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel())
                     GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Imitar_Audio.toString(), true);
-            }
-            else{
-                if(Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel())
+            } else {
+                if (Controlador.getInstance().getNivel() == GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel())
                     GestorBBDD.getInstance().actualizarPuntuacion(Controlador.getInstance().getNivel(), ModoJuego.Imitar_Audio.toString(), false);
             }
             int nivelNuevo = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getNivel();
             int rangoNuevo = RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Imitar_Audio.toString()).getRango()).ordinal();
-            if(rangoActual != rangoNuevo) {
+            if (rangoActual != rangoNuevo) {
                 LayoutInflater inflater = (LayoutInflater)
                         getSystemService(LAYOUT_INFLATER_SERVICE);
                 RangosPuntuaciones.mostrar_popUp_rango(view, rangoActual, rangoNuevo, inflater, ModoJuego.Imitar_Audio.toString());
             }
 
-            if(nivelActual != nivelNuevo){
+            if (nivelActual != nivelNuevo) {
                 Controlador.getInstance().setNivel(nivelNuevo);
 
                 LayoutInflater inflater = (LayoutInflater)
-                            getSystemService(LAYOUT_INFLATER_SERVICE);
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
 
                 ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Imitar_Audio, findViewById(android.R.id.content).getRootView(), true, nivelActual, nivelNuevo);
 
                 Controlador.getInstance().estableceDificultad();
             }
 
-            findViewById(R.id.continuar_ia).setEnabled(true);      findViewById(R.id.continuar_ia).setAlpha(1);
+            findViewById(R.id.continuar_ia).setEnabled(true);
+            findViewById(R.id.continuar_ia).setAlpha(1);
 
         }
 
 
         TextView restantes = findViewById(R.id.textViewRestantes);
-        if(this.nivel == 1) {
-            restantes.setText("Reproducciones restantes: ∞\n Intentos restantes: "+(intentosTotales-intentos));
-        }
-        else{
-            restantes.setText("Reproducciones restantes: "+ (reproduccionesTotales-reproducciones)+"\n Intentos restantes: "+(intentosTotales-intentos));
+        if (this.nivel == 1) {
+            restantes.setText("Reproducciones restantes: ∞\n Intentos restantes: " + (intentosTotales - intentos));
+        } else {
+            restantes.setText("Reproducciones restantes: " + (reproduccionesTotales - reproducciones) + "\n Intentos restantes: " + (intentosTotales - intentos));
         }
 
     }
 
-    public void contador(View view){
-        findViewById(R.id.button2).setEnabled(false);        findViewById(R.id.button2).setAlpha(.5f);
-        TextView text2 = findViewById(R.id.textoFrecuencia); text2.setTextColor(getResources().getColor(R.color.md_blue_900));
+    public void contador(View view) {
+        findViewById(R.id.button2).setEnabled(false);
+        findViewById(R.id.button2).setAlpha(.5f);
+        TextView text2 = findViewById(R.id.textoFrecuencia);
+        text2.setTextColor(getResources().getColor(R.color.md_blue_900));
         TextView text3 = findViewById(R.id.textoPorcentaje);
         text3.setText("");
         inicializaArrays();
@@ -314,7 +306,7 @@ public class ReproducirImitar extends Activity {
             public void onTick(long millisUntilFinished) {
                 //texto a mostrar en cuenta regresiva en un textview
                 TextView countdownText = findViewById(R.id.textoFrecuencia);
-                countdownText.setText(String.valueOf((millisUntilFinished/1000)+1));
+                countdownText.setText(String.valueOf((millisUntilFinished / 1000) + 1));
             }
 
             @Override
@@ -325,15 +317,15 @@ public class ReproducirImitar extends Activity {
             }
 
         }
-        MiContador timer = new MiContador(2999,100);
+        MiContador timer = new MiContador(2999, 100);
         timer.start();
     }
 
     private void inicializaArrays() {
         lista = new ArrayList<>();
         porcentajes = new ArrayList<>();
-        resNota=null;
-        resPorcentaje=null;
+        resNota = null;
+        resPorcentaje = null;
     }
 
     private void inicializaPitch() {
@@ -341,7 +333,6 @@ public class ReproducirImitar extends Activity {
             @Override
             public void handlePitch(PitchDetectionResult result, AudioEvent e) {
                 final float pitchInHz = result.getPitch();
-
 
                 new Thread(new Runnable() {
                     @Override
@@ -354,7 +345,7 @@ public class ReproducirImitar extends Activity {
         };
         p = new PitchProcessor(PitchProcessor.PitchEstimationAlgorithm.FFT_YIN, 22050, 1024, pdh);
         dispatcher.addAudioProcessor(p);
-        this.dispatch_Thread = new Thread(dispatcher,"Audio Dispatcher");
+        this.dispatch_Thread = new Thread(dispatcher, "Audio Dispatcher");
         final Thread dispatch_Thread = this.dispatch_Thread;
         dispatch_Thread.start();
         Handler handler = new Handler();
@@ -363,8 +354,8 @@ public class ReproducirImitar extends Activity {
                 dispatcher.removeAudioProcessor(p);
                 dispatch_Thread.interrupt();
                 poneNota();
-                ((Button)findViewById(R.id.botonGrabar)).setVisibility(View.VISIBLE);
-                if(reproducciones < reproduccionesTotales) {
+                ((Button) findViewById(R.id.botonGrabar)).setVisibility(View.VISIBLE);
+                if (reproducciones < reproduccionesTotales) {
                     findViewById(R.id.button2).setEnabled(true);
                     findViewById(R.id.button2).setAlpha(1f);
                 }
@@ -372,7 +363,7 @@ public class ReproducirImitar extends Activity {
         }, 5000);
     }
 
-    private void hallaMax(float hz){
+    private void hallaMax(float hz) {
         if (hz != -1) {
             octava = 4;
             //Situa a la nota en la octava que le corresponde
@@ -412,7 +403,7 @@ public class ReproducirImitar extends Activity {
             };
             for (int i = 0; i < lista.size(); i++) {
                 if (comparador.compare(nota, lista.get(i)) == 1) {
-                    nota=lista.get(i);
+                    nota = lista.get(i);
                     lista.set(i, new NotasImitar(n, octava, nota.getContador() + 1));
                     porcentajes.set(i, porcentajes.get(i) + hz);
                     contiene = true;
@@ -423,30 +414,29 @@ public class ReproducirImitar extends Activity {
                 porcentajes.add(hz);
             }
             return true;
-        }
-        else
+        } else
             return false;
     }
 
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         dispatch_Thread.interrupt();
-        if(!destroy)
+        if (!destroy)
             dispatcher.stop();
-        if(echo != null)
+        if (echo != null)
             echo.release();
-        if(noise != null)
+        if (noise != null)
             noise.release();
-        if(gain != null)
+        if (gain != null)
             gain.release();
 
     }
 
-    public void poneNota(){
+    public void poneNota() {
         double frecuencia;
-        if(lista.size()>0) {
+        if (lista.size() > 0) {
             resNota = lista.get(0);
             frecuencia = porcentajes.get(0);
             for (int i = 1; i < lista.size(); i++) {
@@ -455,19 +445,18 @@ public class ReproducirImitar extends Activity {
                     frecuencia = porcentajes.get(i);
                 }
             }
-            frecuencia = frecuencia/resNota.getContador();
+            frecuencia = frecuencia / resNota.getContador();
             double origenFrecuencia;
-            origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getFrecuencia();
-            double frecuenciaMax = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getMaximaFrecuencia();
-            double frecuenciaMin = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0,nombres.get(0).length()-1)).getMinimaFrecuencia();
-            if(frecuencia > origenFrecuencia) {
-                resPorcentaje = (float)(((frecuenciaMax-frecuencia)*100)/(frecuenciaMax-origenFrecuencia));
-            }
-            else{
-                resPorcentaje = (float)(((frecuencia-frecuenciaMin)*100)/(origenFrecuencia-frecuenciaMin));
+            origenFrecuencia = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0, nombres.get(0).length() - 1)).getFrecuencia();
+            double frecuenciaMax = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0, nombres.get(0).length() - 1)).getMaximaFrecuencia();
+            double frecuenciaMin = Notas.devuelveNotaPorNombre(nombres.get(0).substring(0, nombres.get(0).length() - 1)).getMinimaFrecuencia();
+            if (frecuencia > origenFrecuencia) {
+                resPorcentaje = (float) (((frecuenciaMax - frecuencia) * 100) / (frecuenciaMax - origenFrecuencia));
+            } else {
+                resPorcentaje = (float) (((frecuencia - frecuenciaMin) * 100) / (origenFrecuencia - frecuenciaMin));
             }
 
-                        runOnUiThread(new Runnable() {
+            runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
 
@@ -480,8 +469,7 @@ public class ReproducirImitar extends Activity {
                 }
 
             });
-        }
-        else{
+        } else {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -489,20 +477,19 @@ public class ReproducirImitar extends Activity {
                     TextView text2 = findViewById(R.id.textoFrecuencia);
                     text2.setText("No se ha detectado ningún audio. \n Por favor repita el nivel");
 
-
                 }
 
             });
         }
     }
 
-    public void continuar(View view){
+    public void continuar(View view) {
         onDestroy();
         destroy = true;
         finish();
-        overridePendingTransition( 0, 0);
+        overridePendingTransition(0, 0);
         startActivity(getIntent());
-        overridePendingTransition( 0, 0);
+        overridePendingTransition(0, 0);
     }
 
 }

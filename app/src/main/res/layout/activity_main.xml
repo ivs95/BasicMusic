@@ -13,11 +13,11 @@
         android:id="@+id/profile_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="ejecutar_Perfil"
-        android:src="@drawable/picture"
-        android:scaleType="fitXY"
         android:background="@drawable/borde_boton"
+        android:onClick="ejecutar_Perfil"
         android:padding="4dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/picture"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -77,15 +77,16 @@
                     android:id="@+id/botonTutoriales"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick="tutoriales"
                     android:layout_weight="1"
+                    android:onClick="tutoriales"
                     android:text="Tutoriales" />
+
                 <Button
                     android:id="@+id/botonTeoria"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick="teoriaMusical"
                     android:layout_weight="1"
+                    android:onClick="teoriaMusical"
                     android:text="@string/txtBotonTeoria"
                     android:visibility="visible" />
 
@@ -100,16 +101,17 @@
                     android:id="@+id/botonInfo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick="informacion"
                     android:layout_weight="1"
+                    android:onClick="informacion"
                     android:text="@string/txtBotonInfo"
                     android:visibility="visible" />
+
                 <Button
                     android:id="@+id/botonEstadisticas"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick="mostrarEstadisticas"
                     android:layout_weight="1"
+                    android:onClick="mostrarEstadisticas"
                     android:text="Estadísticas" />
 
             </LinearLayout>

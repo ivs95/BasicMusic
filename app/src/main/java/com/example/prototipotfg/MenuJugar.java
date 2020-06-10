@@ -17,7 +17,7 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 public class MenuJugar extends Activity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_jugar);
 
@@ -30,12 +30,12 @@ public class MenuJugar extends Activity {
         viewRangoExamen.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getRango()).getImage());
     }
 
-    public void modo_adivinar(View view){
+    public void modo_adivinar(View view) {
         Intent i = new Intent(this, SeleccionModoAdivinar.class);
         startActivity(i);
     }
 
-    public void modo_imitar(View view){
+    public void modo_imitar(View view) {
         Controlador.getInstance().setModo_juego(ModoJuego.Imitar_Audio);
         Intent i = new Intent(this, SeleccionOctavasImitar.class);
         startActivity(i);
@@ -46,7 +46,7 @@ public class MenuJugar extends Activity {
         startActivity(i);
     }
 
-    public void examen(View view){
+    public void examen(View view) {
         Intent i = new Intent(this, SeleccionNivelMix.class);
         startActivity(i);
     }

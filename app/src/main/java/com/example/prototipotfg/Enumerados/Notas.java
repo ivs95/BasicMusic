@@ -24,7 +24,7 @@ public enum Notas {
     private int tono;
     private double frecuencia;
 
-    private Notas(String nombre, double minimaFrecuencia, double maximaFrecuencia, String path, int tono, double frecuencia){
+    Notas(String nombre, double minimaFrecuencia, double maximaFrecuencia, String path, int tono, double frecuencia){
         this.nombre=nombre;
         this.minimaFrecuencia=minimaFrecuencia;
         this.maximaFrecuencia=maximaFrecuencia;
@@ -52,15 +52,6 @@ public enum Notas {
         return null;
     }
 
-    public static Notas devuelveSiguienteNota(Notas n){
-        int indice = Arrays.asList(Notas.values()).indexOf(n)+1;
-        if (indice < Notas.values().length){
-            return Notas.values()[indice];
-        }
-        else{
-            return Notas.values()[0];
-        }
-    }
     public String getNombre() {
         return nombre;
     }
@@ -73,30 +64,13 @@ public enum Notas {
         return minimaFrecuencia;
     }
 
-    public void setMinimaFrecuencia(double minimaFrecuencia) {
-        this.minimaFrecuencia = minimaFrecuencia;
-    }
-
     public double getMaximaFrecuencia() {
         return maximaFrecuencia;
-    }
-
-    public void setMaximaFrecuencia(double maximaFrecuencia) {
-        this.maximaFrecuencia = maximaFrecuencia;
     }
 
     public String getPath() {
         return path;
     }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public boolean esNota(Notas n, double frecuencia){
-        return (n.minimaFrecuencia <= frecuencia && n.maximaFrecuencia >= frecuencia);
-    }
-
 
     public int getTono(){ return this.tono;}
 
@@ -104,7 +78,4 @@ public enum Notas {
         return frecuencia;
     }
 
-    public void setFrecuencia(double frecuencia) {
-        this.frecuencia = frecuencia;
-    }
 }

@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 
-@Entity(primaryKeys={"correoUsuario","modoJuego","nivel"},
+@Entity(primaryKeys = {"correoUsuario", "modoJuego", "nivel"},
         foreignKeys = @ForeignKey(entity = Usuario.class, parentColumns = "correo", childColumns = "correoUsuario"))
 public class NivelAdivinar {
     @NonNull
@@ -31,16 +31,8 @@ public class NivelAdivinar {
         return numAciertos;
     }
 
-    public void setNumAciertos(int numAciertos) {
-        this.numAciertos = numAciertos;
-    }
-
     public int getNumFallos() {
         return numFallos;
-    }
-
-    public void setNumFallos(int numFallos) {
-        this.numFallos = numFallos;
     }
 
     public String getModoJuego() {
@@ -63,24 +55,15 @@ public class NivelAdivinar {
         return superado;
     }
 
-    public void setSuperado(Boolean superado) {
-        this.superado = superado;
-    }
-
     public String getCorreoUsuario() {
         return correoUsuario;
     }
 
-    public void setCorreoUsuario(String correoUsuario) {
-        this.correoUsuario = correoUsuario;
-    }
-
     public void actualizaEstadisticas(boolean superado) {
-        if (superado){
+        if (superado) {
             this.numAciertos++;
-            this.superado=superado;
-        }
-        else{
+            this.superado = superado;
+        } else {
             this.numFallos++;
         }
     }

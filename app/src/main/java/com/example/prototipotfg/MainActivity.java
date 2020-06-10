@@ -21,72 +21,62 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if(GestorBBDD.getInstance().esPrimeraVezApp())
+        if (GestorBBDD.getInstance().esPrimeraVezApp())
             mostrarPopupRangos(findViewById(android.R.id.content).getRootView());
     }
 
     public void ejecutar_jugar(View view) {
-
         Intent i = new Intent(this, MenuJugar.class);
         startActivity(i);
     }
 
     public void ejecutar_Perfil(View view) {
-
-        if(!GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo().equals("usuario@prueba.com")) {
+        if (!GestorBBDD.getInstance().getUsuarioLoggeado().getCorreo().equals("usuario@prueba.com")) {
             Intent i = new Intent(this, Perfil.class);
             startActivity(i);
-        }
-        else
+        } else
             Toast.makeText(this, "No puedes editar el usuario de prueba", Toast.LENGTH_SHORT).show();
     }
 
-    public void mostrarEstadisticas(View view){
-
+    public void mostrarEstadisticas(View view) {
         Intent i = new Intent(this, Estadisticas.class);
         startActivity(i);
     }
 
-    public void teoriaMusical(View view){
+    public void teoriaMusical(View view) {
         Intent i = new Intent(this, Teoria.class);
         startActivity(i);
     }
 
-    public void tutoriales(View view){
-
+    public void tutoriales(View view) {
         Intent i = new Intent(this, Tutoriales.class);
         startActivity(i);
     }
 
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
 
     }
-    public void informacion(View view){
+
+    public void informacion(View view) {
         mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
     }
-    public void salir(View view){
+
+    public void salir(View view) {
         GestorBBDD.getInstance().cerrarSesion();
         Intent i = new Intent(this, Login.class);
         startActivity(i);
     }
 
-    public void mostrarPopupRangos(final View view){
+    public void mostrarPopupRangos(final View view) {
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
 
         final View popupView = inflater.inflate(R.layout.popup_tutorial_rangos, null);
         final View popupView2 = inflater.inflate(R.layout.popup_tutorial_rangos2, null);
 
-        // create the popup window
-        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
         final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
         final PopupWindow popupWindow2 = new PopupWindow(popupView2, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
-
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
-
 
         view.post(new Runnable() {
             public void run() {
@@ -94,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button cerrar = (Button)popupView.findViewById(R.id.boton_cerrar_tutorialrangos);
+        Button cerrar = popupView.findViewById(R.id.boton_cerrar_tutorialrangos);
         cerrar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 popupWindow2.showAtLocation(view, Gravity.CENTER, 0, 0);
@@ -102,28 +92,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button cerrar2 = (Button)popupView2.findViewById(R.id.boton_cerrar_tutorial_2);
+        Button cerrar2 = popupView2.findViewById(R.id.boton_cerrar_tutorial_2);
         cerrar2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 popupWindow2.dismiss();
             }
         });
-
     }
 
-    public void mostrarPopupTutorial(View view){
+    public void mostrarPopupTutorial(View view) {
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
 
         View popupView = inflater.inflate(R.layout.informacion_popup, null);
-
-        // create the popup window
-        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
         final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
-
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
-
 
         findViewById(R.id.linearLayout).post(new Runnable() {
             public void run() {
@@ -131,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -139,7 +120,5 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        // dismiss the popup window when touched
-
     }
 }

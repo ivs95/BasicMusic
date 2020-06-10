@@ -27,12 +27,6 @@ public class SeleccionNivelMix extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
-        /*
-        * Popup indicando que cambia al desbloquear un nivel
-        * Popup de primeras indicando en que consiste
-        *
-        * */
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.niveles);
         this.savedInstanceState = savedInstanceState;
@@ -40,26 +34,20 @@ public class SeleccionNivelMix extends Activity {
 
         boolean primeraVez = GestorBBDD.getInstance().esPrimeraVezModo(ModoJuego.Modo_Mix);
 
-
         Controlador.getInstance().setModo_juego(ModoJuego.Modo_Mix);
         TextView rango = findViewById(R.id.rango_niveles);
         int puntuacion = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getPuntuacionTotal();
         rango.setText(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getRango() + " (" + puntuacion + " puntos)");
-        //Creamos las propiedades de layout que tendrán los botones.
-        //Son LinearLayout.LayoutParams porque los botones van a estar en un LinearLayout.
+
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        //Creamos los botones en bucle
-
 
         int nivelActual = GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Modo_Mix.toString()).getNivel();
         for (int i = 0; i < 10; i++) {
             Button button = new Button(this);
             button.setId(i + 1);
-            //Asignamos propiedades de layout al boton
             button.setLayoutParams(lp);
-            //Asignamos Texto al botón
             button.setText("Nivel " + String.format("%02d", i + 1));
+
             if (nivelActual > i) {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -71,9 +59,7 @@ public class SeleccionNivelMix extends Activity {
                 button.setEnabled(false);
                 button.setAlpha(.5f);
             }
-            //Asignamose el Listener
 
-            //Añadimos el botón a la botonera
             llBotonera.addView(button);
 
             if (nivelActual == i + 1 && nivelActual != ModoJuego.Modo_Mix.getMax_level()) {
@@ -85,7 +71,7 @@ public class SeleccionNivelMix extends Activity {
                 llBotonera.addView(texto);
             }
         }
-        if(primeraVez)
+        if (primeraVez)
             mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
     }
 
@@ -99,17 +85,13 @@ public class SeleccionNivelMix extends Activity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // check if the request code is same as what is passed  here it is 2
-        if(requestCode==2)
-        {
-            if(resultCode != RESULT_CANCELED) {
+        if (requestCode == 2) {
+            if (resultCode != RESULT_CANCELED) {
                 ControladorMix.getInstance().setResultadoEjercicioActual(data.getBooleanExtra("resultado", false));
                 siguienteEjercicio();
-            }
-            else {
+            } else {
                 super.onCreate(this.savedInstanceState);
             }
         }
@@ -117,31 +99,24 @@ public class SeleccionNivelMix extends Activity {
 
     private void siguienteEjercicio() {
         GestorBBDD.getInstance().modoRealizado(ModoJuego.Modo_Mix);
-        if(!ControladorMix.getInstance().finalMix()) {
+        if (!ControladorMix.getInstance().finalMix()) {
             ControladorMix.getInstance().setEjercicio();
             Intent i = ControladorMix.getInstance().iniciaPrueba(this);
             startActivityForResult(i, 2);
-        }
-        else {
+        } else {
             ControladorMix.getInstance().setResultadoModo();
-            Intent i = new Intent(this , ResultadoMix.class);
+            Intent i = new Intent(this, ResultadoMix.class);
             startActivity(i);
         }
-        }
+    }
 
-    public void mostrarPopupTutorial(View view){
+    public void mostrarPopupTutorial(View view) {
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
 
         popupView = inflater.inflate(R.layout.popup_tutorial_examen, null);
 
-        // create the popup window
-        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
         popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
-
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
-
 
         findViewById(R.id.id_niveles).post(new Runnable() {
             public void run() {
@@ -149,17 +124,13 @@ public class SeleccionNivelMix extends Activity {
             }
         });
 
-        // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-        // dismiss the popup window when touched
-
     }
 
-    public void cerrar(View view){
+    public void cerrar(View view) {
         popupWindow.dismiss();
     }
 
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         this.onCreate(this.savedInstanceState);
     }

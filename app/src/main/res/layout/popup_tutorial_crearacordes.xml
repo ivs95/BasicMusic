@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/popup_crearacorde"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:gravity="center"
-    android:id="@+id/popup_crearacorde"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -29,8 +29,8 @@
                 android:text="TUTORIAL"
                 android:textColor="@color/md_purple_800"
                 android:textSize="24sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/popup_crearacorde_tituloSeleccionar"
@@ -56,12 +56,12 @@
                 android:layout_marginBottom="150dp"
                 android:fillViewport="true"
                 android:gravity="center"
+                android:orientation="vertical"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/popup_crearacorde_linearLayout8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/popup_crearacorde_linearprincipal"
-                android:orientation="vertical">
+                app:layout_constraintTop_toBottomOf="@+id/popup_crearacorde_linearprincipal">
 
                 <Button
                     android:id="@+id/popup_crearacorde_button1"
@@ -132,9 +132,9 @@
                 android:id="@+id/popup_crearacorde_linearprincipal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:divider="@drawable/divisor_botones_menu"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:divider="@drawable/divisor_botones_menu"
                 android:showDividers="middle"
                 app:layout_constraintTop_toBottomOf="@id/popup_crearacorde_tituloSeleccionar"
                 app:layout_constraintVertical_bias="0.03">

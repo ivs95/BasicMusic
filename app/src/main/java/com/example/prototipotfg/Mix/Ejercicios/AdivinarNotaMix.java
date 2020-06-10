@@ -22,7 +22,7 @@ public class AdivinarNotaMix extends AdivinarNota {
     private boolean resultado;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (GestorBBDD.getInstance().esPrimerNivelAdivinar(ModoJuego.Modo_Mix, ControladorMix.getInstance().getNivel().getNivel()) && !Controlador.getInstance().getMixIniciado() && ControladorMix.getInstance().getNivel().getNivel() != 1) {
@@ -32,34 +32,32 @@ public class AdivinarNotaMix extends AdivinarNota {
 
             ModoJuego.mostrarPopUpNuevoNivel(inflater, ModoJuego.Modo_Mix, findViewById(android.R.id.content).getRootView(), false, 0, 0);
         }
-        ((TextView)findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual()+1 + "/" + ControladorMix.getInstance().getNumEjercicios());
+        ((TextView) findViewById(R.id.lblIndice)).setText(ControladorMix.getInstance().getIndiceActual() + 1 + "/" + ControladorMix.getInstance().getNumEjercicios());
         findViewById(R.id.lblIndice).setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void comprobarResultado(View view) {
-            this.comprobada = true;
-            if (respuesta != nombres.get(0)) {
-                botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
-                resultado= false;
-            }
-            else
-                resultado=true;
-            respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
-            super.deshabilitaBotones();
-
+        this.comprobada = true;
+        if (respuesta != nombres.get(0)) {
+            botonSeleccionado.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_red_500)));
+            resultado = false;
+        } else
+            resultado = true;
+        respuestaCorrecta.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.md_green_500)));
+        super.deshabilitaBotones();
 
         Controlador.getInstance().setMixIniciado(true);
         findViewById(R.id.comprobar).setVisibility(View.GONE);
         findViewById(R.id.continuar_an).setVisibility(View.VISIBLE);
-        ((Button)findViewById(R.id.continuar_an)).setText("Continuar");
+        ((Button) findViewById(R.id.continuar_an)).setText("Continuar");
         findViewById(R.id.continuar_an).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent();
-                intent.putExtra("resultado",resultado);
-                setResult(RESULT_OK,intent);
+                Intent intent = new Intent();
+                intent.putExtra("resultado", resultado);
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });

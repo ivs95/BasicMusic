@@ -34,9 +34,9 @@ public class SeleccionModoRitmos extends Activity {
         viewRangoRealiza.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Realiza_Ritmo.toString()).getRango()).getImage());
     }
 
-    public void modo(View view){
+    public void modo(View view) {
         Intent i;
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.buttonHalla:
                 Controlador.getInstance().setModo_juego(ModoJuego.Halla_Ritmo);
                 i = new Intent(this, SeleccionNivelDibujarRitmo.class);
@@ -51,10 +51,12 @@ public class SeleccionModoRitmos extends Activity {
                 startActivity(i);
                 break;
 
-            default: break;
+            default:
+                break;
         }
     }
-    public void onResume(){
+
+    public void onResume() {
         super.onResume();
         this.onCreate(this.savedInstanceState);
     }

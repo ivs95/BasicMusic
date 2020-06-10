@@ -46,7 +46,7 @@ public class SeleccionNivelCrearAcorde extends Activity {
         tutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tutorial_notas(v);
+                tutorial_notas();
             }
         });
         llBotonera.addView(tutorial);
@@ -91,7 +91,7 @@ public class SeleccionNivelCrearAcorde extends Activity {
         if(primeraVez)
             mostrarPopupTutorial(findViewById(android.R.id.content).getRootView());
     }
-    private void tutorial_notas(View v) {
+    private void tutorial_notas() {
         Intent i = new Intent(this, TutorialNivelCrearAcorde.class);
         startActivity(i);
     }
@@ -112,12 +112,7 @@ public class SeleccionNivelCrearAcorde extends Activity {
 
         popupView = inflater.inflate(R.layout.popup_tutorial_crearacordes, null);
 
-        // create the popup window
-        //final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
         popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
-
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
 
 
         findViewById(R.id.id_niveles).post(new Runnable() {
@@ -126,9 +121,6 @@ public class SeleccionNivelCrearAcorde extends Activity {
             }
         });
 
-        // popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-        // dismiss the popup window when touched
 
     }
 

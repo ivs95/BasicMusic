@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/id_hallaritmos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/id_hallaritmos">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/lblIndice"
@@ -44,15 +44,16 @@
         android:textColor="#091AAA"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/stopRitmo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/stopRitmo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="60dp"
         android:onClick="stop"
         android:text="Comprueba"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,13 +70,13 @@
         android:layout_marginEnd="60dp"
         android:onClick="continuar"
         android:text="Otra!"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stopRitmo"
-        app:layout_constraintVertical_bias="0.107"
-        android:visibility="gone"/>
+        app:layout_constraintVertical_bias="0.107" />
 
     <LinearLayout
         android:id="@+id/linearEtiquetas"
@@ -139,13 +140,14 @@
             android:id="@+id/textRitmos1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Palmadas"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#091AAA"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/linearControlRitmo"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/scroll1"
-            android:visibility="invisible" />
+            app:layout_constraintTop_toBottomOf="@+id/linearControlRitmo" />
+
         <HorizontalScrollView
             android:id="@+id/scroll1"
             android:layout_width="match_parent"
@@ -167,13 +169,14 @@
             android:id="@+id/textRitmos2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Caja"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#091AAA"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/scroll1"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/scroll2"
-            android:visibility="invisible" />
+            app:layout_constraintTop_toBottomOf="@+id/scroll1" />
+
         <HorizontalScrollView
             android:id="@+id/scroll4"
             android:layout_width="match_parent"
@@ -190,17 +193,19 @@
                 android:orientation="horizontal"
                 android:showDividers="middle"></LinearLayout>
         </HorizontalScrollView>
+
         <TextView
             android:id="@+id/textRitmos3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal|bottom"
             android:text="Tambor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#091AAA"
-            android:gravity="center_horizontal|bottom"
-            app:layout_constraintTop_toBottomOf="@+id/scroll2"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/scroll3"
-            android:visibility="invisible" />
+            app:layout_constraintTop_toBottomOf="@+id/scroll2" />
+
         <HorizontalScrollView
 
             android:id="@+id/scroll3"
@@ -218,17 +223,19 @@
                 android:orientation="horizontal"
                 android:showDividers="middle"></LinearLayout>
         </HorizontalScrollView>
+
         <TextView
             android:id="@+id/textRitmos4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Platillo"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#091AAA"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/scroll3"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/scroll4"
-            android:visibility="invisible" />
+            app:layout_constraintTop_toBottomOf="@+id/scroll3" />
+
         <HorizontalScrollView
             android:id="@+id/scroll2"
             android:layout_width="match_parent"
@@ -245,7 +252,6 @@
                 android:orientation="horizontal"
                 android:showDividers="middle"></LinearLayout>
         </HorizontalScrollView>
-
 
 
     </LinearLayout>

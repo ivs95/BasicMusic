@@ -1,4 +1,4 @@
-package com.example.prototipotfg;
+package com.example.prototipotfg.ImitarAudio;
 
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
@@ -23,13 +23,9 @@ public class AudioDispatcherFactory1 {
     /**
      * Create a new AudioDispatcher connected to the default microphone.
      *
-     * @param sampleRate
-     *            The requested sample rate.
-     * @param audioBufferSize
-     *            The size of the audio buffer (in samples).
-     *
-     * @param bufferOverlap
-     *            The size of the overlap (in samples).
+     * @param sampleRate      The requested sample rate.
+     * @param audioBufferSize The size of the audio buffer (in samples).
+     * @param bufferOverlap   The size of the overlap (in samples).
      * @return A new AudioDispatcher
      */
     public static AudioDispatcher fromDefaultMicrophone(final int sampleRate,
@@ -37,26 +33,26 @@ public class AudioDispatcherFactory1 {
         int minAudioBufferSize = AudioRecord.getMinBufferSize(sampleRate,
                 android.media.AudioFormat.CHANNEL_IN_MONO,
                 android.media.AudioFormat.ENCODING_PCM_16BIT);
-        int minAudioBufferSizeInSamples =  minAudioBufferSize/2;
-        if(minAudioBufferSizeInSamples <= audioBufferSize ){
+        int minAudioBufferSizeInSamples = minAudioBufferSize / 2;
+        if (minAudioBufferSizeInSamples <= audioBufferSize) {
             audioInputStream = new AudioRecord(
                     MediaRecorder.AudioSource.MIC, sampleRate,
                     android.media.AudioFormat.CHANNEL_IN_MONO,
                     android.media.AudioFormat.ENCODING_PCM_16BIT,
                     audioBufferSize * 2);
 
-            TarsosDSPAudioFormat format = new TarsosDSPAudioFormat(sampleRate, 16,1, true, false);
+            TarsosDSPAudioFormat format = new TarsosDSPAudioFormat(sampleRate, 16, 1, true, false);
 
             TarsosDSPAudioInputStream audioStream = new AndroidAudioInputStream(audioInputStream, format);
             //start recording ! Opens the stream.
             audioInputStream.startRecording();
-            return new AudioDispatcher(audioStream,audioBufferSize,bufferOverlap);
-        }else{
-            throw new IllegalArgumentException("Buffer size too small should be at least " + (minAudioBufferSize *2));
+            return new AudioDispatcher(audioStream, audioBufferSize, bufferOverlap);
+        } else {
+            throw new IllegalArgumentException("Buffer size too small should be at least " + (minAudioBufferSize * 2));
         }
     }
 
-    public AudioRecord getAudioRecord(){
+    public AudioRecord getAudioRecord() {
         return this.audioInputStream;
     }
 

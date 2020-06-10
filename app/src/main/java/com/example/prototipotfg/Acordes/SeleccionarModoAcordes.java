@@ -17,6 +17,7 @@ import com.example.prototipotfg.Singletons.GestorBBDD;
 public class SeleccionarModoAcordes extends Activity {
 
     private Bundle savedInstanceState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +33,8 @@ public class SeleccionarModoAcordes extends Activity {
         viewRangoCrear.setImageResource(RangosPuntuaciones.getRangoPorNombre(GestorBBDD.getInstance().devuelvePuntuacion(ModoJuego.Crear_Acordes.toString()).getRango()).getImage());
     }
 
-    public void modo_acordes(View view){
-        switch (view.getId()){
+    public void modo_acordes(View view) {
+        switch (view.getId()) {
             case R.id.buttonAcordesModo1:
                 Intent i = new Intent(this, SeleccionNivelAdivinarAcorde.class);
                 Controlador.getInstance().setModo_juego(ModoJuego.Adivinar_Acordes);
@@ -47,11 +48,12 @@ public class SeleccionarModoAcordes extends Activity {
                 startActivity(i);
                 break;
 
-            default: break;
+            default:
+                break;
         }
     }
 
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         this.onCreate(this.savedInstanceState);
     }

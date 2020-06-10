@@ -24,7 +24,6 @@ import static com.example.prototipotfg.R.layout;
 
 public class TutorialNivelCrearAcorde extends Activity implements AdapterView.OnItemSelectedListener{
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String[] notas = new String[Notas.values().length];

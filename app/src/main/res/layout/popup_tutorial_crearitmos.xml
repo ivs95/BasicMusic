@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/popup_imitaritmos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="5dp"
@@ -9,7 +10,6 @@
     android:layout_marginRight="5dp"
     android:layout_marginBottom="5dp"
     android:gravity="center"
-    android:id="@+id/popup_imitaritmos"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -32,8 +32,8 @@
                 android:text="TUTORIAL"
                 android:textColor="@color/md_purple_800"
                 android:textSize="24sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/popup_crearitmos_tituloCrearRitmo"
@@ -56,33 +56,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                android:layout_marginEnd="60dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="60dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/popup_crearitmos_tituloCrearRitmo">
+
                 <Button
                     android:id="@+id/popup_crearitmos_botonPlayRitmo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Reproducir ritmo a imitar"/>
+                    android:text="Reproducir ritmo a imitar" />
 
                 <Button
                     android:id="@+id/popup_crearitmos_botonStopRitmo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Detener ritmo"/>
+                    android:text="Detener ritmo" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/popup_crearitmos_mensaje1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="¡Bienvenido a imitar ritmo!\n\nEstos botones reproducen y paran el ritmo del nivel"
                 android:textAlignment="center"
                 android:textColor="@color/md_blue_900"
@@ -90,8 +92,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/popup_crearitmos_linearOpcionesReproducir"
-                android:layout_marginTop="10dp" />
+                app:layout_constraintTop_toBottomOf="@id/popup_crearitmos_linearOpcionesReproducir" />
 
             <LinearLayout
                 android:id="@+id/popup_crearitmos_linearRitmo"
@@ -228,9 +229,9 @@
                 android:id="@+id/popup_crearitmos_linearSoluciones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
+                android:orientation="horizontal"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@id/popup_crearitmos_linearOpcionesComprobar"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -250,9 +251,9 @@
                         android:id="@+id/popup_crearitmos_imageView3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/palmas"
                         android:background="@color/md_green_500"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY"
+                        android:src="@drawable/palmas" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -318,18 +319,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:visibility="visible"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
                     <ImageView
                         android:id="@+id/popup_crearitmos_imageView6"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/caja"
-                        android:visibility="visible"
-                        android:background="@color/md_green_500"
                         android:layout_weight="1"
-                        android:scaleType="fitXY"/>
+                        android:background="@color/md_green_500"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/caja"
+                        android:visibility="visible" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -357,9 +358,9 @@
                         android:id="@+id/popup_crearitmos_imageView7"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/palmas"
                         android:background="@color/md_blue_500"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY"
+                        android:src="@drawable/palmas" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -400,8 +401,8 @@
                 android:layout_marginEnd="60dp"
                 android:layout_marginBottom="15dp"
                 android:gravity="center"
-                android:visibility="invisible"
                 android:orientation="vertical"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/popup_crearitmos_linearOpcionesComprobar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -410,8 +411,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageButton
@@ -421,19 +422,17 @@
                         android:layout_weight="1"
                         android:backgroundTint="@color/md_blue_700"
                         android:scaleType="fitXY"
-                        android:src="@drawable/palmas"
-                        />
+                        android:src="@drawable/palmas" />
 
                     <ImageButton
                         android:id="@+id/popup_crearitmos_botonCaja"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Caja"
                         android:backgroundTint="@color/md_blue_700"
                         android:scaleType="fitXY"
                         android:src="@drawable/caja"
-                        />
+                        android:text="Caja" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -442,12 +441,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="334dp"
+                android:layout_marginBottom="50dp"
                 android:text="Esta es la barra de tiempo de Imitar Ritmos.\n\n Usala como apoyo a la hora de imitar el ritmo del nivel.\n El cuadrado morado es el instante de tiempo dónde te encuentras."
                 android:textAlignment="center"
                 android:textColor="@color/md_blue_900"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                android:layout_marginBottom="50dp"
                 app:layout_constraintBottom_toTopOf="@id/popup_crearitmos_linearOpcionesComprobar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -500,6 +499,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.85">
+
                 <Button
                     android:id="@+id/popup_crearitmos_botonPlayRitmoPropio"
                     android:layout_width="match_parent"
@@ -513,6 +513,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Borrar ritmo"></Button>
+
                 <Button
                     android:id="@+id/popup_crearitmos_botonCompararRitmos"
                     android:layout_width="match_parent"
