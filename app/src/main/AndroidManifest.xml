@@ -154,15 +154,42 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Mix.Ejercicios.AdivinarNotaMix" />
-        <activity android:name=".Mix.Ejercicios.AdivinarAcordeMix" />
-        <activity android:name=".Mix.Ejercicios.AdivinarIntervaloMix" />
-        <activity android:name=".Mix.Ejercicios.CrearAcordeMix" />
-        <activity android:name=".Mix.Ejercicios.CrearIntervaloMix" />
-        <activity android:name=".Mix.Ejercicios.ImitarRitmoMix" />
-        <activity android:name=".Mix.Ejercicios.DibujarRitmoMix" />
-        <activity android:name=".Mix.ResultadoMix" />
-        <activity android:name=".Mix.SeleccionNivelMix" />
+        <activity android:name=".Mix.Ejercicios.AdivinarNotaMix"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Mix.Ejercicios.AdivinarAcordeMix"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Mix.Ejercicios.AdivinarIntervaloMix"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Mix.Ejercicios.CrearAcordeMix"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Mix.Ejercicios.CrearIntervaloMix"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Mix.Ejercicios.ImitarRitmoMix"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Mix.Ejercicios.DibujarRitmoMix"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Mix.ResultadoMix"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Mix.SeleccionNivelMix"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
